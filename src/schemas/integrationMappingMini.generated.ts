@@ -26,7 +26,7 @@ export function serializeIntegrationMappingMiniPartnerItemTypeField(
   return val;
 }
 export function deserializeIntegrationMappingMiniPartnerItemTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingMiniPartnerItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -47,7 +47,7 @@ export function serializeIntegrationMappingMiniBoxItemTypeField(
   return val;
 }
 export function deserializeIntegrationMappingMiniBoxItemTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingMiniBoxItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -91,8 +91,19 @@ export function serializeIntegrationMappingMini(
   };
 }
 export function deserializeIntegrationMappingMini(
-  val: any
+  val: SerializedData
 ): IntegrationMappingMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingMini"',
+    });
+  }
+  if (!(val.partner_item_id == void 0) && !sdIsString(val.partner_item_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "partner_item_id" of type "IntegrationMappingMini"',
+    });
+  }
   const partnerItemId: undefined | string =
     val.partner_item_id == void 0 ? void 0 : val.partner_item_id;
   const partnerItemType:
@@ -103,12 +114,23 @@ export function deserializeIntegrationMappingMini(
       : deserializeIntegrationMappingMiniPartnerItemTypeField(
           val.partner_item_type
         );
+  if (!(val.box_item_id == void 0) && !sdIsString(val.box_item_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "box_item_id" of type "IntegrationMappingMini"',
+    });
+  }
   const boxItemId: undefined | string =
     val.box_item_id == void 0 ? void 0 : val.box_item_id;
   const boxItemType: undefined | IntegrationMappingMiniBoxItemTypeField =
     val.box_item_type == void 0
       ? void 0
       : deserializeIntegrationMappingMiniBoxItemTypeField(val.box_item_type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "IntegrationMappingMini"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const integrationType:
     | undefined

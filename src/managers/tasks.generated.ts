@@ -449,7 +449,7 @@ export function serializeCreateTaskRequestBodyItemTypeField(
   return val;
 }
 export function deserializeCreateTaskRequestBodyItemTypeField(
-  val: any
+  val: SerializedData
 ): CreateTaskRequestBodyItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -475,8 +475,19 @@ export function serializeCreateTaskRequestBodyItemField(
   };
 }
 export function deserializeCreateTaskRequestBodyItemField(
-  val: any
+  val: SerializedData
 ): CreateTaskRequestBodyItemField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateTaskRequestBodyItemField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTaskRequestBodyItemField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CreateTaskRequestBodyItemTypeField =
     val.type == void 0
@@ -490,7 +501,7 @@ export function serializeCreateTaskRequestBodyActionField(
   return val;
 }
 export function deserializeCreateTaskRequestBodyActionField(
-  val: any
+  val: SerializedData
 ): CreateTaskRequestBodyActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -513,7 +524,7 @@ export function serializeCreateTaskRequestBodyCompletionRuleField(
   return val;
 }
 export function deserializeCreateTaskRequestBodyCompletionRuleField(
-  val: any
+  val: SerializedData
 ): CreateTaskRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -549,16 +560,36 @@ export function serializeCreateTaskRequestBody(
   };
 }
 export function deserializeCreateTaskRequestBody(
-  val: any
+  val: SerializedData
 ): CreateTaskRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateTaskRequestBody"',
+    });
+  }
+  if (val.item == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "item" of type "CreateTaskRequestBody" to be defined',
+    });
+  }
   const item: CreateTaskRequestBodyItemField =
     deserializeCreateTaskRequestBodyItemField(val.item);
   const action: undefined | CreateTaskRequestBodyActionField =
     val.action == void 0
       ? void 0
       : deserializeCreateTaskRequestBodyActionField(val.action);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "CreateTaskRequestBody"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
+  if (!(val.due_at == void 0) && !sdIsString(val.due_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "due_at" of type "CreateTaskRequestBody"',
+    });
+  }
   const dueAt: undefined | DateTime =
     val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const completionRule: undefined | CreateTaskRequestBodyCompletionRuleField =
@@ -581,7 +612,7 @@ export function serializeUpdateTaskByIdRequestBodyActionField(
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyActionField(
-  val: any
+  val: SerializedData
 ): UpdateTaskByIdRequestBodyActionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -604,7 +635,7 @@ export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
-  val: any
+  val: SerializedData
 ): UpdateTaskByIdRequestBodyCompletionRuleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -641,14 +672,31 @@ export function serializeUpdateTaskByIdRequestBody(
   };
 }
 export function deserializeUpdateTaskByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateTaskByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateTaskByIdRequestBody"',
+    });
+  }
   const action: undefined | UpdateTaskByIdRequestBodyActionField =
     val.action == void 0
       ? void 0
       : deserializeUpdateTaskByIdRequestBodyActionField(val.action);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "UpdateTaskByIdRequestBody"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
+  if (!(val.due_at == void 0) && !sdIsString(val.due_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "due_at" of type "UpdateTaskByIdRequestBody"',
+    });
+  }
   const dueAt: undefined | DateTime =
     val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
   const completionRule:

@@ -1,6 +1,7 @@
 import { serializeWorkflow } from './workflow.generated.js';
 import { deserializeWorkflow } from './workflow.generated.js';
 import { Workflow } from './workflow.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -27,12 +28,35 @@ export function serializeWorkflows(val: Workflows): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeWorkflows(val: any): Workflows {
+export function deserializeWorkflows(val: SerializedData): Workflows {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Workflows"' });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Workflows"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "next_marker" of type "Workflows"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.prev_marker == void 0) && !sdIsString(val.prev_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "prev_marker" of type "Workflows"',
+    });
+  }
   const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Workflows"',
+    });
+  }
   const entries: undefined | readonly Workflow[] =
     val.entries == void 0
       ? void 0

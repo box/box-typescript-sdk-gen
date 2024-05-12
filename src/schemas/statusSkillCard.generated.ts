@@ -119,7 +119,7 @@ export function serializeStatusSkillCardTypeField(
   return val;
 }
 export function deserializeStatusSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -139,7 +139,7 @@ export function serializeStatusSkillCardSkillCardTypeField(
   return val;
 }
 export function deserializeStatusSkillCardSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -162,9 +162,32 @@ export function serializeStatusSkillCardSkillCardTitleField(
   };
 }
 export function deserializeStatusSkillCardSkillCardTitleField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardSkillCardTitleField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardSkillCardTitleField"',
+    });
+  }
+  if (!(val.code == void 0) && !sdIsString(val.code)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "code" of type "StatusSkillCardSkillCardTitleField"',
+    });
+  }
   const code: undefined | string = val.code == void 0 ? void 0 : val.code;
+  if (val.message == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "message" of type "StatusSkillCardSkillCardTitleField" to be defined',
+    });
+  }
+  if (!sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "StatusSkillCardSkillCardTitleField"',
+    });
+  }
   const message: string = val.message;
   return {
     code: code,
@@ -177,7 +200,7 @@ export function serializeStatusSkillCardStatusCodeField(
   return val;
 }
 export function deserializeStatusSkillCardStatusCodeField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardStatusCodeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -212,10 +235,27 @@ export function serializeStatusSkillCardStatusField(
   };
 }
 export function deserializeStatusSkillCardStatusField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardStatusField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardStatusField"',
+    });
+  }
+  if (val.code == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "code" of type "StatusSkillCardStatusField" to be defined',
+    });
+  }
   const code: StatusSkillCardStatusCodeField =
     deserializeStatusSkillCardStatusCodeField(val.code);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "StatusSkillCardStatusField"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   return { code: code, message: message } satisfies StatusSkillCardStatusField;
@@ -226,7 +266,7 @@ export function serializeStatusSkillCardSkillTypeField(
   return val;
 }
 export function deserializeStatusSkillCardSkillTypeField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardSkillTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -249,10 +289,32 @@ export function serializeStatusSkillCardSkillField(
   };
 }
 export function deserializeStatusSkillCardSkillField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardSkillField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardSkillField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "StatusSkillCardSkillField" to be defined',
+    });
+  }
   const type: StatusSkillCardSkillTypeField =
     deserializeStatusSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "StatusSkillCardSkillField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "StatusSkillCardSkillField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardSkillField;
 }
@@ -268,12 +330,29 @@ export function serializeStatusSkillCardSkillFieldInput(
   };
 }
 export function deserializeStatusSkillCardSkillFieldInput(
-  val: any
+  val: SerializedData
 ): StatusSkillCardSkillFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardSkillFieldInput"',
+    });
+  }
   const type: undefined | StatusSkillCardSkillTypeField =
     val.type == void 0
       ? void 0
       : deserializeStatusSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "StatusSkillCardSkillFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StatusSkillCardSkillFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardSkillFieldInput;
 }
@@ -283,7 +362,7 @@ export function serializeStatusSkillCardInvocationTypeField(
   return val;
 }
 export function deserializeStatusSkillCardInvocationTypeField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -306,10 +385,33 @@ export function serializeStatusSkillCardInvocationField(
   };
 }
 export function deserializeStatusSkillCardInvocationField(
-  val: any
+  val: SerializedData
 ): StatusSkillCardInvocationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardInvocationField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "StatusSkillCardInvocationField" to be defined',
+    });
+  }
   const type: StatusSkillCardInvocationTypeField =
     deserializeStatusSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "StatusSkillCardInvocationField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StatusSkillCardInvocationField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardInvocationField;
 }
@@ -325,12 +427,29 @@ export function serializeStatusSkillCardInvocationFieldInput(
   };
 }
 export function deserializeStatusSkillCardInvocationFieldInput(
-  val: any
+  val: SerializedData
 ): StatusSkillCardInvocationFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardInvocationFieldInput"',
+    });
+  }
   const type: undefined | StatusSkillCardInvocationTypeField =
     val.type == void 0
       ? void 0
       : deserializeStatusSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "StatusSkillCardInvocationFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StatusSkillCardInvocationFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies StatusSkillCardInvocationFieldInput;
 }
@@ -351,23 +470,59 @@ export function serializeStatusSkillCard(val: StatusSkillCard): SerializedData {
     ['invocation']: serializeStatusSkillCardInvocationField(val.invocation),
   };
 }
-export function deserializeStatusSkillCard(val: any): StatusSkillCard {
+export function deserializeStatusSkillCard(
+  val: SerializedData
+): StatusSkillCard {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "StatusSkillCard"' });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "StatusSkillCard"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "StatusSkillCard" to be defined',
+    });
+  }
   const type: StatusSkillCardTypeField = deserializeStatusSkillCardTypeField(
     val.type
   );
+  if (val.skill_card_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "skill_card_type" of type "StatusSkillCard" to be defined',
+    });
+  }
   const skillCardType: StatusSkillCardSkillCardTypeField =
     deserializeStatusSkillCardSkillCardTypeField(val.skill_card_type);
   const skillCardTitle: undefined | StatusSkillCardSkillCardTitleField =
     val.skill_card_title == void 0
       ? void 0
       : deserializeStatusSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "status" of type "StatusSkillCard" to be defined',
+    });
+  }
   const status: StatusSkillCardStatusField =
     deserializeStatusSkillCardStatusField(val.status);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "skill" of type "StatusSkillCard" to be defined',
+    });
+  }
   const skill: StatusSkillCardSkillField = deserializeStatusSkillCardSkillField(
     val.skill
   );
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "invocation" of type "StatusSkillCard" to be defined',
+    });
+  }
   const invocation: StatusSkillCardInvocationField =
     deserializeStatusSkillCardInvocationField(val.invocation);
   return {
@@ -402,8 +557,19 @@ export function serializeStatusSkillCardInput(
   };
 }
 export function deserializeStatusSkillCardInput(
-  val: any
+  val: SerializedData
 ): StatusSkillCardInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StatusSkillCardInput"',
+    });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "StatusSkillCardInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | StatusSkillCardTypeField =
@@ -416,11 +582,28 @@ export function deserializeStatusSkillCardInput(
     val.skill_card_title == void 0
       ? void 0
       : deserializeStatusSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.status == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "status" of type "StatusSkillCardInput" to be defined',
+    });
+  }
   const status: StatusSkillCardStatusField =
     deserializeStatusSkillCardStatusField(val.status);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "skill" of type "StatusSkillCardInput" to be defined',
+    });
+  }
   const skill: StatusSkillCardSkillField = deserializeStatusSkillCardSkillField(
     val.skill
   );
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "invocation" of type "StatusSkillCardInput" to be defined',
+    });
+  }
   const invocation: StatusSkillCardInvocationField =
     deserializeStatusSkillCardInvocationField(val.invocation);
   return {

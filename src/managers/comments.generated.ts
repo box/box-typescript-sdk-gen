@@ -539,8 +539,19 @@ export function serializeUpdateCommentByIdRequestBody(
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeUpdateCommentByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateCommentByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateCommentByIdRequestBody"',
+    });
+  }
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "UpdateCommentByIdRequestBody"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   return { message: message } satisfies UpdateCommentByIdRequestBody;
@@ -551,7 +562,7 @@ export function serializeCreateCommentRequestBodyItemTypeField(
   return val;
 }
 export function deserializeCreateCommentRequestBodyItemTypeField(
-  val: any
+  val: SerializedData
 ): CreateCommentRequestBodyItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -577,9 +588,32 @@ export function serializeCreateCommentRequestBodyItemField(
   };
 }
 export function deserializeCreateCommentRequestBodyItemField(
-  val: any
+  val: SerializedData
 ): CreateCommentRequestBodyItemField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateCommentRequestBodyItemField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateCommentRequestBodyItemField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateCommentRequestBodyItemField"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateCommentRequestBodyItemField" to be defined',
+    });
+  }
   const type: CreateCommentRequestBodyItemTypeField =
     deserializeCreateCommentRequestBodyItemTypeField(val.type);
   return { id: id, type: type } satisfies CreateCommentRequestBodyItemField;
@@ -595,11 +629,40 @@ export function serializeCreateCommentRequestBody(
   };
 }
 export function deserializeCreateCommentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateCommentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateCommentRequestBody"',
+    });
+  }
+  if (val.message == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "message" of type "CreateCommentRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "CreateCommentRequestBody"',
+    });
+  }
   const message: string = val.message;
+  if (!(val.tagged_message == void 0) && !sdIsString(val.tagged_message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "tagged_message" of type "CreateCommentRequestBody"',
+    });
+  }
   const taggedMessage: undefined | string =
     val.tagged_message == void 0 ? void 0 : val.tagged_message;
+  if (val.item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "item" of type "CreateCommentRequestBody" to be defined',
+    });
+  }
   const item: CreateCommentRequestBodyItemField =
     deserializeCreateCommentRequestBodyItemField(val.item);
   return {

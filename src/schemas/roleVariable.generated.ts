@@ -47,7 +47,7 @@ export function serializeRoleVariableTypeField(
   return val;
 }
 export function deserializeRoleVariableTypeField(
-  val: any
+  val: SerializedData
 ): RoleVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -67,7 +67,7 @@ export function serializeRoleVariableVariableTypeField(
   return val;
 }
 export function deserializeRoleVariableVariableTypeField(
-  val: any
+  val: SerializedData
 ): RoleVariableVariableTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -87,7 +87,7 @@ export function serializeRoleVariableVariableValueField(
   return val;
 }
 export function deserializeRoleVariableVariableValueField(
-  val: any
+  val: SerializedData
 ): RoleVariableVariableValueField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -128,12 +128,31 @@ export function serializeRoleVariable(val: RoleVariable): SerializedData {
     ),
   };
 }
-export function deserializeRoleVariable(val: any): RoleVariable {
+export function deserializeRoleVariable(val: SerializedData): RoleVariable {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "RoleVariable"' });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "RoleVariable" to be defined',
+    });
+  }
   const type: RoleVariableTypeField = deserializeRoleVariableTypeField(
     val.type
   );
+  if (val.variable_type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "variable_type" of type "RoleVariable" to be defined',
+    });
+  }
   const variableType: RoleVariableVariableTypeField =
     deserializeRoleVariableVariableTypeField(val.variable_type);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "RoleVariable" to be defined',
+    });
+  }
   const variableValue: RoleVariableVariableValueField =
     deserializeRoleVariableVariableValueField(val.variable_value);
   return {
@@ -157,13 +176,26 @@ export function serializeRoleVariableInput(
     ),
   };
 }
-export function deserializeRoleVariableInput(val: any): RoleVariableInput {
+export function deserializeRoleVariableInput(
+  val: SerializedData
+): RoleVariableInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RoleVariableInput"',
+    });
+  }
   const type: undefined | RoleVariableTypeField =
     val.type == void 0 ? void 0 : deserializeRoleVariableTypeField(val.type);
   const variableType: undefined | RoleVariableVariableTypeField =
     val.variableType == void 0
       ? void 0
       : deserializeRoleVariableVariableTypeField(val.variableType);
+  if (val.variable_value == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "variable_value" of type "RoleVariableInput" to be defined',
+    });
+  }
   const variableValue: RoleVariableVariableValueField =
     deserializeRoleVariableVariableValueField(val.variable_value);
   return {

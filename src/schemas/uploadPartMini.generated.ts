@@ -1,3 +1,4 @@
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -17,10 +18,28 @@ export function serializeUploadPartMini(val: UploadPartMini): SerializedData {
     ['size']: val.size == void 0 ? void 0 : val.size,
   };
 }
-export function deserializeUploadPartMini(val: any): UploadPartMini {
+export function deserializeUploadPartMini(val: SerializedData): UploadPartMini {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "UploadPartMini"' });
+  }
+  if (!(val.part_id == void 0) && !sdIsString(val.part_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "part_id" of type "UploadPartMini"',
+    });
+  }
   const partId: undefined | string =
     val.part_id == void 0 ? void 0 : val.part_id;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "UploadPartMini"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "UploadPartMini"',
+    });
+  }
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
   return {
     partId: partId,

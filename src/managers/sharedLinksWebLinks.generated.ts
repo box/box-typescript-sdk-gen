@@ -551,7 +551,7 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
   return val;
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): AddShareLinkToWebLinkRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -582,12 +582,36 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsFi
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
+  if (!(val.can_download == void 0) && !sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
+  if (!(val.can_preview == void 0) && !sdIsBoolean(val.can_preview)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_preview" of type "AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canPreview: undefined | boolean =
     val.can_preview == void 0 ? void 0 : val.can_preview;
+  if (!(val.can_edit == void 0) && !sdIsBoolean(val.can_edit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_edit" of type "AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canEdit: undefined | boolean =
     val.can_edit == void 0 ? void 0 : val.can_edit;
   return {
@@ -619,8 +643,14 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): AddShareLinkToWebLinkRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "AddShareLinkToWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const access:
     | undefined
     | AddShareLinkToWebLinkRequestBodySharedLinkAccessField =
@@ -629,10 +659,28 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
       : deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
           val.access
         );
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "AddShareLinkToWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "AddShareLinkToWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "AddShareLinkToWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
@@ -664,8 +712,13 @@ export function serializeAddShareLinkToWebLinkRequestBody(
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBody(
-  val: any
+  val: SerializedData
 ): AddShareLinkToWebLinkRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddShareLinkToWebLinkRequestBody"',
+    });
+  }
   const sharedLink:
     | undefined
     | AddShareLinkToWebLinkRequestBodySharedLinkField =
@@ -682,7 +735,7 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessFie
   return val;
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -713,12 +766,36 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissio
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
+  if (!(val.can_download == void 0) && !sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
+  if (!(val.can_preview == void 0) && !sdIsBoolean(val.can_preview)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_preview" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canPreview: undefined | boolean =
     val.can_preview == void 0 ? void 0 : val.can_preview;
+  if (!(val.can_edit == void 0) && !sdIsBoolean(val.can_edit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_edit" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canEdit: undefined | boolean =
     val.can_edit == void 0 ? void 0 : val.can_edit;
   return {
@@ -750,8 +827,14 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateSharedLinkOnWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const access:
     | undefined
     | UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField =
@@ -760,10 +843,28 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
       : deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
           val.access
         );
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "UpdateSharedLinkOnWebLinkRequestBodySharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
@@ -795,8 +896,13 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBody(
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateSharedLinkOnWebLinkRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateSharedLinkOnWebLinkRequestBody"',
+    });
+  }
   const sharedLink:
     | undefined
     | UpdateSharedLinkOnWebLinkRequestBodySharedLinkField =
@@ -815,8 +921,14 @@ export function serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
   return {};
 }
 export function deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "RemoveSharedLinkFromWebLinkRequestBodySharedLinkField"',
+    });
+  }
   return {} satisfies RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBody(
@@ -832,8 +944,13 @@ export function serializeRemoveSharedLinkFromWebLinkRequestBody(
   };
 }
 export function deserializeRemoveSharedLinkFromWebLinkRequestBody(
-  val: any
+  val: SerializedData
 ): RemoveSharedLinkFromWebLinkRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "RemoveSharedLinkFromWebLinkRequestBody"',
+    });
+  }
   const sharedLink:
     | undefined
     | RemoveSharedLinkFromWebLinkRequestBodySharedLinkField =

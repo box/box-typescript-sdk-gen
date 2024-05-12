@@ -52,7 +52,7 @@ export function serializeGroupFullInvitabilityLevelField(
   return val;
 }
 export function deserializeGroupFullInvitabilityLevelField(
-  val: any
+  val: SerializedData
 ): GroupFullInvitabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -78,7 +78,7 @@ export function serializeGroupFullMemberViewabilityLevelField(
   return val;
 }
 export function deserializeGroupFullMemberViewabilityLevelField(
-  val: any
+  val: SerializedData
 ): GroupFullMemberViewabilityLevelField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -109,8 +109,22 @@ export function serializeGroupFullPermissionsField(
   };
 }
 export function deserializeGroupFullPermissionsField(
-  val: any
+  val: SerializedData
 ): GroupFullPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "GroupFullPermissionsField"',
+    });
+  }
+  if (
+    !(val.can_invite_as_collaborator == void 0) &&
+    !sdIsBoolean(val.can_invite_as_collaborator)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_invite_as_collaborator" of type "GroupFullPermissionsField"',
+    });
+  }
   const canInviteAsCollaborator: undefined | boolean =
     val.can_invite_as_collaborator == void 0
       ? void 0
@@ -150,13 +164,35 @@ export function serializeGroupFull(val: GroupFull): SerializedData {
     },
   };
 }
-export function deserializeGroupFull(val: any): GroupFull {
+export function deserializeGroupFull(val: SerializedData): GroupFull {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupFull"' });
+  }
+  if (!(val.provenance == void 0) && !sdIsString(val.provenance)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "provenance" of type "GroupFull"',
+    });
+  }
   const provenance: undefined | string =
     val.provenance == void 0 ? void 0 : val.provenance;
+  if (
+    !(val.external_sync_identifier == void 0) &&
+    !sdIsString(val.external_sync_identifier)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_sync_identifier" of type "GroupFull"',
+    });
+  }
   const externalSyncIdentifier: undefined | string =
     val.external_sync_identifier == void 0
       ? void 0
       : val.external_sync_identifier;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "GroupFull"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const invitabilityLevel: undefined | GroupFullInvitabilityLevelField =
@@ -175,16 +211,46 @@ export function deserializeGroupFull(val: any): GroupFull {
     val.permissions == void 0
       ? void 0
       : deserializeGroupFullPermissionsField(val.permissions);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "GroupFull"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "GroupFull"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "GroupFull"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   const groupType: undefined | GroupMiniGroupTypeField =
     val.group_type == void 0
       ? void 0
       : deserializeGroupMiniGroupTypeField(val.group_type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "GroupFull" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "GroupFull"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "GroupFull" to be defined',
+    });
+  }
   const type: GroupBaseTypeField = deserializeGroupBaseTypeField(val.type);
   return {
     provenance: provenance,

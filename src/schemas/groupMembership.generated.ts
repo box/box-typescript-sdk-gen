@@ -32,7 +32,7 @@ export function serializeGroupMembershipTypeField(
   return val;
 }
 export function deserializeGroupMembershipTypeField(
-  val: any
+  val: SerializedData
 ): GroupMembershipTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -52,7 +52,7 @@ export function serializeGroupMembershipRoleField(
   return val;
 }
 export function deserializeGroupMembershipRoleField(
-  val: any
+  val: SerializedData
 ): GroupMembershipRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -84,7 +84,17 @@ export function serializeGroupMembership(val: GroupMembership): SerializedData {
       val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
   };
 }
-export function deserializeGroupMembership(val: any): GroupMembership {
+export function deserializeGroupMembership(
+  val: SerializedData
+): GroupMembership {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "GroupMembership"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "GroupMembership"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | GroupMembershipTypeField =
     val.type == void 0 ? void 0 : deserializeGroupMembershipTypeField(val.type);
@@ -94,8 +104,18 @@ export function deserializeGroupMembership(val: any): GroupMembership {
     val.group == void 0 ? void 0 : deserializeGroupMini(val.group);
   const role: undefined | GroupMembershipRoleField =
     val.role == void 0 ? void 0 : deserializeGroupMembershipRoleField(val.role);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "GroupMembership"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "GroupMembership"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {

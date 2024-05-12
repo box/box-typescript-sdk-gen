@@ -27,7 +27,7 @@ export function serializeTemplateSignerRoleField(
   return val;
 }
 export function deserializeTemplateSignerRoleField(
-  val: any
+  val: SerializedData
 ): TemplateSignerRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -64,7 +64,15 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
       val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
   };
 }
-export function deserializeTemplateSigner(val: any): TemplateSigner {
+export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TemplateSigner"' });
+  }
+  if (!(val.inputs == void 0) && !sdIsList(val.inputs)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "inputs" of type "TemplateSigner"',
+    });
+  }
   const inputs: undefined | readonly TemplateSignerInput[] =
     val.inputs == void 0
       ? void 0
@@ -73,12 +81,33 @@ export function deserializeTemplateSigner(val: any): TemplateSigner {
           return deserializeTemplateSignerInput(itm);
         }) as readonly any[])
       : [];
+  if (!(val.email == void 0) && !sdIsString(val.email)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email" of type "TemplateSigner"',
+    });
+  }
   const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   const role: undefined | TemplateSignerRoleField =
     val.role == void 0 ? void 0 : deserializeTemplateSignerRoleField(val.role);
+  if (!(val.is_in_person == void 0) && !sdIsBoolean(val.is_in_person)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_in_person" of type "TemplateSigner"',
+    });
+  }
   const isInPerson: undefined | boolean =
     val.is_in_person == void 0 ? void 0 : val.is_in_person;
+  if (!(val.order == void 0) && !sdIsNumber(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "order" of type "TemplateSigner"',
+    });
+  }
   const order: undefined | number = val.order == void 0 ? void 0 : val.order;
+  if (!(val.signer_group_id == void 0) && !sdIsString(val.signer_group_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "signer_group_id" of type "TemplateSigner"',
+    });
+  }
   const signerGroupId: undefined | string =
     val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {

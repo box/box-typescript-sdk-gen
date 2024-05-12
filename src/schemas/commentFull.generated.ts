@@ -40,21 +40,54 @@ export function serializeCommentFull(val: CommentFull): SerializedData {
     },
   };
 }
-export function deserializeCommentFull(val: any): CommentFull {
+export function deserializeCommentFull(val: SerializedData): CommentFull {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "CommentFull"' });
+  }
+  if (!(val.tagged_message == void 0) && !sdIsString(val.tagged_message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "tagged_message" of type "CommentFull"',
+    });
+  }
   const taggedMessage: undefined | string =
     val.tagged_message == void 0 ? void 0 : val.tagged_message;
+  if (!(val.is_reply_comment == void 0) && !sdIsBoolean(val.is_reply_comment)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_reply_comment" of type "CommentFull"',
+    });
+  }
   const isReplyComment: undefined | boolean =
     val.is_reply_comment == void 0 ? void 0 : val.is_reply_comment;
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "CommentFull"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "CommentFull"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "CommentFull"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const item: undefined | CommentItemField =
     val.item == void 0 ? void 0 : deserializeCommentItemField(val.item);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "CommentFull"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CommentBaseTypeField =
     val.type == void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);

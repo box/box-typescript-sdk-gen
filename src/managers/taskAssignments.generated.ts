@@ -489,7 +489,7 @@ export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
   return val;
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
-  val: any
+  val: SerializedData
 ): CreateTaskAssignmentRequestBodyTaskTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -513,9 +513,32 @@ export function serializeCreateTaskAssignmentRequestBodyTaskField(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskField(
-  val: any
+  val: SerializedData
 ): CreateTaskAssignmentRequestBodyTaskField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateTaskAssignmentRequestBodyTaskField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTaskAssignmentRequestBodyTaskField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTaskAssignmentRequestBodyTaskField"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateTaskAssignmentRequestBodyTaskField" to be defined',
+    });
+  }
   const type: CreateTaskAssignmentRequestBodyTaskTypeField =
     deserializeCreateTaskAssignmentRequestBodyTaskTypeField(val.type);
   return {
@@ -535,8 +558,26 @@ export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
-  val: any
+  val: SerializedData
 ): CreateTaskAssignmentRequestBodyTaskFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTaskAssignmentRequestBodyTaskFieldInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateTaskAssignmentRequestBodyTaskFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTaskAssignmentRequestBodyTaskFieldInput"',
+    });
+  }
   const id: string = val.id;
   const type: undefined | CreateTaskAssignmentRequestBodyTaskTypeField =
     val.type == void 0
@@ -556,9 +597,27 @@ export function serializeCreateTaskAssignmentRequestBodyAssignToField(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
-  val: any
+  val: SerializedData
 ): CreateTaskAssignmentRequestBodyAssignToField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateTaskAssignmentRequestBodyAssignToField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateTaskAssignmentRequestBodyAssignToField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "login" of type "CreateTaskAssignmentRequestBodyAssignToField"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return {
     id: id,
@@ -576,10 +635,27 @@ export function serializeCreateTaskAssignmentRequestBody(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateTaskAssignmentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateTaskAssignmentRequestBody"',
+    });
+  }
+  if (val.task == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "task" of type "CreateTaskAssignmentRequestBody" to be defined',
+    });
+  }
   const task: CreateTaskAssignmentRequestBodyTaskField =
     deserializeCreateTaskAssignmentRequestBodyTaskField(val.task);
+  if (val.assign_to == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "assign_to" of type "CreateTaskAssignmentRequestBody" to be defined',
+    });
+  }
   const assignTo: CreateTaskAssignmentRequestBodyAssignToField =
     deserializeCreateTaskAssignmentRequestBodyAssignToField(val.assign_to);
   return {
@@ -593,7 +669,7 @@ export function serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField
   return val;
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-  val: any
+  val: SerializedData
 ): UpdateTaskAssignmentByIdRequestBodyResolutionStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -631,8 +707,19 @@ export function serializeUpdateTaskAssignmentByIdRequestBody(
   };
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateTaskAssignmentByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateTaskAssignmentByIdRequestBody"',
+    });
+  }
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "UpdateTaskAssignmentByIdRequestBody"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const resolutionState:

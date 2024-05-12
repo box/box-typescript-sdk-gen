@@ -1,6 +1,7 @@
 import { serializeWebhookMini } from './webhookMini.generated.js';
 import { deserializeWebhookMini } from './webhookMini.generated.js';
 import { WebhookMini } from './webhookMini.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -27,12 +28,35 @@ export function serializeWebhooks(val: Webhooks): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeWebhooks(val: any): Webhooks {
+export function deserializeWebhooks(val: SerializedData): Webhooks {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Webhooks"' });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Webhooks"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "next_marker" of type "Webhooks"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.prev_marker == void 0) && !sdIsString(val.prev_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "prev_marker" of type "Webhooks"',
+    });
+  }
   const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Webhooks"',
+    });
+  }
   const entries: undefined | readonly WebhookMini[] =
     val.entries == void 0
       ? void 0

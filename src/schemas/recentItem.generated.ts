@@ -31,7 +31,7 @@ export function serializeRecentItemInteractionTypeField(
   return val;
 }
 export function deserializeRecentItemInteractionTypeField(
-  val: any
+  val: SerializedData
 ): RecentItemInteractionTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -74,7 +74,15 @@ export function serializeRecentItem(val: RecentItem): SerializedData {
       val.interactionSharedLink == void 0 ? void 0 : val.interactionSharedLink,
   };
 }
-export function deserializeRecentItem(val: any): RecentItem {
+export function deserializeRecentItem(val: SerializedData): RecentItem {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "RecentItem"' });
+  }
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "type" of type "RecentItem"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   const item: undefined | FileFullOrFolderFullOrWebLink =
     val.item == void 0
@@ -84,10 +92,24 @@ export function deserializeRecentItem(val: any): RecentItem {
     val.interaction_type == void 0
       ? void 0
       : deserializeRecentItemInteractionTypeField(val.interaction_type);
+  if (!(val.interacted_at == void 0) && !sdIsString(val.interacted_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "interacted_at" of type "RecentItem"',
+    });
+  }
   const interactedAt: undefined | DateTime =
     val.interacted_at == void 0
       ? void 0
       : deserializeDateTime(val.interacted_at);
+  if (
+    !(val.interaction_shared_link == void 0) &&
+    !sdIsString(val.interaction_shared_link)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "interaction_shared_link" of type "RecentItem"',
+    });
+  }
   const interactionSharedLink: undefined | string =
     val.interaction_shared_link == void 0
       ? void 0

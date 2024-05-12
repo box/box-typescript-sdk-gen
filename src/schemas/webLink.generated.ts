@@ -86,9 +86,38 @@ export function serializeWebLinkPathCollectionField(
   };
 }
 export function deserializeWebLinkPathCollectionField(
-  val: any
+  val: SerializedData
 ): WebLinkPathCollectionField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebLinkPathCollectionField"',
+    });
+  }
+  if (val.total_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "total_count" of type "WebLinkPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "WebLinkPathCollectionField"',
+    });
+  }
   const totalCount: number = val.total_count;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "WebLinkPathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "WebLinkPathCollectionField"',
+    });
+  }
   const entries: readonly FolderMini[] = sdIsList(val.entries)
     ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
@@ -105,7 +134,7 @@ export function serializeWebLinkSharedLinkAccessField(
   return val;
 }
 export function deserializeWebLinkSharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): WebLinkSharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -131,7 +160,7 @@ export function serializeWebLinkSharedLinkEffectiveAccessField(
   return val;
 }
 export function deserializeWebLinkSharedLinkEffectiveAccessField(
-  val: any
+  val: SerializedData
 ): WebLinkSharedLinkEffectiveAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -157,7 +186,7 @@ export function serializeWebLinkSharedLinkEffectivePermissionField(
   return val;
 }
 export function deserializeWebLinkSharedLinkEffectivePermissionField(
-  val: any
+  val: SerializedData
 ): WebLinkSharedLinkEffectivePermissionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -191,10 +220,51 @@ export function serializeWebLinkSharedLinkPermissionsField(
   };
 }
 export function deserializeWebLinkSharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): WebLinkSharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebLinkSharedLinkPermissionsField"',
+    });
+  }
+  if (val.can_download == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_download" of type "WebLinkSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "WebLinkSharedLinkPermissionsField"',
+    });
+  }
   const canDownload: boolean = val.can_download;
+  if (val.can_preview == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_preview" of type "WebLinkSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_preview)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_preview" of type "WebLinkSharedLinkPermissionsField"',
+    });
+  }
   const canPreview: boolean = val.can_preview;
+  if (val.can_edit == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_edit" of type "WebLinkSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_edit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_edit" of type "WebLinkSharedLinkPermissionsField"',
+    });
+  }
   const canEdit: boolean = val.can_edit;
   return {
     canDownload: canDownload,
@@ -233,33 +303,120 @@ export function serializeWebLinkSharedLinkField(
   };
 }
 export function deserializeWebLinkSharedLinkField(
-  val: any
+  val: SerializedData
 ): WebLinkSharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebLinkSharedLinkField"',
+    });
+  }
+  if (val.url == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "url" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "WebLinkSharedLinkField"',
+    });
+  }
   const url: string = val.url;
+  if (!(val.download_url == void 0) && !sdIsString(val.download_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "download_url" of type "WebLinkSharedLinkField"',
+    });
+  }
   const downloadUrl: undefined | string =
     val.download_url == void 0 ? void 0 : val.download_url;
+  if (!(val.vanity_url == void 0) && !sdIsString(val.vanity_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_url" of type "WebLinkSharedLinkField"',
+    });
+  }
   const vanityUrl: undefined | string =
     val.vanity_url == void 0 ? void 0 : val.vanity_url;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "WebLinkSharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
   const access: undefined | WebLinkSharedLinkAccessField =
     val.access == void 0
       ? void 0
       : deserializeWebLinkSharedLinkAccessField(val.access);
+  if (val.effective_access == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "effective_access" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
   const effectiveAccess: WebLinkSharedLinkEffectiveAccessField =
     deserializeWebLinkSharedLinkEffectiveAccessField(val.effective_access);
+  if (val.effective_permission == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "effective_permission" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
   const effectivePermission: WebLinkSharedLinkEffectivePermissionField =
     deserializeWebLinkSharedLinkEffectivePermissionField(
       val.effective_permission
     );
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "WebLinkSharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
+  if (val.is_password_enabled == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "is_password_enabled" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.is_password_enabled)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_password_enabled" of type "WebLinkSharedLinkField"',
+    });
+  }
   const isPasswordEnabled: boolean = val.is_password_enabled;
   const permissions: undefined | WebLinkSharedLinkPermissionsField =
     val.permissions == void 0
       ? void 0
       : deserializeWebLinkSharedLinkPermissionsField(val.permissions);
+  if (val.download_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "download_count" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.download_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "download_count" of type "WebLinkSharedLinkField"',
+    });
+  }
   const downloadCount: number = val.download_count;
+  if (val.preview_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "preview_count" of type "WebLinkSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.preview_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "preview_count" of type "WebLinkSharedLinkField"',
+    });
+  }
   const previewCount: number = val.preview_count;
   return {
     url: url,
@@ -282,7 +439,7 @@ export function serializeWebLinkItemStatusField(
   return val;
 }
 export function deserializeWebLinkItemStatusField(
-  val: any
+  val: SerializedData
 ): WebLinkItemStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -342,21 +499,49 @@ export function serializeWebLink(val: WebLink): SerializedData {
     },
   };
 }
-export function deserializeWebLink(val: any): WebLink {
+export function deserializeWebLink(val: SerializedData): WebLink {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "WebLink"' });
+  }
   const parent: undefined | FolderMini =
     val.parent == void 0 ? void 0 : deserializeFolderMini(val.parent);
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "WebLink"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const pathCollection: undefined | WebLinkPathCollectionField =
     val.path_collection == void 0
       ? void 0
       : deserializeWebLinkPathCollectionField(val.path_collection);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "WebLink"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "WebLink"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "WebLink"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "WebLink"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
   const createdBy: undefined | UserMini =
@@ -373,12 +558,47 @@ export function deserializeWebLink(val: any): WebLink {
     val.item_status == void 0
       ? void 0
       : deserializeWebLinkItemStatusField(val.item_status);
+  if (!(val.url == void 0) && !sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "WebLink"',
+    });
+  }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "WebLink"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "WebLink"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "WebLink" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebLink"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "WebLink" to be defined',
+    });
+  }
   const type: WebLinkBaseTypeField = deserializeWebLinkBaseTypeField(val.type);
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "WebLink"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
   return {
     parent: parent,

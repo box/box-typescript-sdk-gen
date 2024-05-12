@@ -21,6 +21,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -513,9 +514,27 @@ export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   };
 }
 export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateShieldInformationBarrierSegmentByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateShieldInformationBarrierSegmentByIdRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateShieldInformationBarrierSegmentByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateShieldInformationBarrierSegmentByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   return {
@@ -535,11 +554,41 @@ export function serializeCreateShieldInformationBarrierSegmentRequestBody(
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRequestBody(
-  val: any
+  val: SerializedData
 ): CreateShieldInformationBarrierSegmentRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateShieldInformationBarrierSegmentRequestBody"',
+    });
+  }
+  if (val.shield_information_barrier == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "shield_information_barrier" of type "CreateShieldInformationBarrierSegmentRequestBody" to be defined',
+    });
+  }
   const shieldInformationBarrier: ShieldInformationBarrierBase =
     deserializeShieldInformationBarrierBase(val.shield_information_barrier);
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "CreateShieldInformationBarrierSegmentRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "CreateShieldInformationBarrierSegmentRequestBody"',
+    });
+  }
   const name: string = val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateShieldInformationBarrierSegmentRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   return {

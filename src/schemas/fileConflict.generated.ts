@@ -30,17 +30,55 @@ export function serializeFileConflict(val: FileConflict): SerializedData {
   }
   return { ...base, ...{} };
 }
-export function deserializeFileConflict(val: any): FileConflict {
+export function deserializeFileConflict(val: SerializedData): FileConflict {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileConflict"' });
+  }
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "FileConflict"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "FileConflict"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.sha1 == void 0) && !sdIsString(val.sha1)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sha1" of type "FileConflict"',
+    });
+  }
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
   const fileVersion: undefined | FileVersionMini =
     val.file_version == void 0
       ? void 0
       : deserializeFileVersionMini(val.file_version);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileConflict" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileConflict"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "FileConflict"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileConflict" to be defined',
+    });
+  }
   const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
   return {
     sequenceId: sequenceId,

@@ -39,7 +39,7 @@ export function serializeTaskAssignmentTypeField(
   return val;
 }
 export function deserializeTaskAssignmentTypeField(
-  val: any
+  val: SerializedData
 ): TaskAssignmentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -59,7 +59,7 @@ export function serializeTaskAssignmentResolutionStateField(
   return val;
 }
 export function deserializeTaskAssignmentResolutionStateField(
-  val: any
+  val: SerializedData
 ): TaskAssignmentResolutionStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -105,7 +105,15 @@ export function serializeTaskAssignment(val: TaskAssignment): SerializedData {
       val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
   };
 }
-export function deserializeTaskAssignment(val: any): TaskAssignment {
+export function deserializeTaskAssignment(val: SerializedData): TaskAssignment {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "TaskAssignment"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "TaskAssignment"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | TaskAssignmentTypeField =
     val.type == void 0 ? void 0 : deserializeTaskAssignmentTypeField(val.type);
@@ -113,12 +121,32 @@ export function deserializeTaskAssignment(val: any): TaskAssignment {
     val.item == void 0 ? void 0 : deserializeFileMini(val.item);
   const assignedTo: undefined | UserMini =
     val.assigned_to == void 0 ? void 0 : deserializeUserMini(val.assigned_to);
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "TaskAssignment"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
+  if (!(val.completed_at == void 0) && !sdIsString(val.completed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "completed_at" of type "TaskAssignment"',
+    });
+  }
   const completedAt: undefined | DateTime =
     val.completed_at == void 0 ? void 0 : deserializeDateTime(val.completed_at);
+  if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "assigned_at" of type "TaskAssignment"',
+    });
+  }
   const assignedAt: undefined | DateTime =
     val.assigned_at == void 0 ? void 0 : deserializeDateTime(val.assigned_at);
+  if (!(val.reminded_at == void 0) && !sdIsString(val.reminded_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "reminded_at" of type "TaskAssignment"',
+    });
+  }
   const remindedAt: undefined | DateTime =
     val.reminded_at == void 0 ? void 0 : deserializeDateTime(val.reminded_at);
   const resolutionState: undefined | TaskAssignmentResolutionStateField =

@@ -38,7 +38,7 @@ export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrT
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-  val: any
+  val: SerializedData
 ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

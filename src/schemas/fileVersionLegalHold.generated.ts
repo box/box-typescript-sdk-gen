@@ -33,7 +33,7 @@ export function serializeFileVersionLegalHoldTypeField(
   return val;
 }
 export function deserializeFileVersionLegalHoldTypeField(
-  val: any
+  val: SerializedData
 ): FileVersionLegalHoldTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -74,8 +74,18 @@ export function serializeFileVersionLegalHold(
   };
 }
 export function deserializeFileVersionLegalHold(
-  val: any
+  val: SerializedData
 ): FileVersionLegalHold {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileVersionLegalHold"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersionLegalHold"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | FileVersionLegalHoldTypeField =
     val.type == void 0
@@ -87,6 +97,15 @@ export function deserializeFileVersionLegalHold(
       : deserializeFileVersionMini(val.file_version);
   const file: undefined | FileMini =
     val.file == void 0 ? void 0 : deserializeFileMini(val.file);
+  if (
+    !(val.legal_hold_policy_assignments == void 0) &&
+    !sdIsList(val.legal_hold_policy_assignments)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "legal_hold_policy_assignments" of type "FileVersionLegalHold"',
+    });
+  }
   const legalHoldPolicyAssignments:
     | undefined
     | readonly LegalHoldPolicyAssignment[] =
@@ -99,6 +118,12 @@ export function deserializeFileVersionLegalHold(
           return deserializeLegalHoldPolicyAssignment(itm);
         }) as readonly any[])
       : [];
+  if (!(val.deleted_at == void 0) && !sdIsString(val.deleted_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "deleted_at" of type "FileVersionLegalHold"',
+    });
+  }
   const deletedAt: undefined | DateTime =
     val.deleted_at == void 0 ? void 0 : deserializeDateTime(val.deleted_at);
   return {

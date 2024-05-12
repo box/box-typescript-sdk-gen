@@ -295,7 +295,7 @@ export function serializeGetEventsQueryParamsStreamTypeField(
   return val;
 }
 export function deserializeGetEventsQueryParamsStreamTypeField(
-  val: any
+  val: SerializedData
 ): GetEventsQueryParamsStreamTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -327,7 +327,7 @@ export function serializeGetEventsQueryParamsEventTypeField(
   return val;
 }
 export function deserializeGetEventsQueryParamsEventTypeField(
-  val: any
+  val: SerializedData
 ): GetEventsQueryParamsEventTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({

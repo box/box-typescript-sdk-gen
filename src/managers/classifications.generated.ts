@@ -544,7 +544,7 @@ export function serializeAddClassificationRequestBodyOpField(
   return val;
 }
 export function deserializeAddClassificationRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -564,7 +564,7 @@ export function serializeAddClassificationRequestBodyFieldKeyField(
   return val;
 }
 export function deserializeAddClassificationRequestBodyFieldKeyField(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyFieldKeyField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -591,12 +591,33 @@ export function serializeAddClassificationRequestBodyDataStaticConfigClassificat
   };
 }
 export function deserializeAddClassificationRequestBodyDataStaticConfigClassificationField(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyDataStaticConfigClassificationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "AddClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
+  if (
+    !(val.classificationDefinition == void 0) &&
+    !sdIsString(val.classificationDefinition)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "classificationDefinition" of type "AddClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
   const classificationDefinition: undefined | string =
     val.classificationDefinition == void 0
       ? void 0
       : val.classificationDefinition;
+  if (!(val.colorID == void 0) && !sdIsNumber(val.colorID)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "colorID" of type "AddClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
   const colorId: undefined | number =
     val.colorID == void 0 ? void 0 : val.colorID;
   return {
@@ -617,8 +638,14 @@ export function serializeAddClassificationRequestBodyDataStaticConfigField(
   };
 }
 export function deserializeAddClassificationRequestBodyDataStaticConfigField(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyDataStaticConfigField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "AddClassificationRequestBodyDataStaticConfigField"',
+    });
+  }
   const classification:
     | undefined
     | AddClassificationRequestBodyDataStaticConfigClassificationField =
@@ -645,8 +672,25 @@ export function serializeAddClassificationRequestBodyDataField(
   };
 }
 export function deserializeAddClassificationRequestBodyDataField(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyDataField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddClassificationRequestBodyDataField"',
+    });
+  }
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "AddClassificationRequestBodyDataField" to be defined',
+    });
+  }
+  if (!sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "AddClassificationRequestBodyDataField"',
+    });
+  }
   const key: string = val.key;
   const staticConfig:
     | undefined
@@ -673,12 +717,35 @@ export function serializeAddClassificationRequestBody(
   };
 }
 export function deserializeAddClassificationRequestBody(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddClassificationRequestBody"',
+    });
+  }
+  if (val.op == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "op" of type "AddClassificationRequestBody" to be defined',
+    });
+  }
   const op: AddClassificationRequestBodyOpField =
     deserializeAddClassificationRequestBodyOpField(val.op);
+  if (val.fieldKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "fieldKey" of type "AddClassificationRequestBody" to be defined',
+    });
+  }
   const fieldKey: AddClassificationRequestBodyFieldKeyField =
     deserializeAddClassificationRequestBodyFieldKeyField(val.fieldKey);
+  if (val.data == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "data" of type "AddClassificationRequestBody" to be defined',
+    });
+  }
   const data: AddClassificationRequestBodyDataField =
     deserializeAddClassificationRequestBodyDataField(val.data);
   return {
@@ -703,8 +770,13 @@ export function serializeAddClassificationRequestBodyInput(
   };
 }
 export function deserializeAddClassificationRequestBodyInput(
-  val: any
+  val: SerializedData
 ): AddClassificationRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AddClassificationRequestBodyInput"',
+    });
+  }
   const op: undefined | AddClassificationRequestBodyOpField =
     val.op == void 0
       ? void 0
@@ -713,6 +785,12 @@ export function deserializeAddClassificationRequestBodyInput(
     val.fieldKey == void 0
       ? void 0
       : deserializeAddClassificationRequestBodyFieldKeyField(val.fieldKey);
+  if (val.data == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "data" of type "AddClassificationRequestBodyInput" to be defined',
+    });
+  }
   const data: AddClassificationRequestBodyDataField =
     deserializeAddClassificationRequestBodyDataField(val.data);
   return {
@@ -727,7 +805,7 @@ export function serializeUpdateClassificationRequestBodyOpField(
   return val;
 }
 export function deserializeUpdateClassificationRequestBodyOpField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyOpField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -748,7 +826,7 @@ export function serializeUpdateClassificationRequestBodyFieldKeyField(
   return val;
 }
 export function deserializeUpdateClassificationRequestBodyFieldKeyField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyFieldKeyField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -775,12 +853,33 @@ export function serializeUpdateClassificationRequestBodyDataStaticConfigClassifi
   };
 }
 export function deserializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyDataStaticConfigClassificationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
+  if (
+    !(val.classificationDefinition == void 0) &&
+    !sdIsString(val.classificationDefinition)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "classificationDefinition" of type "UpdateClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
   const classificationDefinition: undefined | string =
     val.classificationDefinition == void 0
       ? void 0
       : val.classificationDefinition;
+  if (!(val.colorID == void 0) && !sdIsNumber(val.colorID)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "colorID" of type "UpdateClassificationRequestBodyDataStaticConfigClassificationField"',
+    });
+  }
   const colorId: undefined | number =
     val.colorID == void 0 ? void 0 : val.colorID;
   return {
@@ -801,8 +900,14 @@ export function serializeUpdateClassificationRequestBodyDataStaticConfigField(
   };
 }
 export function deserializeUpdateClassificationRequestBodyDataStaticConfigField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyDataStaticConfigField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateClassificationRequestBodyDataStaticConfigField"',
+    });
+  }
   const classification:
     | undefined
     | UpdateClassificationRequestBodyDataStaticConfigClassificationField =
@@ -829,8 +934,25 @@ export function serializeUpdateClassificationRequestBodyDataField(
   };
 }
 export function deserializeUpdateClassificationRequestBodyDataField(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyDataField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateClassificationRequestBodyDataField"',
+    });
+  }
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "UpdateClassificationRequestBodyDataField" to be defined',
+    });
+  }
+  if (!sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "UpdateClassificationRequestBodyDataField"',
+    });
+  }
   const key: string = val.key;
   const staticConfig:
     | undefined
@@ -858,13 +980,48 @@ export function serializeUpdateClassificationRequestBody(
   };
 }
 export function deserializeUpdateClassificationRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateClassificationRequestBody"',
+    });
+  }
+  if (val.op == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "op" of type "UpdateClassificationRequestBody" to be defined',
+    });
+  }
   const op: UpdateClassificationRequestBodyOpField =
     deserializeUpdateClassificationRequestBodyOpField(val.op);
+  if (val.fieldKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "fieldKey" of type "UpdateClassificationRequestBody" to be defined',
+    });
+  }
   const fieldKey: UpdateClassificationRequestBodyFieldKeyField =
     deserializeUpdateClassificationRequestBodyFieldKeyField(val.fieldKey);
+  if (val.enumOptionKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "enumOptionKey" of type "UpdateClassificationRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.enumOptionKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "enumOptionKey" of type "UpdateClassificationRequestBody"',
+    });
+  }
   const enumOptionKey: string = val.enumOptionKey;
+  if (val.data == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "data" of type "UpdateClassificationRequestBody" to be defined',
+    });
+  }
   const data: UpdateClassificationRequestBodyDataField =
     deserializeUpdateClassificationRequestBodyDataField(val.data);
   return {
@@ -891,8 +1048,13 @@ export function serializeUpdateClassificationRequestBodyInput(
   };
 }
 export function deserializeUpdateClassificationRequestBodyInput(
-  val: any
+  val: SerializedData
 ): UpdateClassificationRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateClassificationRequestBodyInput"',
+    });
+  }
   const op: undefined | UpdateClassificationRequestBodyOpField =
     val.op == void 0
       ? void 0
@@ -901,7 +1063,25 @@ export function deserializeUpdateClassificationRequestBodyInput(
     val.fieldKey == void 0
       ? void 0
       : deserializeUpdateClassificationRequestBodyFieldKeyField(val.fieldKey);
+  if (val.enumOptionKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "enumOptionKey" of type "UpdateClassificationRequestBodyInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.enumOptionKey)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "enumOptionKey" of type "UpdateClassificationRequestBodyInput"',
+    });
+  }
   const enumOptionKey: string = val.enumOptionKey;
+  if (val.data == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "data" of type "UpdateClassificationRequestBodyInput" to be defined',
+    });
+  }
   const data: UpdateClassificationRequestBodyDataField =
     deserializeUpdateClassificationRequestBodyDataField(val.data);
   return {
@@ -917,7 +1097,7 @@ export function serializeCreateClassificationTemplateRequestBodyScopeField(
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyScopeField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyScopeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -938,7 +1118,7 @@ export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyTemplateKeyField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -959,7 +1139,7 @@ export function serializeCreateClassificationTemplateRequestBodyDisplayNameField
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyDisplayNameField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyDisplayNameField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -980,7 +1160,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsTypeField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1001,7 +1181,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsKeyField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1022,7 +1202,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNam
   return val;
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsDisplayNameField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1049,12 +1229,33 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsSta
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField"',
+    });
+  }
+  if (
+    !(val.classificationDefinition == void 0) &&
+    !sdIsString(val.classificationDefinition)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "classificationDefinition" of type "CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField"',
+    });
+  }
   const classificationDefinition: undefined | string =
     val.classificationDefinition == void 0
       ? void 0
       : val.classificationDefinition;
+  if (!(val.colorID == void 0) && !sdIsNumber(val.colorID)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "colorID" of type "CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField"',
+    });
+  }
   const colorId: undefined | number =
     val.colorID == void 0 ? void 0 : val.colorID;
   return {
@@ -1075,8 +1276,14 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsSta
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField"',
+    });
+  }
   const classification:
     | undefined
     | CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField =
@@ -1103,8 +1310,26 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsFie
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsOptionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyFieldsOptionsField"',
+    });
+  }
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "CreateClassificationTemplateRequestBodyFieldsOptionsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.key)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "key" of type "CreateClassificationTemplateRequestBodyFieldsOptionsField"',
+    });
+  }
   const key: string = val.key;
   const staticConfig:
     | undefined
@@ -1144,18 +1369,60 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsField(
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsField(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyFieldsField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateClassificationTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
   const type: CreateClassificationTemplateRequestBodyFieldsTypeField =
     deserializeCreateClassificationTemplateRequestBodyFieldsTypeField(val.type);
+  if (val.key == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "key" of type "CreateClassificationTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
   const key: CreateClassificationTemplateRequestBodyFieldsKeyField =
     deserializeCreateClassificationTemplateRequestBodyFieldsKeyField(val.key);
+  if (val.displayName == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "displayName" of type "CreateClassificationTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
   const displayName: CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
     deserializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
       val.displayName
     );
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateClassificationTemplateRequestBodyFieldsField"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (val.options == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "options" of type "CreateClassificationTemplateRequestBodyFieldsField" to be defined',
+    });
+  }
+  if (!sdIsList(val.options)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "options" of type "CreateClassificationTemplateRequestBodyFieldsField"',
+    });
+  }
   const options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[] =
     sdIsList(val.options)
       ? (val.options.map(function (
@@ -1207,8 +1474,14 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsFieldInput
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsFieldInput(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyFieldsFieldInput"',
+    });
+  }
   const type:
     | undefined
     | CreateClassificationTemplateRequestBodyFieldsTypeField =
@@ -1231,8 +1504,26 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsFieldInp
       : deserializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
           val.displayName
         );
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateClassificationTemplateRequestBodyFieldsFieldInput"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (val.options == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "options" of type "CreateClassificationTemplateRequestBodyFieldsFieldInput" to be defined',
+    });
+  }
+  if (!sdIsList(val.options)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "options" of type "CreateClassificationTemplateRequestBodyFieldsFieldInput"',
+    });
+  }
   const options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[] =
     sdIsList(val.options)
       ? (val.options.map(function (
@@ -1279,22 +1570,72 @@ export function serializeCreateClassificationTemplateRequestBody(
   };
 }
 export function deserializeCreateClassificationTemplateRequestBody(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateClassificationTemplateRequestBody"',
+    });
+  }
+  if (val.scope == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "scope" of type "CreateClassificationTemplateRequestBody" to be defined',
+    });
+  }
   const scope: CreateClassificationTemplateRequestBodyScopeField =
     deserializeCreateClassificationTemplateRequestBodyScopeField(val.scope);
+  if (val.templateKey == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "templateKey" of type "CreateClassificationTemplateRequestBody" to be defined',
+    });
+  }
   const templateKey: CreateClassificationTemplateRequestBodyTemplateKeyField =
     deserializeCreateClassificationTemplateRequestBodyTemplateKeyField(
       val.templateKey
     );
+  if (val.displayName == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "displayName" of type "CreateClassificationTemplateRequestBody" to be defined',
+    });
+  }
   const displayName: CreateClassificationTemplateRequestBodyDisplayNameField =
     deserializeCreateClassificationTemplateRequestBodyDisplayNameField(
       val.displayName
     );
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateClassificationTemplateRequestBody"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (
+    !(val.copyInstanceOnItemCopy == void 0) &&
+    !sdIsBoolean(val.copyInstanceOnItemCopy)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "copyInstanceOnItemCopy" of type "CreateClassificationTemplateRequestBody"',
+    });
+  }
   const copyInstanceOnItemCopy: undefined | boolean =
     val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+  if (val.fields == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "fields" of type "CreateClassificationTemplateRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "fields" of type "CreateClassificationTemplateRequestBody"',
+    });
+  }
   const fields: readonly CreateClassificationTemplateRequestBodyFieldsField[] =
     sdIsList(val.fields)
       ? (val.fields.map(function (
@@ -1347,8 +1688,14 @@ export function serializeCreateClassificationTemplateRequestBodyInput(
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyInput(
-  val: any
+  val: SerializedData
 ): CreateClassificationTemplateRequestBodyInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateClassificationTemplateRequestBodyInput"',
+    });
+  }
   const scope: undefined | CreateClassificationTemplateRequestBodyScopeField =
     val.scope == void 0
       ? void 0
@@ -1369,10 +1716,37 @@ export function deserializeCreateClassificationTemplateRequestBodyInput(
       : deserializeCreateClassificationTemplateRequestBodyDisplayNameField(
           val.displayName
         );
+  if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "hidden" of type "CreateClassificationTemplateRequestBodyInput"',
+    });
+  }
   const hidden: undefined | boolean =
     val.hidden == void 0 ? void 0 : val.hidden;
+  if (
+    !(val.copyInstanceOnItemCopy == void 0) &&
+    !sdIsBoolean(val.copyInstanceOnItemCopy)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "copyInstanceOnItemCopy" of type "CreateClassificationTemplateRequestBodyInput"',
+    });
+  }
   const copyInstanceOnItemCopy: undefined | boolean =
     val.copyInstanceOnItemCopy == void 0 ? void 0 : val.copyInstanceOnItemCopy;
+  if (val.fields == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "fields" of type "CreateClassificationTemplateRequestBodyInput" to be defined',
+    });
+  }
+  if (!sdIsList(val.fields)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "fields" of type "CreateClassificationTemplateRequestBodyInput"',
+    });
+  }
   const fields: readonly CreateClassificationTemplateRequestBodyFieldsField[] =
     sdIsList(val.fields)
       ? (val.fields.map(function (

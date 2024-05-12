@@ -1,6 +1,7 @@
 import { serializeStoragePolicyAssignment } from './storagePolicyAssignment.generated.js';
 import { deserializeStoragePolicyAssignment } from './storagePolicyAssignment.generated.js';
 import { StoragePolicyAssignment } from './storagePolicyAssignment.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -32,13 +33,42 @@ export function serializeStoragePolicyAssignments(
   };
 }
 export function deserializeStoragePolicyAssignments(
-  val: any
+  val: SerializedData
 ): StoragePolicyAssignments {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StoragePolicyAssignments"',
+    });
+  }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "limit" of type "StoragePolicyAssignments"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "next_marker" of type "StoragePolicyAssignments"',
+    });
+  }
   const nextMarker: undefined | string =
     val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.prev_marker == void 0) && !sdIsString(val.prev_marker)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "prev_marker" of type "StoragePolicyAssignments"',
+    });
+  }
   const prevMarker: undefined | string =
     val.prev_marker == void 0 ? void 0 : val.prev_marker;
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "StoragePolicyAssignments"',
+    });
+  }
   const entries: undefined | readonly StoragePolicyAssignment[] =
     val.entries == void 0
       ? void 0

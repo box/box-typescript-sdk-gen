@@ -228,7 +228,7 @@ export function serializeStartWorkflowRequestBodyTypeField(
   return val;
 }
 export function deserializeStartWorkflowRequestBodyTypeField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -251,9 +251,26 @@ export function serializeStartWorkflowRequestBodyFlowField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFlowField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyFlowField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StartWorkflowRequestBodyFlowField"',
+    });
+  }
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "type" of type "StartWorkflowRequestBodyFlowField"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StartWorkflowRequestBodyFlowField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFlowField;
 }
@@ -263,7 +280,7 @@ export function serializeStartWorkflowRequestBodyFilesTypeField(
   return val;
 }
 export function deserializeStartWorkflowRequestBodyFilesTypeField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyFilesTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -290,12 +307,23 @@ export function serializeStartWorkflowRequestBodyFilesField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFilesField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyFilesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StartWorkflowRequestBodyFilesField"',
+    });
+  }
   const type: undefined | StartWorkflowRequestBodyFilesTypeField =
     val.type == void 0
       ? void 0
       : deserializeStartWorkflowRequestBodyFilesTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StartWorkflowRequestBodyFilesField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFilesField;
 }
@@ -305,7 +333,7 @@ export function serializeStartWorkflowRequestBodyFolderTypeField(
   return val;
 }
 export function deserializeStartWorkflowRequestBodyFolderTypeField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyFolderTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -332,12 +360,23 @@ export function serializeStartWorkflowRequestBodyFolderField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFolderField(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBodyFolderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StartWorkflowRequestBodyFolderField"',
+    });
+  }
   const type: undefined | StartWorkflowRequestBodyFolderTypeField =
     val.type == void 0
       ? void 0
       : deserializeStartWorkflowRequestBodyFolderTypeField(val.type);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "StartWorkflowRequestBodyFolderField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
@@ -365,14 +404,36 @@ export function serializeStartWorkflowRequestBody(
   };
 }
 export function deserializeStartWorkflowRequestBody(
-  val: any
+  val: SerializedData
 ): StartWorkflowRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "StartWorkflowRequestBody"',
+    });
+  }
   const type: undefined | StartWorkflowRequestBodyTypeField =
     val.type == void 0
       ? void 0
       : deserializeStartWorkflowRequestBodyTypeField(val.type);
+  if (val.flow == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "flow" of type "StartWorkflowRequestBody" to be defined',
+    });
+  }
   const flow: StartWorkflowRequestBodyFlowField =
     deserializeStartWorkflowRequestBodyFlowField(val.flow);
+  if (val.files == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "files" of type "StartWorkflowRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.files)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "files" of type "StartWorkflowRequestBody"',
+    });
+  }
   const files: readonly StartWorkflowRequestBodyFilesField[] = sdIsList(
     val.files
   )
@@ -382,8 +443,20 @@ export function deserializeStartWorkflowRequestBody(
         return deserializeStartWorkflowRequestBodyFilesField(itm);
       }) as readonly any[])
     : [];
+  if (val.folder == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "folder" of type "StartWorkflowRequestBody" to be defined',
+    });
+  }
   const folder: StartWorkflowRequestBodyFolderField =
     deserializeStartWorkflowRequestBodyFolderField(val.folder);
+  if (!(val.outcomes == void 0) && !sdIsList(val.outcomes)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "outcomes" of type "StartWorkflowRequestBody"',
+    });
+  }
   const outcomes: undefined | readonly Outcome[] =
     val.outcomes == void 0
       ? void 0

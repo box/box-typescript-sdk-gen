@@ -15,6 +15,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -249,8 +250,25 @@ export function serializeCreateInviteRequestBodyEnterpriseField(
   return { ['id']: val.id };
 }
 export function deserializeCreateInviteRequestBodyEnterpriseField(
-  val: any
+  val: SerializedData
 ): CreateInviteRequestBodyEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateInviteRequestBodyEnterpriseField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateInviteRequestBodyEnterpriseField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateInviteRequestBodyEnterpriseField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CreateInviteRequestBodyEnterpriseField;
 }
@@ -260,8 +278,19 @@ export function serializeCreateInviteRequestBodyActionableByField(
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
 export function deserializeCreateInviteRequestBodyActionableByField(
-  val: any
+  val: SerializedData
 ): CreateInviteRequestBodyActionableByField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateInviteRequestBodyActionableByField"',
+    });
+  }
+  if (!(val.login == void 0) && !sdIsString(val.login)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "login" of type "CreateInviteRequestBodyActionableByField"',
+    });
+  }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
   return { login: login } satisfies CreateInviteRequestBodyActionableByField;
 }
@@ -278,10 +307,27 @@ export function serializeCreateInviteRequestBody(
   };
 }
 export function deserializeCreateInviteRequestBody(
-  val: any
+  val: SerializedData
 ): CreateInviteRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateInviteRequestBody"',
+    });
+  }
+  if (val.enterprise == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "enterprise" of type "CreateInviteRequestBody" to be defined',
+    });
+  }
   const enterprise: CreateInviteRequestBodyEnterpriseField =
     deserializeCreateInviteRequestBodyEnterpriseField(val.enterprise);
+  if (val.actionable_by == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "actionable_by" of type "CreateInviteRequestBody" to be defined',
+    });
+  }
   const actionableBy: CreateInviteRequestBodyActionableByField =
     deserializeCreateInviteRequestBodyActionableByField(val.actionable_by);
   return {

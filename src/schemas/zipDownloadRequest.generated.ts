@@ -21,7 +21,7 @@ export function serializeZipDownloadRequestItemsTypeField(
   return val;
 }
 export function deserializeZipDownloadRequestItemsTypeField(
-  val: any
+  val: SerializedData
 ): ZipDownloadRequestItemsTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -47,10 +47,33 @@ export function serializeZipDownloadRequestItemsField(
   };
 }
 export function deserializeZipDownloadRequestItemsField(
-  val: any
+  val: SerializedData
 ): ZipDownloadRequestItemsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ZipDownloadRequestItemsField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "ZipDownloadRequestItemsField" to be defined',
+    });
+  }
   const type: ZipDownloadRequestItemsTypeField =
     deserializeZipDownloadRequestItemsTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "ZipDownloadRequestItemsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "ZipDownloadRequestItemsField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies ZipDownloadRequestItemsField;
 }
@@ -67,7 +90,24 @@ export function serializeZipDownloadRequest(
       val.downloadFileName == void 0 ? void 0 : val.downloadFileName,
   };
 }
-export function deserializeZipDownloadRequest(val: any): ZipDownloadRequest {
+export function deserializeZipDownloadRequest(
+  val: SerializedData
+): ZipDownloadRequest {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "ZipDownloadRequest"',
+    });
+  }
+  if (val.items == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "items" of type "ZipDownloadRequest" to be defined',
+    });
+  }
+  if (!sdIsList(val.items)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "items" of type "ZipDownloadRequest"',
+    });
+  }
   const items: readonly ZipDownloadRequestItemsField[] = sdIsList(val.items)
     ? (val.items.map(function (
         itm: SerializedData
@@ -75,6 +115,15 @@ export function deserializeZipDownloadRequest(val: any): ZipDownloadRequest {
         return deserializeZipDownloadRequestItemsField(itm);
       }) as readonly any[])
     : [];
+  if (
+    !(val.download_file_name == void 0) &&
+    !sdIsString(val.download_file_name)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "download_file_name" of type "ZipDownloadRequest"',
+    });
+  }
   const downloadFileName: undefined | string =
     val.download_file_name == void 0 ? void 0 : val.download_file_name;
   return {

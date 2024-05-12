@@ -21,6 +21,7 @@ import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { DateTime } from '../internal/utils.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -472,19 +473,63 @@ export function serializeCreateLegalHoldPolicyRequestBody(
   };
 }
 export function deserializeCreateLegalHoldPolicyRequestBody(
-  val: any
+  val: SerializedData
 ): CreateLegalHoldPolicyRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
+  if (val.policy_name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "policy_name" of type "CreateLegalHoldPolicyRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_name" of type "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
   const policyName: string = val.policy_name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (
+    !(val.filter_started_at == void 0) &&
+    !sdIsString(val.filter_started_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "filter_started_at" of type "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
   const filterStartedAt: undefined | DateTime =
     val.filter_started_at == void 0
       ? void 0
       : deserializeDateTime(val.filter_started_at);
+  if (!(val.filter_ended_at == void 0) && !sdIsString(val.filter_ended_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "filter_ended_at" of type "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
   const filterEndedAt: undefined | DateTime =
     val.filter_ended_at == void 0
       ? void 0
       : deserializeDateTime(val.filter_ended_at);
+  if (!(val.is_ongoing == void 0) && !sdIsBoolean(val.is_ongoing)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_ongoing" of type "CreateLegalHoldPolicyRequestBody"',
+    });
+  }
   const isOngoing: undefined | boolean =
     val.is_ongoing == void 0 ? void 0 : val.is_ongoing;
   return {
@@ -505,12 +550,35 @@ export function serializeUpdateLegalHoldPolicyByIdRequestBody(
   };
 }
 export function deserializeUpdateLegalHoldPolicyByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateLegalHoldPolicyByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateLegalHoldPolicyByIdRequestBody"',
+    });
+  }
+  if (!(val.policy_name == void 0) && !sdIsString(val.policy_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "policy_name" of type "UpdateLegalHoldPolicyByIdRequestBody"',
+    });
+  }
   const policyName: undefined | string =
     val.policy_name == void 0 ? void 0 : val.policy_name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateLegalHoldPolicyByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (!(val.release_notes == void 0) && !sdIsString(val.release_notes)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "release_notes" of type "UpdateLegalHoldPolicyByIdRequestBody"',
+    });
+  }
   const releaseNotes: undefined | string =
     val.release_notes == void 0 ? void 0 : val.release_notes;
   return {

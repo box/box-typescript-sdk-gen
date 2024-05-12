@@ -68,29 +68,96 @@ export function serializeFileVersion(val: FileVersion): SerializedData {
     },
   };
 }
-export function deserializeFileVersion(val: any): FileVersion {
+export function deserializeFileVersion(val: SerializedData): FileVersion {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "FileVersion"' });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "FileVersion"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "FileVersion"',
+    });
+  }
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "FileVersion"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "FileVersion"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const modifiedBy: undefined | UserMini =
     val.modified_by == void 0 ? void 0 : deserializeUserMini(val.modified_by);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "FileVersion"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
   const trashedBy: undefined | UserMini =
     val.trashed_by == void 0 ? void 0 : deserializeUserMini(val.trashed_by);
+  if (!(val.restored_at == void 0) && !sdIsString(val.restored_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "restored_at" of type "FileVersion"',
+    });
+  }
   const restoredAt: undefined | DateTime =
     val.restored_at == void 0 ? void 0 : deserializeDateTime(val.restored_at);
   const restoredBy: undefined | UserMini =
     val.restored_by == void 0 ? void 0 : deserializeUserMini(val.restored_by);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "FileVersion"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  if (
+    !(val.uploader_display_name == void 0) &&
+    !sdIsString(val.uploader_display_name)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "uploader_display_name" of type "FileVersion"',
+    });
+  }
   const uploaderDisplayName: undefined | string =
     val.uploader_display_name == void 0 ? void 0 : val.uploader_display_name;
+  if (!(val.sha1 == void 0) && !sdIsString(val.sha1)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sha1" of type "FileVersion"',
+    });
+  }
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "FileVersion" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "FileVersion"',
+    });
+  }
   const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "FileVersion" to be defined',
+    });
+  }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
     val.type
   );

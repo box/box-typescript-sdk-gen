@@ -17,7 +17,7 @@ export function serializeEnterpriseBaseTypeField(
   return val;
 }
 export function deserializeEnterpriseBaseTypeField(
-  val: any
+  val: SerializedData
 ): EnterpriseBaseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -38,7 +38,15 @@ export function serializeEnterpriseBase(val: EnterpriseBase): SerializedData {
       val.type == void 0 ? void 0 : serializeEnterpriseBaseTypeField(val.type),
   };
 }
-export function deserializeEnterpriseBase(val: any): EnterpriseBase {
+export function deserializeEnterpriseBase(val: SerializedData): EnterpriseBase {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "EnterpriseBase"' });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "EnterpriseBase"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | EnterpriseBaseTypeField =
     val.type == void 0 ? void 0 : deserializeEnterpriseBaseTypeField(val.type);

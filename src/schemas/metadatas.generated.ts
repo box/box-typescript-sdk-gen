@@ -1,6 +1,7 @@
 import { serializeMetadata } from './metadata.generated.js';
 import { deserializeMetadata } from './metadata.generated.js';
 import { Metadata } from './metadata.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -23,7 +24,15 @@ export function serializeMetadatas(val: Metadatas): SerializedData {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
   };
 }
-export function deserializeMetadatas(val: any): Metadatas {
+export function deserializeMetadatas(val: SerializedData): Metadatas {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Metadatas"' });
+  }
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Metadatas"',
+    });
+  }
   const entries: undefined | readonly Metadata[] =
     val.entries == void 0
       ? void 0
@@ -32,6 +41,11 @@ export function deserializeMetadatas(val: any): Metadatas {
           return deserializeMetadata(itm);
         }) as readonly any[])
       : [];
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Metadatas"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   return { entries: entries, limit: limit } satisfies Metadatas;
 }

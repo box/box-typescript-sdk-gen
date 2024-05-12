@@ -304,7 +304,7 @@ export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
   return val;
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-  val: any
+  val: SerializedData
 ): UpdateFolderWatermarkRequestBodyWatermarkImprintField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -329,8 +329,20 @@ export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
-  val: any
+  val: SerializedData
 ): UpdateFolderWatermarkRequestBodyWatermarkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderWatermarkRequestBodyWatermarkField"',
+    });
+  }
+  if (val.imprint == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "imprint" of type "UpdateFolderWatermarkRequestBodyWatermarkField" to be defined',
+    });
+  }
   const imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
     deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
       val.imprint
@@ -352,8 +364,14 @@ export function serializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
-  val: any
+  val: SerializedData
 ): UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderWatermarkRequestBodyWatermarkFieldInput"',
+    });
+  }
   const imprint:
     | undefined
     | UpdateFolderWatermarkRequestBodyWatermarkImprintField =
@@ -376,8 +394,19 @@ export function serializeUpdateFolderWatermarkRequestBody(
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFolderWatermarkRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFolderWatermarkRequestBody"',
+    });
+  }
+  if (val.watermark == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "watermark" of type "UpdateFolderWatermarkRequestBody" to be defined',
+    });
+  }
   const watermark: UpdateFolderWatermarkRequestBodyWatermarkField =
     deserializeUpdateFolderWatermarkRequestBodyWatermarkField(val.watermark);
   return { watermark: watermark } satisfies UpdateFolderWatermarkRequestBody;

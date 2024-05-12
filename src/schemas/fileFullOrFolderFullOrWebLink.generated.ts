@@ -31,7 +31,7 @@ export function serializeFileFullOrFolderFullOrWebLink(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileFullOrFolderFullOrWebLink(
-  val: any
+  val: SerializedData
 ): FileFullOrFolderFullOrWebLink {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

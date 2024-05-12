@@ -38,8 +38,25 @@ export function serializeCommentItemField(
     ['type']: val.type == void 0 ? void 0 : val.type,
   };
 }
-export function deserializeCommentItemField(val: any): CommentItemField {
+export function deserializeCommentItemField(
+  val: SerializedData
+): CommentItemField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CommentItemField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "CommentItemField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "type" of type "CommentItemField"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   return { id: id, type: type } satisfies CommentItemField;
 }
@@ -65,19 +82,47 @@ export function serializeComment(val: Comment): SerializedData {
     },
   };
 }
-export function deserializeComment(val: any): Comment {
+export function deserializeComment(val: SerializedData): Comment {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Comment"' });
+  }
+  if (!(val.is_reply_comment == void 0) && !sdIsBoolean(val.is_reply_comment)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_reply_comment" of type "Comment"',
+    });
+  }
   const isReplyComment: undefined | boolean =
     val.is_reply_comment == void 0 ? void 0 : val.is_reply_comment;
+  if (!(val.message == void 0) && !sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "message" of type "Comment"',
+    });
+  }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Comment"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "Comment"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const item: undefined | CommentItemField =
     val.item == void 0 ? void 0 : deserializeCommentItemField(val.item);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "Comment"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CommentBaseTypeField =
     val.type == void 0 ? void 0 : deserializeCommentBaseTypeField(val.type);

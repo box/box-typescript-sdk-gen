@@ -27,7 +27,7 @@ export function serializeItemsOrderDirectionField(
   return val;
 }
 export function deserializeItemsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): ItemsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -53,7 +53,17 @@ export function serializeItemsOrderField(val: ItemsOrderField): SerializedData {
         : serializeItemsOrderDirectionField(val.direction),
   };
 }
-export function deserializeItemsOrderField(val: any): ItemsOrderField {
+export function deserializeItemsOrderField(
+  val: SerializedData
+): ItemsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "ItemsOrderField"' });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "ItemsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | ItemsOrderDirectionField =
     val.direction == void 0
@@ -82,11 +92,34 @@ export function serializeItems(val: Items): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeItems(val: any): Items {
+export function deserializeItems(val: SerializedData): Items {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Items"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "Items"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Items"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "Items"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "Items"',
+    });
+  }
   const order: undefined | readonly ItemsOrderField[] =
     val.order == void 0
       ? void 0
@@ -95,6 +128,11 @@ export function deserializeItems(val: any): Items {
           return deserializeItemsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Items"',
+    });
+  }
   const entries: undefined | readonly FileFullOrFolderMiniOrWebLink[] =
     val.entries == void 0
       ? void 0

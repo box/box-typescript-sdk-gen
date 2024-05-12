@@ -29,7 +29,7 @@ export function serializeSignRequestCreateSignerRoleField(
   return val;
 }
 export function deserializeSignRequestCreateSignerRoleField(
-  val: any
+  val: SerializedData
 ): SignRequestCreateSignerRoleField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -79,32 +79,104 @@ export function serializeSignRequestCreateSigner(
   };
 }
 export function deserializeSignRequestCreateSigner(
-  val: any
+  val: SerializedData
 ): SignRequestCreateSigner {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "SignRequestCreateSigner"',
+    });
+  }
+  if (!(val.email == void 0) && !sdIsString(val.email)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "email" of type "SignRequestCreateSigner"',
+    });
+  }
   const email: undefined | string = val.email == void 0 ? void 0 : val.email;
   const role: undefined | SignRequestCreateSignerRoleField =
     val.role == void 0
       ? void 0
       : deserializeSignRequestCreateSignerRoleField(val.role);
+  if (!(val.is_in_person == void 0) && !sdIsBoolean(val.is_in_person)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_in_person" of type "SignRequestCreateSigner"',
+    });
+  }
   const isInPerson: undefined | boolean =
     val.is_in_person == void 0 ? void 0 : val.is_in_person;
+  if (!(val.order == void 0) && !sdIsNumber(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "order" of type "SignRequestCreateSigner"',
+    });
+  }
   const order: undefined | number = val.order == void 0 ? void 0 : val.order;
+  if (
+    !(val.embed_url_external_user_id == void 0) &&
+    !sdIsString(val.embed_url_external_user_id)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "embed_url_external_user_id" of type "SignRequestCreateSigner"',
+    });
+  }
   const embedUrlExternalUserId: undefined | string =
     val.embed_url_external_user_id == void 0
       ? void 0
       : val.embed_url_external_user_id;
+  if (!(val.redirect_url == void 0) && !sdIsString(val.redirect_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "redirect_url" of type "SignRequestCreateSigner"',
+    });
+  }
   const redirectUrl: undefined | string =
     val.redirect_url == void 0 ? void 0 : val.redirect_url;
+  if (
+    !(val.declined_redirect_url == void 0) &&
+    !sdIsString(val.declined_redirect_url)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "declined_redirect_url" of type "SignRequestCreateSigner"',
+    });
+  }
   const declinedRedirectUrl: undefined | string =
     val.declined_redirect_url == void 0 ? void 0 : val.declined_redirect_url;
+  if (!(val.login_required == void 0) && !sdIsBoolean(val.login_required)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "login_required" of type "SignRequestCreateSigner"',
+    });
+  }
   const loginRequired: undefined | boolean =
     val.login_required == void 0 ? void 0 : val.login_required;
+  if (
+    !(val.verification_phone_number == void 0) &&
+    !sdIsString(val.verification_phone_number)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "verification_phone_number" of type "SignRequestCreateSigner"',
+    });
+  }
   const verificationPhoneNumber: undefined | string =
     val.verification_phone_number == void 0
       ? void 0
       : val.verification_phone_number;
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "SignRequestCreateSigner"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.signer_group_id == void 0) && !sdIsString(val.signer_group_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "signer_group_id" of type "SignRequestCreateSigner"',
+    });
+  }
   const signerGroupId: undefined | string =
     val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
   return {

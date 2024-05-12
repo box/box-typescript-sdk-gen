@@ -396,7 +396,7 @@ export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeFie
   return val;
 }
 export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
-  val: any
+  val: SerializedData
 ): GetSlackIntegrationMappingQueryParamsPartnerItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -417,7 +417,7 @@ export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
   return val;
 }
 export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
-  val: any
+  val: SerializedData
 ): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -447,8 +447,14 @@ export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
   };
 }
 export function deserializeUpdateSlackIntegrationMappingByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateSlackIntegrationMappingByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateSlackIntegrationMappingByIdRequestBody"',
+    });
+  }
   const boxItem: undefined | IntegrationMappingBoxItemSlack =
     val.box_item == void 0
       ? void 0

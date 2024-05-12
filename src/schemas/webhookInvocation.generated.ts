@@ -75,7 +75,7 @@ export function serializeWebhookInvocationTypeField(
   return val;
 }
 export function deserializeWebhookInvocationTypeField(
-  val: any
+  val: SerializedData
 ): WebhookInvocationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -95,7 +95,7 @@ export function serializeWebhookInvocationTriggerField(
   return val;
 }
 export function deserializeWebhookInvocationTriggerField(
-  val: any
+  val: SerializedData
 ): WebhookInvocationTriggerField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -248,7 +248,19 @@ export function serializeWebhookInvocation(
       val.source == void 0 ? void 0 : serializeFileOrFolder(val.source),
   };
 }
-export function deserializeWebhookInvocation(val: any): WebhookInvocation {
+export function deserializeWebhookInvocation(
+  val: SerializedData
+): WebhookInvocation {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "WebhookInvocation"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "WebhookInvocation"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | WebhookInvocationTypeField =
     val.type == void 0
@@ -258,6 +270,11 @@ export function deserializeWebhookInvocation(val: any): WebhookInvocation {
     val.webhook == void 0 ? void 0 : deserializeWebhook(val.webhook);
   const createdBy: undefined | UserMini =
     val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "WebhookInvocation"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const trigger: undefined | WebhookInvocationTriggerField =

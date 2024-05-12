@@ -123,7 +123,7 @@ export function serializeTimelineSkillCardTypeField(
   return val;
 }
 export function deserializeTimelineSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -143,7 +143,7 @@ export function serializeTimelineSkillCardSkillCardTypeField(
   return val;
 }
 export function deserializeTimelineSkillCardSkillCardTypeField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardSkillCardTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -166,9 +166,32 @@ export function serializeTimelineSkillCardSkillCardTitleField(
   };
 }
 export function deserializeTimelineSkillCardSkillCardTitleField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardSkillCardTitleField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardSkillCardTitleField"',
+    });
+  }
+  if (!(val.code == void 0) && !sdIsString(val.code)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "code" of type "TimelineSkillCardSkillCardTitleField"',
+    });
+  }
   const code: undefined | string = val.code == void 0 ? void 0 : val.code;
+  if (val.message == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "message" of type "TimelineSkillCardSkillCardTitleField" to be defined',
+    });
+  }
+  if (!sdIsString(val.message)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "message" of type "TimelineSkillCardSkillCardTitleField"',
+    });
+  }
   const message: string = val.message;
   return {
     code: code,
@@ -181,7 +204,7 @@ export function serializeTimelineSkillCardSkillTypeField(
   return val;
 }
 export function deserializeTimelineSkillCardSkillTypeField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardSkillTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -204,10 +227,33 @@ export function serializeTimelineSkillCardSkillField(
   };
 }
 export function deserializeTimelineSkillCardSkillField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardSkillField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardSkillField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "TimelineSkillCardSkillField" to be defined',
+    });
+  }
   const type: TimelineSkillCardSkillTypeField =
     deserializeTimelineSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TimelineSkillCardSkillField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TimelineSkillCardSkillField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardSkillField;
 }
@@ -223,12 +269,29 @@ export function serializeTimelineSkillCardSkillFieldInput(
   };
 }
 export function deserializeTimelineSkillCardSkillFieldInput(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardSkillFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardSkillFieldInput"',
+    });
+  }
   const type: undefined | TimelineSkillCardSkillTypeField =
     val.type == void 0
       ? void 0
       : deserializeTimelineSkillCardSkillTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TimelineSkillCardSkillFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TimelineSkillCardSkillFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardSkillFieldInput;
 }
@@ -238,7 +301,7 @@ export function serializeTimelineSkillCardInvocationTypeField(
   return val;
 }
 export function deserializeTimelineSkillCardInvocationTypeField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardInvocationTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -261,10 +324,33 @@ export function serializeTimelineSkillCardInvocationField(
   };
 }
 export function deserializeTimelineSkillCardInvocationField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardInvocationField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardInvocationField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "TimelineSkillCardInvocationField" to be defined',
+    });
+  }
   const type: TimelineSkillCardInvocationTypeField =
     deserializeTimelineSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TimelineSkillCardInvocationField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TimelineSkillCardInvocationField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardInvocationField;
 }
@@ -280,12 +366,29 @@ export function serializeTimelineSkillCardInvocationFieldInput(
   };
 }
 export function deserializeTimelineSkillCardInvocationFieldInput(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardInvocationFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardInvocationFieldInput"',
+    });
+  }
   const type: undefined | TimelineSkillCardInvocationTypeField =
     val.type == void 0
       ? void 0
       : deserializeTimelineSkillCardInvocationTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "TimelineSkillCardInvocationFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "TimelineSkillCardInvocationFieldInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies TimelineSkillCardInvocationFieldInput;
 }
@@ -298,9 +401,26 @@ export function serializeTimelineSkillCardEntriesAppearsField(
   };
 }
 export function deserializeTimelineSkillCardEntriesAppearsField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardEntriesAppearsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardEntriesAppearsField"',
+    });
+  }
+  if (!(val.start == void 0) && !sdIsNumber(val.start)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "start" of type "TimelineSkillCardEntriesAppearsField"',
+    });
+  }
   const start: undefined | number = val.start == void 0 ? void 0 : val.start;
+  if (!(val.end == void 0) && !sdIsNumber(val.end)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "end" of type "TimelineSkillCardEntriesAppearsField"',
+    });
+  }
   const end: undefined | number = val.end == void 0 ? void 0 : val.end;
   return {
     start: start,
@@ -324,9 +444,26 @@ export function serializeTimelineSkillCardEntriesField(
   };
 }
 export function deserializeTimelineSkillCardEntriesField(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardEntriesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardEntriesField"',
+    });
+  }
+  if (!(val.text == void 0) && !sdIsString(val.text)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text" of type "TimelineSkillCardEntriesField"',
+    });
+  }
   const text: undefined | string = val.text == void 0 ? void 0 : val.text;
+  if (!(val.appears == void 0) && !sdIsList(val.appears)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "appears" of type "TimelineSkillCardEntriesField"',
+    });
+  }
   const appears: undefined | readonly TimelineSkillCardEntriesAppearsField[] =
     val.appears == void 0
       ? void 0
@@ -337,6 +474,12 @@ export function deserializeTimelineSkillCardEntriesField(
           return deserializeTimelineSkillCardEntriesAppearsField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.image_url == void 0) && !sdIsString(val.image_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "image_url" of type "TimelineSkillCardEntriesField"',
+    });
+  }
   const imageUrl: undefined | string =
     val.image_url == void 0 ? void 0 : val.image_url;
   return {
@@ -369,23 +512,72 @@ export function serializeTimelineSkillCard(
     }) as readonly any[],
   };
 }
-export function deserializeTimelineSkillCard(val: any): TimelineSkillCard {
+export function deserializeTimelineSkillCard(
+  val: SerializedData
+): TimelineSkillCard {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCard"',
+    });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "TimelineSkillCard"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "TimelineSkillCard" to be defined',
+    });
+  }
   const type: TimelineSkillCardTypeField =
     deserializeTimelineSkillCardTypeField(val.type);
+  if (val.skill_card_type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "skill_card_type" of type "TimelineSkillCard" to be defined',
+    });
+  }
   const skillCardType: TimelineSkillCardSkillCardTypeField =
     deserializeTimelineSkillCardSkillCardTypeField(val.skill_card_type);
   const skillCardTitle: undefined | TimelineSkillCardSkillCardTitleField =
     val.skill_card_title == void 0
       ? void 0
       : deserializeTimelineSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "skill" of type "TimelineSkillCard" to be defined',
+    });
+  }
   const skill: TimelineSkillCardSkillField =
     deserializeTimelineSkillCardSkillField(val.skill);
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "invocation" of type "TimelineSkillCard" to be defined',
+    });
+  }
   const invocation: TimelineSkillCardInvocationField =
     deserializeTimelineSkillCardInvocationField(val.invocation);
+  if (!(val.duration == void 0) && !sdIsNumber(val.duration)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "duration" of type "TimelineSkillCard"',
+    });
+  }
   const duration: undefined | number =
     val.duration == void 0 ? void 0 : val.duration;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "entries" of type "TimelineSkillCard" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "TimelineSkillCard"',
+    });
+  }
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
     val.entries
   )
@@ -435,8 +627,19 @@ export function serializeTimelineSkillCardInput(
   };
 }
 export function deserializeTimelineSkillCardInput(
-  val: any
+  val: SerializedData
 ): TimelineSkillCardInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TimelineSkillCardInput"',
+    });
+  }
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "TimelineSkillCardInput"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
   const type: undefined | TimelineSkillCardTypeField =
@@ -451,12 +654,41 @@ export function deserializeTimelineSkillCardInput(
     val.skill_card_title == void 0
       ? void 0
       : deserializeTimelineSkillCardSkillCardTitleField(val.skill_card_title);
+  if (val.skill == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "skill" of type "TimelineSkillCardInput" to be defined',
+    });
+  }
   const skill: TimelineSkillCardSkillField =
     deserializeTimelineSkillCardSkillField(val.skill);
+  if (val.invocation == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "invocation" of type "TimelineSkillCardInput" to be defined',
+    });
+  }
   const invocation: TimelineSkillCardInvocationField =
     deserializeTimelineSkillCardInvocationField(val.invocation);
+  if (!(val.duration == void 0) && !sdIsNumber(val.duration)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "duration" of type "TimelineSkillCardInput"',
+    });
+  }
   const duration: undefined | number =
     val.duration == void 0 ? void 0 : val.duration;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "TimelineSkillCardInput" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "TimelineSkillCardInput"',
+    });
+  }
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
     val.entries
   )

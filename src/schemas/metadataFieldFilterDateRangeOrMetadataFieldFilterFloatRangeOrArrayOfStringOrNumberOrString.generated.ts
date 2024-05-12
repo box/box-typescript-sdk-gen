@@ -49,7 +49,7 @@ export function serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatR
   });
 }
 export function deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
-  val: any
+  val: SerializedData
 ): MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString {
   if (sdIsString(val)) {
     return val;

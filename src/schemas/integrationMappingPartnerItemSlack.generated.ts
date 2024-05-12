@@ -43,7 +43,7 @@ export function serializeIntegrationMappingPartnerItemSlackTypeField(
   return val;
 }
 export function deserializeIntegrationMappingPartnerItemSlackTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingPartnerItemSlackTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -70,13 +70,51 @@ export function serializeIntegrationMappingPartnerItemSlack(
   };
 }
 export function deserializeIntegrationMappingPartnerItemSlack(
-  val: any
+  val: SerializedData
 ): IntegrationMappingPartnerItemSlack {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingPartnerItemSlack"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "IntegrationMappingPartnerItemSlack" to be defined',
+    });
+  }
   const type: IntegrationMappingPartnerItemSlackTypeField =
     deserializeIntegrationMappingPartnerItemSlackTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "IntegrationMappingPartnerItemSlack" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "IntegrationMappingPartnerItemSlack"',
+    });
+  }
   const id: string = val.id;
+  if (
+    !(val.slack_workspace_id == void 0) &&
+    !sdIsString(val.slack_workspace_id)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "slack_workspace_id" of type "IntegrationMappingPartnerItemSlack"',
+    });
+  }
   const slackWorkspaceId: undefined | string =
     val.slack_workspace_id == void 0 ? void 0 : val.slack_workspace_id;
+  if (!(val.slack_org_id == void 0) && !sdIsString(val.slack_org_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "slack_org_id" of type "IntegrationMappingPartnerItemSlack"',
+    });
+  }
   const slackOrgId: undefined | string =
     val.slack_org_id == void 0 ? void 0 : val.slack_org_id;
   return {
@@ -101,15 +139,47 @@ export function serializeIntegrationMappingPartnerItemSlackInput(
   };
 }
 export function deserializeIntegrationMappingPartnerItemSlackInput(
-  val: any
+  val: SerializedData
 ): IntegrationMappingPartnerItemSlackInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingPartnerItemSlackInput"',
+    });
+  }
   const type: undefined | IntegrationMappingPartnerItemSlackTypeField =
     val.type == void 0
       ? void 0
       : deserializeIntegrationMappingPartnerItemSlackTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "IntegrationMappingPartnerItemSlackInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "IntegrationMappingPartnerItemSlackInput"',
+    });
+  }
   const id: string = val.id;
+  if (
+    !(val.slack_workspace_id == void 0) &&
+    !sdIsString(val.slack_workspace_id)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "slack_workspace_id" of type "IntegrationMappingPartnerItemSlackInput"',
+    });
+  }
   const slackWorkspaceId: undefined | string =
     val.slack_workspace_id == void 0 ? void 0 : val.slack_workspace_id;
+  if (!(val.slack_org_id == void 0) && !sdIsString(val.slack_org_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "slack_org_id" of type "IntegrationMappingPartnerItemSlackInput"',
+    });
+  }
   const slackOrgId: undefined | string =
     val.slack_org_id == void 0 ? void 0 : val.slack_org_id;
   return {

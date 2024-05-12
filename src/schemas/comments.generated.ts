@@ -27,7 +27,7 @@ export function serializeCommentsOrderDirectionField(
   return val;
 }
 export function deserializeCommentsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): CommentsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,7 +55,19 @@ export function serializeCommentsOrderField(
         : serializeCommentsOrderDirectionField(val.direction),
   };
 }
-export function deserializeCommentsOrderField(val: any): CommentsOrderField {
+export function deserializeCommentsOrderField(
+  val: SerializedData
+): CommentsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CommentsOrderField"',
+    });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "CommentsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | CommentsOrderDirectionField =
     val.direction == void 0
@@ -82,11 +94,34 @@ export function serializeComments(val: Comments): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeComments(val: any): Comments {
+export function deserializeComments(val: SerializedData): Comments {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Comments"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "Comments"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Comments"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "Comments"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "Comments"',
+    });
+  }
   const order: undefined | readonly CommentsOrderField[] =
     val.order == void 0
       ? void 0
@@ -95,6 +130,11 @@ export function deserializeComments(val: any): Comments {
           return deserializeCommentsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Comments"',
+    });
+  }
   const entries: undefined | readonly CommentFull[] =
     val.entries == void 0
       ? void 0

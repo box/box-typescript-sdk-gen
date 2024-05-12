@@ -86,7 +86,7 @@ export function serializeIntegrationMappingTypeField(
   return val;
 }
 export function deserializeIntegrationMappingTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -138,12 +138,45 @@ export function serializeIntegrationMapping(
     },
   };
 }
-export function deserializeIntegrationMapping(val: any): IntegrationMapping {
+export function deserializeIntegrationMapping(
+  val: SerializedData
+): IntegrationMapping {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMapping"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "IntegrationMapping" to be defined',
+    });
+  }
   const type: IntegrationMappingTypeField =
     deserializeIntegrationMappingTypeField(val.type);
+  if (val.partner_item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "partner_item" of type "IntegrationMapping" to be defined',
+    });
+  }
   const partnerItem: IntegrationMappingPartnerItemSlack =
     deserializeIntegrationMappingPartnerItemSlack(val.partner_item);
+  if (val.box_item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "box_item" of type "IntegrationMapping" to be defined',
+    });
+  }
   const boxItem: FolderMini = deserializeFolderMini(val.box_item);
+  if (
+    !(val.is_manually_created == void 0) &&
+    !sdIsBoolean(val.is_manually_created)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_manually_created" of type "IntegrationMapping"',
+    });
+  }
   const isManuallyCreated: undefined | boolean =
     val.is_manually_created == void 0 ? void 0 : val.is_manually_created;
   const options: undefined | IntegrationMappingSlackOptions =
@@ -158,10 +191,26 @@ export function deserializeIntegrationMapping(val: any): IntegrationMapping {
     val.modified_by == void 0
       ? void 0
       : deserializeUserIntegrationMappings(val.modified_by);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "IntegrationMapping"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "IntegrationMapping"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "IntegrationMapping"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const integrationType:
     | undefined

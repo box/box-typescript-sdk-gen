@@ -14,6 +14,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -218,11 +219,56 @@ export function serializeTerminateUsersSessionsRequestBody(
   };
 }
 export function deserializeTerminateUsersSessionsRequestBody(
-  val: any
+  val: SerializedData
 ): TerminateUsersSessionsRequestBody {
-  const userIds: readonly string[] = sdIsList(val.user_ids) ? val.user_ids : [];
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TerminateUsersSessionsRequestBody"',
+    });
+  }
+  if (val.user_ids == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "user_ids" of type "TerminateUsersSessionsRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.user_ids)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "user_ids" of type "TerminateUsersSessionsRequestBody"',
+    });
+  }
+  const userIds: readonly string[] = sdIsList(val.user_ids)
+    ? (val.user_ids.map(function (itm: SerializedData): string {
+        if (!sdIsString(itm)) {
+          throw new BoxSdkError({
+            message: 'Expecting string for "TerminateUsersSessionsRequestBody"',
+          });
+        }
+        return itm;
+      }) as readonly any[])
+    : [];
+  if (val.user_logins == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "user_logins" of type "TerminateUsersSessionsRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.user_logins)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "user_logins" of type "TerminateUsersSessionsRequestBody"',
+    });
+  }
   const userLogins: readonly string[] = sdIsList(val.user_logins)
-    ? val.user_logins
+    ? (val.user_logins.map(function (itm: SerializedData): string {
+        if (!sdIsString(itm)) {
+          throw new BoxSdkError({
+            message: 'Expecting string for "TerminateUsersSessionsRequestBody"',
+          });
+        }
+        return itm;
+      }) as readonly any[])
     : [];
   return {
     userIds: userIds,
@@ -239,10 +285,35 @@ export function serializeTerminateGroupsSessionsRequestBody(
   };
 }
 export function deserializeTerminateGroupsSessionsRequestBody(
-  val: any
+  val: SerializedData
 ): TerminateGroupsSessionsRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TerminateGroupsSessionsRequestBody"',
+    });
+  }
+  if (val.group_ids == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "group_ids" of type "TerminateGroupsSessionsRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.group_ids)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "group_ids" of type "TerminateGroupsSessionsRequestBody"',
+    });
+  }
   const groupIds: readonly string[] = sdIsList(val.group_ids)
-    ? val.group_ids
+    ? (val.group_ids.map(function (itm: SerializedData): string {
+        if (!sdIsString(itm)) {
+          throw new BoxSdkError({
+            message:
+              'Expecting string for "TerminateGroupsSessionsRequestBody"',
+          });
+        }
+        return itm;
+      }) as readonly any[])
     : [];
   return { groupIds: groupIds } satisfies TerminateGroupsSessionsRequestBody;
 }

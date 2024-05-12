@@ -787,7 +787,7 @@ export function serializeGetFolderByIdQueryParamsSortField(
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsSortField(
-  val: any
+  val: SerializedData
 ): GetFolderByIdQueryParamsSortField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -816,7 +816,7 @@ export function serializeGetFolderByIdQueryParamsDirectionField(
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsDirectionField(
-  val: any
+  val: SerializedData
 ): GetFolderByIdQueryParamsDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -840,7 +840,7 @@ export function serializeUpdateFolderByIdRequestBodySyncStateField(
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodySyncStateField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodySyncStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -867,8 +867,19 @@ export function serializeUpdateFolderByIdRequestBodyParentField(
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFolderByIdRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFolderByIdRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateFolderByIdRequestBodyParentField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   return { id: id } satisfies UpdateFolderByIdRequestBodyParentField;
 }
@@ -878,7 +889,7 @@ export function serializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodySharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -907,8 +918,20 @@ export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
   };
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodySharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderByIdRequestBodySharedLinkPermissionsField"',
+    });
+  }
+  if (!(val.can_download == void 0) && !sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "UpdateFolderByIdRequestBodySharedLinkPermissionsField"',
+    });
+  }
   const canDownload: undefined | boolean =
     val.can_download == void 0 ? void 0 : val.can_download;
   return {
@@ -936,16 +959,40 @@ export function serializeUpdateFolderByIdRequestBodySharedLinkField(
   };
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodySharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderByIdRequestBodySharedLinkField"',
+    });
+  }
   const access: undefined | UpdateFolderByIdRequestBodySharedLinkAccessField =
     val.access == void 0
       ? void 0
       : deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(val.access);
+  if (!(val.password == void 0) && !sdIsString(val.password)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "password" of type "UpdateFolderByIdRequestBodySharedLinkField"',
+    });
+  }
   const password: undefined | string =
     val.password == void 0 ? void 0 : val.password;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "UpdateFolderByIdRequestBodySharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "UpdateFolderByIdRequestBodySharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
   const permissions:
@@ -970,7 +1017,7 @@ export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1001,8 +1048,14 @@ export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
   };
 }
 export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodyFolderUploadEmailField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderByIdRequestBodyFolderUploadEmailField"',
+    });
+  }
   const access:
     | undefined
     | UpdateFolderByIdRequestBodyFolderUploadEmailAccessField =
@@ -1024,9 +1077,27 @@ export function serializeUpdateFolderByIdRequestBodyCollectionsField(
   };
 }
 export function deserializeUpdateFolderByIdRequestBodyCollectionsField(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBodyCollectionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateFolderByIdRequestBodyCollectionsField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UpdateFolderByIdRequestBodyCollectionsField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "type" of type "UpdateFolderByIdRequestBodyCollectionsField"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
   return {
     id: id,
@@ -1084,15 +1155,41 @@ export function serializeUpdateFolderByIdRequestBody(
   };
 }
 export function deserializeUpdateFolderByIdRequestBody(
-  val: any
+  val: SerializedData
 ): UpdateFolderByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "UpdateFolderByIdRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const syncState: undefined | UpdateFolderByIdRequestBodySyncStateField =
     val.sync_state == void 0
       ? void 0
       : deserializeUpdateFolderByIdRequestBodySyncStateField(val.sync_state);
+  if (
+    !(val.can_non_owners_invite == void 0) &&
+    !sdIsBoolean(val.can_non_owners_invite)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_non_owners_invite" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const canNonOwnersInvite: undefined | boolean =
     val.can_non_owners_invite == void 0 ? void 0 : val.can_non_owners_invite;
   const parent: undefined | UpdateFolderByIdRequestBodyParentField =
@@ -1111,12 +1208,44 @@ export function deserializeUpdateFolderByIdRequestBody(
       : deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
           val.folder_upload_email
         );
+  if (!(val.tags == void 0) && !sdIsList(val.tags)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "tags" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const tags: undefined | readonly string[] =
-    val.tags == void 0 ? void 0 : sdIsList(val.tags) ? val.tags : [];
+    val.tags == void 0
+      ? void 0
+      : sdIsList(val.tags)
+      ? (val.tags.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message: 'Expecting string for "UpdateFolderByIdRequestBody"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
+      : [];
+  if (
+    !(val.is_collaboration_restricted_to_enterprise == void 0) &&
+    !sdIsBoolean(val.is_collaboration_restricted_to_enterprise)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_collaboration_restricted_to_enterprise" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const isCollaborationRestrictedToEnterprise: undefined | boolean =
     val.is_collaboration_restricted_to_enterprise == void 0
       ? void 0
       : val.is_collaboration_restricted_to_enterprise;
+  if (!(val.collections == void 0) && !sdIsList(val.collections)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "collections" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const collections:
     | undefined
     | readonly UpdateFolderByIdRequestBodyCollectionsField[] =
@@ -1129,6 +1258,15 @@ export function deserializeUpdateFolderByIdRequestBody(
           return deserializeUpdateFolderByIdRequestBodyCollectionsField(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.can_non_owners_view_collaborators == void 0) &&
+    !sdIsBoolean(val.can_non_owners_view_collaborators)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_non_owners_view_collaborators" of type "UpdateFolderByIdRequestBody"',
+    });
+  }
   const canNonOwnersViewCollaborators: undefined | boolean =
     val.can_non_owners_view_collaborators == void 0
       ? void 0
@@ -1154,7 +1292,7 @@ export function serializeGetFolderItemsQueryParamsSortField(
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsSortField(
-  val: any
+  val: SerializedData
 ): GetFolderItemsQueryParamsSortField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1183,7 +1321,7 @@ export function serializeGetFolderItemsQueryParamsDirectionField(
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsDirectionField(
-  val: any
+  val: SerializedData
 ): GetFolderItemsQueryParamsDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1207,8 +1345,25 @@ export function serializeCreateFolderRequestBodyParentField(
   return { ['id']: val.id };
 }
 export function deserializeCreateFolderRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): CreateFolderRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFolderRequestBodyParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateFolderRequestBodyParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateFolderRequestBodyParentField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CreateFolderRequestBodyParentField;
 }
@@ -1218,7 +1373,7 @@ export function serializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   return val;
 }
 export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-  val: any
+  val: SerializedData
 ): CreateFolderRequestBodyFolderUploadEmailAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1249,8 +1404,14 @@ export function serializeCreateFolderRequestBodyFolderUploadEmailField(
   };
 }
 export function deserializeCreateFolderRequestBodyFolderUploadEmailField(
-  val: any
+  val: SerializedData
 ): CreateFolderRequestBodyFolderUploadEmailField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateFolderRequestBodyFolderUploadEmailField"',
+    });
+  }
   const access:
     | undefined
     | CreateFolderRequestBodyFolderUploadEmailAccessField =
@@ -1269,7 +1430,7 @@ export function serializeCreateFolderRequestBodySyncStateField(
   return val;
 }
 export function deserializeCreateFolderRequestBodySyncStateField(
-  val: any
+  val: SerializedData
 ): CreateFolderRequestBodySyncStateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -1308,9 +1469,31 @@ export function serializeCreateFolderRequestBody(
   };
 }
 export function deserializeCreateFolderRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFolderRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFolderRequestBody"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "CreateFolderRequestBody" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CreateFolderRequestBody"',
+    });
+  }
   const name: string = val.name;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parent" of type "CreateFolderRequestBody" to be defined',
+    });
+  }
   const parent: CreateFolderRequestBodyParentField =
     deserializeCreateFolderRequestBodyParentField(val.parent);
   const folderUploadEmail:
@@ -1338,8 +1521,25 @@ export function serializeCopyFolderRequestBodyParentField(
   return { ['id']: val.id };
 }
 export function deserializeCopyFolderRequestBodyParentField(
-  val: any
+  val: SerializedData
 ): CopyFolderRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CopyFolderRequestBodyParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CopyFolderRequestBodyParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CopyFolderRequestBodyParentField"',
+    });
+  }
   const id: string = val.id;
   return { id: id } satisfies CopyFolderRequestBodyParentField;
 }
@@ -1352,9 +1552,25 @@ export function serializeCopyFolderRequestBody(
   };
 }
 export function deserializeCopyFolderRequestBody(
-  val: any
+  val: SerializedData
 ): CopyFolderRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CopyFolderRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "CopyFolderRequestBody"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parent" of type "CopyFolderRequestBody" to be defined',
+    });
+  }
   const parent: CopyFolderRequestBodyParentField =
     deserializeCopyFolderRequestBodyParentField(val.parent);
   return { name: name, parent: parent } satisfies CopyFolderRequestBody;

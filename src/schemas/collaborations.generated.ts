@@ -27,7 +27,7 @@ export function serializeCollaborationsOrderDirectionField(
   return val;
 }
 export function deserializeCollaborationsOrderDirectionField(
-  val: any
+  val: SerializedData
 ): CollaborationsOrderDirectionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -56,8 +56,18 @@ export function serializeCollaborationsOrderField(
   };
 }
 export function deserializeCollaborationsOrderField(
-  val: any
+  val: SerializedData
 ): CollaborationsOrderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaborationsOrderField"',
+    });
+  }
+  if (!(val.by == void 0) && !sdIsString(val.by)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "by" of type "CollaborationsOrderField"',
+    });
+  }
   const by: undefined | string = val.by == void 0 ? void 0 : val.by;
   const direction: undefined | CollaborationsOrderDirectionField =
     val.direction == void 0
@@ -86,11 +96,34 @@ export function serializeCollaborations(val: Collaborations): SerializedData {
           }) as readonly any[]),
   };
 }
-export function deserializeCollaborations(val: any): Collaborations {
+export function deserializeCollaborations(val: SerializedData): Collaborations {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Collaborations"' });
+  }
+  if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "total_count" of type "Collaborations"',
+    });
+  }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Collaborations"',
+    });
+  }
   const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "offset" of type "Collaborations"',
+    });
+  }
   const offset: undefined | number = val.offset == void 0 ? void 0 : val.offset;
+  if (!(val.order == void 0) && !sdIsList(val.order)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "order" of type "Collaborations"',
+    });
+  }
   const order: undefined | readonly CollaborationsOrderField[] =
     val.order == void 0
       ? void 0
@@ -101,6 +134,11 @@ export function deserializeCollaborations(val: any): Collaborations {
           return deserializeCollaborationsOrderField(itm);
         }) as readonly any[])
       : [];
+  if (!(val.entries == void 0) && !sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "entries" of type "Collaborations"',
+    });
+  }
   const entries: undefined | readonly Collaboration[] =
     val.entries == void 0
       ? void 0

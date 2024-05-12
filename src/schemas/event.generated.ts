@@ -168,7 +168,9 @@ export function serializeEventEventTypeField(
 ): SerializedData {
   return val;
 }
-export function deserializeEventEventTypeField(val: any): EventEventTypeField {
+export function deserializeEventEventTypeField(
+  val: SerializedData
+): EventEventTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "EventEventTypeField"',
@@ -589,8 +591,13 @@ export function serializeEventAdditionalDetailsField(
   return {};
 }
 export function deserializeEventAdditionalDetailsField(
-  val: any
+  val: SerializedData
 ): EventAdditionalDetailsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "EventAdditionalDetailsField"',
+    });
+  }
   return {} satisfies EventAdditionalDetailsField;
 }
 export function serializeEvent(val: Event): SerializedData {
@@ -618,12 +625,35 @@ export function serializeEvent(val: Event): SerializedData {
         : serializeEventAdditionalDetailsField(val.additionalDetails),
   };
 }
-export function deserializeEvent(val: any): Event {
+export function deserializeEvent(val: SerializedData): Event {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Event"' });
+  }
+  if (!(val.type == void 0) && !sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "type" of type "Event"',
+    });
+  }
   const type: undefined | string = val.type == void 0 ? void 0 : val.type;
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "Event"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.recorded_at == void 0) && !sdIsString(val.recorded_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "recorded_at" of type "Event"',
+    });
+  }
   const recordedAt: undefined | DateTime =
     val.recorded_at == void 0 ? void 0 : deserializeDateTime(val.recorded_at);
+  if (!(val.event_id == void 0) && !sdIsString(val.event_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "event_id" of type "Event"',
+    });
+  }
   const eventId: undefined | string =
     val.event_id == void 0 ? void 0 : val.event_id;
   const createdBy: undefined | UserMini =
@@ -632,6 +662,11 @@ export function deserializeEvent(val: any): Event {
     val.event_type == void 0
       ? void 0
       : deserializeEventEventTypeField(val.event_type);
+  if (!(val.session_id == void 0) && !sdIsString(val.session_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "session_id" of type "Event"',
+    });
+  }
   const sessionId: undefined | string =
     val.session_id == void 0 ? void 0 : val.session_id;
   const source: undefined | EventSourceOrFileOrFolderOrGenericSourceOrUser =

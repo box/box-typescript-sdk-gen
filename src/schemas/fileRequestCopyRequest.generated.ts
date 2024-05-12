@@ -29,7 +29,7 @@ export function serializeFileRequestCopyRequestFolderTypeField(
   return val;
 }
 export function deserializeFileRequestCopyRequestFolderTypeField(
-  val: any
+  val: SerializedData
 ): FileRequestCopyRequestFolderTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,12 +55,29 @@ export function serializeFileRequestCopyRequestFolderField(
   };
 }
 export function deserializeFileRequestCopyRequestFolderField(
-  val: any
+  val: SerializedData
 ): FileRequestCopyRequestFolderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileRequestCopyRequestFolderField"',
+    });
+  }
   const type: undefined | FileRequestCopyRequestFolderTypeField =
     val.type == void 0
       ? void 0
       : deserializeFileRequestCopyRequestFolderTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "FileRequestCopyRequestFolderField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "FileRequestCopyRequestFolderField"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies FileRequestCopyRequestFolderField;
 }
@@ -79,23 +96,69 @@ export function serializeFileRequestCopyRequest(
   };
 }
 export function deserializeFileRequestCopyRequest(
-  val: any
+  val: SerializedData
 ): FileRequestCopyRequest {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileRequestCopyRequest"',
+    });
+  }
+  if (val.folder == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "folder" of type "FileRequestCopyRequest" to be defined',
+    });
+  }
   const folder: FileRequestCopyRequestFolderField =
     deserializeFileRequestCopyRequestFolderField(val.folder);
+  if (!(val.title == void 0) && !sdIsString(val.title)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "title" of type "FileRequestCopyRequest"',
+    });
+  }
   const title: undefined | string = val.title == void 0 ? void 0 : val.title;
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "description" of type "FileRequestCopyRequest"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
   const status: undefined | FileRequestUpdateRequestStatusField =
     val.status == void 0
       ? void 0
       : deserializeFileRequestUpdateRequestStatusField(val.status);
+  if (
+    !(val.is_email_required == void 0) &&
+    !sdIsBoolean(val.is_email_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_email_required" of type "FileRequestCopyRequest"',
+    });
+  }
   const isEmailRequired: undefined | boolean =
     val.is_email_required == void 0 ? void 0 : val.is_email_required;
+  if (
+    !(val.is_description_required == void 0) &&
+    !sdIsBoolean(val.is_description_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_description_required" of type "FileRequestCopyRequest"',
+    });
+  }
   const isDescriptionRequired: undefined | boolean =
     val.is_description_required == void 0
       ? void 0
       : val.is_description_required;
+  if (!(val.expires_at == void 0) && !sdIsString(val.expires_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "expires_at" of type "FileRequestCopyRequest"',
+    });
+  }
   const expiresAt: undefined | DateTime =
     val.expires_at == void 0 ? void 0 : deserializeDateTime(val.expires_at);
   return {

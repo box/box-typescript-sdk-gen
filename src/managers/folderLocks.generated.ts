@@ -18,6 +18,7 @@ import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -290,9 +291,39 @@ export function serializeCreateFolderLockRequestBodyLockedOperationsField(
   return { ['move']: val.move, ['delete']: val.delete };
 }
 export function deserializeCreateFolderLockRequestBodyLockedOperationsField(
-  val: any
+  val: SerializedData
 ): CreateFolderLockRequestBodyLockedOperationsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateFolderLockRequestBodyLockedOperationsField"',
+    });
+  }
+  if (val.move == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "move" of type "CreateFolderLockRequestBodyLockedOperationsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.move)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "move" of type "CreateFolderLockRequestBodyLockedOperationsField"',
+    });
+  }
   const move: boolean = val.move;
+  if (val.delete == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "delete" of type "CreateFolderLockRequestBodyLockedOperationsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.delete)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "delete" of type "CreateFolderLockRequestBodyLockedOperationsField"',
+    });
+  }
   const _delete: boolean = val.delete;
   return {
     move: move,
@@ -305,9 +336,38 @@ export function serializeCreateFolderLockRequestBodyFolderField(
   return { ['type']: val.type, ['id']: val.id };
 }
 export function deserializeCreateFolderLockRequestBodyFolderField(
-  val: any
+  val: SerializedData
 ): CreateFolderLockRequestBodyFolderField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFolderLockRequestBodyFolderField"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "CreateFolderLockRequestBodyFolderField" to be defined',
+    });
+  }
+  if (!sdIsString(val.type)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "type" of type "CreateFolderLockRequestBodyFolderField"',
+    });
+  }
   const type: string = val.type;
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "CreateFolderLockRequestBodyFolderField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CreateFolderLockRequestBodyFolderField"',
+    });
+  }
   const id: string = val.id;
   return {
     type: type,
@@ -328,8 +388,13 @@ export function serializeCreateFolderLockRequestBody(
   };
 }
 export function deserializeCreateFolderLockRequestBody(
-  val: any
+  val: SerializedData
 ): CreateFolderLockRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CreateFolderLockRequestBody"',
+    });
+  }
   const lockedOperations:
     | undefined
     | CreateFolderLockRequestBodyLockedOperationsField =
@@ -338,6 +403,12 @@ export function deserializeCreateFolderLockRequestBody(
       : deserializeCreateFolderLockRequestBodyLockedOperationsField(
           val.locked_operations
         );
+  if (val.folder == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "folder" of type "CreateFolderLockRequestBody" to be defined',
+    });
+  }
   const folder: CreateFolderLockRequestBodyFolderField =
     deserializeCreateFolderLockRequestBodyFolderField(val.folder);
   return {

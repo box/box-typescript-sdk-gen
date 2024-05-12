@@ -23,7 +23,7 @@ export function serializeClassificationTemplateField(
   return val;
 }
 export function deserializeClassificationTemplateField(
-  val: any
+  val: SerializedData
 ): ClassificationTemplateField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -55,23 +55,65 @@ export function serializeClassification(val: Classification): SerializedData {
     ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
   };
 }
-export function deserializeClassification(val: any): Classification {
+export function deserializeClassification(val: SerializedData): Classification {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "Classification"' });
+  }
+  if (
+    !(val.Box__Security__Classification__Key == void 0) &&
+    !sdIsString(val.Box__Security__Classification__Key)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "Box__Security__Classification__Key" of type "Classification"',
+    });
+  }
   const boxSecurityClassificationKey: undefined | string =
     val.Box__Security__Classification__Key == void 0
       ? void 0
       : val.Box__Security__Classification__Key;
+  if (!(val.$parent == void 0) && !sdIsString(val.$parent)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "$parent" of type "Classification"',
+    });
+  }
   const parent: undefined | string =
     val.$parent == void 0 ? void 0 : val.$parent;
   const template: undefined | ClassificationTemplateField =
     val.$template == void 0
       ? void 0
       : deserializeClassificationTemplateField(val.$template);
+  if (!(val.$scope == void 0) && !sdIsString(val.$scope)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "$scope" of type "Classification"',
+    });
+  }
   const scope: undefined | string = val.$scope == void 0 ? void 0 : val.$scope;
+  if (!(val.$version == void 0) && !sdIsNumber(val.$version)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "$version" of type "Classification"',
+    });
+  }
   const version: undefined | number =
     val.$version == void 0 ? void 0 : val.$version;
+  if (!(val.$type == void 0) && !sdIsString(val.$type)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "$type" of type "Classification"',
+    });
+  }
   const type: undefined | string = val.$type == void 0 ? void 0 : val.$type;
+  if (!(val.$typeVersion == void 0) && !sdIsNumber(val.$typeVersion)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "$typeVersion" of type "Classification"',
+    });
+  }
   const typeVersion: undefined | number =
     val.$typeVersion == void 0 ? void 0 : val.$typeVersion;
+  if (!(val.$canEdit == void 0) && !sdIsBoolean(val.$canEdit)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "$canEdit" of type "Classification"',
+    });
+  }
   const canEdit: undefined | boolean =
     val.$canEdit == void 0 ? void 0 : val.$canEdit;
   return {

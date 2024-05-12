@@ -35,7 +35,7 @@ export function serializeCollaborationAllowlistExemptTargetTypeField(
   return val;
 }
 export function deserializeCollaborationAllowlistExemptTargetTypeField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistExemptTargetTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -56,7 +56,7 @@ export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
   return val;
 }
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistExemptTargetEnterpriseTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -86,8 +86,20 @@ export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
   };
 }
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistExemptTargetEnterpriseField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CollaborationAllowlistExemptTargetEnterpriseField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaborationAllowlistExemptTargetEnterpriseField"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type:
     | undefined
@@ -97,6 +109,12 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
       : deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
           val.type
         );
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "CollaborationAllowlistExemptTargetEnterpriseField"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
   return {
     id: id,
@@ -127,8 +145,19 @@ export function serializeCollaborationAllowlistExemptTarget(
   };
 }
 export function deserializeCollaborationAllowlistExemptTarget(
-  val: any
+  val: SerializedData
 ): CollaborationAllowlistExemptTarget {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "CollaborationAllowlistExemptTarget"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "CollaborationAllowlistExemptTarget"',
+    });
+  }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
   const type: undefined | CollaborationAllowlistExemptTargetTypeField =
     val.type == void 0
@@ -144,8 +173,20 @@ export function deserializeCollaborationAllowlistExemptTarget(
         );
   const user: undefined | UserMini =
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "created_at" of type "CollaborationAllowlistExemptTarget"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "CollaborationAllowlistExemptTarget"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   return {

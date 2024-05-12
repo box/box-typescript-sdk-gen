@@ -25,7 +25,7 @@ export function serializeGroupMiniOrUserCollaborations(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeGroupMiniOrUserCollaborations(
-  val: any
+  val: SerializedData
 ): GroupMiniOrUserCollaborations {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

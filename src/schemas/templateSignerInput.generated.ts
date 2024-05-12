@@ -63,7 +63,7 @@ export function serializeTemplateSignerInputTypeField(
   return val;
 }
 export function deserializeTemplateSignerInputTypeField(
-  val: any
+  val: SerializedData
 ): TemplateSignerInputTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -101,7 +101,7 @@ export function serializeTemplateSignerInputContentTypeField(
   return val;
 }
 export function deserializeTemplateSignerInputContentTypeField(
-  val: any
+  val: SerializedData
 ): TemplateSignerInputContentTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -166,9 +166,26 @@ export function serializeTemplateSignerInputCoordinatesField(
   };
 }
 export function deserializeTemplateSignerInputCoordinatesField(
-  val: any
+  val: SerializedData
 ): TemplateSignerInputCoordinatesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TemplateSignerInputCoordinatesField"',
+    });
+  }
+  if (!(val.x == void 0) && !sdIsNumber(val.x)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "x" of type "TemplateSignerInputCoordinatesField"',
+    });
+  }
   const x: undefined | number = val.x == void 0 ? void 0 : val.x;
+  if (!(val.y == void 0) && !sdIsNumber(val.y)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "y" of type "TemplateSignerInputCoordinatesField"',
+    });
+  }
   const y: undefined | number = val.y == void 0 ? void 0 : val.y;
   return { x: x, y: y } satisfies TemplateSignerInputCoordinatesField;
 }
@@ -181,9 +198,26 @@ export function serializeTemplateSignerInputDimensionsField(
   };
 }
 export function deserializeTemplateSignerInputDimensionsField(
-  val: any
+  val: SerializedData
 ): TemplateSignerInputDimensionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TemplateSignerInputDimensionsField"',
+    });
+  }
+  if (!(val.width == void 0) && !sdIsNumber(val.width)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "width" of type "TemplateSignerInputDimensionsField"',
+    });
+  }
   const width: undefined | number = val.width == void 0 ? void 0 : val.width;
+  if (!(val.height == void 0) && !sdIsNumber(val.height)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "height" of type "TemplateSignerInputDimensionsField"',
+    });
+  }
   const height: undefined | number = val.height == void 0 ? void 0 : val.height;
   return {
     width: width,
@@ -233,7 +267,14 @@ export function serializeTemplateSignerInput(
     },
   };
 }
-export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
+export function deserializeTemplateSignerInput(
+  val: SerializedData
+): TemplateSignerInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "TemplateSignerInput"',
+    });
+  }
   const type: undefined | TemplateSignerInputTypeField =
     val.type == void 0
       ? void 0
@@ -242,17 +283,59 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.content_type == void 0
       ? void 0
       : deserializeTemplateSignerInputContentTypeField(val.content_type);
+  if (!(val.is_required == void 0) && !sdIsBoolean(val.is_required)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_required" of type "TemplateSignerInput"',
+    });
+  }
   const isRequired: undefined | boolean =
     val.is_required == void 0 ? void 0 : val.is_required;
+  if (val.page_index == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "page_index" of type "TemplateSignerInput" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.page_index)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "page_index" of type "TemplateSignerInput"',
+    });
+  }
   const pageIndex: number = val.page_index;
+  if (!(val.document_id == void 0) && !sdIsString(val.document_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "document_id" of type "TemplateSignerInput"',
+    });
+  }
   const documentId: undefined | string =
     val.document_id == void 0 ? void 0 : val.document_id;
+  if (!(val.dropdown_choices == void 0) && !sdIsList(val.dropdown_choices)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "dropdown_choices" of type "TemplateSignerInput"',
+    });
+  }
   const dropdownChoices: undefined | readonly string[] =
     val.dropdown_choices == void 0
       ? void 0
       : sdIsList(val.dropdown_choices)
-      ? val.dropdown_choices
+      ? (val.dropdown_choices.map(function (itm: SerializedData): string {
+          if (!sdIsString(itm)) {
+            throw new BoxSdkError({
+              message: 'Expecting string for "TemplateSignerInput"',
+            });
+          }
+          return itm;
+        }) as readonly any[])
       : [];
+  if (!(val.group_id == void 0) && !sdIsString(val.group_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "group_id" of type "TemplateSignerInput"',
+    });
+  }
   const groupId: undefined | string =
     val.group_id == void 0 ? void 0 : val.group_id;
   const coordinates: undefined | TemplateSignerInputCoordinatesField =
@@ -263,15 +346,50 @@ export function deserializeTemplateSignerInput(val: any): TemplateSignerInput {
     val.dimensions == void 0
       ? void 0
       : deserializeTemplateSignerInputDimensionsField(val.dimensions);
+  if (!(val.label == void 0) && !sdIsString(val.label)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "label" of type "TemplateSignerInput"',
+    });
+  }
   const label: undefined | string = val.label == void 0 ? void 0 : val.label;
+  if (!(val.read_only == void 0) && !sdIsBoolean(val.read_only)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "read_only" of type "TemplateSignerInput"',
+    });
+  }
   const readOnly: undefined | boolean =
     val.read_only == void 0 ? void 0 : val.read_only;
+  if (!(val.document_tag_id == void 0) && !sdIsString(val.document_tag_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "document_tag_id" of type "TemplateSignerInput"',
+    });
+  }
   const documentTagId: undefined | string =
     val.document_tag_id == void 0 ? void 0 : val.document_tag_id;
+  if (!(val.text_value == void 0) && !sdIsString(val.text_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "text_value" of type "TemplateSignerInput"',
+    });
+  }
   const textValue: undefined | string =
     val.text_value == void 0 ? void 0 : val.text_value;
+  if (!(val.checkbox_value == void 0) && !sdIsBoolean(val.checkbox_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "checkbox_value" of type "TemplateSignerInput"',
+    });
+  }
   const checkboxValue: undefined | boolean =
     val.checkbox_value == void 0 ? void 0 : val.checkbox_value;
+  if (!(val.date_value == void 0) && !sdIsString(val.date_value)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "date_value" of type "TemplateSignerInput"',
+    });
+  }
   const dateValue: undefined | Date =
     val.date_value == void 0 ? void 0 : deserializeDate(val.date_value);
   return {

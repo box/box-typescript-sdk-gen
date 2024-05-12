@@ -33,7 +33,7 @@ export function serializeIntegrationMappingBoxItemSlackTypeField(
   return val;
 }
 export function deserializeIntegrationMappingBoxItemSlackTypeField(
-  val: any
+  val: SerializedData
 ): IntegrationMappingBoxItemSlackTypeField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -57,10 +57,33 @@ export function serializeIntegrationMappingBoxItemSlack(
   };
 }
 export function deserializeIntegrationMappingBoxItemSlack(
-  val: any
+  val: SerializedData
 ): IntegrationMappingBoxItemSlack {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingBoxItemSlack"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "IntegrationMappingBoxItemSlack" to be defined',
+    });
+  }
   const type: IntegrationMappingBoxItemSlackTypeField =
     deserializeIntegrationMappingBoxItemSlackTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "IntegrationMappingBoxItemSlack" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "IntegrationMappingBoxItemSlack"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlack;
 }
@@ -76,12 +99,29 @@ export function serializeIntegrationMappingBoxItemSlackInput(
   };
 }
 export function deserializeIntegrationMappingBoxItemSlackInput(
-  val: any
+  val: SerializedData
 ): IntegrationMappingBoxItemSlackInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingBoxItemSlackInput"',
+    });
+  }
   const type: undefined | IntegrationMappingBoxItemSlackTypeField =
     val.type == void 0
       ? void 0
       : deserializeIntegrationMappingBoxItemSlackTypeField(val.type);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "IntegrationMappingBoxItemSlackInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "IntegrationMappingBoxItemSlackInput"',
+    });
+  }
   const id: string = val.id;
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlackInput;
 }

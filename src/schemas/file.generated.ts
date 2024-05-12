@@ -92,9 +92,38 @@ export function serializeFilePathCollectionField(
   };
 }
 export function deserializeFilePathCollectionField(
-  val: any
+  val: SerializedData
 ): FilePathCollectionField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FilePathCollectionField"',
+    });
+  }
+  if (val.total_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "total_count" of type "FilePathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.total_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "total_count" of type "FilePathCollectionField"',
+    });
+  }
   const totalCount: number = val.total_count;
+  if (val.entries == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "entries" of type "FilePathCollectionField" to be defined',
+    });
+  }
+  if (!sdIsList(val.entries)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "entries" of type "FilePathCollectionField"',
+    });
+  }
   const entries: readonly FolderMini[] = sdIsList(val.entries)
     ? (val.entries.map(function (itm: SerializedData): FolderMini {
         return deserializeFolderMini(itm);
@@ -111,7 +140,7 @@ export function serializeFileSharedLinkAccessField(
   return val;
 }
 export function deserializeFileSharedLinkAccessField(
-  val: any
+  val: SerializedData
 ): FileSharedLinkAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -137,7 +166,7 @@ export function serializeFileSharedLinkEffectiveAccessField(
   return val;
 }
 export function deserializeFileSharedLinkEffectiveAccessField(
-  val: any
+  val: SerializedData
 ): FileSharedLinkEffectiveAccessField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -163,7 +192,7 @@ export function serializeFileSharedLinkEffectivePermissionField(
   return val;
 }
 export function deserializeFileSharedLinkEffectivePermissionField(
-  val: any
+  val: SerializedData
 ): FileSharedLinkEffectivePermissionField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
@@ -197,10 +226,51 @@ export function serializeFileSharedLinkPermissionsField(
   };
 }
 export function deserializeFileSharedLinkPermissionsField(
-  val: any
+  val: SerializedData
 ): FileSharedLinkPermissionsField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileSharedLinkPermissionsField"',
+    });
+  }
+  if (val.can_download == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_download" of type "FileSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_download)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_download" of type "FileSharedLinkPermissionsField"',
+    });
+  }
   const canDownload: boolean = val.can_download;
+  if (val.can_preview == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_preview" of type "FileSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_preview)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_preview" of type "FileSharedLinkPermissionsField"',
+    });
+  }
   const canPreview: boolean = val.can_preview;
+  if (val.can_edit == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_edit" of type "FileSharedLinkPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_edit)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "can_edit" of type "FileSharedLinkPermissionsField"',
+    });
+  }
   const canEdit: boolean = val.can_edit;
   return {
     canDownload: canDownload,
@@ -237,30 +307,119 @@ export function serializeFileSharedLinkField(
     ['preview_count']: val.previewCount,
   };
 }
-export function deserializeFileSharedLinkField(val: any): FileSharedLinkField {
+export function deserializeFileSharedLinkField(
+  val: SerializedData
+): FileSharedLinkField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "FileSharedLinkField"',
+    });
+  }
+  if (val.url == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "url" of type "FileSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsString(val.url)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "url" of type "FileSharedLinkField"',
+    });
+  }
   const url: string = val.url;
+  if (!(val.download_url == void 0) && !sdIsString(val.download_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "download_url" of type "FileSharedLinkField"',
+    });
+  }
   const downloadUrl: undefined | string =
     val.download_url == void 0 ? void 0 : val.download_url;
+  if (!(val.vanity_url == void 0) && !sdIsString(val.vanity_url)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_url" of type "FileSharedLinkField"',
+    });
+  }
   const vanityUrl: undefined | string =
     val.vanity_url == void 0 ? void 0 : val.vanity_url;
+  if (!(val.vanity_name == void 0) && !sdIsString(val.vanity_name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "vanity_name" of type "FileSharedLinkField"',
+    });
+  }
   const vanityName: undefined | string =
     val.vanity_name == void 0 ? void 0 : val.vanity_name;
   const access: undefined | FileSharedLinkAccessField =
     val.access == void 0
       ? void 0
       : deserializeFileSharedLinkAccessField(val.access);
+  if (val.effective_access == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "effective_access" of type "FileSharedLinkField" to be defined',
+    });
+  }
   const effectiveAccess: FileSharedLinkEffectiveAccessField =
     deserializeFileSharedLinkEffectiveAccessField(val.effective_access);
+  if (val.effective_permission == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "effective_permission" of type "FileSharedLinkField" to be defined',
+    });
+  }
   const effectivePermission: FileSharedLinkEffectivePermissionField =
     deserializeFileSharedLinkEffectivePermissionField(val.effective_permission);
+  if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "unshared_at" of type "FileSharedLinkField"',
+    });
+  }
   const unsharedAt: undefined | DateTime =
     val.unshared_at == void 0 ? void 0 : deserializeDateTime(val.unshared_at);
+  if (val.is_password_enabled == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "is_password_enabled" of type "FileSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.is_password_enabled)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_password_enabled" of type "FileSharedLinkField"',
+    });
+  }
   const isPasswordEnabled: boolean = val.is_password_enabled;
   const permissions: undefined | FileSharedLinkPermissionsField =
     val.permissions == void 0
       ? void 0
       : deserializeFileSharedLinkPermissionsField(val.permissions);
+  if (val.download_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "download_count" of type "FileSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.download_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "download_count" of type "FileSharedLinkField"',
+    });
+  }
   const downloadCount: number = val.download_count;
+  if (val.preview_count == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "preview_count" of type "FileSharedLinkField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.preview_count)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "preview_count" of type "FileSharedLinkField"',
+    });
+  }
   const previewCount: number = val.preview_count;
   return {
     url: url,
@@ -282,7 +441,9 @@ export function serializeFileItemStatusField(
 ): SerializedData {
   return val;
 }
-export function deserializeFileItemStatusField(val: any): FileItemStatusField {
+export function deserializeFileItemStatusField(
+  val: SerializedData
+): FileItemStatusField {
   if (!sdIsString(val)) {
     throw new BoxSdkError({
       message: 'Expecting a string for "FileItemStatusField"',
@@ -350,26 +511,75 @@ export function serializeFile(val: File): SerializedData {
     },
   };
 }
-export function deserializeFile(val: any): File {
+export function deserializeFile(val: SerializedData): File {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "File"' });
+  }
+  if (!(val.description == void 0) && !sdIsString(val.description)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "description" of type "File"',
+    });
+  }
   const description: undefined | string =
     val.description == void 0 ? void 0 : val.description;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "size" of type "File"',
+    });
+  }
   const size: undefined | number = val.size == void 0 ? void 0 : val.size;
   const pathCollection: undefined | FilePathCollectionField =
     val.path_collection == void 0
       ? void 0
       : deserializeFilePathCollectionField(val.path_collection);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "File"',
+    });
+  }
   const createdAt: undefined | DateTime =
     val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "modified_at" of type "File"',
+    });
+  }
   const modifiedAt: undefined | DateTime =
     val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
+  if (!(val.trashed_at == void 0) && !sdIsString(val.trashed_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "trashed_at" of type "File"',
+    });
+  }
   const trashedAt: undefined | DateTime =
     val.trashed_at == void 0 ? void 0 : deserializeDateTime(val.trashed_at);
+  if (!(val.purged_at == void 0) && !sdIsString(val.purged_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "purged_at" of type "File"',
+    });
+  }
   const purgedAt: undefined | DateTime =
     val.purged_at == void 0 ? void 0 : deserializeDateTime(val.purged_at);
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "content_created_at" of type "File"',
+    });
+  }
   const contentCreatedAt: undefined | DateTime =
     val.content_created_at == void 0
       ? void 0
       : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "content_modified_at" of type "File"',
+    });
+  }
   const contentModifiedAt: undefined | DateTime =
     val.content_modified_at == void 0
       ? void 0
@@ -390,16 +600,51 @@ export function deserializeFile(val: any): File {
     val.item_status == void 0
       ? void 0
       : deserializeFileItemStatusField(val.item_status);
+  if (!(val.sequence_id == void 0) && !sdIsString(val.sequence_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sequence_id" of type "File"',
+    });
+  }
   const sequenceId: undefined | string =
     val.sequence_id == void 0 ? void 0 : val.sequence_id;
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "name" of type "File"',
+    });
+  }
   const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.sha1 == void 0) && !sdIsString(val.sha1)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sha1" of type "File"',
+    });
+  }
   const sha1: undefined | string = val.sha1 == void 0 ? void 0 : val.sha1;
   const fileVersion: undefined | FileVersionMini =
     val.file_version == void 0
       ? void 0
       : deserializeFileVersionMini(val.file_version);
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "File" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "File"',
+    });
+  }
   const id: string = val.id;
+  if (!(val.etag == void 0) && !sdIsString(val.etag)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "etag" of type "File"',
+    });
+  }
   const etag: undefined | string = val.etag == void 0 ? void 0 : val.etag;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "File" to be defined',
+    });
+  }
   const type: FileBaseTypeField = deserializeFileBaseTypeField(val.type);
   return {
     description: description,
