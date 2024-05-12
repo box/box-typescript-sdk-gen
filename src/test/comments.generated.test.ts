@@ -1,13 +1,13 @@
-import { serializeFiles } from '../schemas.generated.js';
-import { deserializeFiles } from '../schemas.generated.js';
+import { serializeFiles } from '../schemas/files.generated.js';
+import { deserializeFiles } from '../schemas/files.generated.js';
 import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
-import { serializeComments } from '../schemas.generated.js';
-import { deserializeComments } from '../schemas.generated.js';
-import { serializeCommentFull } from '../schemas.generated.js';
-import { deserializeCommentFull } from '../schemas.generated.js';
+import { serializeComments } from '../schemas/comments.generated.js';
+import { deserializeComments } from '../schemas/comments.generated.js';
+import { serializeCommentFull } from '../schemas/commentFull.generated.js';
+import { deserializeCommentFull } from '../schemas/commentFull.generated.js';
 import { serializeCreateCommentRequestBody } from '../managers/comments.generated.js';
 import { deserializeCreateCommentRequestBody } from '../managers/comments.generated.js';
 import { serializeCreateCommentRequestBodyItemField } from '../managers/comments.generated.js';
@@ -20,12 +20,12 @@ import { UpdateCommentByIdOptionalsInput } from '../managers/comments.generated.
 import { UpdateCommentByIdOptionals } from '../managers/comments.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../internal/utils.js';
-import { Files } from '../schemas.generated.js';
+import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
-import { Comments } from '../schemas.generated.js';
-import { CommentFull } from '../schemas.generated.js';
+import { Comments } from '../schemas/comments.generated.js';
+import { CommentFull } from '../schemas/commentFull.generated.js';
 import { CreateCommentRequestBody } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyItemField } from '../managers/comments.generated.js';
 import { CreateCommentRequestBodyItemTypeField } from '../managers/comments.generated.js';
@@ -41,7 +41,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
-test('comments', async function comments(): Promise<any> {
+test('testComments', async function testComments(): Promise<any> {
   const fileSize: number = 256;
   const fileName: string = getUuid();
   const fileByteStream: ByteStream = generateByteStream(fileSize);

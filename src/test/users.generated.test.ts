@@ -1,7 +1,7 @@
-import { serializeUsers } from '../schemas.generated.js';
-import { deserializeUsers } from '../schemas.generated.js';
-import { serializeUserFull } from '../schemas.generated.js';
-import { deserializeUserFull } from '../schemas.generated.js';
+import { serializeUsers } from '../schemas/users.generated.js';
+import { deserializeUsers } from '../schemas/users.generated.js';
+import { serializeUserFull } from '../schemas/userFull.generated.js';
+import { deserializeUserFull } from '../schemas/userFull.generated.js';
 import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
@@ -9,8 +9,8 @@ import { deserializeUpdateUserByIdRequestBody } from '../managers/users.generate
 import { UpdateUserByIdOptionalsInput } from '../managers/users.generated.js';
 import { UpdateUserByIdOptionals } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { Users } from '../schemas.generated.js';
-import { UserFull } from '../schemas.generated.js';
+import { Users } from '../schemas/users.generated.js';
+import { UserFull } from '../schemas/userFull.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { UpdateUserByIdRequestBody } from '../managers/users.generated.js';
 import { getUuid } from '../internal/utils.js';

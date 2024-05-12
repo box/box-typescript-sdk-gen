@@ -1,7 +1,7 @@
-import { serializeFolderFull } from '../schemas.generated.js';
-import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeWebLink } from '../schemas.generated.js';
-import { deserializeWebLink } from '../schemas.generated.js';
+import { serializeFolderFull } from '../schemas/folderFull.generated.js';
+import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
+import { serializeWebLink } from '../schemas/webLink.generated.js';
+import { deserializeWebLink } from '../schemas/webLink.generated.js';
 import { serializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
 import { deserializeCreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
 import { serializeCreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
@@ -20,8 +20,8 @@ import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } fr
 import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
 import { FindWebLinkForSharedLinkHeadersInput } from '../managers/sharedLinksWebLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { FolderFull } from '../schemas.generated.js';
-import { WebLink } from '../schemas.generated.js';
+import { FolderFull } from '../schemas/folderFull.generated.js';
+import { WebLink } from '../schemas/webLink.generated.js';
 import { CreateWebLinkRequestBody } from '../managers/webLinks.generated.js';
 import { CreateWebLinkRequestBodyParentField } from '../managers/webLinks.generated.js';
 import { AddShareLinkToWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';

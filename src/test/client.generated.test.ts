@@ -1,11 +1,11 @@
-import { serializeUserFull } from '../schemas.generated.js';
-import { deserializeUserFull } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas/userFull.generated.js';
+import { deserializeUserFull } from '../schemas/userFull.generated.js';
 import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeBaseUrls } from '../networking/baseUrls.generated.js';
 import { deserializeBaseUrls } from '../networking/baseUrls.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { UserFull } from '../schemas.generated.js';
+import { UserFull } from '../schemas/userFull.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { Interceptor } from '../networking/interceptors.generated.js';
 import { getUuid } from '../internal/utils.js';

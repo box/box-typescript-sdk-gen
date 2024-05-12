@@ -1,0 +1,158 @@
+import { serializeFileMini } from './fileMini.generated.js';
+import { deserializeFileMini } from './fileMini.generated.js';
+import { serializeTaskAssignments } from './taskAssignments.generated.js';
+import { deserializeTaskAssignments } from './taskAssignments.generated.js';
+import { serializeUserMini } from './userMini.generated.js';
+import { deserializeUserMini } from './userMini.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
+import { FileMini } from './fileMini.generated.js';
+import { TaskAssignments } from './taskAssignments.generated.js';
+import { UserMini } from './userMini.generated.js';
+import { DateTime } from '../internal/utils.js';
+import { BoxSdkError } from '../box/errors.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
+export type TaskTypeField = 'task';
+export type TaskActionField = 'review' | 'complete';
+export type TaskCompletionRuleField = 'all_assignees' | 'any_assignee';
+export interface Task {
+  readonly id?: string;
+  readonly type?: TaskTypeField;
+  readonly item?: FileMini;
+  readonly dueAt?: DateTime;
+  readonly action?: TaskActionField;
+  readonly message?: string;
+  readonly taskAssignmentCollection?: TaskAssignments;
+  readonly isCompleted?: boolean;
+  readonly createdBy?: UserMini;
+  readonly createdAt?: DateTime;
+  readonly completionRule?: TaskCompletionRuleField;
+}
+export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
+  return val;
+}
+export function deserializeTaskTypeField(val: any): TaskTypeField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskTypeField"',
+    });
+  }
+  if (val == 'task') {
+    return 'task';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeTaskActionField(val: TaskActionField): SerializedData {
+  return val;
+}
+export function deserializeTaskActionField(val: any): TaskActionField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskActionField"',
+    });
+  }
+  if (val == 'review') {
+    return 'review';
+  }
+  if (val == 'complete') {
+    return 'complete';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeTaskCompletionRuleField(
+  val: TaskCompletionRuleField
+): SerializedData {
+  return val;
+}
+export function deserializeTaskCompletionRuleField(
+  val: any
+): TaskCompletionRuleField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "TaskCompletionRuleField"',
+    });
+  }
+  if (val == 'all_assignees') {
+    return 'all_assignees';
+  }
+  if (val == 'any_assignee') {
+    return 'any_assignee';
+  }
+  throw new BoxSdkError({
+    message: ''.concat('Invalid value: ', val) as string,
+  });
+}
+export function serializeTask(val: Task): SerializedData {
+  return {
+    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['type']: val.type == void 0 ? void 0 : serializeTaskTypeField(val.type),
+    ['item']: val.item == void 0 ? void 0 : serializeFileMini(val.item),
+    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
+    ['action']:
+      val.action == void 0 ? void 0 : serializeTaskActionField(val.action),
+    ['message']: val.message == void 0 ? void 0 : val.message,
+    ['task_assignment_collection']:
+      val.taskAssignmentCollection == void 0
+        ? void 0
+        : serializeTaskAssignments(val.taskAssignmentCollection),
+    ['is_completed']: val.isCompleted == void 0 ? void 0 : val.isCompleted,
+    ['created_by']:
+      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+    ['created_at']:
+      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+    ['completion_rule']:
+      val.completionRule == void 0
+        ? void 0
+        : serializeTaskCompletionRuleField(val.completionRule),
+  };
+}
+export function deserializeTask(val: any): Task {
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  const type: undefined | TaskTypeField =
+    val.type == void 0 ? void 0 : deserializeTaskTypeField(val.type);
+  const item: undefined | FileMini =
+    val.item == void 0 ? void 0 : deserializeFileMini(val.item);
+  const dueAt: undefined | DateTime =
+    val.due_at == void 0 ? void 0 : deserializeDateTime(val.due_at);
+  const action: undefined | TaskActionField =
+    val.action == void 0 ? void 0 : deserializeTaskActionField(val.action);
+  const message: undefined | string =
+    val.message == void 0 ? void 0 : val.message;
+  const taskAssignmentCollection: undefined | TaskAssignments =
+    val.task_assignment_collection == void 0
+      ? void 0
+      : deserializeTaskAssignments(val.task_assignment_collection);
+  const isCompleted: undefined | boolean =
+    val.is_completed == void 0 ? void 0 : val.is_completed;
+  const createdBy: undefined | UserMini =
+    val.created_by == void 0 ? void 0 : deserializeUserMini(val.created_by);
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  const completionRule: undefined | TaskCompletionRuleField =
+    val.completion_rule == void 0
+      ? void 0
+      : deserializeTaskCompletionRuleField(val.completion_rule);
+  return {
+    id: id,
+    type: type,
+    item: item,
+    dueAt: dueAt,
+    action: action,
+    message: message,
+    taskAssignmentCollection: taskAssignmentCollection,
+    isCompleted: isCompleted,
+    createdBy: createdBy,
+    createdAt: createdAt,
+    completionRule: completionRule,
+  } satisfies Task;
+}

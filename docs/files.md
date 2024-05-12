@@ -51,11 +51,8 @@ See the endpoint docs at
 <!-- sample put_files_id -->
 
 ```ts
-await client.files.updateFileById(fileToUpdate.id, {
-  requestBody: {
-    name: updatedName,
-    description: 'Updated description',
-  } satisfies UpdateFileByIdRequestBody,
+await downscopedClient.files.updateFileById(file.id, {
+  requestBody: { name: getUuid() } satisfies UpdateFileByIdRequestBody,
 } satisfies UpdateFileByIdOptionalsInput);
 ```
 
@@ -92,7 +89,7 @@ See the endpoint docs at
 <!-- sample delete_files_id -->
 
 ```ts
-await client.files.deleteFileById(file2.id);
+await parentClient.files.deleteFileById(file.id);
 ```
 
 ### Arguments

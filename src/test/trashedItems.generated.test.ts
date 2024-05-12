@@ -1,10 +1,10 @@
-import { serializeFileFull } from '../schemas.generated.js';
-import { deserializeFileFull } from '../schemas.generated.js';
-import { serializeItems } from '../schemas.generated.js';
-import { deserializeItems } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas/fileFull.generated.js';
+import { deserializeFileFull } from '../schemas/fileFull.generated.js';
+import { serializeItems } from '../schemas/items.generated.js';
+import { deserializeItems } from '../schemas/items.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { FileFull } from '../schemas.generated.js';
-import { Items } from '../schemas.generated.js';
+import { FileFull } from '../schemas/fileFull.generated.js';
+import { Items } from '../schemas/items.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';

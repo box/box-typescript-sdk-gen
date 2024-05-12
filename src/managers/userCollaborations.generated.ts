@@ -1,11 +1,11 @@
-import { serializeCollaboration } from '../schemas.generated.js';
-import { deserializeCollaboration } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
+import { serializeCollaboration } from '../schemas/collaboration.generated.js';
+import { deserializeCollaboration } from '../schemas/collaboration.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
-import { Collaboration } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { Collaboration } from '../schemas/collaboration.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

@@ -1,9 +1,9 @@
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { serializeUserAvatar } from '../schemas.generated.js';
-import { deserializeUserAvatar } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
-import { UserAvatar } from '../schemas.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { serializeUserAvatar } from '../schemas/userAvatar.generated.js';
+import { deserializeUserAvatar } from '../schemas/userAvatar.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
+import { UserAvatar } from '../schemas/userAvatar.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

@@ -1,11 +1,11 @@
-import { serializeFile } from '../schemas.generated.js';
-import { deserializeFile } from '../schemas.generated.js';
+import { serializeFile } from '../schemas/file.generated.js';
+import { deserializeFile } from '../schemas/file.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { ByteStream } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { File } from '../schemas.generated.js';
+import { File } from '../schemas/file.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

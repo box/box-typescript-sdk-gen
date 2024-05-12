@@ -142,7 +142,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
   'enterprise' as DeleteMetadataTemplateScope,
-  template.templateKey!
+  templateKey
 );
 ```
 
@@ -273,43 +273,46 @@ await client.metadataTemplates.createMetadataTemplate({
   templateKey: templateKey,
   fields: [
     {
-      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'floatField',
-      displayName: 'floatField',
+      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'name',
+      displayName: 'name',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
-      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'stringField',
-      displayName: 'stringField',
+      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'age',
+      displayName: 'age',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
       type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'dateField',
-      displayName: 'dateField',
+      key: 'birthDate',
+      displayName: 'birthDate',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
       type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'enumField',
-      displayName: 'enumField',
+      key: 'countryCode',
+      displayName: 'countryCode',
       options: [
         {
-          key: 'enumValue1',
+          key: 'US',
         } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
         {
-          key: 'enumValue2',
+          key: 'CA',
         } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
       ],
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
       type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'multiSelectField',
-      displayName: 'multiSelectField',
+      key: 'sports',
+      displayName: 'sports',
       options: [
         {
-          key: 'multiSelectValue1',
+          key: 'basketball',
         } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
         {
-          key: 'multiSelectValue2',
+          key: 'football',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'tennis',
         } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
       ],
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,

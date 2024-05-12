@@ -58,7 +58,6 @@ See the endpoint docs at
 ```ts
 await client.users.createUser({
   name: userName,
-  login: userLogin,
   isPlatformAccessOnly: true,
 } satisfies CreateUserRequestBody);
 ```
@@ -205,7 +204,7 @@ See the endpoint docs at
 <!-- sample delete_users_id -->
 
 ```ts
-await client.users.deleteUserById(user.id);
+await client.users.deleteUserById(createdUser.id);
 ```
 
 ### Arguments

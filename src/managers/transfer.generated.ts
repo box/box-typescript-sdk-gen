@@ -1,9 +1,9 @@
-import { serializeFolderFull } from '../schemas.generated.js';
-import { deserializeFolderFull } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { FolderFull } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeFolderFull } from '../schemas/folderFull.generated.js';
+import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { FolderFull } from '../schemas/folderFull.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

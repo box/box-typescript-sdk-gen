@@ -1,9 +1,9 @@
-import { serializeItems } from '../schemas.generated.js';
-import { deserializeItems } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { Items } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeItems } from '../schemas/items.generated.js';
+import { deserializeItems } from '../schemas/items.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { Items } from '../schemas/items.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

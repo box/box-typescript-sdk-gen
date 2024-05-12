@@ -1,6 +1,6 @@
-import { serializeFileVersionLegalHolds } from '../schemas.generated.js';
-import { deserializeFileVersionLegalHolds } from '../schemas.generated.js';
-import { FileVersionLegalHolds } from '../schemas.generated.js';
+import { serializeFileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
+import { deserializeFileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
+import { FileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
 import { GetFileVersionLegalHoldsQueryParams } from '../managers/fileVersionLegalHolds.generated.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
@@ -14,7 +14,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
-test('getFileVersionLegalHolds', async function getFileVersionLegalHolds(): Promise<any> {
+test('testGetFileVersionLegalHolds', async function testGetFileVersionLegalHolds(): Promise<any> {
   const policyId: string = '1234567890';
   const fileVersionLegalHolds: FileVersionLegalHolds =
     await client.fileVersionLegalHolds.getFileVersionLegalHolds({
@@ -26,7 +26,7 @@ test('getFileVersionLegalHolds', async function getFileVersionLegalHolds(): Prom
     throw new Error('Assertion failed');
   }
 });
-test('getFileVersionLegalHoldById', async function getFileVersionLegalHoldById(): Promise<any> {
+test('testGetFileVersionLegalHoldById', async function testGetFileVersionLegalHoldById(): Promise<any> {
   const fileVersionLegalHoldId: string = '987654321';
   await expect(async () => {
     await client.fileVersionLegalHolds.getFileVersionLegalHoldById(

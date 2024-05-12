@@ -1,5 +1,5 @@
-import { serializeFolderFull } from '../schemas.generated.js';
-import { deserializeFolderFull } from '../schemas.generated.js';
+import { serializeFolderFull } from '../schemas/folderFull.generated.js';
+import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
 import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
 import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
 import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
@@ -18,7 +18,7 @@ import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } fro
 import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
 import { FindFolderForSharedLinkHeadersInput } from '../managers/sharedLinksFolders.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { FolderFull } from '../schemas.generated.js';
+import { FolderFull } from '../schemas/folderFull.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { AddShareLinkToFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';

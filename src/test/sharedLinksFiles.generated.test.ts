@@ -1,5 +1,5 @@
-import { serializeFiles } from '../schemas.generated.js';
-import { deserializeFiles } from '../schemas.generated.js';
+import { serializeFiles } from '../schemas/files.generated.js';
+import { deserializeFiles } from '../schemas/files.generated.js';
 import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
@@ -10,8 +10,8 @@ import { serializeAddShareLinkToFileRequestBodySharedLinkField } from '../manage
 import { deserializeAddShareLinkToFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
 import { serializeAddShareLinkToFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { deserializeAddShareLinkToFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
-import { serializeFileFull } from '../schemas.generated.js';
-import { deserializeFileFull } from '../schemas.generated.js';
+import { serializeFileFull } from '../schemas/fileFull.generated.js';
+import { deserializeFileFull } from '../schemas/fileFull.generated.js';
 import { serializeUpdateSharedLinkOnFileRequestBody } from '../managers/sharedLinksFiles.generated.js';
 import { deserializeUpdateSharedLinkOnFileRequestBody } from '../managers/sharedLinksFiles.generated.js';
 import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
@@ -20,7 +20,7 @@ import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from 
 import { deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { FindFileForSharedLinkHeadersInput } from '../managers/sharedLinksFiles.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { Files } from '../schemas.generated.js';
+import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
@@ -28,7 +28,7 @@ import { AddShareLinkToFileRequestBody } from '../managers/sharedLinksFiles.gene
 import { AddShareLinkToFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
 import { AddShareLinkToFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { AddShareLinkToFileQueryParams } from '../managers/sharedLinksFiles.generated.js';
-import { FileFull } from '../schemas.generated.js';
+import { FileFull } from '../schemas/fileFull.generated.js';
 import { GetSharedLinkForFileQueryParams } from '../managers/sharedLinksFiles.generated.js';
 import { FindFileForSharedLinkQueryParams } from '../managers/sharedLinksFiles.generated.js';
 import { FindFileForSharedLinkHeaders } from '../managers/sharedLinksFiles.generated.js';

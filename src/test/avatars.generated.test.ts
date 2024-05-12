@@ -1,10 +1,10 @@
-import { serializeUserFull } from '../schemas.generated.js';
-import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeUserAvatar } from '../schemas.generated.js';
-import { deserializeUserAvatar } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas/userFull.generated.js';
+import { deserializeUserFull } from '../schemas/userFull.generated.js';
+import { serializeUserAvatar } from '../schemas/userAvatar.generated.js';
+import { deserializeUserAvatar } from '../schemas/userAvatar.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { UserFull } from '../schemas.generated.js';
-import { UserAvatar } from '../schemas.generated.js';
+import { UserFull } from '../schemas/userFull.generated.js';
+import { UserAvatar } from '../schemas/userAvatar.generated.js';
 import { CreateUserAvatarRequestBody } from '../managers/avatars.generated.js';
 import { ByteStream } from '../internal/utils.js';
 import { decodeBase64 } from '../internal/utils.js';

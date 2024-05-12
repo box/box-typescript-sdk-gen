@@ -1,7 +1,7 @@
-import { serializeUserFull } from '../schemas.generated.js';
-import { deserializeUserFull } from '../schemas.generated.js';
-import { serializeInvite } from '../schemas.generated.js';
-import { deserializeInvite } from '../schemas.generated.js';
+import { serializeUserFull } from '../schemas/userFull.generated.js';
+import { deserializeUserFull } from '../schemas/userFull.generated.js';
+import { serializeInvite } from '../schemas/invite.generated.js';
+import { deserializeInvite } from '../schemas/invite.generated.js';
 import { serializeCreateInviteRequestBody } from '../managers/invites.generated.js';
 import { deserializeCreateInviteRequestBody } from '../managers/invites.generated.js';
 import { serializeCreateInviteRequestBodyEnterpriseField } from '../managers/invites.generated.js';
@@ -9,9 +9,9 @@ import { deserializeCreateInviteRequestBodyEnterpriseField } from '../managers/i
 import { serializeCreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
 import { deserializeCreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { UserFull } from '../schemas.generated.js';
+import { UserFull } from '../schemas/userFull.generated.js';
 import { GetUserMeQueryParams } from '../managers/users.generated.js';
-import { Invite } from '../schemas.generated.js';
+import { Invite } from '../schemas/invite.generated.js';
 import { CreateInviteRequestBody } from '../managers/invites.generated.js';
 import { CreateInviteRequestBodyEnterpriseField } from '../managers/invites.generated.js';
 import { CreateInviteRequestBodyActionableByField } from '../managers/invites.generated.js';

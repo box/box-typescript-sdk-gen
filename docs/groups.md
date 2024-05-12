@@ -53,6 +53,7 @@ See the endpoint docs at
 ```ts
 await client.groups.createGroup({
   name: groupName,
+  description: groupDescription,
 } satisfies CreateGroupRequestBody);
 ```
 

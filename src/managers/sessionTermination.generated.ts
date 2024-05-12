@@ -1,9 +1,9 @@
-import { serializeSessionTerminationMessage } from '../schemas.generated.js';
-import { deserializeSessionTerminationMessage } from '../schemas.generated.js';
-import { serializeClientError } from '../schemas.generated.js';
-import { deserializeClientError } from '../schemas.generated.js';
-import { SessionTerminationMessage } from '../schemas.generated.js';
-import { ClientError } from '../schemas.generated.js';
+import { serializeSessionTerminationMessage } from '../schemas/sessionTerminationMessage.generated.js';
+import { deserializeSessionTerminationMessage } from '../schemas/sessionTerminationMessage.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { SessionTerminationMessage } from '../schemas/sessionTerminationMessage.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

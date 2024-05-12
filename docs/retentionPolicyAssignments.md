@@ -54,8 +54,8 @@ See the endpoint docs at
 await client.retentionPolicyAssignments.createRetentionPolicyAssignment({
   policyId: retentionPolicy.id,
   assignTo: {
-    type: 'folder' as CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField,
     id: folder.id,
+    type: 'folder' as CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField,
   } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField,
 } satisfies CreateRetentionPolicyAssignmentRequestBody);
 ```

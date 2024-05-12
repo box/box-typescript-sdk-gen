@@ -1,10 +1,10 @@
-import { serializeStoragePolicies } from '../schemas.generated.js';
-import { deserializeStoragePolicies } from '../schemas.generated.js';
-import { serializeStoragePolicy } from '../schemas.generated.js';
-import { deserializeStoragePolicy } from '../schemas.generated.js';
+import { serializeStoragePolicies } from '../schemas/storagePolicies.generated.js';
+import { deserializeStoragePolicies } from '../schemas/storagePolicies.generated.js';
+import { serializeStoragePolicy } from '../schemas/storagePolicy.generated.js';
+import { deserializeStoragePolicy } from '../schemas/storagePolicy.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { StoragePolicies } from '../schemas.generated.js';
-import { StoragePolicy } from '../schemas.generated.js';
+import { StoragePolicies } from '../schemas/storagePolicies.generated.js';
+import { StoragePolicy } from '../schemas/storagePolicy.generated.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
 import { toString } from '../internal/utils.js';

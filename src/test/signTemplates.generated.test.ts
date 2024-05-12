@@ -1,11 +1,11 @@
-import { serializeSignTemplates } from '../schemas.generated.js';
-import { deserializeSignTemplates } from '../schemas.generated.js';
-import { serializeSignTemplate } from '../schemas.generated.js';
-import { deserializeSignTemplate } from '../schemas.generated.js';
+import { serializeSignTemplates } from '../schemas/signTemplates.generated.js';
+import { deserializeSignTemplates } from '../schemas/signTemplates.generated.js';
+import { serializeSignTemplate } from '../schemas/signTemplate.generated.js';
+import { deserializeSignTemplate } from '../schemas/signTemplate.generated.js';
 import { BoxClient } from '../client.generated.js';
-import { SignTemplates } from '../schemas.generated.js';
+import { SignTemplates } from '../schemas/signTemplates.generated.js';
 import { GetSignTemplatesQueryParams } from '../managers/signTemplates.generated.js';
-import { SignTemplate } from '../schemas.generated.js';
+import { SignTemplate } from '../schemas/signTemplate.generated.js';
 import { decodeBase64 } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
