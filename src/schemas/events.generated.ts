@@ -9,16 +9,43 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export type EventsNextStreamPositionField = string | number;
 export interface Events {
   readonly chunkSize?: number;
-  readonly nextStreamPosition?: string;
+  readonly nextStreamPosition?: EventsNextStreamPositionField;
   readonly entries?: readonly Event[];
+}
+export function serializeEventsNextStreamPositionField(
+  val: any
+): SerializedData {
+  return val;
+}
+export function deserializeEventsNextStreamPositionField(
+  val: SerializedData
+): EventsNextStreamPositionField {
+  if (!sdIsString(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a string for "EventsNextStreamPositionField"',
+    });
+  }
+  if (!sdIsNumber(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a number for "EventsNextStreamPositionField"',
+    });
+  }
+  throw new BoxSdkError({
+    message: ''.concat(
+      'Expected one of string, number type for union EventsNextStreamPositionField'
+    ) as string,
+  });
 }
 export function serializeEvents(val: Events): SerializedData {
   return {
     ['chunk_size']: val.chunkSize == void 0 ? void 0 : val.chunkSize,
     ['next_stream_position']:
-      val.nextStreamPosition == void 0 ? void 0 : val.nextStreamPosition,
+      val.nextStreamPosition == void 0
+        ? void 0
+        : serializeEventsNextStreamPositionField(val.nextStreamPosition),
     ['entries']:
       val.entries == void 0
         ? void 0
@@ -38,16 +65,10 @@ export function deserializeEvents(val: SerializedData): Events {
   }
   const chunkSize: undefined | number =
     val.chunk_size == void 0 ? void 0 : val.chunk_size;
-  if (
-    !(val.next_stream_position == void 0) &&
-    !sdIsString(val.next_stream_position)
-  ) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "next_stream_position" of type "Events"',
-    });
-  }
-  const nextStreamPosition: undefined | string =
-    val.next_stream_position == void 0 ? void 0 : val.next_stream_position;
+  const nextStreamPosition: undefined | EventsNextStreamPositionField =
+    val.next_stream_position == void 0
+      ? void 0
+      : deserializeEventsNextStreamPositionField(val.next_stream_position);
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Events"',

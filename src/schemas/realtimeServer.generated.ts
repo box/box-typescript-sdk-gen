@@ -9,8 +9,8 @@ import { sdIsMap } from '../serialization/json.js';
 export interface RealtimeServer {
   readonly type?: string;
   readonly url?: string;
-  readonly ttl?: number;
-  readonly maxRetries?: number;
+  readonly ttl?: string;
+  readonly maxRetries?: string;
   readonly retryTimeout?: number;
 }
 export function serializeRealtimeServer(val: RealtimeServer): SerializedData {
@@ -38,18 +38,18 @@ export function deserializeRealtimeServer(val: SerializedData): RealtimeServer {
     });
   }
   const url: undefined | string = val.url == void 0 ? void 0 : val.url;
-  if (!(val.ttl == void 0) && !sdIsNumber(val.ttl)) {
+  if (!(val.ttl == void 0) && !sdIsString(val.ttl)) {
     throw new BoxSdkError({
-      message: 'Expecting number for "ttl" of type "RealtimeServer"',
+      message: 'Expecting string for "ttl" of type "RealtimeServer"',
     });
   }
-  const ttl: undefined | number = val.ttl == void 0 ? void 0 : val.ttl;
-  if (!(val.max_retries == void 0) && !sdIsNumber(val.max_retries)) {
+  const ttl: undefined | string = val.ttl == void 0 ? void 0 : val.ttl;
+  if (!(val.max_retries == void 0) && !sdIsString(val.max_retries)) {
     throw new BoxSdkError({
-      message: 'Expecting number for "max_retries" of type "RealtimeServer"',
+      message: 'Expecting string for "max_retries" of type "RealtimeServer"',
     });
   }
-  const maxRetries: undefined | number =
+  const maxRetries: undefined | string =
     val.max_retries == void 0 ? void 0 : val.max_retries;
   if (!(val.retry_timeout == void 0) && !sdIsNumber(val.retry_timeout)) {
     throw new BoxSdkError({

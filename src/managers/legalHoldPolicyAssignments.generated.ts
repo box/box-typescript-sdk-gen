@@ -4,12 +4,15 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeLegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAssignment.generated.js';
 import { deserializeLegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAssignment.generated.js';
-import { serializeFileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
-import { deserializeFileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
+import { serializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
+import { deserializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
+import { serializeFileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
+import { deserializeFileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
 import { LegalHoldPolicyAssignments } from '../schemas/legalHoldPolicyAssignments.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { LegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAssignment.generated.js';
-import { FileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
+import { FilesOnHold } from '../schemas/filesOnHold.generated.js';
+import { FileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -472,7 +475,7 @@ export class LegalHoldPolicyAssignmentsManager {
   async getLegalHoldPolicyAssignmentFileOnHold(
     legalHoldPolicyAssignmentId: string,
     optionalsInput: GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput = {}
-  ): Promise<FileVersionLegalHolds> {
+  ): Promise<FilesOnHold> {
     const optionals: GetLegalHoldPolicyAssignmentFileOnHoldOptionals =
       new GetLegalHoldPolicyAssignmentFileOnHoldOptionals({
         queryParams: optionalsInput.queryParams,
@@ -511,7 +514,7 @@ export class LegalHoldPolicyAssignmentsManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeFileVersionLegalHolds(response.data);
+    return deserializeFilesOnHold(response.data);
   }
 }
 export interface LegalHoldPolicyAssignmentsManagerInput {
