@@ -276,6 +276,17 @@ export function deserializeSignRequestCreateRequest(
   }
   const templateId: undefined | string =
     val.template_id == void 0 ? void 0 : val.template_id;
+  if (
+    !(val.external_system_name == void 0) &&
+    !sdIsString(val.external_system_name)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_system_name" of type "SignRequestCreateRequest"',
+    });
+  }
+  const externalSystemName: undefined | string =
+    val.external_system_name == void 0 ? void 0 : val.external_system_name;
   return {
     sourceFiles: sourceFiles,
     signatureColor: signatureColor,
@@ -294,5 +305,6 @@ export function deserializeSignRequestCreateRequest(
     externalId: externalId,
     isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView,
     templateId: templateId,
+    externalSystemName: externalSystemName,
   } satisfies SignRequestCreateRequest;
 }
