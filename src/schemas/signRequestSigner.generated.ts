@@ -281,6 +281,17 @@ export function deserializeSignRequestSigner(
   }
   const signerGroupId: undefined | string =
     val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
+  if (
+    !(val.suppress_notifications == void 0) &&
+    !sdIsBoolean(val.suppress_notifications)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "suppress_notifications" of type "SignRequestSigner"',
+    });
+  }
+  const suppressNotifications: undefined | boolean =
+    val.suppress_notifications == void 0 ? void 0 : val.suppress_notifications;
   return {
     hasViewedDocument: hasViewedDocument,
     signerDecision: signerDecision,
@@ -298,5 +309,6 @@ export function deserializeSignRequestSigner(
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
     signerGroupId: signerGroupId,
+    suppressNotifications: suppressNotifications,
   } satisfies SignRequestSigner;
 }
