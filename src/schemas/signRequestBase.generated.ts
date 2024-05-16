@@ -23,6 +23,7 @@ export interface SignRequestBase {
   readonly externalId?: string;
   readonly isPhoneVerificationRequiredToView?: boolean;
   readonly templateId?: string;
+  readonly externalSystemName?: string;
 }
 export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
   return {
@@ -57,6 +58,8 @@ export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
         ? void 0
         : val.isPhoneVerificationRequiredToView,
     ['template_id']: val.templateId == void 0 ? void 0 : val.templateId,
+    ['external_system_name']:
+      val.externalSystemName == void 0 ? void 0 : val.externalSystemName,
   };
 }
 export function deserializeSignRequestBase(
@@ -189,6 +192,17 @@ export function deserializeSignRequestBase(
   }
   const templateId: undefined | string =
     val.template_id == void 0 ? void 0 : val.template_id;
+  if (
+    !(val.external_system_name == void 0) &&
+    !sdIsString(val.external_system_name)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "external_system_name" of type "SignRequestBase"',
+    });
+  }
+  const externalSystemName: undefined | string =
+    val.external_system_name == void 0 ? void 0 : val.external_system_name;
   return {
     isDocumentPreparationNeeded: isDocumentPreparationNeeded,
     redirectUrl: redirectUrl,
@@ -203,5 +217,6 @@ export function deserializeSignRequestBase(
     externalId: externalId,
     isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView,
     templateId: templateId,
+    externalSystemName: externalSystemName,
   } satisfies SignRequestBase;
 }
