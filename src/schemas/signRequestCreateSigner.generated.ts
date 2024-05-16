@@ -22,6 +22,7 @@ export interface SignRequestCreateSigner {
   readonly verificationPhoneNumber?: string;
   readonly password?: string;
   readonly signerGroupId?: string;
+  readonly suppressNotifications?: boolean;
 }
 export function serializeSignRequestCreateSignerRoleField(
   val: SignRequestCreateSignerRoleField
@@ -76,6 +77,8 @@ export function serializeSignRequestCreateSigner(
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['signer_group_id']:
       val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
+    ['suppress_notifications']:
+      val.suppressNotifications == void 0 ? void 0 : val.suppressNotifications,
   };
 }
 export function deserializeSignRequestCreateSigner(
@@ -179,6 +182,17 @@ export function deserializeSignRequestCreateSigner(
   }
   const signerGroupId: undefined | string =
     val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
+  if (
+    !(val.suppress_notifications == void 0) &&
+    !sdIsBoolean(val.suppress_notifications)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "suppress_notifications" of type "SignRequestCreateSigner"',
+    });
+  }
+  const suppressNotifications: undefined | boolean =
+    val.suppress_notifications == void 0 ? void 0 : val.suppress_notifications;
   return {
     email: email,
     role: role,
@@ -191,5 +205,6 @@ export function deserializeSignRequestCreateSigner(
     verificationPhoneNumber: verificationPhoneNumber,
     password: password,
     signerGroupId: signerGroupId,
+    suppressNotifications: suppressNotifications,
   } satisfies SignRequestCreateSigner;
 }
