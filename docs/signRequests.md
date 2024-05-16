@@ -1,12 +1,12 @@
 # SignRequestsManager
 
-- [Cancel sign request](#cancel-sign-request)
-- [Resend sign request](#resend-sign-request)
-- [Get sign request by ID](#get-sign-request-by-id)
-- [List sign requests](#list-sign-requests)
-- [Create sign request](#create-sign-request)
+- [Cancel Box Sign request](#cancel-box-sign-request)
+- [Resend Box Sign request](#resend-box-sign-request)
+- [Get Box Sign request by ID](#get-box-sign-request-by-id)
+- [List Box Sign requests](#list-box-sign-requests)
+- [Create Box Sign request](#create-box-sign-request)
 
-## Cancel sign request
+## Cancel Box Sign request
 
 Cancels a sign request.
 
@@ -24,7 +24,7 @@ await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 ### Arguments
 
 - signRequestId `string`
-  - The ID of the sign request Example: "33243242"
+  - The ID of the signature request Example: "33243242"
 - optionalsInput `CancelSignRequestOptionalsInput`
   -
 
@@ -34,9 +34,9 @@ This function returns a value of type `SignRequest`.
 
 Returns a Sign Request object.
 
-## Resend sign request
+## Resend Box Sign request
 
-Resends a sign request email to all outstanding signers.
+Resends a signature request email to all outstanding signers.
 
 This operation is performed by calling function `resendSignRequest`.
 
@@ -48,7 +48,7 @@ _Currently we don't have an example for calling `resendSignRequest` in integrati
 ### Arguments
 
 - signRequestId `string`
-  - The ID of the sign request Example: "33243242"
+  - The ID of the signature request Example: "33243242"
 - optionalsInput `ResendSignRequestOptionalsInput`
   -
 
@@ -59,7 +59,7 @@ This function returns a value of type `undefined`.
 Returns an empty response when the API call was successful.
 The email notifications will be sent asynchronously.
 
-## Get sign request by ID
+## Get Box Sign request by ID
 
 Gets a sign request by ID.
 
@@ -77,7 +77,7 @@ await client.signRequests.getSignRequestById(createdSignRequest.id!);
 ### Arguments
 
 - signRequestId `string`
-  - The ID of the sign request Example: "33243242"
+  - The ID of the signature request Example: "33243242"
 - optionalsInput `GetSignRequestByIdOptionalsInput`
   -
 
@@ -85,12 +85,12 @@ await client.signRequests.getSignRequestById(createdSignRequest.id!);
 
 This function returns a value of type `SignRequest`.
 
-Returns a sign request
+Returns a signature request.
 
-## List sign requests
+## List Box Sign requests
 
-Gets sign requests created by a user. If the `sign_files` and/or
-`parent_folder` are deleted, the sign request will not return in the list.
+Gets signature requests created by a user. If the `sign_files` and/or
+`parent_folder` are deleted, the signature request will not return in the list.
 
 This operation is performed by calling function `getSignRequests`.
 
@@ -118,10 +118,10 @@ This function returns a value of type `SignRequests`.
 
 Returns a collection of sign requests
 
-## Create sign request
+## Create Box Sign request
 
-Creates a sign request. This involves preparing a document for signing and
-sending the sign request to signers.
+Creates a signature request. This involves preparing a document for signing and
+sending the signature request to signers.
 
 This operation is performed by calling function `createSignRequest`.
 
@@ -158,4 +158,4 @@ await client.signRequests.createSignRequest({
 
 This function returns a value of type `SignRequest`.
 
-Returns a Sign Request object.
+Returns a Box Sign request object.
