@@ -14,6 +14,8 @@ import { serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField } 
 import { deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField } from '../managers/legalHoldPolicyAssignments.generated.js';
 import { serializeLegalHoldPolicyAssignments } from '../schemas/legalHoldPolicyAssignments.generated.js';
 import { deserializeLegalHoldPolicyAssignments } from '../schemas/legalHoldPolicyAssignments.generated.js';
+import { serializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
+import { deserializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { LegalHoldPolicy } from '../schemas/legalHoldPolicy.generated.js';
 import { CreateLegalHoldPolicyRequestBody } from '../managers/legalHoldPolicies.generated.js';
@@ -24,6 +26,7 @@ import { CreateLegalHoldPolicyAssignmentRequestBodyAssignToField } from '../mana
 import { CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField } from '../managers/legalHoldPolicyAssignments.generated.js';
 import { LegalHoldPolicyAssignments } from '../schemas/legalHoldPolicyAssignments.generated.js';
 import { GetLegalHoldPolicyAssignmentsQueryParams } from '../managers/legalHoldPolicyAssignments.generated.js';
+import { FilesOnHold } from '../schemas/filesOnHold.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -89,6 +92,16 @@ test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignm
       policyId: legalHoldPolicyId,
     } satisfies GetLegalHoldPolicyAssignmentsQueryParams);
   if (!(legalPolicyAssignments.entries!.length == 1)) {
+    throw new Error('Assertion failed');
+  }
+  const filesOnHold: FilesOnHold =
+    await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
+      legalHoldPolicyAssignmentId
+    );
+  if (!(filesOnHold.entries!.length == 1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(filesOnHold.entries![0].id == fileId)) {
     throw new Error('Assertion failed');
   }
   await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(

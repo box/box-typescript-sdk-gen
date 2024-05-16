@@ -6,13 +6,10 @@ import { serializeLegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAs
 import { deserializeLegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAssignment.generated.js';
 import { serializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
 import { deserializeFilesOnHold } from '../schemas/filesOnHold.generated.js';
-import { serializeFileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
-import { deserializeFileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
 import { LegalHoldPolicyAssignments } from '../schemas/legalHoldPolicyAssignments.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { LegalHoldPolicyAssignment } from '../schemas/legalHoldPolicyAssignment.generated.js';
 import { FilesOnHold } from '../schemas/filesOnHold.generated.js';
-import { FileVersionsOnHold } from '../schemas/fileVersionsOnHold.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
