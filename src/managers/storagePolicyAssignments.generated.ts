@@ -547,20 +547,15 @@ export function serializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeFi
 export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForTypeField(
   val: SerializedData
 ): GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField",
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
@@ -571,17 +566,12 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTy
 export function deserializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
   val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField"',
-    });
-  }
   if (val == 'storage_policy') {
-    return 'storage_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField",
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
@@ -688,20 +678,15 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeF
 export function deserializeCreateStoragePolicyAssignmentRequestBodyAssignedToTypeField(
   val: SerializedData
 ): CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField",
   });
 }
 export function serializeCreateStoragePolicyAssignmentRequestBodyAssignedToField(
@@ -807,17 +792,12 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePoli
 export function deserializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
   val: SerializedData
 ): UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField"',
-    });
-  }
   if (val == 'storage_policy') {
-    return 'storage_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField",
   });
 }
 export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField(

@@ -32,19 +32,14 @@ export function serializeEventSourceItemTypeField(
 export function deserializeEventSourceItemTypeField(
   val: SerializedData
 ): EventSourceItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "EventSourceItemTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize EventSourceItemTypeField",
   });
 }
 export function serializeEventSourceClassificationField(

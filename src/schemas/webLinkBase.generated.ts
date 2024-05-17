@@ -38,17 +38,10 @@ export function serializeWebLinkBaseTypeField(
 export function deserializeWebLinkBaseTypeField(
   val: SerializedData
 ): WebLinkBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebLinkBaseTypeField"',
-    });
-  }
   if (val == 'web_link') {
-    return 'web_link';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize WebLinkBaseTypeField" });
 }
 export function serializeWebLinkBase(val: WebLinkBase): SerializedData {
   return {

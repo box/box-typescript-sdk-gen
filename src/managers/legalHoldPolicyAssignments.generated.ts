@@ -526,26 +526,21 @@ export function serializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeFie
 export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
   val: SerializedData
 ): GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'file_version') {
-    return 'file_version';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField",
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
@@ -556,26 +551,21 @@ export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeF
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
   val: SerializedData
 ): CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'file_version') {
-    return 'file_version';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField",
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(

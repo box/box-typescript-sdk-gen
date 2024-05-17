@@ -550,23 +550,18 @@ export function serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
 export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   val: SerializedData
 ): AddShareLinkToFolderRequestBodySharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "AddShareLinkToFolderRequestBodySharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize AddShareLinkToFolderRequestBodySharedLinkAccessField",
   });
 }
 export function serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
@@ -732,23 +727,18 @@ export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessFiel
 export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
   val: SerializedData
 ): UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField",
   });
 }
 export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(

@@ -398,17 +398,12 @@ export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeFie
 export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
   val: SerializedData
 ): GetSlackIntegrationMappingQueryParamsPartnerItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetSlackIntegrationMappingQueryParamsPartnerItemTypeField"',
-    });
-  }
   if (val == 'channel') {
-    return 'channel';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetSlackIntegrationMappingQueryParamsPartnerItemTypeField",
   });
 }
 export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
@@ -419,17 +414,12 @@ export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
 export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
   val: SerializedData
 ): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetSlackIntegrationMappingQueryParamsBoxItemTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetSlackIntegrationMappingQueryParamsBoxItemTypeField",
   });
 }
 export function serializeUpdateSlackIntegrationMappingByIdRequestBody(

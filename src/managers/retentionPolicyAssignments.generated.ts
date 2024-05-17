@@ -551,23 +551,18 @@ export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
 export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   val: SerializedData
 ): GetRetentionPolicyAssignmentsQueryParamsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetRetentionPolicyAssignmentsQueryParamsTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   if (val == 'metadata_template') {
-    return 'metadata_template';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetRetentionPolicyAssignmentsQueryParamsTypeField",
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
@@ -578,23 +573,18 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeF
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
   val: SerializedData
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'metadata_template') {
-    return 'metadata_template';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField",
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(

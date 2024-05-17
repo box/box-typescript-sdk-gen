@@ -56,19 +56,14 @@ export function serializeRetentionPolicyPolicyTypeField(
 export function deserializeRetentionPolicyPolicyTypeField(
   val: SerializedData
 ): RetentionPolicyPolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RetentionPolicyPolicyTypeField"',
-    });
-  }
   if (val == 'finite') {
-    return 'finite';
+    return val;
   }
   if (val == 'indefinite') {
-    return 'indefinite';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyPolicyTypeField",
   });
 }
 export function serializeRetentionPolicyRetentionTypeField(
@@ -79,19 +74,14 @@ export function serializeRetentionPolicyRetentionTypeField(
 export function deserializeRetentionPolicyRetentionTypeField(
   val: SerializedData
 ): RetentionPolicyRetentionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RetentionPolicyRetentionTypeField"',
-    });
-  }
   if (val == 'modifiable') {
-    return 'modifiable';
+    return val;
   }
   if (val == 'non_modifiable') {
-    return 'non_modifiable';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyRetentionTypeField",
   });
 }
 export function serializeRetentionPolicyStatusField(
@@ -102,19 +92,14 @@ export function serializeRetentionPolicyStatusField(
 export function deserializeRetentionPolicyStatusField(
   val: SerializedData
 ): RetentionPolicyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RetentionPolicyStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'retired') {
-    return 'retired';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyStatusField",
   });
 }
 export function serializeRetentionPolicyAssignmentCountsField(

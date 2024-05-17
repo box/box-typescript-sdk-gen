@@ -315,19 +315,14 @@ export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
 export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
   val: SerializedData
 ): GetEnterpriseDevicePinnersQueryParamsDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetEnterpriseDevicePinnersQueryParamsDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetEnterpriseDevicePinnersQueryParamsDirectionField",
   });
 }

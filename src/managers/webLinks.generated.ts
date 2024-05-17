@@ -502,23 +502,18 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   val: SerializedData
 ): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateWebLinkByIdRequestBodySharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateWebLinkByIdRequestBodySharedLinkAccessField",
   });
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(

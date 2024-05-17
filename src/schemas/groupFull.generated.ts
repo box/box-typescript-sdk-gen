@@ -54,22 +54,17 @@ export function serializeGroupFullInvitabilityLevelField(
 export function deserializeGroupFullInvitabilityLevelField(
   val: SerializedData
 ): GroupFullInvitabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupFullInvitabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupFullInvitabilityLevelField",
   });
 }
 export function serializeGroupFullMemberViewabilityLevelField(
@@ -80,22 +75,17 @@ export function serializeGroupFullMemberViewabilityLevelField(
 export function deserializeGroupFullMemberViewabilityLevelField(
   val: SerializedData
 ): GroupFullMemberViewabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupFullMemberViewabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupFullMemberViewabilityLevelField",
   });
 }
 export function serializeGroupFullPermissionsField(

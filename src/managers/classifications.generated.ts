@@ -546,16 +546,11 @@ export function serializeAddClassificationRequestBodyOpField(
 export function deserializeAddClassificationRequestBodyOpField(
   val: SerializedData
 ): AddClassificationRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AddClassificationRequestBodyOpField"',
-    });
-  }
   if (val == 'addEnumOption') {
-    return 'addEnumOption';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AddClassificationRequestBodyOpField",
   });
 }
 export function serializeAddClassificationRequestBodyFieldKeyField(
@@ -566,17 +561,11 @@ export function serializeAddClassificationRequestBodyFieldKeyField(
 export function deserializeAddClassificationRequestBodyFieldKeyField(
   val: SerializedData
 ): AddClassificationRequestBodyFieldKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "AddClassificationRequestBodyFieldKeyField"',
-    });
-  }
   if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AddClassificationRequestBodyFieldKeyField",
   });
 }
 export function serializeAddClassificationRequestBodyDataStaticConfigClassificationField(
@@ -807,17 +796,11 @@ export function serializeUpdateClassificationRequestBodyOpField(
 export function deserializeUpdateClassificationRequestBodyOpField(
   val: SerializedData
 ): UpdateClassificationRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateClassificationRequestBodyOpField"',
-    });
-  }
   if (val == 'editEnumOption') {
-    return 'editEnumOption';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateClassificationRequestBodyOpField",
   });
 }
 export function serializeUpdateClassificationRequestBodyFieldKeyField(
@@ -828,17 +811,11 @@ export function serializeUpdateClassificationRequestBodyFieldKeyField(
 export function deserializeUpdateClassificationRequestBodyFieldKeyField(
   val: SerializedData
 ): UpdateClassificationRequestBodyFieldKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateClassificationRequestBodyFieldKeyField"',
-    });
-  }
   if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateClassificationRequestBodyFieldKeyField",
   });
 }
 export function serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
@@ -1099,17 +1076,12 @@ export function serializeCreateClassificationTemplateRequestBodyScopeField(
 export function deserializeCreateClassificationTemplateRequestBodyScopeField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyScopeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyScopeField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
@@ -1120,17 +1092,12 @@ export function serializeCreateClassificationTemplateRequestBodyTemplateKeyField
 export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyTemplateKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyTemplateKeyField"',
-    });
-  }
   if (val == 'securityClassification-6VMVochwUWo') {
-    return 'securityClassification-6VMVochwUWo';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyTemplateKeyField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyDisplayNameField(
@@ -1141,17 +1108,12 @@ export function serializeCreateClassificationTemplateRequestBodyDisplayNameField
 export function deserializeCreateClassificationTemplateRequestBodyDisplayNameField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyDisplayNameField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyDisplayNameField"',
-    });
-  }
   if (val == 'Classification') {
-    return 'Classification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyDisplayNameField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
@@ -1162,17 +1124,12 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
 export function deserializeCreateClassificationTemplateRequestBodyFieldsTypeField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsTypeField"',
-    });
-  }
   if (val == 'enum') {
-    return 'enum';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyFieldsTypeField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
@@ -1183,17 +1140,12 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
 export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsKeyField"',
-    });
-  }
   if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyFieldsKeyField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
@@ -1204,17 +1156,12 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsDisplayNam
 export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
   val: SerializedData
 ): CreateClassificationTemplateRequestBodyFieldsDisplayNameField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateClassificationTemplateRequestBodyFieldsDisplayNameField"',
-    });
-  }
   if (val == 'Classification') {
-    return 'Classification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateClassificationTemplateRequestBodyFieldsDisplayNameField",
   });
 }
 export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(

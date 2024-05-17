@@ -45,17 +45,11 @@ export function serializeIntegrationMappingPartnerItemSlackTypeField(
 export function deserializeIntegrationMappingPartnerItemSlackTypeField(
   val: SerializedData
 ): IntegrationMappingPartnerItemSlackTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "IntegrationMappingPartnerItemSlackTypeField"',
-    });
-  }
   if (val == 'channel') {
-    return 'channel';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingPartnerItemSlackTypeField",
   });
 }
 export function serializeIntegrationMappingPartnerItemSlack(

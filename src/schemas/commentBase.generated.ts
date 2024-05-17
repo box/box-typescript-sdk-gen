@@ -19,17 +19,10 @@ export function serializeCommentBaseTypeField(
 export function deserializeCommentBaseTypeField(
   val: SerializedData
 ): CommentBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CommentBaseTypeField"',
-    });
-  }
   if (val == 'comment') {
-    return 'comment';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize CommentBaseTypeField" });
 }
 export function serializeCommentBase(val: CommentBase): SerializedData {
   return {

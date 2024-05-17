@@ -39,23 +39,17 @@ export function serializeSignRequestCreateRequestSignatureColorField(
 export function deserializeSignRequestCreateRequestSignatureColorField(
   val: SerializedData
 ): SignRequestCreateRequestSignatureColorField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SignRequestCreateRequestSignatureColorField"',
-    });
-  }
   if (val == 'blue') {
-    return 'blue';
+    return val;
   }
   if (val == 'black') {
-    return 'black';
+    return val;
   }
   if (val == 'red') {
-    return 'red';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestCreateRequestSignatureColorField",
   });
 }
 export function serializeSignRequestCreateRequest(

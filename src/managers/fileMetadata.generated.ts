@@ -487,19 +487,14 @@ export function serializeGetFileMetadataByIdScope(
 export function deserializeGetFileMetadataByIdScope(
   val: SerializedData
 ): GetFileMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetFileMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetFileMetadataByIdScope",
   });
 }
 export function serializeCreateFileMetadataByIdScope(
@@ -510,19 +505,14 @@ export function serializeCreateFileMetadataByIdScope(
 export function deserializeCreateFileMetadataByIdScope(
   val: SerializedData
 ): CreateFileMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateFileMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateFileMetadataByIdScope",
   });
 }
 export function serializeCreateFileMetadataByIdRequestBody(
@@ -563,19 +553,14 @@ export function serializeUpdateFileMetadataByIdScope(
 export function deserializeUpdateFileMetadataByIdScope(
   val: SerializedData
 ): UpdateFileMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateFileMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFileMetadataByIdScope",
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBodyOpField(
@@ -586,32 +571,26 @@ export function serializeUpdateFileMetadataByIdRequestBodyOpField(
 export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   val: SerializedData
 ): UpdateFileMetadataByIdRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFileMetadataByIdRequestBodyOpField"',
-    });
-  }
   if (val == 'add') {
-    return 'add';
+    return val;
   }
   if (val == 'replace') {
-    return 'replace';
+    return val;
   }
   if (val == 'remove') {
-    return 'remove';
+    return val;
   }
   if (val == 'test') {
-    return 'test';
+    return val;
   }
   if (val == 'move') {
-    return 'move';
+    return val;
   }
   if (val == 'copy') {
-    return 'copy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFileMetadataByIdRequestBodyOpField",
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBody(
@@ -675,18 +654,13 @@ export function serializeDeleteFileMetadataByIdScope(
 export function deserializeDeleteFileMetadataByIdScope(
   val: SerializedData
 ): DeleteFileMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DeleteFileMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize DeleteFileMetadataByIdScope",
   });
 }

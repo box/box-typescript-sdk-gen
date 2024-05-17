@@ -35,16 +35,11 @@ export function serializeStoragePolicyMiniTypeField(
 export function deserializeStoragePolicyMiniTypeField(
   val: SerializedData
 ): StoragePolicyMiniTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StoragePolicyMiniTypeField"',
-    });
-  }
   if (val == 'storage_policy') {
-    return 'storage_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StoragePolicyMiniTypeField",
   });
 }
 export function serializeStoragePolicyMini(

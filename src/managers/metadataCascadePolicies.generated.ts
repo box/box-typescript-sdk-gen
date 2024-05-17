@@ -493,20 +493,15 @@ export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
 export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   val: SerializedData
 ): CreateMetadataCascadePolicyRequestBodyScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateMetadataCascadePolicyRequestBodyScopeField"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateMetadataCascadePolicyRequestBodyScopeField",
   });
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
@@ -576,20 +571,15 @@ export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolution
 export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
   val: SerializedData
 ): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ApplyMetadataCascadePolicyRequestBodyConflictResolutionField"',
-    });
-  }
   if (val == 'none') {
-    return 'none';
+    return val;
   }
   if (val == 'overwrite') {
-    return 'overwrite';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize ApplyMetadataCascadePolicyRequestBodyConflictResolutionField",
   });
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(

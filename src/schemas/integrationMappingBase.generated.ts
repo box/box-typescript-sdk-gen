@@ -19,17 +19,11 @@ export function serializeIntegrationMappingBaseIntegrationTypeField(
 export function deserializeIntegrationMappingBaseIntegrationTypeField(
   val: SerializedData
 ): IntegrationMappingBaseIntegrationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "IntegrationMappingBaseIntegrationTypeField"',
-    });
-  }
   if (val == 'slack') {
-    return 'slack';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingBaseIntegrationTypeField",
   });
 }
 export function serializeIntegrationMappingBase(

@@ -26,22 +26,17 @@ export function serializeMetadataQueryIndexStatusField(
 export function deserializeMetadataQueryIndexStatusField(
   val: SerializedData
 ): MetadataQueryIndexStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataQueryIndexStatusField"',
-    });
-  }
   if (val == 'building') {
-    return 'building';
+    return val;
   }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataQueryIndexStatusField",
   });
 }
 export function serializeMetadataQueryIndexFieldsSortDirectionField(
@@ -52,20 +47,14 @@ export function serializeMetadataQueryIndexFieldsSortDirectionField(
 export function deserializeMetadataQueryIndexFieldsSortDirectionField(
   val: SerializedData
 ): MetadataQueryIndexFieldsSortDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "MetadataQueryIndexFieldsSortDirectionField"',
-    });
-  }
   if (val == 'asc') {
-    return 'asc';
+    return val;
   }
   if (val == 'desc') {
-    return 'desc';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataQueryIndexFieldsSortDirectionField",
   });
 }
 export function serializeMetadataQueryIndexFieldsField(

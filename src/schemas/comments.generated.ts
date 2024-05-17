@@ -29,19 +29,14 @@ export function serializeCommentsOrderDirectionField(
 export function deserializeCommentsOrderDirectionField(
   val: SerializedData
 ): CommentsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CommentsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CommentsOrderDirectionField",
   });
 }
 export function serializeCommentsOrderField(

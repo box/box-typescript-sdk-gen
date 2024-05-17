@@ -444,16 +444,10 @@ export function serializeGetCollaborationsQueryParamsStatusField(
 export function deserializeGetCollaborationsQueryParamsStatusField(
   val: SerializedData
 ): GetCollaborationsQueryParamsStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetCollaborationsQueryParamsStatusField"',
-    });
-  }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetCollaborationsQueryParamsStatusField",
   });
 }

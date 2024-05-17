@@ -233,16 +233,11 @@ export function serializeStartWorkflowRequestBodyTypeField(
 export function deserializeStartWorkflowRequestBodyTypeField(
   val: SerializedData
 ): StartWorkflowRequestBodyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StartWorkflowRequestBodyTypeField"',
-    });
-  }
   if (val == 'workflow_parameters') {
-    return 'workflow_parameters';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StartWorkflowRequestBodyTypeField",
   });
 }
 export function serializeStartWorkflowRequestBodyFlowField(
@@ -285,17 +280,11 @@ export function serializeStartWorkflowRequestBodyFilesTypeField(
 export function deserializeStartWorkflowRequestBodyFilesTypeField(
   val: SerializedData
 ): StartWorkflowRequestBodyFilesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "StartWorkflowRequestBodyFilesTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StartWorkflowRequestBodyFilesTypeField",
   });
 }
 export function serializeStartWorkflowRequestBodyFilesField(
@@ -338,17 +327,11 @@ export function serializeStartWorkflowRequestBodyFolderTypeField(
 export function deserializeStartWorkflowRequestBodyFolderTypeField(
   val: SerializedData
 ): StartWorkflowRequestBodyFolderTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "StartWorkflowRequestBodyFolderTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StartWorkflowRequestBodyFolderTypeField",
   });
 }
 export function serializeStartWorkflowRequestBodyFolderField(

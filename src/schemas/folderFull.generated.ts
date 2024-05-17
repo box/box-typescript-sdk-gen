@@ -109,22 +109,17 @@ export function serializeFolderFullSyncStateField(
 export function deserializeFolderFullSyncStateField(
   val: SerializedData
 ): FolderFullSyncStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderFullSyncStateField"',
-    });
-  }
   if (val == 'synced') {
-    return 'synced';
+    return val;
   }
   if (val == 'not_synced') {
-    return 'not_synced';
+    return val;
   }
   if (val == 'partially_synced') {
-    return 'partially_synced';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderFullSyncStateField",
   });
 }
 export function serializeFolderFullPermissionsField(
@@ -303,23 +298,17 @@ export function serializeFolderFullAllowedSharedLinkAccessLevelsField(
 export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   val: SerializedData
 ): FolderFullAllowedSharedLinkAccessLevelsField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "FolderFullAllowedSharedLinkAccessLevelsField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderFullAllowedSharedLinkAccessLevelsField",
   });
 }
 export function serializeFolderFullAllowedInviteeRolesField(
@@ -330,34 +319,29 @@ export function serializeFolderFullAllowedInviteeRolesField(
 export function deserializeFolderFullAllowedInviteeRolesField(
   val: SerializedData
 ): FolderFullAllowedInviteeRolesField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderFullAllowedInviteeRolesField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderFullAllowedInviteeRolesField",
   });
 }
 export function serializeFolderFullWatermarkInfoField(

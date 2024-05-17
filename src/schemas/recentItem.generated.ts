@@ -33,28 +33,23 @@ export function serializeRecentItemInteractionTypeField(
 export function deserializeRecentItemInteractionTypeField(
   val: SerializedData
 ): RecentItemInteractionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RecentItemInteractionTypeField"',
-    });
-  }
   if (val == 'item_preview') {
-    return 'item_preview';
+    return val;
   }
   if (val == 'item_upload') {
-    return 'item_upload';
+    return val;
   }
   if (val == 'item_comment') {
-    return 'item_comment';
+    return val;
   }
   if (val == 'item_open') {
-    return 'item_open';
+    return val;
   }
   if (val == 'item_modify') {
-    return 'item_modify';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RecentItemInteractionTypeField",
   });
 }
 export function serializeRecentItem(val: RecentItem): SerializedData {

@@ -49,17 +49,10 @@ export function serializeRoleVariableTypeField(
 export function deserializeRoleVariableTypeField(
   val: SerializedData
 ): RoleVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RoleVariableTypeField"',
-    });
-  }
   if (val == 'variable') {
-    return 'variable';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize RoleVariableTypeField" });
 }
 export function serializeRoleVariableVariableTypeField(
   val: RoleVariableVariableTypeField
@@ -69,16 +62,11 @@ export function serializeRoleVariableVariableTypeField(
 export function deserializeRoleVariableVariableTypeField(
   val: SerializedData
 ): RoleVariableVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RoleVariableVariableTypeField"',
-    });
-  }
   if (val == 'collaborator_role') {
-    return 'collaborator_role';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RoleVariableVariableTypeField",
   });
 }
 export function serializeRoleVariableVariableValueField(
@@ -89,34 +77,29 @@ export function serializeRoleVariableVariableValueField(
 export function deserializeRoleVariableVariableValueField(
   val: SerializedData
 ): RoleVariableVariableValueField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RoleVariableVariableValueField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RoleVariableVariableValueField",
   });
 }
 export function serializeRoleVariable(val: RoleVariable): SerializedData {

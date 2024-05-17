@@ -20,17 +20,10 @@ export function serializeTrackingCodeTypeField(
 export function deserializeTrackingCodeTypeField(
   val: SerializedData
 ): TrackingCodeTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrackingCodeTypeField"',
-    });
-  }
   if (val == 'tracking_code') {
-    return 'tracking_code';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TrackingCodeTypeField" });
 }
 export function serializeTrackingCode(val: TrackingCode): SerializedData {
   return {

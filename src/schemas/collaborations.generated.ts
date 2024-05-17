@@ -29,19 +29,14 @@ export function serializeCollaborationsOrderDirectionField(
 export function deserializeCollaborationsOrderDirectionField(
   val: SerializedData
 ): CollaborationsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaborationsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationsOrderDirectionField",
   });
 }
 export function serializeCollaborationsOrderField(

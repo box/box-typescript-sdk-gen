@@ -125,16 +125,11 @@ export function serializeTimelineSkillCardTypeField(
 export function deserializeTimelineSkillCardTypeField(
   val: SerializedData
 ): TimelineSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TimelineSkillCardTypeField"',
-    });
-  }
   if (val == 'skill_card') {
-    return 'skill_card';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TimelineSkillCardTypeField",
   });
 }
 export function serializeTimelineSkillCardSkillCardTypeField(
@@ -145,16 +140,11 @@ export function serializeTimelineSkillCardSkillCardTypeField(
 export function deserializeTimelineSkillCardSkillCardTypeField(
   val: SerializedData
 ): TimelineSkillCardSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TimelineSkillCardSkillCardTypeField"',
-    });
-  }
   if (val == 'timeline') {
-    return 'timeline';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TimelineSkillCardSkillCardTypeField",
   });
 }
 export function serializeTimelineSkillCardSkillCardTitleField(
@@ -206,16 +196,11 @@ export function serializeTimelineSkillCardSkillTypeField(
 export function deserializeTimelineSkillCardSkillTypeField(
   val: SerializedData
 ): TimelineSkillCardSkillTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TimelineSkillCardSkillTypeField"',
-    });
-  }
   if (val == 'service') {
-    return 'service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TimelineSkillCardSkillTypeField",
   });
 }
 export function serializeTimelineSkillCardSkillField(
@@ -303,16 +288,11 @@ export function serializeTimelineSkillCardInvocationTypeField(
 export function deserializeTimelineSkillCardInvocationTypeField(
   val: SerializedData
 ): TimelineSkillCardInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TimelineSkillCardInvocationTypeField"',
-    });
-  }
   if (val == 'skill_invocation') {
-    return 'skill_invocation';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TimelineSkillCardInvocationTypeField",
   });
 }
 export function serializeTimelineSkillCardInvocationField(

@@ -29,19 +29,14 @@ export function serializeGroupMembershipsOrderDirectionField(
 export function deserializeGroupMembershipsOrderDirectionField(
   val: SerializedData
 ): GroupMembershipsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupMembershipsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupMembershipsOrderDirectionField",
   });
 }
 export function serializeGroupMembershipsOrderField(

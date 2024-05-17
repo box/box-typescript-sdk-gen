@@ -487,19 +487,14 @@ export function serializeGetFolderMetadataByIdScope(
 export function deserializeGetFolderMetadataByIdScope(
   val: SerializedData
 ): GetFolderMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetFolderMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetFolderMetadataByIdScope",
   });
 }
 export function serializeCreateFolderMetadataByIdScope(
@@ -510,19 +505,14 @@ export function serializeCreateFolderMetadataByIdScope(
 export function deserializeCreateFolderMetadataByIdScope(
   val: SerializedData
 ): CreateFolderMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateFolderMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateFolderMetadataByIdScope",
   });
 }
 export function serializeCreateFolderMetadataByIdRequestBody(
@@ -563,19 +553,14 @@ export function serializeUpdateFolderMetadataByIdScope(
 export function deserializeUpdateFolderMetadataByIdScope(
   val: SerializedData
 ): UpdateFolderMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateFolderMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFolderMetadataByIdScope",
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
@@ -586,32 +571,26 @@ export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
 export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   val: SerializedData
 ): UpdateFolderMetadataByIdRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFolderMetadataByIdRequestBodyOpField"',
-    });
-  }
   if (val == 'add') {
-    return 'add';
+    return val;
   }
   if (val == 'replace') {
-    return 'replace';
+    return val;
   }
   if (val == 'remove') {
-    return 'remove';
+    return val;
   }
   if (val == 'test') {
-    return 'test';
+    return val;
   }
   if (val == 'move') {
-    return 'move';
+    return val;
   }
   if (val == 'copy') {
-    return 'copy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFolderMetadataByIdRequestBodyOpField",
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBody(
@@ -675,18 +654,13 @@ export function serializeDeleteFolderMetadataByIdScope(
 export function deserializeDeleteFolderMetadataByIdScope(
   val: SerializedData
 ): DeleteFolderMetadataByIdScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DeleteFolderMetadataByIdScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize DeleteFolderMetadataByIdScope",
   });
 }

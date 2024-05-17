@@ -280,19 +280,14 @@ export function serializeSearchForContentQueryParamsScopeField(
 export function deserializeSearchForContentQueryParamsScopeField(
   val: SerializedData
 ): SearchForContentQueryParamsScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SearchForContentQueryParamsScopeField"',
-    });
-  }
   if (val == 'user_content') {
-    return 'user_content';
+    return val;
   }
   if (val == 'enterprise_content') {
-    return 'enterprise_content';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsScopeField",
   });
 }
 export function serializeSearchForContentQueryParamsContentTypesField(
@@ -303,29 +298,23 @@ export function serializeSearchForContentQueryParamsContentTypesField(
 export function deserializeSearchForContentQueryParamsContentTypesField(
   val: SerializedData
 ): SearchForContentQueryParamsContentTypesField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SearchForContentQueryParamsContentTypesField"',
-    });
-  }
   if (val == 'name') {
-    return 'name';
+    return val;
   }
   if (val == 'description') {
-    return 'description';
+    return val;
   }
   if (val == 'file_content') {
-    return 'file_content';
+    return val;
   }
   if (val == 'comments') {
-    return 'comments';
+    return val;
   }
   if (val == 'tag') {
-    return 'tag';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsContentTypesField",
   });
 }
 export function serializeSearchForContentQueryParamsTypeField(
@@ -336,22 +325,17 @@ export function serializeSearchForContentQueryParamsTypeField(
 export function deserializeSearchForContentQueryParamsTypeField(
   val: SerializedData
 ): SearchForContentQueryParamsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SearchForContentQueryParamsTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'web_link') {
-    return 'web_link';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsTypeField",
   });
 }
 export function serializeSearchForContentQueryParamsTrashContentField(
@@ -362,23 +346,17 @@ export function serializeSearchForContentQueryParamsTrashContentField(
 export function deserializeSearchForContentQueryParamsTrashContentField(
   val: SerializedData
 ): SearchForContentQueryParamsTrashContentField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SearchForContentQueryParamsTrashContentField"',
-    });
-  }
   if (val == 'non_trashed_only') {
-    return 'non_trashed_only';
+    return val;
   }
   if (val == 'trashed_only') {
-    return 'trashed_only';
+    return val;
   }
   if (val == 'all_items') {
-    return 'all_items';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsTrashContentField",
   });
 }
 export function serializeSearchForContentQueryParamsSortField(
@@ -389,19 +367,14 @@ export function serializeSearchForContentQueryParamsSortField(
 export function deserializeSearchForContentQueryParamsSortField(
   val: SerializedData
 ): SearchForContentQueryParamsSortField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SearchForContentQueryParamsSortField"',
-    });
-  }
   if (val == 'modified_at') {
-    return 'modified_at';
+    return val;
   }
   if (val == 'relevance') {
-    return 'relevance';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsSortField",
   });
 }
 export function serializeSearchForContentQueryParamsDirectionField(
@@ -412,19 +385,13 @@ export function serializeSearchForContentQueryParamsDirectionField(
 export function deserializeSearchForContentQueryParamsDirectionField(
   val: SerializedData
 ): SearchForContentQueryParamsDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SearchForContentQueryParamsDirectionField"',
-    });
-  }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchForContentQueryParamsDirectionField",
   });
 }

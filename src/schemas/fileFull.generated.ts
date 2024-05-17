@@ -352,17 +352,10 @@ export function serializeFileFullLockTypeField(
 export function deserializeFileFullLockTypeField(
   val: SerializedData
 ): FileFullLockTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileFullLockTypeField"',
-    });
-  }
   if (val == 'lock') {
-    return 'lock';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize FileFullLockTypeField" });
 }
 export function serializeFileFullLockAppTypeField(
   val: FileFullLockAppTypeField
@@ -372,25 +365,20 @@ export function serializeFileFullLockAppTypeField(
 export function deserializeFileFullLockAppTypeField(
   val: SerializedData
 ): FileFullLockAppTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileFullLockAppTypeField"',
-    });
-  }
   if (val == 'gsuite') {
-    return 'gsuite';
+    return val;
   }
   if (val == 'office_wopi') {
-    return 'office_wopi';
+    return val;
   }
   if (val == 'office_wopiplus') {
-    return 'office_wopiplus';
+    return val;
   }
   if (val == 'other') {
-    return 'other';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileFullLockAppTypeField",
   });
 }
 export function serializeFileFullLockField(
@@ -479,17 +467,11 @@ export function serializeFileFullExpiringEmbedLinkTokenTypeField(
 export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
   val: SerializedData
 ): FileFullExpiringEmbedLinkTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "FileFullExpiringEmbedLinkTokenTypeField"',
-    });
-  }
   if (val == 'bearer') {
-    return 'bearer';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileFullExpiringEmbedLinkTokenTypeField",
   });
 }
 export function serializeFileFullExpiringEmbedLinkField(
@@ -606,34 +588,29 @@ export function serializeFileFullAllowedInviteeRolesField(
 export function deserializeFileFullAllowedInviteeRolesField(
   val: SerializedData
 ): FileFullAllowedInviteeRolesField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileFullAllowedInviteeRolesField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileFullAllowedInviteeRolesField",
   });
 }
 export function serializeFileFullMetadataField(
@@ -791,26 +768,20 @@ export function serializeFileFullRepresentationsEntriesStatusStateField(
 export function deserializeFileFullRepresentationsEntriesStatusStateField(
   val: SerializedData
 ): FileFullRepresentationsEntriesStatusStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "FileFullRepresentationsEntriesStatusStateField"',
-    });
-  }
   if (val == 'success') {
-    return 'success';
+    return val;
   }
   if (val == 'viewable') {
-    return 'viewable';
+    return val;
   }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'none') {
-    return 'none';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileFullRepresentationsEntriesStatusStateField",
   });
 }
 export function serializeFileFullRepresentationsEntriesStatusField(
@@ -999,23 +970,17 @@ export function serializeFileFullSharedLinkPermissionOptionsField(
 export function deserializeFileFullSharedLinkPermissionOptionsField(
   val: SerializedData
 ): FileFullSharedLinkPermissionOptionsField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "FileFullSharedLinkPermissionOptionsField"',
-    });
-  }
   if (val == 'can_preview') {
-    return 'can_preview';
+    return val;
   }
   if (val == 'can_download') {
-    return 'can_download';
+    return val;
   }
   if (val == 'can_edit') {
-    return 'can_edit';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileFullSharedLinkPermissionOptionsField",
   });
 }
 export function serializeFileFull(val: FileFull): SerializedData {

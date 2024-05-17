@@ -41,16 +41,11 @@ export function serializeTaskAssignmentTypeField(
 export function deserializeTaskAssignmentTypeField(
   val: SerializedData
 ): TaskAssignmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TaskAssignmentTypeField"',
-    });
-  }
   if (val == 'task_assignment') {
-    return 'task_assignment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TaskAssignmentTypeField",
   });
 }
 export function serializeTaskAssignmentResolutionStateField(
@@ -61,25 +56,20 @@ export function serializeTaskAssignmentResolutionStateField(
 export function deserializeTaskAssignmentResolutionStateField(
   val: SerializedData
 ): TaskAssignmentResolutionStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TaskAssignmentResolutionStateField"',
-    });
-  }
   if (val == 'completed') {
-    return 'completed';
+    return val;
   }
   if (val == 'incomplete') {
-    return 'incomplete';
+    return val;
   }
   if (val == 'approved') {
-    return 'approved';
+    return val;
   }
   if (val == 'rejected') {
-    return 'rejected';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TaskAssignmentResolutionStateField",
   });
 }
 export function serializeTaskAssignment(val: TaskAssignment): SerializedData {

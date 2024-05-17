@@ -31,16 +31,11 @@ export function serializeFileRequestCopyRequestFolderTypeField(
 export function deserializeFileRequestCopyRequestFolderTypeField(
   val: SerializedData
 ): FileRequestCopyRequestFolderTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileRequestCopyRequestFolderTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileRequestCopyRequestFolderTypeField",
   });
 }
 export function serializeFileRequestCopyRequestFolderField(

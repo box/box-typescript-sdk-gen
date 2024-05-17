@@ -377,16 +377,10 @@ export function serializeAuthorizeUserQueryParamsResponseTypeField(
 export function deserializeAuthorizeUserQueryParamsResponseTypeField(
   val: SerializedData
 ): AuthorizeUserQueryParamsResponseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "AuthorizeUserQueryParamsResponseTypeField"',
-    });
-  }
   if (val == 'code') {
-    return 'code';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AuthorizeUserQueryParamsResponseTypeField",
   });
 }

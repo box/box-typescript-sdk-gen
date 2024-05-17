@@ -20,17 +20,11 @@ export function serializeLegalHoldPolicyAssignmentBaseTypeField(
 export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
   val: SerializedData
 ): LegalHoldPolicyAssignmentBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "LegalHoldPolicyAssignmentBaseTypeField"',
-    });
-  }
   if (val == 'legal_hold_policy_assignment') {
-    return 'legal_hold_policy_assignment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize LegalHoldPolicyAssignmentBaseTypeField",
   });
 }
 export function serializeLegalHoldPolicyAssignmentBase(

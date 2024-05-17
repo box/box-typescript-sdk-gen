@@ -171,419 +171,412 @@ export function serializeEventEventTypeField(
 export function deserializeEventEventTypeField(
   val: SerializedData
 ): EventEventTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "EventEventTypeField"',
-    });
-  }
   if (val == 'ACCESS_GRANTED') {
-    return 'ACCESS_GRANTED';
+    return val;
   }
   if (val == 'ACCESS_REVOKED') {
-    return 'ACCESS_REVOKED';
+    return val;
   }
   if (val == 'ADD_DEVICE_ASSOCIATION') {
-    return 'ADD_DEVICE_ASSOCIATION';
+    return val;
   }
   if (val == 'ADD_LOGIN_ACTIVITY_DEVICE') {
-    return 'ADD_LOGIN_ACTIVITY_DEVICE';
+    return val;
   }
   if (val == 'ADMIN_LOGIN') {
-    return 'ADMIN_LOGIN';
+    return val;
   }
   if (val == 'APPLICATION_CREATED') {
-    return 'APPLICATION_CREATED';
+    return val;
   }
   if (val == 'APPLICATION_PUBLIC_KEY_ADDED') {
-    return 'APPLICATION_PUBLIC_KEY_ADDED';
+    return val;
   }
   if (val == 'APPLICATION_PUBLIC_KEY_DELETED') {
-    return 'APPLICATION_PUBLIC_KEY_DELETED';
+    return val;
   }
   if (val == 'CHANGE_ADMIN_ROLE') {
-    return 'CHANGE_ADMIN_ROLE';
+    return val;
   }
   if (val == 'CHANGE_FOLDER_PERMISSION') {
-    return 'CHANGE_FOLDER_PERMISSION';
+    return val;
   }
   if (val == 'COLLABORATION_ACCEPT') {
-    return 'COLLABORATION_ACCEPT';
+    return val;
   }
   if (val == 'COLLABORATION_EXPIRATION') {
-    return 'COLLABORATION_EXPIRATION';
+    return val;
   }
   if (val == 'COLLABORATION_INVITE') {
-    return 'COLLABORATION_INVITE';
+    return val;
   }
   if (val == 'COLLABORATION_REMOVE') {
-    return 'COLLABORATION_REMOVE';
+    return val;
   }
   if (val == 'COLLABORATION_ROLE_CHANGE') {
-    return 'COLLABORATION_ROLE_CHANGE';
+    return val;
   }
   if (val == 'COLLAB_ADD_COLLABORATOR') {
-    return 'COLLAB_ADD_COLLABORATOR';
+    return val;
   }
   if (val == 'COLLAB_INVITE_COLLABORATOR') {
-    return 'COLLAB_INVITE_COLLABORATOR';
+    return val;
   }
   if (val == 'COLLAB_REMOVE_COLLABORATOR') {
-    return 'COLLAB_REMOVE_COLLABORATOR';
+    return val;
   }
   if (val == 'COLLAB_ROLE_CHANGE') {
-    return 'COLLAB_ROLE_CHANGE';
+    return val;
   }
   if (val == 'COMMENT_CREATE') {
-    return 'COMMENT_CREATE';
+    return val;
   }
   if (val == 'COMMENT_DELETE') {
-    return 'COMMENT_DELETE';
+    return val;
   }
   if (val == 'CONTENT_ACCESS') {
-    return 'CONTENT_ACCESS';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_ABNORMAL_DOWNLOAD_ACTIVITY') {
-    return 'CONTENT_WORKFLOW_ABNORMAL_DOWNLOAD_ACTIVITY';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_AUTOMATION_ADD') {
-    return 'CONTENT_WORKFLOW_AUTOMATION_ADD';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_AUTOMATION_DELETE') {
-    return 'CONTENT_WORKFLOW_AUTOMATION_DELETE';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_POLICY_ADD') {
-    return 'CONTENT_WORKFLOW_POLICY_ADD';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_SHARING_POLICY_VIOLATION') {
-    return 'CONTENT_WORKFLOW_SHARING_POLICY_VIOLATION';
+    return val;
   }
   if (val == 'CONTENT_WORKFLOW_UPLOAD_POLICY_VIOLATION') {
-    return 'CONTENT_WORKFLOW_UPLOAD_POLICY_VIOLATION';
+    return val;
   }
   if (val == 'COPY') {
-    return 'COPY';
+    return val;
   }
   if (val == 'DATA_RETENTION_CREATE_RETENTION') {
-    return 'DATA_RETENTION_CREATE_RETENTION';
+    return val;
   }
   if (val == 'DATA_RETENTION_REMOVE_RETENTION') {
-    return 'DATA_RETENTION_REMOVE_RETENTION';
+    return val;
   }
   if (val == 'DELETE') {
-    return 'DELETE';
+    return val;
   }
   if (val == 'DELETE_USER') {
-    return 'DELETE_USER';
+    return val;
   }
   if (val == 'DEVICE_TRUST_CHECK_FAILED') {
-    return 'DEVICE_TRUST_CHECK_FAILED';
+    return val;
   }
   if (val == 'DOWNLOAD') {
-    return 'DOWNLOAD';
+    return val;
   }
   if (val == 'EDIT') {
-    return 'EDIT';
+    return val;
   }
   if (val == 'EDIT_USER') {
-    return 'EDIT_USER';
+    return val;
   }
   if (val == 'EMAIL_ALIAS_CONFIRM') {
-    return 'EMAIL_ALIAS_CONFIRM';
+    return val;
   }
   if (val == 'EMAIL_ALIAS_REMOVE') {
-    return 'EMAIL_ALIAS_REMOVE';
+    return val;
   }
   if (val == 'ENABLE_TWO_FACTOR_AUTH') {
-    return 'ENABLE_TWO_FACTOR_AUTH';
+    return val;
   }
   if (val == 'ENTERPRISE_APP_AUTHORIZATION_UPDATE') {
-    return 'ENTERPRISE_APP_AUTHORIZATION_UPDATE';
+    return val;
   }
   if (val == 'FAILED_LOGIN') {
-    return 'FAILED_LOGIN';
+    return val;
   }
   if (val == 'FILE_MARKED_MALICIOUS') {
-    return 'FILE_MARKED_MALICIOUS';
+    return val;
   }
   if (val == 'FILE_WATERMARKED_DOWNLOAD') {
-    return 'FILE_WATERMARKED_DOWNLOAD';
+    return val;
   }
   if (val == 'GROUP_ADD_ITEM') {
-    return 'GROUP_ADD_ITEM';
+    return val;
   }
   if (val == 'GROUP_ADD_USER') {
-    return 'GROUP_ADD_USER';
+    return val;
   }
   if (val == 'GROUP_CREATION') {
-    return 'GROUP_CREATION';
+    return val;
   }
   if (val == 'GROUP_DELETION') {
-    return 'GROUP_DELETION';
+    return val;
   }
   if (val == 'GROUP_EDITED') {
-    return 'GROUP_EDITED';
+    return val;
   }
   if (val == 'GROUP_REMOVE_ITEM') {
-    return 'GROUP_REMOVE_ITEM';
+    return val;
   }
   if (val == 'GROUP_REMOVE_USER') {
-    return 'GROUP_REMOVE_USER';
+    return val;
   }
   if (val == 'ITEM_COPY') {
-    return 'ITEM_COPY';
+    return val;
   }
   if (val == 'ITEM_CREATE') {
-    return 'ITEM_CREATE';
+    return val;
   }
   if (val == 'ITEM_DOWNLOAD') {
-    return 'ITEM_DOWNLOAD';
+    return val;
   }
   if (val == 'ITEM_EMAIL_SEND') {
-    return 'ITEM_EMAIL_SEND';
+    return val;
   }
   if (val == 'ITEM_MAKE_CURRENT_VERSION') {
-    return 'ITEM_MAKE_CURRENT_VERSION';
+    return val;
   }
   if (val == 'ITEM_MODIFY') {
-    return 'ITEM_MODIFY';
+    return val;
   }
   if (val == 'ITEM_MOVE') {
-    return 'ITEM_MOVE';
+    return val;
   }
   if (val == 'ITEM_OPEN') {
-    return 'ITEM_OPEN';
+    return val;
   }
   if (val == 'ITEM_PREVIEW') {
-    return 'ITEM_PREVIEW';
+    return val;
   }
   if (val == 'ITEM_RENAME') {
-    return 'ITEM_RENAME';
+    return val;
   }
   if (val == 'ITEM_SHARED') {
-    return 'ITEM_SHARED';
+    return val;
   }
   if (val == 'ITEM_SHARED_CREATE') {
-    return 'ITEM_SHARED_CREATE';
+    return val;
   }
   if (val == 'ITEM_SHARED_UNSHARE') {
-    return 'ITEM_SHARED_UNSHARE';
+    return val;
   }
   if (val == 'ITEM_SHARED_UPDATE') {
-    return 'ITEM_SHARED_UPDATE';
+    return val;
   }
   if (val == 'ITEM_SYNC') {
-    return 'ITEM_SYNC';
+    return val;
   }
   if (val == 'ITEM_TRASH') {
-    return 'ITEM_TRASH';
+    return val;
   }
   if (val == 'ITEM_UNDELETE_VIA_TRASH') {
-    return 'ITEM_UNDELETE_VIA_TRASH';
+    return val;
   }
   if (val == 'ITEM_UNSYNC') {
-    return 'ITEM_UNSYNC';
+    return val;
   }
   if (val == 'ITEM_UPLOAD') {
-    return 'ITEM_UPLOAD';
+    return val;
   }
   if (val == 'LEGAL_HOLD_ASSIGNMENT_CREATE') {
-    return 'LEGAL_HOLD_ASSIGNMENT_CREATE';
+    return val;
   }
   if (val == 'LEGAL_HOLD_ASSIGNMENT_DELETE') {
-    return 'LEGAL_HOLD_ASSIGNMENT_DELETE';
+    return val;
   }
   if (val == 'LEGAL_HOLD_POLICY_CREATE') {
-    return 'LEGAL_HOLD_POLICY_CREATE';
+    return val;
   }
   if (val == 'LEGAL_HOLD_POLICY_DELETE') {
-    return 'LEGAL_HOLD_POLICY_DELETE';
+    return val;
   }
   if (val == 'LEGAL_HOLD_POLICY_UPDATE') {
-    return 'LEGAL_HOLD_POLICY_UPDATE';
+    return val;
   }
   if (val == 'LOCK') {
-    return 'LOCK';
+    return val;
   }
   if (val == 'LOCK_CREATE') {
-    return 'LOCK_CREATE';
+    return val;
   }
   if (val == 'LOCK_DESTROY') {
-    return 'LOCK_DESTROY';
+    return val;
   }
   if (val == 'LOGIN') {
-    return 'LOGIN';
+    return val;
   }
   if (val == 'MASTER_INVITE_ACCEPT') {
-    return 'MASTER_INVITE_ACCEPT';
+    return val;
   }
   if (val == 'MASTER_INVITE_REJECT') {
-    return 'MASTER_INVITE_REJECT';
+    return val;
   }
   if (val == 'METADATA_INSTANCE_CREATE') {
-    return 'METADATA_INSTANCE_CREATE';
+    return val;
   }
   if (val == 'METADATA_INSTANCE_DELETE') {
-    return 'METADATA_INSTANCE_DELETE';
+    return val;
   }
   if (val == 'METADATA_INSTANCE_UPDATE') {
-    return 'METADATA_INSTANCE_UPDATE';
+    return val;
   }
   if (val == 'METADATA_TEMPLATE_CREATE') {
-    return 'METADATA_TEMPLATE_CREATE';
+    return val;
   }
   if (val == 'METADATA_TEMPLATE_DELETE') {
-    return 'METADATA_TEMPLATE_DELETE';
+    return val;
   }
   if (val == 'METADATA_TEMPLATE_UPDATE') {
-    return 'METADATA_TEMPLATE_UPDATE';
+    return val;
   }
   if (val == 'MOVE') {
-    return 'MOVE';
+    return val;
   }
   if (val == 'NEW_USER') {
-    return 'NEW_USER';
+    return val;
   }
   if (val == 'PREVIEW') {
-    return 'PREVIEW';
+    return val;
   }
   if (val == 'REMOVE_DEVICE_ASSOCIATION') {
-    return 'REMOVE_DEVICE_ASSOCIATION';
+    return val;
   }
   if (val == 'REMOVE_LOGIN_ACTIVITY_DEVICE') {
-    return 'REMOVE_LOGIN_ACTIVITY_DEVICE';
+    return val;
   }
   if (val == 'RENAME') {
-    return 'RENAME';
+    return val;
   }
   if (val == 'RETENTION_POLICY_ASSIGNMENT_ADD') {
-    return 'RETENTION_POLICY_ASSIGNMENT_ADD';
+    return val;
   }
   if (val == 'SHARE') {
-    return 'SHARE';
+    return val;
   }
   if (val == 'SHARED_LINK_SEND') {
-    return 'SHARED_LINK_SEND';
+    return val;
   }
   if (val == 'SHARE_EXPIRATION') {
-    return 'SHARE_EXPIRATION';
+    return val;
   }
   if (val == 'SHIELD_ALERT') {
-    return 'SHIELD_ALERT';
+    return val;
   }
   if (val == 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED') {
-    return 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED';
+    return val;
   }
   if (val == 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION') {
-    return 'SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED_MISSING_JUSTIFICATION';
+    return val;
   }
   if (val == 'SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED') {
-    return 'SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED';
+    return val;
   }
   if (val == 'SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION') {
-    return 'SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED_MISSING_JUSTIFICATION';
+    return val;
   }
   if (val == 'SHIELD_JUSTIFICATION_APPROVAL') {
-    return 'SHIELD_JUSTIFICATION_APPROVAL';
+    return val;
   }
   if (val == 'SHIELD_SHARED_LINK_ACCESS_BLOCKED') {
-    return 'SHIELD_SHARED_LINK_ACCESS_BLOCKED';
+    return val;
   }
   if (val == 'SHIELD_SHARED_LINK_STATUS_RESTRICTED_ON_CREATE') {
-    return 'SHIELD_SHARED_LINK_STATUS_RESTRICTED_ON_CREATE';
+    return val;
   }
   if (val == 'SHIELD_SHARED_LINK_STATUS_RESTRICTED_ON_UPDATE') {
-    return 'SHIELD_SHARED_LINK_STATUS_RESTRICTED_ON_UPDATE';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_ASSIGNED') {
-    return 'SIGN_DOCUMENT_ASSIGNED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_CANCELLED') {
-    return 'SIGN_DOCUMENT_CANCELLED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_COMPLETED') {
-    return 'SIGN_DOCUMENT_COMPLETED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_CONVERTED') {
-    return 'SIGN_DOCUMENT_CONVERTED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_CREATED') {
-    return 'SIGN_DOCUMENT_CREATED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_DECLINED') {
-    return 'SIGN_DOCUMENT_DECLINED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_EXPIRED') {
-    return 'SIGN_DOCUMENT_EXPIRED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_SIGNED') {
-    return 'SIGN_DOCUMENT_SIGNED';
+    return val;
   }
   if (val == 'SIGN_DOCUMENT_VIEWED_BY_SIGNED') {
-    return 'SIGN_DOCUMENT_VIEWED_BY_SIGNED';
+    return val;
   }
   if (val == 'SIGNER_DOWNLOADED') {
-    return 'SIGNER_DOWNLOADED';
+    return val;
   }
   if (val == 'SIGNER_FORWARDED') {
-    return 'SIGNER_FORWARDED';
+    return val;
   }
   if (val == 'STORAGE_EXPIRATION') {
-    return 'STORAGE_EXPIRATION';
+    return val;
   }
   if (val == 'TAG_ITEM_CREATE') {
-    return 'TAG_ITEM_CREATE';
+    return val;
   }
   if (val == 'TASK_ASSIGNMENT_CREATE') {
-    return 'TASK_ASSIGNMENT_CREATE';
+    return val;
   }
   if (val == 'TASK_ASSIGNMENT_DELETE') {
-    return 'TASK_ASSIGNMENT_DELETE';
+    return val;
   }
   if (val == 'TASK_ASSIGNMENT_UPDATE') {
-    return 'TASK_ASSIGNMENT_UPDATE';
+    return val;
   }
   if (val == 'TASK_CREATE') {
-    return 'TASK_CREATE';
+    return val;
   }
   if (val == 'TASK_UPDATE') {
-    return 'TASK_UPDATE';
+    return val;
   }
   if (val == 'TERMS_OF_SERVICE_ACCEPT') {
-    return 'TERMS_OF_SERVICE_ACCEPT';
+    return val;
   }
   if (val == 'TERMS_OF_SERVICE_REJECT') {
-    return 'TERMS_OF_SERVICE_REJECT';
+    return val;
   }
   if (val == 'UNDELETE') {
-    return 'UNDELETE';
+    return val;
   }
   if (val == 'UNLOCK') {
-    return 'UNLOCK';
+    return val;
   }
   if (val == 'UNSHARE') {
-    return 'UNSHARE';
+    return val;
   }
   if (val == 'UPDATE_COLLABORATION_EXPIRATION') {
-    return 'UPDATE_COLLABORATION_EXPIRATION';
+    return val;
   }
   if (val == 'UPDATE_SHARE_EXPIRATION') {
-    return 'UPDATE_SHARE_EXPIRATION';
+    return val;
   }
   if (val == 'UPLOAD') {
-    return 'UPLOAD';
+    return val;
   }
   if (val == 'USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE') {
-    return 'USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE';
+    return val;
   }
   if (val == 'WATERMARK_LABEL_CREATE') {
-    return 'WATERMARK_LABEL_CREATE';
+    return val;
   }
   if (val == 'WATERMARK_LABEL_DELETE') {
-    return 'WATERMARK_LABEL_DELETE';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize EventEventTypeField" });
 }
 export function serializeEventAdditionalDetailsField(
   val: EventAdditionalDetailsField

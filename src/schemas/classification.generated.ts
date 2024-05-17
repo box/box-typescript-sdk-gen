@@ -25,16 +25,11 @@ export function serializeClassificationTemplateField(
 export function deserializeClassificationTemplateField(
   val: SerializedData
 ): ClassificationTemplateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClassificationTemplateField"',
-    });
-  }
   if (val == 'securityClassification-6VMVochwUWo') {
-    return 'securityClassification-6VMVochwUWo';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateField",
   });
 }
 export function serializeClassification(val: Classification): SerializedData {

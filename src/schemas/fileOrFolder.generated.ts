@@ -32,5 +32,5 @@ export function deserializeFileOrFolder(val: SerializedData): FileOrFolder {
   if (val.type == 'folder') {
     return deserializeFolder(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({ message: "Can't deserialize FileOrFolder" });
 }

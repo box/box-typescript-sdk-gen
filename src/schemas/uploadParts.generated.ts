@@ -29,19 +29,14 @@ export function serializeUploadPartsOrderDirectionField(
 export function deserializeUploadPartsOrderDirectionField(
   val: SerializedData
 ): UploadPartsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UploadPartsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UploadPartsOrderDirectionField",
   });
 }
 export function serializeUploadPartsOrderField(

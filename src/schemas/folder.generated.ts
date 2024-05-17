@@ -146,22 +146,17 @@ export function serializeFolderSharedLinkAccessField(
 export function deserializeFolderSharedLinkAccessField(
   val: SerializedData
 ): FolderSharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderSharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderSharedLinkAccessField",
   });
 }
 export function serializeFolderSharedLinkEffectiveAccessField(
@@ -172,22 +167,17 @@ export function serializeFolderSharedLinkEffectiveAccessField(
 export function deserializeFolderSharedLinkEffectiveAccessField(
   val: SerializedData
 ): FolderSharedLinkEffectiveAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderSharedLinkEffectiveAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderSharedLinkEffectiveAccessField",
   });
 }
 export function serializeFolderSharedLinkEffectivePermissionField(
@@ -198,26 +188,20 @@ export function serializeFolderSharedLinkEffectivePermissionField(
 export function deserializeFolderSharedLinkEffectivePermissionField(
   val: SerializedData
 ): FolderSharedLinkEffectivePermissionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "FolderSharedLinkEffectivePermissionField"',
-    });
-  }
   if (val == 'can_edit') {
-    return 'can_edit';
+    return val;
   }
   if (val == 'can_download') {
-    return 'can_download';
+    return val;
   }
   if (val == 'can_preview') {
-    return 'can_preview';
+    return val;
   }
   if (val == 'no_access') {
-    return 'no_access';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderSharedLinkEffectivePermissionField",
   });
 }
 export function serializeFolderSharedLinkPermissionsField(
@@ -450,19 +434,14 @@ export function serializeFolderFolderUploadEmailAccessField(
 export function deserializeFolderFolderUploadEmailAccessField(
   val: SerializedData
 ): FolderFolderUploadEmailAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderFolderUploadEmailAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FolderFolderUploadEmailAccessField",
   });
 }
 export function serializeFolderFolderUploadEmailField(
@@ -508,23 +487,16 @@ export function serializeFolderItemStatusField(
 export function deserializeFolderItemStatusField(
   val: SerializedData
 ): FolderItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize FolderItemStatusField" });
 }
 export function serializeFolder(val: Folder): SerializedData {
   const base: any = serializeFolderMini(val);

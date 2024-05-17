@@ -29,19 +29,14 @@ export function serializeCollectionsOrderDirectionField(
 export function deserializeCollectionsOrderDirectionField(
   val: SerializedData
 ): CollectionsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollectionsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollectionsOrderDirectionField",
   });
 }
 export function serializeCollectionsOrderField(

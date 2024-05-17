@@ -39,20 +39,14 @@ export function serializeSignRequestSignerSignerDecisionTypeField(
 export function deserializeSignRequestSignerSignerDecisionTypeField(
   val: SerializedData
 ): SignRequestSignerSignerDecisionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SignRequestSignerSignerDecisionTypeField"',
-    });
-  }
   if (val == 'signed') {
-    return 'signed';
+    return val;
   }
   if (val == 'declined') {
-    return 'declined';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestSignerSignerDecisionTypeField",
   });
 }
 export function serializeSignRequestSignerSignerDecisionField(

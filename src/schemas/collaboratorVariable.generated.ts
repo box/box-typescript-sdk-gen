@@ -63,16 +63,11 @@ export function serializeCollaboratorVariableTypeField(
 export function deserializeCollaboratorVariableTypeField(
   val: SerializedData
 ): CollaboratorVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaboratorVariableTypeField"',
-    });
-  }
   if (val == 'variable') {
-    return 'variable';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaboratorVariableTypeField",
   });
 }
 export function serializeCollaboratorVariableVariableTypeField(
@@ -83,16 +78,11 @@ export function serializeCollaboratorVariableVariableTypeField(
 export function deserializeCollaboratorVariableVariableTypeField(
   val: SerializedData
 ): CollaboratorVariableVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaboratorVariableVariableTypeField"',
-    });
-  }
   if (val == 'user_list') {
-    return 'user_list';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaboratorVariableVariableTypeField",
   });
 }
 export function serializeCollaboratorVariableVariableValueTypeField(
@@ -103,17 +93,11 @@ export function serializeCollaboratorVariableVariableValueTypeField(
 export function deserializeCollaboratorVariableVariableValueTypeField(
   val: SerializedData
 ): CollaboratorVariableVariableValueTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CollaboratorVariableVariableValueTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaboratorVariableVariableValueTypeField",
   });
 }
 export function serializeCollaboratorVariableVariableValueField(

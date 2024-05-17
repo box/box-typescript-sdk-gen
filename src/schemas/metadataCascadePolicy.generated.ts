@@ -65,16 +65,11 @@ export function serializeMetadataCascadePolicyTypeField(
 export function deserializeMetadataCascadePolicyTypeField(
   val: SerializedData
 ): MetadataCascadePolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataCascadePolicyTypeField"',
-    });
-  }
   if (val == 'metadata_cascade_policy') {
-    return 'metadata_cascade_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataCascadePolicyTypeField",
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
@@ -85,17 +80,11 @@ export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
 export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   val: SerializedData
 ): MetadataCascadePolicyOwnerEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "MetadataCascadePolicyOwnerEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataCascadePolicyOwnerEnterpriseTypeField",
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseField(
@@ -142,16 +131,11 @@ export function serializeMetadataCascadePolicyParentTypeField(
 export function deserializeMetadataCascadePolicyParentTypeField(
   val: SerializedData
 ): MetadataCascadePolicyParentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataCascadePolicyParentTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataCascadePolicyParentTypeField",
   });
 }
 export function serializeMetadataCascadePolicyParentField(

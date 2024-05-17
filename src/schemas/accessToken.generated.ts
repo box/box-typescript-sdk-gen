@@ -28,16 +28,11 @@ export function serializeAccessTokenTokenTypeField(
 export function deserializeAccessTokenTokenTypeField(
   val: SerializedData
 ): AccessTokenTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AccessTokenTokenTypeField"',
-    });
-  }
   if (val == 'bearer') {
-    return 'bearer';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AccessTokenTokenTypeField",
   });
 }
 export function serializeAccessTokenIssuedTokenTypeField(
@@ -48,16 +43,11 @@ export function serializeAccessTokenIssuedTokenTypeField(
 export function deserializeAccessTokenIssuedTokenTypeField(
   val: SerializedData
 ): AccessTokenIssuedTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AccessTokenIssuedTokenTypeField"',
-    });
-  }
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
-    return 'urn:ietf:params:oauth:token-type:access_token';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AccessTokenIssuedTokenTypeField",
   });
 }
 export function serializeAccessToken(val: AccessToken): SerializedData {

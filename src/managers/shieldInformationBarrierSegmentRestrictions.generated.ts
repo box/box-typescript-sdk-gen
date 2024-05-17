@@ -495,17 +495,12 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField(
   val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment_restriction') {
-    return 'shield_information_barrier_segment_restriction';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField",
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
@@ -516,17 +511,12 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
   val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment') {
-    return 'shield_information_barrier_segment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField",
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
@@ -579,17 +569,12 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
 export function deserializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField(
   val: SerializedData
 ): CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment') {
-    return 'shield_information_barrier_segment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField",
   });
 }
 export function serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField(

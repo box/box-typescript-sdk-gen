@@ -46,26 +46,20 @@ export function serializeShieldInformationBarrierReportStatusField(
 export function deserializeShieldInformationBarrierReportStatusField(
   val: SerializedData
 ): ShieldInformationBarrierReportStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ShieldInformationBarrierReportStatusField"',
-    });
-  }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'error') {
-    return 'error';
+    return val;
   }
   if (val == 'done') {
-    return 'done';
+    return val;
   }
   if (val == 'cancelled') {
-    return 'cancelled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ShieldInformationBarrierReportStatusField",
   });
 }
 export function serializeShieldInformationBarrierReport(

@@ -69,16 +69,11 @@ export function serializeTermsOfServiceUserStatusTypeField(
 export function deserializeTermsOfServiceUserStatusTypeField(
   val: SerializedData
 ): TermsOfServiceUserStatusTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TermsOfServiceUserStatusTypeField"',
-    });
-  }
   if (val == 'terms_of_service_user_status') {
-    return 'terms_of_service_user_status';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TermsOfServiceUserStatusTypeField",
   });
 }
 export function serializeTermsOfServiceUserStatus(
