@@ -369,7 +369,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shared_items#web_links'
+        '/2.0/shared_items#web_links'
       ) as string,
       {
         method: 'GET',
@@ -404,7 +404,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '#get_shared_link'
       ) as string,
@@ -442,7 +442,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '#add_shared_link'
       ) as string,
@@ -482,7 +482,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '#update_shared_link'
       ) as string,
@@ -522,7 +522,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '#remove_shared_link'
       ) as string,

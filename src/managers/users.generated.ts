@@ -422,7 +422,7 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/users') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/users') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -458,7 +458,7 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/users') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/users') as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -492,7 +492,10 @@ export class UsersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/users/me') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/users/me'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -530,7 +533,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string
       ) as string,
       {
@@ -572,7 +575,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string
       ) as string,
       {
@@ -613,7 +616,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string
       ) as string,
       {

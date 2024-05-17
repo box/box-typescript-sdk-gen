@@ -152,7 +152,7 @@ export class SessionTerminationManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/terminate_sessions'
+        '/2.0/users/terminate_sessions'
       ) as string,
       {
         method: 'POST',
@@ -184,7 +184,7 @@ export class SessionTerminationManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/terminate_sessions'
+        '/2.0/groups/terminate_sessions'
       ) as string,
       {
         method: 'POST',

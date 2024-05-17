@@ -265,7 +265,7 @@ export class UploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/content'
       ) as string,
@@ -324,7 +324,7 @@ export class UploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/content'
+        '/2.0/files/content'
       ) as string,
       {
         method: 'POST',
@@ -370,7 +370,7 @@ export class UploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/content'
+        '/2.0/files/content'
       ) as string,
       {
         method: 'OPTIONS',

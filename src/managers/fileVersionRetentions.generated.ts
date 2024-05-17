@@ -154,7 +154,7 @@ export class FileVersionRetentionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_version_retentions'
+        '/2.0/file_version_retentions'
       ) as string,
       {
         method: 'GET',
@@ -185,7 +185,7 @@ export class FileVersionRetentionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_version_retentions/',
+        '/2.0/file_version_retentions/',
         toString(fileVersionRetentionId) as string
       ) as string,
       {

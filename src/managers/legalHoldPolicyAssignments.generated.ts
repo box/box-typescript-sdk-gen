@@ -361,7 +361,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments'
+        '/2.0/legal_hold_policy_assignments'
       ) as string,
       {
         method: 'GET',
@@ -392,7 +392,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments'
+        '/2.0/legal_hold_policy_assignments'
       ) as string,
       {
         method: 'POST',
@@ -424,7 +424,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments/',
+        '/2.0/legal_hold_policy_assignments/',
         toString(legalHoldPolicyAssignmentId) as string
       ) as string,
       {
@@ -455,7 +455,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments/',
+        '/2.0/legal_hold_policy_assignments/',
         toString(legalHoldPolicyAssignmentId) as string
       ) as string,
       {
@@ -497,7 +497,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policy_assignments/',
+        '/2.0/legal_hold_policy_assignments/',
         toString(legalHoldPolicyAssignmentId) as string,
         '/files_on_hold'
       ) as string,

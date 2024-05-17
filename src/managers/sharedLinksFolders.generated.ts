@@ -366,7 +366,7 @@ export class SharedLinksFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shared_items#folders'
+        '/2.0/shared_items#folders'
       ) as string,
       {
         method: 'GET',
@@ -401,7 +401,7 @@ export class SharedLinksFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '#get_shared_link'
       ) as string,
@@ -439,7 +439,7 @@ export class SharedLinksFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '#add_shared_link'
       ) as string,
@@ -479,7 +479,7 @@ export class SharedLinksFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '#update_shared_link'
       ) as string,
@@ -519,7 +519,7 @@ export class SharedLinksFoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '#remove_shared_link'
       ) as string,

@@ -264,7 +264,10 @@ export class WebLinksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/web_links') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/web_links'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -297,7 +300,7 @@ export class WebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
@@ -330,7 +333,7 @@ export class WebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
@@ -363,7 +366,7 @@ export class WebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string
       ) as string,
       {

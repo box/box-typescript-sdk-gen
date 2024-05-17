@@ -276,7 +276,10 @@ export class AuthorizationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/oauth2/token') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/oauth2/token'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -312,7 +315,10 @@ export class AuthorizationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/oauth2/token#refresh') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/oauth2/token#refresh'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -341,7 +347,10 @@ export class AuthorizationManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat('https://api.box.com/oauth2/revoke') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/oauth2/revoke'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,

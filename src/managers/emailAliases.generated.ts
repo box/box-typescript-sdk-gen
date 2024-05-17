@@ -201,7 +201,7 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/email_aliases'
       ) as string,
@@ -234,7 +234,7 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/email_aliases'
       ) as string,
@@ -269,7 +269,7 @@ export class EmailAliasesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/email_aliases/',
         toString(emailAliasId) as string

@@ -245,7 +245,7 @@ export class TrashedWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string
       ) as string,
       {
@@ -288,7 +288,7 @@ export class TrashedWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '/trash'
       ) as string,
@@ -321,7 +321,7 @@ export class TrashedWebLinksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/web_links/',
+        '/2.0/web_links/',
         toString(webLinkId) as string,
         '/trash'
       ) as string,

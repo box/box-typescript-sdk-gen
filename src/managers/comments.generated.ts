@@ -358,7 +358,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/comments'
       ) as string,
@@ -399,7 +399,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/comments/',
+        '/2.0/comments/',
         toString(commentId) as string
       ) as string,
       {
@@ -442,7 +442,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/comments/',
+        '/2.0/comments/',
         toString(commentId) as string
       ) as string,
       {
@@ -476,7 +476,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/comments/',
+        '/2.0/comments/',
         toString(commentId) as string
       ) as string,
       {
@@ -513,7 +513,10 @@ export class CommentsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/comments') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/comments'
+      ) as string,
       {
         method: 'POST',
         params: queryParamsMap,

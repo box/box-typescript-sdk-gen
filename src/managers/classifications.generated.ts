@@ -411,7 +411,7 @@ export class ClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema'
+        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema'
       ) as string,
       {
         method: 'GET',
@@ -441,7 +441,7 @@ export class ClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add'
+        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add'
       ) as string,
       {
         method: 'PUT',
@@ -475,7 +475,7 @@ export class ClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update'
+        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update'
       ) as string,
       {
         method: 'PUT',
@@ -518,7 +518,7 @@ export class ClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/schema#classifications'
+        '/2.0/metadata_templates/schema#classifications'
       ) as string,
       {
         method: 'POST',

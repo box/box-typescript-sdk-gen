@@ -129,7 +129,7 @@ export class DownloadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/content'
       ) as string,

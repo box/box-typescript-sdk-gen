@@ -180,7 +180,7 @@ export class AvatarsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
@@ -212,7 +212,7 @@ export class AvatarsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
@@ -252,7 +252,7 @@ export class AvatarsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,

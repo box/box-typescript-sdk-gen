@@ -341,7 +341,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
@@ -374,7 +374,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
@@ -409,7 +409,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
@@ -445,7 +445,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
@@ -478,7 +478,7 @@ export class SkillsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/skill_invocations/',
+        '/2.0/skill_invocations/',
         toString(skillId) as string
       ) as string,
       {

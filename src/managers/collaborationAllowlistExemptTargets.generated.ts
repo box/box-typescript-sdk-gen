@@ -268,7 +268,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_exempt_targets'
+        '/2.0/collaboration_whitelist_exempt_targets'
       ) as string,
       {
         method: 'GET',
@@ -299,7 +299,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_exempt_targets'
+        '/2.0/collaboration_whitelist_exempt_targets'
       ) as string,
       {
         method: 'POST',
@@ -333,7 +333,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_exempt_targets/',
+        '/2.0/collaboration_whitelist_exempt_targets/',
         toString(collaborationWhitelistExemptTargetId) as string
       ) as string,
       {
@@ -364,7 +364,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_exempt_targets/',
+        '/2.0/collaboration_whitelist_exempt_targets/',
         toString(collaborationWhitelistExemptTargetId) as string
       ) as string,
       {

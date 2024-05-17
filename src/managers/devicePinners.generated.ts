@@ -215,7 +215,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/device_pinners/',
+        '/2.0/device_pinners/',
         toString(devicePinnerId) as string
       ) as string,
       {
@@ -246,7 +246,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/device_pinners/',
+        '/2.0/device_pinners/',
         toString(devicePinnerId) as string
       ) as string,
       {
@@ -286,7 +286,7 @@ export class DevicePinnersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/enterprises/',
+        '/2.0/enterprises/',
         toString(enterpriseId) as string,
         '/device_pinners'
       ) as string,

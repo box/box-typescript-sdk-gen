@@ -246,7 +246,7 @@ export class TrashedFilesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string
       ) as string,
       {
@@ -289,7 +289,7 @@ export class TrashedFilesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/trash'
       ) as string,
@@ -322,7 +322,7 @@ export class TrashedFilesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/trash'
       ) as string,

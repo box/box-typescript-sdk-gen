@@ -276,7 +276,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_service_user_statuses'
+        '/2.0/terms_of_service_user_statuses'
       ) as string,
       {
         method: 'GET',
@@ -307,7 +307,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_service_user_statuses'
+        '/2.0/terms_of_service_user_statuses'
       ) as string,
       {
         method: 'POST',
@@ -342,7 +342,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_service_user_statuses/',
+        '/2.0/terms_of_service_user_statuses/',
         toString(termsOfServiceUserStatusId) as string
       ) as string,
       {

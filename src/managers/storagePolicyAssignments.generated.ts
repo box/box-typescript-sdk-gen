@@ -390,7 +390,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policy_assignments'
+        '/2.0/storage_policy_assignments'
       ) as string,
       {
         method: 'GET',
@@ -421,7 +421,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policy_assignments'
+        '/2.0/storage_policy_assignments'
       ) as string,
       {
         method: 'POST',
@@ -453,7 +453,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policy_assignments/',
+        '/2.0/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {
@@ -485,7 +485,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policy_assignments/',
+        '/2.0/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {
@@ -520,7 +520,7 @@ export class StoragePolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policy_assignments/',
+        '/2.0/storage_policy_assignments/',
         toString(storagePolicyAssignmentId) as string
       ) as string,
       {

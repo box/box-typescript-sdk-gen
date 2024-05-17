@@ -250,7 +250,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_requests/',
+        '/2.0/sign_requests/',
         toString(signRequestId) as string,
         '/cancel'
       ) as string,
@@ -282,7 +282,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_requests/',
+        '/2.0/sign_requests/',
         toString(signRequestId) as string,
         '/resend'
       ) as string,
@@ -314,7 +314,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_requests/',
+        '/2.0/sign_requests/',
         toString(signRequestId) as string
       ) as string,
       {
@@ -348,7 +348,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_requests'
+        '/2.0/sign_requests'
       ) as string,
       {
         method: 'GET',
@@ -379,7 +379,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_requests'
+        '/2.0/sign_requests'
       ) as string,
       {
         method: 'POST',

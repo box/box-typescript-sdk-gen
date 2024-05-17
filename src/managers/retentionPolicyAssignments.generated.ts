@@ -377,7 +377,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies/',
+        '/2.0/retention_policies/',
         toString(retentionPolicyId) as string,
         '/assignments'
       ) as string,
@@ -410,7 +410,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policy_assignments'
+        '/2.0/retention_policy_assignments'
       ) as string,
       {
         method: 'POST',
@@ -451,7 +451,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policy_assignments/',
+        '/2.0/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
@@ -483,7 +483,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policy_assignments/',
+        '/2.0/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string
       ) as string,
       {
@@ -522,7 +522,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policy_assignments/',
+        '/2.0/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string,
         '/files_under_retention'
       ) as string,

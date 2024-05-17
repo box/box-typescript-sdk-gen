@@ -271,7 +271,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/integration_mappings/slack'
+        '/2.0/integration_mappings/slack'
       ) as string,
       {
         method: 'GET',
@@ -302,7 +302,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/integration_mappings/slack'
+        '/2.0/integration_mappings/slack'
       ) as string,
       {
         method: 'POST',
@@ -336,7 +336,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/integration_mappings/slack/',
+        '/2.0/integration_mappings/slack/',
         toString(integrationMappingId) as string
       ) as string,
       {
@@ -371,7 +371,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/integration_mappings/slack/',
+        '/2.0/integration_mappings/slack/',
         toString(integrationMappingId) as string
       ) as string,
       {

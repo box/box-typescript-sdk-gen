@@ -233,7 +233,7 @@ export class ZipDownloadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/zip_downloads'
+        '/2.0/zip_downloads'
       ) as string,
       {
         method: 'POST',

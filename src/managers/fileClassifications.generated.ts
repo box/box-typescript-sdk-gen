@@ -287,7 +287,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -321,7 +321,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -356,7 +356,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -392,7 +392,7 @@ export class FileClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,

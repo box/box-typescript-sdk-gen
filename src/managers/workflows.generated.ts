@@ -170,7 +170,10 @@ export class WorkflowsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/workflows') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/workflows'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -200,7 +203,7 @@ export class WorkflowsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/workflows/',
+        '/2.0/workflows/',
         toString(workflowId) as string,
         '/start'
       ) as string,

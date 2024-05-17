@@ -334,7 +334,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/tasks/',
+        '/2.0/tasks/',
         toString(taskId) as string,
         '/assignments'
       ) as string,
@@ -366,7 +366,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/task_assignments'
+        '/2.0/task_assignments'
       ) as string,
       {
         method: 'POST',
@@ -398,7 +398,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/task_assignments/',
+        '/2.0/task_assignments/',
         toString(taskAssignmentId) as string
       ) as string,
       {
@@ -431,7 +431,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/task_assignments/',
+        '/2.0/task_assignments/',
         toString(taskAssignmentId) as string
       ) as string,
       {
@@ -464,7 +464,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/task_assignments/',
+        '/2.0/task_assignments/',
         toString(taskAssignmentId) as string
       ) as string,
       {

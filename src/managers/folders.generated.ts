@@ -541,7 +541,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string
       ) as string,
       {
@@ -586,7 +586,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string
       ) as string,
       {
@@ -629,7 +629,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string
       ) as string,
       {
@@ -678,7 +678,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/items'
       ) as string,
@@ -717,7 +717,7 @@ export class FoldersManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/folders') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/folders') as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -758,7 +758,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/copy'
       ) as string,

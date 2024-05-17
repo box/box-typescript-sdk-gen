@@ -438,7 +438,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/memberships'
       ) as string,
@@ -479,7 +479,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/',
+        '/2.0/groups/',
         toString(groupId) as string,
         '/memberships'
       ) as string,
@@ -521,7 +521,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/group_memberships'
+        '/2.0/group_memberships'
       ) as string,
       {
         method: 'POST',
@@ -563,7 +563,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/group_memberships/',
+        '/2.0/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
@@ -606,7 +606,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/group_memberships/',
+        '/2.0/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
@@ -640,7 +640,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/group_memberships/',
+        '/2.0/group_memberships/',
         toString(groupMembershipId) as string
       ) as string,
       {
