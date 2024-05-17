@@ -133,7 +133,7 @@ export class SignTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_templates'
+        '/2.0/sign_templates'
       ) as string,
       {
         method: 'GET',
@@ -164,7 +164,7 @@ export class SignTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/sign_templates/',
+        '/2.0/sign_templates/',
         toString(templateId) as string
       ) as string,
       {

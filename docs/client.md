@@ -71,8 +71,8 @@ Calling the `client.withCustomBaseUrls()` method creates a new client, leaving t
 
 ```js
 const newClient = client.withCustomBaseUrls({
-  baseUrl: 'https://api.box.com/2.0',
-  uploadUrl: 'https://upload.box.com/api/2.0',
+  baseUrl: 'https://api.box.com',
+  uploadUrl: 'https://upload.box.com/api',
   oauth2Url: 'https://account.box.com/api/oauth2',
 });
 ```

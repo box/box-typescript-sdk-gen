@@ -340,7 +340,7 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/groups') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/groups') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -376,7 +376,7 @@ export class GroupsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/groups') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/groups') as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -416,7 +416,7 @@ export class GroupsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/',
+        '/2.0/groups/',
         toString(groupId) as string
       ) as string,
       {
@@ -458,7 +458,7 @@ export class GroupsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/',
+        '/2.0/groups/',
         toString(groupId) as string
       ) as string,
       {
@@ -491,7 +491,7 @@ export class GroupsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/',
+        '/2.0/groups/',
         toString(groupId) as string
       ) as string,
       {

@@ -290,7 +290,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -324,7 +324,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -359,7 +359,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,
@@ -395,7 +395,7 @@ export class FolderClassificationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/metadata/enterprise/securityClassification-6VMVochwUWo'
       ) as string,

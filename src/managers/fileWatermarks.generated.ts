@@ -208,7 +208,7 @@ export class FileWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/watermark'
       ) as string,
@@ -241,7 +241,7 @@ export class FileWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/watermark'
       ) as string,
@@ -275,7 +275,7 @@ export class FileWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/watermark'
       ) as string,

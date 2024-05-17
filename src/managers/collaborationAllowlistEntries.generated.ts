@@ -247,7 +247,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_entries'
+        '/2.0/collaboration_whitelist_entries'
       ) as string,
       {
         method: 'GET',
@@ -278,7 +278,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_entries'
+        '/2.0/collaboration_whitelist_entries'
       ) as string,
       {
         method: 'POST',
@@ -312,7 +312,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_entries/',
+        '/2.0/collaboration_whitelist_entries/',
         toString(collaborationWhitelistEntryId) as string
       ) as string,
       {
@@ -343,7 +343,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaboration_whitelist_entries/',
+        '/2.0/collaboration_whitelist_entries/',
         toString(collaborationWhitelistEntryId) as string
       ) as string,
       {

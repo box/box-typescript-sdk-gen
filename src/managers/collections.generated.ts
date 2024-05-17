@@ -147,7 +147,10 @@ export class CollectionsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/collections') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/collections'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -188,7 +191,7 @@ export class CollectionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collections/',
+        '/2.0/collections/',
         toString(collectionId) as string,
         '/items'
       ) as string,

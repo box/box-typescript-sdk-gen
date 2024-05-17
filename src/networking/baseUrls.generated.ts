@@ -7,8 +7,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class BaseUrls {
-  readonly baseUrl: string = 'https://api.box.com/2.0';
-  readonly uploadUrl: string = 'https://upload.box.com/api/2.0';
+  readonly baseUrl: string = 'https://api.box.com';
+  readonly uploadUrl: string = 'https://upload.box.com/api';
   readonly oauth2Url: string = 'https://account.box.com/api/oauth2';
   constructor(
     fields: Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'> &
@@ -74,11 +74,11 @@ export function deserializeBaseUrls(val: SerializedData): BaseUrls {
     });
   }
   const oauth2Url: string = val.oauth2_url;
-  return {
+  return new BaseUrls({
     baseUrl: baseUrl,
     uploadUrl: uploadUrl,
     oauth2Url: oauth2Url,
-  } satisfies BaseUrls;
+  });
 }
 export function serializeBaseUrlsInput(val: BaseUrlsInput): SerializedData {
   return {

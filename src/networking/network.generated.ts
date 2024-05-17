@@ -7,11 +7,7 @@ export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
   } = {};
-  readonly baseUrls: BaseUrls = {
-    baseUrl: '',
-    uploadUrl: '',
-    oauth2Url: '',
-  } satisfies BaseUrls;
+  readonly baseUrls: BaseUrls = new BaseUrls({});
   readonly interceptors: readonly Interceptor[] = [];
   readonly agent: Agent = createAgent(void 0);
   readonly agentOptions?: AgentOptions;

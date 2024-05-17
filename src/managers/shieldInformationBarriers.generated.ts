@@ -244,7 +244,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barriers/',
+        '/2.0/shield_information_barriers/',
         toString(shieldInformationBarrierId) as string
       ) as string,
       {
@@ -275,7 +275,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barriers/change_status'
+        '/2.0/shield_information_barriers/change_status'
       ) as string,
       {
         method: 'POST',
@@ -315,7 +315,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barriers'
+        '/2.0/shield_information_barriers'
       ) as string,
       {
         method: 'GET',
@@ -346,7 +346,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barriers'
+        '/2.0/shield_information_barriers'
       ) as string,
       {
         method: 'POST',

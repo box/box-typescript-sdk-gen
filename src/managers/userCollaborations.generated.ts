@@ -326,7 +326,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaborations/',
+        '/2.0/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
@@ -359,7 +359,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaborations/',
+        '/2.0/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
@@ -392,7 +392,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaborations/',
+        '/2.0/collaborations/',
         toString(collaborationId) as string
       ) as string,
       {
@@ -433,7 +433,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaborations'
+        '/2.0/collaborations'
       ) as string,
       {
         method: 'POST',

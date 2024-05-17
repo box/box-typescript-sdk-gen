@@ -158,7 +158,7 @@ export class FileVersionLegalHoldsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_version_legal_holds/',
+        '/2.0/file_version_legal_holds/',
         toString(fileVersionLegalHoldId) as string
       ) as string,
       {
@@ -196,7 +196,7 @@ export class FileVersionLegalHoldsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_version_legal_holds'
+        '/2.0/file_version_legal_holds'
       ) as string,
       {
         method: 'GET',

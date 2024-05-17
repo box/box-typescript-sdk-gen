@@ -248,7 +248,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_requests/',
+        '/2.0/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -283,7 +283,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_requests/',
+        '/2.0/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -316,7 +316,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_requests/',
+        '/2.0/file_requests/',
         toString(fileRequestId) as string
       ) as string,
       {
@@ -348,7 +348,7 @@ export class FileRequestsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/file_requests/',
+        '/2.0/file_requests/',
         toString(fileRequestId) as string,
         '/copy'
       ) as string,

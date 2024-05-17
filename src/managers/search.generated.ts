@@ -172,7 +172,7 @@ export class SearchManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_queries/execute_read'
+        '/2.0/metadata_queries/execute_read'
       ) as string,
       {
         method: 'POST',
@@ -252,7 +252,7 @@ export class SearchManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/search') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/search') as string,
       {
         method: 'GET',
         params: queryParamsMap,

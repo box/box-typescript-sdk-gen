@@ -361,7 +361,10 @@ export class WebhooksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/webhooks') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/webhooks'
+      ) as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -388,7 +391,10 @@ export class WebhooksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/webhooks') as string,
+      ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/webhooks'
+      ) as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -418,7 +424,7 @@ export class WebhooksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/webhooks/',
+        '/2.0/webhooks/',
         toString(webhookId) as string
       ) as string,
       {
@@ -451,7 +457,7 @@ export class WebhooksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/webhooks/',
+        '/2.0/webhooks/',
         toString(webhookId) as string
       ) as string,
       {
@@ -484,7 +490,7 @@ export class WebhooksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/webhooks/',
+        '/2.0/webhooks/',
         toString(webhookId) as string
       ) as string,
       {

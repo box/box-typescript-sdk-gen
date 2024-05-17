@@ -204,7 +204,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folder_locks'
+        '/2.0/folder_locks'
       ) as string,
       {
         method: 'GET',
@@ -234,7 +234,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folder_locks'
+        '/2.0/folder_locks'
       ) as string,
       {
         method: 'POST',
@@ -266,7 +266,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folder_locks/',
+        '/2.0/folder_locks/',
         toString(folderLockId) as string
       ) as string,
       {

@@ -211,7 +211,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,
@@ -244,7 +244,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,
@@ -278,7 +278,7 @@ export class FolderWatermarksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/watermark'
       ) as string,

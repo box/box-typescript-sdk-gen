@@ -348,7 +348,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies'
+        '/2.0/retention_policies'
       ) as string,
       {
         method: 'GET',
@@ -379,7 +379,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies'
+        '/2.0/retention_policies'
       ) as string,
       {
         method: 'POST',
@@ -420,7 +420,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies/',
+        '/2.0/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {
@@ -454,7 +454,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies/',
+        '/2.0/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {
@@ -487,7 +487,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/retention_policies/',
+        '/2.0/retention_policies/',
         toString(retentionPolicyId) as string
       ) as string,
       {

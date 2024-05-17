@@ -184,7 +184,7 @@ export class InvitesManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/invites') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/invites') as string,
       {
         method: 'POST',
         params: queryParamsMap,
@@ -224,7 +224,7 @@ export class InvitesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/invites/',
+        '/2.0/invites/',
         toString(inviteId) as string
       ) as string,
       {

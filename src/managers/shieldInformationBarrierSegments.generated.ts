@@ -344,7 +344,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barrier_segments/',
+        '/2.0/shield_information_barrier_segments/',
         toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
@@ -377,7 +377,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barrier_segments/',
+        '/2.0/shield_information_barrier_segments/',
         toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
@@ -412,7 +412,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barrier_segments/',
+        '/2.0/shield_information_barrier_segments/',
         toString(shieldInformationBarrierSegmentId) as string
       ) as string,
       {
@@ -452,7 +452,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barrier_segments'
+        '/2.0/shield_information_barrier_segments'
       ) as string,
       {
         method: 'GET',
@@ -483,7 +483,7 @@ export class ShieldInformationBarrierSegmentsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/shield_information_barrier_segments'
+        '/2.0/shield_information_barrier_segments'
       ) as string,
       {
         method: 'POST',

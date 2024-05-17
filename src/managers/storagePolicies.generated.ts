@@ -136,7 +136,7 @@ export class StoragePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policies'
+        '/2.0/storage_policies'
       ) as string,
       {
         method: 'GET',
@@ -167,7 +167,7 @@ export class StoragePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/storage_policies/',
+        '/2.0/storage_policies/',
         toString(storagePolicyId) as string
       ) as string,
       {

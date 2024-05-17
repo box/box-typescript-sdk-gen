@@ -307,7 +307,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policies'
+        '/2.0/legal_hold_policies'
       ) as string,
       {
         method: 'GET',
@@ -338,7 +338,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policies'
+        '/2.0/legal_hold_policies'
       ) as string,
       {
         method: 'POST',
@@ -370,7 +370,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policies/',
+        '/2.0/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {
@@ -403,7 +403,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policies/',
+        '/2.0/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {
@@ -436,7 +436,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/legal_hold_policies/',
+        '/2.0/legal_hold_policies/',
         toString(legalHoldPolicyId) as string
       ) as string,
       {

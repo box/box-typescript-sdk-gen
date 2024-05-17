@@ -94,7 +94,7 @@ export class TrashedItemsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/trash/items'
+        '/2.0/folders/trash/items'
       ) as string,
       {
         method: 'GET',

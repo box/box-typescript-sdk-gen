@@ -337,7 +337,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_cascade_policies'
+        '/2.0/metadata_cascade_policies'
       ) as string,
       {
         method: 'GET',
@@ -368,7 +368,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_cascade_policies'
+        '/2.0/metadata_cascade_policies'
       ) as string,
       {
         method: 'POST',
@@ -400,7 +400,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_cascade_policies/',
+        '/2.0/metadata_cascade_policies/',
         toString(metadataCascadePolicyId) as string
       ) as string,
       {
@@ -431,7 +431,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_cascade_policies/',
+        '/2.0/metadata_cascade_policies/',
         toString(metadataCascadePolicyId) as string
       ) as string,
       {
@@ -463,7 +463,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_cascade_policies/',
+        '/2.0/metadata_cascade_policies/',
         toString(metadataCascadePolicyId) as string,
         '/apply'
       ) as string,

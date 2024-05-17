@@ -291,7 +291,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/collaborations'
       ) as string,
@@ -333,7 +333,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/folders/',
+        '/2.0/folders/',
         toString(folderId) as string,
         '/collaborations'
       ) as string,
@@ -376,7 +376,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/collaborations'
+        '/2.0/collaborations'
       ) as string,
       {
         method: 'GET',
@@ -415,7 +415,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/groups/',
+        '/2.0/groups/',
         toString(groupId) as string,
         '/collaborations'
       ) as string,

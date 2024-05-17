@@ -129,7 +129,7 @@ export class TransferManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/users/',
+        '/2.0/users/',
         toString(userId) as string,
         '/folders/0'
       ) as string,

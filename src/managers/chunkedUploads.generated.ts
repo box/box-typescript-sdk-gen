@@ -451,7 +451,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions'
+        '/2.0/files/upload_sessions'
       ) as string,
       {
         method: 'POST',
@@ -484,7 +484,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/upload_sessions'
       ) as string,
@@ -520,7 +520,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions/',
+        '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -561,7 +561,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions/',
+        '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -594,7 +594,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions/',
+        '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -633,7 +633,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions/',
+        '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/parts'
       ) as string,
@@ -680,7 +680,7 @@ export class ChunkedUploadsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/files/upload_sessions/',
+        '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/commit'
       ) as string,

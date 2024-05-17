@@ -303,7 +303,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata'
       ) as string,
@@ -337,7 +337,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -375,7 +375,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -415,7 +415,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/',
         toString(scope) as string,
@@ -456,7 +456,7 @@ export class FileMetadataManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/metadata/',
         toString(scope) as string,

@@ -301,7 +301,7 @@ export class TasksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/tasks'
       ) as string,
@@ -330,7 +330,7 @@ export class TasksManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/tasks') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/tasks') as string,
       {
         method: 'POST',
         headers: headersMap,
@@ -360,7 +360,7 @@ export class TasksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/tasks/',
+        '/2.0/tasks/',
         toString(taskId) as string
       ) as string,
       {
@@ -392,7 +392,7 @@ export class TasksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/tasks/',
+        '/2.0/tasks/',
         toString(taskId) as string
       ) as string,
       {
@@ -424,7 +424,7 @@ export class TasksManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/tasks/',
+        '/2.0/tasks/',
         toString(taskId) as string
       ) as string,
       {

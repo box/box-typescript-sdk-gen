@@ -83,7 +83,7 @@ export class RecentItemsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/recent_items'
+        '/2.0/recent_items'
       ) as string,
       {
         method: 'GET',

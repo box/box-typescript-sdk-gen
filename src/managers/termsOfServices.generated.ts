@@ -242,7 +242,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_services'
+        '/2.0/terms_of_services'
       ) as string,
       {
         method: 'GET',
@@ -273,7 +273,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_services'
+        '/2.0/terms_of_services'
       ) as string,
       {
         method: 'POST',
@@ -305,7 +305,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_services/',
+        '/2.0/terms_of_services/',
         toString(termsOfServiceId) as string
       ) as string,
       {
@@ -337,7 +337,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/terms_of_services/',
+        '/2.0/terms_of_services/',
         toString(termsOfServiceId) as string
       ) as string,
       {

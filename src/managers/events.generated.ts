@@ -245,7 +245,7 @@ export class EventsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/events') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/events') as string,
       {
         method: 'GET',
         params: queryParamsMap,
@@ -272,7 +272,7 @@ export class EventsManager {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/events') as string,
+      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/events') as string,
       {
         method: 'OPTIONS',
         headers: headersMap,

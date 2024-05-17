@@ -366,7 +366,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/versions'
       ) as string,
@@ -409,7 +409,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -446,7 +446,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -485,7 +485,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/versions/',
         toString(fileVersionId) as string
@@ -529,7 +529,7 @@ export class FileVersionsManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/files/',
+        '/2.0/files/',
         toString(fileId) as string,
         '/versions/current'
       ) as string,

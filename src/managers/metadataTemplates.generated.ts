@@ -453,7 +453,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates'
+        '/2.0/metadata_templates'
       ) as string,
       {
         method: 'GET',
@@ -485,7 +485,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/',
+        '/2.0/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -521,7 +521,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/',
+        '/2.0/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -560,7 +560,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/',
+        '/2.0/metadata_templates/',
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
@@ -594,7 +594,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/',
+        '/2.0/metadata_templates/',
         toString(templateId) as string
       ) as string,
       {
@@ -631,7 +631,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/global'
+        '/2.0/metadata_templates/global'
       ) as string,
       {
         method: 'GET',
@@ -668,7 +668,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/enterprise'
+        '/2.0/metadata_templates/enterprise'
       ) as string,
       {
         method: 'GET',
@@ -699,7 +699,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch(
       ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/metadata_templates/schema'
+        '/2.0/metadata_templates/schema'
       ) as string,
       {
         method: 'POST',
