@@ -50,6 +50,7 @@ import { BoxDeveloperTokenAuth } from '../box/developerTokenAuth.generated.js';
 import { DeveloperTokenConfig } from '../box/developerTokenAuth.generated.js';
 import { BoxOAuth } from '../box/oauth.generated.js';
 import { OAuthConfig } from '../box/oauth.generated.js';
+import { InMemoryTokenStorage } from '../box/tokenStorage.generated.js';
 import { BoxJwtAuth } from '../box/jwtAuth.generated.js';
 import { JwtConfig } from '../box/jwtAuth.generated.js';
 import { SerializedData } from '../serialization/json.js';
@@ -141,16 +142,18 @@ test('test_jwt_auth_revoke', async function test_jwt_auth_revoke(): Promise<any>
     decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
-  await auth.retrieveToken();
-  const tokenFromStorageBeforeRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
-  await auth.revokeToken();
-  const tokenFromStorageAfterRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
+  const tokenFromStorageBeforeRevoke: AccessToken = await auth.retrieveToken();
   if (!!(tokenFromStorageBeforeRevoke == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!(tokenFromStorageAfterRevoke == void 0)) {
+  await auth.revokeToken();
+  const tokenFromStorageAfterRevoke: AccessToken = await auth.retrieveToken();
+  if (
+    !!(
+      tokenFromStorageBeforeRevoke.accessToken ==
+      tokenFromStorageAfterRevoke.accessToken
+    )
+  ) {
     throw new Error('Assertion failed');
   }
 });
@@ -244,16 +247,18 @@ test('test_ccg_auth_revoke', async function test_ccg_auth_revoke(): Promise<any>
     userId: getEnvVar('USER_ID'),
   });
   const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
-  await auth.retrieveToken();
-  const tokenFromStorageBeforeRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
-  await auth.revokeToken();
-  const tokenFromStorageAfterRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
+  const tokenFromStorageBeforeRevoke: AccessToken = await auth.retrieveToken();
   if (!!(tokenFromStorageBeforeRevoke == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!(tokenFromStorageAfterRevoke == void 0)) {
+  await auth.revokeToken();
+  const tokenFromStorageAfterRevoke: AccessToken = await auth.retrieveToken();
+  if (
+    !!(
+      tokenFromStorageBeforeRevoke.accessToken ==
+      tokenFromStorageAfterRevoke.accessToken
+    )
+  ) {
     throw new Error('Assertion failed');
   }
 });
@@ -267,18 +272,14 @@ test('test_developer_token_auth_revoke', async function test_developer_token_aut
     token: token.accessToken!,
     config: developerTokenConfig,
   });
-  await auth.retrieveToken();
-  const tokenFromStorageBeforeRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
-  await auth.revokeToken();
-  const tokenFromStorageAfterRevoke: undefined | AccessToken =
-    await auth.tokenStorage.get();
+  const tokenFromStorageBeforeRevoke: AccessToken = await auth.retrieveToken();
   if (!!(tokenFromStorageBeforeRevoke == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!(tokenFromStorageAfterRevoke == void 0)) {
-    throw new Error('Assertion failed');
-  }
+  await auth.revokeToken();
+  await expect(async () => {
+    await auth.retrieveToken();
+  }).rejects.toThrow();
 });
 test('test_developer_token_auth_downscope', async function test_developer_token_auth_downscope(): Promise<any> {
   const developerTokenConfig: DeveloperTokenConfig = {
@@ -330,14 +331,17 @@ test('test_developer_token_auth', async function test_developer_token_auth(): Pr
   }
 });
 test('test_oauth_auth_revoke', async function test_oauth_auth_revoke(): Promise<any> {
+  const token: AccessToken = await getAccessToken();
+  const tokenStorage: InMemoryTokenStorage = new InMemoryTokenStorage({
+    token: token,
+  });
   const config: OAuthConfig = new OAuthConfig({
     clientId: getEnvVar('CLIENT_ID'),
     clientSecret: getEnvVar('CLIENT_SECRET'),
+    tokenStorage: tokenStorage,
   });
   const auth: BoxOAuth = new BoxOAuth({ config: config });
   const client: BoxClient = new BoxClient({ auth: auth });
-  const token: AccessToken = await getAccessToken();
-  await auth.tokenStorage.store(token);
   await client.users.getUserMe();
   await auth.revokeToken();
   await expect(async () => {
@@ -345,13 +349,16 @@ test('test_oauth_auth_revoke', async function test_oauth_auth_revoke(): Promise<
   }).rejects.toThrow();
 });
 test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Promise<any> {
+  const token: AccessToken = await getAccessToken();
+  const tokenStorage: InMemoryTokenStorage = new InMemoryTokenStorage({
+    token: token,
+  });
   const config: OAuthConfig = new OAuthConfig({
     clientId: getEnvVar('CLIENT_ID'),
     clientSecret: getEnvVar('CLIENT_SECRET'),
+    tokenStorage: tokenStorage,
   });
   const auth: BoxOAuth = new BoxOAuth({ config: config });
-  const token: AccessToken = await getAccessToken();
-  await auth.tokenStorage.store(token);
   const parentClient: BoxClient = new BoxClient({ auth: auth });
   const uploadedFiles: Files = await parentClient.uploads.uploadFile({
     attributes: {

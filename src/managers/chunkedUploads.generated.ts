@@ -215,7 +215,7 @@ export class CreateFileUploadSessionCommitOptionals {
 export interface CreateFileUploadSessionCommitOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export interface PartAccumulator {
+interface PartAccumulator {
   readonly lastIndex: number;
   readonly parts: readonly UploadPart[];
   readonly fileSize: number;
