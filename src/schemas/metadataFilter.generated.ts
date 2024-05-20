@@ -30,22 +30,17 @@ export function serializeMetadataFilterScopeField(
 export function deserializeMetadataFilterScopeField(
   val: SerializedData
 ): MetadataFilterScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataFilterScopeField"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   if (val == 'enterprise_{enterprise_id}') {
-    return 'enterprise_{enterprise_id}';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataFilterScopeField",
   });
 }
 export function serializeMetadataFilter(val: MetadataFilter): SerializedData {

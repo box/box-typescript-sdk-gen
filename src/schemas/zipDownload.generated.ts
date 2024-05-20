@@ -30,19 +30,14 @@ export function serializeZipDownloadNameConflictsTypeField(
 export function deserializeZipDownloadNameConflictsTypeField(
   val: SerializedData
 ): ZipDownloadNameConflictsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ZipDownloadNameConflictsTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ZipDownloadNameConflictsTypeField",
   });
 }
 export function serializeZipDownloadNameConflictsField(

@@ -33,16 +33,11 @@ export function serializeAiTextGenItemsTypeField(
 export function deserializeAiTextGenItemsTypeField(
   val: SerializedData
 ): AiTextGenItemsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AiTextGenItemsTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize AiTextGenItemsTypeField",
   });
 }
 export function serializeAiTextGenItemsField(

@@ -62,23 +62,16 @@ export function serializeUserFullRoleField(
 export function deserializeUserFullRoleField(
   val: SerializedData
 ): UserFullRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UserFullRoleField"',
-    });
-  }
   if (val == 'admin') {
-    return 'admin';
+    return val;
   }
   if (val == 'coadmin') {
-    return 'coadmin';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize UserFullRoleField" });
 }
 export function serializeUserFullEnterpriseTypeField(
   val: UserFullEnterpriseTypeField
@@ -88,16 +81,11 @@ export function serializeUserFullEnterpriseTypeField(
 export function deserializeUserFullEnterpriseTypeField(
   val: SerializedData
 ): UserFullEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UserFullEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UserFullEnterpriseTypeField",
   });
 }
 export function serializeUserFullEnterpriseField(

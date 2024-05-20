@@ -58,5 +58,8 @@ export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardO
   if (val.skill_card_type == 'transcript') {
     return deserializeTranscriptSkillCard(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({
+    message:
+      "Can't deserialize KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard",
+  });
 }

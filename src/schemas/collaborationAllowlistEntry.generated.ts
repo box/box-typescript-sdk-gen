@@ -37,16 +37,11 @@ export function serializeCollaborationAllowlistEntryTypeField(
 export function deserializeCollaborationAllowlistEntryTypeField(
   val: SerializedData
 ): CollaborationAllowlistEntryTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaborationAllowlistEntryTypeField"',
-    });
-  }
   if (val == 'collaboration_whitelist_entry') {
-    return 'collaboration_whitelist_entry';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationAllowlistEntryTypeField",
   });
 }
 export function serializeCollaborationAllowlistEntryDirectionField(
@@ -57,23 +52,17 @@ export function serializeCollaborationAllowlistEntryDirectionField(
 export function deserializeCollaborationAllowlistEntryDirectionField(
   val: SerializedData
 ): CollaborationAllowlistEntryDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CollaborationAllowlistEntryDirectionField"',
-    });
-  }
   if (val == 'inbound') {
-    return 'inbound';
+    return val;
   }
   if (val == 'outbound') {
-    return 'outbound';
+    return val;
   }
   if (val == 'both') {
-    return 'both';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationAllowlistEntryDirectionField",
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
@@ -84,17 +73,11 @@ export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
 export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
   val: SerializedData
 ): CollaborationAllowlistEntryEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CollaborationAllowlistEntryEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationAllowlistEntryEnterpriseTypeField",
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseField(

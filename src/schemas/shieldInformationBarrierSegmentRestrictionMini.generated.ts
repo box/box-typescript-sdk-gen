@@ -37,17 +37,12 @@ export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInf
 export function deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField(
   val: SerializedData
 ): ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment') {
-    return 'shield_information_barrier_segment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField",
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(
@@ -100,17 +95,12 @@ export function serializeShieldInformationBarrierSegmentRestrictionMiniRestricte
 export function deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField(
   val: SerializedData
 ): ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment') {
-    return 'shield_information_barrier_segment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField",
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(

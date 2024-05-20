@@ -45,17 +45,12 @@ export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
 export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   val: SerializedData
 ): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "PostOAuth2TokenRefreshAccessTokenGrantTypeField"',
-    });
-  }
   if (val == 'refresh_token') {
-    return 'refresh_token';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize PostOAuth2TokenRefreshAccessTokenGrantTypeField",
   });
 }
 export function serializePostOAuth2TokenRefreshAccessToken(

@@ -518,23 +518,17 @@ export function serializeCreateGroupRequestBodyInvitabilityLevelField(
 export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   val: SerializedData
 ): CreateGroupRequestBodyInvitabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateGroupRequestBodyInvitabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateGroupRequestBodyInvitabilityLevelField",
   });
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
@@ -545,23 +539,18 @@ export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
 export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   val: SerializedData
 ): CreateGroupRequestBodyMemberViewabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateGroupRequestBodyMemberViewabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateGroupRequestBodyMemberViewabilityLevelField",
   });
 }
 export function serializeCreateGroupRequestBody(
@@ -671,23 +660,18 @@ export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
 export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   val: SerializedData
 ): UpdateGroupByIdRequestBodyInvitabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateGroupByIdRequestBodyInvitabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateGroupByIdRequestBodyInvitabilityLevelField",
   });
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
@@ -698,23 +682,18 @@ export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
 export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
   val: SerializedData
 ): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateGroupByIdRequestBodyMemberViewabilityLevelField"',
-    });
-  }
   if (val == 'admins_only') {
-    return 'admins_only';
+    return val;
   }
   if (val == 'admins_and_members') {
-    return 'admins_and_members';
+    return val;
   }
   if (val == 'all_managed_users') {
-    return 'all_managed_users';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateGroupByIdRequestBodyMemberViewabilityLevelField",
   });
 }
 export function serializeUpdateGroupByIdRequestBody(

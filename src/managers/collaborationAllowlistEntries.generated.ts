@@ -370,23 +370,18 @@ export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionFi
 export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
   val: SerializedData
 ): CreateCollaborationWhitelistEntryRequestBodyDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateCollaborationWhitelistEntryRequestBodyDirectionField"',
-    });
-  }
   if (val == 'inbound') {
-    return 'inbound';
+    return val;
   }
   if (val == 'outbound') {
-    return 'outbound';
+    return val;
   }
   if (val == 'both') {
-    return 'both';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateCollaborationWhitelistEntryRequestBodyDirectionField",
   });
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBody(

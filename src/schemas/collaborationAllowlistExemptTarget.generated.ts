@@ -37,17 +37,11 @@ export function serializeCollaborationAllowlistExemptTargetTypeField(
 export function deserializeCollaborationAllowlistExemptTargetTypeField(
   val: SerializedData
 ): CollaborationAllowlistExemptTargetTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CollaborationAllowlistExemptTargetTypeField"',
-    });
-  }
   if (val == 'collaboration_whitelist_exempt_target') {
-    return 'collaboration_whitelist_exempt_target';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationAllowlistExemptTargetTypeField",
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
@@ -58,17 +52,12 @@ export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
   val: SerializedData
 ): CollaborationAllowlistExemptTargetEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CollaborationAllowlistExemptTargetEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CollaborationAllowlistExemptTargetEnterpriseTypeField",
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseField(

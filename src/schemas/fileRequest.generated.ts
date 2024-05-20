@@ -108,17 +108,10 @@ export function serializeFileRequestTypeField(
 export function deserializeFileRequestTypeField(
   val: SerializedData
 ): FileRequestTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileRequestTypeField"',
-    });
-  }
   if (val == 'file_request') {
-    return 'file_request';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize FileRequestTypeField" });
 }
 export function serializeFileRequestStatusField(
   val: FileRequestStatusField
@@ -128,19 +121,14 @@ export function serializeFileRequestStatusField(
 export function deserializeFileRequestStatusField(
   val: SerializedData
 ): FileRequestStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileRequestStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'inactive') {
-    return 'inactive';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileRequestStatusField",
   });
 }
 export function serializeFileRequest(val: FileRequest): SerializedData {

@@ -85,16 +85,11 @@ export function serializeMetadataTemplateTypeField(
 export function deserializeMetadataTemplateTypeField(
   val: SerializedData
 ): MetadataTemplateTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataTemplateTypeField"',
-    });
-  }
   if (val == 'metadata_template') {
-    return 'metadata_template';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataTemplateTypeField",
   });
 }
 export function serializeMetadataTemplateFieldsTypeField(
@@ -105,31 +100,26 @@ export function serializeMetadataTemplateFieldsTypeField(
 export function deserializeMetadataTemplateFieldsTypeField(
   val: SerializedData
 ): MetadataTemplateFieldsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataTemplateFieldsTypeField"',
-    });
-  }
   if (val == 'string') {
-    return 'string';
+    return val;
   }
   if (val == 'float') {
-    return 'float';
+    return val;
   }
   if (val == 'date') {
-    return 'date';
+    return val;
   }
   if (val == 'enum') {
-    return 'enum';
+    return val;
   }
   if (val == 'multiSelect') {
-    return 'multiSelect';
+    return val;
   }
   if (val == 'integer') {
-    return 'integer';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataTemplateFieldsTypeField",
   });
 }
 export function serializeMetadataTemplateFieldsOptionsField(

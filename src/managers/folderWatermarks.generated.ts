@@ -306,17 +306,12 @@ export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
   val: SerializedData
 ): UpdateFolderWatermarkRequestBodyWatermarkImprintField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFolderWatermarkRequestBodyWatermarkImprintField"',
-    });
-  }
   if (val == 'default') {
-    return 'default';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateFolderWatermarkRequestBodyWatermarkImprintField",
   });
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(

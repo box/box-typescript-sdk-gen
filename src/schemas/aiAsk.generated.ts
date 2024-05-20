@@ -41,20 +41,13 @@ export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
   return val;
 }
 export function deserializeAiAskModeField(val: SerializedData): AiAskModeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AiAskModeField"',
-    });
-  }
   if (val == 'multiple_item_qa') {
-    return 'multiple_item_qa';
+    return val;
   }
   if (val == 'single_item_qa') {
-    return 'single_item_qa';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize AiAskModeField" });
 }
 export function serializeAiAskItemsTypeField(
   val: AiAskItemsTypeField
@@ -64,17 +57,10 @@ export function serializeAiAskItemsTypeField(
 export function deserializeAiAskItemsTypeField(
   val: SerializedData
 ): AiAskItemsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "AiAskItemsTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize AiAskItemsTypeField" });
 }
 export function serializeAiAskItemsField(val: AiAskItemsField): SerializedData {
   return {

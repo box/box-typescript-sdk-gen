@@ -22,17 +22,10 @@ export function serializeWorkflowMiniTypeField(
 export function deserializeWorkflowMiniTypeField(
   val: SerializedData
 ): WorkflowMiniTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowMiniTypeField"',
-    });
-  }
   if (val == 'workflow') {
-    return 'workflow';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize WorkflowMiniTypeField" });
 }
 export function serializeWorkflowMini(val: WorkflowMini): SerializedData {
   return {

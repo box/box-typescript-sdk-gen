@@ -38,17 +38,10 @@ export function serializeFolderBaseTypeField(
 export function deserializeFolderBaseTypeField(
   val: SerializedData
 ): FolderBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FolderBaseTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize FolderBaseTypeField" });
 }
 export function serializeFolderBase(val: FolderBase): SerializedData {
   return {

@@ -38,17 +38,10 @@ export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
   return val;
 }
 export function deserializeTaskTypeField(val: SerializedData): TaskTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TaskTypeField"',
-    });
-  }
   if (val == 'task') {
-    return 'task';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TaskTypeField" });
 }
 export function serializeTaskActionField(val: TaskActionField): SerializedData {
   return val;
@@ -56,20 +49,13 @@ export function serializeTaskActionField(val: TaskActionField): SerializedData {
 export function deserializeTaskActionField(
   val: SerializedData
 ): TaskActionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TaskActionField"',
-    });
-  }
   if (val == 'review') {
-    return 'review';
+    return val;
   }
   if (val == 'complete') {
-    return 'complete';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TaskActionField" });
 }
 export function serializeTaskCompletionRuleField(
   val: TaskCompletionRuleField
@@ -79,19 +65,14 @@ export function serializeTaskCompletionRuleField(
 export function deserializeTaskCompletionRuleField(
   val: SerializedData
 ): TaskCompletionRuleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TaskCompletionRuleField"',
-    });
-  }
   if (val == 'all_assignees') {
-    return 'all_assignees';
+    return val;
   }
   if (val == 'any_assignee') {
-    return 'any_assignee';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TaskCompletionRuleField",
   });
 }
 export function serializeTask(val: Task): SerializedData {

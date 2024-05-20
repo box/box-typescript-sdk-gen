@@ -28,19 +28,14 @@ export function serializeGroupMiniGroupTypeField(
 export function deserializeGroupMiniGroupTypeField(
   val: SerializedData
 ): GroupMiniGroupTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupMiniGroupTypeField"',
-    });
-  }
   if (val == 'managed_group') {
-    return 'managed_group';
+    return val;
   }
   if (val == 'all_users_group') {
-    return 'all_users_group';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupMiniGroupTypeField",
   });
 }
 export function serializeGroupMini(val: GroupMini): SerializedData {

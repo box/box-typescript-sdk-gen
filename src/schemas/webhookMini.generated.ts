@@ -25,17 +25,10 @@ export function serializeWebhookMiniTypeField(
 export function deserializeWebhookMiniTypeField(
   val: SerializedData
 ): WebhookMiniTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebhookMiniTypeField"',
-    });
-  }
   if (val == 'webhook') {
-    return 'webhook';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize WebhookMiniTypeField" });
 }
 export function serializeWebhookMiniTargetTypeField(
   val: WebhookMiniTargetTypeField
@@ -45,19 +38,14 @@ export function serializeWebhookMiniTargetTypeField(
 export function deserializeWebhookMiniTargetTypeField(
   val: SerializedData
 ): WebhookMiniTargetTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebhookMiniTargetTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebhookMiniTargetTypeField",
   });
 }
 export function serializeWebhookMiniTargetField(

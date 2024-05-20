@@ -42,19 +42,14 @@ export function serializeTermsOfServiceStatusField(
 export function deserializeTermsOfServiceStatusField(
   val: SerializedData
 ): TermsOfServiceStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TermsOfServiceStatusField"',
-    });
-  }
   if (val == 'enabled') {
-    return 'enabled';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TermsOfServiceStatusField",
   });
 }
 export function serializeTermsOfServiceEnterpriseTypeField(
@@ -65,16 +60,11 @@ export function serializeTermsOfServiceEnterpriseTypeField(
 export function deserializeTermsOfServiceEnterpriseTypeField(
   val: SerializedData
 ): TermsOfServiceEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TermsOfServiceEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TermsOfServiceEnterpriseTypeField",
   });
 }
 export function serializeTermsOfServiceEnterpriseField(
@@ -129,19 +119,14 @@ export function serializeTermsOfServiceTosTypeField(
 export function deserializeTermsOfServiceTosTypeField(
   val: SerializedData
 ): TermsOfServiceTosTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TermsOfServiceTosTypeField"',
-    });
-  }
   if (val == 'managed') {
-    return 'managed';
+    return val;
   }
   if (val == 'external') {
-    return 'external';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TermsOfServiceTosTypeField",
   });
 }
 export function serializeTermsOfService(val: TermsOfService): SerializedData {

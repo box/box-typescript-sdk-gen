@@ -212,19 +212,14 @@ export function serializeGetFileVersionRetentionsQueryParamsDispositionActionFie
 export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionField(
   val: SerializedData
 ): GetFileVersionRetentionsQueryParamsDispositionActionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetFileVersionRetentionsQueryParamsDispositionActionField"',
-    });
-  }
   if (val == 'permanently_delete') {
-    return 'permanently_delete';
+    return val;
   }
   if (val == 'remove_retention') {
-    return 'remove_retention';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize GetFileVersionRetentionsQueryParamsDispositionActionField",
   });
 }

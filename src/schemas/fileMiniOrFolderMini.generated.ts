@@ -36,5 +36,5 @@ export function deserializeFileMiniOrFolderMini(
   if (val.type == 'folder') {
     return deserializeFolderMini(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({ message: "Can't deserialize FileMiniOrFolderMini" });
 }

@@ -138,16 +138,11 @@ export function serializeClassificationTemplateTypeField(
 export function deserializeClassificationTemplateTypeField(
   val: SerializedData
 ): ClassificationTemplateTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClassificationTemplateTypeField"',
-    });
-  }
   if (val == 'metadata_template') {
-    return 'metadata_template';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateTypeField",
   });
 }
 export function serializeClassificationTemplateTemplateKeyField(
@@ -158,17 +153,11 @@ export function serializeClassificationTemplateTemplateKeyField(
 export function deserializeClassificationTemplateTemplateKeyField(
   val: SerializedData
 ): ClassificationTemplateTemplateKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ClassificationTemplateTemplateKeyField"',
-    });
-  }
   if (val == 'securityClassification-6VMVochwUWo') {
-    return 'securityClassification-6VMVochwUWo';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateTemplateKeyField",
   });
 }
 export function serializeClassificationTemplateDisplayNameField(
@@ -179,17 +168,11 @@ export function serializeClassificationTemplateDisplayNameField(
 export function deserializeClassificationTemplateDisplayNameField(
   val: SerializedData
 ): ClassificationTemplateDisplayNameField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ClassificationTemplateDisplayNameField"',
-    });
-  }
   if (val == 'Classification') {
-    return 'Classification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateDisplayNameField",
   });
 }
 export function serializeClassificationTemplateFieldsTypeField(
@@ -200,16 +183,11 @@ export function serializeClassificationTemplateFieldsTypeField(
 export function deserializeClassificationTemplateFieldsTypeField(
   val: SerializedData
 ): ClassificationTemplateFieldsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClassificationTemplateFieldsTypeField"',
-    });
-  }
   if (val == 'enum') {
-    return 'enum';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateFieldsTypeField",
   });
 }
 export function serializeClassificationTemplateFieldsKeyField(
@@ -220,16 +198,11 @@ export function serializeClassificationTemplateFieldsKeyField(
 export function deserializeClassificationTemplateFieldsKeyField(
   val: SerializedData
 ): ClassificationTemplateFieldsKeyField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClassificationTemplateFieldsKeyField"',
-    });
-  }
   if (val == 'Box__Security__Classification__Key') {
-    return 'Box__Security__Classification__Key';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateFieldsKeyField",
   });
 }
 export function serializeClassificationTemplateFieldsDisplayNameField(
@@ -240,17 +213,11 @@ export function serializeClassificationTemplateFieldsDisplayNameField(
 export function deserializeClassificationTemplateFieldsDisplayNameField(
   val: SerializedData
 ): ClassificationTemplateFieldsDisplayNameField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ClassificationTemplateFieldsDisplayNameField"',
-    });
-  }
   if (val == 'Classification') {
-    return 'Classification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ClassificationTemplateFieldsDisplayNameField",
   });
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(

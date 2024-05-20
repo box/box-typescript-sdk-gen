@@ -24,17 +24,10 @@ export function serializeDevicePinnerTypeField(
 export function deserializeDevicePinnerTypeField(
   val: SerializedData
 ): DevicePinnerTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DevicePinnerTypeField"',
-    });
-  }
   if (val == 'device_pinner') {
-    return 'device_pinner';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize DevicePinnerTypeField" });
 }
 export function serializeDevicePinner(val: DevicePinner): SerializedData {
   return {

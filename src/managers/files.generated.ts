@@ -645,23 +645,17 @@ export function serializeUpdateFileByIdRequestBodySharedLinkAccessField(
 export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   val: SerializedData
 ): UpdateFileByIdRequestBodySharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFileByIdRequestBodySharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFileByIdRequestBodySharedLinkAccessField",
   });
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
@@ -772,17 +766,11 @@ export function serializeUpdateFileByIdRequestBodyLockAccessField(
 export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   val: SerializedData
 ): UpdateFileByIdRequestBodyLockAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFileByIdRequestBodyLockAccessField"',
-    });
-  }
   if (val == 'lock') {
-    return 'lock';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateFileByIdRequestBodyLockAccessField",
   });
 }
 export function serializeUpdateFileByIdRequestBodyLockField(
@@ -844,20 +832,15 @@ export function serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
 export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   val: SerializedData
 ): UpdateFileByIdRequestBodyPermissionsCanDownloadField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateFileByIdRequestBodyPermissionsCanDownloadField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateFileByIdRequestBodyPermissionsCanDownloadField",
   });
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsField(
@@ -1147,18 +1130,13 @@ export function serializeGetFileThumbnailByIdExtension(
 export function deserializeGetFileThumbnailByIdExtension(
   val: SerializedData
 ): GetFileThumbnailByIdExtension {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetFileThumbnailByIdExtension"',
-    });
-  }
   if (val == 'png') {
-    return 'png';
+    return val;
   }
   if (val == 'jpg') {
-    return 'jpg';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetFileThumbnailByIdExtension",
   });
 }

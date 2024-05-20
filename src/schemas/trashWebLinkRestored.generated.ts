@@ -52,16 +52,11 @@ export function serializeTrashWebLinkRestoredTypeField(
 export function deserializeTrashWebLinkRestoredTypeField(
   val: SerializedData
 ): TrashWebLinkRestoredTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashWebLinkRestoredTypeField"',
-    });
-  }
   if (val == 'web_link') {
-    return 'web_link';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashWebLinkRestoredTypeField",
   });
 }
 export function serializeTrashWebLinkRestoredPathCollectionField(
@@ -125,22 +120,17 @@ export function serializeTrashWebLinkRestoredItemStatusField(
 export function deserializeTrashWebLinkRestoredItemStatusField(
   val: SerializedData
 ): TrashWebLinkRestoredItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashWebLinkRestoredItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashWebLinkRestoredItemStatusField",
   });
 }
 export function serializeTrashWebLinkRestored(

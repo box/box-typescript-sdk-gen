@@ -38,17 +38,10 @@ export function serializeFileBaseTypeField(
 export function deserializeFileBaseTypeField(
   val: SerializedData
 ): FileBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileBaseTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize FileBaseTypeField" });
 }
 export function serializeFileBase(val: FileBase): SerializedData {
   return {

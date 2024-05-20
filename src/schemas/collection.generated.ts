@@ -23,17 +23,10 @@ export function serializeCollectionTypeField(
 export function deserializeCollectionTypeField(
   val: SerializedData
 ): CollectionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollectionTypeField"',
-    });
-  }
   if (val == 'collection') {
-    return 'collection';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize CollectionTypeField" });
 }
 export function serializeCollectionNameField(
   val: CollectionNameField
@@ -43,17 +36,10 @@ export function serializeCollectionNameField(
 export function deserializeCollectionNameField(
   val: SerializedData
 ): CollectionNameField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollectionNameField"',
-    });
-  }
   if (val == 'Favorites') {
-    return 'Favorites';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize CollectionNameField" });
 }
 export function serializeCollectionCollectionTypeField(
   val: CollectionCollectionTypeField
@@ -63,16 +49,11 @@ export function serializeCollectionCollectionTypeField(
 export function deserializeCollectionCollectionTypeField(
   val: SerializedData
 ): CollectionCollectionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollectionCollectionTypeField"',
-    });
-  }
   if (val == 'favorites') {
-    return 'favorites';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollectionCollectionTypeField",
   });
 }
 export function serializeCollection(val: Collection): SerializedData {

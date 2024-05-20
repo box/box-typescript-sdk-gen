@@ -26,19 +26,14 @@ export function serializeFileRequestUpdateRequestStatusField(
 export function deserializeFileRequestUpdateRequestStatusField(
   val: SerializedData
 ): FileRequestUpdateRequestStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileRequestUpdateRequestStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'inactive') {
-    return 'inactive';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileRequestUpdateRequestStatusField",
   });
 }
 export function serializeFileRequestUpdateRequest(

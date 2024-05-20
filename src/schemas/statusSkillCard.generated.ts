@@ -121,16 +121,11 @@ export function serializeStatusSkillCardTypeField(
 export function deserializeStatusSkillCardTypeField(
   val: SerializedData
 ): StatusSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StatusSkillCardTypeField"',
-    });
-  }
   if (val == 'skill_card') {
-    return 'skill_card';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StatusSkillCardTypeField",
   });
 }
 export function serializeStatusSkillCardSkillCardTypeField(
@@ -141,16 +136,11 @@ export function serializeStatusSkillCardSkillCardTypeField(
 export function deserializeStatusSkillCardSkillCardTypeField(
   val: SerializedData
 ): StatusSkillCardSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StatusSkillCardSkillCardTypeField"',
-    });
-  }
   if (val == 'status') {
-    return 'status';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StatusSkillCardSkillCardTypeField",
   });
 }
 export function serializeStatusSkillCardSkillCardTitleField(
@@ -202,28 +192,23 @@ export function serializeStatusSkillCardStatusCodeField(
 export function deserializeStatusSkillCardStatusCodeField(
   val: SerializedData
 ): StatusSkillCardStatusCodeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StatusSkillCardStatusCodeField"',
-    });
-  }
   if (val == 'invoked') {
-    return 'invoked';
+    return val;
   }
   if (val == 'processing') {
-    return 'processing';
+    return val;
   }
   if (val == 'success') {
-    return 'success';
+    return val;
   }
   if (val == 'transient_failure') {
-    return 'transient_failure';
+    return val;
   }
   if (val == 'permanent_failure') {
-    return 'permanent_failure';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StatusSkillCardStatusCodeField",
   });
 }
 export function serializeStatusSkillCardStatusField(
@@ -268,16 +253,11 @@ export function serializeStatusSkillCardSkillTypeField(
 export function deserializeStatusSkillCardSkillTypeField(
   val: SerializedData
 ): StatusSkillCardSkillTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StatusSkillCardSkillTypeField"',
-    });
-  }
   if (val == 'service') {
-    return 'service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StatusSkillCardSkillTypeField",
   });
 }
 export function serializeStatusSkillCardSkillField(
@@ -364,16 +344,11 @@ export function serializeStatusSkillCardInvocationTypeField(
 export function deserializeStatusSkillCardInvocationTypeField(
   val: SerializedData
 ): StatusSkillCardInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StatusSkillCardInvocationTypeField"',
-    });
-  }
   if (val == 'skill_invocation') {
-    return 'skill_invocation';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StatusSkillCardInvocationTypeField",
   });
 }
 export function serializeStatusSkillCardInvocationField(

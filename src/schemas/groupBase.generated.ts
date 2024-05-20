@@ -33,17 +33,10 @@ export function serializeGroupBaseTypeField(
 export function deserializeGroupBaseTypeField(
   val: SerializedData
 ): GroupBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupBaseTypeField"',
-    });
-  }
   if (val == 'group') {
-    return 'group';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize GroupBaseTypeField" });
 }
 export function serializeGroupBase(val: GroupBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeGroupBaseTypeField(val.type) };

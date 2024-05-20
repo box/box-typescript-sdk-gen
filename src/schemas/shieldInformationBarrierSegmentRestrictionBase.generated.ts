@@ -20,17 +20,12 @@ export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField
 export function deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
   val: SerializedData
 ): ShieldInformationBarrierSegmentRestrictionBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ShieldInformationBarrierSegmentRestrictionBaseTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment_restriction') {
-    return 'shield_information_barrier_segment_restriction';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize ShieldInformationBarrierSegmentRestrictionBaseTypeField",
   });
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBase(

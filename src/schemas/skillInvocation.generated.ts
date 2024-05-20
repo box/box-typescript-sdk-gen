@@ -79,16 +79,11 @@ export function serializeSkillInvocationTypeField(
 export function deserializeSkillInvocationTypeField(
   val: SerializedData
 ): SkillInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SkillInvocationTypeField"',
-    });
-  }
   if (val == 'skill_invocation') {
-    return 'skill_invocation';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationTypeField",
   });
 }
 export function serializeSkillInvocationSkillTypeField(
@@ -99,16 +94,11 @@ export function serializeSkillInvocationSkillTypeField(
 export function deserializeSkillInvocationSkillTypeField(
   val: SerializedData
 ): SkillInvocationSkillTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SkillInvocationSkillTypeField"',
-    });
-  }
   if (val == 'skill') {
-    return 'skill';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationSkillTypeField",
   });
 }
 export function serializeSkillInvocationSkillField(
@@ -172,17 +162,11 @@ export function serializeSkillInvocationTokenReadTokenTypeField(
 export function deserializeSkillInvocationTokenReadTokenTypeField(
   val: SerializedData
 ): SkillInvocationTokenReadTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SkillInvocationTokenReadTokenTypeField"',
-    });
-  }
   if (val == 'bearer') {
-    return 'bearer';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationTokenReadTokenTypeField",
   });
 }
 export function serializeSkillInvocationTokenReadField(
@@ -249,17 +233,11 @@ export function serializeSkillInvocationTokenWriteTokenTypeField(
 export function deserializeSkillInvocationTokenWriteTokenTypeField(
   val: SerializedData
 ): SkillInvocationTokenWriteTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SkillInvocationTokenWriteTokenTypeField"',
-    });
-  }
   if (val == 'bearer') {
-    return 'bearer';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationTokenWriteTokenTypeField",
   });
 }
 export function serializeSkillInvocationTokenWriteField(
@@ -358,28 +336,23 @@ export function serializeSkillInvocationStatusStateField(
 export function deserializeSkillInvocationStatusStateField(
   val: SerializedData
 ): SkillInvocationStatusStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SkillInvocationStatusStateField"',
-    });
-  }
   if (val == 'invoked') {
-    return 'invoked';
+    return val;
   }
   if (val == 'processing') {
-    return 'processing';
+    return val;
   }
   if (val == 'success') {
-    return 'success';
+    return val;
   }
   if (val == 'transient_failure') {
-    return 'transient_failure';
+    return val;
   }
   if (val == 'permanent_failure') {
-    return 'permanent_failure';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationStatusStateField",
   });
 }
 export function serializeSkillInvocationStatusField(
@@ -447,16 +420,11 @@ export function serializeSkillInvocationEnterpriseTypeField(
 export function deserializeSkillInvocationEnterpriseTypeField(
   val: SerializedData
 ): SkillInvocationEnterpriseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SkillInvocationEnterpriseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SkillInvocationEnterpriseTypeField",
   });
 }
 export function serializeSkillInvocationEnterpriseField(

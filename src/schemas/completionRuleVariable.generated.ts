@@ -45,16 +45,11 @@ export function serializeCompletionRuleVariableTypeField(
 export function deserializeCompletionRuleVariableTypeField(
   val: SerializedData
 ): CompletionRuleVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CompletionRuleVariableTypeField"',
-    });
-  }
   if (val == 'variable') {
-    return 'variable';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CompletionRuleVariableTypeField",
   });
 }
 export function serializeCompletionRuleVariableVariableTypeField(
@@ -65,17 +60,11 @@ export function serializeCompletionRuleVariableVariableTypeField(
 export function deserializeCompletionRuleVariableVariableTypeField(
   val: SerializedData
 ): CompletionRuleVariableVariableTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CompletionRuleVariableVariableTypeField"',
-    });
-  }
   if (val == 'task_completion_rule') {
-    return 'task_completion_rule';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CompletionRuleVariableVariableTypeField",
   });
 }
 export function serializeCompletionRuleVariableVariableValueField(
@@ -86,20 +75,14 @@ export function serializeCompletionRuleVariableVariableValueField(
 export function deserializeCompletionRuleVariableVariableValueField(
   val: SerializedData
 ): CompletionRuleVariableVariableValueField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CompletionRuleVariableVariableValueField"',
-    });
-  }
   if (val == 'all_assignees') {
-    return 'all_assignees';
+    return val;
   }
   if (val == 'any_assignees') {
-    return 'any_assignees';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CompletionRuleVariableVariableValueField",
   });
 }
 export function serializeCompletionRuleVariable(

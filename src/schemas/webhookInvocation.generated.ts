@@ -77,16 +77,11 @@ export function serializeWebhookInvocationTypeField(
 export function deserializeWebhookInvocationTypeField(
   val: SerializedData
 ): WebhookInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebhookInvocationTypeField"',
-    });
-  }
   if (val == 'webhook_event') {
-    return 'webhook_event';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebhookInvocationTypeField",
   });
 }
 export function serializeWebhookInvocationTriggerField(
@@ -97,133 +92,128 @@ export function serializeWebhookInvocationTriggerField(
 export function deserializeWebhookInvocationTriggerField(
   val: SerializedData
 ): WebhookInvocationTriggerField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebhookInvocationTriggerField"',
-    });
-  }
   if (val == 'FILE.UPLOADED') {
-    return 'FILE.UPLOADED';
+    return val;
   }
   if (val == 'FILE.PREVIEWED') {
-    return 'FILE.PREVIEWED';
+    return val;
   }
   if (val == 'FILE.DOWNLOADED') {
-    return 'FILE.DOWNLOADED';
+    return val;
   }
   if (val == 'FILE.TRASHED') {
-    return 'FILE.TRASHED';
+    return val;
   }
   if (val == 'FILE.DELETED') {
-    return 'FILE.DELETED';
+    return val;
   }
   if (val == 'FILE.RESTORED') {
-    return 'FILE.RESTORED';
+    return val;
   }
   if (val == 'FILE.COPIED') {
-    return 'FILE.COPIED';
+    return val;
   }
   if (val == 'FILE.MOVED') {
-    return 'FILE.MOVED';
+    return val;
   }
   if (val == 'FILE.LOCKED') {
-    return 'FILE.LOCKED';
+    return val;
   }
   if (val == 'FILE.UNLOCKED') {
-    return 'FILE.UNLOCKED';
+    return val;
   }
   if (val == 'FILE.RENAMED') {
-    return 'FILE.RENAMED';
+    return val;
   }
   if (val == 'COMMENT.CREATED') {
-    return 'COMMENT.CREATED';
+    return val;
   }
   if (val == 'COMMENT.UPDATED') {
-    return 'COMMENT.UPDATED';
+    return val;
   }
   if (val == 'COMMENT.DELETED') {
-    return 'COMMENT.DELETED';
+    return val;
   }
   if (val == 'TASK_ASSIGNMENT.CREATED') {
-    return 'TASK_ASSIGNMENT.CREATED';
+    return val;
   }
   if (val == 'TASK_ASSIGNMENT.UPDATED') {
-    return 'TASK_ASSIGNMENT.UPDATED';
+    return val;
   }
   if (val == 'METADATA_INSTANCE.CREATED') {
-    return 'METADATA_INSTANCE.CREATED';
+    return val;
   }
   if (val == 'METADATA_INSTANCE.UPDATED') {
-    return 'METADATA_INSTANCE.UPDATED';
+    return val;
   }
   if (val == 'METADATA_INSTANCE.DELETED') {
-    return 'METADATA_INSTANCE.DELETED';
+    return val;
   }
   if (val == 'FOLDER.CREATED') {
-    return 'FOLDER.CREATED';
+    return val;
   }
   if (val == 'FOLDER.RENAMED') {
-    return 'FOLDER.RENAMED';
+    return val;
   }
   if (val == 'FOLDER.DOWNLOADED') {
-    return 'FOLDER.DOWNLOADED';
+    return val;
   }
   if (val == 'FOLDER.RESTORED') {
-    return 'FOLDER.RESTORED';
+    return val;
   }
   if (val == 'FOLDER.DELETED') {
-    return 'FOLDER.DELETED';
+    return val;
   }
   if (val == 'FOLDER.COPIED') {
-    return 'FOLDER.COPIED';
+    return val;
   }
   if (val == 'FOLDER.MOVED') {
-    return 'FOLDER.MOVED';
+    return val;
   }
   if (val == 'FOLDER.TRASHED') {
-    return 'FOLDER.TRASHED';
+    return val;
   }
   if (val == 'WEBHOOK.DELETED') {
-    return 'WEBHOOK.DELETED';
+    return val;
   }
   if (val == 'COLLABORATION.CREATED') {
-    return 'COLLABORATION.CREATED';
+    return val;
   }
   if (val == 'COLLABORATION.ACCEPTED') {
-    return 'COLLABORATION.ACCEPTED';
+    return val;
   }
   if (val == 'COLLABORATION.REJECTED') {
-    return 'COLLABORATION.REJECTED';
+    return val;
   }
   if (val == 'COLLABORATION.REMOVED') {
-    return 'COLLABORATION.REMOVED';
+    return val;
   }
   if (val == 'COLLABORATION.UPDATED') {
-    return 'COLLABORATION.UPDATED';
+    return val;
   }
   if (val == 'SHARED_LINK.DELETED') {
-    return 'SHARED_LINK.DELETED';
+    return val;
   }
   if (val == 'SHARED_LINK.CREATED') {
-    return 'SHARED_LINK.CREATED';
+    return val;
   }
   if (val == 'SHARED_LINK.UPDATED') {
-    return 'SHARED_LINK.UPDATED';
+    return val;
   }
   if (val == 'SIGN_REQUEST.COMPLETED') {
-    return 'SIGN_REQUEST.COMPLETED';
+    return val;
   }
   if (val == 'SIGN_REQUEST.DECLINED') {
-    return 'SIGN_REQUEST.DECLINED';
+    return val;
   }
   if (val == 'SIGN_REQUEST.EXPIRED') {
-    return 'SIGN_REQUEST.EXPIRED';
+    return val;
   }
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
-    return 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebhookInvocationTriggerField",
   });
 }
 export function serializeWebhookInvocation(

@@ -36,16 +36,11 @@ export function serializeFileVersionRetentionTypeField(
 export function deserializeFileVersionRetentionTypeField(
   val: SerializedData
 ): FileVersionRetentionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileVersionRetentionTypeField"',
-    });
-  }
   if (val == 'file_version_retention') {
-    return 'file_version_retention';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileVersionRetentionTypeField",
   });
 }
 export function serializeFileVersionRetention(

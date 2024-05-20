@@ -45,17 +45,10 @@ export function serializeClientErrorTypeField(
 export function deserializeClientErrorTypeField(
   val: SerializedData
 ): ClientErrorTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClientErrorTypeField"',
-    });
-  }
   if (val == 'error') {
-    return 'error';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize ClientErrorTypeField" });
 }
 export function serializeClientErrorCodeField(
   val: ClientErrorCodeField
@@ -65,65 +58,58 @@ export function serializeClientErrorCodeField(
 export function deserializeClientErrorCodeField(
   val: SerializedData
 ): ClientErrorCodeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ClientErrorCodeField"',
-    });
-  }
   if (val == 'created') {
-    return 'created';
+    return val;
   }
   if (val == 'accepted') {
-    return 'accepted';
+    return val;
   }
   if (val == 'no_content') {
-    return 'no_content';
+    return val;
   }
   if (val == 'redirect') {
-    return 'redirect';
+    return val;
   }
   if (val == 'not_modified') {
-    return 'not_modified';
+    return val;
   }
   if (val == 'bad_request') {
-    return 'bad_request';
+    return val;
   }
   if (val == 'unauthorized') {
-    return 'unauthorized';
+    return val;
   }
   if (val == 'forbidden') {
-    return 'forbidden';
+    return val;
   }
   if (val == 'not_found') {
-    return 'not_found';
+    return val;
   }
   if (val == 'method_not_allowed') {
-    return 'method_not_allowed';
+    return val;
   }
   if (val == 'conflict') {
-    return 'conflict';
+    return val;
   }
   if (val == 'precondition_failed') {
-    return 'precondition_failed';
+    return val;
   }
   if (val == 'too_many_requests') {
-    return 'too_many_requests';
+    return val;
   }
   if (val == 'internal_server_error') {
-    return 'internal_server_error';
+    return val;
   }
   if (val == 'unavailable') {
-    return 'unavailable';
+    return val;
   }
   if (val == 'item_name_invalid') {
-    return 'item_name_invalid';
+    return val;
   }
   if (val == 'insufficient_scope') {
-    return 'insufficient_scope';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize ClientErrorCodeField" });
 }
 export function serializeClientErrorContextInfoField(
   val: ClientErrorContextInfoField

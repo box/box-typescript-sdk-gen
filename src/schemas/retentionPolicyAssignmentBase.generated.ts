@@ -36,17 +36,11 @@ export function serializeRetentionPolicyAssignmentBaseTypeField(
 export function deserializeRetentionPolicyAssignmentBaseTypeField(
   val: SerializedData
 ): RetentionPolicyAssignmentBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "RetentionPolicyAssignmentBaseTypeField"',
-    });
-  }
   if (val == 'retention_policy_assignment') {
-    return 'retention_policy_assignment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyAssignmentBaseTypeField",
   });
 }
 export function serializeRetentionPolicyAssignmentBase(

@@ -29,16 +29,11 @@ export function serializeDevicePinnersOrderByField(
 export function deserializeDevicePinnersOrderByField(
   val: SerializedData
 ): DevicePinnersOrderByField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DevicePinnersOrderByField"',
-    });
-  }
   if (val == 'id') {
-    return 'id';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize DevicePinnersOrderByField",
   });
 }
 export function serializeDevicePinnersOrderDirectionField(
@@ -49,19 +44,14 @@ export function serializeDevicePinnersOrderDirectionField(
 export function deserializeDevicePinnersOrderDirectionField(
   val: SerializedData
 ): DevicePinnersOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DevicePinnersOrderDirectionField"',
-    });
-  }
   if (val == 'asc') {
-    return 'asc';
+    return val;
   }
   if (val == 'desc') {
-    return 'desc';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize DevicePinnersOrderDirectionField",
   });
 }
 export function serializeDevicePinnersOrderField(

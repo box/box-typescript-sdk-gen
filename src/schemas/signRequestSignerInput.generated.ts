@@ -49,31 +49,26 @@ export function serializeSignRequestSignerInputTypeField(
 export function deserializeSignRequestSignerInputTypeField(
   val: SerializedData
 ): SignRequestSignerInputTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SignRequestSignerInputTypeField"',
-    });
-  }
   if (val == 'signature') {
-    return 'signature';
+    return val;
   }
   if (val == 'date') {
-    return 'date';
+    return val;
   }
   if (val == 'text') {
-    return 'text';
+    return val;
   }
   if (val == 'checkbox') {
-    return 'checkbox';
+    return val;
   }
   if (val == 'radio') {
-    return 'radio';
+    return val;
   }
   if (val == 'dropdown') {
-    return 'dropdown';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestSignerInputTypeField",
   });
 }
 export function serializeSignRequestSignerInputContentTypeField(
@@ -84,59 +79,53 @@ export function serializeSignRequestSignerInputContentTypeField(
 export function deserializeSignRequestSignerInputContentTypeField(
   val: SerializedData
 ): SignRequestSignerInputContentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SignRequestSignerInputContentTypeField"',
-    });
-  }
   if (val == 'signature') {
-    return 'signature';
+    return val;
   }
   if (val == 'initial') {
-    return 'initial';
+    return val;
   }
   if (val == 'stamp') {
-    return 'stamp';
+    return val;
   }
   if (val == 'date') {
-    return 'date';
+    return val;
   }
   if (val == 'checkbox') {
-    return 'checkbox';
+    return val;
   }
   if (val == 'text') {
-    return 'text';
+    return val;
   }
   if (val == 'full_name') {
-    return 'full_name';
+    return val;
   }
   if (val == 'first_name') {
-    return 'first_name';
+    return val;
   }
   if (val == 'last_name') {
-    return 'last_name';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'title') {
-    return 'title';
+    return val;
   }
   if (val == 'email') {
-    return 'email';
+    return val;
   }
   if (val == 'attachment') {
-    return 'attachment';
+    return val;
   }
   if (val == 'radio') {
-    return 'radio';
+    return val;
   }
   if (val == 'dropdown') {
-    return 'dropdown';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestSignerInputContentTypeField",
   });
 }
 export function serializeSignRequestSignerInput(

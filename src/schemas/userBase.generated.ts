@@ -33,17 +33,10 @@ export function serializeUserBaseTypeField(
 export function deserializeUserBaseTypeField(
   val: SerializedData
 ): UserBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UserBaseTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize UserBaseTypeField" });
 }
 export function serializeUserBase(val: UserBase): SerializedData {
   return { ['id']: val.id, ['type']: serializeUserBaseTypeField(val.type) };

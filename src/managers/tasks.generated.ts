@@ -451,16 +451,11 @@ export function serializeCreateTaskRequestBodyItemTypeField(
 export function deserializeCreateTaskRequestBodyItemTypeField(
   val: SerializedData
 ): CreateTaskRequestBodyItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateTaskRequestBodyItemTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTaskRequestBodyItemTypeField",
   });
 }
 export function serializeCreateTaskRequestBodyItemField(
@@ -503,19 +498,14 @@ export function serializeCreateTaskRequestBodyActionField(
 export function deserializeCreateTaskRequestBodyActionField(
   val: SerializedData
 ): CreateTaskRequestBodyActionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateTaskRequestBodyActionField"',
-    });
-  }
   if (val == 'review') {
-    return 'review';
+    return val;
   }
   if (val == 'complete') {
-    return 'complete';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTaskRequestBodyActionField",
   });
 }
 export function serializeCreateTaskRequestBodyCompletionRuleField(
@@ -526,20 +516,14 @@ export function serializeCreateTaskRequestBodyCompletionRuleField(
 export function deserializeCreateTaskRequestBodyCompletionRuleField(
   val: SerializedData
 ): CreateTaskRequestBodyCompletionRuleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTaskRequestBodyCompletionRuleField"',
-    });
-  }
   if (val == 'all_assignees') {
-    return 'all_assignees';
+    return val;
   }
   if (val == 'any_assignee') {
-    return 'any_assignee';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTaskRequestBodyCompletionRuleField",
   });
 }
 export function serializeCreateTaskRequestBody(
@@ -614,19 +598,14 @@ export function serializeUpdateTaskByIdRequestBodyActionField(
 export function deserializeUpdateTaskByIdRequestBodyActionField(
   val: SerializedData
 ): UpdateTaskByIdRequestBodyActionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateTaskByIdRequestBodyActionField"',
-    });
-  }
   if (val == 'review') {
-    return 'review';
+    return val;
   }
   if (val == 'complete') {
-    return 'complete';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateTaskByIdRequestBodyActionField",
   });
 }
 export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
@@ -637,20 +616,14 @@ export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
 export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
   val: SerializedData
 ): UpdateTaskByIdRequestBodyCompletionRuleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateTaskByIdRequestBodyCompletionRuleField"',
-    });
-  }
   if (val == 'all_assignees') {
-    return 'all_assignees';
+    return val;
   }
   if (val == 'any_assignee') {
-    return 'any_assignee';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateTaskByIdRequestBodyCompletionRuleField",
   });
 }
 export function serializeUpdateTaskByIdRequestBody(

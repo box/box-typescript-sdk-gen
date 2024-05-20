@@ -52,16 +52,11 @@ export function serializeSearchResultsTypeField(
 export function deserializeSearchResultsTypeField(
   val: SerializedData
 ): SearchResultsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SearchResultsTypeField"',
-    });
-  }
   if (val == 'search_results_items') {
-    return 'search_results_items';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchResultsTypeField",
   });
 }
 export function serializeSearchResults(val: SearchResults): SerializedData {

@@ -373,17 +373,12 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFiel
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
   val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyTosTypeField"',
-    });
-  }
   if (val == 'terms_of_service') {
-    return 'terms_of_service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateTermsOfServiceStatusForUserRequestBodyTosTypeField",
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
@@ -489,17 +484,12 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeFie
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
   val: SerializedData
 ): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTermsOfServiceStatusForUserRequestBodyUserTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateTermsOfServiceStatusForUserRequestBodyUserTypeField",
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(

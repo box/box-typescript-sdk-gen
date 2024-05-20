@@ -54,16 +54,11 @@ export function serializeSearchResultsWithSharedLinksTypeField(
 export function deserializeSearchResultsWithSharedLinksTypeField(
   val: SerializedData
 ): SearchResultsWithSharedLinksTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SearchResultsWithSharedLinksTypeField"',
-    });
-  }
   if (val == 'search_results_with_shared_links') {
-    return 'search_results_with_shared_links';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SearchResultsWithSharedLinksTypeField",
   });
 }
 export function serializeSearchResultsWithSharedLinks(

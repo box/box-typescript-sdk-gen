@@ -41,5 +41,7 @@ export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
   if (val.type == 'search_results_with_shared_links') {
     return deserializeSearchResultsWithSharedLinks(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({
+    message: "Can't deserialize SearchResultsOrSearchResultsWithSharedLinks",
+  });
 }

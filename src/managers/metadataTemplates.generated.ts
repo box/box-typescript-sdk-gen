@@ -727,19 +727,14 @@ export function serializeGetMetadataTemplateScope(
 export function deserializeGetMetadataTemplateScope(
   val: SerializedData
 ): GetMetadataTemplateScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetMetadataTemplateScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetMetadataTemplateScope",
   });
 }
 export function serializeUpdateMetadataTemplateScope(
@@ -750,19 +745,14 @@ export function serializeUpdateMetadataTemplateScope(
 export function deserializeUpdateMetadataTemplateScope(
   val: SerializedData
 ): UpdateMetadataTemplateScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateMetadataTemplateScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateMetadataTemplateScope",
   });
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
@@ -773,53 +763,47 @@ export function serializeUpdateMetadataTemplateRequestBodyOpField(
 export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   val: SerializedData
 ): UpdateMetadataTemplateRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateMetadataTemplateRequestBodyOpField"',
-    });
-  }
   if (val == 'editTemplate') {
-    return 'editTemplate';
+    return val;
   }
   if (val == 'addField') {
-    return 'addField';
+    return val;
   }
   if (val == 'reorderFields') {
-    return 'reorderFields';
+    return val;
   }
   if (val == 'addEnumOption') {
-    return 'addEnumOption';
+    return val;
   }
   if (val == 'reorderEnumOptions') {
-    return 'reorderEnumOptions';
+    return val;
   }
   if (val == 'reorderMultiSelectOptions') {
-    return 'reorderMultiSelectOptions';
+    return val;
   }
   if (val == 'addMultiSelectOption') {
-    return 'addMultiSelectOption';
+    return val;
   }
   if (val == 'editField') {
-    return 'editField';
+    return val;
   }
   if (val == 'removeField') {
-    return 'removeField';
+    return val;
   }
   if (val == 'editEnumOption') {
-    return 'editEnumOption';
+    return val;
   }
   if (val == 'removeEnumOption') {
-    return 'removeEnumOption';
+    return val;
   }
   if (val == 'editMultiSelectOption') {
-    return 'editMultiSelectOption';
+    return val;
   }
   if (val == 'removeMultiSelectOption') {
-    return 'removeMultiSelectOption';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateMetadataTemplateRequestBodyOpField",
   });
 }
 export function serializeUpdateMetadataTemplateRequestBody(
@@ -1016,19 +1000,14 @@ export function serializeDeleteMetadataTemplateScope(
 export function deserializeDeleteMetadataTemplateScope(
   val: SerializedData
 ): DeleteMetadataTemplateScope {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "DeleteMetadataTemplateScope"',
-    });
-  }
   if (val == 'global') {
-    return 'global';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize DeleteMetadataTemplateScope",
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
@@ -1039,29 +1018,24 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
 export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   val: SerializedData
 ): CreateMetadataTemplateRequestBodyFieldsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateMetadataTemplateRequestBodyFieldsTypeField"',
-    });
-  }
   if (val == 'string') {
-    return 'string';
+    return val;
   }
   if (val == 'float') {
-    return 'float';
+    return val;
   }
   if (val == 'date') {
-    return 'date';
+    return val;
   }
   if (val == 'enum') {
-    return 'enum';
+    return val;
   }
   if (val == 'multiSelect') {
-    return 'multiSelect';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateMetadataTemplateRequestBodyFieldsTypeField",
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(

@@ -150,17 +150,10 @@ export function serializeTrashFolderTypeField(
 export function deserializeTrashFolderTypeField(
   val: SerializedData
 ): TrashFolderTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFolderTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TrashFolderTypeField" });
 }
 export function serializeTrashFolderPathCollectionEntriesTypeField(
   val: TrashFolderPathCollectionEntriesTypeField
@@ -170,17 +163,11 @@ export function serializeTrashFolderPathCollectionEntriesTypeField(
 export function deserializeTrashFolderPathCollectionEntriesTypeField(
   val: SerializedData
 ): TrashFolderPathCollectionEntriesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "TrashFolderPathCollectionEntriesTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFolderPathCollectionEntriesTypeField",
   });
 }
 export function serializeTrashFolderPathCollectionEntriesField(
@@ -313,22 +300,17 @@ export function serializeTrashFolderItemStatusField(
 export function deserializeTrashFolderItemStatusField(
   val: SerializedData
 ): TrashFolderItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFolderItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFolderItemStatusField",
   });
 }
 export function serializeTrashFolder(val: TrashFolder): SerializedData {

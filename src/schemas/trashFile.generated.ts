@@ -158,17 +158,10 @@ export function serializeTrashFileTypeField(
 export function deserializeTrashFileTypeField(
   val: SerializedData
 ): TrashFileTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFileTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TrashFileTypeField" });
 }
 export function serializeTrashFilePathCollectionEntriesTypeField(
   val: TrashFilePathCollectionEntriesTypeField
@@ -178,17 +171,11 @@ export function serializeTrashFilePathCollectionEntriesTypeField(
 export function deserializeTrashFilePathCollectionEntriesTypeField(
   val: SerializedData
 ): TrashFilePathCollectionEntriesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "TrashFilePathCollectionEntriesTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFilePathCollectionEntriesTypeField",
   });
 }
 export function serializeTrashFilePathCollectionEntriesField(
@@ -321,22 +308,17 @@ export function serializeTrashFileItemStatusField(
 export function deserializeTrashFileItemStatusField(
   val: SerializedData
 ): TrashFileItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFileItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFileItemStatusField",
   });
 }
 export function serializeTrashFile(val: TrashFile): SerializedData {

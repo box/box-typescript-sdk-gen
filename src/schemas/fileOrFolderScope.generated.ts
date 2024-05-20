@@ -34,49 +34,44 @@ export function serializeFileOrFolderScopeScopeField(
 export function deserializeFileOrFolderScopeScopeField(
   val: SerializedData
 ): FileOrFolderScopeScopeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileOrFolderScopeScopeField"',
-    });
-  }
   if (val == 'annotation_edit') {
-    return 'annotation_edit';
+    return val;
   }
   if (val == 'annotation_view_all') {
-    return 'annotation_view_all';
+    return val;
   }
   if (val == 'annotation_view_self') {
-    return 'annotation_view_self';
+    return val;
   }
   if (val == 'base_explorer') {
-    return 'base_explorer';
+    return val;
   }
   if (val == 'base_picker') {
-    return 'base_picker';
+    return val;
   }
   if (val == 'base_preview') {
-    return 'base_preview';
+    return val;
   }
   if (val == 'base_upload') {
-    return 'base_upload';
+    return val;
   }
   if (val == 'item_delete') {
-    return 'item_delete';
+    return val;
   }
   if (val == 'item_download') {
-    return 'item_download';
+    return val;
   }
   if (val == 'item_preview') {
-    return 'item_preview';
+    return val;
   }
   if (val == 'item_rename') {
-    return 'item_rename';
+    return val;
   }
   if (val == 'item_share') {
-    return 'item_share';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileOrFolderScopeScopeField",
   });
 }
 export function serializeFileOrFolderScope(

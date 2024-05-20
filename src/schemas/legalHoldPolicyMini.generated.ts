@@ -35,16 +35,11 @@ export function serializeLegalHoldPolicyMiniTypeField(
 export function deserializeLegalHoldPolicyMiniTypeField(
   val: SerializedData
 ): LegalHoldPolicyMiniTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "LegalHoldPolicyMiniTypeField"',
-    });
-  }
   if (val == 'legal_hold_policy') {
-    return 'legal_hold_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize LegalHoldPolicyMiniTypeField",
   });
 }
 export function serializeLegalHoldPolicyMini(
