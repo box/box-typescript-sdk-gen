@@ -29,19 +29,14 @@ export function serializeFileVersionsOrderDirectionField(
 export function deserializeFileVersionsOrderDirectionField(
   val: SerializedData
 ): FileVersionsOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileVersionsOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileVersionsOrderDirectionField",
   });
 }
 export function serializeFileVersionsOrderField(

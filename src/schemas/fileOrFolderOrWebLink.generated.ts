@@ -45,5 +45,5 @@ export function deserializeFileOrFolderOrWebLink(
   if (val.type == 'web_link') {
     return deserializeWebLink(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({ message: "Can't deserialize FileOrFolderOrWebLink" });
 }

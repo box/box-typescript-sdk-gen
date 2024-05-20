@@ -34,16 +34,11 @@ export function serializeGroupMembershipTypeField(
 export function deserializeGroupMembershipTypeField(
   val: SerializedData
 ): GroupMembershipTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupMembershipTypeField"',
-    });
-  }
   if (val == 'group_membership') {
-    return 'group_membership';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupMembershipTypeField",
   });
 }
 export function serializeGroupMembershipRoleField(
@@ -54,19 +49,14 @@ export function serializeGroupMembershipRoleField(
 export function deserializeGroupMembershipRoleField(
   val: SerializedData
 ): GroupMembershipRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GroupMembershipRoleField"',
-    });
-  }
   if (val == 'member') {
-    return 'member';
+    return val;
   }
   if (val == 'admin') {
-    return 'admin';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GroupMembershipRoleField",
   });
 }
 export function serializeGroupMembership(val: GroupMembership): SerializedData {

@@ -86,16 +86,11 @@ export function serializeRetentionPolicyAssignmentTypeField(
 export function deserializeRetentionPolicyAssignmentTypeField(
   val: SerializedData
 ): RetentionPolicyAssignmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RetentionPolicyAssignmentTypeField"',
-    });
-  }
   if (val == 'retention_policy_assignment') {
-    return 'retention_policy_assignment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyAssignmentTypeField",
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToTypeField(
@@ -106,23 +101,17 @@ export function serializeRetentionPolicyAssignmentAssignedToTypeField(
 export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
   val: SerializedData
 ): RetentionPolicyAssignmentAssignedToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "RetentionPolicyAssignmentAssignedToTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   if (val == 'metadata_template') {
-    return 'metadata_template';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyAssignmentAssignedToTypeField",
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToField(

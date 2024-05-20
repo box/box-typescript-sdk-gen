@@ -29,19 +29,14 @@ export function serializeUsersOrderDirectionField(
 export function deserializeUsersOrderDirectionField(
   val: SerializedData
 ): UsersOrderDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UsersOrderDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UsersOrderDirectionField",
   });
 }
 export function serializeUsersOrderField(val: UsersOrderField): SerializedData {

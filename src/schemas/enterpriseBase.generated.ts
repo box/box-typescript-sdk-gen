@@ -19,16 +19,11 @@ export function serializeEnterpriseBaseTypeField(
 export function deserializeEnterpriseBaseTypeField(
   val: SerializedData
 ): EnterpriseBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "EnterpriseBaseTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize EnterpriseBaseTypeField",
   });
 }
 export function serializeEnterpriseBase(val: EnterpriseBase): SerializedData {

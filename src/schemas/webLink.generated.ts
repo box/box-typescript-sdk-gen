@@ -136,22 +136,17 @@ export function serializeWebLinkSharedLinkAccessField(
 export function deserializeWebLinkSharedLinkAccessField(
   val: SerializedData
 ): WebLinkSharedLinkAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebLinkSharedLinkAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebLinkSharedLinkAccessField",
   });
 }
 export function serializeWebLinkSharedLinkEffectiveAccessField(
@@ -162,22 +157,17 @@ export function serializeWebLinkSharedLinkEffectiveAccessField(
 export function deserializeWebLinkSharedLinkEffectiveAccessField(
   val: SerializedData
 ): WebLinkSharedLinkEffectiveAccessField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebLinkSharedLinkEffectiveAccessField"',
-    });
-  }
   if (val == 'open') {
-    return 'open';
+    return val;
   }
   if (val == 'company') {
-    return 'company';
+    return val;
   }
   if (val == 'collaborators') {
-    return 'collaborators';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebLinkSharedLinkEffectiveAccessField",
   });
 }
 export function serializeWebLinkSharedLinkEffectivePermissionField(
@@ -188,26 +178,20 @@ export function serializeWebLinkSharedLinkEffectivePermissionField(
 export function deserializeWebLinkSharedLinkEffectivePermissionField(
   val: SerializedData
 ): WebLinkSharedLinkEffectivePermissionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "WebLinkSharedLinkEffectivePermissionField"',
-    });
-  }
   if (val == 'can_edit') {
-    return 'can_edit';
+    return val;
   }
   if (val == 'can_download') {
-    return 'can_download';
+    return val;
   }
   if (val == 'can_preview') {
-    return 'can_preview';
+    return val;
   }
   if (val == 'no_access') {
-    return 'no_access';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebLinkSharedLinkEffectivePermissionField",
   });
 }
 export function serializeWebLinkSharedLinkPermissionsField(
@@ -441,22 +425,17 @@ export function serializeWebLinkItemStatusField(
 export function deserializeWebLinkItemStatusField(
   val: SerializedData
 ): WebLinkItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WebLinkItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WebLinkItemStatusField",
   });
 }
 export function serializeWebLink(val: WebLink): SerializedData {

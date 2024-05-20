@@ -114,16 +114,11 @@ export function serializeKeywordSkillCardTypeField(
 export function deserializeKeywordSkillCardTypeField(
   val: SerializedData
 ): KeywordSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "KeywordSkillCardTypeField"',
-    });
-  }
   if (val == 'skill_card') {
-    return 'skill_card';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize KeywordSkillCardTypeField",
   });
 }
 export function serializeKeywordSkillCardSkillCardTypeField(
@@ -134,16 +129,11 @@ export function serializeKeywordSkillCardSkillCardTypeField(
 export function deserializeKeywordSkillCardSkillCardTypeField(
   val: SerializedData
 ): KeywordSkillCardSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "KeywordSkillCardSkillCardTypeField"',
-    });
-  }
   if (val == 'keyword') {
-    return 'keyword';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize KeywordSkillCardSkillCardTypeField",
   });
 }
 export function serializeKeywordSkillCardSkillCardTitleField(
@@ -195,16 +185,11 @@ export function serializeKeywordSkillCardSkillTypeField(
 export function deserializeKeywordSkillCardSkillTypeField(
   val: SerializedData
 ): KeywordSkillCardSkillTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "KeywordSkillCardSkillTypeField"',
-    });
-  }
   if (val == 'service') {
-    return 'service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize KeywordSkillCardSkillTypeField",
   });
 }
 export function serializeKeywordSkillCardSkillField(
@@ -291,16 +276,11 @@ export function serializeKeywordSkillCardInvocationTypeField(
 export function deserializeKeywordSkillCardInvocationTypeField(
   val: SerializedData
 ): KeywordSkillCardInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "KeywordSkillCardInvocationTypeField"',
-    });
-  }
   if (val == 'skill_invocation') {
-    return 'skill_invocation';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize KeywordSkillCardInvocationTypeField",
   });
 }
 export function serializeKeywordSkillCardInvocationField(

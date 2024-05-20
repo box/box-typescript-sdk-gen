@@ -35,16 +35,11 @@ export function serializeUploadSessionTypeField(
 export function deserializeUploadSessionTypeField(
   val: SerializedData
 ): UploadSessionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UploadSessionTypeField"',
-    });
-  }
   if (val == 'upload_session') {
-    return 'upload_session';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UploadSessionTypeField",
   });
 }
 export function serializeUploadSessionSessionEndpointsField(

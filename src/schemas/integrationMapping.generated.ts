@@ -88,16 +88,11 @@ export function serializeIntegrationMappingTypeField(
 export function deserializeIntegrationMappingTypeField(
   val: SerializedData
 ): IntegrationMappingTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "IntegrationMappingTypeField"',
-    });
-  }
   if (val == 'integration_mapping') {
-    return 'integration_mapping';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingTypeField",
   });
 }
 export function serializeIntegrationMapping(

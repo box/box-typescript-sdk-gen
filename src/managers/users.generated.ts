@@ -644,22 +644,17 @@ export function serializeGetUsersQueryParamsUserTypeField(
 export function deserializeGetUsersQueryParamsUserTypeField(
   val: SerializedData
 ): GetUsersQueryParamsUserTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetUsersQueryParamsUserTypeField"',
-    });
-  }
   if (val == 'all') {
-    return 'all';
+    return val;
   }
   if (val == 'managed') {
-    return 'managed';
+    return val;
   }
   if (val == 'external') {
-    return 'external';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetUsersQueryParamsUserTypeField",
   });
 }
 export function serializeCreateUserRequestBodyRoleField(
@@ -670,19 +665,14 @@ export function serializeCreateUserRequestBodyRoleField(
 export function deserializeCreateUserRequestBodyRoleField(
   val: SerializedData
 ): CreateUserRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateUserRequestBodyRoleField"',
-    });
-  }
   if (val == 'coadmin') {
-    return 'coadmin';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateUserRequestBodyRoleField",
   });
 }
 export function serializeCreateUserRequestBodyStatusField(
@@ -693,25 +683,20 @@ export function serializeCreateUserRequestBodyStatusField(
 export function deserializeCreateUserRequestBodyStatusField(
   val: SerializedData
 ): CreateUserRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateUserRequestBodyStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'inactive') {
-    return 'inactive';
+    return val;
   }
   if (val == 'cannot_delete_edit') {
-    return 'cannot_delete_edit';
+    return val;
   }
   if (val == 'cannot_delete_edit_upload') {
-    return 'cannot_delete_edit_upload';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateUserRequestBodyStatusField",
   });
 }
 export function serializeCreateUserRequestBody(
@@ -965,19 +950,14 @@ export function serializeUpdateUserByIdRequestBodyRoleField(
 export function deserializeUpdateUserByIdRequestBodyRoleField(
   val: SerializedData
 ): UpdateUserByIdRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateUserByIdRequestBodyRoleField"',
-    });
-  }
   if (val == 'coadmin') {
-    return 'coadmin';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateUserByIdRequestBodyRoleField",
   });
 }
 export function serializeUpdateUserByIdRequestBodyStatusField(
@@ -988,25 +968,20 @@ export function serializeUpdateUserByIdRequestBodyStatusField(
 export function deserializeUpdateUserByIdRequestBodyStatusField(
   val: SerializedData
 ): UpdateUserByIdRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UpdateUserByIdRequestBodyStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'inactive') {
-    return 'inactive';
+    return val;
   }
   if (val == 'cannot_delete_edit') {
-    return 'cannot_delete_edit';
+    return val;
   }
   if (val == 'cannot_delete_edit_upload') {
-    return 'cannot_delete_edit_upload';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateUserByIdRequestBodyStatusField",
   });
 }
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(

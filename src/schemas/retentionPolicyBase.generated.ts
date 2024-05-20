@@ -35,16 +35,11 @@ export function serializeRetentionPolicyBaseTypeField(
 export function deserializeRetentionPolicyBaseTypeField(
   val: SerializedData
 ): RetentionPolicyBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "RetentionPolicyBaseTypeField"',
-    });
-  }
   if (val == 'retention_policy') {
-    return 'retention_policy';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize RetentionPolicyBaseTypeField",
   });
 }
 export function serializeRetentionPolicyBase(

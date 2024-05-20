@@ -23,20 +23,14 @@ export function serializeEventsNextStreamPositionField(
 export function deserializeEventsNextStreamPositionField(
   val: SerializedData
 ): EventsNextStreamPositionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "EventsNextStreamPositionField"',
-    });
+  if (sdIsString(val)) {
+    return val;
   }
-  if (!sdIsNumber(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a number for "EventsNextStreamPositionField"',
-    });
+  if (sdIsNumber(val)) {
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat(
-      'Expected one of string, number type for union EventsNextStreamPositionField'
-    ) as string,
+    message: "Can't deserialize EventsNextStreamPositionField",
   });
 }
 export function serializeEvents(val: Events): SerializedData {

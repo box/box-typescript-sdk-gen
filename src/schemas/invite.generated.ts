@@ -71,17 +71,10 @@ export function serializeInviteTypeField(val: InviteTypeField): SerializedData {
 export function deserializeInviteTypeField(
   val: SerializedData
 ): InviteTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "InviteTypeField"',
-    });
-  }
   if (val == 'invite') {
-    return 'invite';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize InviteTypeField" });
 }
 export function serializeInviteInvitedToTypeField(
   val: InviteInvitedToTypeField
@@ -91,16 +84,11 @@ export function serializeInviteInvitedToTypeField(
 export function deserializeInviteInvitedToTypeField(
   val: SerializedData
 ): InviteInvitedToTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "InviteInvitedToTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize InviteInvitedToTypeField",
   });
 }
 export function serializeInviteInvitedToField(

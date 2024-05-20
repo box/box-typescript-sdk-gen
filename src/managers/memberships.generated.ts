@@ -725,20 +725,14 @@ export function serializeCreateGroupMembershipRequestBodyRoleField(
 export function deserializeCreateGroupMembershipRequestBodyRoleField(
   val: SerializedData
 ): CreateGroupMembershipRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateGroupMembershipRequestBodyRoleField"',
-    });
-  }
   if (val == 'member') {
-    return 'member';
+    return val;
   }
   if (val == 'admin') {
-    return 'admin';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateGroupMembershipRequestBodyRoleField",
   });
 }
 export function serializeCreateGroupMembershipRequestBody(
@@ -836,20 +830,14 @@ export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
 export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   val: SerializedData
 ): UpdateGroupMembershipByIdRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateGroupMembershipByIdRequestBodyRoleField"',
-    });
-  }
   if (val == 'member') {
-    return 'member';
+    return val;
   }
   if (val == 'admin') {
-    return 'admin';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateGroupMembershipByIdRequestBodyRoleField",
   });
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(

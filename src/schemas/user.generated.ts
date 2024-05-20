@@ -51,26 +51,19 @@ export function serializeUserStatusField(val: UserStatusField): SerializedData {
 export function deserializeUserStatusField(
   val: SerializedData
 ): UserStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "UserStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'inactive') {
-    return 'inactive';
+    return val;
   }
   if (val == 'cannot_delete_edit') {
-    return 'cannot_delete_edit';
+    return val;
   }
   if (val == 'cannot_delete_edit_upload') {
-    return 'cannot_delete_edit_upload';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize UserStatusField" });
 }
 export function serializeUserNotificationEmailField(
   val: UserNotificationEmailField

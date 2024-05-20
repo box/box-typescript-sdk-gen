@@ -38,5 +38,7 @@ export function deserializeGroupMiniOrUserCollaborations(
   if (val.type == 'user') {
     return deserializeUserCollaborations(val);
   }
-  throw new BoxSdkError({ message: 'unknown type' });
+  throw new BoxSdkError({
+    message: "Can't deserialize GroupMiniOrUserCollaborations",
+  });
 }

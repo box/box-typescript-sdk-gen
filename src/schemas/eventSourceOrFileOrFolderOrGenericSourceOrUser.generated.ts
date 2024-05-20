@@ -77,5 +77,13 @@ export function deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(
   if (val.type == 'user') {
     return deserializeUser(val);
   }
-  return deserializeGenericSource(val);
+  try {
+    return deserializeGenericSource(val);
+  } catch (error) {
+    void 0;
+  } finally {
+  }
+  throw new BoxSdkError({
+    message: "Can't deserialize EventSourceOrFileOrFolderOrGenericSourceOrUser",
+  });
 }

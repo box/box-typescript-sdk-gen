@@ -35,16 +35,11 @@ export function serializeFileVersionBaseTypeField(
 export function deserializeFileVersionBaseTypeField(
   val: SerializedData
 ): FileVersionBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileVersionBaseTypeField"',
-    });
-  }
   if (val == 'file_version') {
-    return 'file_version';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileVersionBaseTypeField",
   });
 }
 export function serializeFileVersionBase(val: FileVersionBase): SerializedData {

@@ -136,16 +136,11 @@ export function serializeCollaborationTypeField(
 export function deserializeCollaborationTypeField(
   val: SerializedData
 ): CollaborationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaborationTypeField"',
-    });
-  }
   if (val == 'collaboration') {
-    return 'collaboration';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationTypeField",
   });
 }
 export function serializeCollaborationRoleField(
@@ -156,37 +151,32 @@ export function serializeCollaborationRoleField(
 export function deserializeCollaborationRoleField(
   val: SerializedData
 ): CollaborationRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaborationRoleField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   if (val == 'owner') {
-    return 'owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationRoleField",
   });
 }
 export function serializeCollaborationStatusField(
@@ -197,22 +187,17 @@ export function serializeCollaborationStatusField(
 export function deserializeCollaborationStatusField(
   val: SerializedData
 ): CollaborationStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CollaborationStatusField"',
-    });
-  }
   if (val == 'accepted') {
-    return 'accepted';
+    return val;
   }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'rejected') {
-    return 'rejected';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CollaborationStatusField",
   });
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(

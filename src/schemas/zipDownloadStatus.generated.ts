@@ -25,22 +25,17 @@ export function serializeZipDownloadStatusStateField(
 export function deserializeZipDownloadStatusStateField(
   val: SerializedData
 ): ZipDownloadStatusStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ZipDownloadStatusStateField"',
-    });
-  }
   if (val == 'in_progress') {
-    return 'in_progress';
+    return val;
   }
   if (val == 'failed') {
-    return 'failed';
+    return val;
   }
   if (val == 'succeeded') {
-    return 'succeeded';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ZipDownloadStatusStateField",
   });
 }
 export function serializeZipDownloadStatus(

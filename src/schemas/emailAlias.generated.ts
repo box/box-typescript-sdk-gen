@@ -21,17 +21,10 @@ export function serializeEmailAliasTypeField(
 export function deserializeEmailAliasTypeField(
   val: SerializedData
 ): EmailAliasTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "EmailAliasTypeField"',
-    });
-  }
   if (val == 'email_alias') {
-    return 'email_alias';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize EmailAliasTypeField" });
 }
 export function serializeEmailAlias(val: EmailAlias): SerializedData {
   return {

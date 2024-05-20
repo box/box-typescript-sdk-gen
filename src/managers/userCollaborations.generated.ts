@@ -462,38 +462,32 @@ export function serializeUpdateCollaborationByIdRequestBodyRoleField(
 export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   val: SerializedData
 ): UpdateCollaborationByIdRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateCollaborationByIdRequestBodyRoleField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   if (val == 'owner') {
-    return 'owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateCollaborationByIdRequestBodyRoleField",
   });
 }
 export function serializeUpdateCollaborationByIdRequestBodyStatusField(
@@ -504,23 +498,17 @@ export function serializeUpdateCollaborationByIdRequestBodyStatusField(
 export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   val: SerializedData
 ): UpdateCollaborationByIdRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateCollaborationByIdRequestBodyStatusField"',
-    });
-  }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'accepted') {
-    return 'accepted';
+    return val;
   }
   if (val == 'rejected') {
-    return 'rejected';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateCollaborationByIdRequestBodyStatusField",
   });
 }
 export function serializeUpdateCollaborationByIdRequestBody(
@@ -588,20 +576,14 @@ export function serializeCreateCollaborationRequestBodyItemTypeField(
 export function deserializeCreateCollaborationRequestBodyItemTypeField(
   val: SerializedData
 ): CreateCollaborationRequestBodyItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateCollaborationRequestBodyItemTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateCollaborationRequestBodyItemTypeField",
   });
 }
 export function serializeCreateCollaborationRequestBodyItemField(
@@ -647,20 +629,15 @@ export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
 export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   val: SerializedData
 ): CreateCollaborationRequestBodyAccessibleByTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateCollaborationRequestBodyAccessibleByTypeField"',
-    });
-  }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   if (val == 'group') {
-    return 'group';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateCollaborationRequestBodyAccessibleByTypeField",
   });
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByField(
@@ -719,35 +696,29 @@ export function serializeCreateCollaborationRequestBodyRoleField(
 export function deserializeCreateCollaborationRequestBodyRoleField(
   val: SerializedData
 ): CreateCollaborationRequestBodyRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateCollaborationRequestBodyRoleField"',
-    });
-  }
   if (val == 'editor') {
-    return 'editor';
+    return val;
   }
   if (val == 'viewer') {
-    return 'viewer';
+    return val;
   }
   if (val == 'previewer') {
-    return 'previewer';
+    return val;
   }
   if (val == 'uploader') {
-    return 'uploader';
+    return val;
   }
   if (val == 'previewer uploader') {
-    return 'previewer uploader';
+    return val;
   }
   if (val == 'viewer uploader') {
-    return 'viewer uploader';
+    return val;
   }
   if (val == 'co-owner') {
-    return 'co-owner';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateCollaborationRequestBodyRoleField",
   });
 }
 export function serializeCreateCollaborationRequestBody(

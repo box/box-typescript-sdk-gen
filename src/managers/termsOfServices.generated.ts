@@ -366,20 +366,14 @@ export function serializeGetTermsOfServiceQueryParamsTosTypeField(
 export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   val: SerializedData
 ): GetTermsOfServiceQueryParamsTosTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetTermsOfServiceQueryParamsTosTypeField"',
-    });
-  }
   if (val == 'external') {
-    return 'external';
+    return val;
   }
   if (val == 'managed') {
-    return 'managed';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetTermsOfServiceQueryParamsTosTypeField",
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyStatusField(
@@ -390,20 +384,14 @@ export function serializeCreateTermsOfServiceRequestBodyStatusField(
 export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   val: SerializedData
 ): CreateTermsOfServiceRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTermsOfServiceRequestBodyStatusField"',
-    });
-  }
   if (val == 'enabled') {
-    return 'enabled';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTermsOfServiceRequestBodyStatusField",
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
@@ -414,20 +402,14 @@ export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
 export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   val: SerializedData
 ): CreateTermsOfServiceRequestBodyTosTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTermsOfServiceRequestBodyTosTypeField"',
-    });
-  }
   if (val == 'external') {
-    return 'external';
+    return val;
   }
   if (val == 'managed') {
-    return 'managed';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTermsOfServiceRequestBodyTosTypeField",
   });
 }
 export function serializeCreateTermsOfServiceRequestBody(
@@ -489,20 +471,14 @@ export function serializeUpdateTermsOfServiceByIdRequestBodyStatusField(
 export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   val: SerializedData
 ): UpdateTermsOfServiceByIdRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateTermsOfServiceByIdRequestBodyStatusField"',
-    });
-  }
   if (val == 'enabled') {
-    return 'enabled';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateTermsOfServiceByIdRequestBodyStatusField",
   });
 }
 export function serializeUpdateTermsOfServiceByIdRequestBody(

@@ -455,17 +455,11 @@ export function serializeUpdateClassificationOnFileRequestBodyOpField(
 export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   val: SerializedData
 ): UpdateClassificationOnFileRequestBodyOpField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateClassificationOnFileRequestBodyOpField"',
-    });
-  }
   if (val == 'replace') {
-    return 'replace';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateClassificationOnFileRequestBodyOpField",
   });
 }
 export function serializeUpdateClassificationOnFileRequestBodyPathField(
@@ -476,17 +470,11 @@ export function serializeUpdateClassificationOnFileRequestBodyPathField(
 export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   val: SerializedData
 ): UpdateClassificationOnFileRequestBodyPathField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateClassificationOnFileRequestBodyPathField"',
-    });
-  }
   if (val == '/Box__Security__Classification__Key') {
-    return '/Box__Security__Classification__Key';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize UpdateClassificationOnFileRequestBodyPathField",
   });
 }
 export function serializeUpdateClassificationOnFileRequestBody(

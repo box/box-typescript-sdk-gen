@@ -42,28 +42,23 @@ export function serializePostOAuth2TokenGrantTypeField(
 export function deserializePostOAuth2TokenGrantTypeField(
   val: SerializedData
 ): PostOAuth2TokenGrantTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "PostOAuth2TokenGrantTypeField"',
-    });
-  }
   if (val == 'authorization_code') {
-    return 'authorization_code';
+    return val;
   }
   if (val == 'refresh_token') {
-    return 'refresh_token';
+    return val;
   }
   if (val == 'client_credentials') {
-    return 'client_credentials';
+    return val;
   }
   if (val == 'urn:ietf:params:oauth:grant-type:jwt-bearer') {
-    return 'urn:ietf:params:oauth:grant-type:jwt-bearer';
+    return val;
   }
   if (val == 'urn:ietf:params:oauth:grant-type:token-exchange') {
-    return 'urn:ietf:params:oauth:grant-type:token-exchange';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize PostOAuth2TokenGrantTypeField",
   });
 }
 export function serializePostOAuth2TokenSubjectTokenTypeField(
@@ -74,16 +69,11 @@ export function serializePostOAuth2TokenSubjectTokenTypeField(
 export function deserializePostOAuth2TokenSubjectTokenTypeField(
   val: SerializedData
 ): PostOAuth2TokenSubjectTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "PostOAuth2TokenSubjectTokenTypeField"',
-    });
-  }
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
-    return 'urn:ietf:params:oauth:token-type:access_token';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize PostOAuth2TokenSubjectTokenTypeField",
   });
 }
 export function serializePostOAuth2TokenActorTokenTypeField(
@@ -94,16 +84,11 @@ export function serializePostOAuth2TokenActorTokenTypeField(
 export function deserializePostOAuth2TokenActorTokenTypeField(
   val: SerializedData
 ): PostOAuth2TokenActorTokenTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "PostOAuth2TokenActorTokenTypeField"',
-    });
-  }
   if (val == 'urn:ietf:params:oauth:token-type:id_token') {
-    return 'urn:ietf:params:oauth:token-type:id_token';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize PostOAuth2TokenActorTokenTypeField",
   });
 }
 export function serializePostOAuth2TokenBoxSubjectTypeField(
@@ -114,19 +99,14 @@ export function serializePostOAuth2TokenBoxSubjectTypeField(
 export function deserializePostOAuth2TokenBoxSubjectTypeField(
   val: SerializedData
 ): PostOAuth2TokenBoxSubjectTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "PostOAuth2TokenBoxSubjectTypeField"',
-    });
-  }
   if (val == 'enterprise') {
-    return 'enterprise';
+    return val;
   }
   if (val == 'user') {
-    return 'user';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize PostOAuth2TokenBoxSubjectTypeField",
   });
 }
 export function serializePostOAuth2Token(val: PostOAuth2Token): SerializedData {

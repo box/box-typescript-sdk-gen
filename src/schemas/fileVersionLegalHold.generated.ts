@@ -35,16 +35,11 @@ export function serializeFileVersionLegalHoldTypeField(
 export function deserializeFileVersionLegalHoldTypeField(
   val: SerializedData
 ): FileVersionLegalHoldTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "FileVersionLegalHoldTypeField"',
-    });
-  }
   if (val == 'file_version_legal_hold') {
-    return 'file_version_legal_hold';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize FileVersionLegalHoldTypeField",
   });
 }
 export function serializeFileVersionLegalHold(

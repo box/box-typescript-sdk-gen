@@ -32,22 +32,17 @@ export function serializeSignRequestCreateSignerRoleField(
 export function deserializeSignRequestCreateSignerRoleField(
   val: SerializedData
 ): SignRequestCreateSignerRoleField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SignRequestCreateSignerRoleField"',
-    });
-  }
   if (val == 'signer') {
-    return 'signer';
+    return val;
   }
   if (val == 'approver') {
-    return 'approver';
+    return val;
   }
   if (val == 'final_copy_reader') {
-    return 'final_copy_reader';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestCreateSignerRoleField",
   });
 }
 export function serializeSignRequestCreateSigner(

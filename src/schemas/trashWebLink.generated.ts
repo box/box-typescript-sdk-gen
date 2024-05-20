@@ -57,17 +57,10 @@ export function serializeTrashWebLinkTypeField(
 export function deserializeTrashWebLinkTypeField(
   val: SerializedData
 ): TrashWebLinkTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashWebLinkTypeField"',
-    });
-  }
   if (val == 'web_link') {
-    return 'web_link';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize TrashWebLinkTypeField" });
 }
 export function serializeTrashWebLinkPathCollectionEntriesTypeField(
   val: TrashWebLinkPathCollectionEntriesTypeField
@@ -77,17 +70,11 @@ export function serializeTrashWebLinkPathCollectionEntriesTypeField(
 export function deserializeTrashWebLinkPathCollectionEntriesTypeField(
   val: SerializedData
 ): TrashWebLinkPathCollectionEntriesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "TrashWebLinkPathCollectionEntriesTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashWebLinkPathCollectionEntriesTypeField",
   });
 }
 export function serializeTrashWebLinkPathCollectionEntriesField(
@@ -220,22 +207,17 @@ export function serializeTrashWebLinkItemStatusField(
 export function deserializeTrashWebLinkItemStatusField(
   val: SerializedData
 ): TrashWebLinkItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashWebLinkItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashWebLinkItemStatusField",
   });
 }
 export function serializeTrashWebLink(val: TrashWebLink): SerializedData {

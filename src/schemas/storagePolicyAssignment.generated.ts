@@ -52,16 +52,11 @@ export function serializeStoragePolicyAssignmentTypeField(
 export function deserializeStoragePolicyAssignmentTypeField(
   val: SerializedData
 ): StoragePolicyAssignmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "StoragePolicyAssignmentTypeField"',
-    });
-  }
   if (val == 'storage_policy_assignment') {
-    return 'storage_policy_assignment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize StoragePolicyAssignmentTypeField",
   });
 }
 export function serializeStoragePolicyAssignmentAssignedToField(

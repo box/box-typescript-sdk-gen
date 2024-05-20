@@ -47,17 +47,12 @@ export function serializeShieldInformationBarrierSegmentMemberShieldInformationB
 export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
   val: SerializedData
 ): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier_segment') {
-    return 'shield_information_barrier_segment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField",
   });
 }
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(

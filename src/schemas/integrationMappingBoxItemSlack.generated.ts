@@ -35,17 +35,11 @@ export function serializeIntegrationMappingBoxItemSlackTypeField(
 export function deserializeIntegrationMappingBoxItemSlackTypeField(
   val: SerializedData
 ): IntegrationMappingBoxItemSlackTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "IntegrationMappingBoxItemSlackTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingBoxItemSlackTypeField",
   });
 }
 export function serializeIntegrationMappingBoxItemSlack(

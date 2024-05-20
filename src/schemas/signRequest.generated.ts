@@ -66,17 +66,10 @@ export function serializeSignRequestTypeField(
 export function deserializeSignRequestTypeField(
   val: SerializedData
 ): SignRequestTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SignRequestTypeField"',
-    });
-  }
   if (val == 'sign-request') {
-    return 'sign-request';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize SignRequestTypeField" });
 }
 export function serializeSignRequestStatusField(
   val: SignRequestStatusField
@@ -86,49 +79,44 @@ export function serializeSignRequestStatusField(
 export function deserializeSignRequestStatusField(
   val: SerializedData
 ): SignRequestStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SignRequestStatusField"',
-    });
-  }
   if (val == 'converting') {
-    return 'converting';
+    return val;
   }
   if (val == 'created') {
-    return 'created';
+    return val;
   }
   if (val == 'sent') {
-    return 'sent';
+    return val;
   }
   if (val == 'viewed') {
-    return 'viewed';
+    return val;
   }
   if (val == 'signed') {
-    return 'signed';
+    return val;
   }
   if (val == 'cancelled') {
-    return 'cancelled';
+    return val;
   }
   if (val == 'declined') {
-    return 'declined';
+    return val;
   }
   if (val == 'error_converting') {
-    return 'error_converting';
+    return val;
   }
   if (val == 'error_sending') {
-    return 'error_sending';
+    return val;
   }
   if (val == 'expired') {
-    return 'expired';
+    return val;
   }
   if (val == 'finalizing') {
-    return 'finalizing';
+    return val;
   }
   if (val == 'error_finalizing') {
-    return 'error_finalizing';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignRequestStatusField",
   });
 }
 export function serializeSignRequestSignFilesField(

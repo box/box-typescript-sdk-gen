@@ -567,19 +567,14 @@ export function serializeCreateCommentRequestBodyItemTypeField(
 export function deserializeCreateCommentRequestBodyItemTypeField(
   val: SerializedData
 ): CreateCommentRequestBodyItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "CreateCommentRequestBodyItemTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'comment') {
-    return 'comment';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateCommentRequestBodyItemTypeField",
   });
 }
 export function serializeCreateCommentRequestBodyItemField(

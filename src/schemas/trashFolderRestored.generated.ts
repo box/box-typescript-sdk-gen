@@ -55,16 +55,11 @@ export function serializeTrashFolderRestoredTypeField(
 export function deserializeTrashFolderRestoredTypeField(
   val: SerializedData
 ): TrashFolderRestoredTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFolderRestoredTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFolderRestoredTypeField",
   });
 }
 export function serializeTrashFolderRestoredPathCollectionField(
@@ -128,22 +123,17 @@ export function serializeTrashFolderRestoredItemStatusField(
 export function deserializeTrashFolderRestoredItemStatusField(
   val: SerializedData
 ): TrashFolderRestoredItemStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TrashFolderRestoredItemStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'trashed') {
-    return 'trashed';
+    return val;
   }
   if (val == 'deleted') {
-    return 'deleted';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TrashFolderRestoredItemStatusField",
   });
 }
 export function serializeTrashFolderRestored(

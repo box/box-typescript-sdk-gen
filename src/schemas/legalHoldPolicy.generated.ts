@@ -53,25 +53,20 @@ export function serializeLegalHoldPolicyStatusField(
 export function deserializeLegalHoldPolicyStatusField(
   val: SerializedData
 ): LegalHoldPolicyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "LegalHoldPolicyStatusField"',
-    });
-  }
   if (val == 'active') {
-    return 'active';
+    return val;
   }
   if (val == 'applying') {
-    return 'applying';
+    return val;
   }
   if (val == 'releasing') {
-    return 'releasing';
+    return val;
   }
   if (val == 'released') {
-    return 'released';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize LegalHoldPolicyStatusField",
   });
 }
 export function serializeLegalHoldPolicyAssignmentCountsField(

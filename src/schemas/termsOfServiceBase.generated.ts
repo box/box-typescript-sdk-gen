@@ -35,16 +35,11 @@ export function serializeTermsOfServiceBaseTypeField(
 export function deserializeTermsOfServiceBaseTypeField(
   val: SerializedData
 ): TermsOfServiceBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TermsOfServiceBaseTypeField"',
-    });
-  }
   if (val == 'terms_of_service') {
-    return 'terms_of_service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TermsOfServiceBaseTypeField",
   });
 }
 export function serializeTermsOfServiceBase(

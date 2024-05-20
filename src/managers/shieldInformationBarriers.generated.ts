@@ -374,20 +374,15 @@ export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusFi
 export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
   val: SerializedData
 ): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateShieldInformationBarrierStatusRequestBodyStatusField"',
-    });
-  }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateShieldInformationBarrierStatusRequestBodyStatusField",
   });
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBody(

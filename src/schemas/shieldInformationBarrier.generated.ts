@@ -42,16 +42,11 @@ export function serializeShieldInformationBarrierTypeField(
 export function deserializeShieldInformationBarrierTypeField(
   val: SerializedData
 ): ShieldInformationBarrierTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ShieldInformationBarrierTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier') {
-    return 'shield_information_barrier';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ShieldInformationBarrierTypeField",
   });
 }
 export function serializeShieldInformationBarrierStatusField(
@@ -62,28 +57,23 @@ export function serializeShieldInformationBarrierStatusField(
 export function deserializeShieldInformationBarrierStatusField(
   val: SerializedData
 ): ShieldInformationBarrierStatusField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ShieldInformationBarrierStatusField"',
-    });
-  }
   if (val == 'draft') {
-    return 'draft';
+    return val;
   }
   if (val == 'pending') {
-    return 'pending';
+    return val;
   }
   if (val == 'disabled') {
-    return 'disabled';
+    return val;
   }
   if (val == 'enabled') {
-    return 'enabled';
+    return val;
   }
   if (val == 'invalid') {
-    return 'invalid';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ShieldInformationBarrierStatusField",
   });
 }
 export function serializeShieldInformationBarrier(

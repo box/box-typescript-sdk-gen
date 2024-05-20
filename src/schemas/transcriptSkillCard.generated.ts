@@ -123,16 +123,11 @@ export function serializeTranscriptSkillCardTypeField(
 export function deserializeTranscriptSkillCardTypeField(
   val: SerializedData
 ): TranscriptSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TranscriptSkillCardTypeField"',
-    });
-  }
   if (val == 'skill_card') {
-    return 'skill_card';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TranscriptSkillCardTypeField",
   });
 }
 export function serializeTranscriptSkillCardSkillCardTypeField(
@@ -143,16 +138,11 @@ export function serializeTranscriptSkillCardSkillCardTypeField(
 export function deserializeTranscriptSkillCardSkillCardTypeField(
   val: SerializedData
 ): TranscriptSkillCardSkillCardTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TranscriptSkillCardSkillCardTypeField"',
-    });
-  }
   if (val == 'transcript') {
-    return 'transcript';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TranscriptSkillCardSkillCardTypeField",
   });
 }
 export function serializeTranscriptSkillCardSkillCardTitleField(
@@ -204,16 +194,11 @@ export function serializeTranscriptSkillCardSkillTypeField(
 export function deserializeTranscriptSkillCardSkillTypeField(
   val: SerializedData
 ): TranscriptSkillCardSkillTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "TranscriptSkillCardSkillTypeField"',
-    });
-  }
   if (val == 'service') {
-    return 'service';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TranscriptSkillCardSkillTypeField",
   });
 }
 export function serializeTranscriptSkillCardSkillField(
@@ -301,17 +286,11 @@ export function serializeTranscriptSkillCardInvocationTypeField(
 export function deserializeTranscriptSkillCardInvocationTypeField(
   val: SerializedData
 ): TranscriptSkillCardInvocationTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "TranscriptSkillCardInvocationTypeField"',
-    });
-  }
   if (val == 'skill_invocation') {
-    return 'skill_invocation';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize TranscriptSkillCardInvocationTypeField",
   });
 }
 export function serializeTranscriptSkillCardInvocationField(

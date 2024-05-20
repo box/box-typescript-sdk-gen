@@ -119,16 +119,11 @@ export function serializeWorkflowFlowsTypeField(
 export function deserializeWorkflowFlowsTypeField(
   val: SerializedData
 ): WorkflowFlowsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsTypeField"',
-    });
-  }
   if (val == 'flow') {
-    return 'flow';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsTypeField",
   });
 }
 export function serializeWorkflowFlowsTriggerTypeField(
@@ -139,16 +134,11 @@ export function serializeWorkflowFlowsTriggerTypeField(
 export function deserializeWorkflowFlowsTriggerTypeField(
   val: SerializedData
 ): WorkflowFlowsTriggerTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsTriggerTypeField"',
-    });
-  }
   if (val == 'trigger') {
-    return 'trigger';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsTriggerTypeField",
   });
 }
 export function serializeWorkflowFlowsTriggerTriggerTypeField(
@@ -159,16 +149,11 @@ export function serializeWorkflowFlowsTriggerTriggerTypeField(
 export function deserializeWorkflowFlowsTriggerTriggerTypeField(
   val: SerializedData
 ): WorkflowFlowsTriggerTriggerTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsTriggerTriggerTypeField"',
-    });
-  }
   if (val == 'WORKFLOW_MANUAL_START') {
-    return 'WORKFLOW_MANUAL_START';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsTriggerTriggerTypeField",
   });
 }
 export function serializeWorkflowFlowsTriggerScopeTypeField(
@@ -179,16 +164,11 @@ export function serializeWorkflowFlowsTriggerScopeTypeField(
 export function deserializeWorkflowFlowsTriggerScopeTypeField(
   val: SerializedData
 ): WorkflowFlowsTriggerScopeTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsTriggerScopeTypeField"',
-    });
-  }
   if (val == 'trigger_scope') {
-    return 'trigger_scope';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsTriggerScopeTypeField",
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectTypeField(
@@ -199,17 +179,11 @@ export function serializeWorkflowFlowsTriggerScopeObjectTypeField(
 export function deserializeWorkflowFlowsTriggerScopeObjectTypeField(
   val: SerializedData
 ): WorkflowFlowsTriggerScopeObjectTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "WorkflowFlowsTriggerScopeObjectTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsTriggerScopeObjectTypeField",
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectField(
@@ -356,16 +330,11 @@ export function serializeWorkflowFlowsOutcomesTypeField(
 export function deserializeWorkflowFlowsOutcomesTypeField(
   val: SerializedData
 ): WorkflowFlowsOutcomesTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsOutcomesTypeField"',
-    });
-  }
   if (val == 'outcome') {
-    return 'outcome';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsOutcomesTypeField",
   });
 }
 export function serializeWorkflowFlowsOutcomesActionTypeField(
@@ -376,82 +345,77 @@ export function serializeWorkflowFlowsOutcomesActionTypeField(
 export function deserializeWorkflowFlowsOutcomesActionTypeField(
   val: SerializedData
 ): WorkflowFlowsOutcomesActionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "WorkflowFlowsOutcomesActionTypeField"',
-    });
-  }
   if (val == 'add_metadata') {
-    return 'add_metadata';
+    return val;
   }
   if (val == 'assign_task') {
-    return 'assign_task';
+    return val;
   }
   if (val == 'copy_file') {
-    return 'copy_file';
+    return val;
   }
   if (val == 'copy_folder') {
-    return 'copy_folder';
+    return val;
   }
   if (val == 'create_folder') {
-    return 'create_folder';
+    return val;
   }
   if (val == 'delete_file') {
-    return 'delete_file';
+    return val;
   }
   if (val == 'delete_folder') {
-    return 'delete_folder';
+    return val;
   }
   if (val == 'lock_file') {
-    return 'lock_file';
+    return val;
   }
   if (val == 'move_file') {
-    return 'move_file';
+    return val;
   }
   if (val == 'move_folder') {
-    return 'move_folder';
+    return val;
   }
   if (val == 'remove_watermark_file') {
-    return 'remove_watermark_file';
+    return val;
   }
   if (val == 'rename_folder') {
-    return 'rename_folder';
+    return val;
   }
   if (val == 'restore_folder') {
-    return 'restore_folder';
+    return val;
   }
   if (val == 'share_file') {
-    return 'share_file';
+    return val;
   }
   if (val == 'share_folder') {
-    return 'share_folder';
+    return val;
   }
   if (val == 'unlock_file') {
-    return 'unlock_file';
+    return val;
   }
   if (val == 'upload_file') {
-    return 'upload_file';
+    return val;
   }
   if (val == 'wait_for_task') {
-    return 'wait_for_task';
+    return val;
   }
   if (val == 'watermark_file') {
-    return 'watermark_file';
+    return val;
   }
   if (val == 'go_back_to_step') {
-    return 'go_back_to_step';
+    return val;
   }
   if (val == 'apply_file_classification') {
-    return 'apply_file_classification';
+    return val;
   }
   if (val == 'apply_folder_classification') {
-    return 'apply_folder_classification';
+    return val;
   }
   if (val == 'send_notification') {
-    return 'send_notification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsOutcomesActionTypeField",
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedTypeField(
@@ -462,17 +426,11 @@ export function serializeWorkflowFlowsOutcomesIfRejectedTypeField(
 export function deserializeWorkflowFlowsOutcomesIfRejectedTypeField(
   val: SerializedData
 ): WorkflowFlowsOutcomesIfRejectedTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedTypeField"',
-    });
-  }
   if (val == 'outcome') {
-    return 'outcome';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsOutcomesIfRejectedTypeField",
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
@@ -483,83 +441,77 @@ export function serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
 export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   val: SerializedData
 ): WorkflowFlowsOutcomesIfRejectedActionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "WorkflowFlowsOutcomesIfRejectedActionTypeField"',
-    });
-  }
   if (val == 'add_metadata') {
-    return 'add_metadata';
+    return val;
   }
   if (val == 'assign_task') {
-    return 'assign_task';
+    return val;
   }
   if (val == 'copy_file') {
-    return 'copy_file';
+    return val;
   }
   if (val == 'copy_folder') {
-    return 'copy_folder';
+    return val;
   }
   if (val == 'create_folder') {
-    return 'create_folder';
+    return val;
   }
   if (val == 'delete_file') {
-    return 'delete_file';
+    return val;
   }
   if (val == 'delete_folder') {
-    return 'delete_folder';
+    return val;
   }
   if (val == 'lock_file') {
-    return 'lock_file';
+    return val;
   }
   if (val == 'move_file') {
-    return 'move_file';
+    return val;
   }
   if (val == 'move_folder') {
-    return 'move_folder';
+    return val;
   }
   if (val == 'remove_watermark_file') {
-    return 'remove_watermark_file';
+    return val;
   }
   if (val == 'rename_folder') {
-    return 'rename_folder';
+    return val;
   }
   if (val == 'restore_folder') {
-    return 'restore_folder';
+    return val;
   }
   if (val == 'share_file') {
-    return 'share_file';
+    return val;
   }
   if (val == 'share_folder') {
-    return 'share_folder';
+    return val;
   }
   if (val == 'unlock_file') {
-    return 'unlock_file';
+    return val;
   }
   if (val == 'upload_file') {
-    return 'upload_file';
+    return val;
   }
   if (val == 'wait_for_task') {
-    return 'wait_for_task';
+    return val;
   }
   if (val == 'watermark_file') {
-    return 'watermark_file';
+    return val;
   }
   if (val == 'go_back_to_step') {
-    return 'go_back_to_step';
+    return val;
   }
   if (val == 'apply_file_classification') {
-    return 'apply_file_classification';
+    return val;
   }
   if (val == 'apply_folder_classification') {
-    return 'apply_folder_classification';
+    return val;
   }
   if (val == 'send_notification') {
-    return 'send_notification';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize WorkflowFlowsOutcomesIfRejectedActionTypeField",
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedField(

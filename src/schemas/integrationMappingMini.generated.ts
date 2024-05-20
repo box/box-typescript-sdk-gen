@@ -28,17 +28,11 @@ export function serializeIntegrationMappingMiniPartnerItemTypeField(
 export function deserializeIntegrationMappingMiniPartnerItemTypeField(
   val: SerializedData
 ): IntegrationMappingMiniPartnerItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "IntegrationMappingMiniPartnerItemTypeField"',
-    });
-  }
   if (val == 'channel') {
-    return 'channel';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingMiniPartnerItemTypeField",
   });
 }
 export function serializeIntegrationMappingMiniBoxItemTypeField(
@@ -49,17 +43,11 @@ export function serializeIntegrationMappingMiniBoxItemTypeField(
 export function deserializeIntegrationMappingMiniBoxItemTypeField(
   val: SerializedData
 ): IntegrationMappingMiniBoxItemTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "IntegrationMappingMiniBoxItemTypeField"',
-    });
-  }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize IntegrationMappingMiniBoxItemTypeField",
   });
 }
 export function serializeIntegrationMappingMini(

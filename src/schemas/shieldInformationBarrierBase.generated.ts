@@ -20,16 +20,11 @@ export function serializeShieldInformationBarrierBaseTypeField(
 export function deserializeShieldInformationBarrierBaseTypeField(
   val: SerializedData
 ): ShieldInformationBarrierBaseTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ShieldInformationBarrierBaseTypeField"',
-    });
-  }
   if (val == 'shield_information_barrier') {
-    return 'shield_information_barrier';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ShieldInformationBarrierBaseTypeField",
   });
 }
 export function serializeShieldInformationBarrierBase(

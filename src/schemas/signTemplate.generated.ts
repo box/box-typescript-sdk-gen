@@ -72,17 +72,10 @@ export function serializeSignTemplateTypeField(
 export function deserializeSignTemplateTypeField(
   val: SerializedData
 ): SignTemplateTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "SignTemplateTypeField"',
-    });
-  }
   if (val == 'sign-template') {
-    return 'sign-template';
+    return val;
   }
-  throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
-  });
+  throw new BoxSdkError({ message: "Can't deserialize SignTemplateTypeField" });
 }
 export function serializeSignTemplateAdditionalInfoNonEditableField(
   val: SignTemplateAdditionalInfoNonEditableField
@@ -92,32 +85,26 @@ export function serializeSignTemplateAdditionalInfoNonEditableField(
 export function deserializeSignTemplateAdditionalInfoNonEditableField(
   val: SerializedData
 ): SignTemplateAdditionalInfoNonEditableField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SignTemplateAdditionalInfoNonEditableField"',
-    });
-  }
   if (val == 'email_subject') {
-    return 'email_subject';
+    return val;
   }
   if (val == 'email_message') {
-    return 'email_message';
+    return val;
   }
   if (val == 'name') {
-    return 'name';
+    return val;
   }
   if (val == 'days_valid') {
-    return 'days_valid';
+    return val;
   }
   if (val == 'signers') {
-    return 'signers';
+    return val;
   }
   if (val == 'source_files') {
-    return 'source_files';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignTemplateAdditionalInfoNonEditableField",
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredSignersField(
@@ -128,17 +115,11 @@ export function serializeSignTemplateAdditionalInfoRequiredSignersField(
 export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
   val: SerializedData
 ): SignTemplateAdditionalInfoRequiredSignersField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "SignTemplateAdditionalInfoRequiredSignersField"',
-    });
-  }
   if (val == 'email') {
-    return 'email';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize SignTemplateAdditionalInfoRequiredSignersField",
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredField(

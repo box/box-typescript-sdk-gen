@@ -121,20 +121,14 @@ export function serializeGetTrashedItemsQueryParamsDirectionField(
 export function deserializeGetTrashedItemsQueryParamsDirectionField(
   val: SerializedData
 ): GetTrashedItemsQueryParamsDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetTrashedItemsQueryParamsDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetTrashedItemsQueryParamsDirectionField",
   });
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
@@ -145,21 +139,16 @@ export function serializeGetTrashedItemsQueryParamsSortField(
 export function deserializeGetTrashedItemsQueryParamsSortField(
   val: SerializedData
 ): GetTrashedItemsQueryParamsSortField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "GetTrashedItemsQueryParamsSortField"',
-    });
-  }
   if (val == 'name') {
-    return 'name';
+    return val;
   }
   if (val == 'date') {
-    return 'date';
+    return val;
   }
   if (val == 'size') {
-    return 'size';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetTrashedItemsQueryParamsSortField",
   });
 }

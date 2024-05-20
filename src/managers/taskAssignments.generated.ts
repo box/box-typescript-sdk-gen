@@ -491,17 +491,11 @@ export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
 export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   val: SerializedData
 ): CreateTaskAssignmentRequestBodyTaskTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateTaskAssignmentRequestBodyTaskTypeField"',
-    });
-  }
   if (val == 'task') {
-    return 'task';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize CreateTaskAssignmentRequestBodyTaskTypeField",
   });
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
@@ -671,26 +665,21 @@ export function serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField
 export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
   val: SerializedData
 ): UpdateTaskAssignmentByIdRequestBodyResolutionStateField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "UpdateTaskAssignmentByIdRequestBodyResolutionStateField"',
-    });
-  }
   if (val == 'completed') {
-    return 'completed';
+    return val;
   }
   if (val == 'incomplete') {
-    return 'incomplete';
+    return val;
   }
   if (val == 'approved') {
-    return 'approved';
+    return val;
   }
   if (val == 'rejected') {
-    return 'rejected';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize UpdateTaskAssignmentByIdRequestBodyResolutionStateField",
   });
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(

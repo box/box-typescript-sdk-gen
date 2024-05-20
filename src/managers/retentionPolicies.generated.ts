@@ -514,20 +514,14 @@ export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
 export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   val: SerializedData
 ): GetRetentionPoliciesQueryParamsPolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "GetRetentionPoliciesQueryParamsPolicyTypeField"',
-    });
-  }
   if (val == 'finite') {
-    return 'finite';
+    return val;
   }
   if (val == 'indefinite') {
-    return 'indefinite';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize GetRetentionPoliciesQueryParamsPolicyTypeField",
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
@@ -538,20 +532,15 @@ export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
 export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   val: SerializedData
 ): CreateRetentionPolicyRequestBodyPolicyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateRetentionPolicyRequestBodyPolicyTypeField"',
-    });
-  }
   if (val == 'finite') {
-    return 'finite';
+    return val;
   }
   if (val == 'indefinite') {
-    return 'indefinite';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateRetentionPolicyRequestBodyPolicyTypeField",
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
@@ -562,20 +551,15 @@ export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
 export function deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
   val: SerializedData
 ): CreateRetentionPolicyRequestBodyDispositionActionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateRetentionPolicyRequestBodyDispositionActionField"',
-    });
-  }
   if (val == 'permanently_delete') {
-    return 'permanently_delete';
+    return val;
   }
   if (val == 'remove_retention') {
-    return 'remove_retention';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateRetentionPolicyRequestBodyDispositionActionField",
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
@@ -586,20 +570,15 @@ export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
 export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   val: SerializedData
 ): CreateRetentionPolicyRequestBodyRetentionTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "CreateRetentionPolicyRequestBodyRetentionTypeField"',
-    });
-  }
   if (val == 'modifiable') {
-    return 'modifiable';
+    return val;
   }
   if (val == 'non_modifiable') {
-    return 'non_modifiable';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message:
+      "Can't deserialize CreateRetentionPolicyRequestBodyRetentionTypeField",
   });
 }
 export function serializeCreateRetentionPolicyRequestBody(

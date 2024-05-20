@@ -583,17 +583,11 @@ export function serializePromoteFileVersionRequestBodyTypeField(
 export function deserializePromoteFileVersionRequestBodyTypeField(
   val: SerializedData
 ): PromoteFileVersionRequestBodyTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a string for "PromoteFileVersionRequestBodyTypeField"',
-    });
-  }
   if (val == 'file_version') {
-    return 'file_version';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize PromoteFileVersionRequestBodyTypeField",
   });
 }
 export function serializePromoteFileVersionRequestBody(

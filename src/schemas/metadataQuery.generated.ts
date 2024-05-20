@@ -31,19 +31,14 @@ export function serializeMetadataQueryOrderByDirectionField(
 export function deserializeMetadataQueryOrderByDirectionField(
   val: SerializedData
 ): MetadataQueryOrderByDirectionField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "MetadataQueryOrderByDirectionField"',
-    });
-  }
   if (val == 'ASC') {
-    return 'ASC';
+    return val;
   }
   if (val == 'DESC') {
-    return 'DESC';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize MetadataQueryOrderByDirectionField",
   });
 }
 export function serializeMetadataQueryOrderByField(

@@ -23,19 +23,14 @@ export function serializeZipDownloadRequestItemsTypeField(
 export function deserializeZipDownloadRequestItemsTypeField(
   val: SerializedData
 ): ZipDownloadRequestItemsTypeField {
-  if (!sdIsString(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a string for "ZipDownloadRequestItemsTypeField"',
-    });
-  }
   if (val == 'file') {
-    return 'file';
+    return val;
   }
   if (val == 'folder') {
-    return 'folder';
+    return val;
   }
   throw new BoxSdkError({
-    message: ''.concat('Invalid value: ', val) as string,
+    message: "Can't deserialize ZipDownloadRequestItemsTypeField",
   });
 }
 export function serializeZipDownloadRequestItemsField(
