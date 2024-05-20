@@ -8,6 +8,7 @@
 - [Highlighting the Key Differences](#highlighting-the-key-differences)
   - [Native support for async-await and Promises](#native-support-for-async-await-and-promises)
   - [Embracing Explicitly Defined Schemas](#embracing-explicitly-defined-schemas)
+  - [Immutable design](#immutable-design)
 - [Diving into Authentication](#diving-into-authentication)
   - [Developer Token](#developer-token)
   - [JWT Authentication](#jwt-authentication)
@@ -22,6 +23,11 @@
     - [Fetching the Authorization URL](#fetching-the-authorization-url)
     - [Seamless Authentication](#seamless-authentication)
   - [Customizable Token Storage and Retrieval Callbacks](#customizable-token-storage-and-retrieval-callbacks)
+  - [Downscope token](#downscope-token)
+  - [Revoke token](#revoke-token)
+- [Configuration](#configuration)
+  - [As-User header](#as-user-header)
+  - [Custom Base URLs](#custom-base-urls)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -97,6 +103,19 @@ interface FileBase {
 }
 ```
 
+### Immutable design
+
+The new SDK is designed to be mostly immutable. This means that methods,
+which used to modify the existing object in old SDK now return a new instance of the class with the modified state.
+This design pattern is used to avoid side effects and make the code more predictable and easier to reason about.
+Methods, which returns a new modified instance of an object, will always have a prefix `with` in their names, e.g.
+
+**New (`box-sdk-gen`)**
+
+```typescript
+asUserClient: BoxClient = client.withAsUserHeader('USER_ID');
+```
+
 ## Diving into Authentication
 
 Authentication is a crucial aspect of any SDK. Let's delve into the authentication methods supported by both SDKs and understand the enhancements in the new version:
@@ -122,10 +141,10 @@ var client = sdk.getBasicClient('YOUR-DEVELOPER-TOKEN');
 The new SDK offers a more streamlined approach:
 
 ```typescript
-import { Client, BoxDeveloperTokenAuth } from 'box-typescript-sdk-gen';
+const { BoxClient, BoxDeveloperTokenAuth } = require('box-typescript-sdk-gen');
 
-const auth = new BoxDeveloperTokenAuth('DEVELOPER_TOKEN_GOES_HERE');
-const client = new Client(auth);
+const auth = new BoxDeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
+const client = new BoxClient({ auth });
 ```
 
 ### JWT Authentication
@@ -149,11 +168,11 @@ var serviceAccountClient = sdk.getAppAuthClient('enterprise');
 The new SDK provides a more organized approach:
 
 ```typescript
-import { Client, BoxJWTAuth, JWTConfig } from 'box-typescript-sdk-gen';
+const { BoxClient, BoxJwtAuth, JwtConfig } = require('box-typescript-sdk-gen');
 
-const jwtConfig = JWTConfig.fromConfigFile('/path/to/config.json');
-const auth = new BoxJWTAuth(jwtConfig);
-const client = new Client(auth);
+const jwtConfig = JwtConfig.fromConfigFile('/path/to/config.json');
+const auth = new BoxJwtAuth({ config: jwtConfig });
+const client = new BoxClient({ auth });
 ```
 
 #### Manually Providing JWT Configuration
@@ -185,9 +204,9 @@ var serviceAccountClient = sdk.getAppAuthClient(
 The new SDK introduces a more structured approach:
 
 ```typescript
-import { BoxJWTAuth, JWTConfig } from 'box-typescript-sdk-gen';
+const { BoxJwtAuth, JwtConfig } = require('box-typescript-sdk-gen');
 
-const jwtConfig = new JWTConfig({
+const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
   enterpriseId: 'YOUR_ENTERPRISE_ID',
@@ -197,25 +216,27 @@ const jwtConfig = new JWTConfig({
   privateKeyPassphrase: 'PASSPHRASE',
   jwtAlgorithm: 'RS256',
 });
-const auth = new BoxJWTAuth(jwtConfig);
+const auth = new BoxJwtAuth({ config: jwtConfig });
 ```
 
 #### User Authentication Simplified
 
-Authenticating as a user has been made even more straightforward:
+To authenticate as user you need to call
+`withUserSubject` method with id of the user to authenticate. The method returns a new instance of
+`BoxJwtAuth` class, which will perform authentication call in scope of the user on the first API call.
+The new auth instance can be used to create a new user client instance.
 
 **Legacy (`Box Node SDK`):**
 
 ```typescript
-client.asUser('USER-ID');
+const userClient = sdk.getAppAuthClient('user', 'USER_ID');
 ```
 
 **Modern (`Box TypeScript SDK`):**
 
-The new SDK makes this method more organised:
-
 ```typescript
-client.networkSession.setAsUser('USER_ID');
+const userAuth = jwtAuth.withUserSubject('USER_ID');
+const userClient = new BoxClient({ auth: userAuth });
 ```
 
 ### Client Credentials Grant
@@ -245,15 +266,15 @@ const client = sdk.getAnonymousClient();
 The new SDK offers a more organized structure:
 
 ```typescript
-import { BoxClient, BoxCCGAuth, CCGConfig } from 'box-typescript-sdk-gen';
+const { CcgConfig, BoxCcgAuth, BoxClient } = require('box-typescript-sdk-gen');
 
-const ccgConfig = new CCGConfig({
+const ccgConfig = new CcgConfig({
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
   enterpriseId: 'YOUR_ENTERPRISE_ID',
 });
-const auth = new BoxCCGAuth(ccgConfig);
-const client = new BoxClient(auth);
+const auth = new BoxCcgAuth({ config: ccgConfig });
+const client = new BoxClient({ auth });
 ```
 
 #### User Token Acquisition
@@ -279,22 +300,44 @@ const client = sdk.getCCGClientForUser('USER_ID');
 The new SDK streamlines the process:
 
 ```typescript
-const ccgConfig = new CCGConfig({
+const { CcgConfig, BoxCcgAuth, BoxClient } = require('box-typescript-sdk-gen');
+
+const ccgConfig = new CcgConfig({
   clientId: 'YOUR_CLIENT_ID',
   clientSecret: 'YOUR_CLIENT_SECRET',
   userId: 'YOUR_USER_ID',
 });
-const auth = new BoxCCGAuth(ccgConfig);
+const auth = new BoxCcgAuth({ config: ccgConfig });
+const client = new BoxClient({ auth });
 ```
 
 ### Smooth Switching between Service Account and User
 
-Transitioning between account types is now more intuitive:
+In the new SDK, to keep the immutability design, the methods responsible for switching authenticated subject return
+a new instance of `BoxCcgAuth` class. The new instance will fetch a new token on the next API call.
+The new auth instance can be used to create a new client instance.
+The old instance of `BoxCcgAuth` class will remain unchanged and will still use the old token.
+
+**Legacy (`Box Node SDK`):**
+
+```typescript
+const client = sdk.getCCGClientForUser('USER_ID');
+```
 
 **Modern (`Box TypeScript SDK`):**
 
+To authenticate with enterprise subject call:
+
 ```typescript
-auth.asEnterprise('YOUR_ENTERPRISE_ID');
+const enterpriseAuth = ccgAuth.withEnterpriseSubject('YOUR_ENTERPRISE_ID');
+const enterpriseClient = new BoxClient({ auth: enterpriseAuth });
+```
+
+To authenticate with user subject call:
+
+```typescript
+const userAuth = ccgAuth.withUserSubject('YOUR_USER_ID');
+const userClient = new BoxClient({ auth: userAuth });
 ```
 
 ### OAuth 2.0 Authentication
@@ -323,11 +366,15 @@ var authorize_url = sdk.getAuthorizeURL({
 The new SDK provides more flexibility:
 
 ```typescript
-import { GetAuthorizeUrlOptions } from 'box-typescript-sdk-gen';
+const { BoxOAuth, OAuthConfig } = require('box-typescript-sdk-gen');
 
-const authUrl = auth.getAuthorizeUrl({
-  redirectUri: 'http://YOUR_REDIRECT_URL',
-} satisfies GetAuthorizeUrlOptions);
+const config = new OAuthConfig({
+  clientId: 'OAUTH_CLIENT_ID',
+  clientSecret: 'OAUTH_CLIENT_SECRET',
+});
+const oauth = new BoxOAuth({ config: config });
+
+var authorize_url = oauth.getAuthorizeUrl();
 ```
 
 #### Seamless Authentication
@@ -356,7 +403,7 @@ sdk.getTokensAuthorizationCodeGrant('<CODE>', null, function (err, tokenInfo) {
 The new SDK simplifies the process:
 
 ```typescript
-const accessToken = auth.getTokensAuthorizationCodeGrant('YOUR_AUTH_CODE');
+const accessToken = await oauth.getTokensAuthorizationCodeGrant('code');
 ```
 
 ### Customizable Token Storage and Retrieval Callbacks
@@ -401,24 +448,132 @@ TokenStore.prototype.clear = function (callback) {
 The new SDK allows developers to define custom classes for token storage:
 
 ```typescript
-import { TokenStorage } from 'box-typescript-sdk-gen';
+const { BoxOAuth } = require('box-typescript-sdk-gen');
+const {
+  TokenStorage,
+} = require('box-typescript-sdk-gen/lib/box/tokenStorage.generated.js');
+const {
+  AccessToken,
+} = require('box-typescript-sdk-gen/lib/schemas/accessToken.generated.js');
 
 class CustomTokenStorage extends TokenStorage {
-  store(token) {
+  async store(token: AccessToken): Promise<undefined> {
     // Store token
   }
 
-  get() {
+  async get(): Promise<undefined | AccessToken> {
     // Retrieve token
     return token;
   }
 
-  clear() {
+  async clear(): Promise<undefined> {
     // Clear token
   }
 }
 
 const tokenStorage = new CustomTokenStorage();
 const authConfig = { /* ... , */ tokenStorage };
-const auth = new BoxAuth(authConfig);
+const auth = new BoxOAuth({ config: authConfig });
+```
+
+### Downscope token
+
+To process of downscoping token in the new SDK is enhanced and more flexible.
+
+**Legacy (`Box Node SDK`):**
+
+```typescript
+client
+  .exchangeToken('item_preview', 'https://api.box.com/2.0/files/123456789')
+  .then((tokenInfo) => {
+    // tokenInfo.accessToken contains the new downscoped access token
+  });
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+```typescript
+let resource = 'https://api.box.com/2.0/files/123456789';
+let token = await oauth.downscopeToken(['item_preview'], resource);
+const auth = new BoxDeveloperTokenAuth({ token: token.accessToken });
+const client = new BoxClient({ auth });
+```
+
+### Revoke token
+
+The difference between the old and new SDK in the process of revoking token is as follows.
+
+**Legacy (`Box Node SDK`):**
+
+```typescript
+client.revokeTokens('<TOKEN>').then(() => {
+  // the client's access token have been revoked
+});
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+```typescript
+await auth.revokeTokens();
+```
+
+## Configuration
+
+### As-User header
+
+The As-User header is used by enterprise admins to make API calls on behalf of their enterprise's users.
+This requires the API request to pass an `As-User: USER-ID` header. The following examples assume that the client has
+been instantiated with an access token with appropriate privileges to make As-User calls.
+
+In old SDK the client `asUser(userID)` method set up the client to impersonate a given user.
+It modified existing client, so that all calls made with its instance were made in context of the impersonated user.
+
+**Legacy (`Box Node SDK`):**
+
+```typescript
+client.asUser('USER-ID');
+client.folders.getItems('0').then((items) => {
+  // items contains the collection of files and folders
+  // in the root folder of the user with USER-ID
+});
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+In the new SDK the method was renamed to `withAsUserHeader(userId: string): BoxClient`
+and returns a new instance of `BoxClient` class with the As-User header appended to all API calls made by the client.
+
+```typescript
+const userClient = client.withAsUserHeader('1234567');
+```
+
+### Custom Base URLs
+
+**Legacy (`Box Node SDK`):**
+
+In old SDK you could specify the custom base URLs, which will be used for API calls made by using
+the `configure` method on the SDK instance:
+
+```typescript
+const sdk = BoxSDKNode.getPreconfiguredInstance(APP_SETTINGS);
+var additonalParams = {
+  apiRootURL: 'https://my.company.url.com',
+  uploadAPIRootURL: 'https://my.company.url.com/upload',
+  authorizeRootURL: 'https://my.company.url.com/authorize',
+};
+sdk.configure(additonalParams);
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+In the new SDK this functionality has been implemented as part of the `BoxClient` class.
+By calling the `client.withCustomBaseUrls()` method, you can specify the custom base URLs that will be used for API
+calls made by client. Following the immutability pattern, this call creates a new client, leaving the original client unmodified.
+
+```typescript
+const newClient = client.withCustomBaseUrls({
+  baseUrl: 'https://api.box.com',
+  uploadUrl: 'https://upload.box.com/api',
+  oauth2Url: 'https://account.box.com/api/oauth2',
+});
 ```
