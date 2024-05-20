@@ -10,16 +10,15 @@ All notable changes to this project will be documented in this file. See [standa
 * Change base urls (box/box-codegen[#491](https://github.com/box/box-typescript-sdk-gen/issues/491)) ([#199](https://github.com/box/box-typescript-sdk-gen/issues/199)) ([8a732e9](https://github.com/box/box-typescript-sdk-gen/commit/8a732e9050c2434dddfb62ebd611d0794284165b))
 * Fix schemas for updating classification on a file and folder (box/box-openapi[#423](https://github.com/box/box-typescript-sdk-gen/issues/423)) ([#188](https://github.com/box/box-typescript-sdk-gen/issues/188)) ([68ecb04](https://github.com/box/box-typescript-sdk-gen/commit/68ecb0435e14cd8e21e81cbb8763c49d25952a3d))
 * Fix union deserialization (box/box-codegen[#493](https://github.com/box/box-typescript-sdk-gen/issues/493)) ([#202](https://github.com/box/box-typescript-sdk-gen/issues/202)) ([23b9016](https://github.com/box/box-typescript-sdk-gen/commit/23b901685dd83e9f94386c5c889ab1b1a7ee75f8))
-* improve wording for box sign (box/box-openapi[#424](https://github.com/box/box-typescript-sdk-gen/issues/424)) ([#195](https://github.com/box/box-typescript-sdk-gen/issues/195)) ([73e7228](https://github.com/box/box-typescript-sdk-gen/commit/73e7228ede53266bdbb96d111c4cebfafc33a1d6))
 * Stop exporting `PartAccumulator` class (box/box-codegen[#494](https://github.com/box/box-typescript-sdk-gen/issues/494)) ([#200](https://github.com/box/box-typescript-sdk-gen/issues/200)) ([98a668e](https://github.com/box/box-typescript-sdk-gen/commit/98a668e8dbdce931d5737172db57d61424f8d75a))
 
 
 ### New Features and Enhancements
 
-* move notification suppression to public schema (box/box-openapi[#425](https://github.com/box/box-typescript-sdk-gen/issues/425)) ([#197](https://github.com/box/box-typescript-sdk-gen/issues/197)) ([f4e4d52](https://github.com/box/box-typescript-sdk-gen/commit/f4e4d52822d4f9ef291916c8e7986d4d5201789b))
+* Add `suppressNotifications` and `externalSystemName` fields for Box Sign (box/box-openapi[#425](https://github.com/box/box-typescript-sdk-gen/issues/425)) ([#197](https://github.com/box/box-typescript-sdk-gen/issues/197)) ([f4e4d52](https://github.com/box/box-typescript-sdk-gen/commit/f4e4d52822d4f9ef291916c8e7986d4d5201789b))
 * Move schemas to separate modules (box/box-codegen[#483](https://github.com/box/box-typescript-sdk-gen/issues/483)) ([#182](https://github.com/box/box-typescript-sdk-gen/issues/182)) ([cf55214](https://github.com/box/box-typescript-sdk-gen/commit/cf5521440a81543dc7ac032221c1778267cef2f4))
-* support excluding endpoints and schemas in parser (box/box-codegen[#487](https://github.com/box/box-typescript-sdk-gen/issues/487)) ([#183](https://github.com/box/box-typescript-sdk-gen/issues/183)) ([3bd6076](https://github.com/box/box-typescript-sdk-gen/commit/3bd6076c45dcae5db2bafbcb49364fa5629ec8ce))
-* **ts:** strict checks during deserialization (box/box-codegen[#484](https://github.com/box/box-typescript-sdk-gen/issues/484)) ([#185](https://github.com/box/box-typescript-sdk-gen/issues/185)) ([469afb9](https://github.com/box/box-typescript-sdk-gen/commit/469afb951bd4dbbd2ef7af916084b6baf02040f6))
+* Support excluding endpoints and schemas in parser (box/box-codegen[#487](https://github.com/box/box-typescript-sdk-gen/issues/487)) ([#183](https://github.com/box/box-typescript-sdk-gen/issues/183)) ([3bd6076](https://github.com/box/box-typescript-sdk-gen/commit/3bd6076c45dcae5db2bafbcb49364fa5629ec8ce))
+* Strict checks during deserialization (box/box-codegen[#484](https://github.com/box/box-typescript-sdk-gen/issues/484)) ([#185](https://github.com/box/box-typescript-sdk-gen/issues/185)) ([469afb9](https://github.com/box/box-typescript-sdk-gen/commit/469afb951bd4dbbd2ef7af916084b6baf02040f6))
 
 ### [0.5.4](https://github.com/box/box-typescript-sdk-gen/compare/v0.5.3...v0.5.4) (2024-05-09)
 
