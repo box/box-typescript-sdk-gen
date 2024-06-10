@@ -15,8 +15,10 @@ export interface CollaborationsOrderField {
   readonly direction?: CollaborationsOrderDirectionField;
 }
 export interface Collaborations {
-  readonly totalCount?: number;
   readonly limit?: number;
+  readonly nextMarker?: string;
+  readonly prevMarker?: string;
+  readonly totalCount?: number;
   readonly offset?: number;
   readonly order?: readonly CollaborationsOrderField[];
   readonly entries?: readonly Collaboration[];
@@ -72,8 +74,10 @@ export function deserializeCollaborationsOrderField(
 }
 export function serializeCollaborations(val: Collaborations): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
     ['offset']: val.offset == void 0 ? void 0 : val.offset,
     ['order']:
       val.order == void 0
@@ -95,6 +99,26 @@ export function deserializeCollaborations(val: SerializedData): Collaborations {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "Collaborations"' });
   }
+  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "limit" of type "Collaborations"',
+    });
+  }
+  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
+  if (!(val.next_marker == void 0) && !sdIsString(val.next_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "next_marker" of type "Collaborations"',
+    });
+  }
+  const nextMarker: undefined | string =
+    val.next_marker == void 0 ? void 0 : val.next_marker;
+  if (!(val.prev_marker == void 0) && !sdIsString(val.prev_marker)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "prev_marker" of type "Collaborations"',
+    });
+  }
+  const prevMarker: undefined | string =
+    val.prev_marker == void 0 ? void 0 : val.prev_marker;
   if (!(val.total_count == void 0) && !sdIsNumber(val.total_count)) {
     throw new BoxSdkError({
       message: 'Expecting number for "total_count" of type "Collaborations"',
@@ -102,12 +126,6 @@ export function deserializeCollaborations(val: SerializedData): Collaborations {
   }
   const totalCount: undefined | number =
     val.total_count == void 0 ? void 0 : val.total_count;
-  if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
-    throw new BoxSdkError({
-      message: 'Expecting number for "limit" of type "Collaborations"',
-    });
-  }
-  const limit: undefined | number = val.limit == void 0 ? void 0 : val.limit;
   if (!(val.offset == void 0) && !sdIsNumber(val.offset)) {
     throw new BoxSdkError({
       message: 'Expecting number for "offset" of type "Collaborations"',
@@ -143,8 +161,10 @@ export function deserializeCollaborations(val: SerializedData): Collaborations {
         }) as readonly any[])
       : [];
   return {
-    totalCount: totalCount,
     limit: limit,
+    nextMarker: nextMarker,
+    prevMarker: prevMarker,
+    totalCount: totalCount,
     offset: offset,
     order: order,
     entries: entries,
