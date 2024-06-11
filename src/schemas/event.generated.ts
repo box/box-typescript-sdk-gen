@@ -1,11 +1,11 @@
 import { serializeUserMini } from './userMini.generated.js';
 import { deserializeUserMini } from './userMini.generated.js';
-import { serializeEventSourceOrFileOrFolderOrGenericSourceOrUser } from './eventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
-import { deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser } from './eventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
+import { serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser } from './appItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
+import { deserializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser } from './appItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { UserMini } from './userMini.generated.js';
-import { EventSourceOrFileOrFolderOrGenericSourceOrUser } from './eventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
+import { AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser } from './appItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser.generated.js';
 import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
@@ -160,7 +160,7 @@ export interface Event {
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;
   readonly sessionId?: string;
-  readonly source?: EventSourceOrFileOrFolderOrGenericSourceOrUser;
+  readonly source?: AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser;
   readonly additionalDetails?: EventAdditionalDetailsField;
 }
 export function serializeEventEventTypeField(
@@ -611,7 +611,9 @@ export function serializeEvent(val: Event): SerializedData {
     ['source']:
       val.source == void 0
         ? void 0
-        : serializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source),
+        : serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
+            val.source
+          ),
     ['additional_details']:
       val.additionalDetails == void 0
         ? void 0
@@ -662,10 +664,14 @@ export function deserializeEvent(val: SerializedData): Event {
   }
   const sessionId: undefined | string =
     val.session_id == void 0 ? void 0 : val.session_id;
-  const source: undefined | EventSourceOrFileOrFolderOrGenericSourceOrUser =
+  const source:
+    | undefined
+    | AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser =
     val.source == void 0
       ? void 0
-      : deserializeEventSourceOrFileOrFolderOrGenericSourceOrUser(val.source);
+      : deserializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
+          val.source
+        );
   const additionalDetails: undefined | EventAdditionalDetailsField =
     val.additional_details == void 0
       ? void 0
