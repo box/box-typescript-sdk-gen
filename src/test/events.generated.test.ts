@@ -10,6 +10,8 @@ import { serializeRealtimeServers } from '../schemas/realtimeServers.generated.j
 import { deserializeRealtimeServers } from '../schemas/realtimeServers.generated.js';
 import { serializeRealtimeServer } from '../schemas/realtimeServer.generated.js';
 import { deserializeRealtimeServer } from '../schemas/realtimeServer.generated.js';
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { serializeEventSource } from '../schemas/eventSource.generated.js';
 import { deserializeEventSource } from '../schemas/eventSource.generated.js';
 import { serializeFile } from '../schemas/file.generated.js';
@@ -26,11 +28,13 @@ import { GetEventsQueryParamsStreamTypeField } from '../managers/events.generate
 import { GetEventsQueryParamsEventTypeField } from '../managers/events.generated.js';
 import { RealtimeServers } from '../schemas/realtimeServers.generated.js';
 import { RealtimeServer } from '../schemas/realtimeServer.generated.js';
+import { DateTime } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { EventSource } from '../schemas/eventSource.generated.js';
 import { File } from '../schemas/file.generated.js';
 import { Folder } from '../schemas/folder.generated.js';
 import { User } from '../schemas/user.generated.js';
+import { dateTimeFromString } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -134,6 +138,21 @@ test('testGetEventsWithLongPolling', async function testGetEventsWithLongPolling
     throw new Error('Assertion failed');
   }
   if (!!(server.url! == '')) {
+    throw new Error('Assertion failed');
+  }
+});
+test('testGetEventsWithDateFilters', async function testGetEventsWithDateFilters(): Promise<any> {
+  const createdAfterDate: DateTime = dateTimeFromString('2024-06-09T00:00:00Z');
+  const createdBeforeDate: DateTime = dateTimeFromString(
+    '2025-06-09T00:00:00Z'
+  );
+  const servers: Events = await client.events.getEvents({
+    streamType: 'admin_logs' as GetEventsQueryParamsStreamTypeField,
+    limit: 1,
+    createdAfter: createdAfterDate,
+    createdBefore: createdBeforeDate,
+  } satisfies GetEventsQueryParams);
+  if (!(servers.entries!.length == 1)) {
     throw new Error('Assertion failed');
   }
 });

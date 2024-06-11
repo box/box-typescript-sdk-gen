@@ -230,16 +230,12 @@ export class EventsManager {
       ['event_type']: queryParams.eventType
         ? queryParams.eventType.map(toString).join(',')
         : undefined,
-      ['created_after']: sdToJson(
-        queryParams.createdAfter
-          ? serializeDateTime(queryParams.createdAfter)
-          : undefined
-      ) as string,
-      ['created_before']: sdToJson(
-        queryParams.createdBefore
-          ? serializeDateTime(queryParams.createdBefore)
-          : undefined
-      ) as string,
+      ['created_after']: queryParams.createdAfter
+        ? serializeDateTime(queryParams.createdAfter)
+        : undefined,
+      ['created_before']: queryParams.createdBefore
+        ? serializeDateTime(queryParams.createdBefore)
+        : undefined,
     });
     const headersMap: {
       readonly [key: string]: string;
