@@ -1,9 +1,9 @@
 # AiManager
 
-- [Send AI Ask request](#send-ai-ask-request)
-- [Send AI Text Gen request](#send-ai-text-gen-request)
+- [Send AI question request](#send-ai-question-request)
+- [Send AI request to generate text](#send-ai-request-to-generate-text)
 
-## Send AI Ask request
+## Send AI question request
 
 Sends an AI request to supported LLMs and returns an answer specifically focused on the user's question given the provided context.
 
@@ -46,7 +46,7 @@ This function returns a value of type `AiResponse`.
 
 A successful response including the answer from the LLM.
 
-## Send AI Text Gen request
+## Send AI request to generate text
 
 Sends an AI request to supported LLMs and returns an answer specifically focused on the creation of new text.
 
