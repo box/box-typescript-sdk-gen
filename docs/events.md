@@ -24,7 +24,10 @@ See the endpoint docs at
 
 ```ts
 await client.events.getEvents({
-  streamType: 'changes' as GetEventsQueryParamsStreamTypeField,
+  streamType: 'admin_logs' as GetEventsQueryParamsStreamTypeField,
+  limit: 1,
+  createdAfter: createdAfterDate,
+  createdBefore: createdBeforeDate,
 } satisfies GetEventsQueryParams);
 ```
 
