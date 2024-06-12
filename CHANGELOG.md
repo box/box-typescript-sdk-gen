@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.0.0...v1.1.0) (2024-06-12)
+
+
+### Bug Fixes
+
+* Fix CI for auto update pull requests (box/box-codegen[#506](https://github.com/box/box-typescript-sdk-gen/issues/506)) ([#221](https://github.com/box/box-typescript-sdk-gen/issues/221)) ([bbc14f6](https://github.com/box/box-typescript-sdk-gen/commit/bbc14f66e14a9386c8d54a5d0bb36ec2cdc501c1))
+* remove quotation mark when date or `datetime` is used in `queryParams` (box/box-codegen[#509](https://github.com/box/box-typescript-sdk-gen/issues/509)) ([#225](https://github.com/box/box-typescript-sdk-gen/issues/225)) ([28d2220](https://github.com/box/box-typescript-sdk-gen/commit/28d22200602cf02d73590189c304109f1c26db17))
+
+
+### New Features and Enhancements
+
+* add missing marker pagination fields and introduce new event type `AppItemEventSource` `(box/box-openapi[#431](https://github.com/box/box-typescript-sdk-gen/issues/431))` ([#224](https://github.com/box/box-typescript-sdk-gen/issues/224)) ([6c18ca3](https://github.com/box/box-typescript-sdk-gen/commit/6c18ca3b00da0b878d28e142a2361b6386ef0c15))
+
 ## [1.0.0](https://github.com/box/box-typescript-sdk-gen/compare/v0.5.4...v1.0.0) (2024-05-20)
 
 
