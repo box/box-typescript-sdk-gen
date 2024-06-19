@@ -713,11 +713,11 @@ export class ChunkedUploadsManager {
     const bytesEnd: number = lastIndex + chunkSize;
     const contentRange: string = ''.concat(
       'bytes ',
-      toString(bytesStart) as string,
+      (toString(bytesStart) as string)!,
       '-',
-      toString(bytesEnd) as string,
+      (toString(bytesEnd) as string)!,
       '/',
-      toString(acc.fileSize) as string
+      (toString(acc.fileSize) as string)!
     ) as string;
     const uploadedPart: UploadedPart = await this.uploadFilePart(
       acc.uploadSessionId,
@@ -732,10 +732,10 @@ export class ChunkedUploadsManager {
     if (!(partSha1 == sha1)) {
       throw new Error('Assertion failed');
     }
-    if (!(part.size == chunkSize)) {
+    if (!(part.size! == chunkSize)) {
       throw new Error('Assertion failed');
     }
-    if (!(part.offset == bytesStart)) {
+    if (!(part.offset! == bytesStart)) {
       throw new Error('Assertion failed');
     }
     acc.fileHash.updateHash(chunkBuffer);

@@ -25,10 +25,10 @@ test('testChunkedUpload', async function testChunkedUpload(): Promise<any> {
     fileSize,
     parentFolderId
   );
-  if (!(uploadedFile.name == fileName)) {
+  if (!(uploadedFile.name! == fileName)) {
     throw new Error('Assertion failed');
   }
-  if (!(uploadedFile.size == fileSize)) {
+  if (!(uploadedFile.size! == fileSize)) {
     throw new Error('Assertion failed');
   }
   if (!(uploadedFile.parent!.id == parentFolderId)) {
