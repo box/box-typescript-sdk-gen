@@ -6,7 +6,6 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type AiAskModeField = 'multiple_item_qa' | 'single_item_qa';
 export type AiAskItemsTypeField = 'file';
 export class AiAskItemsField {
   readonly id!: string;
@@ -33,21 +32,8 @@ export interface AiAskItemsFieldInput {
   readonly content?: string;
 }
 export interface AiAsk {
-  readonly mode: AiAskModeField;
   readonly prompt: string;
   readonly items: readonly AiAskItemsField[];
-}
-export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
-  return val;
-}
-export function deserializeAiAskModeField(val: SerializedData): AiAskModeField {
-  if (val == 'multiple_item_qa') {
-    return val;
-  }
-  if (val == 'single_item_qa') {
-    return val;
-  }
-  throw new BoxSdkError({ message: "Can't deserialize AiAskModeField" });
 }
 export function serializeAiAskItemsTypeField(
   val: AiAskItemsTypeField
@@ -147,7 +133,6 @@ export function deserializeAiAskItemsFieldInput(
 }
 export function serializeAiAsk(val: AiAsk): SerializedData {
   return {
-    ['mode']: serializeAiAskModeField(val.mode),
     ['prompt']: val.prompt,
     ['items']: val.items.map(function (item: AiAskItemsField): SerializedData {
       return serializeAiAskItemsField(item);
@@ -158,12 +143,6 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "AiAsk"' });
   }
-  if (val.mode == void 0) {
-    throw new BoxSdkError({
-      message: 'Expecting "mode" of type "AiAsk" to be defined',
-    });
-  }
-  const mode: AiAskModeField = deserializeAiAskModeField(val.mode);
   if (val.prompt == void 0) {
     throw new BoxSdkError({
       message: 'Expecting "prompt" of type "AiAsk" to be defined',
@@ -190,5 +169,5 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
         return deserializeAiAskItemsField(itm);
       }) as readonly any[])
     : [];
-  return { mode: mode, prompt: prompt, items: items } satisfies AiAsk;
+  return { prompt: prompt, items: items } satisfies AiAsk;
 }
