@@ -202,6 +202,9 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
 
 const DEFAULT_MAX_ATTEMPTS = 5;
 const RETRY_BASE_INTERVAL = 1;
+const STATUS_CODE_ACCEPTED = 202,
+  STATUS_CODE_UNAUTHORIZED = 401,
+  STATUS_CODE_TOO_MANY_REQUESTS = 429;
 
 export async function fetch(
   resource: string,
@@ -267,10 +270,14 @@ export async function fetch(
     return fetch(fetchResponse.headers['location'], options);
   }
 
-  if (fetchResponse.status >= 400) {
+  const acceptedWithRetryAfter =
+    fetchResponse.status === STATUS_CODE_ACCEPTED &&
+    fetchResponse.headers['retry-after'];
+  if (fetchResponse.status >= 400 || acceptedWithRetryAfter) {
     const { numRetries = 0 } = fetchOptions;
 
-    const reauthenticationNeeded = fetchResponse.status == 401;
+    const reauthenticationNeeded =
+      fetchResponse.status == STATUS_CODE_UNAUTHORIZED;
     if (reauthenticationNeeded && fetchOptions.auth) {
       await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
 
@@ -280,7 +287,9 @@ export async function fetch(
 
     const isRetryable =
       fetchOptions.contentType !== 'application/x-www-form-urlencoded' &&
-      (fetchResponse.status === 429 || fetchResponse.status >= 500);
+      (fetchResponse.status === STATUS_CODE_TOO_MANY_REQUESTS ||
+        acceptedWithRetryAfter ||
+        fetchResponse.status >= 500);
 
     if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
       const retryTimeout = fetchResponse.headers['retry-after']
