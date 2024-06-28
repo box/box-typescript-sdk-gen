@@ -16,7 +16,7 @@ See the endpoint docs at
 
 ```ts
 await client.ai.createAiAsk({
-  mode: 'multiple_item_qa' as AiAskModeField,
+  mode: 'multiple_item_qa',
   prompt: 'Which direction sun rises?',
   items: [
     new AiAskItemsField({
