@@ -131,14 +131,11 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
       } satisfies ApplyMetadataCascadePolicyRequestBody
     );
   }).rejects.toThrow();
-  const data: {
-    readonly [key: string]: string;
-  } = { ['testName']: 'xyz' };
   await client.folderMetadata.createFolderMetadataById(
     folder.id,
     'enterprise' as CreateFolderMetadataByIdScope,
     templateKey,
-    data
+    { ['testName']: 'xyz' }
   );
   await client.metadataCascadePolicies.applyMetadataCascadePolicy(
     cascadePolicyId,
