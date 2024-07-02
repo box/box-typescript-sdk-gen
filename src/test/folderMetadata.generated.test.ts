@@ -86,7 +86,7 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
       'global' as GetFolderMetadataByIdScope,
       'properties'
     );
-  if (!(receivedMetadata.extraData!.abc == 'xyz')) {
+  if (!((toString(receivedMetadata.extraData!.abc) as string) == 'xyz')) {
     throw new Error('Assertion failed');
   }
   const newValue: string = 'bar';
@@ -108,7 +108,9 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
       'global' as GetFolderMetadataByIdScope,
       'properties'
     );
-  if (!(receivedUpdatedMetadata.extraData!.abc == newValue)) {
+  if (
+    !((toString(receivedUpdatedMetadata.extraData!.abc) as string) == newValue)
+  ) {
     throw new Error('Assertion failed');
   }
   await client.folderMetadata.deleteFolderMetadataById(
@@ -196,16 +198,21 @@ test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata
   if (!((toString(createdMetadata.template) as string) == templateKey)) {
     throw new Error('Assertion failed');
   }
-  if (!(createdMetadata.extraData!.name == 'John')) {
+  if (!((toString(createdMetadata.extraData!.name) as string) == 'John')) {
     throw new Error('Assertion failed');
   }
-  if (!(createdMetadata.extraData!.age == 23)) {
+  if (!((toString(createdMetadata.extraData!.age) as string) == '23')) {
     throw new Error('Assertion failed');
   }
-  if (!(createdMetadata.extraData!.birthDate == '2001-01-03T02:20:50.520Z')) {
+  if (
+    !(
+      (toString(createdMetadata.extraData!.birthDate) as string) ==
+      '2001-01-03T02:20:50.520Z'
+    )
+  ) {
     throw new Error('Assertion failed');
   }
-  if (!(createdMetadata.extraData!.countryCode == 'US')) {
+  if (!((toString(createdMetadata.extraData!.countryCode) as string) == 'US')) {
     throw new Error('Assertion failed');
   }
   const sports: readonly string[] = createdMetadata.extraData!.sports;
