@@ -12,6 +12,7 @@ import { CollaborationAllowlistEntry } from '../schemas/collaborationAllowlistEn
 import { CreateCollaborationWhitelistEntryRequestBody } from '../managers/collaborationAllowlistEntries.generated.js';
 import { CreateCollaborationWhitelistEntryRequestBodyDirectionField } from '../managers/collaborationAllowlistEntries.generated.js';
 import { getDefaultClient } from './commons.generated.js';
+import { getUuid } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -28,7 +29,7 @@ test('testCollaborationAllowlistEntries', async function testCollaborationAllowl
   if (!(allowlist.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
-  const domain: string = 'example.com';
+  const domain: string = ''.concat(getUuid(), 'example.com') as string;
   const newEntry: CollaborationAllowlistEntry =
     await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry(
       {
