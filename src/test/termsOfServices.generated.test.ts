@@ -27,24 +27,24 @@ test('testGetTermsOfServices', async function testGetTermsOfServices(): Promise<
   const tos: TermsOfService = await getOrCreateTermsOfServices();
   const updatedTos1: TermsOfService =
     await client.termsOfServices.updateTermsOfServiceById(tos.id, {
-      status: 'enabled' as UpdateTermsOfServiceByIdRequestBodyStatusField,
-      text: 'Enabled TOS',
+      status: 'disabled' as UpdateTermsOfServiceByIdRequestBodyStatusField,
+      text: 'TOS',
     } satisfies UpdateTermsOfServiceByIdRequestBody);
-  if (!((toString(updatedTos1.status) as string) == 'enabled')) {
+  if (!((toString(updatedTos1.status) as string) == 'disabled')) {
     throw new Error('Assertion failed');
   }
-  if (!(updatedTos1.text == 'Enabled TOS')) {
+  if (!(updatedTos1.text == 'TOS')) {
     throw new Error('Assertion failed');
   }
   const updatedTos2: TermsOfService =
     await client.termsOfServices.updateTermsOfServiceById(tos.id, {
       status: 'disabled' as UpdateTermsOfServiceByIdRequestBodyStatusField,
-      text: 'Disabled TOS',
+      text: 'Updated TOS',
     } satisfies UpdateTermsOfServiceByIdRequestBody);
   if (!((toString(updatedTos2.status) as string) == 'disabled')) {
     throw new Error('Assertion failed');
   }
-  if (!(updatedTos2.text == 'Disabled TOS')) {
+  if (!(updatedTos2.text == 'Updated TOS')) {
     throw new Error('Assertion failed');
   }
   const listTos: TermsOfServices =

@@ -108,7 +108,7 @@ See the endpoint docs at
 ```ts
 await client.termsOfServices.updateTermsOfServiceById(tos.id, {
   status: 'disabled' as UpdateTermsOfServiceByIdRequestBodyStatusField,
-  text: 'Disabled TOS',
+  text: 'Updated TOS',
 } satisfies UpdateTermsOfServiceByIdRequestBody);
 ```
 
