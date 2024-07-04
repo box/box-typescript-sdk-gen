@@ -150,7 +150,8 @@ export type EventEventTypeField =
   | 'UPLOAD'
   | 'USER_AUTHENTICATE_OAUTH2_ACCESS_TOKEN_CREATE'
   | 'WATERMARK_LABEL_CREATE'
-  | 'WATERMARK_LABEL_DELETE';
+  | 'WATERMARK_LABEL_DELETE'
+  | string;
 export interface EventAdditionalDetailsField {}
 export interface Event {
   readonly type?: string;
@@ -574,6 +575,9 @@ export function deserializeEventEventTypeField(
     return val;
   }
   if (val == 'WATERMARK_LABEL_DELETE') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize EventEventTypeField" });
