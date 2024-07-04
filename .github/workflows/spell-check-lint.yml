@@ -13,7 +13,7 @@ jobs:
       - name: Checkout spellchecker
         uses: actions/checkout@v2
         with:
-          ref: refs/heads/main
+          ref: refs/heads/ignore-pr
           repository: box/box-sdk-spellchecker
           token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
           path: spellchecker
