@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.1.0...v1.2.0) (2024-07-08)
+
+
+### Bug Fixes
+
+* Fix upload in browser (box/box-codegen[#524](https://github.com/box/box-typescript-sdk-gen/issues/524)) ([#248](https://github.com/box/box-typescript-sdk-gen/issues/248)) ([88d747e](https://github.com/box/box-typescript-sdk-gen/commit/88d747e0f03dfa3c2d6089257c6e8b5b635775e0))
+* Update chunked upload (box/box-codegen[#523](https://github.com/box/box-typescript-sdk-gen/issues/523)) ([#247](https://github.com/box/box-typescript-sdk-gen/issues/247)) ([27ceb35](https://github.com/box/box-typescript-sdk-gen/commit/27ceb35e6444843eea9b7ec6923fe958c9a74571))
+
+
+### New Features and Enhancements
+
+* Retry request with status code `202` (box/box-codegen[#511](https://github.com/box/box-typescript-sdk-gen/issues/511)) ([#235](https://github.com/box/box-typescript-sdk-gen/issues/235)) ([03b8f43](https://github.com/box/box-typescript-sdk-gen/commit/03b8f4314ada5ef5596706b7599cc76565fe96a5))
+* Support extensible enum types in Typescript (box/box-codegen[#520](https://github.com/box/box-typescript-sdk-gen/issues/520)) ([#243](https://github.com/box/box-typescript-sdk-gen/issues/243)) ([5237972](https://github.com/box/box-typescript-sdk-gen/commit/523797273bc08e3b22609ef0019432ab3e43c3ba))
+
 ## [1.1.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.0.0...v1.1.0) (2024-06-12)
 
 
