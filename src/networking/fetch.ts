@@ -7,6 +7,7 @@ import {
   CancellationToken,
   generateByteStreamFromBuffer,
   isBrowser,
+  readByteStream,
 } from '../internal/utils';
 import { sdkVersion } from './version';
 import {
@@ -124,7 +125,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   } = options;
 
   const { contentType, body } = await (async (): Promise<{
-    contentType: string;
+    contentType: string | undefined;
     body: Readable | string;
   }> => {
     if (options.multipartData) {
@@ -134,9 +135,10 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       const formData = new FormData();
       for (const item of options.multipartData) {
         if (item.fileStream) {
-          const buffer = await readStream(item.fileStream);
+          const buffer = await readByteStream(item.fileStream);
+          const blob = isBrowser() ? new Blob([buffer]) : buffer;
           headers['content-md5'] = await calculateMD5Hash(buffer);
-          formData.append(item.partName, buffer, {
+          formData.append(item.partName, blob, {
             filename: item.fileName ?? 'file',
             contentType: item.contentType ?? 'application/octet-stream',
           });
@@ -150,7 +152,9 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       }
 
       return {
-        contentType: `multipart/form-data; boundary=${formData.getBoundary()}`,
+        contentType: !isBrowser()
+          ? `multipart/form-data; boundary=${formData.getBoundary()}`
+          : undefined,
         body: formData,
       };
     }
@@ -183,8 +187,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   return {
     method,
     headers: {
-      ...options.networkSession?.additionalHeaders,
-      'Content-Type': contentType,
+      ...(contentType && { 'Content-Type': contentType }),
       ...headers,
       ...(options.auth && {
         Authorization: await options.auth.retrieveAuthorizationHeader(
@@ -193,6 +196,8 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       }),
       'User-Agent': userAgentHeader,
       'X-Box-UA': xBoxUaHeader,
+      // Additional headers will override the default headers
+      ...options.networkSession?.additionalHeaders,
     },
     body,
     signal: options.cancellationToken as RequestInit['signal'],
@@ -359,17 +364,6 @@ async function calculateMD5Hash(data: string | Buffer): Promise<string> {
   // Node environment
   createHash = eval('require')('crypto').createHash;
   return createHash('sha1').update(data).digest('hex');
-}
-
-async function readStream(fileStream: Readable): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    const chunks: any[] = [];
-    fileStream.on('data', (chunk: Buffer) => chunks.push(chunk));
-    fileStream.on('end', () => {
-      resolve(Buffer.concat(chunks));
-    });
-    fileStream.on('error', (err: Error) => reject(err));
-  });
 }
 
 function constructBoxUAHeader() {
