@@ -319,7 +319,8 @@ export async function fetch(
         url: resource,
         queryParams: params,
         headers: (requestInit.headers as { [key: string]: string }) ?? {},
-        body: requestInit.body,
+        body:
+          typeof requestInit.body === 'string' ? requestInit.body : undefined,
       },
       responseInfo: {
         statusCode: fetchResponse.status,

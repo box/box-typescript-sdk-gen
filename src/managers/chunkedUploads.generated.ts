@@ -775,7 +775,7 @@ export class ChunkedUploadsManager {
       throw new Error('Assertion failed');
     }
     const fileHash: Hash = new Hash({ algorithm: 'sha1' as HashName });
-    const chunksIterator: Iterator = iterateChunks(file, partSize);
+    const chunksIterator: Iterator = iterateChunks(file, partSize, fileSize);
     const results: PartAccumulator = await reduceIterator(
       chunksIterator,
       this.reducer.bind(this),
