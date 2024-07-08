@@ -196,35 +196,45 @@ export async function readByteStream(byteStream: Readable) {
 
 export async function* iterateChunks(
   stream: Readable,
-  chunkSize: number
+  chunkSize: number,
+  fileSize: number
 ): Iterator<Readable> {
   let buffers: Buffer[] = [];
   let totalSize = 0;
-  for await (const data of stream) {
-    if (!Buffer.isBuffer(data)) {
-      throw new Error('Expecting a chunk of stream to be a Buffer');
+  let consumedSize = 0;
+  while (consumedSize < fileSize && !stream.readableEnded) {
+    for await (const data of stream) {
+      if (!Buffer.isBuffer(data)) {
+        throw new Error('Expecting a chunk of stream to be a Buffer');
+      }
+      consumedSize += data.length;
+      buffers.push(data);
+      totalSize += data.length;
+
+      if (totalSize < chunkSize) {
+        continue;
+      }
+
+      const buffer = Buffer.concat(buffers);
+
+      let start = 0;
+      while (totalSize >= chunkSize) {
+        yield generateByteStreamFromBuffer(
+          buffer.subarray(start, start + chunkSize)
+        );
+        start += chunkSize;
+        totalSize -= chunkSize;
+      }
+
+      buffers = totalSize > 0 ? [buffer.subarray(start)] : [];
     }
-    buffers.push(data);
-    totalSize += data.length;
-
-    if (totalSize < chunkSize) {
-      continue;
-    }
-
-    const buffer = Buffer.concat(buffers);
-
-    let start = 0;
-    while (totalSize >= chunkSize) {
-      yield generateByteStreamFromBuffer(
-        buffer.subarray(start, start + chunkSize)
-      );
-      start += chunkSize;
-      totalSize -= chunkSize;
-    }
-
-    buffers = totalSize > 0 ? [buffer.subarray(start)] : [];
   }
 
+  if (consumedSize !== fileSize) {
+    throw new Error(
+      `Stream size ${consumedSize} does not match expected file size ${fileSize}`
+    );
+  }
   if (totalSize > 0) {
     yield generateByteStreamFromBuffer(Buffer.concat(buffers));
   }
