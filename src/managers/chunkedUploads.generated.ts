@@ -797,16 +797,6 @@ export class ChunkedUploadsManager {
     if (!(processedSessionParts.totalCount! == totalParts)) {
       throw new Error('Assertion failed');
     }
-    const processedSession: UploadSession = await this.getFileUploadSessionById(
-      uploadSessionId,
-      {
-        headers: new GetFileUploadSessionByIdHeaders({}),
-        cancellationToken: cancellationToken,
-      } satisfies GetFileUploadSessionByIdOptionalsInput
-    );
-    if (!(processedSession.numPartsProcessed == totalParts)) {
-      throw new Error('Assertion failed');
-    }
     const sha1: string = await fileHash.digestHash('base64');
     const digest: string = ''.concat('sha=', sha1) as string;
     const committedSession: Files = await this.createFileUploadSessionCommit(

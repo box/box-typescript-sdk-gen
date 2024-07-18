@@ -84,14 +84,7 @@ This operation is performed by calling function `getFileUploadSessionById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-upload-sessions-id/).
 
-<!-- sample get_files_upload_sessions_id -->
-
-```ts
-await this.getFileUploadSessionById(uploadSessionId, {
-  headers: new GetFileUploadSessionByIdHeaders({}),
-  cancellationToken: cancellationToken,
-} satisfies GetFileUploadSessionByIdOptionalsInput);
-```
+_Currently we don't have an example for calling `getFileUploadSessionById` in integration tests_
 
 ### Arguments
 
