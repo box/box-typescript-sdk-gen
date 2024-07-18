@@ -15,6 +15,7 @@ import { sdIsMap } from '../serialization/json.js';
 export class UserCollaborations extends UserBase {
   readonly name?: string;
   readonly login?: string;
+  readonly isActive?: boolean;
   constructor(fields: UserCollaborations) {
     super(fields);
   }
@@ -33,6 +34,7 @@ export function serializeUserCollaborations(
     ...{
       ['name']: val.name == void 0 ? void 0 : val.name,
       ['login']: val.login == void 0 ? void 0 : val.login,
+      ['is_active']: val.isActive == void 0 ? void 0 : val.isActive,
     },
   };
 }
@@ -56,6 +58,13 @@ export function deserializeUserCollaborations(
     });
   }
   const login: undefined | string = val.login == void 0 ? void 0 : val.login;
+  if (!(val.is_active == void 0) && !sdIsBoolean(val.is_active)) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "is_active" of type "UserCollaborations"',
+    });
+  }
+  const isActive: undefined | boolean =
+    val.is_active == void 0 ? void 0 : val.is_active;
   if (val.id == void 0) {
     throw new BoxSdkError({
       message: 'Expecting "id" of type "UserCollaborations" to be defined',
@@ -76,6 +85,7 @@ export function deserializeUserCollaborations(
   return {
     name: name,
     login: login,
+    isActive: isActive,
     id: id,
     type: type,
   } satisfies UserCollaborations;
