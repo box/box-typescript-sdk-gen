@@ -1,5 +1,8 @@
+import { serializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
+import { deserializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { AiAgentTextGen } from './aiAgentTextGen.generated.js';
 import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
@@ -24,6 +27,7 @@ export interface AiTextGen {
   readonly prompt: string;
   readonly items: readonly AiTextGenItemsField[];
   readonly dialogueHistory?: readonly AiTextGenDialogueHistoryField[];
+  readonly aiAgent?: AiAgentTextGen;
 }
 export function serializeAiTextGenItemsTypeField(
   val: AiTextGenItemsTypeField
@@ -137,6 +141,8 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
           ): SerializedData {
             return serializeAiTextGenDialogueHistoryField(item);
           }) as readonly any[]),
+    ['ai_agent']:
+      val.aiAgent == void 0 ? void 0 : serializeAiAgentTextGen(val.aiAgent),
   };
 }
 export function deserializeAiTextGen(val: SerializedData): AiTextGen {
@@ -184,9 +190,12 @@ export function deserializeAiTextGen(val: SerializedData): AiTextGen {
           return deserializeAiTextGenDialogueHistoryField(itm);
         }) as readonly any[])
       : [];
+  const aiAgent: undefined | AiAgentTextGen =
+    val.ai_agent == void 0 ? void 0 : deserializeAiAgentTextGen(val.ai_agent);
   return {
     prompt: prompt,
     items: items,
     dialogueHistory: dialogueHistory,
+    aiAgent: aiAgent,
   } satisfies AiTextGen;
 }

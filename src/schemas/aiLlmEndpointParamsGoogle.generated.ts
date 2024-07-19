@@ -1,0 +1,163 @@
+import { BoxSdkError } from '../box/errors.js';
+import { SerializedData } from '../serialization/json.js';
+import { sdIsEmpty } from '../serialization/json.js';
+import { sdIsBoolean } from '../serialization/json.js';
+import { sdIsNumber } from '../serialization/json.js';
+import { sdIsString } from '../serialization/json.js';
+import { sdIsList } from '../serialization/json.js';
+import { sdIsMap } from '../serialization/json.js';
+export type AiLlmEndpointParamsGoogleTypeField = 'google_params';
+export class AiLlmEndpointParamsGoogle {
+  readonly type: AiLlmEndpointParamsGoogleTypeField =
+    'google_params' as AiLlmEndpointParamsGoogleTypeField;
+  readonly temperature?: number;
+  readonly topP?: number;
+  readonly topK?: number;
+  constructor(
+    fields: Omit<AiLlmEndpointParamsGoogle, 'type'> &
+      Partial<Pick<AiLlmEndpointParamsGoogle, 'type'>>
+  ) {
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.temperature) {
+      this.temperature = fields.temperature;
+    }
+    if (fields.topP) {
+      this.topP = fields.topP;
+    }
+    if (fields.topK) {
+      this.topK = fields.topK;
+    }
+  }
+}
+export interface AiLlmEndpointParamsGoogleInput {
+  readonly type?: AiLlmEndpointParamsGoogleTypeField;
+  readonly temperature?: number;
+  readonly topP?: number;
+  readonly topK?: number;
+}
+export function serializeAiLlmEndpointParamsGoogleTypeField(
+  val: AiLlmEndpointParamsGoogleTypeField
+): SerializedData {
+  return val;
+}
+export function deserializeAiLlmEndpointParamsGoogleTypeField(
+  val: SerializedData
+): AiLlmEndpointParamsGoogleTypeField {
+  if (val == 'google_params') {
+    return val;
+  }
+  throw new BoxSdkError({
+    message: "Can't deserialize AiLlmEndpointParamsGoogleTypeField",
+  });
+}
+export function serializeAiLlmEndpointParamsGoogle(
+  val: AiLlmEndpointParamsGoogle
+): SerializedData {
+  return {
+    ['type']: serializeAiLlmEndpointParamsGoogleTypeField(val.type),
+    ['temperature']: val.temperature == void 0 ? void 0 : val.temperature,
+    ['top_p']: val.topP == void 0 ? void 0 : val.topP,
+    ['top_k']: val.topK == void 0 ? void 0 : val.topK,
+  };
+}
+export function deserializeAiLlmEndpointParamsGoogle(
+  val: SerializedData
+): AiLlmEndpointParamsGoogle {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiLlmEndpointParamsGoogle"',
+    });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "AiLlmEndpointParamsGoogle" to be defined',
+    });
+  }
+  const type: AiLlmEndpointParamsGoogleTypeField =
+    deserializeAiLlmEndpointParamsGoogleTypeField(val.type);
+  if (!(val.temperature == void 0) && !sdIsNumber(val.temperature)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "temperature" of type "AiLlmEndpointParamsGoogle"',
+    });
+  }
+  const temperature: undefined | number =
+    val.temperature == void 0 ? void 0 : val.temperature;
+  if (!(val.top_p == void 0) && !sdIsNumber(val.top_p)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "top_p" of type "AiLlmEndpointParamsGoogle"',
+    });
+  }
+  const topP: undefined | number = val.top_p == void 0 ? void 0 : val.top_p;
+  if (!(val.top_k == void 0) && !sdIsNumber(val.top_k)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "top_k" of type "AiLlmEndpointParamsGoogle"',
+    });
+  }
+  const topK: undefined | number = val.top_k == void 0 ? void 0 : val.top_k;
+  return {
+    type: type,
+    temperature: temperature,
+    topP: topP,
+    topK: topK,
+  } satisfies AiLlmEndpointParamsGoogle;
+}
+export function serializeAiLlmEndpointParamsGoogleInput(
+  val: AiLlmEndpointParamsGoogleInput
+): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeAiLlmEndpointParamsGoogleTypeField(val.type),
+    ['temperature']: val.temperature == void 0 ? void 0 : val.temperature,
+    ['top_p']: val.topP == void 0 ? void 0 : val.topP,
+    ['top_k']: val.topK == void 0 ? void 0 : val.topK,
+  };
+}
+export function deserializeAiLlmEndpointParamsGoogleInput(
+  val: SerializedData
+): AiLlmEndpointParamsGoogleInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiLlmEndpointParamsGoogleInput"',
+    });
+  }
+  const type: undefined | AiLlmEndpointParamsGoogleTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeAiLlmEndpointParamsGoogleTypeField(val.type);
+  if (!(val.temperature == void 0) && !sdIsNumber(val.temperature)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "temperature" of type "AiLlmEndpointParamsGoogleInput"',
+    });
+  }
+  const temperature: undefined | number =
+    val.temperature == void 0 ? void 0 : val.temperature;
+  if (!(val.top_p == void 0) && !sdIsNumber(val.top_p)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "top_p" of type "AiLlmEndpointParamsGoogleInput"',
+    });
+  }
+  const topP: undefined | number = val.top_p == void 0 ? void 0 : val.top_p;
+  if (!(val.top_k == void 0) && !sdIsNumber(val.top_k)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "top_k" of type "AiLlmEndpointParamsGoogleInput"',
+    });
+  }
+  const topK: undefined | number = val.top_k == void 0 ? void 0 : val.top_k;
+  return {
+    type: type,
+    temperature: temperature,
+    topP: topP,
+    topK: topK,
+  } satisfies AiLlmEndpointParamsGoogleInput;
+}
