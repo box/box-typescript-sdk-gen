@@ -1,3 +1,6 @@
+import { serializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { deserializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { AiAgentAsk } from './aiAgentAsk.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -36,6 +39,7 @@ export interface AiAsk {
   readonly mode: AiAskModeField;
   readonly prompt: string;
   readonly items: readonly AiAskItemsField[];
+  readonly aiAgent?: AiAgentAsk;
 }
 export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
   return val;
@@ -152,6 +156,8 @@ export function serializeAiAsk(val: AiAsk): SerializedData {
     ['items']: val.items.map(function (item: AiAskItemsField): SerializedData {
       return serializeAiAskItemsField(item);
     }) as readonly any[],
+    ['ai_agent']:
+      val.aiAgent == void 0 ? void 0 : serializeAiAgentAsk(val.aiAgent),
   };
 }
 export function deserializeAiAsk(val: SerializedData): AiAsk {
@@ -190,5 +196,12 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
         return deserializeAiAskItemsField(itm);
       }) as readonly any[])
     : [];
-  return { mode: mode, prompt: prompt, items: items } satisfies AiAsk;
+  const aiAgent: undefined | AiAgentAsk =
+    val.ai_agent == void 0 ? void 0 : deserializeAiAgentAsk(val.ai_agent);
+  return {
+    mode: mode,
+    prompt: prompt,
+    items: items,
+    aiAgent: aiAgent,
+  } satisfies AiAsk;
 }

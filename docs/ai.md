@@ -2,6 +2,7 @@
 
 - [Send AI question request](#send-ai-question-request)
 - [Send AI request to generate text](#send-ai-request-to-generate-text)
+- [Get AI agent default configuration](#get-ai-agent-default-configuration)
 
 ## Send AI question request
 
@@ -95,3 +96,37 @@ await client.ai.createAiTextGen({
 This function returns a value of type `AiResponse`.
 
 A successful response including the answer from the LLM.
+
+## Get AI agent default configuration
+
+Get the AI agent default config
+
+This operation is performed by calling function `getAiAgentDefaultConfig`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-ai-agent-default/).
+
+<!-- sample get_ai_agent_default -->
+
+```ts
+await client.ai.getAiAgentDefaultConfig({
+  mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
+  language: 'en-US',
+} satisfies GetAiAgentDefaultConfigQueryParams);
+```
+
+### Arguments
+
+- queryParams `GetAiAgentDefaultConfigQueryParams`
+  - Query parameters of getAiAgentDefaultConfig method
+- optionalsInput `GetAiAgentDefaultConfigOptionalsInput`
+  -
+
+### Returns
+
+This function returns a value of type `AiAgentAskOrAiAgentTextGen`.
+
+A successful response including the default agent configuration.
+This response can be one of the following two objects:
+AI agent for questions and AI agent for text generation. The response
+depends on the agent configuration requested in this endpoint.

@@ -18,6 +18,14 @@ import { serializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated
 import { deserializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { serializeAiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
+import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
+import { deserializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
+import { serializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { deserializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
+import { deserializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
@@ -29,12 +37,17 @@ import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
+import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
+import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
 import { dateTimeToString } from '../internal/utils.js';
 import { uploadNewFile } from './commons.generated.js';
+import { AiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { AiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -124,5 +137,115 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileToAsk.id);
+});
+test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig(): Promise<any> {
+  const aiAskConfig: AiAgentAskOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'ja-JP',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  if (!(aiAskConfig.type == 'ai_agent_ask')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicText!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicText!.promptTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicText!.systemMessage! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(aiAskConfig.basicText!.numTokensForCompletion! > -1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicText!.llmEndpointParams! == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicTextMulti!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicTextMulti!.promptTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(aiAskConfig.basicTextMulti!.numTokensForCompletion! > -1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.basicTextMulti!.llmEndpointParams! == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.promptTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.systemMessage! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(aiAskConfig.longText!.numTokensForCompletion! > -1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.embeddings!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.embeddings!.strategy!.id! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longText!.llmEndpointParams! == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longTextMulti!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longTextMulti!.promptTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(aiAskConfig.longTextMulti!.numTokensForCompletion! > -1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longTextMulti!.embeddings!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longTextMulti!.embeddings!.strategy!.id! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiAskConfig.longTextMulti!.llmEndpointParams! == void 0)) {
+    throw new Error('Assertion failed');
+  }
+});
+test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgentConfig(): Promise<any> {
+  const aiTextGenConfig: AiAgentAskOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'en-US',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  if (!(aiTextGenConfig.type == 'ai_agent_text_gen')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.llmEndpointParams! == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.promptTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.systemMessage! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(aiTextGenConfig.basicGen!.numTokensForCompletion! > -1)) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.contentTemplate! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.embeddings!.model! == '')) {
+    throw new Error('Assertion failed');
+  }
+  if (!!(aiTextGenConfig.basicGen!.embeddings!.strategy!.id! == '')) {
+    throw new Error('Assertion failed');
+  }
 });
 export {};
