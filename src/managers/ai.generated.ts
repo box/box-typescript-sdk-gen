@@ -69,12 +69,18 @@ export interface CreateAiTextGenOptionalsInput {
   readonly headers?: CreateAiTextGenHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class GetAiAgentDefaultOptionals {
-  readonly headers: GetAiAgentDefaultHeaders = new GetAiAgentDefaultHeaders({});
+export class GetAiAgentDefaultConfigOptionals {
+  readonly headers: GetAiAgentDefaultConfigHeaders =
+    new GetAiAgentDefaultConfigHeaders({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
-    fields: Omit<GetAiAgentDefaultOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetAiAgentDefaultOptionals, 'headers' | 'cancellationToken'>>
+    fields: Omit<
+      GetAiAgentDefaultConfigOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<GetAiAgentDefaultConfigOptionals, 'headers' | 'cancellationToken'>
+      >
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -84,8 +90,8 @@ export class GetAiAgentDefaultOptionals {
     }
   }
 }
-export interface GetAiAgentDefaultOptionalsInput {
-  readonly headers?: GetAiAgentDefaultHeaders;
+export interface GetAiAgentDefaultConfigOptionalsInput {
+  readonly headers?: GetAiAgentDefaultConfigHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class CreateAiAskHeaders {
@@ -128,26 +134,26 @@ export interface CreateAiTextGenHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetAiAgentDefaultQueryParamsModeField = 'ask' | 'text_gen';
-export interface GetAiAgentDefaultQueryParams {
-  readonly mode: GetAiAgentDefaultQueryParamsModeField;
+export type GetAiAgentDefaultConfigQueryParamsModeField = 'ask' | 'text_gen';
+export interface GetAiAgentDefaultConfigQueryParams {
+  readonly mode: GetAiAgentDefaultConfigQueryParamsModeField;
   readonly language?: string;
   readonly model?: string;
 }
-export class GetAiAgentDefaultHeaders {
+export class GetAiAgentDefaultConfigHeaders {
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<GetAiAgentDefaultHeaders, 'extraHeaders'> &
-      Partial<Pick<GetAiAgentDefaultHeaders, 'extraHeaders'>>
+    fields: Omit<GetAiAgentDefaultConfigHeaders, 'extraHeaders'> &
+      Partial<Pick<GetAiAgentDefaultConfigHeaders, 'extraHeaders'>>
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
-export interface GetAiAgentDefaultHeadersInput {
+export interface GetAiAgentDefaultConfigHeadersInput {
   readonly extraHeaders?:
     | undefined
     | {
@@ -160,7 +166,10 @@ export class AiManager {
   constructor(
     fields: Omit<
       AiManager,
-      'networkSession' | 'createAiAsk' | 'createAiTextGen' | 'getAiAgentDefault'
+      | 'networkSession'
+      | 'createAiAsk'
+      | 'createAiTextGen'
+      | 'getAiAgentDefaultConfig'
     > &
       Partial<Pick<AiManager, 'networkSession'>>
   ) {
@@ -230,12 +239,12 @@ export class AiManager {
     )) as FetchResponse;
     return deserializeAiResponse(response.data);
   }
-  async getAiAgentDefault(
-    queryParams: GetAiAgentDefaultQueryParams,
-    optionalsInput: GetAiAgentDefaultOptionalsInput = {}
+  async getAiAgentDefaultConfig(
+    queryParams: GetAiAgentDefaultConfigQueryParams,
+    optionalsInput: GetAiAgentDefaultConfigOptionalsInput = {}
   ): Promise<AiAgentAskOrAiAgentTextGen> {
-    const optionals: GetAiAgentDefaultOptionals =
-      new GetAiAgentDefaultOptionals({
+    const optionals: GetAiAgentDefaultConfigOptionals =
+      new GetAiAgentDefaultConfigOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
       });
@@ -273,14 +282,14 @@ export interface AiManagerInput {
   readonly auth?: Authentication;
   readonly networkSession?: NetworkSession;
 }
-export function serializeGetAiAgentDefaultQueryParamsModeField(
-  val: GetAiAgentDefaultQueryParamsModeField
+export function serializeGetAiAgentDefaultConfigQueryParamsModeField(
+  val: GetAiAgentDefaultConfigQueryParamsModeField
 ): SerializedData {
   return val;
 }
-export function deserializeGetAiAgentDefaultQueryParamsModeField(
+export function deserializeGetAiAgentDefaultConfigQueryParamsModeField(
   val: SerializedData
-): GetAiAgentDefaultQueryParamsModeField {
+): GetAiAgentDefaultConfigQueryParamsModeField {
   if (val == 'ask') {
     return val;
   }
@@ -288,6 +297,6 @@ export function deserializeGetAiAgentDefaultQueryParamsModeField(
     return val;
   }
   throw new BoxSdkError({
-    message: "Can't deserialize GetAiAgentDefaultQueryParamsModeField",
+    message: "Can't deserialize GetAiAgentDefaultConfigQueryParamsModeField",
   });
 }
