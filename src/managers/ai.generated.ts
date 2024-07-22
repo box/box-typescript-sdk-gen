@@ -6,13 +6,13 @@ import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGen } from '../schemas/aiTextGen.generated.js';
-import { serializeAiAgentAskResponseOrAiAgentTextGenResponse } from '../schemas/aiAgentAskResponseOrAiAgentTextGenResponse.generated.js';
-import { deserializeAiAgentAskResponseOrAiAgentTextGenResponse } from '../schemas/aiAgentAskResponseOrAiAgentTextGenResponse.generated.js';
+import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
-import { AiAgentAskResponseOrAiAgentTextGenResponse } from '../schemas/aiAgentAskResponseOrAiAgentTextGenResponse.generated.js';
+import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -233,7 +233,7 @@ export class AiManager {
   async getAiAgentDefault(
     queryParams: GetAiAgentDefaultQueryParams,
     optionalsInput: GetAiAgentDefaultOptionalsInput = {}
-  ): Promise<AiAgentAskResponseOrAiAgentTextGenResponse> {
+  ): Promise<AiAgentAskOrAiAgentTextGen> {
     const optionals: GetAiAgentDefaultOptionals =
       new GetAiAgentDefaultOptionals({
         headers: optionalsInput.headers,
@@ -266,7 +266,7 @@ export class AiManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeAiAgentAskResponseOrAiAgentTextGenResponse(response.data);
+    return deserializeAiAgentAskOrAiAgentTextGen(response.data);
   }
 }
 export interface AiManagerInput {

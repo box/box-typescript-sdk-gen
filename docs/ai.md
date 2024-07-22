@@ -117,7 +117,7 @@ _Currently we don't have an example for calling `getAiAgentDefault` in integrati
 
 ### Returns
 
-This function returns a value of type `AiAgentAskResponseOrAiAgentTextGenResponse`.
+This function returns a value of type `AiAgentAskOrAiAgentTextGen`.
 
 A successful response including the default agent configuration.
 This response can be one of the following two objects:
