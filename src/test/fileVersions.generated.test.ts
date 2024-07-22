@@ -41,7 +41,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
-test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListGetRestoreDeleteFileVersion(): Promise<any> {
+test('testCreateListGetPromoteFileVersion', async function testCreateListGetPromoteFileVersion(): Promise<any> {
   const oldName: string = getUuid();
   const newName: string = getUuid();
   const files: Files = await client.uploads.uploadFile({
@@ -91,20 +91,16 @@ test('testCreateListGetRestoreDeleteFileVersion', async function testCreateListG
       type: 'file_version' as PromoteFileVersionRequestBodyTypeField,
     } satisfies PromoteFileVersionRequestBody,
   } satisfies PromoteFileVersionOptionalsInput);
-  const fileRestored: FileFull = await client.files.getFileById(file.id);
-  if (!(fileRestored.name == oldName)) {
-    throw new Error('Assertion failed');
-  }
-  if (!(fileRestored.size == 10)) {
-    throw new Error('Assertion failed');
-  }
-  const fileVersionsRestored: FileVersions =
-    await client.fileVersions.getFileVersions(file.id);
-  await client.fileVersions.deleteFileVersionById(
-    file.id,
-    fileVersionsRestored.entries![0].id
+  const fileWithPromotedVersion: FileFull = await client.files.getFileById(
+    file.id
   );
-  await client.fileVersions.getFileVersions(file.id);
+  if (!(fileWithPromotedVersion.name == oldName)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(fileWithPromotedVersion.size == 10)) {
+    throw new Error('Assertion failed');
+  }
+  await client.fileVersions.deleteFileVersionById(file.id, fileVersion.id);
   await client.files.deleteFileById(file.id);
 });
 export {};
