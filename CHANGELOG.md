@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.2.0...v1.3.0) (2024-07-24)
+
+
+### Bug Fixes
+
+* Extract `IntegrationMappingPartnerItemSlack` to union type (box/box-codegen[#530](https://github.com/box/box-typescript-sdk-gen/issues/530)) ([#255](https://github.com/box/box-typescript-sdk-gen/issues/255)) ([fa8952a](https://github.com/box/box-typescript-sdk-gen/commit/fa8952a6582d9965bbb4ab66bbeff057f5c68851))
+* Improve chunked upload reliability (box/box-codegen[#529](https://github.com/box/box-typescript-sdk-gen/issues/529)) ([#254](https://github.com/box/box-typescript-sdk-gen/issues/254)) ([12d9288](https://github.com/box/box-typescript-sdk-gen/commit/12d928850e0a1cd60f336a9919474b9aaba33028))
+
+
+### New Features and Enhancements
+
+* Add `is_active` parameter to user collaboration (box/box-openapi[#437](https://github.com/box/box-typescript-sdk-gen/issues/437)) ([#253](https://github.com/box/box-typescript-sdk-gen/issues/253)) ([4d8d436](https://github.com/box/box-typescript-sdk-gen/commit/4d8d436977b3e487a47e7717626f1c0f2eb43227))
+* Support AI Agent API (box/box-codegen[#531](https://github.com/box/box-typescript-sdk-gen/issues/531)) ([#260](https://github.com/box/box-typescript-sdk-gen/issues/260)) ([0ec40d4](https://github.com/box/box-typescript-sdk-gen/commit/0ec40d44c86a8a9cf4fe594966cfad1866be457c))
+
 ## [1.2.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.1.0...v1.2.0) (2024-07-08)
 
 
