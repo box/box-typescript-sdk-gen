@@ -119,10 +119,7 @@ See the endpoint docs at
 <!-- sample delete_files_id_versions_id -->
 
 ```ts
-await client.fileVersions.deleteFileVersionById(
-  file.id,
-  fileVersionsRestored.entries![0].id
-);
+await client.fileVersions.deleteFileVersionById(file.id, fileVersion.id);
 ```
 
 ### Arguments
