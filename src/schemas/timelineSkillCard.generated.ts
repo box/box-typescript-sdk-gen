@@ -12,13 +12,22 @@ import { sdIsMap } from '../serialization/json.js';
 export type TimelineSkillCardTypeField = 'skill_card';
 export type TimelineSkillCardSkillCardTypeField = 'timeline';
 export interface TimelineSkillCardSkillCardTitleField {
+  /**
+   * An optional identifier for the title. */
   readonly code?: string;
+  /**
+   * The actual title to show in the UI. */
   readonly message: string;
 }
 export type TimelineSkillCardSkillTypeField = 'service';
 export class TimelineSkillCardSkillField {
+  /**
+   * `service` */
   readonly type: TimelineSkillCardSkillTypeField =
     'service' as TimelineSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<TimelineSkillCardSkillField, 'type'> &
@@ -33,13 +42,26 @@ export class TimelineSkillCardSkillField {
   }
 }
 export interface TimelineSkillCardSkillFieldInput {
+  /**
+   * `service` */
   readonly type?: TimelineSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id: string;
 }
 export type TimelineSkillCardInvocationTypeField = 'skill_invocation';
 export class TimelineSkillCardInvocationField {
+  /**
+   * `skill_invocation` */
   readonly type: TimelineSkillCardInvocationTypeField =
     'skill_invocation' as TimelineSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<TimelineSkillCardInvocationField, 'type'> &
@@ -54,28 +76,74 @@ export class TimelineSkillCardInvocationField {
   }
 }
 export interface TimelineSkillCardInvocationFieldInput {
+  /**
+   * `skill_invocation` */
   readonly type?: TimelineSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id: string;
 }
 export interface TimelineSkillCardEntriesAppearsField {
+  /**
+   * The time in seconds when an
+   * entry should start appearing on a timeline. */
   readonly start?: number;
+  /**
+   * The time in seconds when an
+   * entry should stop appearing on a timeline. */
   readonly end?: number;
 }
 export interface TimelineSkillCardEntriesField {
+  /**
+   * The text of the entry. This would be the display
+   * name for an item being placed on the timeline, for example the name
+   * of the person who was detected in a video. */
   readonly text?: string;
+  /**
+   * Defines a list of timestamps for when this item should appear on the
+   * timeline. */
   readonly appears?: readonly TimelineSkillCardEntriesAppearsField[];
+  /**
+   * The image to show on a for an entry that appears
+   * on a timeline. This image URL is required for every entry.
+   *
+   * The image will be shown in a
+   * list of items (for example faces), and clicking
+   * the image will show the user where that entry
+   * appears during the duration of this entry. */
   readonly imageUrl?: string;
 }
 export class TimelineSkillCard {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type: TimelineSkillCardTypeField =
     'skill_card' as TimelineSkillCardTypeField;
+  /**
+   * `timeline` */
   readonly skillCardType: TimelineSkillCardSkillCardTypeField =
     'timeline' as TimelineSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: TimelineSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill!: TimelineSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation!: TimelineSkillCardInvocationField;
+  /**
+   * An total duration in seconds of the timeline. */
   readonly duration?: number;
+  /**
+   * A list of entries on the timeline. */
   readonly entries!: readonly TimelineSkillCardEntriesField[];
   constructor(
     fields: Omit<TimelineSkillCard, 'type' | 'skillCardType'> &
@@ -108,13 +176,30 @@ export class TimelineSkillCard {
   }
 }
 export interface TimelineSkillCardInput {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type?: TimelineSkillCardTypeField;
+  /**
+   * `timeline` */
   readonly skillCardType?: TimelineSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: TimelineSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill: TimelineSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation: TimelineSkillCardInvocationField;
+  /**
+   * An total duration in seconds of the timeline. */
   readonly duration?: number;
+  /**
+   * A list of entries on the timeline. */
   readonly entries: readonly TimelineSkillCardEntriesField[];
 }
 export function serializeTimelineSkillCardTypeField(

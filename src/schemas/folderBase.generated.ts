@@ -8,8 +8,22 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type FolderBaseTypeField = 'folder';
 export class FolderBase {
+  /**
+   * The unique identifier that represent a folder.
+   *
+   * The ID for any folder can be determined
+   * by visiting a folder in the web application
+   * and copying the ID from the URL. For example,
+   * for the URL `https://*.app.box.com/folders/123`
+   * the `folder_id` is `123`. */
   readonly id!: string;
+  /**
+   * The HTTP `etag` of this folder. This can be used within some API
+   * endpoints in the `If-Match` and `If-None-Match` headers to only
+   * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string;
+  /**
+   * `folder` */
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
   constructor(
     fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>
@@ -26,8 +40,22 @@ export class FolderBase {
   }
 }
 export interface FolderBaseInput {
+  /**
+   * The unique identifier that represent a folder.
+   *
+   * The ID for any folder can be determined
+   * by visiting a folder in the web application
+   * and copying the ID from the URL. For example,
+   * for the URL `https://*.app.box.com/folders/123`
+   * the `folder_id` is `123`. */
   readonly id: string;
+  /**
+   * The HTTP `etag` of this folder. This can be used within some API
+   * endpoints in the `If-Match` and `If-None-Match` headers to only
+   * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string;
+  /**
+   * `folder` */
   readonly type?: FolderBaseTypeField;
 }
 export function serializeFolderBaseTypeField(

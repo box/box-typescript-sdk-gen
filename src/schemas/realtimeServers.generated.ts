@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface RealtimeServers {
+  /**
+   * The number of items in this response. */
   readonly chunkSize?: number;
+  /**
+   * A list of real-time servers */
   readonly entries?: readonly RealtimeServer[];
 }
 export function serializeRealtimeServers(val: RealtimeServers): SerializedData {

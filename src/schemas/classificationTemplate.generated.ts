@@ -15,26 +15,71 @@ export type ClassificationTemplateFieldsKeyField =
   'Box__Security__Classification__Key';
 export type ClassificationTemplateFieldsDisplayNameField = 'Classification';
 export interface ClassificationTemplateFieldsOptionsStaticConfigClassificationField {
+  /**
+   * A longer description of the classification. */
   readonly classificationDefinition?: string;
+  /**
+   * An internal Box identifier used to assign a color to
+   * a classification label.
+   *
+   * Mapping between a `colorID` and a color may change
+   * without notice. Currently, the color mappings are as
+   * follows.
+   *
+   * * `0`: Yellow
+   * * `1`: Orange
+   * * `2`: Watermelon red
+   * * `3`: Purple rain
+   * * `4`: Light blue
+   * * `5`: Dark blue
+   * * `6`: Light green
+   * * `7`: Gray */
   readonly colorId?: number;
 }
 export interface ClassificationTemplateFieldsOptionsStaticConfigField {
+  /**
+   * Additional information about the classification.
+   *
+   * This is not an exclusive list of properties, and
+   * more object fields might be returned. These fields
+   * are used for internal Box Shield and Box Governance
+   * purposes and no additional value must be derived from
+   * these fields. */
   readonly classification?: ClassificationTemplateFieldsOptionsStaticConfigClassificationField;
 }
 export interface ClassificationTemplateFieldsOptionsField {
+  /**
+   * The unique ID of this classification. */
   readonly id: string;
+  /**
+   * The display name and key for this classification. */
   readonly key: string;
+  /**
+   * Additional information about the classification. */
   readonly staticConfig?: ClassificationTemplateFieldsOptionsStaticConfigField;
 }
 export class ClassificationTemplateFieldsField {
+  /**
+   * The unique ID of the field. */
   readonly id!: string;
+  /**
+   * The array item type. */
   readonly type: ClassificationTemplateFieldsTypeField =
     'enum' as ClassificationTemplateFieldsTypeField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly key: ClassificationTemplateFieldsKeyField =
     'Box__Security__Classification__Key' as ClassificationTemplateFieldsKeyField;
+  /**
+   * `Classification` */
   readonly displayName: ClassificationTemplateFieldsDisplayNameField =
     'Classification' as ClassificationTemplateFieldsDisplayNameField;
+  /**
+   * Classifications are always visible to web and mobile users. */
   readonly hidden?: boolean;
+  /**
+   * A list of classifications available in this enterprise. */
   readonly options!: readonly ClassificationTemplateFieldsOptionsField[];
   constructor(
     fields: Omit<
@@ -66,24 +111,60 @@ export class ClassificationTemplateFieldsField {
   }
 }
 export interface ClassificationTemplateFieldsFieldInput {
+  /**
+   * The unique ID of the field. */
   readonly id: string;
+  /**
+   * The array item type. */
   readonly type?: ClassificationTemplateFieldsTypeField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly key?: ClassificationTemplateFieldsKeyField;
+  /**
+   * `Classification` */
   readonly displayName?: ClassificationTemplateFieldsDisplayNameField;
+  /**
+   * Classifications are always visible to web and mobile users. */
   readonly hidden?: boolean;
+  /**
+   * A list of classifications available in this enterprise. */
   readonly options: readonly ClassificationTemplateFieldsOptionsField[];
 }
 export class ClassificationTemplate {
+  /**
+   * The ID of the classification template. */
   readonly id!: string;
+  /**
+   * `metadata_template` */
   readonly type: ClassificationTemplateTypeField =
     'metadata_template' as ClassificationTemplateTypeField;
+  /**
+   * The scope of the classification template. This is in the format
+   * `enterprise_{id}` where the `id` is the enterprise ID. */
   readonly scope!: string;
+  /**
+   * `securityClassification-6VMVochwUWo` */
   readonly templateKey: ClassificationTemplateTemplateKeyField =
     'securityClassification-6VMVochwUWo' as ClassificationTemplateTemplateKeyField;
+  /**
+   * The name of this template as shown in web and mobile interfaces. */
   readonly displayName: ClassificationTemplateDisplayNameField =
     'Classification' as ClassificationTemplateDisplayNameField;
+  /**
+   * Determines if the
+   * template is always available in web and mobile interfaces. */
   readonly hidden?: boolean;
+  /**
+   * Determines if
+   * classifications are
+   * copied along when the file or folder is
+   * copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  /**
+   * A list of fields for this classification template. This includes
+   * only one field, the `Box__Security__Classification__Key`, which defines
+   * the different classifications available in this enterprise. */
   readonly fields!: readonly ClassificationTemplateFieldsField[];
   constructor(
     fields: Omit<
@@ -121,13 +202,36 @@ export class ClassificationTemplate {
   }
 }
 export interface ClassificationTemplateInput {
+  /**
+   * The ID of the classification template. */
   readonly id: string;
+  /**
+   * `metadata_template` */
   readonly type?: ClassificationTemplateTypeField;
+  /**
+   * The scope of the classification template. This is in the format
+   * `enterprise_{id}` where the `id` is the enterprise ID. */
   readonly scope: string;
+  /**
+   * `securityClassification-6VMVochwUWo` */
   readonly templateKey?: ClassificationTemplateTemplateKeyField;
+  /**
+   * The name of this template as shown in web and mobile interfaces. */
   readonly displayName?: ClassificationTemplateDisplayNameField;
+  /**
+   * Determines if the
+   * template is always available in web and mobile interfaces. */
   readonly hidden?: boolean;
+  /**
+   * Determines if
+   * classifications are
+   * copied along when the file or folder is
+   * copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  /**
+   * A list of fields for this classification template. This includes
+   * only one field, the `Box__Security__Classification__Key`, which defines
+   * the different classifications available in this enterprise. */
   readonly fields: readonly ClassificationTemplateFieldsField[];
 }
 export function serializeClassificationTemplateTypeField(

@@ -16,16 +16,33 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface FolderLockLockedOperationsField {
+  /**
+   * Whether moving the folder is restricted. */
   readonly move: boolean;
+  /**
+   * Whether deleting the folder is restricted. */
   readonly delete: boolean;
 }
 export interface FolderLock {
   readonly folder?: FolderMini;
+  /**
+   * The unique identifier for this folder lock. */
   readonly id?: string;
+  /**
+   * The object type, always `folder_lock`. */
   readonly type?: string;
   readonly createdBy?: UserBase;
+  /**
+   * When the folder lock object was created. */
   readonly createdAt?: DateTime;
+  /**
+   * The operations that have been locked. Currently the `move`
+   * and `delete` operations cannot be locked separately, and both need to be
+   * set to `true`.
+   *  */
   readonly lockedOperations?: FolderLockLockedOperationsField;
+  /**
+   * The lock type, always `freeze`. */
   readonly lockType?: string;
 }
 export function serializeFolderLockLockedOperationsField(

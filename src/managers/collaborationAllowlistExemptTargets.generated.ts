@@ -110,10 +110,19 @@ export interface DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetCollaborationWhitelistExemptTargetsQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetCollaborationWhitelistExemptTargetsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -132,6 +141,8 @@ export class GetCollaborationWhitelistExemptTargetsHeaders {
   }
 }
 export interface GetCollaborationWhitelistExemptTargetsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -139,12 +150,18 @@ export interface GetCollaborationWhitelistExemptTargetsHeadersInput {
       };
 }
 export interface CreateCollaborationWhitelistExemptTargetRequestBodyUserField {
+  /**
+   * The ID of the user to exempt. */
   readonly id: string;
 }
 export interface CreateCollaborationWhitelistExemptTargetRequestBody {
+  /**
+   * The user to exempt. */
   readonly user: CreateCollaborationWhitelistExemptTargetRequestBodyUserField;
 }
 export class CreateCollaborationWhitelistExemptTargetHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -163,6 +180,8 @@ export class CreateCollaborationWhitelistExemptTargetHeaders {
   }
 }
 export interface CreateCollaborationWhitelistExemptTargetHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -170,6 +189,8 @@ export interface CreateCollaborationWhitelistExemptTargetHeadersInput {
       };
 }
 export class GetCollaborationWhitelistExemptTargetByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -188,6 +209,8 @@ export class GetCollaborationWhitelistExemptTargetByIdHeaders {
   }
 }
 export interface GetCollaborationWhitelistExemptTargetByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -195,6 +218,8 @@ export interface GetCollaborationWhitelistExemptTargetByIdHeadersInput {
       };
 }
 export class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -216,6 +241,8 @@ export class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
   }
 }
 export interface DeleteCollaborationWhitelistExemptTargetByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -245,6 +272,14 @@ export class CollaborationAllowlistExemptTargetsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns a list of users who have been exempt from the collaboration
+   * domain restrictions.
+   * @param {GetCollaborationWhitelistExemptTargetsQueryParams} queryParams Query parameters of getCollaborationWhitelistExemptTargets method
+   * @param {GetCollaborationWhitelistExemptTargetsHeadersInput} headersInput Headers of getCollaborationWhitelistExemptTargets method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<CollaborationAllowlistExemptTargets>}
+   */
   async getCollaborationWhitelistExemptTargets(
     queryParams: GetCollaborationWhitelistExemptTargetsQueryParams = {} satisfies GetCollaborationWhitelistExemptTargetsQueryParams,
     headersInput: GetCollaborationWhitelistExemptTargetsHeadersInput = new GetCollaborationWhitelistExemptTargetsHeaders(
@@ -282,6 +317,13 @@ export class CollaborationAllowlistExemptTargetsManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistExemptTargets(response.data);
   }
+  /**
+   * Exempts a user from the restrictions set out by the allowed list of domains
+   * for collaborations.
+   * @param {CreateCollaborationWhitelistExemptTargetRequestBody} requestBody Request body of createCollaborationWhitelistExemptTarget method
+   * @param {CreateCollaborationWhitelistExemptTargetOptionalsInput} optionalsInput
+   * @returns {Promise<CollaborationAllowlistExemptTarget>}
+   */
   async createCollaborationWhitelistExemptTarget(
     requestBody: CreateCollaborationWhitelistExemptTargetRequestBody,
     optionalsInput: CreateCollaborationWhitelistExemptTargetOptionalsInput = {}
@@ -316,6 +358,14 @@ export class CollaborationAllowlistExemptTargetsManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistExemptTarget(response.data);
   }
+  /**
+     * Returns a users who has been exempt from the collaboration
+     * domain restrictions.
+     * @param {string} collaborationWhitelistExemptTargetId The ID of the exemption to the list.
+    Example: "984923"
+     * @param {GetCollaborationWhitelistExemptTargetByIdOptionalsInput} optionalsInput
+     * @returns {Promise<CollaborationAllowlistExemptTarget>}
+     */
   async getCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
     optionalsInput: GetCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
@@ -347,6 +397,14 @@ export class CollaborationAllowlistExemptTargetsManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistExemptTarget(response.data);
   }
+  /**
+     * Removes a user's exemption from the restrictions set out by the allowed list
+     * of domains for collaborations.
+     * @param {string} collaborationWhitelistExemptTargetId The ID of the exemption to the list.
+    Example: "984923"
+     * @param {DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
     optionalsInput: DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput = {}

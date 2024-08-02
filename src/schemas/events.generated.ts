@@ -11,8 +11,15 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type EventsNextStreamPositionField = string | number;
 export interface Events {
+  /**
+   * The number of events returned in this response. */
   readonly chunkSize?: number;
+  /**
+   * The stream position of the start of the next page (chunk)
+   * of events. */
   readonly nextStreamPosition?: EventsNextStreamPositionField;
+  /**
+   * A list of events */
   readonly entries?: readonly Event[];
 }
 export function serializeEventsNextStreamPositionField(

@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface EmailAliases {
+  /**
+   * The number of email aliases. */
   readonly totalCount?: number;
+  /**
+   * A list of email aliases */
   readonly entries?: readonly EmailAlias[];
 }
 export function serializeEmailAliases(val: EmailAliases): SerializedData {

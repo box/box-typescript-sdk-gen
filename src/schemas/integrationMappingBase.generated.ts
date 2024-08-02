@@ -8,7 +8,16 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingBaseIntegrationTypeField = 'slack';
 export interface IntegrationMappingBase {
+  /**
+   * A unique identifier of a folder mapping
+   * (part of a composite key together
+   * with `integration_type`) */
   readonly id?: string;
+  /**
+   * Identifies the Box partner app,
+   * with which the mapping is associated.
+   * Currently only supports Slack.
+   * (part of the composite key together with `id`) */
   readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
 }
 export function serializeIntegrationMappingBaseIntegrationTypeField(

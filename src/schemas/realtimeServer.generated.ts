@@ -7,10 +7,27 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface RealtimeServer {
+  /**
+   * `realtime_server` */
   readonly type?: string;
+  /**
+   * The URL for the server. */
   readonly url?: string;
+  /**
+   * The time in minutes for which this server is available */
   readonly ttl?: string;
+  /**
+   * The maximum number of retries this server will
+   * allow before a new long poll should be started by
+   * getting a [new list of server](#options-events). */
   readonly maxRetries?: string;
+  /**
+   * The maximum number of seconds without a response
+   * after which you should retry the long poll connection.
+   *
+   * This helps to overcome network issues where the long
+   * poll looks to be working but no packages are coming
+   * through. */
   readonly retryTimeout?: number;
 }
 export function serializeRealtimeServer(val: RealtimeServer): SerializedData {

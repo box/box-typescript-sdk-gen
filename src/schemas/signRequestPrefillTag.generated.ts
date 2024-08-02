@@ -10,9 +10,17 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface SignRequestPrefillTag {
+  /**
+   * This references the ID of a specific tag contained in a file of the signature request. */
   readonly documentTagId?: string;
+  /**
+   * Text prefill value */
   readonly textValue?: string;
+  /**
+   * Checkbox prefill value */
   readonly checkboxValue?: boolean;
+  /**
+   * Date prefill value */
   readonly dateValue?: Date;
 }
 export function serializeSignRequestPrefillTag(

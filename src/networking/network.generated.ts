@@ -46,6 +46,13 @@ export class NetworkSession {
       this.agentOptions = fields.agentOptions;
     }
   }
+  /**
+     * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including additional headers to be attached to every API call.
+     * @param {{
+        readonly [key: string]: string;
+    }} additionalHeaders Headers, which are appended to each API request
+     * @returns {NetworkSession}
+     */
   withAdditionalHeaders(
     additionalHeaders: {
       readonly [key: string]: string;
@@ -59,6 +66,11 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
     });
   }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including custom base urls to be used for every API call.
+   * @param {BaseUrls} baseUrls Custom base urls
+   * @returns {NetworkSession}
+   */
   withCustomBaseUrls(baseUrls: BaseUrls): NetworkSession {
     return new NetworkSession({
       additionalHeaders: this.additionalHeaders,
@@ -68,6 +80,11 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
     });
   }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including custom agent options to be used for every API call.
+   * @param {AgentOptions} agentOptions Custom agent options
+   * @returns {NetworkSession}
+   */
   withCustomAgentOptions(agentOptions: AgentOptions): NetworkSession {
     return new NetworkSession({
       additionalHeaders: this.additionalHeaders,
@@ -77,6 +94,11 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
     });
   }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also additional including custom interceptors.
+   * @param {readonly Interceptor[]} interceptors Custom base urls
+   * @returns {NetworkSession}
+   */
   withInterceptors(interceptors: readonly Interceptor[]): NetworkSession {
     return new NetworkSession({
       additionalHeaders: this.additionalHeaders,

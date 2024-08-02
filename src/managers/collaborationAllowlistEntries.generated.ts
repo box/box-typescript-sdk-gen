@@ -110,10 +110,19 @@ export interface DeleteCollaborationWhitelistEntryByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetCollaborationWhitelistEntriesQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetCollaborationWhitelistEntriesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -127,6 +136,8 @@ export class GetCollaborationWhitelistEntriesHeaders {
   }
 }
 export interface GetCollaborationWhitelistEntriesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -138,10 +149,16 @@ export type CreateCollaborationWhitelistEntryRequestBodyDirectionField =
   | 'outbound'
   | 'both';
 export interface CreateCollaborationWhitelistEntryRequestBody {
+  /**
+   * The domain to add to the list of allowed domains. */
   readonly domain: string;
+  /**
+   * The direction in which to allow collaborations. */
   readonly direction: CreateCollaborationWhitelistEntryRequestBodyDirectionField;
 }
 export class CreateCollaborationWhitelistEntryHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -155,6 +172,8 @@ export class CreateCollaborationWhitelistEntryHeaders {
   }
 }
 export interface CreateCollaborationWhitelistEntryHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -162,6 +181,8 @@ export interface CreateCollaborationWhitelistEntryHeadersInput {
       };
 }
 export class GetCollaborationWhitelistEntryByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -175,6 +196,8 @@ export class GetCollaborationWhitelistEntryByIdHeaders {
   }
 }
 export interface GetCollaborationWhitelistEntryByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -182,6 +205,8 @@ export interface GetCollaborationWhitelistEntryByIdHeadersInput {
       };
 }
 export class DeleteCollaborationWhitelistEntryByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -197,6 +222,8 @@ export class DeleteCollaborationWhitelistEntryByIdHeaders {
   }
 }
 export interface DeleteCollaborationWhitelistEntryByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -224,6 +251,14 @@ export class CollaborationAllowlistEntriesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns the list domains that have been deemed safe to create collaborations
+   * for within the current enterprise.
+   * @param {GetCollaborationWhitelistEntriesQueryParams} queryParams Query parameters of getCollaborationWhitelistEntries method
+   * @param {GetCollaborationWhitelistEntriesHeadersInput} headersInput Headers of getCollaborationWhitelistEntries method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<CollaborationAllowlistEntries>}
+   */
   async getCollaborationWhitelistEntries(
     queryParams: GetCollaborationWhitelistEntriesQueryParams = {} satisfies GetCollaborationWhitelistEntriesQueryParams,
     headersInput: GetCollaborationWhitelistEntriesHeadersInput = new GetCollaborationWhitelistEntriesHeaders(
@@ -261,6 +296,13 @@ export class CollaborationAllowlistEntriesManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntries(response.data);
   }
+  /**
+   * Creates a new entry in the list of allowed domains to allow
+   * collaboration for.
+   * @param {CreateCollaborationWhitelistEntryRequestBody} requestBody Request body of createCollaborationWhitelistEntry method
+   * @param {CreateCollaborationWhitelistEntryOptionalsInput} optionalsInput
+   * @returns {Promise<CollaborationAllowlistEntry>}
+   */
   async createCollaborationWhitelistEntry(
     requestBody: CreateCollaborationWhitelistEntryRequestBody,
     optionalsInput: CreateCollaborationWhitelistEntryOptionalsInput = {}
@@ -295,6 +337,14 @@ export class CollaborationAllowlistEntriesManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(response.data);
   }
+  /**
+     * Returns a domain that has been deemed safe to create collaborations
+     * for within the current enterprise.
+     * @param {string} collaborationWhitelistEntryId The ID of the entry in the list.
+    Example: "213123"
+     * @param {GetCollaborationWhitelistEntryByIdOptionalsInput} optionalsInput
+     * @returns {Promise<CollaborationAllowlistEntry>}
+     */
   async getCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
     optionalsInput: GetCollaborationWhitelistEntryByIdOptionalsInput = {}
@@ -326,6 +376,14 @@ export class CollaborationAllowlistEntriesManager {
     )) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(response.data);
   }
+  /**
+     * Removes a domain from the list of domains that have been deemed safe to create
+     * collaborations for within the current enterprise.
+     * @param {string} collaborationWhitelistEntryId The ID of the entry in the list.
+    Example: "213123"
+     * @param {DeleteCollaborationWhitelistEntryByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
     optionalsInput: DeleteCollaborationWhitelistEntryByIdOptionalsInput = {}

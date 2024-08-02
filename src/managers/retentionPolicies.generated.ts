@@ -156,14 +156,38 @@ export type GetRetentionPoliciesQueryParamsPolicyTypeField =
   | 'finite'
   | 'indefinite';
 export interface GetRetentionPoliciesQueryParams {
+  /**
+   * Filters results by a case sensitive prefix of the name of
+   * retention policies. */
   readonly policyName?: string;
+  /**
+   * Filters results by the type of retention policy. */
   readonly policyType?: GetRetentionPoliciesQueryParamsPolicyTypeField;
+  /**
+   * Filters results by the ID of the user who created policy. */
   readonly createdByUserId?: string;
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination. */
   readonly marker?: string;
 }
 export class GetRetentionPoliciesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -177,6 +201,8 @@ export class GetRetentionPoliciesHeaders {
   }
 }
 export interface GetRetentionPoliciesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -193,17 +219,68 @@ export type CreateRetentionPolicyRequestBodyRetentionTypeField =
   | 'modifiable'
   | 'non_modifiable';
 export interface CreateRetentionPolicyRequestBody {
+  /**
+   * The name for the retention policy */
   readonly policyName: string;
+  /**
+   * The additional text description of the retention policy. */
   readonly description?: string;
+  /**
+   * The type of the retention policy. A retention
+   * policy type can either be `finite`, where a
+   * specific amount of time to retain the content is known
+   * upfront, or `indefinite`, where the amount of time
+   * to retain the content is still unknown. */
   readonly policyType: CreateRetentionPolicyRequestBodyPolicyTypeField;
+  /**
+   * The disposition action of the retention policy.
+   * `permanently_delete` deletes the content
+   * retained by the policy permanently.
+   * `remove_retention` lifts retention policy
+   * from the content, allowing it to be deleted
+   * by users once the retention policy has expired. */
   readonly dispositionAction: CreateRetentionPolicyRequestBodyDispositionActionField;
+  /**
+   * The length of the retention policy. This value
+   * specifies the duration in days that the retention
+   * policy will be active for after being assigned to
+   * content.  If the policy has a `policy_type` of
+   * `indefinite`, the `retention_length` will also be
+   * `indefinite`. */
   readonly retentionLength?: string;
+  /**
+   * Specifies the retention type:
+   *
+   * * `modifiable`: You can modify the retention policy. For example,
+   * you can add or remove folders, shorten or lengthen
+   * the policy duration, or delete the assignment.
+   * Use this type if your retention policy
+   * is not related to any regulatory purposes.
+   *
+   * * `non_modifiable`: You can modify the retention policy
+   * only in a limited way: add a folder, lengthen the duration,
+   * retire the policy, change the disposition action
+   * or notification settings. You cannot perform other actions,
+   * such as deleting the assignment or shortening the
+   * policy duration. Use this type to ensure
+   * compliance with regulatory retention policies. */
   readonly retentionType?: CreateRetentionPolicyRequestBodyRetentionTypeField;
+  /**
+   * Whether the owner of a file will be allowed to
+   * extend the retention. */
   readonly canOwnerExtendRetention?: boolean;
+  /**
+   * Whether owner and co-owners of a file are notified
+   * when the policy nears expiration. */
   readonly areOwnersNotified?: boolean;
+  /**
+   * A list of users notified when
+   * the retention policy duration is about to end. */
   readonly customNotificationRecipients?: readonly UserMini[];
 }
 export class CreateRetentionPolicyHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -217,6 +294,8 @@ export class CreateRetentionPolicyHeaders {
   }
 }
 export interface CreateRetentionPolicyHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -224,9 +303,21 @@ export interface CreateRetentionPolicyHeadersInput {
       };
 }
 export interface GetRetentionPolicyByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetRetentionPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -240,6 +331,8 @@ export class GetRetentionPolicyByIdHeaders {
   }
 }
 export interface GetRetentionPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -247,17 +340,74 @@ export interface GetRetentionPolicyByIdHeadersInput {
       };
 }
 export interface UpdateRetentionPolicyByIdRequestBody {
+  /**
+   * The name for the retention policy */
   readonly policyName?: string;
+  /**
+   * The additional text description of the retention policy. */
   readonly description?: string;
+  /**
+   * The disposition action of the retention policy.
+   * This action can be `permanently_delete`, which
+   * will cause the content retained by the policy
+   * to be permanently deleted, or `remove_retention`,
+   * which will lift the retention policy from the content,
+   * allowing it to be deleted by users,
+   * once the retention policy has expired.
+   * You can use `null` if you don't want to change `disposition_action`. */
   readonly dispositionAction?: string;
+  /**
+   * Specifies the retention type:
+   *
+   * * `modifiable`: You can modify the retention policy. For example,
+   * you can add or remove folders, shorten or lengthen
+   * the policy duration, or delete the assignment.
+   * Use this type if your retention policy
+   * is not related to any regulatory purposes.
+   * * `non-modifiable`: You can modify the retention policy
+   * only in a limited way: add a folder, lengthen the duration,
+   * retire the policy, change the disposition action
+   * or notification settings. You cannot perform other actions,
+   * such as deleting the assignment or shortening the
+   * policy duration. Use this type to ensure
+   * compliance with regulatory retention policies.
+   *
+   * When updating a retention policy, you can use
+   * `non-modifiable` type only. You can convert a
+   * `modifiable` policy to `non-modifiable`, but
+   * not the other way around. */
   readonly retentionType?: string;
+  /**
+   * The length of the retention policy. This value
+   * specifies the duration in days that the retention
+   * policy will be active for after being assigned to
+   * content.  If the policy has a `policy_type` of
+   * `indefinite`, the `retention_length` will also be
+   * `indefinite`. */
   readonly retentionLength?: string;
+  /**
+   * Used to retire a retention policy.
+   *
+   * If not retiring a policy, do not include this parameter
+   * or set it to `null`. */
   readonly status?: string;
+  /**
+   * Determines if the owner of items under the policy
+   * can extend the retention when the original retention
+   * duration is about to end. */
   readonly canOwnerExtendRetention?: boolean;
+  /**
+   * Determines if owners and co-owners of items
+   * under the policy are notified when
+   * the retention duration is about to end. */
   readonly areOwnersNotified?: boolean;
+  /**
+   * A list of users notified when the retention duration is about to end. */
   readonly customNotificationRecipients?: readonly UserBase[];
 }
 export class UpdateRetentionPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -271,6 +421,8 @@ export class UpdateRetentionPolicyByIdHeaders {
   }
 }
 export interface UpdateRetentionPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -278,6 +430,8 @@ export interface UpdateRetentionPolicyByIdHeadersInput {
       };
 }
 export class DeleteRetentionPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -291,6 +445,8 @@ export class DeleteRetentionPolicyByIdHeaders {
   }
 }
 export interface DeleteRetentionPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -319,6 +475,13 @@ export class RetentionPoliciesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves all of the retention policies for an enterprise.
+   * @param {GetRetentionPoliciesQueryParams} queryParams Query parameters of getRetentionPolicies method
+   * @param {GetRetentionPoliciesHeadersInput} headersInput Headers of getRetentionPolicies method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<RetentionPolicies>}
+   */
   async getRetentionPolicies(
     queryParams: GetRetentionPoliciesQueryParams = {} satisfies GetRetentionPoliciesQueryParams,
     headersInput: GetRetentionPoliciesHeadersInput = new GetRetentionPoliciesHeaders(
@@ -362,6 +525,12 @@ export class RetentionPoliciesManager {
     )) as FetchResponse;
     return deserializeRetentionPolicies(response.data);
   }
+  /**
+   * Creates a retention policy.
+   * @param {CreateRetentionPolicyRequestBody} requestBody Request body of createRetentionPolicy method
+   * @param {CreateRetentionPolicyOptionalsInput} optionalsInput
+   * @returns {Promise<RetentionPolicy>}
+   */
   async createRetentionPolicy(
     requestBody: CreateRetentionPolicyRequestBody,
     optionalsInput: CreateRetentionPolicyOptionalsInput = {}
@@ -394,6 +563,13 @@ export class RetentionPoliciesManager {
     )) as FetchResponse;
     return deserializeRetentionPolicy(response.data);
   }
+  /**
+     * Retrieves a retention policy.
+     * @param {string} retentionPolicyId The ID of the retention policy.
+    Example: "982312"
+     * @param {GetRetentionPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<RetentionPolicy>}
+     */
   async getRetentionPolicyById(
     retentionPolicyId: string,
     optionalsInput: GetRetentionPolicyByIdOptionalsInput = {}
@@ -435,6 +611,13 @@ export class RetentionPoliciesManager {
     )) as FetchResponse;
     return deserializeRetentionPolicy(response.data);
   }
+  /**
+     * Updates a retention policy.
+     * @param {string} retentionPolicyId The ID of the retention policy.
+    Example: "982312"
+     * @param {UpdateRetentionPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<RetentionPolicy>}
+     */
   async updateRetentionPolicyById(
     retentionPolicyId: string,
     optionalsInput: UpdateRetentionPolicyByIdOptionalsInput = {}
@@ -470,6 +653,13 @@ export class RetentionPoliciesManager {
     )) as FetchResponse;
     return deserializeRetentionPolicy(response.data);
   }
+  /**
+     * Permanently deletes a retention policy.
+     * @param {string} retentionPolicyId The ID of the retention policy.
+    Example: "982312"
+     * @param {DeleteRetentionPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteRetentionPolicyById(
     retentionPolicyId: string,
     optionalsInput: DeleteRetentionPolicyByIdOptionalsInput = {}

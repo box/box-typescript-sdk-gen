@@ -10,7 +10,13 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface Tasks {
+  /**
+   * One greater than the offset of the last entry in the entire collection.
+   * The total number of entries in the collection may be less than
+   * `total_count`. */
   readonly totalCount?: number;
+  /**
+   * A list of tasks */
   readonly entries?: readonly Task[];
 }
 export function serializeTasks(val: Tasks): SerializedData {

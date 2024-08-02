@@ -22,16 +22,39 @@ export type TaskTypeField = 'task';
 export type TaskActionField = 'review' | 'complete';
 export type TaskCompletionRuleField = 'all_assignees' | 'any_assignee';
 export interface Task {
+  /**
+   * The unique identifier for this task */
   readonly id?: string;
+  /**
+   * `task` */
   readonly type?: TaskTypeField;
   readonly item?: FileMini;
+  /**
+   * When the task is due */
   readonly dueAt?: DateTime;
+  /**
+   * The type of task the task assignee will be prompted to
+   * perform. */
   readonly action?: TaskActionField;
+  /**
+   * A message that will be included with the task */
   readonly message?: string;
   readonly taskAssignmentCollection?: TaskAssignments;
+  /**
+   * Whether the task has been completed */
   readonly isCompleted?: boolean;
   readonly createdBy?: UserMini;
+  /**
+   * When the task object was created */
   readonly createdAt?: DateTime;
+  /**
+   * Defines which assignees need to complete this task before the task
+   * is considered completed.
+   *
+   * * `all_assignees` requires all assignees to review or
+   * approve the the task in order for it to be considered completed.
+   * * `any_assignee` accepts any one assignee to review or
+   * approve the the task in order for it to be considered completed. */
   readonly completionRule?: TaskCompletionRuleField;
 }
 export function serializeTaskTypeField(val: TaskTypeField): SerializedData {

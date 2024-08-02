@@ -138,11 +138,37 @@ export interface RemoveSharedLinkFromFileOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface FindFileForSharedLinkQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class FindFileForSharedLinkHeaders {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi!: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -162,8 +188,24 @@ export class FindFileForSharedLinkHeaders {
   }
 }
 export interface FindFileForSharedLinkHeadersInput {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -171,9 +213,14 @@ export interface FindFileForSharedLinkHeadersInput {
       };
 }
 export interface GetSharedLinkForFileQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class GetSharedLinkForFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -187,6 +234,8 @@ export class GetSharedLinkForFileHeaders {
   }
 }
 export interface GetSharedLinkForFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -198,24 +247,79 @@ export type AddShareLinkToFileRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface AddShareLinkToFileRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * If the shared link allows for editing of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`.
+   * This value can only be `true` is `can_download` is
+   * also `true`. */
   readonly canEdit?: boolean;
 }
 export interface AddShareLinkToFileRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the file (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: AddShareLinkToFileRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToFileRequestBodySharedLinkPermissionsField;
 }
 export interface AddShareLinkToFileRequestBody {
+  /**
+   * The settings for the shared link to create on the file.
+   * Use an empty object (`{}`) to use the default settings for shared
+   * links. */
   readonly sharedLink?: AddShareLinkToFileRequestBodySharedLinkField;
 }
 export interface AddShareLinkToFileQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class AddShareLinkToFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -229,6 +333,8 @@ export class AddShareLinkToFileHeaders {
   }
 }
 export interface AddShareLinkToFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -240,24 +346,77 @@ export type UpdateSharedLinkOnFileRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * If the shared link allows for editing of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`.
+   * This value can only be `true` is `can_download` is
+   * also `true`. */
   readonly canEdit?: boolean;
 }
 export interface UpdateSharedLinkOnFileRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the folder (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: UpdateSharedLinkOnFileRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField;
 }
 export interface UpdateSharedLinkOnFileRequestBody {
+  /**
+   * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnFileRequestBodySharedLinkField;
 }
 export interface UpdateSharedLinkOnFileQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class UpdateSharedLinkOnFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -271,6 +430,8 @@ export class UpdateSharedLinkOnFileHeaders {
   }
 }
 export interface UpdateSharedLinkOnFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -279,12 +440,20 @@ export interface UpdateSharedLinkOnFileHeadersInput {
 }
 export interface RemoveSharedLinkFromFileRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromFileRequestBody {
+  /**
+   * By setting this value to `null`, the shared link
+   * is removed from the file. */
   readonly sharedLink?: RemoveSharedLinkFromFileRequestBodySharedLinkField;
 }
 export interface RemoveSharedLinkFromFileQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class RemoveSharedLinkFromFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -298,6 +467,8 @@ export class RemoveSharedLinkFromFileHeaders {
   }
 }
 export interface RemoveSharedLinkFromFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -326,6 +497,22 @@ export class SharedLinksFilesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns the file represented by a shared link.
+   *
+   * A shared file can be represented by a shared link,
+   * which can originate within the current enterprise or within another.
+   *
+   * This endpoint allows an application to retrieve information about a
+   * shared file when only given a shared link.
+   *
+   * The `shared_link_permission_options` array field can be returned
+   * by requesting it in the `fields` query parameter.
+   * @param {FindFileForSharedLinkQueryParams} queryParams Query parameters of findFileForSharedLink method
+   * @param {FindFileForSharedLinkHeadersInput} headersInput Headers of findFileForSharedLink method
+   * @param {FindFileForSharedLinkOptionalsInput} optionalsInput
+   * @returns {Promise<FileFull>}
+   */
   async findFileForSharedLink(
     queryParams: FindFileForSharedLinkQueryParams = {} satisfies FindFileForSharedLinkQueryParams,
     headersInput: FindFileForSharedLinkHeadersInput,
@@ -375,6 +562,20 @@ export class SharedLinksFilesManager {
     )) as FetchResponse;
     return deserializeFileFull(response.data);
   }
+  /**
+     * Gets the information for a shared link on a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetSharedLinkForFileQueryParams} queryParams Query parameters of getSharedLinkForFile method
+     * @param {GetSharedLinkForFileOptionalsInput} optionalsInput
+     * @returns {Promise<FileFull>}
+     */
   async getSharedLinkForFile(
     fileId: string,
     queryParams: GetSharedLinkForFileQueryParams,
@@ -412,6 +613,21 @@ export class SharedLinksFilesManager {
     )) as FetchResponse;
     return deserializeFileFull(response.data);
   }
+  /**
+     * Adds a shared link to a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {AddShareLinkToFileRequestBody} requestBody Request body of addShareLinkToFile method
+     * @param {AddShareLinkToFileQueryParams} queryParams Query parameters of addShareLinkToFile method
+     * @param {AddShareLinkToFileOptionalsInput} optionalsInput
+     * @returns {Promise<FileFull>}
+     */
   async addShareLinkToFile(
     fileId: string,
     requestBody: AddShareLinkToFileRequestBody = {} satisfies AddShareLinkToFileRequestBody,
@@ -452,6 +668,21 @@ export class SharedLinksFilesManager {
     )) as FetchResponse;
     return deserializeFileFull(response.data);
   }
+  /**
+     * Updates a shared link on a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {UpdateSharedLinkOnFileRequestBody} requestBody Request body of updateSharedLinkOnFile method
+     * @param {UpdateSharedLinkOnFileQueryParams} queryParams Query parameters of updateSharedLinkOnFile method
+     * @param {UpdateSharedLinkOnFileOptionalsInput} optionalsInput
+     * @returns {Promise<FileFull>}
+     */
   async updateSharedLinkOnFile(
     fileId: string,
     requestBody: UpdateSharedLinkOnFileRequestBody = {} satisfies UpdateSharedLinkOnFileRequestBody,
@@ -492,6 +723,21 @@ export class SharedLinksFilesManager {
     )) as FetchResponse;
     return deserializeFileFull(response.data);
   }
+  /**
+     * Removes a shared link from a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {RemoveSharedLinkFromFileRequestBody} requestBody Request body of removeSharedLinkFromFile method
+     * @param {RemoveSharedLinkFromFileQueryParams} queryParams Query parameters of removeSharedLinkFromFile method
+     * @param {RemoveSharedLinkFromFileOptionalsInput} optionalsInput
+     * @returns {Promise<FileFull>}
+     */
   async removeSharedLinkFromFile(
     fileId: string,
     requestBody: RemoveSharedLinkFromFileRequestBody = {} satisfies RemoveSharedLinkFromFileRequestBody,

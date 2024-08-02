@@ -24,17 +24,33 @@ export type WorkflowFlowsTriggerTriggerTypeField = 'WORKFLOW_MANUAL_START';
 export type WorkflowFlowsTriggerScopeTypeField = 'trigger_scope';
 export type WorkflowFlowsTriggerScopeObjectTypeField = 'folder';
 export interface WorkflowFlowsTriggerScopeObjectField {
+  /**
+   * The type of the object */
   readonly type?: WorkflowFlowsTriggerScopeObjectTypeField;
+  /**
+   * The id of the object */
   readonly id?: string;
 }
 export interface WorkflowFlowsTriggerScopeField {
+  /**
+   * The trigger scope's resource type */
   readonly type?: WorkflowFlowsTriggerScopeTypeField;
+  /**
+   * Indicates the path of the condition value to check */
   readonly ref?: string;
+  /**
+   * The object the `ref` points to */
   readonly object?: WorkflowFlowsTriggerScopeObjectField;
 }
 export interface WorkflowFlowsTriggerField {
+  /**
+   * The trigger's resource type */
   readonly type?: WorkflowFlowsTriggerTypeField;
+  /**
+   * The type of trigger selected for this flow */
   readonly triggerType?: WorkflowFlowsTriggerTriggerTypeField;
+  /**
+   * List of trigger scopes */
   readonly scope?: readonly WorkflowFlowsTriggerScopeField[];
 }
 export type WorkflowFlowsOutcomesTypeField = 'outcome';
@@ -88,27 +104,50 @@ export type WorkflowFlowsOutcomesIfRejectedActionTypeField =
   | 'apply_folder_classification'
   | 'send_notification';
 export interface WorkflowFlowsOutcomesIfRejectedField {
+  /**
+   * The identifier of the outcome */
   readonly id?: string;
+  /**
+   * The outcomes resource type */
   readonly type?: WorkflowFlowsOutcomesIfRejectedTypeField;
+  /**
+   * The name of the outcome */
   readonly name?: string;
   readonly actionType?: WorkflowFlowsOutcomesIfRejectedActionTypeField;
 }
 export interface WorkflowFlowsOutcomesField {
+  /**
+   * The identifier of the outcome */
   readonly id?: string;
+  /**
+   * The outcomes resource type */
   readonly type?: WorkflowFlowsOutcomesTypeField;
+  /**
+   * The name of the outcome */
   readonly name?: string;
   readonly actionType?: WorkflowFlowsOutcomesActionTypeField;
+  /**
+   * If `action_type` is `assign_task` and the task is rejected, returns a
+   * list of outcomes to complete */
   readonly ifRejected?: readonly WorkflowFlowsOutcomesIfRejectedField[];
 }
 export interface WorkflowFlowsField {
+  /**
+   * The identifier of the flow */
   readonly id?: string;
+  /**
+   * The flow's resource type */
   readonly type?: WorkflowFlowsTypeField;
   readonly trigger?: WorkflowFlowsTriggerField;
   readonly outcomes?: readonly WorkflowFlowsOutcomesField[];
+  /**
+   * When this flow was created */
   readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
 }
 export type Workflow = WorkflowMini & {
+  /**
+   * A list of flows assigned to a workflow. */
   readonly flows?: readonly WorkflowFlowsField[];
 };
 export function serializeWorkflowFlowsTypeField(

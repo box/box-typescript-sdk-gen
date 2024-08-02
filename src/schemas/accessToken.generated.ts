@@ -13,11 +13,27 @@ export type AccessTokenTokenTypeField = 'bearer';
 export type AccessTokenIssuedTokenTypeField =
   'urn:ietf:params:oauth:token-type:access_token';
 export interface AccessToken {
+  /**
+   * The requested access token. */
   readonly accessToken?: string;
+  /**
+   * The time in seconds by which this token will expire. */
   readonly expiresIn?: number;
+  /**
+   * The type of access token returned. */
   readonly tokenType?: AccessTokenTokenTypeField;
+  /**
+   * The permissions that this access token permits,
+   * providing a list of resources (files, folders, etc)
+   * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: readonly FileOrFolderScope[];
+  /**
+   * The refresh token for this access token, which can be used
+   * to request a new access token when the current one expires. */
   readonly refreshToken?: string;
+  /**
+   * The type of downscoped access token returned. This is only
+   * returned if an access token has been downscoped. */
   readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
 }
 export function serializeAccessTokenTokenTypeField(

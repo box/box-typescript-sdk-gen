@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type CommentBaseTypeField = 'comment';
 export interface CommentBase {
+  /**
+   * The unique identifier for this comment. */
   readonly id?: string;
+  /**
+   * `comment` */
   readonly type?: CommentBaseTypeField;
 }
 export function serializeCommentBaseTypeField(

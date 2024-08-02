@@ -12,13 +12,27 @@ import { sdIsMap } from '../serialization/json.js';
 export type DevicePinnersOrderByField = 'id';
 export type DevicePinnersOrderDirectionField = 'asc' | 'desc';
 export interface DevicePinnersOrderField {
+  /**
+   * The field that is ordered by */
   readonly by?: DevicePinnersOrderByField;
+  /**
+   * The direction to order by, either ascending or descending */
   readonly direction?: DevicePinnersOrderDirectionField;
 }
 export interface DevicePinners {
+  /**
+   * A list of device pins */
   readonly entries?: readonly DevicePinner[];
+  /**
+   * The limit that was used for these entries. This will be the same as the
+   * `limit` query parameter unless that value exceeded the maximum value
+   * allowed. */
   readonly limit?: number;
+  /**
+   * The marker for the start of the next page of results. */
   readonly nextMarker?: number;
+  /**
+   * The order by which items are returned. */
   readonly order?: readonly DevicePinnersOrderField[];
 }
 export function serializeDevicePinnersOrderByField(

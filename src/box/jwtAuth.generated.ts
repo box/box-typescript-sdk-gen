@@ -26,27 +26,59 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface JwtConfigAppSettingsAppAuth {
+  /**
+   * Public key ID */
   readonly publicKeyId: string;
+  /**
+   * Private key */
   readonly privateKey: string;
+  /**
+   * Passphrase */
   readonly passphrase: string;
 }
 export interface JwtConfigAppSettings {
+  /**
+   * App client ID */
   readonly clientId: string;
+  /**
+   * App client secret */
   readonly clientSecret: string;
+  /**
+   * App auth settings */
   readonly appAuth: JwtConfigAppSettingsAppAuth;
 }
 export interface JwtConfigFile {
+  /**
+   * Enterprise ID */
   readonly enterpriseId?: string;
+  /**
+   * User ID */
   readonly userId?: string;
+  /**
+   * App settings */
   readonly boxAppSettings: JwtConfigAppSettings;
 }
 export class JwtConfig {
+  /**
+   * App client ID */
   readonly clientId!: string;
+  /**
+   * App client secret */
   readonly clientSecret!: string;
+  /**
+   * Public key ID */
   readonly jwtKeyId!: string;
+  /**
+   * Private key */
   readonly privateKey!: string;
+  /**
+   * Passphrase */
   readonly privateKeyPassphrase!: string;
+  /**
+   * Enterprise ID */
   readonly enterpriseId?: string;
+  /**
+   * User ID */
   readonly userId?: string;
   readonly algorithm?: JwtAlgorithm = 'RS256' as JwtAlgorithm;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
@@ -85,6 +117,13 @@ export class JwtConfig {
       this.tokenStorage = fields.tokenStorage;
     }
   }
+  /**
+   * Create an auth instance as defined by a string content of JSON file downloaded from the Box Developer Console.
+   * See https://developer.box.com/en/guides/authentication/jwt/ for more information.
+   * @param {string} configJsonString String content of JSON file containing the configuration.
+   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided, the token will be stored in memory.g
+   * @returns {JwtConfig}
+   */
   static fromConfigJsonString(
     configJsonString: string,
     tokenStorage?: TokenStorage
@@ -114,6 +153,13 @@ export class JwtConfig {
         });
     return newConfig;
   }
+  /**
+   * Create an auth instance as defined by a JSON file downloaded from the Box Developer Console.
+   * See https://developer.box.com/en/guides/authentication/jwt/ for more information.
+   * @param {string} configFilePath Path to the JSON file containing the configuration.
+   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided, the token will be stored in memory.
+   * @returns {JwtConfig}
+   */
   static fromConfigFile(
     configFilePath: string,
     tokenStorage?: TokenStorage
@@ -123,20 +169,42 @@ export class JwtConfig {
   }
 }
 export interface JwtConfigInput {
+  /**
+   * App client ID */
   readonly clientId: string;
+  /**
+   * App client secret */
   readonly clientSecret: string;
+  /**
+   * Public key ID */
   readonly jwtKeyId: string;
+  /**
+   * Private key */
   readonly privateKey: string;
+  /**
+   * Passphrase */
   readonly privateKeyPassphrase: string;
+  /**
+   * Enterprise ID */
   readonly enterpriseId?: string;
+  /**
+   * User ID */
   readonly userId?: string;
   readonly algorithm?: undefined | JwtAlgorithm;
   readonly tokenStorage?: TokenStorage;
 }
 export class BoxJwtAuth implements Authentication {
+  /**
+   * An object containing all JWT configuration to use for authentication */
   readonly config!: JwtConfig;
+  /**
+   * An object responsible for storing token. If no custom implementation provided, the token will be stored in memory. */
   readonly tokenStorage: TokenStorage;
+  /**
+   * The ID of the user or enterprise to authenticate as. If not provided, defaults to the enterprise ID if set, otherwise defaults to the user ID. */
   readonly subjectId?: string;
+  /**
+   * The type of the subject ID provided. Must be either 'user' or 'enterprise'. */
   readonly subjectType?: string;
   constructor(
     fields: Omit<
@@ -164,6 +232,11 @@ export class BoxJwtAuth implements Authentication {
       ? 'enterprise'
       : 'user';
   }
+  /**
+   * Get new access token using JWT auth.
+   * @param {NetworkSession} networkSession An object to keep network session state
+   * @returns {Promise<AccessToken>}
+   */
   async refreshToken(networkSession?: NetworkSession): Promise<AccessToken> {
     if (isBrowser()) {
       throw new BoxSdkError({
@@ -211,6 +284,11 @@ export class BoxJwtAuth implements Authentication {
     await this.tokenStorage.store(token);
     return token;
   }
+  /**
+   * Get the current access token. If the current access token is expired or not found, this method will attempt to refresh the token.
+   * @param {NetworkSession} networkSession An object to keep network session state
+   * @returns {Promise<AccessToken>}
+   */
   async retrieveToken(networkSession?: NetworkSession): Promise<AccessToken> {
     const oldToken: undefined | AccessToken = await this.tokenStorage.get();
     if (oldToken == void 0) {
@@ -219,12 +297,25 @@ export class BoxJwtAuth implements Authentication {
     }
     return oldToken;
   }
+  /**
+   * @param {NetworkSession} networkSession
+   * @returns {Promise<string>}
+   */
   async retrieveAuthorizationHeader(
     networkSession?: NetworkSession
   ): Promise<string> {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
   }
+  /**
+   * Create a new BoxJWTAuth instance that uses the provided user ID as the subject of the JWT assertion.
+   * May be one of this application's created App User. Depending on the configured User Access Level, may also be any other App User or Managed User in the enterprise.
+   * <https://developer.box.com/en/guides/applications/>
+   * <https://developer.box.com/en/guides/authentication/select/>
+   * @param {string} userId The id of the user to authenticate
+   * @param {TokenStorage} tokenStorage Object responsible for storing token in newly created BoxJWTAuth. If no custom implementation provided, the token will be stored in memory.
+   * @returns {BoxJwtAuth}
+   */
   withUserSubject(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
@@ -242,6 +333,12 @@ export class BoxJwtAuth implements Authentication {
     const newAuth: BoxJwtAuth = new BoxJwtAuth({ config: newConfig });
     return newAuth;
   }
+  /**
+   * Create a new BoxJWTAuth instance that uses the provided enterprise ID as the subject of the JWT assertion.
+   * @param {string} userId The id of the enterprise to authenticate
+   * @param {TokenStorage} tokenStorage Object responsible for storing token in newly created BoxJWTAuth. If no custom implementation provided, the token will be stored in memory.
+   * @returns {BoxJwtAuth}
+   */
   withEnterpriseSubject(
     userId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
@@ -259,6 +356,14 @@ export class BoxJwtAuth implements Authentication {
     const newAuth: BoxJwtAuth = new BoxJwtAuth({ config: newConfig });
     return newAuth;
   }
+  /**
+   * Downscope access token to the provided scopes. Returning a new access token with the provided scopes, with the original access token unchanged.
+   * @param {readonly string[]} scopes The scope(s) to apply to the resulting token.
+   * @param {string} resource The file or folder to get a downscoped token for. If None and shared_link None, the resulting token will not be scoped down to just a single item. The resource should be a full URL to an item, e.g. https://api.box.com/2.0/files/123456.
+   * @param {string} sharedLink The shared link to get a downscoped token for. If None and item None, the resulting token will not be scoped down to just a single item.
+   * @param {NetworkSession} networkSession An object to keep network session state
+   * @returns {Promise<AccessToken>}
+   */
   async downscopeToken(
     scopes: readonly string[],
     resource?: string,
@@ -289,6 +394,11 @@ export class BoxJwtAuth implements Authentication {
     } satisfies PostOAuth2Token);
     return downscopedToken;
   }
+  /**
+   * Revoke the current access token and remove it from token storage.
+   * @param {NetworkSession} networkSession An object to keep network session state
+   * @returns {Promise<undefined>}
+   */
   async revokeToken(networkSession?: NetworkSession): Promise<undefined> {
     const oldToken: undefined | AccessToken = await this.tokenStorage.get();
     if (oldToken == void 0) {

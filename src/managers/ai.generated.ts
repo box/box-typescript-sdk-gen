@@ -95,6 +95,8 @@ export interface GetAiAgentDefaultConfigOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class CreateAiAskHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -108,6 +110,8 @@ export class CreateAiAskHeaders {
   }
 }
 export interface CreateAiAskHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -115,6 +119,8 @@ export interface CreateAiAskHeadersInput {
       };
 }
 export class CreateAiTextGenHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -128,6 +134,8 @@ export class CreateAiTextGenHeaders {
   }
 }
 export interface CreateAiTextGenHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -136,11 +144,20 @@ export interface CreateAiTextGenHeadersInput {
 }
 export type GetAiAgentDefaultConfigQueryParamsModeField = 'ask' | 'text_gen';
 export interface GetAiAgentDefaultConfigQueryParams {
+  /**
+   * The mode to filter the agent config to return. */
   readonly mode: GetAiAgentDefaultConfigQueryParamsModeField;
+  /**
+   * The ISO language code to return the agent config for.
+   * If the language is not supported the default agent config is returned. */
   readonly language?: string;
+  /**
+   * The model to return the default agent config for. */
   readonly model?: string;
 }
 export class GetAiAgentDefaultConfigHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -154,6 +171,8 @@ export class GetAiAgentDefaultConfigHeaders {
   }
 }
 export interface GetAiAgentDefaultConfigHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -180,6 +199,12 @@ export class AiManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Sends an AI request to supported LLMs and returns an answer specifically focused on the user's question given the provided context.
+   * @param {AiAsk} requestBody Request body of createAiAsk method
+   * @param {CreateAiAskOptionalsInput} optionalsInput
+   * @returns {Promise<AiResponse>}
+   */
   async createAiAsk(
     requestBody: AiAsk,
     optionalsInput: CreateAiAskOptionalsInput = {}
@@ -208,6 +233,12 @@ export class AiManager {
     )) as FetchResponse;
     return deserializeAiResponse(response.data);
   }
+  /**
+   * Sends an AI request to supported LLMs and returns an answer specifically focused on the creation of new text.
+   * @param {AiTextGen} requestBody Request body of createAiTextGen method
+   * @param {CreateAiTextGenOptionalsInput} optionalsInput
+   * @returns {Promise<AiResponse>}
+   */
   async createAiTextGen(
     requestBody: AiTextGen,
     optionalsInput: CreateAiTextGenOptionalsInput = {}
@@ -239,6 +270,12 @@ export class AiManager {
     )) as FetchResponse;
     return deserializeAiResponse(response.data);
   }
+  /**
+   * Get the AI agent default config
+   * @param {GetAiAgentDefaultConfigQueryParams} queryParams Query parameters of getAiAgentDefaultConfig method
+   * @param {GetAiAgentDefaultConfigOptionalsInput} optionalsInput
+   * @returns {Promise<AiAgentAskOrAiAgentTextGen>}
+   */
   async getAiAgentDefaultConfig(
     queryParams: GetAiAgentDefaultConfigQueryParams,
     optionalsInput: GetAiAgentDefaultConfigOptionalsInput = {}

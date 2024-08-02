@@ -47,12 +47,30 @@ export type FolderFullSyncStateField =
   | 'not_synced'
   | 'partially_synced';
 export interface FolderFullPermissionsField {
+  /**
+   * Specifies if the current user can delete this item. */
   readonly canDelete: boolean;
+  /**
+   * Specifies if the current user can download this item. */
   readonly canDownload: boolean;
+  /**
+   * Specifies if the current user can invite new
+   * users to collaborate on this item, and if the user can
+   * update the role of a user already collaborated on this
+   * item. */
   readonly canInviteCollaborator: boolean;
+  /**
+   * Specifies if the user can rename this item. */
   readonly canRename: boolean;
+  /**
+   * Specifies if the user can change the access level of an
+   * existing shared link on this item. */
   readonly canSetShareAccess: boolean;
+  /**
+   * Specifies if the user can create a shared link for this item. */
   readonly canShare: boolean;
+  /**
+   * Specifies if the user can upload into this folder. */
   readonly canUpload?: boolean;
 }
 export interface FolderFullMetadataField {
@@ -75,11 +93,21 @@ export type FolderFullAllowedInviteeRolesField =
   | 'viewer uploader'
   | 'co-owner';
 export interface FolderFullWatermarkInfoField {
+  /**
+   * Specifies if this item has a watermark applied. */
   readonly isWatermarked?: boolean;
 }
 export interface FolderFullClassificationField {
+  /**
+   * The name of the classification */
   readonly name?: string;
+  /**
+   * An explanation of the meaning of this classification. */
   readonly definition?: string;
+  /**
+   * The color that is used to display the
+   * classification label in a user-interface. Colors are defined by the admin
+   * or co-admin who created the classification in the Box web app. */
   readonly color?: string;
 }
 export class FolderFull extends Folder {

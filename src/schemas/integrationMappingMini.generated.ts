@@ -15,9 +15,17 @@ import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingMiniPartnerItemTypeField = 'channel';
 export type IntegrationMappingMiniBoxItemTypeField = 'folder';
 export type IntegrationMappingMini = IntegrationMappingBase & {
+  /**
+   * ID of the mapped partner item */
   readonly partnerItemId?: string;
+  /**
+   * Domain-specific type of the mapped partner item */
   readonly partnerItemType?: IntegrationMappingMiniPartnerItemTypeField;
+  /**
+   * ID of the Box item mapped to the object referenced in `partner_item_id` */
   readonly boxItemId?: string;
+  /**
+   * Type of the Box object referenced in `box_item_id` */
   readonly boxItemType?: IntegrationMappingMiniBoxItemTypeField;
 };
 export function serializeIntegrationMappingMiniPartnerItemTypeField(

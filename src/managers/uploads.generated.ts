@@ -99,21 +99,75 @@ export interface UploadFileOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface UploadFileVersionRequestBodyAttributesField {
+  /**
+   * An optional new name for the file. If specified, the file
+   * will be renamed when the new version is uploaded. */
   readonly name: string;
+  /**
+   * Defines the time the file was last modified at.
+   *
+   * If not set, the upload time will be used. */
   readonly contentModifiedAt?: DateTime;
 }
 export interface UploadFileVersionRequestBody {
+  /**
+   * The additional attributes of the file being uploaded. Mainly the
+   * name and the parent folder. These attributes are part of the multi
+   * part request body and are in JSON format.
+   *
+   * <Message warning>
+   *
+   *   The `attributes` part of the body must come **before** the
+   *   `file` part. Requests that do not follow this format when
+   *   uploading the file will receive a HTTP `400` error with a
+   *   `metadata_after_file_contents` error code.
+   *
+   * </Message> */
   readonly attributes: UploadFileVersionRequestBodyAttributesField;
+  /**
+   * The content of the file to upload to Box.
+   *
+   * <Message warning>
+   *
+   *   The `attributes` part of the body must come **before** the
+   *   `file` part. Requests that do not follow this format when
+   *   uploading the file will receive a HTTP `400` error with a
+   *   `metadata_after_file_contents` error code.
+   *
+   * </Message> */
   readonly file: ByteStream;
   readonly fileFileName?: string;
   readonly fileContentType?: string;
 }
 export interface UploadFileVersionQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class UploadFileVersionHeaders {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
   readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -133,8 +187,21 @@ export class UploadFileVersionHeaders {
   }
 }
 export interface UploadFileVersionHeadersInput {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
   readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -142,25 +209,79 @@ export interface UploadFileVersionHeadersInput {
       };
 }
 export interface UploadFileRequestBodyAttributesParentField {
+  /**
+   * The id of the parent folder. Use
+   * `0` for the user's root folder. */
   readonly id: string;
 }
 export interface UploadFileRequestBodyAttributesField {
+  /**
+   * The name of the file */
   readonly name: string;
+  /**
+   * The parent folder to upload the file to */
   readonly parent: UploadFileRequestBodyAttributesParentField;
+  /**
+   * Defines the time the file was originally created at.
+   *
+   * If not set, the upload time will be used. */
   readonly contentCreatedAt?: DateTime;
+  /**
+   * Defines the time the file was last modified at.
+   *
+   * If not set, the upload time will be used. */
   readonly contentModifiedAt?: DateTime;
 }
 export interface UploadFileRequestBody {
+  /**
+   * The additional attributes of the file being uploaded. Mainly the
+   * name and the parent folder. These attributes are part of the multi
+   * part request body and are in JSON format.
+   *
+   * <Message warning>
+   *
+   *   The `attributes` part of the body must come **before** the
+   *   `file` part. Requests that do not follow this format when
+   *   uploading the file will receive a HTTP `400` error with a
+   *   `metadata_after_file_contents` error code.
+   *
+   * </Message> */
   readonly attributes: UploadFileRequestBodyAttributesField;
+  /**
+   * The content of the file to upload to Box.
+   *
+   * <Message warning>
+   *
+   *   The `attributes` part of the body must come **before** the
+   *   `file` part. Requests that do not follow this format when
+   *   uploading the file will receive a HTTP `400` error with a
+   *   `metadata_after_file_contents` error code.
+   *
+   * </Message> */
   readonly file: ByteStream;
   readonly fileFileName?: string;
   readonly fileContentType?: string;
 }
 export interface UploadFileQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class UploadFileHeaders {
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
   readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -177,7 +298,12 @@ export class UploadFileHeaders {
   }
 }
 export interface UploadFileHeadersInput {
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
   readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -185,14 +311,22 @@ export interface UploadFileHeadersInput {
       };
 }
 export interface PreflightFileUploadCheckRequestBodyParentField {
+  /**
+   * The ID of parent item */
   readonly id?: string;
 }
 export interface PreflightFileUploadCheckRequestBody {
+  /**
+   * The name for the file */
   readonly name?: string;
+  /**
+   * The size of the file in bytes */
   readonly size?: number;
   readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
 }
 export class PreflightFileUploadCheckHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -206,6 +340,8 @@ export class PreflightFileUploadCheckHeaders {
   }
 }
 export interface PreflightFileUploadCheckHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -232,6 +368,26 @@ export class UploadsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Update a file's content. For file sizes over 50MB we recommend
+     * using the Chunk Upload APIs.
+     *
+     * The `attributes` part of the body must come **before** the
+     * `file` part. Requests that do not follow this format when
+     * uploading the file will receive a HTTP `400` error with a
+     * `metadata_after_file_contents` error code.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {UploadFileVersionRequestBody} requestBody Request body of uploadFileVersion method
+     * @param {UploadFileVersionOptionalsInput} optionalsInput
+     * @returns {Promise<Files>}
+     */
   async uploadFileVersion(
     fileId: string,
     requestBody: UploadFileVersionRequestBody,
@@ -296,6 +452,18 @@ export class UploadsManager {
     )) as FetchResponse;
     return deserializeFiles(response.data);
   }
+  /**
+   * Uploads a small file to Box. For file sizes over 50MB we recommend
+   * using the Chunk Upload APIs.
+   *
+   * The `attributes` part of the body must come **before** the
+   * `file` part. Requests that do not follow this format when
+   * uploading the file will receive a HTTP `400` error with a
+   * `metadata_after_file_contents` error code.
+   * @param {UploadFileRequestBody} requestBody Request body of uploadFile method
+   * @param {UploadFileOptionalsInput} optionalsInput
+   * @returns {Promise<Files>}
+   */
   async uploadFile(
     requestBody: UploadFileRequestBody,
     optionalsInput: UploadFileOptionalsInput = {}
@@ -353,6 +521,14 @@ export class UploadsManager {
     )) as FetchResponse;
     return deserializeFiles(response.data);
   }
+  /**
+   * Performs a check to verify that a file will be accepted by Box
+   * before you upload the entire file.
+   * @param {PreflightFileUploadCheckRequestBody} requestBody Request body of preflightFileUploadCheck method
+   * @param {PreflightFileUploadCheckHeadersInput} headersInput Headers of preflightFileUploadCheck method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<UploadUrl>}
+   */
   async preflightFileUploadCheck(
     requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
     headersInput: PreflightFileUploadCheckHeadersInput = new PreflightFileUploadCheckHeaders(

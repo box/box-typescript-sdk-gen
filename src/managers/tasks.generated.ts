@@ -138,6 +138,8 @@ export interface DeleteTaskByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileTasksHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -151,6 +153,8 @@ export class GetFileTasksHeaders {
   }
 }
 export interface GetFileTasksHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -159,7 +163,11 @@ export interface GetFileTasksHeadersInput {
 }
 export type CreateTaskRequestBodyItemTypeField = 'file';
 export interface CreateTaskRequestBodyItemField {
+  /**
+   * The ID of the file */
   readonly id?: string;
+  /**
+   * `file` */
   readonly type?: CreateTaskRequestBodyItemTypeField;
 }
 export type CreateTaskRequestBodyActionField = 'review' | 'complete';
@@ -167,13 +175,36 @@ export type CreateTaskRequestBodyCompletionRuleField =
   | 'all_assignees'
   | 'any_assignee';
 export interface CreateTaskRequestBody {
+  /**
+   * The file to attach the task to. */
   readonly item: CreateTaskRequestBodyItemField;
+  /**
+   * The action the task assignee will be prompted to do. Must be
+   *
+   * * `review` defines an approval task that can be approved or
+   * rejected
+   * * `complete` defines a general task which can be completed */
   readonly action?: CreateTaskRequestBodyActionField;
+  /**
+   * An optional message to include with the task. */
   readonly message?: string;
+  /**
+   * Defines when the task is due. Defaults to `null` if not
+   * provided. */
   readonly dueAt?: DateTime;
+  /**
+   * Defines which assignees need to complete this task before the task
+   * is considered completed.
+   *
+   * * `all_assignees` (default) requires all assignees to review or
+   * approve the the task in order for it to be considered completed.
+   * * `any_assignee` accepts any one assignee to review or
+   * approve the the task in order for it to be considered completed. */
   readonly completionRule?: CreateTaskRequestBodyCompletionRuleField;
 }
 export class CreateTaskHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -187,6 +218,8 @@ export class CreateTaskHeaders {
   }
 }
 export interface CreateTaskHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -194,6 +227,8 @@ export interface CreateTaskHeadersInput {
       };
 }
 export class GetTaskByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -207,6 +242,8 @@ export class GetTaskByIdHeaders {
   }
 }
 export interface GetTaskByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -218,12 +255,32 @@ export type UpdateTaskByIdRequestBodyCompletionRuleField =
   | 'all_assignees'
   | 'any_assignee';
 export interface UpdateTaskByIdRequestBody {
+  /**
+   * The action the task assignee will be prompted to do. Must be
+   *
+   * * `review` defines an approval task that can be approved or
+   * rejected
+   * * `complete` defines a general task which can be completed */
   readonly action?: UpdateTaskByIdRequestBodyActionField;
+  /**
+   * The message included with the task. */
   readonly message?: string;
+  /**
+   * When the task is due at. */
   readonly dueAt?: DateTime;
+  /**
+   * Defines which assignees need to complete this task before the task
+   * is considered completed.
+   *
+   * * `all_assignees` (default) requires all assignees to review or
+   * approve the the task in order for it to be considered completed.
+   * * `any_assignee` accepts any one assignee to review or
+   * approve the the task in order for it to be considered completed. */
   readonly completionRule?: UpdateTaskByIdRequestBodyCompletionRuleField;
 }
 export class UpdateTaskByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -237,6 +294,8 @@ export class UpdateTaskByIdHeaders {
   }
 }
 export interface UpdateTaskByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -244,6 +303,8 @@ export interface UpdateTaskByIdHeadersInput {
       };
 }
 export class DeleteTaskByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -257,6 +318,8 @@ export class DeleteTaskByIdHeaders {
   }
 }
 export interface DeleteTaskByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -285,6 +348,20 @@ export class TasksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves a list of all the tasks for a file. This
+     * endpoint does not support pagination.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileTasksOptionalsInput} optionalsInput
+     * @returns {Promise<Tasks>}
+     */
   async getFileTasks(
     fileId: string,
     optionalsInput: GetFileTasksOptionalsInput = {}
@@ -316,6 +393,13 @@ export class TasksManager {
     )) as FetchResponse;
     return deserializeTasks(response.data);
   }
+  /**
+   * Creates a single task on a file. This task is not assigned to any user and
+   * will need to be assigned separately.
+   * @param {CreateTaskRequestBody} requestBody Request body of createTask method
+   * @param {CreateTaskOptionalsInput} optionalsInput
+   * @returns {Promise<Task>}
+   */
   async createTask(
     requestBody: CreateTaskRequestBody,
     optionalsInput: CreateTaskOptionalsInput = {}
@@ -344,6 +428,13 @@ export class TasksManager {
     )) as FetchResponse;
     return deserializeTask(response.data);
   }
+  /**
+     * Retrieves information about a specific task.
+     * @param {string} taskId The ID of the task.
+    Example: "12345"
+     * @param {GetTaskByIdOptionalsInput} optionalsInput
+     * @returns {Promise<Task>}
+     */
   async getTaskById(
     taskId: string,
     optionalsInput: GetTaskByIdOptionalsInput = {}
@@ -374,6 +465,14 @@ export class TasksManager {
     )) as FetchResponse;
     return deserializeTask(response.data);
   }
+  /**
+     * Updates a task. This can be used to update a task's configuration, or to
+     * update its completion state.
+     * @param {string} taskId The ID of the task.
+    Example: "12345"
+     * @param {UpdateTaskByIdOptionalsInput} optionalsInput
+     * @returns {Promise<Task>}
+     */
   async updateTaskById(
     taskId: string,
     optionalsInput: UpdateTaskByIdOptionalsInput = {}
@@ -408,6 +507,13 @@ export class TasksManager {
     )) as FetchResponse;
     return deserializeTask(response.data);
   }
+  /**
+     * Removes a task from a file.
+     * @param {string} taskId The ID of the task.
+    Example: "12345"
+     * @param {DeleteTaskByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteTaskById(
     taskId: string,
     optionalsInput: DeleteTaskByIdOptionalsInput = {}

@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface TaskAssignments {
+  /**
+   * The total number of items in this collection. */
   readonly totalCount?: number;
+  /**
+   * A list of task assignments */
   readonly entries?: readonly TaskAssignment[];
 }
 export function serializeTaskAssignments(val: TaskAssignments): SerializedData {

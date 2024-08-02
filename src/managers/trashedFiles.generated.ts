@@ -126,16 +126,32 @@ export interface DeleteTrashedFileByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface RestoreFileFromTrashRequestBodyParentField {
+  /**
+   * The ID of parent item */
   readonly id?: string;
 }
 export interface RestoreFileFromTrashRequestBody {
+  /**
+   * An optional new name for the file. */
   readonly name?: string;
   readonly parent?: RestoreFileFromTrashRequestBodyParentField;
 }
 export interface RestoreFileFromTrashQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class RestoreFileFromTrashHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -149,6 +165,8 @@ export class RestoreFileFromTrashHeaders {
   }
 }
 export interface RestoreFileFromTrashHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -156,9 +174,21 @@ export interface RestoreFileFromTrashHeadersInput {
       };
 }
 export interface GetTrashedFileByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetTrashedFileByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -172,6 +202,8 @@ export class GetTrashedFileByIdHeaders {
   }
 }
 export interface GetTrashedFileByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -179,6 +211,8 @@ export interface GetTrashedFileByIdHeadersInput {
       };
 }
 export class DeleteTrashedFileByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -192,6 +226,8 @@ export class DeleteTrashedFileByIdHeaders {
   }
 }
 export interface DeleteTrashedFileByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -218,6 +254,22 @@ export class TrashedFilesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Restores a file that has been moved to the trash.
+     *
+     * An optional new parent ID can be provided to restore the file to in case the
+     * original folder has been deleted.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {RestoreFileFromTrashOptionalsInput} optionalsInput
+     * @returns {Promise<TrashFileRestored>}
+     */
   async restoreFileFromTrash(
     fileId: string,
     optionalsInput: RestoreFileFromTrashOptionalsInput = {}
@@ -263,6 +315,29 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFileRestored(response.data);
   }
+  /**
+     * Retrieves a file that has been moved to the trash.
+     *
+     * Please note that only if the file itself has been moved to the
+     * trash can it be retrieved with this API call. If instead one of
+     * its parent folders was moved to the trash, only that folder
+     * can be inspected using the
+     * [`GET /folders/:id/trash`](e://get_folders_id_trash) API.
+     *
+     * To list all items that have been moved to the trash, please
+     * use the [`GET /folders/trash/items`](e://get-folders-trash-items/)
+     * API.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetTrashedFileByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TrashFile>}
+     */
   async getTrashedFileById(
     fileId: string,
     optionalsInput: GetTrashedFileByIdOptionalsInput = {}
@@ -305,6 +380,20 @@ export class TrashedFilesManager {
     )) as FetchResponse;
     return deserializeTrashFile(response.data);
   }
+  /**
+     * Permanently deletes a file that is in the trash.
+     * This action cannot be undone.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {DeleteTrashedFileByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteTrashedFileById(
     fileId: string,
     optionalsInput: DeleteTrashedFileByIdOptionalsInput = {}

@@ -96,6 +96,8 @@ export interface DeleteFolderWatermarkOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFolderWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -109,6 +111,8 @@ export class GetFolderWatermarkHeaders {
   }
 }
 export interface GetFolderWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -117,6 +121,10 @@ export interface GetFolderWatermarkHeadersInput {
 }
 export type UpdateFolderWatermarkRequestBodyWatermarkImprintField = 'default';
 export class UpdateFolderWatermarkRequestBodyWatermarkField {
+  /**
+   * The type of watermark to apply.
+   *
+   * Currently only supports one option. */
   readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField;
   constructor(
@@ -129,12 +137,20 @@ export class UpdateFolderWatermarkRequestBodyWatermarkField {
   }
 }
 export interface UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
+  /**
+   * The type of watermark to apply.
+   *
+   * Currently only supports one option. */
   readonly imprint?: UpdateFolderWatermarkRequestBodyWatermarkImprintField;
 }
 export interface UpdateFolderWatermarkRequestBody {
+  /**
+   * The watermark to imprint on the folder */
   readonly watermark: UpdateFolderWatermarkRequestBodyWatermarkField;
 }
 export class UpdateFolderWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -148,6 +164,8 @@ export class UpdateFolderWatermarkHeaders {
   }
 }
 export interface UpdateFolderWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -155,6 +173,8 @@ export interface UpdateFolderWatermarkHeadersInput {
       };
 }
 export class DeleteFolderWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -168,6 +188,8 @@ export class DeleteFolderWatermarkHeaders {
   }
 }
 export interface DeleteFolderWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -194,6 +216,22 @@ export class FolderWatermarksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieve the watermark for a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {GetFolderWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<Watermark>}
+     */
   async getFolderWatermark(
     folderId: string,
     optionalsInput: GetFolderWatermarkOptionalsInput = {}
@@ -226,6 +264,23 @@ export class FolderWatermarksManager {
     )) as FetchResponse;
     return deserializeWatermark(response.data);
   }
+  /**
+     * Applies or update a watermark on a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {UpdateFolderWatermarkRequestBody} requestBody Request body of updateFolderWatermark method
+     * @param {UpdateFolderWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<Watermark>}
+     */
   async updateFolderWatermark(
     folderId: string,
     requestBody: UpdateFolderWatermarkRequestBody,
@@ -261,6 +316,22 @@ export class FolderWatermarksManager {
     )) as FetchResponse;
     return deserializeWatermark(response.data);
   }
+  /**
+     * Removes the watermark from a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {DeleteFolderWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFolderWatermark(
     folderId: string,
     optionalsInput: DeleteFolderWatermarkOptionalsInput = {}

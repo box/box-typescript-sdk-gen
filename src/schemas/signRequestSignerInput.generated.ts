@@ -36,9 +36,17 @@ export type SignRequestSignerInputContentTypeField =
   | 'radio'
   | 'dropdown';
 export type SignRequestSignerInput = SignRequestPrefillTag & {
+  /**
+   * Type of input */
   readonly type?: SignRequestSignerInputTypeField;
+  /**
+   * Content type of input */
   readonly contentType?: SignRequestSignerInputContentTypeField;
+  /**
+   * Index of page that the input is on */
   readonly pageIndex: number;
+  /**
+   * Whether this input was defined as read-only(immutable by signers) or not */
   readonly readOnly?: boolean;
 };
 export function serializeSignRequestSignerInputTypeField(

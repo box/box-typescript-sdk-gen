@@ -191,12 +191,31 @@ export type GetRetentionPolicyAssignmentsQueryParamsTypeField =
   | 'enterprise'
   | 'metadata_template';
 export interface GetRetentionPolicyAssignmentsQueryParams {
+  /**
+   * The type of the retention policy assignment to retrieve. */
   readonly type?: GetRetentionPolicyAssignmentsQueryParamsTypeField;
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetRetentionPolicyAssignmentsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -210,6 +229,8 @@ export class GetRetentionPolicyAssignmentsHeaders {
   }
 }
 export interface GetRetentionPolicyAssignmentsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -221,20 +242,47 @@ export type CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
   | 'folder'
   | 'metadata_template';
 export interface CreateRetentionPolicyAssignmentRequestBodyAssignToField {
+  /**
+   * The type of item to assign the policy to. */
   readonly type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField;
+  /**
+   * The ID of item to assign the policy to.
+   * Set to `null` or omit when `type` is set to
+   * `enterprise`. */
   readonly id?: string;
 }
 export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
+  /**
+   * The metadata attribute key id. */
   readonly field?: string;
+  /**
+   * The metadata attribute field id. For value, only
+   * enum and multiselect types are supported. */
   readonly value?: string;
 }
 export interface CreateRetentionPolicyAssignmentRequestBody {
+  /**
+   * The ID of the retention policy to assign */
   readonly policyId: string;
+  /**
+   * The item to assign the policy to */
   readonly assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField;
+  /**
+   * If the `assign_to` type is `metadata_template`,
+   * then optionally add the `filter_fields` parameter which will
+   * require an array of objects with a field entry and a value entry.
+   * Currently only one object of `field` and `value` is supported. */
   readonly filterFields?: readonly CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField[];
+  /**
+   * The date the retention policy assignment begins.
+   *
+   * If the `assigned_to` type is `metadata_template`,
+   * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
 }
 export class CreateRetentionPolicyAssignmentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -248,6 +296,8 @@ export class CreateRetentionPolicyAssignmentHeaders {
   }
 }
 export interface CreateRetentionPolicyAssignmentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -255,9 +305,21 @@ export interface CreateRetentionPolicyAssignmentHeadersInput {
       };
 }
 export interface GetRetentionPolicyAssignmentByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetRetentionPolicyAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -271,6 +333,8 @@ export class GetRetentionPolicyAssignmentByIdHeaders {
   }
 }
 export interface GetRetentionPolicyAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -278,6 +342,8 @@ export interface GetRetentionPolicyAssignmentByIdHeadersInput {
       };
 }
 export class DeleteRetentionPolicyAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -291,6 +357,8 @@ export class DeleteRetentionPolicyAssignmentByIdHeaders {
   }
 }
 export interface DeleteRetentionPolicyAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -298,10 +366,19 @@ export interface DeleteRetentionPolicyAssignmentByIdHeadersInput {
       };
 }
 export interface GetFilesUnderRetentionPolicyAssignmentQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetFilesUnderRetentionPolicyAssignmentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -320,6 +397,8 @@ export class GetFilesUnderRetentionPolicyAssignmentHeaders {
   }
 }
 export interface GetFilesUnderRetentionPolicyAssignmentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -348,6 +427,14 @@ export class RetentionPolicyAssignmentsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Returns a list of all retention policy assignments associated with a specified
+     * retention policy.
+     * @param {string} retentionPolicyId The ID of the retention policy.
+    Example: "982312"
+     * @param {GetRetentionPolicyAssignmentsOptionalsInput} optionalsInput
+     * @returns {Promise<RetentionPolicyAssignments>}
+     */
   async getRetentionPolicyAssignments(
     retentionPolicyId: string,
     optionalsInput: GetRetentionPolicyAssignmentsOptionalsInput = {}
@@ -393,6 +480,12 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeRetentionPolicyAssignments(response.data);
   }
+  /**
+   * Assigns a retention policy to an item.
+   * @param {CreateRetentionPolicyAssignmentRequestBody} requestBody Request body of createRetentionPolicyAssignment method
+   * @param {CreateRetentionPolicyAssignmentOptionalsInput} optionalsInput
+   * @returns {Promise<RetentionPolicyAssignment>}
+   */
   async createRetentionPolicyAssignment(
     requestBody: CreateRetentionPolicyAssignmentRequestBody,
     optionalsInput: CreateRetentionPolicyAssignmentOptionalsInput = {}
@@ -425,6 +518,13 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeRetentionPolicyAssignment(response.data);
   }
+  /**
+     * Retrieves a retention policy assignment
+     * @param {string} retentionPolicyAssignmentId The ID of the retention policy assignment.
+    Example: "1233123"
+     * @param {GetRetentionPolicyAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<RetentionPolicyAssignment>}
+     */
   async getRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
     optionalsInput: GetRetentionPolicyAssignmentByIdOptionalsInput = {}
@@ -466,6 +566,14 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeRetentionPolicyAssignment(response.data);
   }
+  /**
+     * Removes a retention policy assignment
+     * applied to content.
+     * @param {string} retentionPolicyAssignmentId The ID of the retention policy assignment.
+    Example: "1233123"
+     * @param {DeleteRetentionPolicyAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
     optionalsInput: DeleteRetentionPolicyAssignmentByIdOptionalsInput = {}
@@ -497,6 +605,13 @@ export class RetentionPolicyAssignmentsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * Returns a list of files under retention for a retention policy assignment.
+     * @param {string} retentionPolicyAssignmentId The ID of the retention policy assignment.
+    Example: "1233123"
+     * @param {GetFilesUnderRetentionPolicyAssignmentOptionalsInput} optionalsInput
+     * @returns {Promise<FilesUnderRetention>}
+     */
   async getFilesUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
     optionalsInput: GetFilesUnderRetentionPolicyAssignmentOptionalsInput = {}

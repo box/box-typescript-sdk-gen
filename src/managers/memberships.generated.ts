@@ -232,10 +232,20 @@ export interface DeleteGroupMembershipByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetUserMembershipsQueryParams {
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
 }
 export class GetUserMembershipsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -249,6 +259,8 @@ export class GetUserMembershipsHeaders {
   }
 }
 export interface GetUserMembershipsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -256,10 +268,20 @@ export interface GetUserMembershipsHeadersInput {
       };
 }
 export interface GetGroupMembershipsQueryParams {
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
 }
 export class GetGroupMembershipsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -273,6 +295,8 @@ export class GetGroupMembershipsHeaders {
   }
 }
 export interface GetGroupMembershipsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -280,24 +304,57 @@ export interface GetGroupMembershipsHeadersInput {
       };
 }
 export interface CreateGroupMembershipRequestBodyUserField {
+  /**
+   * The ID of the user to add to the group */
   readonly id: string;
 }
 export interface CreateGroupMembershipRequestBodyGroupField {
+  /**
+   * The ID of the group to add the user to */
   readonly id: string;
 }
 export type CreateGroupMembershipRequestBodyRoleField = 'member' | 'admin';
 export interface CreateGroupMembershipRequestBody {
+  /**
+   * The user to add to the group. */
   readonly user: CreateGroupMembershipRequestBodyUserField;
+  /**
+   * The group to add the user to. */
   readonly group: CreateGroupMembershipRequestBodyGroupField;
+  /**
+   * The role of the user in the group. */
   readonly role?: CreateGroupMembershipRequestBodyRoleField;
+  /**
+   * Custom configuration for the permissions an admin
+   * if a group will receive. This option has no effect
+   * on members with a role of `member`.
+   *
+   * Setting these permissions overwrites the default
+   * access levels of an admin.
+   *
+   * Specifying a value of `null` for this object will disable
+   * all configurable permissions. Specifying permissions will set
+   * them accordingly, omitted permissions will be enabled by default. */
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
 }
 export interface CreateGroupMembershipQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class CreateGroupMembershipHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -311,6 +368,8 @@ export class CreateGroupMembershipHeaders {
   }
 }
 export interface CreateGroupMembershipHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -318,9 +377,21 @@ export interface CreateGroupMembershipHeadersInput {
       };
 }
 export interface GetGroupMembershipByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetGroupMembershipByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -334,6 +405,8 @@ export class GetGroupMembershipByIdHeaders {
   }
 }
 export interface GetGroupMembershipByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -342,15 +415,40 @@ export interface GetGroupMembershipByIdHeadersInput {
 }
 export type UpdateGroupMembershipByIdRequestBodyRoleField = 'member' | 'admin';
 export interface UpdateGroupMembershipByIdRequestBody {
+  /**
+   * The role of the user in the group. */
   readonly role?: UpdateGroupMembershipByIdRequestBodyRoleField;
+  /**
+   * Custom configuration for the permissions an admin
+   * if a group will receive. This option has no effect
+   * on members with a role of `member`.
+   *
+   * Setting these permissions overwrites the default
+   * access levels of an admin.
+   *
+   * Specifying a value of `null` for this object will disable
+   * all configurable permissions. Specifying permissions will set
+   * them accordingly, omitted permissions will be enabled by default. */
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
 }
 export interface UpdateGroupMembershipByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class UpdateGroupMembershipByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -364,6 +462,8 @@ export class UpdateGroupMembershipByIdHeaders {
   }
 }
 export interface UpdateGroupMembershipByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -371,6 +471,8 @@ export interface UpdateGroupMembershipByIdHeadersInput {
       };
 }
 export class DeleteGroupMembershipByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -384,6 +486,8 @@ export class DeleteGroupMembershipByIdHeaders {
   }
 }
 export interface DeleteGroupMembershipByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -413,6 +517,15 @@ export class MembershipsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves all the groups for a user. Only members of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {GetUserMembershipsOptionalsInput} optionalsInput
+     * @returns {Promise<GroupMemberships>}
+     */
   async getUserMemberships(
     userId: string,
     optionalsInput: GetUserMembershipsOptionalsInput = {}
@@ -454,6 +567,15 @@ export class MembershipsManager {
     )) as FetchResponse;
     return deserializeGroupMemberships(response.data);
   }
+  /**
+     * Retrieves all the members for a group. Only members of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupId The ID of the group.
+    Example: "57645"
+     * @param {GetGroupMembershipsOptionalsInput} optionalsInput
+     * @returns {Promise<GroupMemberships>}
+     */
   async getGroupMemberships(
     groupId: string,
     optionalsInput: GetGroupMembershipsOptionalsInput = {}
@@ -495,6 +617,13 @@ export class MembershipsManager {
     )) as FetchResponse;
     return deserializeGroupMemberships(response.data);
   }
+  /**
+   * Creates a group membership. Only users with
+   * admin-level permissions will be able to use this API.
+   * @param {CreateGroupMembershipRequestBody} requestBody Request body of createGroupMembership method
+   * @param {CreateGroupMembershipOptionalsInput} optionalsInput
+   * @returns {Promise<GroupMembership>}
+   */
   async createGroupMembership(
     requestBody: CreateGroupMembershipRequestBody,
     optionalsInput: CreateGroupMembershipOptionalsInput = {}
@@ -537,6 +666,15 @@ export class MembershipsManager {
     )) as FetchResponse;
     return deserializeGroupMembership(response.data);
   }
+  /**
+     * Retrieves a specific group membership. Only admins of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupMembershipId The ID of the group membership.
+    Example: "434534"
+     * @param {GetGroupMembershipByIdOptionalsInput} optionalsInput
+     * @returns {Promise<GroupMembership>}
+     */
   async getGroupMembershipById(
     groupMembershipId: string,
     optionalsInput: GetGroupMembershipByIdOptionalsInput = {}
@@ -578,6 +716,15 @@ export class MembershipsManager {
     )) as FetchResponse;
     return deserializeGroupMembership(response.data);
   }
+  /**
+     * Updates a user's group membership. Only admins of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupMembershipId The ID of the group membership.
+    Example: "434534"
+     * @param {UpdateGroupMembershipByIdOptionalsInput} optionalsInput
+     * @returns {Promise<GroupMembership>}
+     */
   async updateGroupMembershipById(
     groupMembershipId: string,
     optionalsInput: UpdateGroupMembershipByIdOptionalsInput = {}
@@ -623,6 +770,15 @@ export class MembershipsManager {
     )) as FetchResponse;
     return deserializeGroupMembership(response.data);
   }
+  /**
+     * Deletes a specific group membership. Only admins of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupMembershipId The ID of the group membership.
+    Example: "434534"
+     * @param {DeleteGroupMembershipByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteGroupMembershipById(
     groupMembershipId: string,
     optionalsInput: DeleteGroupMembershipByIdOptionalsInput = {}

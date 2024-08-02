@@ -125,16 +125,32 @@ export interface DeleteTrashedWebLinkByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface RestoreWeblinkFromTrashRequestBodyParentField {
+  /**
+   * The ID of parent item */
   readonly id?: string;
 }
 export interface RestoreWeblinkFromTrashRequestBody {
+  /**
+   * An optional new name for the web link. */
   readonly name?: string;
   readonly parent?: RestoreWeblinkFromTrashRequestBodyParentField;
 }
 export interface RestoreWeblinkFromTrashQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class RestoreWeblinkFromTrashHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -148,6 +164,8 @@ export class RestoreWeblinkFromTrashHeaders {
   }
 }
 export interface RestoreWeblinkFromTrashHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -155,9 +173,21 @@ export interface RestoreWeblinkFromTrashHeadersInput {
       };
 }
 export interface GetTrashedWebLinkByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetTrashedWebLinkByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -171,6 +201,8 @@ export class GetTrashedWebLinkByIdHeaders {
   }
 }
 export interface GetTrashedWebLinkByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -178,6 +210,8 @@ export interface GetTrashedWebLinkByIdHeadersInput {
       };
 }
 export class DeleteTrashedWebLinkByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -191,6 +225,8 @@ export class DeleteTrashedWebLinkByIdHeaders {
   }
 }
 export interface DeleteTrashedWebLinkByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -217,6 +253,16 @@ export class TrashedWebLinksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Restores a web link that has been moved to the trash.
+     *
+     * An optional new parent ID can be provided to restore the  web link to in case
+     * the original folder has been deleted.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {RestoreWeblinkFromTrashOptionalsInput} optionalsInput
+     * @returns {Promise<TrashWebLinkRestored>}
+     */
   async restoreWeblinkFromTrash(
     webLinkId: string,
     optionalsInput: RestoreWeblinkFromTrashOptionalsInput = {}
@@ -262,6 +308,13 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLinkRestored(response.data);
   }
+  /**
+     * Retrieves a web link that has been moved to the trash.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {GetTrashedWebLinkByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TrashWebLink>}
+     */
   async getTrashedWebLinkById(
     webLinkId: string,
     optionalsInput: GetTrashedWebLinkByIdOptionalsInput = {}
@@ -304,6 +357,14 @@ export class TrashedWebLinksManager {
     )) as FetchResponse;
     return deserializeTrashWebLink(response.data);
   }
+  /**
+     * Permanently deletes a web link that is in the trash.
+     * This action cannot be undone.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {DeleteTrashedWebLinkByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteTrashedWebLinkById(
     webLinkId: string,
     optionalsInput: DeleteTrashedWebLinkByIdOptionalsInput = {}

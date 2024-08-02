@@ -8,8 +8,12 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingBoxItemSlackTypeField = 'folder';
 export class IntegrationMappingBoxItemSlack {
+  /**
+   * Type of the mapped item referenced in `id` */
   readonly type: IntegrationMappingBoxItemSlackTypeField =
     'folder' as IntegrationMappingBoxItemSlackTypeField;
+  /**
+   * ID of the mapped item (of type referenced in `type`) */
   readonly id!: string;
   constructor(
     fields: Omit<IntegrationMappingBoxItemSlack, 'type'> &
@@ -24,7 +28,11 @@ export class IntegrationMappingBoxItemSlack {
   }
 }
 export interface IntegrationMappingBoxItemSlackInput {
+  /**
+   * Type of the mapped item referenced in `id` */
   readonly type?: IntegrationMappingBoxItemSlackTypeField;
+  /**
+   * ID of the mapped item (of type referenced in `type`) */
   readonly id: string;
 }
 export function serializeIntegrationMappingBoxItemSlackTypeField(

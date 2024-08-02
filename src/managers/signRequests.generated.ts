@@ -108,6 +108,8 @@ export interface CreateSignRequestOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class CancelSignRequestHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -121,6 +123,8 @@ export class CancelSignRequestHeaders {
   }
 }
 export interface CancelSignRequestHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -128,6 +132,8 @@ export interface CancelSignRequestHeadersInput {
       };
 }
 export class ResendSignRequestHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -141,6 +147,8 @@ export class ResendSignRequestHeaders {
   }
 }
 export interface ResendSignRequestHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -148,6 +156,8 @@ export interface ResendSignRequestHeadersInput {
       };
 }
 export class GetSignRequestByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -161,6 +171,8 @@ export class GetSignRequestByIdHeaders {
   }
 }
 export interface GetSignRequestByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -168,10 +180,19 @@ export interface GetSignRequestByIdHeadersInput {
       };
 }
 export interface GetSignRequestsQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetSignRequestsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -185,6 +206,8 @@ export class GetSignRequestsHeaders {
   }
 }
 export interface GetSignRequestsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -192,6 +215,8 @@ export interface GetSignRequestsHeadersInput {
       };
 }
 export class CreateSignRequestHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -205,6 +230,8 @@ export class CreateSignRequestHeaders {
   }
 }
 export interface CreateSignRequestHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -233,6 +260,13 @@ export class SignRequestsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Cancels a sign request.
+     * @param {string} signRequestId The ID of the signature request
+    Example: "33243242"
+     * @param {CancelSignRequestOptionalsInput} optionalsInput
+     * @returns {Promise<SignRequest>}
+     */
   async cancelSignRequest(
     signRequestId: string,
     optionalsInput: CancelSignRequestOptionalsInput = {}
@@ -265,6 +299,13 @@ export class SignRequestsManager {
     )) as FetchResponse;
     return deserializeSignRequest(response.data);
   }
+  /**
+     * Resends a signature request email to all outstanding signers.
+     * @param {string} signRequestId The ID of the signature request
+    Example: "33243242"
+     * @param {ResendSignRequestOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async resendSignRequest(
     signRequestId: string,
     optionalsInput: ResendSignRequestOptionalsInput = {}
@@ -297,6 +338,13 @@ export class SignRequestsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * Gets a sign request by ID.
+     * @param {string} signRequestId The ID of the signature request
+    Example: "33243242"
+     * @param {GetSignRequestByIdOptionalsInput} optionalsInput
+     * @returns {Promise<SignRequest>}
+     */
   async getSignRequestById(
     signRequestId: string,
     optionalsInput: GetSignRequestByIdOptionalsInput = {}
@@ -328,6 +376,14 @@ export class SignRequestsManager {
     )) as FetchResponse;
     return deserializeSignRequest(response.data);
   }
+  /**
+   * Gets signature requests created by a user. If the `sign_files` and/or
+   * `parent_folder` are deleted, the signature request will not return in the list.
+   * @param {GetSignRequestsQueryParams} queryParams Query parameters of getSignRequests method
+   * @param {GetSignRequestsHeadersInput} headersInput Headers of getSignRequests method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<SignRequests>}
+   */
   async getSignRequests(
     queryParams: GetSignRequestsQueryParams = {} satisfies GetSignRequestsQueryParams,
     headersInput: GetSignRequestsHeadersInput = new GetSignRequestsHeaders({}),
@@ -362,6 +418,13 @@ export class SignRequestsManager {
     )) as FetchResponse;
     return deserializeSignRequests(response.data);
   }
+  /**
+   * Creates a signature request. This involves preparing a document for signing and
+   * sending the signature request to signers.
+   * @param {SignRequestCreateRequest} requestBody Request body of createSignRequest method
+   * @param {CreateSignRequestOptionalsInput} optionalsInput
+   * @returns {Promise<SignRequest>}
+   */
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
     optionalsInput: CreateSignRequestOptionalsInput = {}

@@ -128,15 +128,34 @@ export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
   'channel';
 export type GetSlackIntegrationMappingQueryParamsBoxItemTypeField = 'folder';
 export interface GetSlackIntegrationMappingQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * Mapped item type, for which the mapping should be returned */
   readonly partnerItemType?: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField;
+  /**
+   * ID of the mapped item, for which the mapping should be returned */
   readonly partnerItemId?: string;
+  /**
+   * Box item ID, for which the mappings should be returned */
   readonly boxItemId?: string;
+  /**
+   * Box item type, for which the mappings should be returned */
   readonly boxItemType?: GetSlackIntegrationMappingQueryParamsBoxItemTypeField;
+  /**
+   * Whether the mapping has been manually created */
   readonly isManuallyCreated?: boolean;
 }
 export class GetSlackIntegrationMappingHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -150,6 +169,8 @@ export class GetSlackIntegrationMappingHeaders {
   }
 }
 export interface GetSlackIntegrationMappingHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -157,6 +178,8 @@ export interface GetSlackIntegrationMappingHeadersInput {
       };
 }
 export class CreateSlackIntegrationMappingHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -170,6 +193,8 @@ export class CreateSlackIntegrationMappingHeaders {
   }
 }
 export interface CreateSlackIntegrationMappingHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -181,6 +206,8 @@ export interface UpdateSlackIntegrationMappingByIdRequestBody {
   readonly options?: IntegrationMappingSlackOptions;
 }
 export class UpdateSlackIntegrationMappingByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -194,6 +221,8 @@ export class UpdateSlackIntegrationMappingByIdHeaders {
   }
 }
 export interface UpdateSlackIntegrationMappingByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -201,6 +230,8 @@ export interface UpdateSlackIntegrationMappingByIdHeadersInput {
       };
 }
 export class DeleteSlackIntegrationMappingByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -214,6 +245,8 @@ export class DeleteSlackIntegrationMappingByIdHeaders {
   }
 }
 export interface DeleteSlackIntegrationMappingByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -241,6 +274,16 @@ export class IntegrationMappingsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Lists [Slack integration mappings](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack) in a users' enterprise.
+   *
+   * You need Admin or Co-Admin role to
+   * use this endpoint.
+   * @param {GetSlackIntegrationMappingQueryParams} queryParams Query parameters of getSlackIntegrationMapping method
+   * @param {GetSlackIntegrationMappingHeadersInput} headersInput Headers of getSlackIntegrationMapping method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<IntegrationMappings>}
+   */
   async getSlackIntegrationMapping(
     queryParams: GetSlackIntegrationMappingQueryParams = {} satisfies GetSlackIntegrationMappingQueryParams,
     headersInput: GetSlackIntegrationMappingHeadersInput = new GetSlackIntegrationMappingHeaders(
@@ -285,6 +328,16 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMappings(response.data);
   }
+  /**
+   * Creates a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
+   * by mapping a Slack channel to a Box item.
+   *
+   * You need Admin or Co-Admin role to
+   * use this endpoint.
+   * @param {IntegrationMappingSlackCreateRequest} requestBody Request body of createSlackIntegrationMapping method
+   * @param {CreateSlackIntegrationMappingOptionalsInput} optionalsInput
+   * @returns {Promise<IntegrationMapping>}
+   */
   async createSlackIntegrationMapping(
     requestBody: IntegrationMappingSlackCreateRequest,
     optionalsInput: CreateSlackIntegrationMappingOptionalsInput = {}
@@ -317,6 +370,17 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMapping(response.data);
   }
+  /**
+     * Updates a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+     * Supports updating the Box folder ID and options.
+     *
+     * You need Admin or Co-Admin role to
+     * use this endpoint.
+     * @param {string} integrationMappingId An ID of an integration mapping
+    Example: "11235432"
+     * @param {UpdateSlackIntegrationMappingByIdOptionalsInput} optionalsInput
+     * @returns {Promise<IntegrationMapping>}
+     */
   async updateSlackIntegrationMappingById(
     integrationMappingId: string,
     optionalsInput: UpdateSlackIntegrationMappingByIdOptionalsInput = {}
@@ -354,6 +418,17 @@ export class IntegrationMappingsManager {
     )) as FetchResponse;
     return deserializeIntegrationMapping(response.data);
   }
+  /**
+     * Deletes a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
+     *
+     *
+     * You need Admin or Co-Admin role to
+     * use this endpoint.
+     * @param {string} integrationMappingId An ID of an integration mapping
+    Example: "11235432"
+     * @param {DeleteSlackIntegrationMappingByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteSlackIntegrationMappingById(
     integrationMappingId: string,
     optionalsInput: DeleteSlackIntegrationMappingByIdOptionalsInput = {}

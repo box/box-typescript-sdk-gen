@@ -113,6 +113,8 @@ export interface CreateShieldInformationBarrierOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetShieldInformationBarrierByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -126,6 +128,8 @@ export class GetShieldInformationBarrierByIdHeaders {
   }
 }
 export interface GetShieldInformationBarrierByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -136,10 +140,16 @@ export type UpdateShieldInformationBarrierStatusRequestBodyStatusField =
   | 'pending'
   | 'disabled';
 export interface UpdateShieldInformationBarrierStatusRequestBody {
+  /**
+   * The ID of the shield information barrier. */
   readonly id: string;
+  /**
+   * The desired status for the shield information barrier. */
   readonly status: UpdateShieldInformationBarrierStatusRequestBodyStatusField;
 }
 export class UpdateShieldInformationBarrierStatusHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -153,6 +163,8 @@ export class UpdateShieldInformationBarrierStatusHeaders {
   }
 }
 export interface UpdateShieldInformationBarrierStatusHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -160,10 +172,17 @@ export interface UpdateShieldInformationBarrierStatusHeadersInput {
       };
 }
 export interface GetShieldInformationBarriersQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetShieldInformationBarriersHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -177,6 +196,8 @@ export class GetShieldInformationBarriersHeaders {
   }
 }
 export interface GetShieldInformationBarriersHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -184,9 +205,13 @@ export interface GetShieldInformationBarriersHeadersInput {
       };
 }
 export interface CreateShieldInformationBarrierRequestBody {
+  /**
+   * The `type` and `id` of enterprise this barrier is under. */
   readonly enterprise: EnterpriseBase;
 }
 export class CreateShieldInformationBarrierHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -200,6 +225,8 @@ export class CreateShieldInformationBarrierHeaders {
   }
 }
 export interface CreateShieldInformationBarrierHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -227,6 +254,13 @@ export class ShieldInformationBarriersManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Get shield information barrier based on provided ID.
+     * @param {string} shieldInformationBarrierId The ID of the shield information barrier.
+    Example: "1910967"
+     * @param {GetShieldInformationBarrierByIdOptionalsInput} optionalsInput
+     * @returns {Promise<ShieldInformationBarrier>}
+     */
   async getShieldInformationBarrierById(
     shieldInformationBarrierId: string,
     optionalsInput: GetShieldInformationBarrierByIdOptionalsInput = {}
@@ -258,6 +292,12 @@ export class ShieldInformationBarriersManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(response.data);
   }
+  /**
+   * Change status of shield information barrier with the specified ID.
+   * @param {UpdateShieldInformationBarrierStatusRequestBody} requestBody Request body of updateShieldInformationBarrierStatus method
+   * @param {UpdateShieldInformationBarrierStatusOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrier>}
+   */
   async updateShieldInformationBarrierStatus(
     requestBody: UpdateShieldInformationBarrierStatusRequestBody,
     optionalsInput: UpdateShieldInformationBarrierStatusOptionalsInput = {}
@@ -292,6 +332,14 @@ export class ShieldInformationBarriersManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrier(response.data);
   }
+  /**
+   * Retrieves a list of shield information barrier objects
+   * for the enterprise of JWT.
+   * @param {GetShieldInformationBarriersQueryParams} queryParams Query parameters of getShieldInformationBarriers method
+   * @param {GetShieldInformationBarriersHeadersInput} headersInput Headers of getShieldInformationBarriers method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<ShieldInformationBarriers>}
+   */
   async getShieldInformationBarriers(
     queryParams: GetShieldInformationBarriersQueryParams = {} satisfies GetShieldInformationBarriersQueryParams,
     headersInput: GetShieldInformationBarriersHeadersInput = new GetShieldInformationBarriersHeaders(
@@ -329,6 +377,14 @@ export class ShieldInformationBarriersManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarriers(response.data);
   }
+  /**
+   * Creates a shield information barrier to
+   * separate individuals/groups within the same
+   * firm and prevents confidential information passing between them.
+   * @param {CreateShieldInformationBarrierRequestBody} requestBody Request body of createShieldInformationBarrier method
+   * @param {CreateShieldInformationBarrierOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrier>}
+   */
   async createShieldInformationBarrier(
     requestBody: CreateShieldInformationBarrierRequestBody,
     optionalsInput: CreateShieldInformationBarrierOptionalsInput = {}

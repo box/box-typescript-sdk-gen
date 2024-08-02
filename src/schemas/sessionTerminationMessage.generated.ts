@@ -7,6 +7,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface SessionTerminationMessage {
+  /**
+   * The unique identifier for the termination job status */
   readonly message?: string;
 }
 export function serializeSessionTerminationMessage(

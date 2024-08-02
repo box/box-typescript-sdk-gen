@@ -46,17 +46,46 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface FileFullPermissionsField {
+  /**
+   * Specifies if the current user can delete this item. */
   readonly canDelete: boolean;
+  /**
+   * Specifies if the current user can download this item. */
   readonly canDownload: boolean;
+  /**
+   * Specifies if the current user can invite new
+   * users to collaborate on this item, and if the user can
+   * update the role of a user already collaborated on this
+   * item. */
   readonly canInviteCollaborator: boolean;
+  /**
+   * Specifies if the user can rename this item. */
   readonly canRename: boolean;
+  /**
+   * Specifies if the user can change the access level of an
+   * existing shared link on this item. */
   readonly canSetShareAccess: boolean;
+  /**
+   * Specifies if the user can create a shared link for this item. */
   readonly canShare: boolean;
+  /**
+   * Specifies if the user can place annotations on this file. */
   readonly canAnnotate?: boolean;
+  /**
+   * Specifies if the user can place comments on this file. */
   readonly canComment?: boolean;
+  /**
+   * Specifies if the user can preview this file. */
   readonly canPreview?: boolean;
+  /**
+   * Specifies if the user can upload a new version of this file. */
   readonly canUpload?: boolean;
+  /**
+   * Specifies if the user view all annotations placed on this file */
   readonly canViewAnnotationsAll?: boolean;
+  /**
+   * Specifies if the user view annotations placed by themselves
+   * on this file */
   readonly canViewAnnotationsSelf?: boolean;
 }
 export type FileFullLockTypeField = 'lock';
@@ -66,23 +95,53 @@ export type FileFullLockAppTypeField =
   | 'office_wopiplus'
   | 'other';
 export interface FileFullLockField {
+  /**
+   * The unique identifier for this lock */
   readonly id?: string;
+  /**
+   * `lock` */
   readonly type?: FileFullLockTypeField;
   readonly createdBy?: UserMini;
+  /**
+   * The time this lock was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * The time this lock is to expire at, which might be in the past. */
   readonly expiredAt?: DateTime;
+  /**
+   * Whether or not the file can be downloaded while locked. */
   readonly isDownloadPrevented?: boolean;
+  /**
+   * If the lock is managed by an application rather than a user, this
+   * field identifies the type of the application that holds the lock.
+   * This is an open enum and may be extended with additional values in
+   * the future. */
   readonly appType?: FileFullLockAppTypeField;
 }
 export type FileFullExpiringEmbedLinkTokenTypeField = 'bearer';
 export interface FileFullExpiringEmbedLinkField {
+  /**
+   * The requested access token. */
   readonly accessToken?: string;
+  /**
+   * The time in seconds by which this token will expire. */
   readonly expiresIn?: number;
+  /**
+   * The type of access token returned. */
   readonly tokenType?: FileFullExpiringEmbedLinkTokenTypeField;
+  /**
+   * The permissions that this access token permits,
+   * providing a list of resources (files, folders, etc)
+   * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: readonly FileOrFolderScope[];
+  /**
+   * The actual expiring embed URL for this file, constructed
+   * from the file ID and access tokens specified in this object. */
   readonly url?: string;
 }
 export interface FileFullWatermarkInfoField {
+  /**
+   * Specifies if this item has a watermark applied. */
   readonly isWatermarked?: boolean;
 }
 export type FileFullAllowedInviteeRolesField =
@@ -101,14 +160,52 @@ export interface FileFullMetadataField {
   };
 }
 export interface FileFullRepresentationsEntriesContentField {
+  /**
+   * The download URL that can be used to fetch the representation.
+   * Make sure to make an authenticated API call to this endpoint.
+   *
+   * This URL is a template and will require the `{+asset_path}` to
+   * be replaced by a path. In general, for unpaged representations
+   * it can be replaced by an empty string.
+   *
+   * For paged representations, replace the `{+asset_path}` with the
+   * page to request plus the extension for the file, for example
+   * `1.pdf`.
+   *
+   * When requesting the download URL the following additional
+   * query params can be passed along.
+   *
+   * * `set_content_disposition_type` - Sets the
+   * `Content-Disposition` header in the API response with the
+   * specified disposition type of either `inline` or `attachment`.
+   * If not supplied, the `Content-Disposition` header is not
+   * included in the response.
+   *
+   * * `set_content_disposition_filename` - Allows the application to
+   *   define the representation's file name used in the
+   *   `Content-Disposition` header.  If not defined, the filename
+   *   is derived from the source file name in Box combined with the
+   *   extension of the representation. */
   readonly urlTemplate?: string;
 }
 export interface FileFullRepresentationsEntriesInfoField {
+  /**
+   * The API URL that can be used to get more info on this file
+   * representation. Make sure to make an authenticated API call
+   * to this endpoint. */
   readonly url?: string;
 }
 export interface FileFullRepresentationsEntriesPropertiesField {
+  /**
+   * The width by height size of this representation in pixels. */
   readonly dimensions?: string;
+  /**
+   * Indicates if the representation is build up out of multiple
+   * pages. */
   readonly paged?: boolean;
+  /**
+   * Indicates if the representation can be used as a thumbnail of
+   * the file. */
   readonly thumb?: boolean;
 }
 export type FileFullRepresentationsEntriesStatusStateField =
@@ -117,21 +214,53 @@ export type FileFullRepresentationsEntriesStatusStateField =
   | 'pending'
   | 'none';
 export interface FileFullRepresentationsEntriesStatusField {
+  /**
+   * The status of the representation.
+   *
+   * * `success` defines the representation as ready to be viewed.
+   * * `viewable` defines a video to be ready for viewing.
+   * * `pending` defines the representation as to be generated. Retry
+   *   this endpoint to re-check the status.
+   * * `none` defines that the representation will be created when
+   *   requested. Request the URL defined in the `info` object to
+   *   trigger this generation. */
   readonly state?: FileFullRepresentationsEntriesStatusStateField;
 }
 export interface FileFullRepresentationsEntriesField {
+  /**
+   * An object containing the URL that can be used to actually fetch
+   * the representation. */
   readonly content?: FileFullRepresentationsEntriesContentField;
+  /**
+   * An object containing the URL that can be used to fetch more info
+   * on this representation. */
   readonly info?: FileFullRepresentationsEntriesInfoField;
+  /**
+   * An object containing the size and type of this presentation. */
   readonly properties?: FileFullRepresentationsEntriesPropertiesField;
+  /**
+   * Indicates the file type of the returned representation. */
   readonly representation?: string;
+  /**
+   * An object containing the status of this representation. */
   readonly status?: FileFullRepresentationsEntriesStatusField;
 }
 export interface FileFullRepresentationsField {
+  /**
+   * A list of files */
   readonly entries?: readonly FileFullRepresentationsEntriesField[];
 }
 export interface FileFullClassificationField {
+  /**
+   * The name of the classification */
   readonly name?: string;
+  /**
+   * An explanation of the meaning of this classification. */
   readonly definition?: string;
+  /**
+   * The color that is used to display the
+   * classification label in a user-interface. Colors are defined by the admin
+   * or co-admin who created the classification in the Box web app. */
   readonly color?: string;
 }
 export type FileFullSharedLinkPermissionOptionsField =

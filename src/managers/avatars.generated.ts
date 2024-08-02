@@ -80,6 +80,8 @@ export interface DeleteUserAvatarOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetUserAvatarHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -93,6 +95,8 @@ export class GetUserAvatarHeaders {
   }
 }
 export interface GetUserAvatarHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -100,11 +104,17 @@ export interface GetUserAvatarHeadersInput {
       };
 }
 export interface CreateUserAvatarRequestBody {
+  /**
+   * The image file to be uploaded to Box.
+   * Accepted file extensions are `.jpg` or `.png`.
+   * The maximum file size is 1MB. */
   readonly pic: ByteStream;
   readonly picFileName?: string;
   readonly picContentType?: string;
 }
 export class CreateUserAvatarHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -118,6 +128,8 @@ export class CreateUserAvatarHeaders {
   }
 }
 export interface CreateUserAvatarHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -125,6 +137,8 @@ export interface CreateUserAvatarHeadersInput {
       };
 }
 export class DeleteUserAvatarHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -138,6 +152,8 @@ export class DeleteUserAvatarHeaders {
   }
 }
 export interface DeleteUserAvatarHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -164,6 +180,13 @@ export class AvatarsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves an image of a the user's avatar.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {GetUserAvatarOptionalsInput} optionalsInput
+     * @returns {Promise<ByteStream>}
+     */
   async getUserAvatar(
     userId: string,
     optionalsInput: GetUserAvatarOptionalsInput = {}
@@ -195,6 +218,14 @@ export class AvatarsManager {
     )) as FetchResponse;
     return response.content;
   }
+  /**
+     * Adds or updates a user avatar.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {CreateUserAvatarRequestBody} requestBody Request body of createUserAvatar method
+     * @param {CreateUserAvatarOptionalsInput} optionalsInput
+     * @returns {Promise<UserAvatar>}
+     */
   async createUserAvatar(
     userId: string,
     requestBody: CreateUserAvatarRequestBody,
@@ -236,6 +267,14 @@ export class AvatarsManager {
     )) as FetchResponse;
     return deserializeUserAvatar(response.data);
   }
+  /**
+     * Removes an existing user avatar.
+     * You cannot reverse this operation.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {DeleteUserAvatarOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteUserAvatar(
     userId: string,
     optionalsInput: DeleteUserAvatarOptionalsInput = {}

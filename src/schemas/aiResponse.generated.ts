@@ -10,8 +10,14 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiResponse {
+  /**
+   * The answer provided by the LLM. */
   readonly answer: string;
+  /**
+   * The ISO date formatted timestamp of when the answer to the prompt was created. */
   readonly createdAt: DateTime;
+  /**
+   * The reason the response finishes. */
   readonly completionReason?: string;
 }
 export function serializeAiResponse(val: AiResponse): SerializedData {

@@ -141,12 +141,34 @@ export interface DeleteLegalHoldPolicyByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetLegalHoldPoliciesQueryParams {
+  /**
+   * Limits results to policies for which the names start with
+   * this search term. This is a case-insensitive prefix. */
   readonly policyName?: string;
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetLegalHoldPoliciesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -160,6 +182,8 @@ export class GetLegalHoldPoliciesHeaders {
   }
 }
 export interface GetLegalHoldPoliciesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -167,13 +191,52 @@ export interface GetLegalHoldPoliciesHeadersInput {
       };
 }
 export interface CreateLegalHoldPolicyRequestBody {
+  /**
+   * The name of the policy. */
   readonly policyName: string;
+  /**
+   * A description for the policy. */
   readonly description?: string;
+  /**
+   * The filter start date.
+   *
+   * When this policy is applied using a `custodian` legal
+   * hold assignments, it will only apply to file versions
+   * created or uploaded inside of the
+   * date range. Other assignment types, such as folders and
+   * files, will ignore the date filter.
+   *
+   * Required if `is_ongoing` is set to `false`. */
   readonly filterStartedAt?: DateTime;
+  /**
+   * The filter end date.
+   *
+   * When this policy is applied using a `custodian` legal
+   * hold assignments, it will only apply to file versions
+   * created or uploaded inside of the
+   * date range. Other assignment types, such as folders and
+   * files, will ignore the date filter.
+   *
+   * Required if `is_ongoing` is set to `false`. */
   readonly filterEndedAt?: DateTime;
+  /**
+   * Whether new assignments under this policy should
+   * continue applying to files even after initialization.
+   *
+   * When this policy is applied using a legal hold assignment,
+   * it will continue applying the policy to any new file versions
+   * even after it has been applied.
+   *
+   * For example, if a legal hold assignment is placed on a user
+   * today, and that user uploads a file tomorrow, that file will
+   * get held. This will continue until the policy is retired.
+   *
+   * Required if no filter dates are set. */
   readonly isOngoing?: boolean;
 }
 export class CreateLegalHoldPolicyHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -187,6 +250,8 @@ export class CreateLegalHoldPolicyHeaders {
   }
 }
 export interface CreateLegalHoldPolicyHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -194,6 +259,8 @@ export interface CreateLegalHoldPolicyHeadersInput {
       };
 }
 export class GetLegalHoldPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -207,6 +274,8 @@ export class GetLegalHoldPolicyByIdHeaders {
   }
 }
 export interface GetLegalHoldPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -214,11 +283,19 @@ export interface GetLegalHoldPolicyByIdHeadersInput {
       };
 }
 export interface UpdateLegalHoldPolicyByIdRequestBody {
+  /**
+   * The name of the policy. */
   readonly policyName?: string;
+  /**
+   * A description for the policy. */
   readonly description?: string;
+  /**
+   * Notes around why the policy was released. */
   readonly releaseNotes?: string;
 }
 export class UpdateLegalHoldPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -232,6 +309,8 @@ export class UpdateLegalHoldPolicyByIdHeaders {
   }
 }
 export interface UpdateLegalHoldPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -239,6 +318,8 @@ export interface UpdateLegalHoldPolicyByIdHeadersInput {
       };
 }
 export class DeleteLegalHoldPolicyByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -252,6 +333,8 @@ export class DeleteLegalHoldPolicyByIdHeaders {
   }
 }
 export interface DeleteLegalHoldPolicyByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -280,6 +363,14 @@ export class LegalHoldPoliciesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves a list of legal hold policies that belong to
+   * an enterprise.
+   * @param {GetLegalHoldPoliciesQueryParams} queryParams Query parameters of getLegalHoldPolicies method
+   * @param {GetLegalHoldPoliciesHeadersInput} headersInput Headers of getLegalHoldPolicies method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<LegalHoldPolicies>}
+   */
   async getLegalHoldPolicies(
     queryParams: GetLegalHoldPoliciesQueryParams = {} satisfies GetLegalHoldPoliciesQueryParams,
     headersInput: GetLegalHoldPoliciesHeadersInput = new GetLegalHoldPoliciesHeaders(
@@ -321,6 +412,12 @@ export class LegalHoldPoliciesManager {
     )) as FetchResponse;
     return deserializeLegalHoldPolicies(response.data);
   }
+  /**
+   * Create a new legal hold policy.
+   * @param {CreateLegalHoldPolicyRequestBody} requestBody Request body of createLegalHoldPolicy method
+   * @param {CreateLegalHoldPolicyOptionalsInput} optionalsInput
+   * @returns {Promise<LegalHoldPolicy>}
+   */
   async createLegalHoldPolicy(
     requestBody: CreateLegalHoldPolicyRequestBody,
     optionalsInput: CreateLegalHoldPolicyOptionalsInput = {}
@@ -353,6 +450,13 @@ export class LegalHoldPoliciesManager {
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(response.data);
   }
+  /**
+     * Retrieve a legal hold policy.
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+    Example: "324432"
+     * @param {GetLegalHoldPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<LegalHoldPolicy>}
+     */
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
     optionalsInput: GetLegalHoldPolicyByIdOptionalsInput = {}
@@ -384,6 +488,13 @@ export class LegalHoldPoliciesManager {
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(response.data);
   }
+  /**
+     * Update legal hold policy.
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+    Example: "324432"
+     * @param {UpdateLegalHoldPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<LegalHoldPolicy>}
+     */
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
     optionalsInput: UpdateLegalHoldPolicyByIdOptionalsInput = {}
@@ -419,6 +530,16 @@ export class LegalHoldPoliciesManager {
     )) as FetchResponse;
     return deserializeLegalHoldPolicy(response.data);
   }
+  /**
+     * Delete an existing legal hold policy.
+     *
+     * This is an asynchronous process. The policy will not be
+     * fully deleted yet when the response returns.
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+    Example: "324432"
+     * @param {DeleteLegalHoldPolicyByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
     optionalsInput: DeleteLegalHoldPolicyByIdOptionalsInput = {}

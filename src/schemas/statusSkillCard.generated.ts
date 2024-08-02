@@ -12,7 +12,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type StatusSkillCardTypeField = 'skill_card';
 export type StatusSkillCardSkillCardTypeField = 'status';
 export interface StatusSkillCardSkillCardTitleField {
+  /**
+   * An optional identifier for the title. */
   readonly code?: string;
+  /**
+   * The actual title to show in the UI. */
   readonly message: string;
 }
 export type StatusSkillCardStatusCodeField =
@@ -22,13 +26,26 @@ export type StatusSkillCardStatusCodeField =
   | 'transient_failure'
   | 'permanent_failure';
 export interface StatusSkillCardStatusField {
+  /**
+   * A code for the status of this Skill invocation. By
+   * default each of these will have their own accompanied
+   * messages. These can be adjusted by setting the `message`
+   * value on this object. */
   readonly code: StatusSkillCardStatusCodeField;
+  /**
+   * A custom message that can be provided with this status.
+   * This will be shown in the web app to the end user. */
   readonly message?: string;
 }
 export type StatusSkillCardSkillTypeField = 'service';
 export class StatusSkillCardSkillField {
+  /**
+   * `service` */
   readonly type: StatusSkillCardSkillTypeField =
     'service' as StatusSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<StatusSkillCardSkillField, 'type'> &
@@ -43,13 +60,26 @@ export class StatusSkillCardSkillField {
   }
 }
 export interface StatusSkillCardSkillFieldInput {
+  /**
+   * `service` */
   readonly type?: StatusSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id: string;
 }
 export type StatusSkillCardInvocationTypeField = 'skill_invocation';
 export class StatusSkillCardInvocationField {
+  /**
+   * `skill_invocation` */
   readonly type: StatusSkillCardInvocationTypeField =
     'skill_invocation' as StatusSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<StatusSkillCardInvocationField, 'type'> &
@@ -64,18 +94,41 @@ export class StatusSkillCardInvocationField {
   }
 }
 export interface StatusSkillCardInvocationFieldInput {
+  /**
+   * `skill_invocation` */
   readonly type?: StatusSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id: string;
 }
 export class StatusSkillCard {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type: StatusSkillCardTypeField =
     'skill_card' as StatusSkillCardTypeField;
+  /**
+   * `status` */
   readonly skillCardType: StatusSkillCardSkillCardTypeField =
     'status' as StatusSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: StatusSkillCardSkillCardTitleField;
+  /**
+   * Sets the status of the skill. This can be used to show a message to the user while the Skill is processing the data, or if it was not able to process the file. */
   readonly status!: StatusSkillCardStatusField;
+  /**
+   * The service that applied this metadata. */
   readonly skill!: StatusSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation!: StatusSkillCardInvocationField;
   constructor(
     fields: Omit<StatusSkillCard, 'type' | 'skillCardType'> &
@@ -105,12 +158,27 @@ export class StatusSkillCard {
   }
 }
 export interface StatusSkillCardInput {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type?: StatusSkillCardTypeField;
+  /**
+   * `status` */
   readonly skillCardType?: StatusSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: StatusSkillCardSkillCardTitleField;
+  /**
+   * Sets the status of the skill. This can be used to show a message to the user while the Skill is processing the data, or if it was not able to process the file. */
   readonly status: StatusSkillCardStatusField;
+  /**
+   * The service that applied this metadata. */
   readonly skill: StatusSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation: StatusSkillCardInvocationField;
 }
 export function serializeStatusSkillCardTypeField(

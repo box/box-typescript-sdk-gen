@@ -7,7 +7,12 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface UploadUrl {
+  /**
+   * A URL for an upload session that can be used to upload
+   * the file. */
   readonly uploadUrl?: string;
+  /**
+   * An optional access token to use to upload the file */
   readonly uploadToken?: string;
 }
 export function serializeUploadUrl(val: UploadUrl): SerializedData {

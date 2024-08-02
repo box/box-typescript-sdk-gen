@@ -111,6 +111,8 @@ export interface GetEnterpriseDevicePinnersOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetDevicePinnerByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -124,6 +126,8 @@ export class GetDevicePinnerByIdHeaders {
   }
 }
 export interface GetDevicePinnerByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -131,6 +135,8 @@ export interface GetDevicePinnerByIdHeadersInput {
       };
 }
 export class DeleteDevicePinnerByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -144,6 +150,8 @@ export class DeleteDevicePinnerByIdHeaders {
   }
 }
 export interface DeleteDevicePinnerByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -154,11 +162,23 @@ export type GetEnterpriseDevicePinnersQueryParamsDirectionField =
   | 'ASC'
   | 'DESC';
 export interface GetEnterpriseDevicePinnersQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The direction to sort results in. This can be either in alphabetical ascending
+   * (`ASC`) or descending (`DESC`) order. */
   readonly direction?: GetEnterpriseDevicePinnersQueryParamsDirectionField;
 }
 export class GetEnterpriseDevicePinnersHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -172,6 +192,8 @@ export class GetEnterpriseDevicePinnersHeaders {
   }
 }
 export interface GetEnterpriseDevicePinnersHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -198,6 +220,13 @@ export class DevicePinnersManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves information about an individual device pin.
+     * @param {string} devicePinnerId The ID of the device pin
+    Example: "2324234"
+     * @param {GetDevicePinnerByIdOptionalsInput} optionalsInput
+     * @returns {Promise<DevicePinner>}
+     */
   async getDevicePinnerById(
     devicePinnerId: string,
     optionalsInput: GetDevicePinnerByIdOptionalsInput = {}
@@ -229,6 +258,13 @@ export class DevicePinnersManager {
     )) as FetchResponse;
     return deserializeDevicePinner(response.data);
   }
+  /**
+     * Deletes an individual device pin.
+     * @param {string} devicePinnerId The ID of the device pin
+    Example: "2324234"
+     * @param {DeleteDevicePinnerByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteDevicePinnerById(
     devicePinnerId: string,
     optionalsInput: DeleteDevicePinnerByIdOptionalsInput = {}
@@ -260,6 +296,16 @@ export class DevicePinnersManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * Retrieves all the device pins within an enterprise.
+     *
+     * The user must have admin privileges, and the application
+     * needs the "manage enterprise" scope to make this call.
+     * @param {string} enterpriseId The ID of the enterprise
+    Example: "3442311"
+     * @param {GetEnterpriseDevicePinnersOptionalsInput} optionalsInput
+     * @returns {Promise<DevicePinners>}
+     */
   async getEnterpriseDevicePinners(
     enterpriseId: string,
     optionalsInput: GetEnterpriseDevicePinnersOptionalsInput = {}

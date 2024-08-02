@@ -126,6 +126,8 @@ export interface CreateFileRequestCopyOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileRequestByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -139,6 +141,8 @@ export class GetFileRequestByIdHeaders {
   }
 }
 export interface GetFileRequestByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -146,7 +150,17 @@ export interface GetFileRequestByIdHeadersInput {
       };
 }
 export class UpdateFileRequestByIdHeaders {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -163,7 +177,17 @@ export class UpdateFileRequestByIdHeaders {
   }
 }
 export interface UpdateFileRequestByIdHeadersInput {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -171,6 +195,8 @@ export interface UpdateFileRequestByIdHeadersInput {
       };
 }
 export class DeleteFileRequestByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -184,6 +210,8 @@ export class DeleteFileRequestByIdHeaders {
   }
 }
 export interface DeleteFileRequestByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -191,6 +219,8 @@ export interface DeleteFileRequestByIdHeadersInput {
       };
 }
 export class CreateFileRequestCopyHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -204,6 +234,8 @@ export class CreateFileRequestCopyHeaders {
   }
 }
 export interface CreateFileRequestCopyHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -231,6 +263,19 @@ export class FileRequestsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves the information about a file request.
+     * @param {string} fileRequestId The unique identifier that represent a file request.
+    
+    The ID for any file request can be determined
+    by visiting a file request builder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/filerequest/123`
+    the `file_request_id` is `123`.
+    Example: "123"
+     * @param {GetFileRequestByIdOptionalsInput} optionalsInput
+     * @returns {Promise<FileRequest>}
+     */
   async getFileRequestById(
     fileRequestId: string,
     optionalsInput: GetFileRequestByIdOptionalsInput = {}
@@ -262,6 +307,21 @@ export class FileRequestsManager {
     )) as FetchResponse;
     return deserializeFileRequest(response.data);
   }
+  /**
+     * Updates a file request. This can be used to activate or
+     * deactivate a file request.
+     * @param {string} fileRequestId The unique identifier that represent a file request.
+    
+    The ID for any file request can be determined
+    by visiting a file request builder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/filerequest/123`
+    the `file_request_id` is `123`.
+    Example: "123"
+     * @param {FileRequestUpdateRequest} requestBody Request body of updateFileRequestById method
+     * @param {UpdateFileRequestByIdOptionalsInput} optionalsInput
+     * @returns {Promise<FileRequest>}
+     */
   async updateFileRequestById(
     fileRequestId: string,
     requestBody: FileRequestUpdateRequest,
@@ -299,6 +359,19 @@ export class FileRequestsManager {
     )) as FetchResponse;
     return deserializeFileRequest(response.data);
   }
+  /**
+     * Deletes a file request permanently.
+     * @param {string} fileRequestId The unique identifier that represent a file request.
+    
+    The ID for any file request can be determined
+    by visiting a file request builder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/filerequest/123`
+    the `file_request_id` is `123`.
+    Example: "123"
+     * @param {DeleteFileRequestByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFileRequestById(
     fileRequestId: string,
     optionalsInput: DeleteFileRequestByIdOptionalsInput = {}
@@ -330,6 +403,21 @@ export class FileRequestsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * Copies an existing file request that is already present on one folder,
+     * and applies it to another folder.
+     * @param {string} fileRequestId The unique identifier that represent a file request.
+    
+    The ID for any file request can be determined
+    by visiting a file request builder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/filerequest/123`
+    the `file_request_id` is `123`.
+    Example: "123"
+     * @param {FileRequestCopyRequest} requestBody Request body of createFileRequestCopy method
+     * @param {CreateFileRequestCopyOptionalsInput} optionalsInput
+     * @returns {Promise<FileRequest>}
+     */
   async createFileRequestCopy(
     fileRequestId: string,
     requestBody: FileRequestCopyRequest,

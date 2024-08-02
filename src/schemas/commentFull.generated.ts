@@ -25,6 +25,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type CommentFull = Comment & {
+  /**
+   * The string representing the comment text with
+   * @mentions included. @mention format is @[id:username]
+   * where `id` is user's Box ID and `username` is
+   * their display name. */
   readonly taggedMessage?: string;
 };
 export function serializeCommentFull(val: CommentFull): SerializedData {

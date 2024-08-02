@@ -10,10 +10,22 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiAgentBasicTextToolAsk {
+  /**
+   * The model used for the AI Agent for basic text. */
   readonly model?: string;
+  /**
+   * System messages try to help the LLM "understand" its role and what it is supposed to do. */
   readonly systemMessage?: string;
+  /**
+   * The prompt template contains contextual information of the request and the user prompt.
+   *
+   * When passing `prompt_template` parameters, you **must include** inputs for `{current_date}`, `{user_question}`, and `{content}`. */
   readonly promptTemplate?: string;
+  /**
+   * The number of tokens for completion. */
   readonly numTokensForCompletion?: number;
+  /**
+   * The parameters for the LLM endpoint specific to OpenAI / Google models. */
   readonly llmEndpointParams?: AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
 }
 export function serializeAiAgentBasicTextToolAsk(

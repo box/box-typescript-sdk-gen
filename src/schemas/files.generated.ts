@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface Files {
+  /**
+   * The number of files. */
   readonly totalCount?: number;
+  /**
+   * A list of files */
   readonly entries?: readonly FileFull[];
 }
 export function serializeFiles(val: Files): SerializedData {

@@ -10,9 +10,21 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiAgentBasicTextToolTextGen {
+  /**
+   * The model to be used for the AI Agent for basic text. */
   readonly model?: string;
+  /**
+   * System messages try to help the LLM "understand" its role and what it is supposed to do.
+   * This parameter requires using `{current_date}`. */
   readonly systemMessage?: string;
+  /**
+   * The prompt template contains contextual information of the request and the user prompt.
+   *
+   * When using the `prompt_template` parameter, you **must include** input for `{user_question}`.
+   * Inputs for  `{current_date}` and`{content}` are optional, depending on the use. */
   readonly promptTemplate?: string;
+  /**
+   * The number of tokens for completion. */
   readonly numTokensForCompletion?: number;
   readonly llmEndpointParams?: AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
 }

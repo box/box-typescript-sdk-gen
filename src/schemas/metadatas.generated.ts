@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface Metadatas {
+  /**
+   * A list of metadata instances, as applied to this file or folder. */
   readonly entries?: readonly Metadata[];
+  /**
+   * The limit that was used for this page of results. */
   readonly limit?: number;
 }
 export function serializeMetadatas(val: Metadatas): SerializedData {

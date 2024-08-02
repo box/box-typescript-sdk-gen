@@ -169,11 +169,22 @@ export type GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField =
   | 'user'
   | 'enterprise';
 export interface GetStoragePolicyAssignmentsQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The target type to return assignments for */
   readonly resolvedForType: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField;
+  /**
+   * The ID of the user or enterprise to return assignments for */
   readonly resolvedForId: string;
 }
 export class GetStoragePolicyAssignmentsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -187,6 +198,8 @@ export class GetStoragePolicyAssignmentsHeaders {
   }
 }
 export interface GetStoragePolicyAssignmentsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -196,8 +209,12 @@ export interface GetStoragePolicyAssignmentsHeadersInput {
 export type CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
   'storage_policy';
 export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
+  /**
+   * The type to assign. */
   readonly type: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField =
     'storage_policy' as CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
+  /**
+   * The ID of the storage policy to assign. */
   readonly id!: string;
   constructor(
     fields: Omit<
@@ -217,21 +234,37 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
   }
 }
 export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
+  /**
+   * The type to assign. */
   readonly type?: CreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField;
+  /**
+   * The ID of the storage policy to assign. */
   readonly id: string;
 }
 export type CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
   | 'user'
   | 'enterprise';
 export interface CreateStoragePolicyAssignmentRequestBodyAssignedToField {
+  /**
+   * The type to assign the policy to. */
   readonly type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField;
+  /**
+   * The ID of the user or enterprise */
   readonly id: string;
 }
 export interface CreateStoragePolicyAssignmentRequestBody {
+  /**
+   * The storage policy to assign to the user or
+   * enterprise */
   readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
+  /**
+   * The user or enterprise to assign the storage
+   * policy to. */
   readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField;
 }
 export class CreateStoragePolicyAssignmentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -245,6 +278,8 @@ export class CreateStoragePolicyAssignmentHeaders {
   }
 }
 export interface CreateStoragePolicyAssignmentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -252,6 +287,8 @@ export interface CreateStoragePolicyAssignmentHeadersInput {
       };
 }
 export class GetStoragePolicyAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -265,6 +302,8 @@ export class GetStoragePolicyAssignmentByIdHeaders {
   }
 }
 export interface GetStoragePolicyAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -274,8 +313,12 @@ export interface GetStoragePolicyAssignmentByIdHeadersInput {
 export type UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
   'storage_policy';
 export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
+  /**
+   * The type to assign. */
   readonly type: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField =
     'storage_policy' as UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
+  /**
+   * The ID of the storage policy to assign. */
   readonly id!: string;
   constructor(
     fields: Omit<
@@ -298,13 +341,22 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
   }
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
+  /**
+   * The type to assign. */
   readonly type?: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField;
+  /**
+   * The ID of the storage policy to assign. */
   readonly id: string;
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBody {
+  /**
+   * The storage policy to assign to the user or
+   * enterprise */
   readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
 }
 export class UpdateStoragePolicyAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -318,6 +370,8 @@ export class UpdateStoragePolicyAssignmentByIdHeaders {
   }
 }
 export interface UpdateStoragePolicyAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -325,6 +379,8 @@ export interface UpdateStoragePolicyAssignmentByIdHeadersInput {
       };
 }
 export class DeleteStoragePolicyAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -338,6 +394,8 @@ export class DeleteStoragePolicyAssignmentByIdHeaders {
   }
 }
 export interface DeleteStoragePolicyAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -366,6 +424,12 @@ export class StoragePolicyAssignmentsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Fetches all the storage policy assignment for an enterprise or user.
+   * @param {GetStoragePolicyAssignmentsQueryParams} queryParams Query parameters of getStoragePolicyAssignments method
+   * @param {GetStoragePolicyAssignmentsOptionalsInput} optionalsInput
+   * @returns {Promise<StoragePolicyAssignments>}
+   */
   async getStoragePolicyAssignments(
     queryParams: GetStoragePolicyAssignmentsQueryParams,
     optionalsInput: GetStoragePolicyAssignmentsOptionalsInput = {}
@@ -404,6 +468,12 @@ export class StoragePolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeStoragePolicyAssignments(response.data);
   }
+  /**
+   * Creates a storage policy assignment for an enterprise or user.
+   * @param {CreateStoragePolicyAssignmentRequestBody} requestBody Request body of createStoragePolicyAssignment method
+   * @param {CreateStoragePolicyAssignmentOptionalsInput} optionalsInput
+   * @returns {Promise<StoragePolicyAssignment>}
+   */
   async createStoragePolicyAssignment(
     requestBody: CreateStoragePolicyAssignmentRequestBody,
     optionalsInput: CreateStoragePolicyAssignmentOptionalsInput = {}
@@ -436,6 +506,13 @@ export class StoragePolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeStoragePolicyAssignment(response.data);
   }
+  /**
+     * Fetches a specific storage policy assignment.
+     * @param {string} storagePolicyAssignmentId The ID of the storage policy assignment.
+    Example: "932483"
+     * @param {GetStoragePolicyAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<StoragePolicyAssignment>}
+     */
   async getStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
     optionalsInput: GetStoragePolicyAssignmentByIdOptionalsInput = {}
@@ -467,6 +544,14 @@ export class StoragePolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeStoragePolicyAssignment(response.data);
   }
+  /**
+     * Updates a specific storage policy assignment.
+     * @param {string} storagePolicyAssignmentId The ID of the storage policy assignment.
+    Example: "932483"
+     * @param {UpdateStoragePolicyAssignmentByIdRequestBody} requestBody Request body of updateStoragePolicyAssignmentById method
+     * @param {UpdateStoragePolicyAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<StoragePolicyAssignment>}
+     */
   async updateStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
     requestBody: UpdateStoragePolicyAssignmentByIdRequestBody,
@@ -503,6 +588,20 @@ export class StoragePolicyAssignmentsManager {
     )) as FetchResponse;
     return deserializeStoragePolicyAssignment(response.data);
   }
+  /**
+     * Delete a storage policy assignment.
+     *
+     * Deleting a storage policy assignment on a user
+     * will have the user inherit the enterprise's default
+     * storage policy.
+     *
+     * There is a rate limit for calling this endpoint of only
+     * twice per user in a 24 hour time frame.
+     * @param {string} storagePolicyAssignmentId The ID of the storage policy assignment.
+    Example: "932483"
+     * @param {DeleteStoragePolicyAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteStoragePolicyAssignmentById(
     storagePolicyAssignmentId: string,
     optionalsInput: DeleteStoragePolicyAssignmentByIdOptionalsInput = {}

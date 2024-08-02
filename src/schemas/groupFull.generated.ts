@@ -33,6 +33,8 @@ export type GroupFullMemberViewabilityLevelField =
   | 'admins_and_members'
   | 'all_managed_users';
 export interface GroupFullPermissionsField {
+  /**
+   * Specifies if the user can invite the group to collaborate on any items. */
   readonly canInviteAsCollaborator?: boolean;
 }
 export class GroupFull extends Group {

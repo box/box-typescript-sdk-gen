@@ -112,11 +112,22 @@ export interface GetShieldInformationBarrierReportByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetShieldInformationBarrierReportsQueryParams {
+  /**
+   * The ID of the shield information barrier. */
   readonly shieldInformationBarrierId: string;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetShieldInformationBarrierReportsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -130,6 +141,8 @@ export class GetShieldInformationBarrierReportsHeaders {
   }
 }
 export interface GetShieldInformationBarrierReportsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -137,6 +150,8 @@ export interface GetShieldInformationBarrierReportsHeadersInput {
       };
 }
 export class CreateShieldInformationBarrierReportHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -150,6 +165,8 @@ export class CreateShieldInformationBarrierReportHeaders {
   }
 }
 export interface CreateShieldInformationBarrierReportHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -157,6 +174,8 @@ export interface CreateShieldInformationBarrierReportHeadersInput {
       };
 }
 export class GetShieldInformationBarrierReportByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -172,6 +191,8 @@ export class GetShieldInformationBarrierReportByIdHeaders {
   }
 }
 export interface GetShieldInformationBarrierReportByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -198,6 +219,12 @@ export class ShieldInformationBarrierReportsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Lists shield information barrier reports.
+   * @param {GetShieldInformationBarrierReportsQueryParams} queryParams Query parameters of getShieldInformationBarrierReports method
+   * @param {GetShieldInformationBarrierReportsOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierReports>}
+   */
   async getShieldInformationBarrierReports(
     queryParams: GetShieldInformationBarrierReportsQueryParams,
     optionalsInput: GetShieldInformationBarrierReportsOptionalsInput = {}
@@ -238,6 +265,12 @@ export class ShieldInformationBarrierReportsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReports(response.data);
   }
+  /**
+   * Creates a shield information barrier report for a given barrier.
+   * @param {ShieldInformationBarrierReference} requestBody Request body of createShieldInformationBarrierReport method
+   * @param {CreateShieldInformationBarrierReportOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierReport>}
+   */
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,
     optionalsInput: CreateShieldInformationBarrierReportOptionalsInput = {}
@@ -270,6 +303,13 @@ export class ShieldInformationBarrierReportsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierReport(response.data);
   }
+  /**
+     * Retrieves a shield information barrier report by its ID.
+     * @param {string} shieldInformationBarrierReportId The ID of the shield information barrier Report.
+    Example: "3423"
+     * @param {GetShieldInformationBarrierReportByIdOptionalsInput} optionalsInput
+     * @returns {Promise<ShieldInformationBarrierReport>}
+     */
   async getShieldInformationBarrierReportById(
     shieldInformationBarrierReportId: string,
     optionalsInput: GetShieldInformationBarrierReportByIdOptionalsInput = {}

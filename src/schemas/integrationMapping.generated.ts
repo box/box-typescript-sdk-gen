@@ -31,15 +31,38 @@ export type IntegrationMappingTypeField = 'integration_mapping';
 export class IntegrationMapping implements IntegrationMappingBase {
   readonly id?: string;
   readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
+  /**
+   * Mapping type */
   readonly type: IntegrationMappingTypeField =
     'integration_mapping' as IntegrationMappingTypeField;
+  /**
+   * Mapped item object for Slack */
   readonly partnerItem!: IntegrationMappingPartnerItemSlackUnion;
+  /**
+   * The Box folder, to which the object from the
+   * partner app domain (referenced in `partner_item_id`) is mapped */
   readonly boxItem!: FolderMini;
+  /**
+   * Identifies whether the mapping has
+   * been manually set
+   * (as opposed to being automatically created) */
   readonly isManuallyCreated?: boolean;
+  /**
+   * Integration mapping options for Slack */
   readonly options?: IntegrationMappingSlackOptions;
+  /**
+   * An object representing the user who
+   * created the integration mapping */
   readonly createdBy?: UserIntegrationMappings;
+  /**
+   * The user who
+   * last modified the integration mapping */
   readonly modifiedBy?: UserIntegrationMappings;
+  /**
+   * When the integration mapping object was created */
   readonly createdAt?: DateTime;
+  /**
+   * When the integration mapping object was last modified */
   readonly modifiedAt?: DateTime;
   constructor(
     fields: Omit<IntegrationMapping, 'type'> &

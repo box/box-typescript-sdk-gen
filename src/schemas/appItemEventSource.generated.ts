@@ -14,9 +14,16 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AppItemEventSourceTypeField = 'app_item';
 export class AppItemEventSource {
+  /**
+   * The id of the `AppItem` */
   readonly id!: string;
+  /**
+   * The type of the source that this event represents. Can only be `app_item`.
+   *  */
   readonly type: AppItemEventSourceTypeField =
     'app_item' as AppItemEventSourceTypeField;
+  /**
+   * The type of the `AppItem` */
   readonly appItemType!: string;
   readonly user?: UserMini;
   readonly group?: GroupMini;
@@ -42,8 +49,15 @@ export class AppItemEventSource {
   }
 }
 export interface AppItemEventSourceInput {
+  /**
+   * The id of the `AppItem` */
   readonly id: string;
+  /**
+   * The type of the source that this event represents. Can only be `app_item`.
+   *  */
   readonly type?: AppItemEventSourceTypeField;
+  /**
+   * The type of the `AppItem` */
   readonly appItemType: string;
   readonly user?: UserMini;
   readonly group?: GroupMini;

@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type EnterpriseBaseTypeField = 'enterprise';
 export interface EnterpriseBase {
+  /**
+   * The unique identifier for this enterprise */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: EnterpriseBaseTypeField;
 }
 export function serializeEnterpriseBaseTypeField(

@@ -32,10 +32,18 @@ export type ShieldInformationBarrierReportStatusField =
 export type ShieldInformationBarrierReport =
   ShieldInformationBarrierReportBase & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
+    /**
+     * Status of the shield information report */
     readonly status?: ShieldInformationBarrierReportStatusField;
     readonly details?: ShieldInformationBarrierReportDetails;
+    /**
+     * ISO date time string when this
+     * shield information barrier report object was created. */
     readonly createdAt?: DateTime;
     readonly createdBy?: UserBase;
+    /**
+     * ISO date time string when this
+     * shield information barrier report was updated. */
     readonly updatedAt?: DateTime;
   };
 export function serializeShieldInformationBarrierReportStatusField(

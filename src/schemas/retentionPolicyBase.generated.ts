@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type RetentionPolicyBaseTypeField = 'retention_policy';
 export class RetentionPolicyBase {
+  /**
+   * The unique identifier that represents a retention policy. */
   readonly id!: string;
+  /**
+   * `retention_policy` */
   readonly type: RetentionPolicyBaseTypeField =
     'retention_policy' as RetentionPolicyBaseTypeField;
   constructor(
@@ -24,7 +28,11 @@ export class RetentionPolicyBase {
   }
 }
 export interface RetentionPolicyBaseInput {
+  /**
+   * The unique identifier that represents a retention policy. */
   readonly id: string;
+  /**
+   * `retention_policy` */
   readonly type?: RetentionPolicyBaseTypeField;
 }
 export function serializeRetentionPolicyBaseTypeField(

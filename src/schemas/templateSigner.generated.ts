@@ -15,10 +15,28 @@ export type TemplateSignerRoleField =
   | 'final_copy_reader';
 export interface TemplateSigner {
   readonly inputs?: readonly TemplateSignerInput[];
+  /**
+   * Email address of the signer */
   readonly email?: string;
+  /**
+   * Defines the role of the signer in the signature request. A role of
+   * `signer` needs to sign the document, a role `approver`
+   * approves the document and
+   * a `final_copy_reader` role only
+   * receives the final signed document and signing log. */
   readonly role?: TemplateSignerRoleField;
+  /**
+   * Used in combination with an embed URL for a sender.
+   * After the sender signs, they will be
+   * redirected to the next `in_person` signer. */
   readonly isInPerson?: boolean;
+  /**
+   * Order of the signer */
   readonly order?: number;
+  /**
+   * If provided, this value points signers that are assigned the same inputs and belongs to same signer group.
+   * A signer group is not a Box Group. It is an entity that belongs to the template itself and can only be used
+   * within Box Sign requests created from it. */
   readonly signerGroupId?: string;
 }
 export function serializeTemplateSignerRoleField(

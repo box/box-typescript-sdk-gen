@@ -10,6 +10,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type UploadPart = UploadPartMini & {
+  /**
+   * The SHA1 hash of the chunk. */
   readonly sha1?: string;
 };
 export function serializeUploadPart(val: UploadPart): SerializedData {

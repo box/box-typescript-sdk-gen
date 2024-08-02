@@ -94,6 +94,8 @@ export interface CreateClassificationTemplateOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetClassificationTemplateHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -107,6 +109,8 @@ export class GetClassificationTemplateHeaders {
   }
 }
 export interface GetClassificationTemplateHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -117,21 +121,55 @@ export type AddClassificationRequestBodyOpField = 'addEnumOption';
 export type AddClassificationRequestBodyFieldKeyField =
   'Box__Security__Classification__Key';
 export interface AddClassificationRequestBodyDataStaticConfigClassificationField {
+  /**
+   * A longer description of the classification. */
   readonly classificationDefinition?: string;
+  /**
+   * An internal Box identifier used to assign a color to
+   * a classification label.
+   *
+   * Mapping between a `colorID` and a color may change
+   * without notice. Currently, the color mappings are as
+   * follows.
+   *
+   * * `0`: Yellow
+   * * `1`: Orange
+   * * `2`: Watermelon red
+   * * `3`: Purple rain
+   * * `4`: Light blue
+   * * `5`: Dark blue
+   * * `6`: Light green
+   * * `7`: Gray */
   readonly colorId?: number;
 }
 export interface AddClassificationRequestBodyDataStaticConfigField {
+  /**
+   * Additional details for the classification. */
   readonly classification?: AddClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export interface AddClassificationRequestBodyDataField {
+  /**
+   * The label of the classification as shown in the web and
+   * mobile interfaces. This is the only field required to
+   * add a classification. */
   readonly key: string;
+  /**
+   * A static configuration for the classification. */
   readonly staticConfig?: AddClassificationRequestBodyDataStaticConfigField;
 }
 export class AddClassificationRequestBody {
+  /**
+   * The type of change to perform on the classification
+   * object. */
   readonly op: AddClassificationRequestBodyOpField =
     'addEnumOption' as AddClassificationRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly fieldKey: AddClassificationRequestBodyFieldKeyField =
     'Box__Security__Classification__Key' as AddClassificationRequestBodyFieldKeyField;
+  /**
+   * The details of the classification to add. */
   readonly data!: AddClassificationRequestBodyDataField;
   constructor(
     fields: Omit<AddClassificationRequestBody, 'op' | 'fieldKey'> &
@@ -149,11 +187,21 @@ export class AddClassificationRequestBody {
   }
 }
 export interface AddClassificationRequestBodyInput {
+  /**
+   * The type of change to perform on the classification
+   * object. */
   readonly op?: AddClassificationRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly fieldKey?: AddClassificationRequestBodyFieldKeyField;
+  /**
+   * The details of the classification to add. */
   readonly data: AddClassificationRequestBodyDataField;
 }
 export class AddClassificationHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -167,6 +215,8 @@ export class AddClassificationHeaders {
   }
 }
 export interface AddClassificationHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -177,22 +227,57 @@ export type UpdateClassificationRequestBodyOpField = 'editEnumOption';
 export type UpdateClassificationRequestBodyFieldKeyField =
   'Box__Security__Classification__Key';
 export interface UpdateClassificationRequestBodyDataStaticConfigClassificationField {
+  /**
+   * A longer description of the classification. */
   readonly classificationDefinition?: string;
+  /**
+   * An internal Box identifier used to assign a color to
+   * a classification label.
+   *
+   * Mapping between a `colorID` and a color may change
+   * without notice. Currently, the color mappings are as
+   * follows.
+   *
+   * * `0`: Yellow
+   * * `1`: Orange
+   * * `2`: Watermelon red
+   * * `3`: Purple rain
+   * * `4`: Light blue
+   * * `5`: Dark blue
+   * * `6`: Light green
+   * * `7`: Gray */
   readonly colorId?: number;
 }
 export interface UpdateClassificationRequestBodyDataStaticConfigField {
+  /**
+   * Additional details for the classification. */
   readonly classification?: UpdateClassificationRequestBodyDataStaticConfigClassificationField;
 }
 export interface UpdateClassificationRequestBodyDataField {
+  /**
+   * A new label for the classification, as it will be
+   * shown in the web and mobile interfaces. */
   readonly key: string;
+  /**
+   * A static configuration for the classification. */
   readonly staticConfig?: UpdateClassificationRequestBodyDataStaticConfigField;
 }
 export class UpdateClassificationRequestBody {
+  /**
+   * The type of change to perform on the classification
+   * object. */
   readonly op: UpdateClassificationRequestBodyOpField =
     'editEnumOption' as UpdateClassificationRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly fieldKey: UpdateClassificationRequestBodyFieldKeyField =
     'Box__Security__Classification__Key' as UpdateClassificationRequestBodyFieldKeyField;
+  /**
+   * The original label of the classification to change. */
   readonly enumOptionKey!: string;
+  /**
+   * The details of the updated classification. */
   readonly data!: UpdateClassificationRequestBodyDataField;
   constructor(
     fields: Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'> &
@@ -213,12 +298,24 @@ export class UpdateClassificationRequestBody {
   }
 }
 export interface UpdateClassificationRequestBodyInput {
+  /**
+   * The type of change to perform on the classification
+   * object. */
   readonly op?: UpdateClassificationRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly fieldKey?: UpdateClassificationRequestBodyFieldKeyField;
+  /**
+   * The original label of the classification to change. */
   readonly enumOptionKey: string;
+  /**
+   * The details of the updated classification. */
   readonly data: UpdateClassificationRequestBodyDataField;
 }
 export class UpdateClassificationHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -232,6 +329,8 @@ export class UpdateClassificationHeaders {
   }
 }
 export interface UpdateClassificationHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -249,24 +348,66 @@ export type CreateClassificationTemplateRequestBodyFieldsKeyField =
 export type CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
   'Classification';
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField {
+  /**
+   * A longer description of the classification. */
   readonly classificationDefinition?: string;
+  /**
+   * An identifier used to assign a color to
+   * a classification label.
+   *
+   * Mapping between a `colorID` and a color may
+   * change without notice. Currently, the color
+   * mappings are as follows.
+   *
+   * * `0`: Yellow
+   * * `1`: Orange
+   * * `2`: Watermelon red
+   * * `3`: Purple rain
+   * * `4`: Light blue
+   * * `5`: Dark blue
+   * * `6`: Light green
+   * * `7`: Gray */
   readonly colorId?: number;
 }
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField {
+  /**
+   * Additional information about the classification. */
   readonly classification?: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField;
 }
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsField {
+  /**
+   * The display name and key this classification. This
+   * will be show in the Box UI. */
   readonly key: string;
+  /**
+   * Additional information about the classification. */
   readonly staticConfig?: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField;
 }
 export class CreateClassificationTemplateRequestBodyFieldsField {
+  /**
+   * The type of the field
+   * that is always enum. */
   readonly type: CreateClassificationTemplateRequestBodyFieldsTypeField =
     'enum' as CreateClassificationTemplateRequestBodyFieldsTypeField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly key: CreateClassificationTemplateRequestBodyFieldsKeyField =
     'Box__Security__Classification__Key' as CreateClassificationTemplateRequestBodyFieldsKeyField;
+  /**
+   * A display name for the classification. */
   readonly displayName: CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
     'Classification' as CreateClassificationTemplateRequestBodyFieldsDisplayNameField;
+  /**
+   * Determines if the classification
+   * template is
+   * hidden or available on
+   * web and mobile
+   * devices. */
   readonly hidden?: boolean;
+  /**
+   * The actual list of classifications that are present on
+   * this template. */
   readonly options!: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
   constructor(
     fields: Omit<
@@ -298,21 +439,59 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
   }
 }
 export interface CreateClassificationTemplateRequestBodyFieldsFieldInput {
+  /**
+   * The type of the field
+   * that is always enum. */
   readonly type?: CreateClassificationTemplateRequestBodyFieldsTypeField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly key?: CreateClassificationTemplateRequestBodyFieldsKeyField;
+  /**
+   * A display name for the classification. */
   readonly displayName?: CreateClassificationTemplateRequestBodyFieldsDisplayNameField;
+  /**
+   * Determines if the classification
+   * template is
+   * hidden or available on
+   * web and mobile
+   * devices. */
   readonly hidden?: boolean;
+  /**
+   * The actual list of classifications that are present on
+   * this template. */
   readonly options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
 }
 export class CreateClassificationTemplateRequestBody {
+  /**
+   * The scope in which to create the classifications. This should
+   * be `enterprise` or `enterprise_{id}` where `id` is the unique
+   * ID of the enterprise. */
   readonly scope: CreateClassificationTemplateRequestBodyScopeField =
     'enterprise' as CreateClassificationTemplateRequestBodyScopeField;
+  /**
+   * Defines the list of metadata templates. */
   readonly templateKey: CreateClassificationTemplateRequestBodyTemplateKeyField =
     'securityClassification-6VMVochwUWo' as CreateClassificationTemplateRequestBodyTemplateKeyField;
+  /**
+   * The name of the
+   * template as shown in web and mobile interfaces. */
   readonly displayName: CreateClassificationTemplateRequestBodyDisplayNameField =
     'Classification' as CreateClassificationTemplateRequestBodyDisplayNameField;
+  /**
+   * Determines if the classification template is
+   * hidden or available on web and mobile
+   * devices. */
   readonly hidden?: boolean;
+  /**
+   * Determines if classifications are
+   * copied along when the file or folder is
+   * copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  /**
+   * The classification template requires exactly
+   * one field, which holds
+   * all the valid classification values. */
   readonly fields!: readonly CreateClassificationTemplateRequestBodyFieldsField[];
   constructor(
     fields: Omit<
@@ -347,14 +526,37 @@ export class CreateClassificationTemplateRequestBody {
   }
 }
 export interface CreateClassificationTemplateRequestBodyInput {
+  /**
+   * The scope in which to create the classifications. This should
+   * be `enterprise` or `enterprise_{id}` where `id` is the unique
+   * ID of the enterprise. */
   readonly scope?: CreateClassificationTemplateRequestBodyScopeField;
+  /**
+   * Defines the list of metadata templates. */
   readonly templateKey?: CreateClassificationTemplateRequestBodyTemplateKeyField;
+  /**
+   * The name of the
+   * template as shown in web and mobile interfaces. */
   readonly displayName?: CreateClassificationTemplateRequestBodyDisplayNameField;
+  /**
+   * Determines if the classification template is
+   * hidden or available on web and mobile
+   * devices. */
   readonly hidden?: boolean;
+  /**
+   * Determines if classifications are
+   * copied along when the file or folder is
+   * copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  /**
+   * The classification template requires exactly
+   * one field, which holds
+   * all the valid classification values. */
   readonly fields: readonly CreateClassificationTemplateRequestBodyFieldsField[];
 }
 export class CreateClassificationTemplateHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -368,6 +570,8 @@ export class CreateClassificationTemplateHeaders {
   }
 }
 export interface CreateClassificationTemplateHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -395,6 +599,17 @@ export class ClassificationsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves the classification metadata template and lists all the
+   * classifications available to this enterprise.
+   *
+   * This API can also be called by including the enterprise ID in the
+   * URL explicitly, for example
+   * `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+   * @param {GetClassificationTemplateHeadersInput} headersInput Headers of getClassificationTemplate method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<ClassificationTemplate>}
+   */
   async getClassificationTemplate(
     headersInput: GetClassificationTemplateHeadersInput = new GetClassificationTemplateHeaders(
       {}
@@ -424,6 +639,17 @@ export class ClassificationsManager {
     )) as FetchResponse;
     return deserializeClassificationTemplate(response.data);
   }
+  /**
+   * Adds one or more new classifications to the list of classifications
+   * available to the enterprise.
+   *
+   * This API can also be called by including the enterprise ID in the
+   * URL explicitly, for example
+   * `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+   * @param {readonly AddClassificationRequestBody[]} requestBody Request body of addClassification method
+   * @param {AddClassificationOptionalsInput} optionalsInput
+   * @returns {Promise<ClassificationTemplate>}
+   */
   async addClassification(
     requestBody: readonly AddClassificationRequestBody[],
     optionalsInput: AddClassificationOptionalsInput = {}
@@ -458,6 +684,17 @@ export class ClassificationsManager {
     )) as FetchResponse;
     return deserializeClassificationTemplate(response.data);
   }
+  /**
+   * Updates the labels and descriptions of one or more classifications
+   * available to the enterprise.
+   *
+   * This API can also be called by including the enterprise ID in the
+   * URL explicitly, for example
+   * `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
+   * @param {readonly UpdateClassificationRequestBody[]} requestBody Request body of updateClassification method
+   * @param {UpdateClassificationOptionalsInput} optionalsInput
+   * @returns {Promise<ClassificationTemplate>}
+   */
   async updateClassification(
     requestBody: readonly UpdateClassificationRequestBody[],
     optionalsInput: UpdateClassificationOptionalsInput = {}
@@ -492,6 +729,18 @@ export class ClassificationsManager {
     )) as FetchResponse;
     return deserializeClassificationTemplate(response.data);
   }
+  /**
+   * When an enterprise does not yet have any classifications, this API call
+   * initializes the classification template with an initial set of
+   * classifications.
+   *
+   * If an enterprise already has a classification, the template will already
+   * exist and instead an API call should be made to add additional
+   * classifications.
+   * @param {CreateClassificationTemplateRequestBodyInput} requestBodyInput Request body of createClassificationTemplate method
+   * @param {CreateClassificationTemplateOptionalsInput} optionalsInput
+   * @returns {Promise<ClassificationTemplate>}
+   */
   async createClassificationTemplate(
     requestBodyInput: CreateClassificationTemplateRequestBodyInput,
     optionalsInput: CreateClassificationTemplateOptionalsInput = {}

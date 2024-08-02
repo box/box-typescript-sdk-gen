@@ -183,11 +183,31 @@ export interface CreateCommentOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetFileCommentsQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
 }
 export class GetFileCommentsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -201,6 +221,8 @@ export class GetFileCommentsHeaders {
   }
 }
 export interface GetFileCommentsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -208,9 +230,21 @@ export interface GetFileCommentsHeadersInput {
       };
 }
 export interface GetCommentByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetCommentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -224,6 +258,8 @@ export class GetCommentByIdHeaders {
   }
 }
 export interface GetCommentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -231,12 +267,26 @@ export interface GetCommentByIdHeadersInput {
       };
 }
 export interface UpdateCommentByIdRequestBody {
+  /**
+   * The text of the comment to update */
   readonly message?: string;
 }
 export interface UpdateCommentByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class UpdateCommentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -250,6 +300,8 @@ export class UpdateCommentByIdHeaders {
   }
 }
 export interface UpdateCommentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -257,6 +309,8 @@ export interface UpdateCommentByIdHeadersInput {
       };
 }
 export class DeleteCommentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -270,6 +324,8 @@ export class DeleteCommentByIdHeaders {
   }
 }
 export interface DeleteCommentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -278,18 +334,53 @@ export interface DeleteCommentByIdHeadersInput {
 }
 export type CreateCommentRequestBodyItemTypeField = 'file' | 'comment';
 export interface CreateCommentRequestBodyItemField {
+  /**
+   * The ID of the item */
   readonly id: string;
+  /**
+   * The type of the item that this comment will be placed on. */
   readonly type: CreateCommentRequestBodyItemTypeField;
 }
 export interface CreateCommentRequestBody {
+  /**
+   * The text of the comment.
+   *
+   * To mention a user, use the `tagged_message`
+   * parameter instead. */
   readonly message: string;
+  /**
+   * The text of the comment, including `@[user_id:name]`
+   * somewhere in the message to mention another user, which
+   * will send them an email notification, letting them know
+   * they have been mentioned.
+   *
+   * The `user_id` is the target user's ID, where the `name`
+   * can be any custom phrase. In the Box UI this name will
+   * link to the user's profile.
+   *
+   * If you are not mentioning another user, use `message`
+   * instead. */
   readonly taggedMessage?: string;
+  /**
+   * The item to attach the comment to. */
   readonly item: CreateCommentRequestBodyItemField;
 }
 export interface CreateCommentQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class CreateCommentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -303,6 +394,8 @@ export class CreateCommentHeaders {
   }
 }
 export interface CreateCommentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -331,6 +424,19 @@ export class CommentsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves a list of comments for a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileCommentsOptionalsInput} optionalsInput
+     * @returns {Promise<Comments>}
+     */
   async getFileComments(
     fileId: string,
     optionalsInput: GetFileCommentsOptionalsInput = {}
@@ -374,6 +480,14 @@ export class CommentsManager {
     )) as FetchResponse;
     return deserializeComments(response.data);
   }
+  /**
+     * Retrieves the message and metadata for a specific comment, as well
+     * as information on the user who created the comment.
+     * @param {string} commentId The ID of the comment.
+    Example: "12345"
+     * @param {GetCommentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<CommentFull>}
+     */
   async getCommentById(
     commentId: string,
     optionalsInput: GetCommentByIdOptionalsInput = {}
@@ -414,6 +528,13 @@ export class CommentsManager {
     )) as FetchResponse;
     return deserializeCommentFull(response.data);
   }
+  /**
+     * Update the message of a comment.
+     * @param {string} commentId The ID of the comment.
+    Example: "12345"
+     * @param {UpdateCommentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<CommentFull>}
+     */
   async updateCommentById(
     commentId: string,
     optionalsInput: UpdateCommentByIdOptionalsInput = {}
@@ -459,6 +580,13 @@ export class CommentsManager {
     )) as FetchResponse;
     return deserializeCommentFull(response.data);
   }
+  /**
+     * Permanently deletes a comment.
+     * @param {string} commentId The ID of the comment.
+    Example: "12345"
+     * @param {DeleteCommentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteCommentById(
     commentId: string,
     optionalsInput: DeleteCommentByIdOptionalsInput = {}
@@ -490,6 +618,13 @@ export class CommentsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+   * Adds a comment by the user to a specific file, or
+   * as a reply to an other comment.
+   * @param {CreateCommentRequestBody} requestBody Request body of createComment method
+   * @param {CreateCommentOptionalsInput} optionalsInput
+   * @returns {Promise<CommentFull>}
+   */
   async createComment(
     requestBody: CreateCommentRequestBody,
     optionalsInput: CreateCommentOptionalsInput = {}

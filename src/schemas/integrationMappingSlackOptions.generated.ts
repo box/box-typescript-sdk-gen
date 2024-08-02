@@ -7,6 +7,12 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface IntegrationMappingSlackOptions {
+  /**
+   * Indicates whether or not channel member
+   * access to the underlying box item
+   * should be automatically managed.
+   * Depending on type of channel, access is managed
+   * through creating collaborations or shared links. */
   readonly isAccessManagementDisabled?: boolean;
 }
 export function serializeIntegrationMappingSlackOptions(

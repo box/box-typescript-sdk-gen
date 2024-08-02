@@ -146,6 +146,8 @@ export interface DeleteFileMetadataByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileMetadataHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -159,6 +161,8 @@ export class GetFileMetadataHeaders {
   }
 }
 export interface GetFileMetadataHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -167,6 +171,8 @@ export interface GetFileMetadataHeadersInput {
 }
 export type GetFileMetadataByIdScope = 'global' | 'enterprise';
 export class GetFileMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -180,6 +186,8 @@ export class GetFileMetadataByIdHeaders {
   }
 }
 export interface GetFileMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -191,6 +199,8 @@ export type CreateFileMetadataByIdRequestBody = {
   readonly [key: string]: any;
 };
 export class CreateFileMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -204,6 +214,8 @@ export class CreateFileMetadataByIdHeaders {
   }
 }
 export interface CreateFileMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -219,12 +231,39 @@ export type UpdateFileMetadataByIdRequestBodyOpField =
   | 'move'
   | 'copy';
 export interface UpdateFileMetadataByIdRequestBody {
+  /**
+   * The type of change to perform on the template. Some
+   * of these are hazardous as they will change existing templates. */
   readonly op?: UpdateFileMetadataByIdRequestBodyOpField;
+  /**
+   * The location in the metadata JSON object
+   * to apply the changes to, in the format of a
+   * [JSON-Pointer](https://tools.ietf.org/html/rfc6901).
+   *
+   * The path must always be prefixed with a `/` to represent the root
+   * of the template. The characters `~` and `/` are reserved
+   * characters and must be escaped in the key. */
   readonly path?: string;
+  /**
+   * The value to be set or tested.
+   *
+   * Required for `add`, `replace`, and `test` operations. For `add`,
+   * if the value exists already the previous value will be overwritten
+   * by the new value. For `replace`, the value must exist before
+   * replacing.
+   *
+   * For `test`, the existing value at the `path` location must match
+   * the specified value. */
   readonly value?: string;
+  /**
+   * The location in the metadata JSON object to move or copy a value
+   * from. Required for `move` or `copy` operations and must be in the
+   * format of a [JSON-Pointer](https://tools.ietf.org/html/rfc6901). */
   readonly from?: string;
 }
 export class UpdateFileMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -238,6 +277,8 @@ export class UpdateFileMetadataByIdHeaders {
   }
 }
 export interface UpdateFileMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -246,6 +287,8 @@ export interface UpdateFileMetadataByIdHeadersInput {
 }
 export type DeleteFileMetadataByIdScope = 'global' | 'enterprise';
 export class DeleteFileMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -259,6 +302,8 @@ export class DeleteFileMetadataByIdHeaders {
   }
 }
 export interface DeleteFileMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -287,6 +332,19 @@ export class FileMetadataManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves all metadata for a given file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileMetadataOptionalsInput} optionalsInput
+     * @returns {Promise<Metadatas>}
+     */
   async getFileMetadata(
     fileId: string,
     optionalsInput: GetFileMetadataOptionalsInput = {}
@@ -318,6 +376,24 @@ export class FileMetadataManager {
     )) as FetchResponse;
     return deserializeMetadatas(response.data);
   }
+  /**
+     * Retrieves the instance of a metadata template that has been applied to a
+     * file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {GetFileMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async getFileMetadataById(
     fileId: string,
     scope: GetFileMetadataByIdScope,
@@ -355,6 +431,28 @@ export class FileMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Applies an instance of a metadata template to a file.
+     *
+     * In most cases only values that are present in the metadata template
+     * will be accepted, except for the `global.properties` template which accepts
+     * any key-value pair.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {CreateFileMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {CreateFileMetadataByIdRequestBody} requestBody Request body of createFileMetadataById method
+     * @param {CreateFileMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async createFileMetadataById(
     fileId: string,
     scope: CreateFileMetadataByIdScope,
@@ -395,6 +493,31 @@ export class FileMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Updates a piece of metadata on a file.
+     *
+     * The metadata instance can only be updated if the template has already been
+     * applied to the file before. When editing metadata, only values that match
+     * the metadata template schema will be accepted.
+     *
+     * The update is applied atomically. If any errors occur during the
+     * application of the operations, the metadata instance will not be changed.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {UpdateFileMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {readonly UpdateFileMetadataByIdRequestBody[]} requestBody Request body of updateFileMetadataById method
+     * @param {UpdateFileMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async updateFileMetadataById(
     fileId: string,
     scope: UpdateFileMetadataByIdScope,
@@ -437,6 +560,23 @@ export class FileMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Deletes a piece of file metadata.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {DeleteFileMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {DeleteFileMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFileMetadataById(
     fileId: string,
     scope: DeleteFileMetadataByIdScope,

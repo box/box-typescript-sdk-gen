@@ -10,7 +10,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface TermsOfServiceUserStatuses {
+  /**
+   * The total number of objects. */
   readonly totalCount?: number;
+  /**
+   * A list of terms of service user statuses */
   readonly entries?: readonly TermsOfServiceUserStatus[];
 }
 export function serializeTermsOfServiceUserStatuses(

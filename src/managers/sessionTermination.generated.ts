@@ -72,10 +72,16 @@ export interface TerminateGroupsSessionsOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface TerminateUsersSessionsRequestBody {
+  /**
+   * A list of user IDs */
   readonly userIds: readonly string[];
+  /**
+   * A list of user logins */
   readonly userLogins: readonly string[];
 }
 export class TerminateUsersSessionsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -89,6 +95,8 @@ export class TerminateUsersSessionsHeaders {
   }
 }
 export interface TerminateUsersSessionsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -96,9 +104,13 @@ export interface TerminateUsersSessionsHeadersInput {
       };
 }
 export interface TerminateGroupsSessionsRequestBody {
+  /**
+   * A list of group IDs */
   readonly groupIds: readonly string[];
 }
 export class TerminateGroupsSessionsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -112,6 +124,8 @@ export class TerminateGroupsSessionsHeaders {
   }
 }
 export interface TerminateGroupsSessionsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -135,6 +149,15 @@ export class SessionTerminationManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Validates the roles and permissions of the user,
+   * and creates asynchronous jobs
+   * to terminate the user's sessions.
+   * Returns the status for the POST request.
+   * @param {TerminateUsersSessionsRequestBody} requestBody Request body of terminateUsersSessions method
+   * @param {TerminateUsersSessionsOptionalsInput} optionalsInput
+   * @returns {Promise<SessionTerminationMessage>}
+   */
   async terminateUsersSessions(
     requestBody: TerminateUsersSessionsRequestBody,
     optionalsInput: TerminateUsersSessionsOptionalsInput = {}
@@ -167,6 +190,15 @@ export class SessionTerminationManager {
     )) as FetchResponse;
     return deserializeSessionTerminationMessage(response.data);
   }
+  /**
+   * Validates the roles and permissions of the group,
+   * and creates asynchronous jobs
+   * to terminate the group's sessions.
+   * Returns the status for the POST request.
+   * @param {TerminateGroupsSessionsRequestBody} requestBody Request body of terminateGroupsSessions method
+   * @param {TerminateGroupsSessionsOptionalsInput} optionalsInput
+   * @returns {Promise<SessionTerminationMessage>}
+   */
   async terminateGroupsSessions(
     requestBody: TerminateGroupsSessionsRequestBody,
     optionalsInput: TerminateGroupsSessionsOptionalsInput = {}

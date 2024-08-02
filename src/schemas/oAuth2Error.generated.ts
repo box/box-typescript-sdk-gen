@@ -7,7 +7,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface OAuth2Error {
+  /**
+   * The type of the error returned. */
   readonly error?: string;
+  /**
+   * The type of the error returned. */
   readonly errorDescription?: string;
 }
 export function serializeOAuth2Error(val: OAuth2Error): SerializedData {

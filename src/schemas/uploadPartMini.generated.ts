@@ -7,8 +7,16 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface UploadPartMini {
+  /**
+   * The unique ID of the chunk. */
   readonly partId?: string;
+  /**
+   * The offset of the chunk within the file
+   * in bytes. The lower bound of the position
+   * of the chunk within the file. */
   readonly offset?: number;
+  /**
+   * The size of the chunk in bytes. */
   readonly size?: number;
 }
 export function serializeUploadPartMini(val: UploadPartMini): SerializedData {

@@ -527,6 +527,11 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
   }
+  /**
+   * Create a new client to impersonate user with the provided ID. All calls made with the new client will be made in context of the impersonated user, leaving the original client unmodified.
+   * @param {string} userId ID of an user to impersonate
+   * @returns {BoxClient}
+   */
   withAsUserHeader(userId: string): BoxClient {
     return new BoxClient({
       auth: this.auth,
@@ -535,6 +540,10 @@ export class BoxClient {
       }),
     });
   }
+  /**
+   * Create a new client with suppressed notifications. Calls made with the new client will not trigger email or webhook notifications
+   * @returns {BoxClient}
+   */
   withSuppressedNotifications(): BoxClient {
     return new BoxClient({
       auth: this.auth,
@@ -543,6 +552,13 @@ export class BoxClient {
       }),
     });
   }
+  /**
+     * Create a new client with a custom set of headers that will be included in every API call
+     * @param {{
+        readonly [key: string]: string;
+    }} extraHeaders Custom set of headers that will be included in every API call
+     * @returns {BoxClient}
+     */
   withExtraHeaders(
     extraHeaders: {
       readonly [key: string]: string;
@@ -553,6 +569,11 @@ export class BoxClient {
       networkSession: this.networkSession.withAdditionalHeaders(extraHeaders),
     });
   }
+  /**
+   * Create a new client with a custom set of base urls that will be used for every API call
+   * @param {BaseUrlsInput} baseUrlsInput Custom set of base urls that will be used for every API call
+   * @returns {BoxClient}
+   */
   withCustomBaseUrls(baseUrlsInput: BaseUrlsInput): BoxClient {
     const baseUrls: BaseUrls = new BaseUrls({
       baseUrl: baseUrlsInput.baseUrl,
@@ -564,12 +585,22 @@ export class BoxClient {
       networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
     });
   }
+  /**
+   * Create a new client with a custom set of agent options that will be used for every API call
+   * @param {AgentOptions} agentOptions Custom set of agent options that will be used for every API call
+   * @returns {BoxClient}
+   */
   withCustomAgentOptions(agentOptions: AgentOptions): BoxClient {
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withCustomAgentOptions(agentOptions),
     });
   }
+  /**
+   * Create a new client with a custom set of interceptors that will be used for every API call
+   * @param {readonly Interceptor[]} interceptors Custom set of interceptors that will be used for every API call
+   * @returns {BoxClient}
+   */
   withInterceptors(interceptors: readonly Interceptor[]): BoxClient {
     return new BoxClient({
       auth: this.auth,

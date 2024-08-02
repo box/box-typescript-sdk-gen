@@ -7,6 +7,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface ShieldInformationBarrierReportDetailsDetailsField {
+  /**
+   * Folder ID for locating this report */
   readonly folderId?: string;
 }
 export interface ShieldInformationBarrierReportDetails {

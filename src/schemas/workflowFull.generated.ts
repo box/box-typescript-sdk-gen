@@ -25,7 +25,11 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type WorkflowFull = Workflow & {
+  /**
+   * The date and time when the workflow was created on Box */
   readonly createdAt?: DateTime;
+  /**
+   * The date and time when the workflow was last updated on Box */
   readonly modifiedAt?: DateTime;
   readonly createdBy?: UserBase;
   readonly modifiedBy?: UserBase;

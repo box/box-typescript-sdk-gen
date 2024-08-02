@@ -146,11 +146,37 @@ export interface RemoveSharedLinkFromWebLinkOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface FindWebLinkForSharedLinkQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class FindWebLinkForSharedLinkHeaders {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi!: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -170,8 +196,24 @@ export class FindWebLinkForSharedLinkHeaders {
   }
 }
 export interface FindWebLinkForSharedLinkHeadersInput {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -179,9 +221,14 @@ export interface FindWebLinkForSharedLinkHeadersInput {
       };
 }
 export interface GetSharedLinkForWebLinkQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class GetSharedLinkForWebLinkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -195,6 +242,8 @@ export class GetSharedLinkForWebLinkHeaders {
   }
 }
 export interface GetSharedLinkForWebLinkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -206,24 +255,76 @@ export type AddShareLinkToWebLinkRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * This value can only be `true` is `type` is `file`. */
   readonly canEdit?: boolean;
 }
 export interface AddShareLinkToWebLinkRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the file (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: AddShareLinkToWebLinkRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
 }
 export interface AddShareLinkToWebLinkRequestBody {
+  /**
+   * The settings for the shared link to create on the web link.
+   *
+   * Use an empty object (`{}`) to use the default settings for shared
+   * links. */
   readonly sharedLink?: AddShareLinkToWebLinkRequestBodySharedLinkField;
 }
 export interface AddShareLinkToWebLinkQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class AddShareLinkToWebLinkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -237,6 +338,8 @@ export class AddShareLinkToWebLinkHeaders {
   }
 }
 export interface AddShareLinkToWebLinkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -248,24 +351,73 @@ export type UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * This value can only be `true` is `type` is `file`. */
   readonly canEdit?: boolean;
 }
 export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the folder (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
 }
 export interface UpdateSharedLinkOnWebLinkRequestBody {
+  /**
+   * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField;
 }
 export interface UpdateSharedLinkOnWebLinkQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class UpdateSharedLinkOnWebLinkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -279,6 +431,8 @@ export class UpdateSharedLinkOnWebLinkHeaders {
   }
 }
 export interface UpdateSharedLinkOnWebLinkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -287,12 +441,20 @@ export interface UpdateSharedLinkOnWebLinkHeadersInput {
 }
 export interface RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromWebLinkRequestBody {
+  /**
+   * By setting this value to `null`, the shared link
+   * is removed from the web link. */
   readonly sharedLink?: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
 }
 export interface RemoveSharedLinkFromWebLinkQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class RemoveSharedLinkFromWebLinkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -306,6 +468,8 @@ export class RemoveSharedLinkFromWebLinkHeaders {
   }
 }
 export interface RemoveSharedLinkFromWebLinkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -334,6 +498,19 @@ export class SharedLinksWebLinksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns the web link represented by a shared link.
+   *
+   * A shared web link can be represented by a shared link,
+   * which can originate within the current enterprise or within another.
+   *
+   * This endpoint allows an application to retrieve information about a
+   * shared web link when only given a shared link.
+   * @param {FindWebLinkForSharedLinkQueryParams} queryParams Query parameters of findWebLinkForSharedLink method
+   * @param {FindWebLinkForSharedLinkHeadersInput} headersInput Headers of findWebLinkForSharedLink method
+   * @param {FindWebLinkForSharedLinkOptionalsInput} optionalsInput
+   * @returns {Promise<WebLink>}
+   */
   async findWebLinkForSharedLink(
     queryParams: FindWebLinkForSharedLinkQueryParams = {} satisfies FindWebLinkForSharedLinkQueryParams,
     headersInput: FindWebLinkForSharedLinkHeadersInput,
@@ -383,6 +560,14 @@ export class SharedLinksWebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Gets the information for a shared link on a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {GetSharedLinkForWebLinkQueryParams} queryParams Query parameters of getSharedLinkForWebLink method
+     * @param {GetSharedLinkForWebLinkOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async getSharedLinkForWebLink(
     webLinkId: string,
     queryParams: GetSharedLinkForWebLinkQueryParams,
@@ -420,6 +605,15 @@ export class SharedLinksWebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Adds a shared link to a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {AddShareLinkToWebLinkRequestBody} requestBody Request body of addShareLinkToWebLink method
+     * @param {AddShareLinkToWebLinkQueryParams} queryParams Query parameters of addShareLinkToWebLink method
+     * @param {AddShareLinkToWebLinkOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async addShareLinkToWebLink(
     webLinkId: string,
     requestBody: AddShareLinkToWebLinkRequestBody = {} satisfies AddShareLinkToWebLinkRequestBody,
@@ -460,6 +654,15 @@ export class SharedLinksWebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Updates a shared link on a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {UpdateSharedLinkOnWebLinkRequestBody} requestBody Request body of updateSharedLinkOnWebLink method
+     * @param {UpdateSharedLinkOnWebLinkQueryParams} queryParams Query parameters of updateSharedLinkOnWebLink method
+     * @param {UpdateSharedLinkOnWebLinkOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async updateSharedLinkOnWebLink(
     webLinkId: string,
     requestBody: UpdateSharedLinkOnWebLinkRequestBody = {} satisfies UpdateSharedLinkOnWebLinkRequestBody,
@@ -500,6 +703,15 @@ export class SharedLinksWebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Removes a shared link from a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {RemoveSharedLinkFromWebLinkRequestBody} requestBody Request body of removeSharedLinkFromWebLink method
+     * @param {RemoveSharedLinkFromWebLinkQueryParams} queryParams Query parameters of removeSharedLinkFromWebLink method
+     * @param {RemoveSharedLinkFromWebLinkOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async removeSharedLinkFromWebLink(
     webLinkId: string,
     requestBody: RemoveSharedLinkFromWebLinkRequestBody = {} satisfies RemoveSharedLinkFromWebLinkRequestBody,

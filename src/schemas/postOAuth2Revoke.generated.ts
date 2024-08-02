@@ -7,8 +7,16 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface PostOAuth2Revoke {
+  /**
+   * The Client ID of the application requesting to revoke the
+   * access token. */
   readonly clientId?: string;
+  /**
+   * The client secret of the application requesting to revoke
+   * an access token. */
   readonly clientSecret?: string;
+  /**
+   * The access token to revoke. */
   readonly token?: string;
 }
 export function serializePostOAuth2Revoke(

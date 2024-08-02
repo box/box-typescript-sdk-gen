@@ -7,11 +7,19 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface UserAvatarPicUrlsField {
+  /**
+   * The location of a small-sized avatar. */
   readonly small?: string;
+  /**
+   * The location of a large-sized avatar. */
   readonly large?: string;
+  /**
+   * The location of the avatar preview. */
   readonly preview?: string;
 }
 export interface UserAvatar {
+  /**
+   * Represents an object with user avatar URLs. */
   readonly picUrls?: UserAvatarPicUrlsField;
 }
 export function serializeUserAvatarPicUrlsField(
