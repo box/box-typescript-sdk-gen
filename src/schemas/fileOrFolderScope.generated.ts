@@ -21,7 +21,8 @@ export type FileOrFolderScopeScopeField =
   | 'item_download'
   | 'item_preview'
   | 'item_rename'
-  | 'item_share';
+  | 'item_share'
+  | 'item_upload';
 export interface FileOrFolderScope {
   readonly scope?: FileOrFolderScopeScopeField;
   readonly object?: FileMiniOrFolderMini;
@@ -68,6 +69,9 @@ export function deserializeFileOrFolderScopeScopeField(
     return val;
   }
   if (val == 'item_share') {
+    return val;
+  }
+  if (val == 'item_upload') {
     return val;
   }
   throw new BoxSdkError({
