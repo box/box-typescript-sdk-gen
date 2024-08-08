@@ -8,10 +8,18 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type PostOAuth2TokenRefreshAccessTokenGrantTypeField = 'refresh_token';
 export class PostOAuth2TokenRefreshAccessToken {
+  /**
+   * The type of request being made, in this case a refresh request. */
   readonly grantType: PostOAuth2TokenRefreshAccessTokenGrantTypeField =
     'refresh_token' as PostOAuth2TokenRefreshAccessTokenGrantTypeField;
+  /**
+   * The client ID of the application requesting to refresh the token. */
   readonly clientId!: string;
+  /**
+   * The client secret of the application requesting to refresh the token. */
   readonly clientSecret!: string;
+  /**
+   * The refresh token to refresh. */
   readonly refreshToken!: string;
   constructor(
     fields: Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'> &
@@ -32,9 +40,17 @@ export class PostOAuth2TokenRefreshAccessToken {
   }
 }
 export interface PostOAuth2TokenRefreshAccessTokenInput {
+  /**
+   * The type of request being made, in this case a refresh request. */
   readonly grantType?: PostOAuth2TokenRefreshAccessTokenGrantTypeField;
+  /**
+   * The client ID of the application requesting to refresh the token. */
   readonly clientId: string;
+  /**
+   * The client secret of the application requesting to refresh the token. */
   readonly clientSecret: string;
+  /**
+   * The refresh token to refresh. */
   readonly refreshToken: string;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(

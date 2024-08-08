@@ -11,9 +11,15 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type DevicePinnerTypeField = 'device_pinner';
 export interface DevicePinner {
+  /**
+   * The unique identifier for this device pin. */
   readonly id?: string;
+  /**
+   * `device_pinner` */
   readonly type?: DevicePinnerTypeField;
   readonly ownedBy?: UserMini;
+  /**
+   * The type of device being pinned */
   readonly productName?: string;
 }
 export function serializeDevicePinnerTypeField(

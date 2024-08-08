@@ -9,7 +9,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type ShieldInformationBarrierReportBaseTypeField =
   'shield_information_barrier_report';
 export interface ShieldInformationBarrierReportBase {
+  /**
+   * The unique identifier for the shield information barrier report */
   readonly id?: string;
+  /**
+   * The type of the shield information barrier report */
   readonly type?: ShieldInformationBarrierReportBaseTypeField;
 }
 export function serializeShieldInformationBarrierReportBaseTypeField(

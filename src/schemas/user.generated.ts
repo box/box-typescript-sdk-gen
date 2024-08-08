@@ -24,7 +24,11 @@ export type UserStatusField =
   | 'cannot_delete_edit'
   | 'cannot_delete_edit_upload';
 export interface UserNotificationEmailField {
+  /**
+   * The email address to send the notifications to. */
   readonly email?: string;
+  /**
+   * Specifies if this email address has been confirmed. */
   readonly isConfirmed?: boolean;
 }
 export class User extends UserMini {

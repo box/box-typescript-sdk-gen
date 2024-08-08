@@ -43,18 +43,49 @@ export type SignRequestStatusField =
   | 'error_finalizing';
 export interface SignRequestSignFilesField {
   readonly files?: readonly FileMini[];
+  /**
+   * Indicates whether the `sign_files` documents are processing
+   * and the PDFs may be out of date. A change to any document
+   * requires processing on all `sign_files`. We
+   * recommended waiting until processing is finished
+   * (and this value is true) before downloading the PDFs. */
   readonly isReadyForDownload?: boolean;
 }
 export type SignRequest = SignRequestBase & {
+  /**
+   * object type */
   readonly type?: SignRequestTypeField;
+  /**
+   * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
   readonly sourceFiles?: readonly FileBase[];
+  /**
+   * Array of signers for the signature request. */
   readonly signers?: readonly SignRequestSigner[];
+  /**
+   * Force a specific color for the signature (blue, black, or red). */
   readonly signatureColor?: string;
+  /**
+   * Box Sign request ID. */
   readonly id?: string;
+  /**
+   * This URL is returned if `is_document_preparation_needed` is
+   * set to `true` in the request. The parameter is used to prepare
+   * the signature request
+   * using the UI. The signature request is not
+   * sent until the preparation
+   * phase is complete. */
   readonly prepareUrl?: string;
   readonly signingLog?: FileMini;
+  /**
+   * Describes the status of the signature request. */
   readonly status?: SignRequestStatusField;
+  /**
+   * List of files that will be signed, which are copies of the original
+   * source files. A new version of these files are created as signers sign
+   * and can be downloaded at any point in the signing process. */
   readonly signFiles?: SignRequestSignFilesField;
+  /**
+   * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
   readonly autoExpireAt?: DateTime;
   readonly parentFolder?: FolderMini;
 };

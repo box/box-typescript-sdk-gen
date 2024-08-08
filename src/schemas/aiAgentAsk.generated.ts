@@ -14,6 +14,8 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAgentAskTypeField = 'ai_agent_ask';
 export interface AiAgentAsk {
+  /**
+   * The type of AI agent used to handle queries. */
   readonly type?: AiAgentAskTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextToolAsk;

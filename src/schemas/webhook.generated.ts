@@ -64,8 +64,16 @@ export type WebhookTriggersField =
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export type Webhook = WebhookMini & {
   readonly createdBy?: UserMini;
+  /**
+   * A timestamp identifying the time that
+   * the webhook was created. */
   readonly createdAt?: DateTime;
+  /**
+   * The URL that is notified by this webhook */
   readonly address?: string;
+  /**
+   * An array of event names that this webhook is
+   * to be triggered for */
   readonly triggers?: readonly WebhookTriggersField[];
 };
 export function serializeWebhookTriggersField(

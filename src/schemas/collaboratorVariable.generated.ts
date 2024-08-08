@@ -10,8 +10,12 @@ export type CollaboratorVariableTypeField = 'variable';
 export type CollaboratorVariableVariableTypeField = 'user_list';
 export type CollaboratorVariableVariableValueTypeField = 'user';
 export class CollaboratorVariableVariableValueField {
+  /**
+   * The object type. */
   readonly type: CollaboratorVariableVariableValueTypeField =
     'user' as CollaboratorVariableVariableValueTypeField;
+  /**
+   * User's ID. */
   readonly id!: string;
   constructor(
     fields: Omit<CollaboratorVariableVariableValueField, 'type'> &
@@ -26,14 +30,29 @@ export class CollaboratorVariableVariableValueField {
   }
 }
 export interface CollaboratorVariableVariableValueFieldInput {
+  /**
+   * The object type. */
   readonly type?: CollaboratorVariableVariableValueTypeField;
+  /**
+   * User's ID. */
   readonly id: string;
 }
 export class CollaboratorVariable {
+  /**
+   * Collaborator
+   * object type.
+   *  */
   readonly type: CollaboratorVariableTypeField =
     'variable' as CollaboratorVariableTypeField;
+  /**
+   * Variable type
+   * for the Collaborator
+   * object.
+   *  */
   readonly variableType: CollaboratorVariableVariableTypeField =
     'user_list' as CollaboratorVariableVariableTypeField;
+  /**
+   * A list of user IDs. */
   readonly variableValue!: readonly CollaboratorVariableVariableValueField[];
   constructor(
     fields: Omit<CollaboratorVariable, 'type' | 'variableType'> &
@@ -51,8 +70,19 @@ export class CollaboratorVariable {
   }
 }
 export interface CollaboratorVariableInput {
+  /**
+   * Collaborator
+   * object type.
+   *  */
   readonly type?: CollaboratorVariableTypeField;
+  /**
+   * Variable type
+   * for the Collaborator
+   * object.
+   *  */
   readonly variableType?: CollaboratorVariableVariableTypeField;
+  /**
+   * A list of user IDs. */
   readonly variableValue: readonly CollaboratorVariableVariableValueField[];
 }
 export function serializeCollaboratorVariableTypeField(

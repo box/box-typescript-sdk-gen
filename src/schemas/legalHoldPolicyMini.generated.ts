@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type LegalHoldPolicyMiniTypeField = 'legal_hold_policy';
 export class LegalHoldPolicyMini {
+  /**
+   * The unique identifier for this legal hold policy */
   readonly id!: string;
+  /**
+   * `legal_hold_policy` */
   readonly type: LegalHoldPolicyMiniTypeField =
     'legal_hold_policy' as LegalHoldPolicyMiniTypeField;
   constructor(
@@ -24,7 +28,11 @@ export class LegalHoldPolicyMini {
   }
 }
 export interface LegalHoldPolicyMiniInput {
+  /**
+   * The unique identifier for this legal hold policy */
   readonly id: string;
+  /**
+   * `legal_hold_policy` */
   readonly type?: LegalHoldPolicyMiniTypeField;
 }
 export function serializeLegalHoldPolicyMiniTypeField(

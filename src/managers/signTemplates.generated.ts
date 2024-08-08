@@ -51,10 +51,19 @@ export interface GetSignTemplateByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetSignTemplatesQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetSignTemplatesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -68,6 +77,8 @@ export class GetSignTemplatesHeaders {
   }
 }
 export interface GetSignTemplatesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -75,6 +86,8 @@ export interface GetSignTemplatesHeadersInput {
       };
 }
 export class GetSignTemplateByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -88,6 +101,8 @@ export class GetSignTemplateByIdHeaders {
   }
 }
 export interface GetSignTemplateByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -111,6 +126,13 @@ export class SignTemplatesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Gets Box Sign templates created by a user.
+   * @param {GetSignTemplatesQueryParams} queryParams Query parameters of getSignTemplates method
+   * @param {GetSignTemplatesHeadersInput} headersInput Headers of getSignTemplates method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<SignTemplates>}
+   */
   async getSignTemplates(
     queryParams: GetSignTemplatesQueryParams = {} satisfies GetSignTemplatesQueryParams,
     headersInput: GetSignTemplatesHeadersInput = new GetSignTemplatesHeaders(
@@ -147,6 +169,13 @@ export class SignTemplatesManager {
     )) as FetchResponse;
     return deserializeSignTemplates(response.data);
   }
+  /**
+     * Fetches details of a specific Box Sign template.
+     * @param {string} templateId The ID of a Box Sign template.
+    Example: "123075213-7d117509-8f05-42e4-a5ef-5190a319d41d"
+     * @param {GetSignTemplateByIdOptionalsInput} optionalsInput
+     * @returns {Promise<SignTemplate>}
+     */
   async getSignTemplateById(
     templateId: string,
     optionalsInput: GetSignTemplateByIdOptionalsInput = {}

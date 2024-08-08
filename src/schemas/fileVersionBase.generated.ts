@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type FileVersionBaseTypeField = 'file_version';
 export class FileVersionBase {
+  /**
+   * The unique identifier that represent a file version. */
   readonly id!: string;
+  /**
+   * `file_version` */
   readonly type: FileVersionBaseTypeField =
     'file_version' as FileVersionBaseTypeField;
   constructor(
@@ -24,7 +28,11 @@ export class FileVersionBase {
   }
 }
 export interface FileVersionBaseInput {
+  /**
+   * The unique identifier that represent a file version. */
   readonly id: string;
+  /**
+   * `file_version` */
   readonly type?: FileVersionBaseTypeField;
 }
 export function serializeFileVersionBaseTypeField(

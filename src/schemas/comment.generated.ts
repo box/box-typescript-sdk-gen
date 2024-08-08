@@ -19,14 +19,27 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface CommentItemField {
+  /**
+   * The unique identifier for this object */
   readonly id?: string;
+  /**
+   * The type for this object */
   readonly type?: string;
 }
 export type Comment = CommentBase & {
+  /**
+   * Whether or not this comment is a reply to another
+   * comment */
   readonly isReplyComment?: boolean;
+  /**
+   * The text of the comment, as provided by the user */
   readonly message?: string;
   readonly createdBy?: UserMini;
+  /**
+   * The time this comment was created */
   readonly createdAt?: DateTime;
+  /**
+   * The time this comment was last modified */
   readonly modifiedAt?: DateTime;
   readonly item?: CommentItemField;
 };

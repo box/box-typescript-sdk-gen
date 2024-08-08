@@ -9,7 +9,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type LegalHoldPolicyAssignmentBaseTypeField =
   'legal_hold_policy_assignment';
 export interface LegalHoldPolicyAssignmentBase {
+  /**
+   * The unique identifier for this legal hold assignment */
   readonly id?: string;
+  /**
+   * `legal_hold_policy_assignment` */
   readonly type?: LegalHoldPolicyAssignmentBaseTypeField;
 }
 export function serializeLegalHoldPolicyAssignmentBaseTypeField(

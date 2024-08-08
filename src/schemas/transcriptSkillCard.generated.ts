@@ -12,13 +12,22 @@ import { sdIsMap } from '../serialization/json.js';
 export type TranscriptSkillCardTypeField = 'skill_card';
 export type TranscriptSkillCardSkillCardTypeField = 'transcript';
 export interface TranscriptSkillCardSkillCardTitleField {
+  /**
+   * An optional identifier for the title. */
   readonly code?: string;
+  /**
+   * The actual title to show in the UI. */
   readonly message: string;
 }
 export type TranscriptSkillCardSkillTypeField = 'service';
 export class TranscriptSkillCardSkillField {
+  /**
+   * `service` */
   readonly type: TranscriptSkillCardSkillTypeField =
     'service' as TranscriptSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<TranscriptSkillCardSkillField, 'type'> &
@@ -33,13 +42,26 @@ export class TranscriptSkillCardSkillField {
   }
 }
 export interface TranscriptSkillCardSkillFieldInput {
+  /**
+   * `service` */
   readonly type?: TranscriptSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id: string;
 }
 export type TranscriptSkillCardInvocationTypeField = 'skill_invocation';
 export class TranscriptSkillCardInvocationField {
+  /**
+   * `skill_invocation` */
   readonly type: TranscriptSkillCardInvocationTypeField =
     'skill_invocation' as TranscriptSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<TranscriptSkillCardInvocationField, 'type'> &
@@ -54,26 +76,64 @@ export class TranscriptSkillCardInvocationField {
   }
 }
 export interface TranscriptSkillCardInvocationFieldInput {
+  /**
+   * `skill_invocation` */
   readonly type?: TranscriptSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id: string;
 }
 export interface TranscriptSkillCardEntriesAppearsField {
+  /**
+   * The time in seconds when an
+   * entry should start appearing on a timeline. */
   readonly start?: number;
 }
 export interface TranscriptSkillCardEntriesField {
+  /**
+   * The text of the entry. This would be the transcribed text assigned
+   * to the entry on the timeline. */
   readonly text?: string;
+  /**
+   * Defines when a transcribed bit of text appears. This only includes a
+   * start time and no end time. */
   readonly appears?: readonly TranscriptSkillCardEntriesAppearsField[];
 }
 export class TranscriptSkillCard {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type: TranscriptSkillCardTypeField =
     'skill_card' as TranscriptSkillCardTypeField;
+  /**
+   * `transcript` */
   readonly skillCardType: TranscriptSkillCardSkillCardTypeField =
     'transcript' as TranscriptSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: TranscriptSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill!: TranscriptSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation!: TranscriptSkillCardInvocationField;
+  /**
+   * An optional total duration in seconds.
+   *
+   * Used with a `skill_card_type` of `transcript` or
+   * `timeline`. */
   readonly duration?: number;
+  /**
+   * An list of entries for the card. This represents the individual entries of
+   * the transcription. */
   readonly entries!: readonly TranscriptSkillCardEntriesField[];
   constructor(
     fields: Omit<TranscriptSkillCard, 'type' | 'skillCardType'> &
@@ -106,13 +166,34 @@ export class TranscriptSkillCard {
   }
 }
 export interface TranscriptSkillCardInput {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type?: TranscriptSkillCardTypeField;
+  /**
+   * `transcript` */
   readonly skillCardType?: TranscriptSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: TranscriptSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill: TranscriptSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation: TranscriptSkillCardInvocationField;
+  /**
+   * An optional total duration in seconds.
+   *
+   * Used with a `skill_card_type` of `transcript` or
+   * `timeline`. */
   readonly duration?: number;
+  /**
+   * An list of entries for the card. This represents the individual entries of
+   * the transcription. */
   readonly entries: readonly TranscriptSkillCardEntriesField[];
 }
 export function serializeTranscriptSkillCardTypeField(

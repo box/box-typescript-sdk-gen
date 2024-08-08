@@ -194,11 +194,31 @@ export interface PromoteFileVersionOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetFileVersionsQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
 }
 export class GetFileVersionsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -212,6 +232,8 @@ export class GetFileVersionsHeaders {
   }
 }
 export interface GetFileVersionsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -219,9 +241,21 @@ export interface GetFileVersionsHeadersInput {
       };
 }
 export interface GetFileVersionByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetFileVersionByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -235,6 +269,8 @@ export class GetFileVersionByIdHeaders {
   }
 }
 export interface GetFileVersionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -242,9 +278,14 @@ export interface GetFileVersionByIdHeadersInput {
       };
 }
 export interface UpdateFileVersionByIdRequestBody {
+  /**
+   * Set this to `null` to clear
+   * the date and restore the file. */
   readonly trashedAt?: string;
 }
 export class UpdateFileVersionByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -258,6 +299,8 @@ export class UpdateFileVersionByIdHeaders {
   }
 }
 export interface UpdateFileVersionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -265,7 +308,17 @@ export interface UpdateFileVersionByIdHeadersInput {
       };
 }
 export class DeleteFileVersionByIdHeaders {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -282,7 +335,17 @@ export class DeleteFileVersionByIdHeaders {
   }
 }
 export interface DeleteFileVersionByIdHeadersInput {
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -291,13 +354,29 @@ export interface DeleteFileVersionByIdHeadersInput {
 }
 export type PromoteFileVersionRequestBodyTypeField = 'file_version';
 export interface PromoteFileVersionRequestBody {
+  /**
+   * The file version ID */
   readonly id?: string;
+  /**
+   * The type to promote */
   readonly type?: PromoteFileVersionRequestBodyTypeField;
 }
 export interface PromoteFileVersionQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class PromoteFileVersionHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -311,6 +390,8 @@ export class PromoteFileVersionHeaders {
   }
 }
 export interface PromoteFileVersionHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -339,6 +420,22 @@ export class FileVersionsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieve a list of the past versions for a file.
+     *
+     * Versions are only tracked by Box users with premium accounts. To fetch the ID
+     * of the current version of a file, use the `GET /file/:id` API.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileVersionsOptionalsInput} optionalsInput
+     * @returns {Promise<FileVersions>}
+     */
   async getFileVersions(
     fileId: string,
     optionalsInput: GetFileVersionsOptionalsInput = {}
@@ -382,6 +479,23 @@ export class FileVersionsManager {
     )) as FetchResponse;
     return deserializeFileVersions(response.data);
   }
+  /**
+     * Retrieve a specific version of a file.
+     *
+     * Versions are only tracked for Box users with premium accounts.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {string} fileVersionId The ID of the file version
+    Example: "1234"
+     * @param {GetFileVersionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<FileVersionFull>}
+     */
   async getFileVersionById(
     fileId: string,
     fileVersionId: string,
@@ -426,6 +540,24 @@ export class FileVersionsManager {
     )) as FetchResponse;
     return deserializeFileVersionFull(response.data);
   }
+  /**
+     * Restores a specific version of a file after it was deleted.
+     * Don't use this endpoint to restore Box Notes,
+     * as it works with file formats such as PDF, DOC,
+     * PPTX or similar.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {string} fileVersionId The ID of the file version
+    Example: "1234"
+     * @param {UpdateFileVersionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<FileVersionFull>}
+     */
   async updateFileVersionById(
     fileId: string,
     fileVersionId: string,
@@ -464,6 +596,23 @@ export class FileVersionsManager {
     )) as FetchResponse;
     return deserializeFileVersionFull(response.data);
   }
+  /**
+     * Move a file version to the trash.
+     *
+     * Versions are only tracked for Box users with premium accounts.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {string} fileVersionId The ID of the file version
+    Example: "1234"
+     * @param {DeleteFileVersionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFileVersionById(
     fileId: string,
     fileVersionId: string,
@@ -501,6 +650,34 @@ export class FileVersionsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * Promote a specific version of a file.
+     *
+     * If previous versions exist, this method can be used to
+     * promote one of the older versions to the top of the version history.
+     *
+     * This creates a new copy of the old version and puts it at the
+     * top of the versions history. The file will have the exact same contents
+     * as the older version, with the the same hash digest, `etag`, and
+     * name as the original.
+     *
+     * Other properties such as comments do not get updated to their
+     * former values.
+     *
+     * Don't use this endpoint to restore Box Notes,
+     * as it works with file formats such as PDF, DOC,
+     * PPTX or similar.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {PromoteFileVersionOptionalsInput} optionalsInput
+     * @returns {Promise<FileVersionFull>}
+     */
   async promoteFileVersion(
     fileId: string,
     optionalsInput: PromoteFileVersionOptionalsInput = {}

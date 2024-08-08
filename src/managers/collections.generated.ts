@@ -60,11 +60,31 @@ export interface GetCollectionItemsOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetCollectionsQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetCollectionsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -78,6 +98,8 @@ export class GetCollectionsHeaders {
   }
 }
 export interface GetCollectionsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -85,11 +107,31 @@ export interface GetCollectionsHeadersInput {
       };
 }
 export interface GetCollectionItemsQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetCollectionItemsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -103,6 +145,8 @@ export class GetCollectionItemsHeaders {
   }
 }
 export interface GetCollectionItemsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -126,6 +170,16 @@ export class CollectionsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves all collections for a given user.
+   *
+   * Currently, only the `favorites` collection
+   * is supported.
+   * @param {GetCollectionsQueryParams} queryParams Query parameters of getCollections method
+   * @param {GetCollectionsHeadersInput} headersInput Headers of getCollections method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<Collections>}
+   */
   async getCollections(
     queryParams: GetCollectionsQueryParams = {} satisfies GetCollectionsQueryParams,
     headersInput: GetCollectionsHeadersInput = new GetCollectionsHeaders({}),
@@ -163,6 +217,14 @@ export class CollectionsManager {
     )) as FetchResponse;
     return deserializeCollections(response.data);
   }
+  /**
+     * Retrieves the files and/or folders contained within
+     * this collection.
+     * @param {string} collectionId The ID of the collection.
+    Example: "926489"
+     * @param {GetCollectionItemsOptionalsInput} optionalsInput
+     * @returns {Promise<Items>}
+     */
   async getCollectionItems(
     collectionId: string,
     optionalsInput: GetCollectionItemsOptionalsInput = {}

@@ -18,27 +18,59 @@ import { sdIsMap } from '../serialization/json.js';
 export type SkillInvocationTypeField = 'skill_invocation';
 export type SkillInvocationSkillTypeField = 'skill';
 export interface SkillInvocationSkillField {
+  /**
+   * The unique identifier for this skill */
   readonly id?: string;
+  /**
+   * `skill` */
   readonly type?: SkillInvocationSkillTypeField;
+  /**
+   * The name of the skill */
   readonly name?: string;
+  /**
+   * The client ID of the application */
   readonly apiKey?: string;
 }
 export type SkillInvocationTokenReadTokenTypeField = 'bearer';
 export interface SkillInvocationTokenReadField {
+  /**
+   * The requested access token. */
   readonly accessToken?: string;
+  /**
+   * The time in seconds by which this token will expire. */
   readonly expiresIn?: number;
+  /**
+   * The type of access token returned. */
   readonly tokenType?: SkillInvocationTokenReadTokenTypeField;
+  /**
+   * The permissions that this access token permits,
+   * providing a list of resources (files, folders, etc)
+   * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: string;
 }
 export type SkillInvocationTokenWriteTokenTypeField = 'bearer';
 export interface SkillInvocationTokenWriteField {
+  /**
+   * The requested access token. */
   readonly accessToken?: string;
+  /**
+   * The time in seconds by which this token will expire. */
   readonly expiresIn?: number;
+  /**
+   * The type of access token returned. */
   readonly tokenType?: SkillInvocationTokenWriteTokenTypeField;
+  /**
+   * The permissions that this access token permits,
+   * providing a list of resources (files, folders, etc)
+   * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: string;
 }
 export interface SkillInvocationTokenField {
+  /**
+   * The basics of an access token */
   readonly read?: SkillInvocationTokenReadField;
+  /**
+   * The basics of an access token */
   readonly write?: SkillInvocationTokenWriteField;
 }
 export type SkillInvocationStatusStateField =
@@ -48,24 +80,59 @@ export type SkillInvocationStatusStateField =
   | 'transient_failure'
   | 'permanent_failure';
 export interface SkillInvocationStatusField {
+  /**
+   * The state of this event.
+   *
+   * * `invoked` - Triggered the skill with event details to start
+   *   applying skill on the file.
+   * * `processing` - Currently processing.
+   * * `success` - Completed processing with a success.
+   * * `transient_failure` - Encountered an issue which can be
+   *   retried.
+   * * `permanent_failure` -  Encountered a permanent issue and
+   *   retry would not help. */
   readonly state?: SkillInvocationStatusStateField;
+  /**
+   * Status information */
   readonly message?: string;
+  /**
+   * Error code information, if error occurred. */
   readonly errorCode?: string;
+  /**
+   * Additional status information. */
   readonly additionalInfo?: string;
 }
 export type SkillInvocationEnterpriseTypeField = 'enterprise';
 export interface SkillInvocationEnterpriseField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: SkillInvocationEnterpriseTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export interface SkillInvocation {
+  /**
+   * `skill_invocation` */
   readonly type?: SkillInvocationTypeField;
+  /**
+   * Unique identifier for the invocation request. */
   readonly id?: string;
   readonly skill?: SkillInvocationSkillField;
+  /**
+   * The read-only and read-write access tokens for this item */
   readonly token?: SkillInvocationTokenField;
+  /**
+   * The details status of this event. */
   readonly status?: SkillInvocationStatusField;
+  /**
+   * The time this invocation was created. */
   readonly createdAt?: DateTime;
+  /**
+   * Action that triggered the invocation */
   readonly trigger?: string;
   readonly enterprise?: SkillInvocationEnterpriseField;
   readonly source?: FileOrFolder;

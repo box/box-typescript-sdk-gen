@@ -14,12 +14,29 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type EventSourceItemTypeField = 'file' | 'folder';
 export interface EventSourceClassificationField {
+  /**
+   * The classification's name */
   readonly name?: string;
 }
 export interface EventSource {
+  /**
+   * The type of the item that the event
+   * represents. Can be `file` or `folder`.
+   *  */
   readonly itemType: EventSourceItemTypeField;
+  /**
+   * The unique identifier that represents the
+   * item.
+   *  */
   readonly itemId: string;
+  /**
+   * The name of the item.
+   *  */
   readonly itemName: string;
+  /**
+   * The object containing classification information for the item that
+   * triggered the event. This field will not appear if the item does not
+   * have a classification set. */
   readonly classification?: EventSourceClassificationField;
   readonly parent?: FolderMini;
   readonly ownedBy?: UserMini;

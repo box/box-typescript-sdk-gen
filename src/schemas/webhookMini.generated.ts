@@ -9,12 +9,22 @@ import { sdIsMap } from '../serialization/json.js';
 export type WebhookMiniTypeField = 'webhook';
 export type WebhookMiniTargetTypeField = 'file' | 'folder';
 export interface WebhookMiniTargetField {
+  /**
+   * The ID of the item to trigger a webhook */
   readonly id?: string;
+  /**
+   * The type of item to trigger a webhook */
   readonly type?: WebhookMiniTargetTypeField;
 }
 export interface WebhookMini {
+  /**
+   * The unique identifier for this webhook. */
   readonly id?: string;
+  /**
+   * `webhook` */
   readonly type?: WebhookMiniTypeField;
+  /**
+   * The item that will trigger the webhook */
   readonly target?: WebhookMiniTargetField;
 }
 export function serializeWebhookMiniTypeField(

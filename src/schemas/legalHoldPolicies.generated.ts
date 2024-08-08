@@ -10,9 +10,19 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface LegalHoldPolicies {
+  /**
+   * The limit that was used for these entries. This will be the same as the
+   * `limit` query parameter unless that value exceeded the maximum value
+   * allowed. The maximum value varies by API. */
   readonly limit?: number;
+  /**
+   * The marker for the start of the next page of results. */
   readonly nextMarker?: string;
+  /**
+   * The marker for the start of the previous page of results. */
   readonly prevMarker?: string;
+  /**
+   * A list of legal hold policies */
   readonly entries?: readonly LegalHoldPolicy[];
 }
 export function serializeLegalHoldPolicies(

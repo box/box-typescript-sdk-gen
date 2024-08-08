@@ -61,10 +61,17 @@ export type WebhookInvocationTriggerField =
   | 'SIGN_REQUEST.EXPIRED'
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export interface WebhookInvocation {
+  /**
+   * The unique identifier for this webhook invocation */
   readonly id?: string;
+  /**
+   * `webhook_event` */
   readonly type?: WebhookInvocationTypeField;
   readonly webhook?: Webhook;
   readonly createdBy?: UserMini;
+  /**
+   * A timestamp identifying the time that
+   * the webhook event was triggered. */
   readonly createdAt?: DateTime;
   readonly trigger?: WebhookInvocationTriggerField;
   readonly source?: FileOrFolder;

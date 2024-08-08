@@ -17,10 +17,17 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type FileRequestCopyRequestFolderTypeField = 'folder';
 export interface FileRequestCopyRequestFolderField {
+  /**
+   * `folder` */
   readonly type?: FileRequestCopyRequestFolderTypeField;
+  /**
+   * The ID of the folder to associate the new
+   * file request to. */
   readonly id: string;
 }
 export type FileRequestCopyRequest = FileRequestUpdateRequest & {
+  /**
+   * The folder to associate the new file request to. */
   readonly folder: FileRequestCopyRequestFolderField;
 };
 export function serializeFileRequestCopyRequestFolderTypeField(

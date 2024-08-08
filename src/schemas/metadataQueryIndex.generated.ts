@@ -9,13 +9,25 @@ import { sdIsMap } from '../serialization/json.js';
 export type MetadataQueryIndexStatusField = 'building' | 'active' | 'disabled';
 export type MetadataQueryIndexFieldsSortDirectionField = 'asc' | 'desc';
 export interface MetadataQueryIndexFieldsField {
+  /**
+   * The metadata template field key. */
   readonly key?: string;
+  /**
+   * The sort direction of the field. */
   readonly sortDirection?: MetadataQueryIndexFieldsSortDirectionField;
 }
 export interface MetadataQueryIndex {
+  /**
+   * The ID of the metadata query index. */
   readonly id?: string;
+  /**
+   * Value is always `metadata_query_index` */
   readonly type: string;
+  /**
+   * The status of the metadata query index */
   readonly status: MetadataQueryIndexStatusField;
+  /**
+   * A list of template fields which make up the index. */
   readonly fields?: readonly MetadataQueryIndexFieldsField[];
 }
 export function serializeMetadataQueryIndexStatusField(

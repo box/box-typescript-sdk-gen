@@ -13,10 +13,16 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiAgentLongTextToolEmbeddingsStrategyField {
+  /**
+   * The strategy used for the AI Agent for calculating embeddings. */
   readonly id?: string;
+  /**
+   * The number of tokens per chunk. */
   readonly numTokensPerChunk?: number;
 }
 export interface AiAgentLongTextToolEmbeddingsField {
+  /**
+   * The model used for the AI Agent for calculating embeddings. */
   readonly model?: string;
   readonly strategy?: AiAgentLongTextToolEmbeddingsStrategyField;
 }

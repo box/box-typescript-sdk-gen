@@ -19,10 +19,20 @@ export type RecentItemInteractionTypeField =
   | 'item_open'
   | 'item_modify';
 export interface RecentItem {
+  /**
+   * `recent_item` */
   readonly type?: string;
   readonly item?: FileFullOrFolderFullOrWebLink;
+  /**
+   * The most recent type of access the user performed on
+   * the item. */
   readonly interactionType?: RecentItemInteractionTypeField;
+  /**
+   * The time of the most recent interaction. */
   readonly interactedAt?: DateTime;
+  /**
+   * If the item was accessed through a shared link it will appear here,
+   * otherwise this will be null. */
   readonly interactionSharedLink?: string;
 }
 export function serializeRecentItemInteractionTypeField(

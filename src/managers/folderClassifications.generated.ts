@@ -141,6 +141,8 @@ export interface DeleteClassificationFromFolderOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetClassificationOnFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -154,6 +156,8 @@ export class GetClassificationOnFolderHeaders {
   }
 }
 export interface GetClassificationOnFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -161,9 +165,18 @@ export interface GetClassificationOnFolderHeadersInput {
       };
 }
 export interface AddClassificationToFolderRequestBody {
+  /**
+   * The name of the classification to apply to this folder.
+   *
+   * To list the available classifications in an enterprise,
+   * use the classification API to retrieve the
+   * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
+   * which lists all available classification keys. */
   readonly boxSecurityClassificationKey?: string;
 }
 export class AddClassificationToFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -177,6 +190,8 @@ export class AddClassificationToFolderHeaders {
   }
 }
 export interface AddClassificationToFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -187,10 +202,22 @@ export type UpdateClassificationOnFolderRequestBodyOpField = 'replace';
 export type UpdateClassificationOnFolderRequestBodyPathField =
   '/Box__Security__Classification__Key';
 export class UpdateClassificationOnFolderRequestBody {
+  /**
+   * `replace` */
   readonly op: UpdateClassificationOnFolderRequestBodyOpField =
     'replace' as UpdateClassificationOnFolderRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly path: UpdateClassificationOnFolderRequestBodyPathField =
     '/Box__Security__Classification__Key' as UpdateClassificationOnFolderRequestBodyPathField;
+  /**
+   * The name of the classification to apply to this folder.
+   *
+   * To list the available classifications in an enterprise,
+   * use the classification API to retrieve the
+   * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
+   * which lists all available classification keys. */
   readonly value!: string;
   constructor(
     fields: Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'> &
@@ -208,11 +235,25 @@ export class UpdateClassificationOnFolderRequestBody {
   }
 }
 export interface UpdateClassificationOnFolderRequestBodyInput {
+  /**
+   * `replace` */
   readonly op?: UpdateClassificationOnFolderRequestBodyOpField;
+  /**
+   * Defines classifications
+   * available in the enterprise. */
   readonly path?: UpdateClassificationOnFolderRequestBodyPathField;
+  /**
+   * The name of the classification to apply to this folder.
+   *
+   * To list the available classifications in an enterprise,
+   * use the classification API to retrieve the
+   * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
+   * which lists all available classification keys. */
   readonly value: string;
 }
 export class UpdateClassificationOnFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -226,6 +267,8 @@ export class UpdateClassificationOnFolderHeaders {
   }
 }
 export interface UpdateClassificationOnFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -233,6 +276,8 @@ export interface UpdateClassificationOnFolderHeadersInput {
       };
 }
 export class DeleteClassificationFromFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -246,6 +291,8 @@ export class DeleteClassificationFromFolderHeaders {
   }
 }
 export interface DeleteClassificationFromFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -273,6 +320,27 @@ export class FolderClassificationsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves the classification metadata instance that
+     * has been applied to a folder.
+     *
+     * This API can also be called by including the enterprise ID in the
+     * URL explicitly, for example
+     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {GetClassificationOnFolderOptionalsInput} optionalsInput
+     * @returns {Promise<Classification>}
+     */
   async getClassificationOnFolder(
     folderId: string,
     optionalsInput: GetClassificationOnFolderOptionalsInput = {}
@@ -305,6 +373,27 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
+  /**
+     * Adds a classification to a folder by specifying the label of the
+     * classification to add.
+     *
+     * This API can also be called by including the enterprise ID in the
+     * URL explicitly, for example
+     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {AddClassificationToFolderOptionalsInput} optionalsInput
+     * @returns {Promise<Classification>}
+     */
   async addClassificationToFolder(
     folderId: string,
     optionalsInput: AddClassificationToFolderOptionalsInput = {}
@@ -341,6 +430,27 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
+  /**
+     * Updates a classification on a folder.
+     *
+     * The classification can only be updated if a classification has already been
+     * applied to the folder before. When editing classifications, only values are
+     * defined for the enterprise will be accepted.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {readonly UpdateClassificationOnFolderRequestBody[]} requestBody Request body of updateClassificationOnFolder method
+     * @param {UpdateClassificationOnFolderOptionalsInput} optionalsInput
+     * @returns {Promise<Classification>}
+     */
   async updateClassificationOnFolder(
     folderId: string,
     requestBody: readonly UpdateClassificationOnFolderRequestBody[],
@@ -378,6 +488,26 @@ export class FolderClassificationsManager {
     )) as FetchResponse;
     return deserializeClassification(response.data);
   }
+  /**
+     * Removes any classifications from a folder.
+     *
+     * This API can also be called by including the enterprise ID in the
+     * URL explicitly, for example
+     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {DeleteClassificationFromFolderOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteClassificationFromFolder(
     folderId: string,
     optionalsInput: DeleteClassificationFromFolderOptionalsInput = {}

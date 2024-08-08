@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type UserBaseTypeField = 'user';
 export class UserBase {
+  /**
+   * The unique identifier for this user */
   readonly id!: string;
+  /**
+   * `user` */
   readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
   constructor(
     fields: Omit<UserBase, 'type'> & Partial<Pick<UserBase, 'type'>>
@@ -22,7 +26,11 @@ export class UserBase {
   }
 }
 export interface UserBaseInput {
+  /**
+   * The unique identifier for this user */
   readonly id: string;
+  /**
+   * `user` */
   readonly type?: UserBaseTypeField;
 }
 export function serializeUserBaseTypeField(

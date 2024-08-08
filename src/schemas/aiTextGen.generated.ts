@@ -14,18 +14,40 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiTextGenItemsTypeField = 'file';
 export interface AiTextGenItemsField {
+  /**
+   * The id of the item. */
   readonly id?: string;
+  /**
+   * The type of the item. */
   readonly type?: AiTextGenItemsTypeField;
+  /**
+   * The content to use as context for generating new text or editing existing text. */
   readonly content?: string;
 }
 export interface AiTextGenDialogueHistoryField {
+  /**
+   * The prompt previously provided by the client and answered by the LLM. */
   readonly prompt?: string;
+  /**
+   * The answer previously provided by the LLM. */
   readonly answer?: string;
+  /**
+   * The ISO date formatted timestamp of when the previous answer to the prompt was created. */
   readonly createdAt?: DateTime;
 }
 export interface AiTextGen {
+  /**
+   * The prompt provided by the client to be answered by the LLM. The prompt's length is limited to 10000 characters. */
   readonly prompt: string;
+  /**
+   * The items to be processed by the LLM, often files.
+   * The array can include **exactly one** element.
+   *
+   * **Note**: Box AI handles documents with text representations up to 1MB in size.
+   * If the file size exceeds 1MB, the first 1MB of text representation will be processed. */
   readonly items: readonly AiTextGenItemsField[];
+  /**
+   * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
   readonly dialogueHistory?: readonly AiTextGenDialogueHistoryField[];
   readonly aiAgent?: AiAgentTextGen;
 }

@@ -26,15 +26,34 @@ export type ClientErrorCodeField =
   | 'item_name_invalid'
   | 'insufficient_scope';
 export interface ClientErrorContextInfoField {
+  /**
+   * More details on the error. */
   readonly message?: string;
 }
 export interface ClientError {
+  /**
+   * error */
   readonly type?: ClientErrorTypeField;
+  /**
+   * The HTTP status of the response. */
   readonly status?: number;
+  /**
+   * A Box-specific error code */
   readonly code?: ClientErrorCodeField;
+  /**
+   * A short message describing the error. */
   readonly message?: string;
+  /**
+   * A free-form object that contains additional context
+   * about the error. The possible fields are defined on
+   * a per-endpoint basis. `message` is only one example. */
   readonly contextInfo?: ClientErrorContextInfoField;
+  /**
+   * A URL that links to more information about why this error occurred. */
   readonly helpUrl?: string;
+  /**
+   * A unique identifier for this response, which can be used
+   * when contacting Box support. */
   readonly requestId?: string;
 }
 export function serializeClientErrorTypeField(

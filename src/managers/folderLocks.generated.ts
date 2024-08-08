@@ -89,9 +89,22 @@ export interface DeleteFolderLockByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetFolderLocksQueryParams {
+  /**
+   * The unique identifier that represent a folder.
+   *
+   * The ID for any folder can be determined
+   * by visiting this folder in the web application
+   * and copying the ID from the URL. For example,
+   * for the URL `https://*.app.box.com/folder/123`
+   * the `folder_id` is `123`.
+   *
+   * The root folder of a Box account is
+   * always represented by the ID `0`. */
   readonly folderId: string;
 }
 export class GetFolderLocksHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -105,6 +118,8 @@ export class GetFolderLocksHeaders {
   }
 }
 export interface GetFolderLocksHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -112,18 +127,35 @@ export interface GetFolderLocksHeadersInput {
       };
 }
 export interface CreateFolderLockRequestBodyLockedOperationsField {
+  /**
+   * Whether moving the folder should be locked. */
   readonly move: boolean;
+  /**
+   * Whether deleting the folder should be locked. */
   readonly delete: boolean;
 }
 export interface CreateFolderLockRequestBodyFolderField {
+  /**
+   * The content type the lock is being applied to. Only `folder`
+   * is supported. */
   readonly type: string;
+  /**
+   * The ID of the folder. */
   readonly id: string;
 }
 export interface CreateFolderLockRequestBody {
+  /**
+   * The operations to lock for the folder. If `locked_operations` is
+   * included in the request, both `move` and `delete` must also be
+   * included and both set to `true`. */
   readonly lockedOperations?: CreateFolderLockRequestBodyLockedOperationsField;
+  /**
+   * The folder to apply the lock to. */
   readonly folder: CreateFolderLockRequestBodyFolderField;
 }
 export class CreateFolderLockHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -137,6 +169,8 @@ export class CreateFolderLockHeaders {
   }
 }
 export interface CreateFolderLockHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -144,6 +178,8 @@ export interface CreateFolderLockHeadersInput {
       };
 }
 export class DeleteFolderLockByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -157,6 +193,8 @@ export class DeleteFolderLockByIdHeaders {
   }
 }
 export interface DeleteFolderLockByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -183,6 +221,15 @@ export class FolderLocksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves folder lock details for a given folder.
+   *
+   * You must be authenticated as the owner or co-owner of the folder to
+   * use this endpoint.
+   * @param {GetFolderLocksQueryParams} queryParams Query parameters of getFolderLocks method
+   * @param {GetFolderLocksOptionalsInput} optionalsInput
+   * @returns {Promise<FolderLocks>}
+   */
   async getFolderLocks(
     queryParams: GetFolderLocksQueryParams,
     optionalsInput: GetFolderLocksOptionalsInput = {}
@@ -218,6 +265,16 @@ export class FolderLocksManager {
     )) as FetchResponse;
     return deserializeFolderLocks(response.data);
   }
+  /**
+   * Creates a folder lock on a folder, preventing it from being moved and/or
+   * deleted.
+   *
+   * You must be authenticated as the owner or co-owner of the folder to
+   * use this endpoint.
+   * @param {CreateFolderLockRequestBody} requestBody Request body of createFolderLock method
+   * @param {CreateFolderLockOptionalsInput} optionalsInput
+   * @returns {Promise<FolderLock>}
+   */
   async createFolderLock(
     requestBody: CreateFolderLockRequestBody,
     optionalsInput: CreateFolderLockOptionalsInput = {}
@@ -249,6 +306,16 @@ export class FolderLocksManager {
     )) as FetchResponse;
     return deserializeFolderLock(response.data);
   }
+  /**
+     * Deletes a folder lock on a given folder.
+     *
+     * You must be authenticated as the owner or co-owner of the folder to
+     * use this endpoint.
+     * @param {string} folderLockId The ID of the folder lock.
+    Example: "12345"
+     * @param {DeleteFolderLockByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFolderLockById(
     folderLockId: string,
     optionalsInput: DeleteFolderLockByIdOptionalsInput = {}

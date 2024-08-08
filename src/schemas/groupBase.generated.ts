@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type GroupBaseTypeField = 'group';
 export class GroupBase {
+  /**
+   * The unique identifier for this object */
   readonly id!: string;
+  /**
+   * `group` */
   readonly type: GroupBaseTypeField = 'group' as GroupBaseTypeField;
   constructor(
     fields: Omit<GroupBase, 'type'> & Partial<Pick<GroupBase, 'type'>>
@@ -22,7 +26,11 @@ export class GroupBase {
   }
 }
 export interface GroupBaseInput {
+  /**
+   * The unique identifier for this object */
   readonly id: string;
+  /**
+   * `group` */
   readonly type?: GroupBaseTypeField;
 }
 export function serializeGroupBaseTypeField(

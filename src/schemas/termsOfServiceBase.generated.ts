@@ -8,7 +8,11 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type TermsOfServiceBaseTypeField = 'terms_of_service';
 export class TermsOfServiceBase {
+  /**
+   * The unique identifier for this terms of service. */
   readonly id!: string;
+  /**
+   * `terms_of_service` */
   readonly type: TermsOfServiceBaseTypeField =
     'terms_of_service' as TermsOfServiceBaseTypeField;
   constructor(
@@ -24,7 +28,11 @@ export class TermsOfServiceBase {
   }
 }
 export interface TermsOfServiceBaseInput {
+  /**
+   * The unique identifier for this terms of service. */
   readonly id: string;
+  /**
+   * `terms_of_service` */
   readonly type?: TermsOfServiceBaseTypeField;
 }
 export function serializeTermsOfServiceBaseTypeField(

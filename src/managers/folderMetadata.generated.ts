@@ -145,6 +145,8 @@ export interface DeleteFolderMetadataByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFolderMetadataHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -158,6 +160,8 @@ export class GetFolderMetadataHeaders {
   }
 }
 export interface GetFolderMetadataHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -166,6 +170,8 @@ export interface GetFolderMetadataHeadersInput {
 }
 export type GetFolderMetadataByIdScope = 'global' | 'enterprise';
 export class GetFolderMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -179,6 +185,8 @@ export class GetFolderMetadataByIdHeaders {
   }
 }
 export interface GetFolderMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -190,6 +198,8 @@ export type CreateFolderMetadataByIdRequestBody = {
   readonly [key: string]: any;
 };
 export class CreateFolderMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -203,6 +213,8 @@ export class CreateFolderMetadataByIdHeaders {
   }
 }
 export interface CreateFolderMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -218,12 +230,39 @@ export type UpdateFolderMetadataByIdRequestBodyOpField =
   | 'move'
   | 'copy';
 export interface UpdateFolderMetadataByIdRequestBody {
+  /**
+   * The type of change to perform on the template. Some
+   * of these are hazardous as they will change existing templates. */
   readonly op?: UpdateFolderMetadataByIdRequestBodyOpField;
+  /**
+   * The location in the metadata JSON object
+   * to apply the changes to, in the format of a
+   * [JSON-Pointer](https://tools.ietf.org/html/rfc6901).
+   *
+   * The path must always be prefixed with a `/` to represent the root
+   * of the template. The characters `~` and `/` are reserved
+   * characters and must be escaped in the key. */
   readonly path?: string;
+  /**
+   * The value to be set or tested.
+   *
+   * Required for `add`, `replace`, and `test` operations. For `add`,
+   * if the value exists already the previous value will be overwritten
+   * by the new value. For `replace`, the value must exist before
+   * replacing.
+   *
+   * For `test`, the existing value at the `path` location must match
+   * the specified value. */
   readonly value?: string;
+  /**
+   * The location in the metadata JSON object to move or copy a value
+   * from. Required for `move` or `copy` operations and must be in the
+   * format of a [JSON-Pointer](https://tools.ietf.org/html/rfc6901). */
   readonly from?: string;
 }
 export class UpdateFolderMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -237,6 +276,8 @@ export class UpdateFolderMetadataByIdHeaders {
   }
 }
 export interface UpdateFolderMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -245,6 +286,8 @@ export interface UpdateFolderMetadataByIdHeadersInput {
 }
 export type DeleteFolderMetadataByIdScope = 'global' | 'enterprise';
 export class DeleteFolderMetadataByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -258,6 +301,8 @@ export class DeleteFolderMetadataByIdHeaders {
   }
 }
 export interface DeleteFolderMetadataByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -286,6 +331,23 @@ export class FolderMetadataManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves all metadata for a given folder. This can not be used on the root
+     * folder with ID `0`.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {GetFolderMetadataOptionalsInput} optionalsInput
+     * @returns {Promise<Metadatas>}
+     */
   async getFolderMetadata(
     folderId: string,
     optionalsInput: GetFolderMetadataOptionalsInput = {}
@@ -318,6 +380,27 @@ export class FolderMetadataManager {
     )) as FetchResponse;
     return deserializeMetadatas(response.data);
   }
+  /**
+     * Retrieves the instance of a metadata template that has been applied to a
+     * folder. This can not be used on the root folder with ID `0`.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {GetFolderMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {GetFolderMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async getFolderMetadataById(
     folderId: string,
     scope: GetFolderMetadataByIdScope,
@@ -355,6 +438,35 @@ export class FolderMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Applies an instance of a metadata template to a folder.
+     *
+     * In most cases only values that are present in the metadata template
+     * will be accepted, except for the `global.properties` template which accepts
+     * any key-value pair.
+     *
+     * To display the metadata template in the Box web app the enterprise needs to be
+     * configured to enable **Cascading Folder Level Metadata** for the user in the
+     * admin console.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {CreateFolderMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {CreateFolderMetadataByIdRequestBody} requestBody Request body of createFolderMetadataById method
+     * @param {CreateFolderMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async createFolderMetadataById(
     folderId: string,
     scope: CreateFolderMetadataByIdScope,
@@ -395,6 +507,34 @@ export class FolderMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Updates a piece of metadata on a folder.
+     *
+     * The metadata instance can only be updated if the template has already been
+     * applied to the folder before. When editing metadata, only values that match
+     * the metadata template schema will be accepted.
+     *
+     * The update is applied atomically. If any errors occur during the
+     * application of the operations, the metadata instance will not be changed.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {UpdateFolderMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {readonly UpdateFolderMetadataByIdRequestBody[]} requestBody Request body of updateFolderMetadataById method
+     * @param {UpdateFolderMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<MetadataFull>}
+     */
   async updateFolderMetadataById(
     folderId: string,
     scope: UpdateFolderMetadataByIdScope,
@@ -437,6 +577,26 @@ export class FolderMetadataManager {
     )) as FetchResponse;
     return deserializeMetadataFull(response.data);
   }
+  /**
+     * Deletes a piece of folder metadata.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {DeleteFolderMetadataByIdScope} scope The scope of the metadata template
+    Example: "global"
+     * @param {string} templateKey The name of the metadata template
+    Example: "properties"
+     * @param {DeleteFolderMetadataByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFolderMetadataById(
     folderId: string,
     scope: DeleteFolderMetadataByIdScope,

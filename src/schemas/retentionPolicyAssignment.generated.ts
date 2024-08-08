@@ -21,22 +21,51 @@ export type RetentionPolicyAssignmentAssignedToTypeField =
   | 'enterprise'
   | 'metadata_template';
 export interface RetentionPolicyAssignmentAssignedToField {
+  /**
+   * The ID of the folder, enterprise, or metadata template
+   * the policy is assigned to.
+   * Set to null or omit when type is set to enterprise. */
   readonly id?: string;
+  /**
+   * The type of resource the policy is assigned to. */
   readonly type?: RetentionPolicyAssignmentAssignedToTypeField;
 }
 export interface RetentionPolicyAssignmentFilterFieldsField {
+  /**
+   * The metadata attribute key id. */
   readonly field?: string;
+  /**
+   * The metadata attribute field id. For value, only
+   * enum and multiselect types are supported. */
   readonly value?: string;
 }
 export class RetentionPolicyAssignment {
+  /**
+   * The unique identifier for a retention policy assignment. */
   readonly id!: string;
+  /**
+   * `retention_policy_assignment` */
   readonly type: RetentionPolicyAssignmentTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
+  /**
+   * The `type` and `id` of the content that is under
+   * retention. The `type` can either be `folder`
+   * `enterprise`, or `metadata_template`. */
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
+  /**
+   * An array of field objects. Values are only returned if the `assigned_to`
+   * type is `metadata_template`. Otherwise, the array is blank. */
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
   readonly assignedBy?: UserMini;
+  /**
+   * When the retention policy assignment object was
+   * created. */
   readonly assignedAt?: DateTime;
+  /**
+   * The date the retention policy assignment begins.
+   * If the `assigned_to` type is `metadata_template`,
+   * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
   constructor(
     fields: Omit<RetentionPolicyAssignment, 'type'> &
@@ -69,13 +98,31 @@ export class RetentionPolicyAssignment {
   }
 }
 export interface RetentionPolicyAssignmentInput {
+  /**
+   * The unique identifier for a retention policy assignment. */
   readonly id: string;
+  /**
+   * `retention_policy_assignment` */
   readonly type?: RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
+  /**
+   * The `type` and `id` of the content that is under
+   * retention. The `type` can either be `folder`
+   * `enterprise`, or `metadata_template`. */
   readonly assignedTo?: RetentionPolicyAssignmentAssignedToField;
+  /**
+   * An array of field objects. Values are only returned if the `assigned_to`
+   * type is `metadata_template`. Otherwise, the array is blank. */
   readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
   readonly assignedBy?: UserMini;
+  /**
+   * When the retention policy assignment object was
+   * created. */
   readonly assignedAt?: DateTime;
+  /**
+   * The date the retention policy assignment begins.
+   * If the `assigned_to` type is `metadata_template`,
+   * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
 }
 export function serializeRetentionPolicyAssignmentTypeField(

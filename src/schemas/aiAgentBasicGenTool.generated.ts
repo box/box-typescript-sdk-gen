@@ -19,6 +19,9 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAgentBasicGenTool = AiAgentLongTextTool & {
+  /**
+   * How the content should be included in a request to the LLM.
+   * When passing this parameter, you must include `{content}`. */
   readonly contentTemplate?: string;
 };
 export function serializeAiAgentBasicGenTool(

@@ -9,7 +9,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type RetentionPolicyAssignmentBaseTypeField =
   'retention_policy_assignment';
 export class RetentionPolicyAssignmentBase {
+  /**
+   * The unique identifier that represents a file version. */
   readonly id!: string;
+  /**
+   * `retention_policy_assignment` */
   readonly type: RetentionPolicyAssignmentBaseTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentBaseTypeField;
   constructor(
@@ -25,7 +29,11 @@ export class RetentionPolicyAssignmentBase {
   }
 }
 export interface RetentionPolicyAssignmentBaseInput {
+  /**
+   * The unique identifier that represents a file version. */
   readonly id: string;
+  /**
+   * `retention_policy_assignment` */
   readonly type?: RetentionPolicyAssignmentBaseTypeField;
 }
 export function serializeRetentionPolicyAssignmentBaseTypeField(

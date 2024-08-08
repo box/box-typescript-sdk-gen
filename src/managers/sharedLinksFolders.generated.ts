@@ -143,11 +143,37 @@ export interface RemoveSharedLinkFromFolderOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface FindFolderForSharedLinkQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class FindFolderForSharedLinkHeaders {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi!: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -167,8 +193,24 @@ export class FindFolderForSharedLinkHeaders {
   }
 }
 export interface FindFolderForSharedLinkHeadersInput {
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
   readonly ifNoneMatch?: string;
+  /**
+   * A header containing the shared link and optional password for the
+   * shared link.
+   *
+   * The format for this header is as follows.
+   *
+   * `shared_link=[link]&shared_link_password=[password]` */
   readonly boxapi: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -176,9 +218,14 @@ export interface FindFolderForSharedLinkHeadersInput {
       };
 }
 export interface GetSharedLinkForFolderQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class GetSharedLinkForFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -192,6 +239,8 @@ export class GetSharedLinkForFolderHeaders {
   }
 }
 export interface GetSharedLinkForFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -203,24 +252,77 @@ export type AddShareLinkToFolderRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface AddShareLinkToFolderRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * This value can only be `false` for items
+   * with a `type` of `folder`. */
   readonly canEdit?: boolean;
 }
 export interface AddShareLinkToFolderRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the folder (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: AddShareLinkToFolderRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToFolderRequestBodySharedLinkPermissionsField;
 }
 export interface AddShareLinkToFolderRequestBody {
+  /**
+   * The settings for the shared link to create on the folder.
+   *
+   * Use an empty object (`{}`) to use the default settings for shared
+   * links. */
   readonly sharedLink?: AddShareLinkToFolderRequestBodySharedLinkField;
 }
 export interface AddShareLinkToFolderQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class AddShareLinkToFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -234,6 +336,8 @@ export class AddShareLinkToFolderHeaders {
   }
 }
 export interface AddShareLinkToFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -245,24 +349,74 @@ export type UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField {
+  /**
+   * If the shared link allows for downloading of files.
+   * This can only be set when `access` is set to
+   * `open` or `company`. */
   readonly canDownload?: boolean;
+  /**
+   * If the shared link allows for previewing of files.
+   * This value is always `true`. For shared links on folders
+   * this also applies to any items in the folder. */
   readonly canPreview?: boolean;
+  /**
+   * This value can only be `false` for items
+   * with a `type` of `folder`. */
   readonly canEdit?: boolean;
 }
 export interface UpdateSharedLinkOnFolderRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the folder (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField;
 }
 export interface UpdateSharedLinkOnFolderRequestBody {
+  /**
+   * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnFolderRequestBodySharedLinkField;
 }
 export interface UpdateSharedLinkOnFolderQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class UpdateSharedLinkOnFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -276,6 +430,8 @@ export class UpdateSharedLinkOnFolderHeaders {
   }
 }
 export interface UpdateSharedLinkOnFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -284,12 +440,20 @@ export interface UpdateSharedLinkOnFolderHeadersInput {
 }
 export interface RemoveSharedLinkFromFolderRequestBodySharedLinkField {}
 export interface RemoveSharedLinkFromFolderRequestBody {
+  /**
+   * By setting this value to `null`, the shared link
+   * is removed from the folder. */
   readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField;
 }
 export interface RemoveSharedLinkFromFolderQueryParams {
+  /**
+   * Explicitly request the `shared_link` fields
+   * to be returned for this item. */
   readonly fields: string;
 }
 export class RemoveSharedLinkFromFolderHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -303,6 +467,8 @@ export class RemoveSharedLinkFromFolderHeaders {
   }
 }
 export interface RemoveSharedLinkFromFolderHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -331,6 +497,19 @@ export class SharedLinksFoldersManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Return the folder represented by a shared link.
+   *
+   * A shared folder can be represented by a shared link,
+   * which can originate within the current enterprise or within another.
+   *
+   * This endpoint allows an application to retrieve information about a
+   * shared folder when only given a shared link.
+   * @param {FindFolderForSharedLinkQueryParams} queryParams Query parameters of findFolderForSharedLink method
+   * @param {FindFolderForSharedLinkHeadersInput} headersInput Headers of findFolderForSharedLink method
+   * @param {FindFolderForSharedLinkOptionalsInput} optionalsInput
+   * @returns {Promise<FolderFull>}
+   */
   async findFolderForSharedLink(
     queryParams: FindFolderForSharedLinkQueryParams = {} satisfies FindFolderForSharedLinkQueryParams,
     headersInput: FindFolderForSharedLinkHeadersInput,
@@ -380,6 +559,23 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+  /**
+     * Gets the information for a shared link on a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {GetSharedLinkForFolderQueryParams} queryParams Query parameters of getSharedLinkForFolder method
+     * @param {GetSharedLinkForFolderOptionalsInput} optionalsInput
+     * @returns {Promise<FolderFull>}
+     */
   async getSharedLinkForFolder(
     folderId: string,
     queryParams: GetSharedLinkForFolderQueryParams,
@@ -417,6 +613,24 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+  /**
+     * Adds a shared link to a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {AddShareLinkToFolderRequestBody} requestBody Request body of addShareLinkToFolder method
+     * @param {AddShareLinkToFolderQueryParams} queryParams Query parameters of addShareLinkToFolder method
+     * @param {AddShareLinkToFolderOptionalsInput} optionalsInput
+     * @returns {Promise<FolderFull>}
+     */
   async addShareLinkToFolder(
     folderId: string,
     requestBody: AddShareLinkToFolderRequestBody = {} satisfies AddShareLinkToFolderRequestBody,
@@ -457,6 +671,24 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+  /**
+     * Updates a shared link on a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {UpdateSharedLinkOnFolderRequestBody} requestBody Request body of updateSharedLinkOnFolder method
+     * @param {UpdateSharedLinkOnFolderQueryParams} queryParams Query parameters of updateSharedLinkOnFolder method
+     * @param {UpdateSharedLinkOnFolderOptionalsInput} optionalsInput
+     * @returns {Promise<FolderFull>}
+     */
   async updateSharedLinkOnFolder(
     folderId: string,
     requestBody: UpdateSharedLinkOnFolderRequestBody = {} satisfies UpdateSharedLinkOnFolderRequestBody,
@@ -497,6 +729,24 @@ export class SharedLinksFoldersManager {
     )) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
+  /**
+     * Removes a shared link from a folder.
+     * @param {string} folderId The unique identifier that represent a folder.
+    
+    The ID for any folder can be determined
+    by visiting this folder in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/folder/123`
+    the `folder_id` is `123`.
+    
+    The root folder of a Box account is
+    always represented by the ID `0`.
+    Example: "12345"
+     * @param {RemoveSharedLinkFromFolderRequestBody} requestBody Request body of removeSharedLinkFromFolder method
+     * @param {RemoveSharedLinkFromFolderQueryParams} queryParams Query parameters of removeSharedLinkFromFolder method
+     * @param {RemoveSharedLinkFromFolderOptionalsInput} optionalsInput
+     * @returns {Promise<FolderFull>}
+     */
   async removeSharedLinkFromFolder(
     folderId: string,
     requestBody: RemoveSharedLinkFromFolderRequestBody = {} satisfies RemoveSharedLinkFromFolderRequestBody,

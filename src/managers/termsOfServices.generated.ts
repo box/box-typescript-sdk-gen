@@ -102,9 +102,13 @@ export interface UpdateTermsOfServiceByIdOptionalsInput {
 }
 export type GetTermsOfServiceQueryParamsTosTypeField = 'external' | 'managed';
 export interface GetTermsOfServiceQueryParams {
+  /**
+   * Limits the results to the terms of service of the given type. */
   readonly tosType?: GetTermsOfServiceQueryParamsTosTypeField;
 }
 export class GetTermsOfServiceHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -118,6 +122,8 @@ export class GetTermsOfServiceHeaders {
   }
 }
 export interface GetTermsOfServiceHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -129,11 +135,22 @@ export type CreateTermsOfServiceRequestBodyTosTypeField =
   | 'external'
   | 'managed';
 export interface CreateTermsOfServiceRequestBody {
+  /**
+   * Whether this terms of service is active. */
   readonly status: CreateTermsOfServiceRequestBodyStatusField;
+  /**
+   * The type of user to set the terms of
+   * service for. */
   readonly tosType?: CreateTermsOfServiceRequestBodyTosTypeField;
+  /**
+   * The terms of service text to display to users.
+   *
+   * The text can be set to empty if the `status` is set to `disabled`. */
   readonly text: string;
 }
 export class CreateTermsOfServiceHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -147,6 +164,8 @@ export class CreateTermsOfServiceHeaders {
   }
 }
 export interface CreateTermsOfServiceHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -154,6 +173,8 @@ export interface CreateTermsOfServiceHeadersInput {
       };
 }
 export class GetTermsOfServiceByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -167,6 +188,8 @@ export class GetTermsOfServiceByIdHeaders {
   }
 }
 export interface GetTermsOfServiceByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -177,10 +200,18 @@ export type UpdateTermsOfServiceByIdRequestBodyStatusField =
   | 'enabled'
   | 'disabled';
 export interface UpdateTermsOfServiceByIdRequestBody {
+  /**
+   * Whether this terms of service is active. */
   readonly status: UpdateTermsOfServiceByIdRequestBodyStatusField;
+  /**
+   * The terms of service text to display to users.
+   *
+   * The text can be set to empty if the `status` is set to `disabled`. */
   readonly text: string;
 }
 export class UpdateTermsOfServiceByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -194,6 +225,8 @@ export class UpdateTermsOfServiceByIdHeaders {
   }
 }
 export interface UpdateTermsOfServiceByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -221,6 +254,14 @@ export class TermsOfServicesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns the current terms of service text and settings
+   * for the enterprise.
+   * @param {GetTermsOfServiceQueryParams} queryParams Query parameters of getTermsOfService method
+   * @param {GetTermsOfServiceHeadersInput} headersInput Headers of getTermsOfService method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<TermsOfServices>}
+   */
   async getTermsOfService(
     queryParams: GetTermsOfServiceQueryParams = {} satisfies GetTermsOfServiceQueryParams,
     headersInput: GetTermsOfServiceHeadersInput = new GetTermsOfServiceHeaders(
@@ -256,6 +297,13 @@ export class TermsOfServicesManager {
     )) as FetchResponse;
     return deserializeTermsOfServices(response.data);
   }
+  /**
+   * Creates a terms of service for a given enterprise
+   * and type of user.
+   * @param {CreateTermsOfServiceRequestBody} requestBody Request body of createTermsOfService method
+   * @param {CreateTermsOfServiceOptionalsInput} optionalsInput
+   * @returns {Promise<TermsOfService>}
+   */
   async createTermsOfService(
     requestBody: CreateTermsOfServiceRequestBody,
     optionalsInput: CreateTermsOfServiceOptionalsInput = {}
@@ -288,6 +336,13 @@ export class TermsOfServicesManager {
     )) as FetchResponse;
     return deserializeTermsOfService(response.data);
   }
+  /**
+     * Fetches a specific terms of service.
+     * @param {string} termsOfServiceId The ID of the terms of service.
+    Example: "324234"
+     * @param {GetTermsOfServiceByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TermsOfService>}
+     */
   async getTermsOfServiceById(
     termsOfServiceId: string,
     optionalsInput: GetTermsOfServiceByIdOptionalsInput = {}
@@ -319,6 +374,14 @@ export class TermsOfServicesManager {
     )) as FetchResponse;
     return deserializeTermsOfService(response.data);
   }
+  /**
+     * Updates a specific terms of service.
+     * @param {string} termsOfServiceId The ID of the terms of service.
+    Example: "324234"
+     * @param {UpdateTermsOfServiceByIdRequestBody} requestBody Request body of updateTermsOfServiceById method
+     * @param {UpdateTermsOfServiceByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TermsOfService>}
+     */
   async updateTermsOfServiceById(
     termsOfServiceId: string,
     requestBody: UpdateTermsOfServiceByIdRequestBody,

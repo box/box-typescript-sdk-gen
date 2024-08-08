@@ -33,8 +33,14 @@ import { sdIsMap } from '../serialization/json.js';
 export type UserFullRoleField = 'admin' | 'coadmin' | 'user';
 export type UserFullEnterpriseTypeField = 'enterprise';
 export interface UserFullEnterpriseField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: UserFullEnterpriseTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export class UserFull extends User {

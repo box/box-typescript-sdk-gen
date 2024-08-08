@@ -18,8 +18,14 @@ import { sdIsMap } from '../serialization/json.js';
 export type TermsOfServiceStatusField = 'enabled' | 'disabled';
 export type TermsOfServiceEnterpriseTypeField = 'enterprise';
 export interface TermsOfServiceEnterpriseField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: TermsOfServiceEnterpriseTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export type TermsOfServiceTosTypeField = 'managed' | 'external';

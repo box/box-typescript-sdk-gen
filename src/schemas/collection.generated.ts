@@ -10,9 +10,19 @@ export type CollectionTypeField = 'collection';
 export type CollectionNameField = 'Favorites';
 export type CollectionCollectionTypeField = 'favorites';
 export interface Collection {
+  /**
+   * The unique identifier for this collection. */
   readonly id?: string;
+  /**
+   * `collection` */
   readonly type?: CollectionTypeField;
+  /**
+   * The name of the collection. */
   readonly name?: CollectionNameField;
+  /**
+   * The type of the collection. This is used to
+   * determine the proper visual treatment for
+   * collections. */
   readonly collectionType?: CollectionCollectionTypeField;
 }
 export function serializeCollectionTypeField(

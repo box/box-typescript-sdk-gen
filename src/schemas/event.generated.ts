@@ -154,14 +154,32 @@ export type EventEventTypeField =
   | string;
 export interface EventAdditionalDetailsField {}
 export interface Event {
+  /**
+   * `event` */
   readonly type?: string;
+  /**
+   * When the event object was created */
   readonly createdAt?: DateTime;
+  /**
+   * When the event object was recorded in database */
   readonly recordedAt?: DateTime;
+  /**
+   * The ID of the event object. You can use this to detect duplicate events */
   readonly eventId?: string;
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;
+  /**
+   * The session of the user that performed the action. Not all events will
+   * populate this attribute. */
   readonly sessionId?: string;
   readonly source?: AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser;
+  /**
+   * This object provides additional information about the event if available.
+   *
+   * This can include how a user performed an event as well as additional
+   * information to correlate an event to external KeySafe logs. Not all events
+   * have an `additional_details` object.  This object is only available in the
+   * Enterprise Events. */
   readonly additionalDetails?: EventAdditionalDetailsField;
 }
 export function serializeEventEventTypeField(

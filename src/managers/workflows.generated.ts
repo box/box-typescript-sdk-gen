@@ -64,12 +64,34 @@ export interface StartWorkflowOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetWorkflowsQueryParams {
+  /**
+   * The unique identifier that represent a folder.
+   *
+   * The ID for any folder can be determined
+   * by visiting this folder in the web application
+   * and copying the ID from the URL. For example,
+   * for the URL `https://*.app.box.com/folder/123`
+   * the `folder_id` is `123`.
+   *
+   * The root folder of a Box account is
+   * always represented by the ID `0`. */
   readonly folderId: string;
+  /**
+   * Type of trigger to search for. */
   readonly triggerType?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
 }
 export class GetWorkflowsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -83,6 +105,8 @@ export class GetWorkflowsHeaders {
   }
 }
 export interface GetWorkflowsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -91,27 +115,52 @@ export interface GetWorkflowsHeadersInput {
 }
 export type StartWorkflowRequestBodyTypeField = 'workflow_parameters';
 export interface StartWorkflowRequestBodyFlowField {
+  /**
+   * The type of the flow object */
   readonly type?: string;
+  /**
+   * The id of the flow */
   readonly id?: string;
 }
 export type StartWorkflowRequestBodyFilesTypeField = 'file';
 export interface StartWorkflowRequestBodyFilesField {
+  /**
+   * The type of the file object */
   readonly type?: StartWorkflowRequestBodyFilesTypeField;
+  /**
+   * The id of the file */
   readonly id?: string;
 }
 export type StartWorkflowRequestBodyFolderTypeField = 'folder';
 export interface StartWorkflowRequestBodyFolderField {
+  /**
+   * The type of the folder object */
   readonly type?: StartWorkflowRequestBodyFolderTypeField;
+  /**
+   * The id of the folder */
   readonly id?: string;
 }
 export interface StartWorkflowRequestBody {
+  /**
+   * The type of the parameters object */
   readonly type?: StartWorkflowRequestBodyTypeField;
+  /**
+   * The flow that will be triggered */
   readonly flow: StartWorkflowRequestBodyFlowField;
+  /**
+   * The array of files for which the workflow should start. All files
+   * must be in the workflow's configured folder. */
   readonly files: readonly StartWorkflowRequestBodyFilesField[];
+  /**
+   * The folder object for which the workflow is configured. */
   readonly folder: StartWorkflowRequestBodyFolderField;
+  /**
+   * A configurable outcome the workflow should complete. */
   readonly outcomes?: readonly Outcome[];
 }
 export class StartWorkflowHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -125,6 +174,8 @@ export class StartWorkflowHeaders {
   }
 }
 export interface StartWorkflowHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -148,6 +199,16 @@ export class WorkflowsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns list of workflows that act on a given `folder ID`, and
+   * have a flow with a trigger type of `WORKFLOW_MANUAL_START`.
+   *
+   * You application must be authorized to use the `Manage Box Relay` application
+   * scope within the developer console in to use this endpoint.
+   * @param {GetWorkflowsQueryParams} queryParams Query parameters of getWorkflows method
+   * @param {GetWorkflowsOptionalsInput} optionalsInput
+   * @returns {Promise<Workflows>}
+   */
   async getWorkflows(
     queryParams: GetWorkflowsQueryParams,
     optionalsInput: GetWorkflowsOptionalsInput = {}
@@ -186,6 +247,17 @@ export class WorkflowsManager {
     )) as FetchResponse;
     return deserializeWorkflows(response.data);
   }
+  /**
+     * Initiates a flow with a trigger type of `WORKFLOW_MANUAL_START`.
+     *
+     * You application must be authorized to use the `Manage Box Relay` application
+     * scope within the developer console.
+     * @param {string} workflowId The ID of the workflow.
+    Example: "12345"
+     * @param {StartWorkflowRequestBody} requestBody Request body of startWorkflow method
+     * @param {StartWorkflowOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async startWorkflow(
     workflowId: string,
     requestBody: StartWorkflowRequestBody,

@@ -102,6 +102,8 @@ export interface DeleteUserEmailAliasByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetUserEmailAliasesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -115,6 +117,8 @@ export class GetUserEmailAliasesHeaders {
   }
 }
 export interface GetUserEmailAliasesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -122,9 +126,19 @@ export interface GetUserEmailAliasesHeadersInput {
       };
 }
 export interface CreateUserEmailAliasRequestBody {
+  /**
+   * The email address to add to the account as an alias.
+   *
+   * Note: The domain of the email alias needs to be registered
+   *  to your enterprise.
+   * See the [domain verification guide](
+   *   https://support.box.com/hc/en-us/articles/4408619650579-Domain-Verification
+   *   ) for steps to add a new domain. */
   readonly email: string;
 }
 export class CreateUserEmailAliasHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -138,6 +152,8 @@ export class CreateUserEmailAliasHeaders {
   }
 }
 export interface CreateUserEmailAliasHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -145,6 +161,8 @@ export interface CreateUserEmailAliasHeadersInput {
       };
 }
 export class DeleteUserEmailAliasByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -158,6 +176,8 @@ export class DeleteUserEmailAliasByIdHeaders {
   }
 }
 export interface DeleteUserEmailAliasByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -184,6 +204,14 @@ export class EmailAliasesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves all email aliases for a user. The collection
+     * does not include the primary login for the user.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {GetUserEmailAliasesOptionalsInput} optionalsInput
+     * @returns {Promise<EmailAliases>}
+     */
   async getUserEmailAliases(
     userId: string,
     optionalsInput: GetUserEmailAliasesOptionalsInput = {}
@@ -216,6 +244,14 @@ export class EmailAliasesManager {
     )) as FetchResponse;
     return deserializeEmailAliases(response.data);
   }
+  /**
+     * Adds a new email alias to a user account..
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {CreateUserEmailAliasRequestBody} requestBody Request body of createUserEmailAlias method
+     * @param {CreateUserEmailAliasOptionalsInput} optionalsInput
+     * @returns {Promise<EmailAlias>}
+     */
   async createUserEmailAlias(
     userId: string,
     requestBody: CreateUserEmailAliasRequestBody,
@@ -251,6 +287,15 @@ export class EmailAliasesManager {
     )) as FetchResponse;
     return deserializeEmailAlias(response.data);
   }
+  /**
+     * Removes an email alias from a user.
+     * @param {string} userId The ID of the user.
+    Example: "12345"
+     * @param {string} emailAliasId The ID of the email alias.
+    Example: "23432"
+     * @param {DeleteUserEmailAliasByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteUserEmailAliasById(
     userId: string,
     emailAliasId: string,

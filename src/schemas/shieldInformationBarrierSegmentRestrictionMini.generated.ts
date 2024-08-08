@@ -15,18 +15,34 @@ import { sdIsMap } from '../serialization/json.js';
 export type ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField {
+  /**
+   * The ID reference of the
+   * requesting shield information barrier segment. */
   readonly id?: string;
+  /**
+   * The type of the shield information barrier segment */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField;
 }
 export type ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField {
+  /**
+   * The ID reference of the
+   * restricted shield information barrier segment. */
   readonly id?: string;
+  /**
+   * The type of the shield information segment */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField;
 }
 export type ShieldInformationBarrierSegmentRestrictionMini =
   ShieldInformationBarrierSegmentRestrictionBase & {
+    /**
+     * The `type` and `id` of the
+     * requested shield information barrier segment. */
     readonly shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField;
+    /**
+     * The `type` and `id` of the
+     * restricted shield information barrier segment. */
     readonly restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField;
   };
 export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField(

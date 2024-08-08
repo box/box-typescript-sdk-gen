@@ -142,7 +142,7 @@ test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig()
   const aiAskConfig: AiAgentAskOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
-      language: 'ja-JP',
+      language: 'en-US',
     } satisfies GetAiAgentDefaultConfigQueryParams);
   if (!(aiAskConfig.type == 'ai_agent_ask')) {
     throw new Error('Assertion failed');

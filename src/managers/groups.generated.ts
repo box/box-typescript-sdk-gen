@@ -150,12 +150,35 @@ export interface DeleteGroupByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetGroupsQueryParams {
+  /**
+   * Limits the results to only groups whose `name` starts
+   * with the search term. */
   readonly filterTerm?: string;
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
   readonly offset?: number;
 }
 export class GetGroupsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -169,6 +192,8 @@ export class GetGroupsHeaders {
   }
 }
 export interface GetGroupsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -184,17 +209,75 @@ export type CreateGroupRequestBodyMemberViewabilityLevelField =
   | 'admins_and_members'
   | 'all_managed_users';
 export interface CreateGroupRequestBody {
+  /**
+   * The name of the new group to be created. This name must be unique
+   * within the enterprise. */
   readonly name: string;
+  /**
+   * Keeps track of which external source this group is
+   * coming, for example `Active Directory`, or `Okta`.
+   *
+   * Setting this will also prevent Box admins from editing
+   * the group name and its members directly via the Box
+   * web application.
+   *
+   * This is desirable for one-way syncing of groups. */
   readonly provenance?: string;
+  /**
+   * An arbitrary identifier that can be used by
+   * external group sync tools to link this Box Group to
+   * an external group.
+   *
+   * Example values of this field
+   * could be an **Active Directory Object ID** or a **Google
+   * Group ID**.
+   *
+   * We recommend you use of this field in
+   * order to avoid issues when group names are updated in
+   * either Box or external systems. */
   readonly externalSyncIdentifier?: string;
+  /**
+   * A human readable description of the group. */
   readonly description?: string;
+  /**
+   * Specifies who can invite the group to collaborate
+   * on folders.
+   *
+   * When set to `admins_only` the enterprise admin, co-admins,
+   * and the group's admin can invite the group.
+   *
+   * When set to `admins_and_members` all the admins listed
+   * above and group members can invite the group.
+   *
+   * When set to `all_managed_users` all managed users in the
+   * enterprise can invite the group. */
   readonly invitabilityLevel?: CreateGroupRequestBodyInvitabilityLevelField;
+  /**
+   * Specifies who can see the members of the group.
+   *
+   * * `admins_only` - the enterprise admin, co-admins, group's
+   *   group admin
+   * * `admins_and_members` - all admins and group members
+   * * `all_managed_users` - all managed users in the
+   *   enterprise */
   readonly memberViewabilityLevel?: CreateGroupRequestBodyMemberViewabilityLevelField;
 }
 export interface CreateGroupQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class CreateGroupHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -208,6 +291,8 @@ export class CreateGroupHeaders {
   }
 }
 export interface CreateGroupHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -215,9 +300,21 @@ export interface CreateGroupHeadersInput {
       };
 }
 export interface GetGroupByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetGroupByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -231,6 +328,8 @@ export class GetGroupByIdHeaders {
   }
 }
 export interface GetGroupByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -246,17 +345,75 @@ export type UpdateGroupByIdRequestBodyMemberViewabilityLevelField =
   | 'admins_and_members'
   | 'all_managed_users';
 export interface UpdateGroupByIdRequestBody {
+  /**
+   * The name of the new group to be created. Must be unique within the
+   * enterprise. */
   readonly name?: string;
+  /**
+   * Keeps track of which external source this group is
+   * coming, for example `Active Directory`, or `Okta`.
+   *
+   * Setting this will also prevent Box admins from editing
+   * the group name and its members directly via the Box
+   * web application.
+   *
+   * This is desirable for one-way syncing of groups. */
   readonly provenance?: string;
+  /**
+   * An arbitrary identifier that can be used by
+   * external group sync tools to link this Box Group to
+   * an external group.
+   *
+   * Example values of this field
+   * could be an **Active Directory Object ID** or a **Google
+   * Group ID**.
+   *
+   * We recommend you use of this field in
+   * order to avoid issues when group names are updated in
+   * either Box or external systems. */
   readonly externalSyncIdentifier?: string;
+  /**
+   * A human readable description of the group. */
   readonly description?: string;
+  /**
+   * Specifies who can invite the group to collaborate
+   * on folders.
+   *
+   * When set to `admins_only` the enterprise admin, co-admins,
+   * and the group's admin can invite the group.
+   *
+   * When set to `admins_and_members` all the admins listed
+   * above and group members can invite the group.
+   *
+   * When set to `all_managed_users` all managed users in the
+   * enterprise can invite the group. */
   readonly invitabilityLevel?: UpdateGroupByIdRequestBodyInvitabilityLevelField;
+  /**
+   * Specifies who can see the members of the group.
+   *
+   * * `admins_only` - the enterprise admin, co-admins, group's
+   *   group admin
+   * * `admins_and_members` - all admins and group members
+   * * `all_managed_users` - all managed users in the
+   *   enterprise */
   readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyMemberViewabilityLevelField;
 }
 export interface UpdateGroupByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class UpdateGroupByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -270,6 +427,8 @@ export class UpdateGroupByIdHeaders {
   }
 }
 export interface UpdateGroupByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -277,6 +436,8 @@ export interface UpdateGroupByIdHeadersInput {
       };
 }
 export class DeleteGroupByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -290,6 +451,8 @@ export class DeleteGroupByIdHeaders {
   }
 }
 export interface DeleteGroupByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -318,6 +481,14 @@ export class GroupsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves all of the groups for a given enterprise. The user
+   * must have admin permissions to inspect enterprise's groups.
+   * @param {GetGroupsQueryParams} queryParams Query parameters of getGroups method
+   * @param {GetGroupsHeadersInput} headersInput Headers of getGroups method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<Groups>}
+   */
   async getGroups(
     queryParams: GetGroupsQueryParams = {} satisfies GetGroupsQueryParams,
     headersInput: GetGroupsHeadersInput = new GetGroupsHeaders({}),
@@ -353,6 +524,13 @@ export class GroupsManager {
     )) as FetchResponse;
     return deserializeGroups(response.data);
   }
+  /**
+   * Creates a new group of users in an enterprise. Only users with admin
+   * permissions can create new groups.
+   * @param {CreateGroupRequestBody} requestBody Request body of createGroup method
+   * @param {CreateGroupOptionalsInput} optionalsInput
+   * @returns {Promise<GroupFull>}
+   */
   async createGroup(
     requestBody: CreateGroupRequestBody,
     optionalsInput: CreateGroupOptionalsInput = {}
@@ -391,6 +569,15 @@ export class GroupsManager {
     )) as FetchResponse;
     return deserializeGroupFull(response.data);
   }
+  /**
+     * Retrieves information about a group. Only members of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupId The ID of the group.
+    Example: "57645"
+     * @param {GetGroupByIdOptionalsInput} optionalsInput
+     * @returns {Promise<GroupFull>}
+     */
   async getGroupById(
     groupId: string,
     optionalsInput: GetGroupByIdOptionalsInput = {}
@@ -431,6 +618,15 @@ export class GroupsManager {
     )) as FetchResponse;
     return deserializeGroupFull(response.data);
   }
+  /**
+     * Updates a specific group. Only admins of this
+     * group or users with admin-level permissions will be able to
+     * use this API.
+     * @param {string} groupId The ID of the group.
+    Example: "57645"
+     * @param {UpdateGroupByIdOptionalsInput} optionalsInput
+     * @returns {Promise<GroupFull>}
+     */
   async updateGroupById(
     groupId: string,
     optionalsInput: UpdateGroupByIdOptionalsInput = {}
@@ -475,6 +671,14 @@ export class GroupsManager {
     )) as FetchResponse;
     return deserializeGroupFull(response.data);
   }
+  /**
+     * Permanently deletes a group. Only users with
+     * admin-level permissions will be able to use this API.
+     * @param {string} groupId The ID of the group.
+    Example: "57645"
+     * @param {DeleteGroupByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteGroupById(
     groupId: string,
     optionalsInput: DeleteGroupByIdOptionalsInput = {}

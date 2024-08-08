@@ -22,6 +22,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface ConflictErrorContextInfoField {
+  /**
+   * A list of the file conflicts that caused this error. */
   readonly conflicts?: readonly FileConflict[];
 }
 export type ConflictError = ClientError & {};

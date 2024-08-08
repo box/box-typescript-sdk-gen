@@ -9,7 +9,12 @@ import { sdIsMap } from '../serialization/json.js';
 export type ShieldInformationBarrierSegmentRestrictionBaseTypeField =
   'shield_information_barrier_segment_restriction';
 export interface ShieldInformationBarrierSegmentRestrictionBase {
+  /**
+   * Shield information barrier segment restriction */
   readonly type?: ShieldInformationBarrierSegmentRestrictionBaseTypeField;
+  /**
+   * The unique identifier for the
+   * shield information barrier segment restriction. */
   readonly id?: string;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(

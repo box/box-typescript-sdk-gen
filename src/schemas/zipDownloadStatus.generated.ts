@@ -11,10 +11,26 @@ export type ZipDownloadStatusStateField =
   | 'failed'
   | 'succeeded';
 export interface ZipDownloadStatus {
+  /**
+   * The total number of files in the archive. */
   readonly totalFileCount?: number;
+  /**
+   * The number of files that have already been downloaded. */
   readonly downloadedFileCount?: number;
+  /**
+   * The number of files that have been skipped as they could not be
+   * downloaded. In many cases this is due to permission issues that have
+   * surfaced between the creation of the request for the archive and the
+   * archive being downloaded. */
   readonly skippedFileCount?: number;
+  /**
+   * The number of folders that have been skipped as they could not be
+   * downloaded. In many cases this is due to permission issues that have
+   * surfaced between the creation of the request for the archive and the
+   * archive being downloaded. */
   readonly skippedFolderCount?: number;
+  /**
+   * The state of the archive being downloaded. */
   readonly state?: ZipDownloadStatusStateField;
 }
 export function serializeZipDownloadStatusStateField(

@@ -163,6 +163,8 @@ export interface UpdateAllSkillCardsOnFileOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetBoxSkillCardsOnFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -176,6 +178,8 @@ export class GetBoxSkillCardsOnFileHeaders {
   }
 }
 export interface GetBoxSkillCardsOnFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -183,9 +187,13 @@ export interface GetBoxSkillCardsOnFileHeadersInput {
       };
 }
 export interface CreateBoxSkillCardsOnFileRequestBody {
+  /**
+   * A list of Box Skill cards to apply to this file. */
   readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
 }
 export class CreateBoxSkillCardsOnFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -199,6 +207,8 @@ export class CreateBoxSkillCardsOnFileHeaders {
   }
 }
 export interface CreateBoxSkillCardsOnFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -207,11 +217,19 @@ export interface CreateBoxSkillCardsOnFileHeadersInput {
 }
 export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace';
 export interface UpdateBoxSkillCardsOnFileRequestBody {
+  /**
+   * `replace` */
   readonly op?: UpdateBoxSkillCardsOnFileRequestBodyOpField;
+  /**
+   * The JSON Path that represents the card to replace. In most cases
+   * this will be in the format `/cards/{index}` where `index` is the
+   * zero-indexed position of the card in the list of cards. */
   readonly path?: string;
   readonly value?: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard;
 }
 export class UpdateBoxSkillCardsOnFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -225,6 +243,8 @@ export class UpdateBoxSkillCardsOnFileHeaders {
   }
 }
 export interface UpdateBoxSkillCardsOnFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -232,6 +252,8 @@ export interface UpdateBoxSkillCardsOnFileHeadersInput {
       };
 }
 export class DeleteBoxSkillCardsFromFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -245,6 +267,8 @@ export class DeleteBoxSkillCardsFromFileHeaders {
   }
 }
 export interface DeleteBoxSkillCardsFromFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -258,31 +282,62 @@ export type UpdateAllSkillCardsOnFileRequestBodyStatusField =
   | 'transient_failure'
   | 'permanent_failure';
 export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
+  /**
+   * A list of Box Skill cards to apply to this file. */
   readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
 }
 export type UpdateAllSkillCardsOnFileRequestBodyFileTypeField = 'file';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
+  /**
+   * `file` */
   readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileTypeField;
+  /**
+   * The ID of the file */
   readonly id?: string;
 }
 export type UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
   'file_version';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
+  /**
+   * `file_version` */
   readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField;
+  /**
+   * The ID of the file version */
   readonly id?: string;
 }
 export interface UpdateAllSkillCardsOnFileRequestBodyUsageField {
+  /**
+   * `file` */
   readonly unit?: string;
+  /**
+   * `1` */
   readonly value?: number;
 }
 export interface UpdateAllSkillCardsOnFileRequestBody {
+  /**
+   * Defines the status of this invocation. Set this to `success` when setting Skill cards. */
   readonly status: UpdateAllSkillCardsOnFileRequestBodyStatusField;
+  /**
+   * The metadata to set for this skill. This is a list of
+   * Box Skills cards. These cards will overwrite any existing Box
+   * skill cards on the file. */
   readonly metadata: UpdateAllSkillCardsOnFileRequestBodyMetadataField;
+  /**
+   * The file to assign the cards to. */
   readonly file: UpdateAllSkillCardsOnFileRequestBodyFileField;
+  /**
+   * The optional file version to assign the cards to. */
   readonly fileVersion?: UpdateAllSkillCardsOnFileRequestBodyFileVersionField;
+  /**
+   * A descriptor that defines what items are affected by this call.
+   *
+   * Set this to the default values when setting a card to a `success`
+   * state, and leave it out in most other situations. */
   readonly usage?: UpdateAllSkillCardsOnFileRequestBodyUsageField;
 }
 export class UpdateAllSkillCardsOnFileHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -296,6 +351,8 @@ export class UpdateAllSkillCardsOnFileHeaders {
   }
 }
 export interface UpdateAllSkillCardsOnFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -324,6 +381,19 @@ export class SkillsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * List the Box Skills metadata cards that are attached to a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetBoxSkillCardsOnFileOptionalsInput} optionalsInput
+     * @returns {Promise<SkillCardsMetadata>}
+     */
   async getBoxSkillCardsOnFile(
     fileId: string,
     optionalsInput: GetBoxSkillCardsOnFileOptionalsInput = {}
@@ -356,6 +426,20 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
+  /**
+     * Applies one or more Box Skills metadata cards to a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {CreateBoxSkillCardsOnFileRequestBody} requestBody Request body of createBoxSkillCardsOnFile method
+     * @param {CreateBoxSkillCardsOnFileOptionalsInput} optionalsInput
+     * @returns {Promise<SkillCardsMetadata>}
+     */
   async createBoxSkillCardsOnFile(
     fileId: string,
     requestBody: CreateBoxSkillCardsOnFileRequestBody,
@@ -391,6 +475,20 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
+  /**
+     * Updates one or more Box Skills metadata cards to a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {readonly UpdateBoxSkillCardsOnFileRequestBody[]} requestBody Request body of updateBoxSkillCardsOnFile method
+     * @param {UpdateBoxSkillCardsOnFileOptionalsInput} optionalsInput
+     * @returns {Promise<SkillCardsMetadata>}
+     */
   async updateBoxSkillCardsOnFile(
     fileId: string,
     requestBody: readonly UpdateBoxSkillCardsOnFileRequestBody[],
@@ -428,6 +526,19 @@ export class SkillsManager {
     )) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
+  /**
+     * Removes any Box Skills cards metadata from a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {DeleteBoxSkillCardsFromFileOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteBoxSkillCardsFromFile(
     fileId: string,
     optionalsInput: DeleteBoxSkillCardsFromFileOptionalsInput = {}
@@ -460,6 +571,15 @@ export class SkillsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+     * An alternative method that can be used to overwrite and update all Box Skill
+     * metadata cards on a file.
+     * @param {string} skillId The ID of the skill to apply this metadata for.
+    Example: "33243242"
+     * @param {UpdateAllSkillCardsOnFileRequestBody} requestBody Request body of updateAllSkillCardsOnFile method
+     * @param {UpdateAllSkillCardsOnFileOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async updateAllSkillCardsOnFile(
     skillId: string,
     requestBody: UpdateAllSkillCardsOnFileRequestBody,

@@ -17,16 +17,30 @@ export type CollaborationAllowlistExemptTargetTypeField =
 export type CollaborationAllowlistExemptTargetEnterpriseTypeField =
   'enterprise';
 export interface CollaborationAllowlistExemptTargetEnterpriseField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: CollaborationAllowlistExemptTargetEnterpriseTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export interface CollaborationAllowlistExemptTarget {
+  /**
+   * The unique identifier for this exemption */
   readonly id?: string;
+  /**
+   * `collaboration_whitelist_exempt_target` */
   readonly type?: CollaborationAllowlistExemptTargetTypeField;
   readonly enterprise?: CollaborationAllowlistExemptTargetEnterpriseField;
   readonly user?: UserMini;
+  /**
+   * The time the entry was created */
   readonly createdAt?: DateTime;
+  /**
+   * The time the entry was modified */
   readonly modifiedAt?: DateTime;
 }
 export function serializeCollaborationAllowlistExemptTargetTypeField(

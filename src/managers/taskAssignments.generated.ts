@@ -158,6 +158,8 @@ export interface DeleteTaskAssignmentByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetTaskAssignmentsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -171,6 +173,8 @@ export class GetTaskAssignmentsHeaders {
   }
 }
 export interface GetTaskAssignmentsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -179,7 +183,11 @@ export interface GetTaskAssignmentsHeadersInput {
 }
 export type CreateTaskAssignmentRequestBodyTaskTypeField = 'task';
 export class CreateTaskAssignmentRequestBodyTaskField {
+  /**
+   * The ID of the task */
   readonly id!: string;
+  /**
+   * The type of the item to assign. */
   readonly type: CreateTaskAssignmentRequestBodyTaskTypeField =
     'task' as CreateTaskAssignmentRequestBodyTaskTypeField;
   constructor(
@@ -195,18 +203,37 @@ export class CreateTaskAssignmentRequestBodyTaskField {
   }
 }
 export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
+  /**
+   * The ID of the task */
   readonly id: string;
+  /**
+   * The type of the item to assign. */
   readonly type?: CreateTaskAssignmentRequestBodyTaskTypeField;
 }
 export interface CreateTaskAssignmentRequestBodyAssignToField {
+  /**
+   * The ID of the user to assign to the
+   * task.
+   *
+   * To specify a user by their email
+   * address use the `login` parameter. */
   readonly id?: string;
+  /**
+   * The email address of the user to assign to the task.
+   * To specify a user by their user ID please use the `id` parameter. */
   readonly login?: string;
 }
 export interface CreateTaskAssignmentRequestBody {
+  /**
+   * The task to assign to a user. */
   readonly task: CreateTaskAssignmentRequestBodyTaskField;
+  /**
+   * The user to assign the task to. */
   readonly assignTo: CreateTaskAssignmentRequestBodyAssignToField;
 }
 export class CreateTaskAssignmentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -220,6 +247,8 @@ export class CreateTaskAssignmentHeaders {
   }
 }
 export interface CreateTaskAssignmentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -227,6 +256,8 @@ export interface CreateTaskAssignmentHeadersInput {
       };
 }
 export class GetTaskAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -240,6 +271,8 @@ export class GetTaskAssignmentByIdHeaders {
   }
 }
 export interface GetTaskAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -252,10 +285,21 @@ export type UpdateTaskAssignmentByIdRequestBodyResolutionStateField =
   | 'approved'
   | 'rejected';
 export interface UpdateTaskAssignmentByIdRequestBody {
+  /**
+   * An optional message by the assignee that can be added to the task. */
   readonly message?: string;
+  /**
+   * The state of the task assigned to the user.
+   *
+   * * For a task with an `action` value of `complete` this can be
+   * `incomplete` or `completed`.
+   * * For a task with an `action` of `review` this can be
+   * `incomplete`, `approved`, or `rejected`. */
   readonly resolutionState?: UpdateTaskAssignmentByIdRequestBodyResolutionStateField;
 }
 export class UpdateTaskAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -269,6 +313,8 @@ export class UpdateTaskAssignmentByIdHeaders {
   }
 }
 export interface UpdateTaskAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -276,6 +322,8 @@ export interface UpdateTaskAssignmentByIdHeadersInput {
       };
 }
 export class DeleteTaskAssignmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -289,6 +337,8 @@ export class DeleteTaskAssignmentByIdHeaders {
   }
 }
 export interface DeleteTaskAssignmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -317,6 +367,13 @@ export class TaskAssignmentsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Lists all of the assignments for a given task.
+     * @param {string} taskId The ID of the task.
+    Example: "12345"
+     * @param {GetTaskAssignmentsOptionalsInput} optionalsInput
+     * @returns {Promise<TaskAssignments>}
+     */
   async getTaskAssignments(
     taskId: string,
     optionalsInput: GetTaskAssignmentsOptionalsInput = {}
@@ -349,6 +406,15 @@ export class TaskAssignmentsManager {
     )) as FetchResponse;
     return deserializeTaskAssignments(response.data);
   }
+  /**
+   * Assigns a task to a user.
+   *
+   * A task can be assigned to more than one user by creating multiple
+   * assignments.
+   * @param {CreateTaskAssignmentRequestBody} requestBody Request body of createTaskAssignment method
+   * @param {CreateTaskAssignmentOptionalsInput} optionalsInput
+   * @returns {Promise<TaskAssignment>}
+   */
   async createTaskAssignment(
     requestBody: CreateTaskAssignmentRequestBody,
     optionalsInput: CreateTaskAssignmentOptionalsInput = {}
@@ -381,6 +447,13 @@ export class TaskAssignmentsManager {
     )) as FetchResponse;
     return deserializeTaskAssignment(response.data);
   }
+  /**
+     * Retrieves information about a task assignment.
+     * @param {string} taskAssignmentId The ID of the task assignment.
+    Example: "12345"
+     * @param {GetTaskAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TaskAssignment>}
+     */
   async getTaskAssignmentById(
     taskAssignmentId: string,
     optionalsInput: GetTaskAssignmentByIdOptionalsInput = {}
@@ -412,6 +485,14 @@ export class TaskAssignmentsManager {
     )) as FetchResponse;
     return deserializeTaskAssignment(response.data);
   }
+  /**
+     * Updates a task assignment. This endpoint can be
+     * used to update the state of a task assigned to a user.
+     * @param {string} taskAssignmentId The ID of the task assignment.
+    Example: "12345"
+     * @param {UpdateTaskAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TaskAssignment>}
+     */
   async updateTaskAssignmentById(
     taskAssignmentId: string,
     optionalsInput: UpdateTaskAssignmentByIdOptionalsInput = {}
@@ -447,6 +528,13 @@ export class TaskAssignmentsManager {
     )) as FetchResponse;
     return deserializeTaskAssignment(response.data);
   }
+  /**
+     * Deletes a specific task assignment.
+     * @param {string} taskAssignmentId The ID of the task assignment.
+    Example: "12345"
+     * @param {DeleteTaskAssignmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteTaskAssignmentById(
     taskAssignmentId: string,
     optionalsInput: DeleteTaskAssignmentByIdOptionalsInput = {}

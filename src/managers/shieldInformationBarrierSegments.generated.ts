@@ -175,6 +175,8 @@ export interface CreateShieldInformationBarrierSegmentOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetShieldInformationBarrierSegmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -193,6 +195,8 @@ export class GetShieldInformationBarrierSegmentByIdHeaders {
   }
 }
 export interface GetShieldInformationBarrierSegmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -200,10 +204,17 @@ export interface GetShieldInformationBarrierSegmentByIdHeadersInput {
       };
 }
 export interface UpdateShieldInformationBarrierSegmentByIdRequestBody {
+  /**
+   * The updated name for the shield information barrier segment. */
   readonly name?: string;
+  /**
+   * The updated description for
+   * the shield information barrier segment. */
   readonly description?: string;
 }
 export class UpdateShieldInformationBarrierSegmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -222,6 +233,8 @@ export class UpdateShieldInformationBarrierSegmentByIdHeaders {
   }
 }
 export interface UpdateShieldInformationBarrierSegmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -229,6 +242,8 @@ export interface UpdateShieldInformationBarrierSegmentByIdHeadersInput {
       };
 }
 export class DeleteShieldInformationBarrierSegmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -247,6 +262,8 @@ export class DeleteShieldInformationBarrierSegmentByIdHeaders {
   }
 }
 export interface DeleteShieldInformationBarrierSegmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -254,11 +271,22 @@ export interface DeleteShieldInformationBarrierSegmentByIdHeadersInput {
       };
 }
 export interface GetShieldInformationBarrierSegmentsQueryParams {
+  /**
+   * The ID of the shield information barrier. */
   readonly shieldInformationBarrierId: string;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetShieldInformationBarrierSegmentsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -272,6 +300,8 @@ export class GetShieldInformationBarrierSegmentsHeaders {
   }
 }
 export interface GetShieldInformationBarrierSegmentsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -280,10 +310,16 @@ export interface GetShieldInformationBarrierSegmentsHeadersInput {
 }
 export interface CreateShieldInformationBarrierSegmentRequestBody {
   readonly shieldInformationBarrier: ShieldInformationBarrierBase;
+  /**
+   * Name of the shield information barrier segment */
   readonly name: string;
+  /**
+   * Description of the shield information barrier segment */
   readonly description?: string;
 }
 export class CreateShieldInformationBarrierSegmentHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -299,6 +335,8 @@ export class CreateShieldInformationBarrierSegmentHeaders {
   }
 }
 export interface CreateShieldInformationBarrierSegmentHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -327,6 +365,13 @@ export class ShieldInformationBarrierSegmentsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves shield information barrier segment based on provided ID..
+     * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
+    Example: "3423"
+     * @param {GetShieldInformationBarrierSegmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<ShieldInformationBarrierSegment>}
+     */
   async getShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
     optionalsInput: GetShieldInformationBarrierSegmentByIdOptionalsInput = {}
@@ -358,6 +403,13 @@ export class ShieldInformationBarrierSegmentsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegment(response.data);
   }
+  /**
+     * Updates the shield information barrier segment based on provided ID..
+     * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
+    Example: "3423"
+     * @param {UpdateShieldInformationBarrierSegmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<ShieldInformationBarrierSegment>}
+     */
   async updateShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
     optionalsInput: UpdateShieldInformationBarrierSegmentByIdOptionalsInput = {}
@@ -395,6 +447,14 @@ export class ShieldInformationBarrierSegmentsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegment(response.data);
   }
+  /**
+     * Deletes the shield information barrier segment
+     * based on provided ID.
+     * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
+    Example: "3423"
+     * @param {DeleteShieldInformationBarrierSegmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteShieldInformationBarrierSegmentById(
     shieldInformationBarrierSegmentId: string,
     optionalsInput: DeleteShieldInformationBarrierSegmentByIdOptionalsInput = {}
@@ -426,6 +486,13 @@ export class ShieldInformationBarrierSegmentsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+   * Retrieves a list of shield information barrier segment objects
+   * for the specified Information Barrier ID.
+   * @param {GetShieldInformationBarrierSegmentsQueryParams} queryParams Query parameters of getShieldInformationBarrierSegments method
+   * @param {GetShieldInformationBarrierSegmentsOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierSegments>}
+   */
   async getShieldInformationBarrierSegments(
     queryParams: GetShieldInformationBarrierSegmentsQueryParams,
     optionalsInput: GetShieldInformationBarrierSegmentsOptionalsInput = {}
@@ -466,6 +533,12 @@ export class ShieldInformationBarrierSegmentsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegments(response.data);
   }
+  /**
+   * Creates a shield information barrier segment.
+   * @param {CreateShieldInformationBarrierSegmentRequestBody} requestBody Request body of createShieldInformationBarrierSegment method
+   * @param {CreateShieldInformationBarrierSegmentOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierSegment>}
+   */
   async createShieldInformationBarrierSegment(
     requestBody: CreateShieldInformationBarrierSegmentRequestBody,
     optionalsInput: CreateShieldInformationBarrierSegmentOptionalsInput = {}

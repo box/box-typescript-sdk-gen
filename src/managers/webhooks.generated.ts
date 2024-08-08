@@ -116,10 +116,19 @@ export interface DeleteWebhookByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetWebhooksQueryParams {
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetWebhooksHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -133,6 +142,8 @@ export class GetWebhooksHeaders {
   }
 }
 export interface GetWebhooksHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -141,7 +152,11 @@ export interface GetWebhooksHeadersInput {
 }
 export type CreateWebhookRequestBodyTargetTypeField = 'file' | 'folder';
 export interface CreateWebhookRequestBodyTargetField {
+  /**
+   * The ID of the item to trigger a webhook */
   readonly id?: string;
+  /**
+   * The type of item to trigger a webhook */
   readonly type?: CreateWebhookRequestBodyTargetTypeField;
 }
 export type CreateWebhookRequestBodyTriggersField =
@@ -186,11 +201,20 @@ export type CreateWebhookRequestBodyTriggersField =
   | 'SIGN_REQUEST.EXPIRED'
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export interface CreateWebhookRequestBody {
+  /**
+   * The item that will trigger the webhook */
   readonly target: CreateWebhookRequestBodyTargetField;
+  /**
+   * The URL that is notified by this webhook */
   readonly address: string;
+  /**
+   * An array of event names that this webhook is
+   * to be triggered for */
   readonly triggers: readonly CreateWebhookRequestBodyTriggersField[];
 }
 export class CreateWebhookHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -204,6 +228,8 @@ export class CreateWebhookHeaders {
   }
 }
 export interface CreateWebhookHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -211,6 +237,8 @@ export interface CreateWebhookHeadersInput {
       };
 }
 export class GetWebhookByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -224,6 +252,8 @@ export class GetWebhookByIdHeaders {
   }
 }
 export interface GetWebhookByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -232,7 +262,11 @@ export interface GetWebhookByIdHeadersInput {
 }
 export type UpdateWebhookByIdRequestBodyTargetTypeField = 'file' | 'folder';
 export interface UpdateWebhookByIdRequestBodyTargetField {
+  /**
+   * The ID of the item to trigger a webhook */
   readonly id?: string;
+  /**
+   * The type of item to trigger a webhook */
   readonly type?: UpdateWebhookByIdRequestBodyTargetTypeField;
 }
 export type UpdateWebhookByIdRequestBodyTriggersField =
@@ -277,11 +311,20 @@ export type UpdateWebhookByIdRequestBodyTriggersField =
   | 'SIGN_REQUEST.EXPIRED'
   | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
 export interface UpdateWebhookByIdRequestBody {
+  /**
+   * The item that will trigger the webhook */
   readonly target?: UpdateWebhookByIdRequestBodyTargetField;
+  /**
+   * The URL that is notified by this webhook */
   readonly address?: string;
+  /**
+   * An array of event names that this webhook is
+   * to be triggered for */
   readonly triggers?: readonly UpdateWebhookByIdRequestBodyTriggersField[];
 }
 export class UpdateWebhookByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -295,6 +338,8 @@ export class UpdateWebhookByIdHeaders {
   }
 }
 export interface UpdateWebhookByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -302,6 +347,8 @@ export interface UpdateWebhookByIdHeadersInput {
       };
 }
 export class DeleteWebhookByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -315,6 +362,8 @@ export class DeleteWebhookByIdHeaders {
   }
 }
 export interface DeleteWebhookByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -343,6 +392,18 @@ export class WebhooksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Returns all defined webhooks for the requesting application.
+   *
+   * This API only returns webhooks that are applied to files or folders that are
+   * owned by the authenticated user. This means that an admin can not see webhooks
+   * created by a service account unless the admin has access to those folders, and
+   * vice versa.
+   * @param {GetWebhooksQueryParams} queryParams Query parameters of getWebhooks method
+   * @param {GetWebhooksHeadersInput} headersInput Headers of getWebhooks method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<Webhooks>}
+   */
   async getWebhooks(
     queryParams: GetWebhooksQueryParams = {} satisfies GetWebhooksQueryParams,
     headersInput: GetWebhooksHeadersInput = new GetWebhooksHeaders({}),
@@ -377,6 +438,12 @@ export class WebhooksManager {
     )) as FetchResponse;
     return deserializeWebhooks(response.data);
   }
+  /**
+   * Creates a webhook.
+   * @param {CreateWebhookRequestBody} requestBody Request body of createWebhook method
+   * @param {CreateWebhookOptionalsInput} optionalsInput
+   * @returns {Promise<Webhook>}
+   */
   async createWebhook(
     requestBody: CreateWebhookRequestBody,
     optionalsInput: CreateWebhookOptionalsInput = {}
@@ -408,6 +475,13 @@ export class WebhooksManager {
     )) as FetchResponse;
     return deserializeWebhook(response.data);
   }
+  /**
+     * Retrieves a specific webhook
+     * @param {string} webhookId The ID of the webhook.
+    Example: "3321123"
+     * @param {GetWebhookByIdOptionalsInput} optionalsInput
+     * @returns {Promise<Webhook>}
+     */
   async getWebhookById(
     webhookId: string,
     optionalsInput: GetWebhookByIdOptionalsInput = {}
@@ -438,6 +512,13 @@ export class WebhooksManager {
     )) as FetchResponse;
     return deserializeWebhook(response.data);
   }
+  /**
+     * Updates a webhook.
+     * @param {string} webhookId The ID of the webhook.
+    Example: "3321123"
+     * @param {UpdateWebhookByIdOptionalsInput} optionalsInput
+     * @returns {Promise<Webhook>}
+     */
   async updateWebhookById(
     webhookId: string,
     optionalsInput: UpdateWebhookByIdOptionalsInput = {}
@@ -473,6 +554,13 @@ export class WebhooksManager {
     )) as FetchResponse;
     return deserializeWebhook(response.data);
   }
+  /**
+     * Deletes a webhook.
+     * @param {string} webhookId The ID of the webhook.
+    Example: "3321123"
+     * @param {DeleteWebhookByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteWebhookById(
     webhookId: string,
     optionalsInput: DeleteWebhookByIdOptionalsInput = {}

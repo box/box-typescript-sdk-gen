@@ -24,6 +24,8 @@ export type FileOrFolderScopeScopeField =
   | 'item_share'
   | 'item_upload';
 export interface FileOrFolderScope {
+  /**
+   * The scopes for the resource access */
   readonly scope?: FileOrFolderScopeScopeField;
   readonly object?: FileMiniOrFolderMini;
 }

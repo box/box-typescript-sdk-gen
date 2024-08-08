@@ -27,15 +27,29 @@ import { sdIsMap } from '../serialization/json.js';
 export type ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
+  /**
+   * The ID reference of the requesting
+   * shield information barrier segment. */
   readonly id?: string;
+  /**
+   * The type of the shield information barrier segment */
   readonly type?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField;
 }
 export type ShieldInformationBarrierSegmentMember =
   ShieldInformationBarrierSegmentMemberMini & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
+    /**
+     * The `type` and `id` of the requested
+     * shield information barrier segment. */
     readonly shieldInformationBarrierSegment?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
+    /**
+     * ISO date time string when this shield
+     * information barrier object was created. */
     readonly createdAt?: DateTime;
     readonly createdBy?: UserBase;
+    /**
+     * ISO date time string when this
+     * shield information barrier segment Member was updated. */
     readonly updatedAt?: DateTime;
     readonly updatedBy?: UserBase;
   };

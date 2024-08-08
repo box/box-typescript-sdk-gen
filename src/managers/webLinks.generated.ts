@@ -116,15 +116,28 @@ export interface DeleteWebLinkByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface CreateWebLinkRequestBodyParentField {
+  /**
+   * The ID of parent folder */
   readonly id: string;
 }
 export interface CreateWebLinkRequestBody {
+  /**
+   * The URL that this web link links to. Must start with
+   * `"http://"` or `"https://"`. */
   readonly url: string;
+  /**
+   * The parent folder to create the web link within. */
   readonly parent: CreateWebLinkRequestBodyParentField;
+  /**
+   * Name of the web link. Defaults to the URL if not set. */
   readonly name?: string;
+  /**
+   * Description of the web link. */
   readonly description?: string;
 }
 export class CreateWebLinkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -138,6 +151,8 @@ export class CreateWebLinkHeaders {
   }
 }
 export interface CreateWebLinkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -145,7 +160,20 @@ export interface CreateWebLinkHeadersInput {
       };
 }
 export class GetWebLinkByIdHeaders {
+  /**
+   * The URL, and optional password, for the shared link of this item.
+   *
+   * This header can be used to access items that have not been
+   * explicitly shared with a user.
+   *
+   * Use the format `shared_link=[link]` or if a password is required then
+   * use `shared_link=[link]&shared_link_password=[password]`.
+   *
+   * This header can be used on the file or folder shared, as well as on any files
+   * or folders nested within the item. */
   readonly boxapi?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -162,7 +190,20 @@ export class GetWebLinkByIdHeaders {
   }
 }
 export interface GetWebLinkByIdHeadersInput {
+  /**
+   * The URL, and optional password, for the shared link of this item.
+   *
+   * This header can be used to access items that have not been
+   * explicitly shared with a user.
+   *
+   * Use the format `shared_link=[link]` or if a password is required then
+   * use `shared_link=[link]&shared_link_password=[password]`.
+   *
+   * This header can be used on the file or folder shared, as well as on any files
+   * or folders nested within the item. */
   readonly boxapi?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -170,6 +211,8 @@ export interface GetWebLinkByIdHeadersInput {
       };
 }
 export interface UpdateWebLinkByIdRequestBodyParentField {
+  /**
+   * The ID of parent item */
   readonly id?: string;
 }
 export type UpdateWebLinkByIdRequestBodySharedLinkAccessField =
@@ -177,19 +220,62 @@ export type UpdateWebLinkByIdRequestBodySharedLinkAccessField =
   | 'company'
   | 'collaborators';
 export interface UpdateWebLinkByIdRequestBodySharedLinkField {
+  /**
+   * The level of access for the shared link. This can be
+   * restricted to anyone with the link (`open`), only people
+   * within the company (`company`) and only those who
+   * have been invited to the folder (`collaborators`).
+   *
+   * If not set, this field defaults to the access level specified
+   * by the enterprise admin. To create a shared link with this
+   * default setting pass the `shared_link` object with
+   * no `access` field, for example `{ "shared_link": {} }`.
+   *
+   * The `company` access level is only available to paid
+   * accounts. */
   readonly access?: UpdateWebLinkByIdRequestBodySharedLinkAccessField;
+  /**
+   * The password required to access the shared link. Set the
+   * password to `null` to remove it.
+   * Passwords must now be at least eight characters
+   * long and include a number, upper case letter, or
+   * a non-numeric or non-alphabetic character.
+   * A password can only be set when `access` is set to `open`. */
   readonly password?: string;
+  /**
+   * Defines a custom vanity name to use in the shared link URL,
+   * for example `https://app.box.com/v/my-shared-link`.
+   *
+   * Custom URLs should not be used when sharing sensitive content
+   * as vanity URLs are a lot easier to guess than regular shared
+   * links. */
   readonly vanityName?: string;
+  /**
+   * The timestamp at which this shared link will
+   * expire. This field can only be set by
+   * users with paid accounts. The value must be greater than the
+   * current date and time. */
   readonly unsharedAt?: DateTime;
 }
 export interface UpdateWebLinkByIdRequestBody {
+  /**
+   * The new URL that the web link links to. Must start with
+   * `"http://"` or `"https://"`. */
   readonly url?: string;
   readonly parent?: UpdateWebLinkByIdRequestBodyParentField;
+  /**
+   * A new name for the web link. Defaults to the URL if not set. */
   readonly name?: string;
+  /**
+   * A new description of the web link. */
   readonly description?: string;
+  /**
+   * The settings for the shared link to update. */
   readonly sharedLink?: UpdateWebLinkByIdRequestBodySharedLinkField;
 }
 export class UpdateWebLinkByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -203,6 +289,8 @@ export class UpdateWebLinkByIdHeaders {
   }
 }
 export interface UpdateWebLinkByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -210,6 +298,8 @@ export interface UpdateWebLinkByIdHeadersInput {
       };
 }
 export class DeleteWebLinkByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -223,6 +313,8 @@ export class DeleteWebLinkByIdHeaders {
   }
 }
 export interface DeleteWebLinkByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -250,6 +342,12 @@ export class WebLinksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Creates a web link object within a folder.
+   * @param {CreateWebLinkRequestBody} requestBody Request body of createWebLink method
+   * @param {CreateWebLinkOptionalsInput} optionalsInput
+   * @returns {Promise<WebLink>}
+   */
   async createWebLink(
     requestBody: CreateWebLinkRequestBody,
     optionalsInput: CreateWebLinkOptionalsInput = {}
@@ -281,6 +379,13 @@ export class WebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Retrieve information about a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {GetWebLinkByIdOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async getWebLinkById(
     webLinkId: string,
     optionalsInput: GetWebLinkByIdOptionalsInput = {}
@@ -314,6 +419,13 @@ export class WebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Updates a web link object.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {UpdateWebLinkByIdOptionalsInput} optionalsInput
+     * @returns {Promise<WebLink>}
+     */
   async updateWebLinkById(
     webLinkId: string,
     optionalsInput: UpdateWebLinkByIdOptionalsInput = {}
@@ -349,6 +461,13 @@ export class WebLinksManager {
     )) as FetchResponse;
     return deserializeWebLink(response.data);
   }
+  /**
+     * Deletes a web link.
+     * @param {string} webLinkId The ID of the web link.
+    Example: "12345"
+     * @param {DeleteWebLinkByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteWebLinkById(
     webLinkId: string,
     optionalsInput: DeleteWebLinkByIdOptionalsInput = {}

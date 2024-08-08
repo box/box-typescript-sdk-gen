@@ -8,8 +8,15 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type WebLinkBaseTypeField = 'web_link';
 export class WebLinkBase {
+  /**
+   * The unique identifier for this web link */
   readonly id!: string;
+  /**
+   * `web_link` */
   readonly type: WebLinkBaseTypeField = 'web_link' as WebLinkBaseTypeField;
+  /**
+   * The entity tag of this web link. Used with `If-Match`
+   * headers. */
   readonly etag?: string;
   constructor(
     fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>
@@ -26,8 +33,15 @@ export class WebLinkBase {
   }
 }
 export interface WebLinkBaseInput {
+  /**
+   * The unique identifier for this web link */
   readonly id: string;
+  /**
+   * `web_link` */
   readonly type?: WebLinkBaseTypeField;
+  /**
+   * The entity tag of this web link. Used with `If-Match`
+   * headers. */
   readonly etag?: string;
 }
 export function serializeWebLinkBaseTypeField(

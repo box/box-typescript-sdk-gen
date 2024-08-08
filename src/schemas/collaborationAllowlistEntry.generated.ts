@@ -17,16 +17,32 @@ export type CollaborationAllowlistEntryDirectionField =
   | 'both';
 export type CollaborationAllowlistEntryEnterpriseTypeField = 'enterprise';
 export interface CollaborationAllowlistEntryEnterpriseField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: CollaborationAllowlistEntryEnterpriseTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export interface CollaborationAllowlistEntry {
+  /**
+   * The unique identifier for this entry */
   readonly id?: string;
+  /**
+   * `collaboration_whitelist_entry` */
   readonly type?: CollaborationAllowlistEntryTypeField;
+  /**
+   * The whitelisted domain */
   readonly domain?: string;
+  /**
+   * The direction of the collaborations to allow. */
   readonly direction?: CollaborationAllowlistEntryDirectionField;
   readonly enterprise?: CollaborationAllowlistEntryEnterpriseField;
+  /**
+   * The time the entry was created at */
   readonly createdAt?: DateTime;
 }
 export function serializeCollaborationAllowlistEntryTypeField(

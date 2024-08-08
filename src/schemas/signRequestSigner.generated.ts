@@ -20,15 +20,34 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type SignRequestSignerSignerDecisionTypeField = 'signed' | 'declined';
 export interface SignRequestSignerSignerDecisionField {
+  /**
+   * Type of decision made by the signer. */
   readonly type?: SignRequestSignerSignerDecisionTypeField;
+  /**
+   * Date and Time that the decision was made. */
   readonly finalizedAt?: DateTime;
+  /**
+   * Additional info about the decision, such as the decline reason from the signer. */
   readonly additionalInfo?: string;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
+  /**
+   * Set to `true` if the signer views the document */
   readonly hasViewedDocument?: boolean;
+  /**
+   * Final decision made by the signer. */
   readonly signerDecision?: SignRequestSignerSignerDecisionField;
   readonly inputs?: readonly SignRequestSignerInput[];
+  /**
+   * URL to direct a signer to for signing */
   readonly embedUrl?: string;
+  /**
+   * This URL is specifically designed for
+   * signing documents within an HTML `iframe` tag.
+   * It will be returned in the response
+   * only if the `embed_url_external_user_id`
+   * parameter was passed in the
+   * `create Box Sign request` call. */
   readonly iframeableEmbedUrl?: string;
 };
 export function serializeSignRequestSignerSignerDecisionTypeField(

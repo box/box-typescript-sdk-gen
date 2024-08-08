@@ -89,19 +89,39 @@ export interface GetInviteByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface CreateInviteRequestBodyEnterpriseField {
+  /**
+   * The ID of the enterprise */
   readonly id: string;
 }
 export interface CreateInviteRequestBodyActionableByField {
+  /**
+   * The login of the invited user */
   readonly login?: string;
 }
 export interface CreateInviteRequestBody {
+  /**
+   * The enterprise to invite the user to */
   readonly enterprise: CreateInviteRequestBodyEnterpriseField;
+  /**
+   * The user to invite */
   readonly actionableBy: CreateInviteRequestBodyActionableByField;
 }
 export interface CreateInviteQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class CreateInviteHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -115,6 +135,8 @@ export class CreateInviteHeaders {
   }
 }
 export interface CreateInviteHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -122,9 +144,21 @@ export interface CreateInviteHeadersInput {
       };
 }
 export interface GetInviteByIdQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
   readonly fields?: readonly string[];
 }
 export class GetInviteByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -138,6 +172,8 @@ export class GetInviteByIdHeaders {
   }
 }
 export interface GetInviteByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -161,6 +197,20 @@ export class InvitesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Invites an existing external user to join an enterprise.
+   *
+   * The existing user can not be part of another enterprise and
+   * must already have a Box account. Once invited, the user will receive an
+   * email and are prompted to accept the invitation within the
+   * Box web application.
+   *
+   * This method requires the "Manage An Enterprise" scope enabled for
+   * the application, which can be enabled within the developer console.
+   * @param {CreateInviteRequestBody} requestBody Request body of createInvite method
+   * @param {CreateInviteOptionalsInput} optionalsInput
+   * @returns {Promise<Invite>}
+   */
   async createInvite(
     requestBody: CreateInviteRequestBody,
     optionalsInput: CreateInviteOptionalsInput = {}
@@ -199,6 +249,13 @@ export class InvitesManager {
     )) as FetchResponse;
     return deserializeInvite(response.data);
   }
+  /**
+     * Returns the status of a user invite.
+     * @param {string} inviteId The ID of an invite.
+    Example: "213723"
+     * @param {GetInviteByIdOptionalsInput} optionalsInput
+     * @returns {Promise<Invite>}
+     */
   async getInviteById(
     inviteId: string,
     optionalsInput: GetInviteByIdOptionalsInput = {}

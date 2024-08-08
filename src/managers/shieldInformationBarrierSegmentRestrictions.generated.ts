@@ -141,6 +141,8 @@ export interface CreateShieldInformationBarrierSegmentRestrictionOptionalsInput 
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetShieldInformationBarrierSegmentRestrictionByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -162,6 +164,8 @@ export class GetShieldInformationBarrierSegmentRestrictionByIdHeaders {
   }
 }
 export interface GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -169,6 +173,8 @@ export interface GetShieldInformationBarrierSegmentRestrictionByIdHeadersInput {
       };
 }
 export class DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -190,6 +196,8 @@ export class DeleteShieldInformationBarrierSegmentRestrictionByIdHeaders {
   }
 }
 export interface DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -197,11 +205,22 @@ export interface DeleteShieldInformationBarrierSegmentRestrictionByIdHeadersInpu
       };
 }
 export interface GetShieldInformationBarrierSegmentRestrictionsQueryParams {
+  /**
+   * The ID of the shield information barrier segment. */
   readonly shieldInformationBarrierSegmentId: string;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
   readonly limit?: number;
 }
 export class GetShieldInformationBarrierSegmentRestrictionsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -223,6 +242,8 @@ export class GetShieldInformationBarrierSegmentRestrictionsHeaders {
   }
 }
 export interface GetShieldInformationBarrierSegmentRestrictionsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -234,20 +255,40 @@ export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField
 export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField {
+  /**
+   * The ID reference of the requesting
+   * shield information barrier segment. */
   readonly id?: string;
+  /**
+   * The type of the shield barrier segment for this member. */
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField;
 }
 export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField =
   'shield_information_barrier_segment';
 export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField {
+  /**
+   * The ID reference of the restricted
+   * shield information barrier segment. */
   readonly id?: string;
+  /**
+   * The type of the restricted shield
+   * information barrier segment. */
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField;
 }
 export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
+  /**
+   * The type of the shield barrier segment
+   * restriction for this member. */
   readonly type: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField =
     'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
+  /**
+   * The `type` and `id` of the requested
+   * shield information barrier segment. */
   readonly shieldInformationBarrierSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
+  /**
+   * The `type` and `id` of the restricted
+   * shield information barrier segment. */
   readonly restrictedSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
   constructor(
     fields: Omit<
@@ -277,12 +318,23 @@ export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
   }
 }
 export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput {
+  /**
+   * The type of the shield barrier segment
+   * restriction for this member. */
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
+  /**
+   * The `type` and `id` of the requested
+   * shield information barrier segment. */
   readonly shieldInformationBarrierSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField;
+  /**
+   * The `type` and `id` of the restricted
+   * shield information barrier segment. */
   readonly restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
 }
 export class CreateShieldInformationBarrierSegmentRestrictionHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -304,6 +356,8 @@ export class CreateShieldInformationBarrierSegmentRestrictionHeaders {
   }
 }
 export interface CreateShieldInformationBarrierSegmentRestrictionHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -336,6 +390,14 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieves a shield information barrier segment
+     * restriction based on provided ID.
+     * @param {string} shieldInformationBarrierSegmentRestrictionId The ID of the shield information barrier segment Restriction.
+    Example: "4563"
+     * @param {GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<ShieldInformationBarrierSegmentRestriction>}
+     */
   async getShieldInformationBarrierSegmentRestrictionById(
     shieldInformationBarrierSegmentRestrictionId: string,
     optionalsInput: GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput = {}
@@ -367,6 +429,14 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
     )) as FetchResponse;
     return deserializeShieldInformationBarrierSegmentRestriction(response.data);
   }
+  /**
+     * Delete shield information barrier segment restriction
+     * based on provided ID.
+     * @param {string} shieldInformationBarrierSegmentRestrictionId The ID of the shield information barrier segment Restriction.
+    Example: "4563"
+     * @param {DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteShieldInformationBarrierSegmentRestrictionById(
     shieldInformationBarrierSegmentRestrictionId: string,
     optionalsInput: DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput = {}
@@ -398,6 +468,13 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
     )) as FetchResponse;
     return void 0;
   }
+  /**
+   * Lists shield information barrier segment restrictions
+   * based on provided segment ID.
+   * @param {GetShieldInformationBarrierSegmentRestrictionsQueryParams} queryParams Query parameters of getShieldInformationBarrierSegmentRestrictions method
+   * @param {GetShieldInformationBarrierSegmentRestrictionsOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierSegmentRestrictions>}
+   */
   async getShieldInformationBarrierSegmentRestrictions(
     queryParams: GetShieldInformationBarrierSegmentRestrictionsQueryParams,
     optionalsInput: GetShieldInformationBarrierSegmentRestrictionsOptionalsInput = {}
@@ -440,6 +517,13 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       response.data
     );
   }
+  /**
+   * Creates a shield information barrier
+   * segment restriction object.
+   * @param {CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput} requestBodyInput Request body of createShieldInformationBarrierSegmentRestriction method
+   * @param {CreateShieldInformationBarrierSegmentRestrictionOptionalsInput} optionalsInput
+   * @returns {Promise<ShieldInformationBarrierSegmentRestriction>}
+   */
   async createShieldInformationBarrierSegmentRestriction(
     requestBodyInput: CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput,
     optionalsInput: CreateShieldInformationBarrierSegmentRestrictionOptionalsInput = {}

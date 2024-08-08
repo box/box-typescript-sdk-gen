@@ -15,18 +15,36 @@ import { sdIsMap } from '../serialization/json.js';
 export type InviteTypeField = 'invite';
 export type InviteInvitedToTypeField = 'enterprise';
 export interface InviteInvitedToField {
+  /**
+   * The unique identifier for this enterprise. */
   readonly id?: string;
+  /**
+   * `enterprise` */
   readonly type?: InviteInvitedToTypeField;
+  /**
+   * The name of the enterprise */
   readonly name?: string;
 }
 export class Invite {
+  /**
+   * The unique identifier for this invite */
   readonly id!: string;
+  /**
+   * `invite` */
   readonly type: InviteTypeField = 'invite' as InviteTypeField;
+  /**
+   * A representation of a Box enterprise */
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
+  /**
+   * The status of the invite */
   readonly status?: string;
+  /**
+   * When the invite was created */
   readonly createdAt?: DateTime;
+  /**
+   * When the invite was modified. */
   readonly modifiedAt?: DateTime;
   constructor(fields: Omit<Invite, 'type'> & Partial<Pick<Invite, 'type'>>) {
     if (fields.id) {
@@ -56,13 +74,25 @@ export class Invite {
   }
 }
 export interface InviteInput {
+  /**
+   * The unique identifier for this invite */
   readonly id: string;
+  /**
+   * `invite` */
   readonly type?: InviteTypeField;
+  /**
+   * A representation of a Box enterprise */
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
+  /**
+   * The status of the invite */
   readonly status?: string;
+  /**
+   * When the invite was created */
   readonly createdAt?: DateTime;
+  /**
+   * When the invite was modified. */
   readonly modifiedAt?: DateTime;
 }
 export function serializeInviteTypeField(val: InviteTypeField): SerializedData {

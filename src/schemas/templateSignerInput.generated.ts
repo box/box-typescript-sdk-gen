@@ -37,24 +37,54 @@ export type TemplateSignerInputContentTypeField =
   | 'radio'
   | 'dropdown';
 export interface TemplateSignerInputCoordinatesField {
+  /**
+   * Relative x coordinate to the page the input is on, ranging from 0 to 1. */
   readonly x?: number;
+  /**
+   * Relative y coordinate to the page the input is on, ranging from 0 to 1. */
   readonly y?: number;
 }
 export interface TemplateSignerInputDimensionsField {
+  /**
+   * Relative width to the page the input is on, ranging from 0 to 1. */
   readonly width?: number;
+  /**
+   * Relative height to the page the input is on, ranging from 0 to 1. */
   readonly height?: number;
 }
 export type TemplateSignerInput = SignRequestPrefillTag & {
+  /**
+   * Type of input */
   readonly type?: TemplateSignerInputTypeField;
+  /**
+   * Content type of input */
   readonly contentType?: TemplateSignerInputContentTypeField;
+  /**
+   * Whether or not the input is required. */
   readonly isRequired?: boolean;
+  /**
+   * Index of page that the input is on. */
   readonly pageIndex: number;
+  /**
+   * Document identifier. */
   readonly documentId?: string;
+  /**
+   * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
   readonly dropdownChoices?: readonly string[];
+  /**
+   * When the input is of type `radio` they can be grouped to gather with this identifier. */
   readonly groupId?: string;
+  /**
+   * Where the input is located on a page. */
   readonly coordinates?: TemplateSignerInputCoordinatesField;
+  /**
+   * The size of the input. */
   readonly dimensions?: TemplateSignerInputDimensionsField;
+  /**
+   * The label field is used especially for text, attachment, radio, and checkbox type inputs. */
   readonly label?: string;
+  /**
+   * Whether this input was defined as read-only(immutable by signers) or not */
   readonly readOnly?: boolean;
 };
 export function serializeTemplateSignerInputTypeField(

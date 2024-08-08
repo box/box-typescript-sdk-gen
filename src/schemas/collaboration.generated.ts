@@ -33,15 +33,33 @@ export type CollaborationRoleField =
   | 'owner';
 export type CollaborationStatusField = 'accepted' | 'pending' | 'rejected';
 export interface CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField {
+  /**
+   * Whether or not the terms of service have been accepted.  The
+   * field is `null` when there is no terms of service required. */
   readonly isAccepted?: boolean;
   readonly termsOfService?: TermsOfServiceBase;
 }
 export interface CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField {
+  /**
+   * Whether or not the enterprise that owns the content requires
+   * a strong password to collaborate on the content. */
   readonly enterpriseHasStrongPasswordRequiredForExternalUsers?: boolean;
+  /**
+   * Whether or not the user has a strong password set for their
+   * account. The field is `null` when a strong password is not
+   * required. */
   readonly userHasStrongPassword?: boolean;
 }
 export interface CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField {
+  /**
+   * Whether or not the enterprise that owns the content requires
+   * two-factor authentication to be enabled in order to
+   * collaborate on the content. */
   readonly enterpriseHasTwoFactorAuthEnabled?: boolean;
+  /**
+   * Whether or not the user has two-factor authentication
+   * enabled. The field is `null` when two-factor
+   * authentication is not required. */
   readonly userHasTwoFactorAuthenticationEnabled?: boolean;
 }
 export interface CollaborationAcceptanceRequirementsStatusField {
@@ -50,19 +68,47 @@ export interface CollaborationAcceptanceRequirementsStatusField {
   readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField;
 }
 export class Collaboration {
+  /**
+   * The unique identifier for this collaboration. */
   readonly id!: string;
+  /**
+   * `collaboration` */
   readonly type: CollaborationTypeField =
     'collaboration' as CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
+  /**
+   * The email address used to invite an unregistered collaborator, if
+   * they are not a registered user. */
   readonly inviteEmail?: string;
+  /**
+   * The level of access granted. */
   readonly role?: CollaborationRoleField;
+  /**
+   * When the collaboration will expire, or `null` if no expiration
+   * date is set. */
   readonly expiresAt?: DateTime;
+  /**
+   * If set to `true`, collaborators have access to
+   * shared items, but such items won't be visible in the
+   * All Files list. Additionally, collaborators won't
+   * see the the path to the root folder for the
+   * shared item. */
   readonly isAccessOnly?: boolean;
+  /**
+   * The status of the collaboration invitation. If the status
+   * is `pending`, `login` and `name` return an empty string. */
   readonly status?: CollaborationStatusField;
+  /**
+   * When the `status` of the collaboration object changed to
+   * `accepted` or `rejected`. */
   readonly acknowledgedAt?: DateTime;
   readonly createdBy?: UserCollaborations;
+  /**
+   * When the collaboration object was created. */
   readonly createdAt?: DateTime;
+  /**
+   * When the collaboration object was last modified. */
   readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
   constructor(
@@ -113,18 +159,46 @@ export class Collaboration {
   }
 }
 export interface CollaborationInput {
+  /**
+   * The unique identifier for this collaboration. */
   readonly id: string;
+  /**
+   * `collaboration` */
   readonly type?: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
+  /**
+   * The email address used to invite an unregistered collaborator, if
+   * they are not a registered user. */
   readonly inviteEmail?: string;
+  /**
+   * The level of access granted. */
   readonly role?: CollaborationRoleField;
+  /**
+   * When the collaboration will expire, or `null` if no expiration
+   * date is set. */
   readonly expiresAt?: DateTime;
+  /**
+   * If set to `true`, collaborators have access to
+   * shared items, but such items won't be visible in the
+   * All Files list. Additionally, collaborators won't
+   * see the the path to the root folder for the
+   * shared item. */
   readonly isAccessOnly?: boolean;
+  /**
+   * The status of the collaboration invitation. If the status
+   * is `pending`, `login` and `name` return an empty string. */
   readonly status?: CollaborationStatusField;
+  /**
+   * When the `status` of the collaboration object changed to
+   * `accepted` or `rejected`. */
   readonly acknowledgedAt?: DateTime;
   readonly createdBy?: UserCollaborations;
+  /**
+   * When the collaboration object was created. */
   readonly createdAt?: DateTime;
+  /**
+   * When the collaboration object was last modified. */
   readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
 }

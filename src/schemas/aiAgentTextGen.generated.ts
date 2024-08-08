@@ -11,6 +11,8 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAgentTextGenTypeField = 'ai_agent_text_gen';
 export interface AiAgentTextGen {
+  /**
+   * The type of AI agent used for generating text. */
   readonly type?: AiAgentTextGenTypeField;
   readonly basicGen?: AiAgentBasicGenTool;
 }

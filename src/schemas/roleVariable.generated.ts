@@ -17,7 +17,14 @@ export type RoleVariableVariableValueField =
   | 'viewer uploader'
   | 'co-owner';
 export class RoleVariable {
+  /**
+   * Role object type.
+   *  */
   readonly type: RoleVariableTypeField = 'variable' as RoleVariableTypeField;
+  /**
+   * The variable type used
+   * by the object.
+   *  */
   readonly variableType: RoleVariableVariableTypeField =
     'collaborator_role' as RoleVariableVariableTypeField;
   readonly variableValue!: RoleVariableVariableValueField;
@@ -37,7 +44,14 @@ export class RoleVariable {
   }
 }
 export interface RoleVariableInput {
+  /**
+   * Role object type.
+   *  */
   readonly type?: RoleVariableTypeField;
+  /**
+   * The variable type used
+   * by the object.
+   *  */
   readonly variableType?: RoleVariableVariableTypeField;
   readonly variableValue: RoleVariableVariableValueField;
 }

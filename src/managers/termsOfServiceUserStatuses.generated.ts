@@ -110,10 +110,16 @@ export interface UpdateTermsOfServiceStatusForUserByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetTermsOfServiceUserStatusesQueryParams {
+  /**
+   * The ID of the terms of service. */
   readonly tosId: string;
+  /**
+   * Limits results to the given user ID. */
   readonly userId?: string;
 }
 export class GetTermsOfServiceUserStatusesHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -127,6 +133,8 @@ export class GetTermsOfServiceUserStatusesHeaders {
   }
 }
 export interface GetTermsOfServiceUserStatusesHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -136,8 +144,12 @@ export interface GetTermsOfServiceUserStatusesHeadersInput {
 export type CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
   'terms_of_service';
 export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
+  /**
+   * The type of object. */
   readonly type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
     'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
+  /**
+   * The ID of terms of service */
   readonly id!: string;
   constructor(
     fields: Omit<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'> &
@@ -154,13 +166,21 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
   }
 }
 export interface CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
+  /**
+   * The type of object. */
   readonly type?: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
+  /**
+   * The ID of terms of service */
   readonly id: string;
 }
 export type CreateTermsOfServiceStatusForUserRequestBodyUserTypeField = 'user';
 export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
+  /**
+   * The type of object. */
   readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
     'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
+  /**
+   * The ID of user */
   readonly id!: string;
   constructor(
     fields: Omit<
@@ -180,15 +200,27 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
   }
 }
 export interface CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
+  /**
+   * The type of object. */
   readonly type?: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
+  /**
+   * The ID of user */
   readonly id: string;
 }
 export interface CreateTermsOfServiceStatusForUserRequestBody {
+  /**
+   * The terms of service to set the status for. */
   readonly tos: CreateTermsOfServiceStatusForUserRequestBodyTosField;
+  /**
+   * The user to set the status for. */
   readonly user: CreateTermsOfServiceStatusForUserRequestBodyUserField;
+  /**
+   * Whether the user has accepted the terms. */
   readonly isAccepted: boolean;
 }
 export class CreateTermsOfServiceStatusForUserHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -202,6 +234,8 @@ export class CreateTermsOfServiceStatusForUserHeaders {
   }
 }
 export interface CreateTermsOfServiceStatusForUserHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -209,9 +243,13 @@ export interface CreateTermsOfServiceStatusForUserHeadersInput {
       };
 }
 export interface UpdateTermsOfServiceStatusForUserByIdRequestBody {
+  /**
+   * Whether the user has accepted the terms. */
   readonly isAccepted: boolean;
 }
 export class UpdateTermsOfServiceStatusForUserByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -227,6 +265,8 @@ export class UpdateTermsOfServiceStatusForUserByIdHeaders {
   }
 }
 export interface UpdateTermsOfServiceStatusForUserByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -253,6 +293,14 @@ export class TermsOfServiceUserStatusesManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+   * Retrieves an overview of users and their status for a
+   * terms of service, including Whether they have accepted
+   * the terms and when.
+   * @param {GetTermsOfServiceUserStatusesQueryParams} queryParams Query parameters of getTermsOfServiceUserStatuses method
+   * @param {GetTermsOfServiceUserStatusesOptionalsInput} optionalsInput
+   * @returns {Promise<TermsOfServiceUserStatuses>}
+   */
   async getTermsOfServiceUserStatuses(
     queryParams: GetTermsOfServiceUserStatusesQueryParams,
     optionalsInput: GetTermsOfServiceUserStatusesOptionalsInput = {}
@@ -290,6 +338,12 @@ export class TermsOfServiceUserStatusesManager {
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatuses(response.data);
   }
+  /**
+   * Sets the status for a terms of service for a user.
+   * @param {CreateTermsOfServiceStatusForUserRequestBody} requestBody Request body of createTermsOfServiceStatusForUser method
+   * @param {CreateTermsOfServiceStatusForUserOptionalsInput} optionalsInput
+   * @returns {Promise<TermsOfServiceUserStatus>}
+   */
   async createTermsOfServiceStatusForUser(
     requestBody: CreateTermsOfServiceStatusForUserRequestBody,
     optionalsInput: CreateTermsOfServiceStatusForUserOptionalsInput = {}
@@ -324,6 +378,14 @@ export class TermsOfServiceUserStatusesManager {
     )) as FetchResponse;
     return deserializeTermsOfServiceUserStatus(response.data);
   }
+  /**
+     * Updates the status for a terms of service for a user.
+     * @param {string} termsOfServiceUserStatusId The ID of the terms of service status.
+    Example: "324234"
+     * @param {UpdateTermsOfServiceStatusForUserByIdRequestBody} requestBody Request body of updateTermsOfServiceStatusForUserById method
+     * @param {UpdateTermsOfServiceStatusForUserByIdOptionalsInput} optionalsInput
+     * @returns {Promise<TermsOfServiceUserStatus>}
+     */
   async updateTermsOfServiceStatusForUserById(
     termsOfServiceUserStatusId: string,
     requestBody: UpdateTermsOfServiceStatusForUserByIdRequestBody,

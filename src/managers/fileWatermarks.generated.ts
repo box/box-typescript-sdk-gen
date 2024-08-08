@@ -94,6 +94,8 @@ export interface DeleteFileWatermarkOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -107,6 +109,8 @@ export class GetFileWatermarkHeaders {
   }
 }
 export interface GetFileWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -115,6 +119,10 @@ export interface GetFileWatermarkHeadersInput {
 }
 export type UpdateFileWatermarkRequestBodyWatermarkImprintField = 'default';
 export class UpdateFileWatermarkRequestBodyWatermarkField {
+  /**
+   * The type of watermark to apply.
+   *
+   * Currently only supports one option. */
   readonly imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField;
   constructor(
@@ -127,12 +135,20 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
   }
 }
 export interface UpdateFileWatermarkRequestBodyWatermarkFieldInput {
+  /**
+   * The type of watermark to apply.
+   *
+   * Currently only supports one option. */
   readonly imprint?: UpdateFileWatermarkRequestBodyWatermarkImprintField;
 }
 export interface UpdateFileWatermarkRequestBody {
+  /**
+   * The watermark to imprint on the file */
   readonly watermark: UpdateFileWatermarkRequestBodyWatermarkField;
 }
 export class UpdateFileWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -146,6 +162,8 @@ export class UpdateFileWatermarkHeaders {
   }
 }
 export interface UpdateFileWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -153,6 +171,8 @@ export interface UpdateFileWatermarkHeadersInput {
       };
 }
 export class DeleteFileWatermarkHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
@@ -166,6 +186,8 @@ export class DeleteFileWatermarkHeaders {
   }
 }
 export interface DeleteFileWatermarkHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
     | undefined
     | {
@@ -192,6 +214,19 @@ export class FileWatermarksManager {
       this.networkSession = fields.networkSession;
     }
   }
+  /**
+     * Retrieve the watermark for a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<Watermark>}
+     */
   async getFileWatermark(
     fileId: string,
     optionalsInput: GetFileWatermarkOptionalsInput = {}
@@ -223,6 +258,20 @@ export class FileWatermarksManager {
     )) as FetchResponse;
     return deserializeWatermark(response.data);
   }
+  /**
+     * Applies or update a watermark on a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {UpdateFileWatermarkRequestBody} requestBody Request body of updateFileWatermark method
+     * @param {UpdateFileWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<Watermark>}
+     */
   async updateFileWatermark(
     fileId: string,
     requestBody: UpdateFileWatermarkRequestBody,
@@ -258,6 +307,19 @@ export class FileWatermarksManager {
     )) as FetchResponse;
     return deserializeWatermark(response.data);
   }
+  /**
+     * Removes the watermark from a file.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {DeleteFileWatermarkOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
   async deleteFileWatermark(
     fileId: string,
     optionalsInput: DeleteFileWatermarkOptionalsInput = {}

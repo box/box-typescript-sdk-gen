@@ -8,11 +8,22 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type ZipDownloadRequestItemsTypeField = 'file' | 'folder';
 export interface ZipDownloadRequestItemsField {
+  /**
+   * The type of the item to add to the archive. */
   readonly type: ZipDownloadRequestItemsTypeField;
+  /**
+   * The identifier of the item to add to the archive. When this item is
+   * a folder then this can not be the root folder with ID `0`. */
   readonly id: string;
 }
 export interface ZipDownloadRequest {
+  /**
+   * A list of items to add to the `zip` archive. These can
+   * be folders or files. */
   readonly items: readonly ZipDownloadRequestItemsField[];
+  /**
+   * The optional name of the `zip` archive. This name will be appended by the
+   * `.zip` file extension, for example `January Financials.zip`. */
   readonly downloadFileName?: string;
 }
 export function serializeZipDownloadRequestItemsTypeField(

@@ -28,8 +28,14 @@ export type RetentionPolicyPolicyTypeField = 'finite' | 'indefinite';
 export type RetentionPolicyRetentionTypeField = 'modifiable' | 'non_modifiable';
 export type RetentionPolicyStatusField = 'active' | 'retired';
 export interface RetentionPolicyAssignmentCountsField {
+  /**
+   * The number of enterprise assignments this policy has. The maximum value is 1. */
   readonly enterprise?: number;
+  /**
+   * The number of folder assignments this policy has. */
   readonly folder?: number;
+  /**
+   * The number of metadata template assignments this policy has. */
   readonly metadataTemplate?: number;
 }
 export class RetentionPolicy extends RetentionPolicyMini {

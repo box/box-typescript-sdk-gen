@@ -12,13 +12,22 @@ import { sdIsMap } from '../serialization/json.js';
 export type KeywordSkillCardTypeField = 'skill_card';
 export type KeywordSkillCardSkillCardTypeField = 'keyword';
 export interface KeywordSkillCardSkillCardTitleField {
+  /**
+   * An optional identifier for the title. */
   readonly code?: string;
+  /**
+   * The actual title to show in the UI. */
   readonly message: string;
 }
 export type KeywordSkillCardSkillTypeField = 'service';
 export class KeywordSkillCardSkillField {
+  /**
+   * `service` */
   readonly type: KeywordSkillCardSkillTypeField =
     'service' as KeywordSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<KeywordSkillCardSkillField, 'type'> &
@@ -33,13 +42,26 @@ export class KeywordSkillCardSkillField {
   }
 }
 export interface KeywordSkillCardSkillFieldInput {
+  /**
+   * `service` */
   readonly type?: KeywordSkillCardSkillTypeField;
+  /**
+   * A custom identifier that represent the service that
+   * applied this metadata. */
   readonly id: string;
 }
 export type KeywordSkillCardInvocationTypeField = 'skill_invocation';
 export class KeywordSkillCardInvocationField {
+  /**
+   * `skill_invocation` */
   readonly type: KeywordSkillCardInvocationTypeField =
     'skill_invocation' as KeywordSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id!: string;
   constructor(
     fields: Omit<KeywordSkillCardInvocationField, 'type'> &
@@ -54,21 +76,46 @@ export class KeywordSkillCardInvocationField {
   }
 }
 export interface KeywordSkillCardInvocationFieldInput {
+  /**
+   * `skill_invocation` */
   readonly type?: KeywordSkillCardInvocationTypeField;
+  /**
+   * A custom identifier that represent the instance of
+   * the service that applied this metadata. For example,
+   * if your `image-recognition-service` runs on multiple
+   * nodes, this field can be used to identify the ID of
+   * the node that was used to apply the metadata. */
   readonly id: string;
 }
 export interface KeywordSkillCardEntriesField {
+  /**
+   * The text of the keyword. */
   readonly text?: string;
 }
 export class KeywordSkillCard {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type: KeywordSkillCardTypeField =
     'skill_card' as KeywordSkillCardTypeField;
+  /**
+   * `keyword` */
   readonly skillCardType: KeywordSkillCardSkillCardTypeField =
     'keyword' as KeywordSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: KeywordSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill!: KeywordSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation!: KeywordSkillCardInvocationField;
+  /**
+   * An list of entries in the metadata card. */
   readonly entries!: readonly KeywordSkillCardEntriesField[];
   constructor(
     fields: Omit<KeywordSkillCard, 'type' | 'skillCardType'> &
@@ -98,12 +145,27 @@ export class KeywordSkillCard {
   }
 }
 export interface KeywordSkillCardInput {
+  /**
+   * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
+  /**
+   * `skill_card` */
   readonly type?: KeywordSkillCardTypeField;
+  /**
+   * `keyword` */
   readonly skillCardType?: KeywordSkillCardSkillCardTypeField;
+  /**
+   * The title of the card. */
   readonly skillCardTitle?: KeywordSkillCardSkillCardTitleField;
+  /**
+   * The service that applied this metadata. */
   readonly skill: KeywordSkillCardSkillField;
+  /**
+   * The invocation of this service, used to track
+   * which instance of a service applied the metadata. */
   readonly invocation: KeywordSkillCardInvocationField;
+  /**
+   * An list of entries in the metadata card. */
   readonly entries: readonly KeywordSkillCardEntriesField[];
 }
 export function serializeKeywordSkillCardTypeField(

@@ -11,11 +11,26 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type SearchResultsTypeField = 'search_results_items';
 export class SearchResults {
+  /**
+   * One greater than the offset of the last entry in the search results.
+   * The total number of entries in the collection may be less than
+   * `total_count`. */
   readonly totalCount?: number;
+  /**
+   * The limit that was used for this search. This will be the same as the
+   * `limit` query parameter unless that value exceeded the maximum value
+   * allowed. */
   readonly limit?: number;
+  /**
+   * The 0-based offset of the first entry in this set. This will be the same
+   * as the `offset` query parameter used. */
   readonly offset?: number;
+  /**
+   * Specifies the response as search result items without shared links */
   readonly type: SearchResultsTypeField =
     'search_results_items' as SearchResultsTypeField;
+  /**
+   * The search results for the query provided. */
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
   constructor(
     fields: Omit<SearchResults, 'type'> & Partial<Pick<SearchResults, 'type'>>
@@ -38,10 +53,25 @@ export class SearchResults {
   }
 }
 export interface SearchResultsInput {
+  /**
+   * One greater than the offset of the last entry in the search results.
+   * The total number of entries in the collection may be less than
+   * `total_count`. */
   readonly totalCount?: number;
+  /**
+   * The limit that was used for this search. This will be the same as the
+   * `limit` query parameter unless that value exceeded the maximum value
+   * allowed. */
   readonly limit?: number;
+  /**
+   * The 0-based offset of the first entry in this set. This will be the same
+   * as the `offset` query parameter used. */
   readonly offset?: number;
+  /**
+   * Specifies the response as search result items without shared links */
   readonly type?: SearchResultsTypeField;
+  /**
+   * The search results for the query provided. */
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
 }
 export function serializeSearchResultsTypeField(
