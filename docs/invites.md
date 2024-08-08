@@ -17,11 +17,6 @@ the application, which can be enabled within the developer console.
 
 This operation is performed by calling function `createInvite`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-invites/).
-
-<!-- sample post_invites -->
-
 ```ts
 await client.invites.createInvite({
   enterprise: {
@@ -51,11 +46,6 @@ Returns a new invite object.
 Returns the status of a user invite.
 
 This operation is performed by calling function `getInviteById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-invites-id/).
-
-<!-- sample get_invites_id -->
 
 ```ts
 await client.invites.getInviteById(invitation.id);

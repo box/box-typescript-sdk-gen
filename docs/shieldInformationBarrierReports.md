@@ -10,11 +10,6 @@ Lists shield information barrier reports.
 
 This operation is performed by calling function `getShieldInformationBarrierReports`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports/).
-
-<!-- sample get_shield_information_barrier_reports -->
-
 ```ts
 await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
   {
@@ -41,11 +36,6 @@ Returns a paginated list of shield information barrier report objects.
 Creates a shield information barrier report for a given barrier.
 
 This operation is performed by calling function `createShieldInformationBarrierReport`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-shield-information-barrier-reports/).
-
-<!-- sample post_shield_information_barrier_reports -->
 
 ```ts
 await client.shieldInformationBarrierReports.createShieldInformationBarrierReport(
@@ -76,11 +66,6 @@ Returns the shield information barrier report information object.
 Retrieves a shield information barrier report by its ID.
 
 This operation is performed by calling function `getShieldInformationBarrierReportById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-shield-information-barrier-reports-id/).
-
-<!-- sample get_shield_information_barrier_reports_id -->
 
 ```ts
 await client.shieldInformationBarrierReports.getShieldInformationBarrierReportById(

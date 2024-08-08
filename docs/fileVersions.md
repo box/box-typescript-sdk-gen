@@ -15,11 +15,6 @@ of the current version of a file, use the `GET /file/:id` API.
 
 This operation is performed by calling function `getFileVersions`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-files-id-versions/).
-
-<!-- sample get_files_id_versions -->
-
 ```ts
 await client.fileVersions.getFileVersions(file.id);
 ```
@@ -44,11 +39,6 @@ Retrieve a specific version of a file.
 Versions are only tracked for Box users with premium accounts.
 
 This operation is performed by calling function `getFileVersionById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-files-id-versions-id/).
-
-<!-- sample get_files_id_versions_id -->
 
 ```ts
 await client.fileVersions.getFileVersionById(
@@ -85,9 +75,6 @@ PPTX or similar.
 
 This operation is performed by calling function `updateFileVersionById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-files-id-versions-id/).
-
 _Currently we don't have an example for calling `updateFileVersionById` in integration tests_
 
 ### Arguments
@@ -112,11 +99,6 @@ Move a file version to the trash.
 Versions are only tracked for Box users with premium accounts.
 
 This operation is performed by calling function `deleteFileVersionById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-files-id-versions-id/).
-
-<!-- sample delete_files_id_versions_id -->
 
 ```ts
 await client.fileVersions.deleteFileVersionById(file.id, fileVersion.id);
@@ -158,11 +140,6 @@ as it works with file formats such as PDF, DOC,
 PPTX or similar.
 
 This operation is performed by calling function `promoteFileVersion`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-files-id-versions-current/).
-
-<!-- sample post_files_id_versions_current -->
 
 ```ts
 await client.fileVersions.promoteFileVersion(file.id, {

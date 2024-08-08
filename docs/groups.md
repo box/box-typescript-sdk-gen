@@ -13,11 +13,6 @@ must have admin permissions to inspect enterprise's groups.
 
 This operation is performed by calling function `getGroups`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-groups/).
-
-<!-- sample get_groups -->
-
 ```ts
 await client.groups.getGroups();
 ```
@@ -44,11 +39,6 @@ Creates a new group of users in an enterprise. Only users with admin
 permissions can create new groups.
 
 This operation is performed by calling function `createGroup`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-groups/).
-
-<!-- sample post_groups -->
 
 ```ts
 await client.groups.createGroup({
@@ -78,11 +68,6 @@ use this API.
 
 This operation is performed by calling function `getGroupById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-groups-id/).
-
-<!-- sample get_groups_id -->
-
 ```ts
 await client.groups.getGroupById(group.id);
 ```
@@ -107,11 +92,6 @@ group or users with admin-level permissions will be able to
 use this API.
 
 This operation is performed by calling function `updateGroupById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-groups-id/).
-
-<!-- sample put_groups_id -->
 
 ```ts
 await client.groups.updateGroupById(group.id, {
@@ -138,11 +118,6 @@ Permanently deletes a group. Only users with
 admin-level permissions will be able to use this API.
 
 This operation is performed by calling function `deleteGroupById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-groups-id/).
-
-<!-- sample delete_groups_id -->
 
 ```ts
 await client.groups.deleteGroupById(group.id);

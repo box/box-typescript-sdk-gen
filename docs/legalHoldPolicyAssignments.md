@@ -12,11 +12,6 @@ Retrieves a list of items a legal hold policy has been assigned to.
 
 This operation is performed by calling function `getLegalHoldPolicyAssignments`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments/).
-
-<!-- sample get_legal_hold_policy_assignments -->
-
 ```ts
 await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignments({
   policyId: legalHoldPolicyId,
@@ -41,11 +36,6 @@ Returns a list of legal hold policy assignments.
 Assign a legal hold to a file, file version, folder, or user.
 
 This operation is performed by calling function `createLegalHoldPolicyAssignment`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-legal-hold-policy-assignments/).
-
-<!-- sample post_legal_hold_policy_assignments -->
 
 ```ts
 await client.legalHoldPolicyAssignments.createLegalHoldPolicyAssignment({
@@ -76,11 +66,6 @@ Retrieve a legal hold policy assignment.
 
 This operation is performed by calling function `getLegalHoldPolicyAssignmentById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id/).
-
-<!-- sample get_legal_hold_policy_assignments_id -->
-
 ```ts
 await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
   legalHoldPolicyAssignmentId
@@ -108,11 +93,6 @@ This is an asynchronous process. The policy will not be
 fully removed yet when the response returns.
 
 This operation is performed by calling function `deleteLegalHoldPolicyAssignmentById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-legal-hold-policy-assignments-id/).
-
-<!-- sample delete_legal_hold_policy_assignments_id -->
 
 ```ts
 await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
@@ -157,11 +137,6 @@ The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
 find a list of policy assignments for a given policy ID.
 
 This operation is performed by calling function `getLegalHoldPolicyAssignmentFileOnHold`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-legal-hold-policy-assignments-id-files-on-hold/).
-
-<!-- sample get_legal_hold_policy_assignments_id_files_on_hold -->
 
 ```ts
 await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
