@@ -13,11 +13,6 @@ use this endpoint.
 
 This operation is performed by calling function `getFolderLocks`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folder-locks/).
-
-<!-- sample get_folder_locks -->
-
 ```ts
 await client.folderLocks.getFolderLocks({
   folderId: folder.id,
@@ -47,11 +42,6 @@ You must be authenticated as the owner or co-owner of the folder to
 use this endpoint.
 
 This operation is performed by calling function `createFolderLock`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-folder-locks/).
-
-<!-- sample post_folder_locks -->
 
 ```ts
 await client.folderLocks.createFolderLock({
@@ -88,11 +78,6 @@ You must be authenticated as the owner or co-owner of the folder to
 use this endpoint.
 
 This operation is performed by calling function `deleteFolderLockById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-folder-locks-id/).
-
-<!-- sample delete_folder_locks_id -->
 
 ```ts
 await client.folderLocks.deleteFolderLockById(folderLock.id!);

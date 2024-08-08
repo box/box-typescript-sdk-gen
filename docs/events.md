@@ -17,11 +17,6 @@ scope `manage enterprise properties` checked.
 
 This operation is performed by calling function `getEvents`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-events/).
-
-<!-- sample get_events -->
-
 ```ts
 await client.events.getEvents({
   streamType: 'admin_logs' as GetEventsQueryParamsStreamTypeField,
@@ -89,11 +84,6 @@ real-time server, you should start over by making a call to this endpoint
 first.
 
 This operation is performed by calling function `getEventsWithLongPolling`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/options-events/).
-
-<!-- sample options_events -->
 
 ```ts
 await client.events.getEventsWithLongPolling();

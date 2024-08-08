@@ -10,9 +10,6 @@ Retrieves information about an individual device pin.
 
 This operation is performed by calling function `getDevicePinnerById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-device-pinners-id/).
-
 _Currently we don't have an example for calling `getDevicePinnerById` in integration tests_
 
 ### Arguments
@@ -33,9 +30,6 @@ Returns information about a single device pin.
 Deletes an individual device pin.
 
 This operation is performed by calling function `deleteDevicePinnerById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-device-pinners-id/).
 
 _Currently we don't have an example for calling `deleteDevicePinnerById` in integration tests_
 
@@ -60,9 +54,6 @@ The user must have admin privileges, and the application
 needs the "manage enterprise" scope to make this call.
 
 This operation is performed by calling function `getEnterpriseDevicePinners`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-enterprises-id-device-pinners/).
 
 _Currently we don't have an example for calling `getEnterpriseDevicePinners` in integration tests_
 

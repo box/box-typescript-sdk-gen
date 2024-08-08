@@ -12,11 +12,6 @@ segment member by its ID.
 
 This operation is performed by calling function `getShieldInformationBarrierSegmentMemberById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members-id/).
-
-<!-- sample get_shield_information_barrier_segment_members_id -->
-
 ```ts
 await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
   segmentMember.id!
@@ -42,11 +37,6 @@ Deletes a shield information barrier
 segment member based on provided ID.
 
 This operation is performed by calling function `deleteShieldInformationBarrierSegmentMemberById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-members-id/).
-
-<!-- sample delete_shield_information_barrier_segment_members_id -->
 
 ```ts
 await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarrierSegmentMemberById(
@@ -75,11 +65,6 @@ based on provided segment IDs.
 
 This operation is performed by calling function `getShieldInformationBarrierSegmentMembers`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-members/).
-
-<!-- sample get_shield_information_barrier_segment_members -->
-
 ```ts
 await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMembers(
   {
@@ -107,11 +92,6 @@ shield information barrier segment member objects.
 Creates a new shield information barrier segment member.
 
 This operation is performed by calling function `createShieldInformationBarrierSegmentMember`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-members/).
-
-<!-- sample post_shield_information_barrier_segment_members -->
 
 ```ts
 await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarrierSegmentMember(

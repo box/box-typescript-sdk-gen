@@ -13,11 +13,6 @@ folder with ID `0`.
 
 This operation is performed by calling function `getFolderMetadata`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folders-id-metadata/).
-
-<!-- sample get_folders_id_metadata -->
-
 ```ts
 await client.folderMetadata.getFolderMetadata(folder.id);
 ```
@@ -44,11 +39,6 @@ Retrieves the instance of a metadata template that has been applied to a
 folder. This can not be used on the root folder with ID `0`.
 
 This operation is performed by calling function `getFolderMetadataById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folders-id-metadata-id-id/).
-
-<!-- sample get_folders_id_metadata_id_id -->
 
 ```ts
 await client.folderMetadata.getFolderMetadataById(
@@ -90,11 +80,6 @@ configured to enable **Cascading Folder Level Metadata** for the user in the
 admin console.
 
 This operation is performed by calling function `createFolderMetadataById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-folders-id-metadata-id-id/).
-
-<!-- sample post_folders_id_metadata_id_id -->
 
 ```ts
 await client.folderMetadata.createFolderMetadataById(
@@ -144,11 +129,6 @@ application of the operations, the metadata instance will not be changed.
 
 This operation is performed by calling function `updateFolderMetadataById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-folders-id-metadata-id-id/).
-
-<!-- sample put_folders_id_metadata_id_id -->
-
 ```ts
 await client.folderMetadata.updateFolderMetadataById(
   folder.id,
@@ -189,11 +169,6 @@ custom template data included.
 Deletes a piece of folder metadata.
 
 This operation is performed by calling function `deleteFolderMetadataById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-folders-id-metadata-id-id/).
-
-<!-- sample delete_folders_id_metadata_id_id -->
 
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
