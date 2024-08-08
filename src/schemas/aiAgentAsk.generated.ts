@@ -13,7 +13,35 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAgentAskTypeField = 'ai_agent_ask';
-export interface AiAgentAsk {
+export class AiAgentAsk {
+  /**
+   * The type of AI agent used to handle queries. */
+  readonly type: AiAgentAskTypeField = 'ai_agent_ask' as AiAgentAskTypeField;
+  readonly longText?: AiAgentLongTextTool;
+  readonly basicText?: AiAgentBasicTextToolAsk;
+  readonly longTextMulti?: AiAgentLongTextTool;
+  readonly basicTextMulti?: AiAgentBasicTextToolAsk;
+  constructor(
+    fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>
+  ) {
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.longText) {
+      this.longText = fields.longText;
+    }
+    if (fields.basicText) {
+      this.basicText = fields.basicText;
+    }
+    if (fields.longTextMulti) {
+      this.longTextMulti = fields.longTextMulti;
+    }
+    if (fields.basicTextMulti) {
+      this.basicTextMulti = fields.basicTextMulti;
+    }
+  }
+}
+export interface AiAgentAskInput {
   /**
    * The type of AI agent used to handle queries. */
   readonly type?: AiAgentAskTypeField;
@@ -37,8 +65,7 @@ export function deserializeAiAgentAskTypeField(
 }
 export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
   return {
-    ['type']:
-      val.type == void 0 ? void 0 : serializeAiAgentAskTypeField(val.type),
+    ['type']: serializeAiAgentAskTypeField(val.type),
     ['long_text']:
       val.longText == void 0
         ? void 0
@@ -60,6 +87,64 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
 export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "AiAgentAsk"' });
+  }
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "AiAgentAsk" to be defined',
+    });
+  }
+  const type: AiAgentAskTypeField = deserializeAiAgentAskTypeField(val.type);
+  const longText: undefined | AiAgentLongTextTool =
+    val.long_text == void 0
+      ? void 0
+      : deserializeAiAgentLongTextTool(val.long_text);
+  const basicText: undefined | AiAgentBasicTextToolAsk =
+    val.basic_text == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextToolAsk(val.basic_text);
+  const longTextMulti: undefined | AiAgentLongTextTool =
+    val.long_text_multi == void 0
+      ? void 0
+      : deserializeAiAgentLongTextTool(val.long_text_multi);
+  const basicTextMulti: undefined | AiAgentBasicTextToolAsk =
+    val.basic_text_multi == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextToolAsk(val.basic_text_multi);
+  return {
+    type: type,
+    longText: longText,
+    basicText: basicText,
+    longTextMulti: longTextMulti,
+    basicTextMulti: basicTextMulti,
+  } satisfies AiAgentAsk;
+}
+export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
+  return {
+    ['type']:
+      val.type == void 0 ? void 0 : serializeAiAgentAskTypeField(val.type),
+    ['long_text']:
+      val.longText == void 0
+        ? void 0
+        : serializeAiAgentLongTextTool(val.longText),
+    ['basic_text']:
+      val.basicText == void 0
+        ? void 0
+        : serializeAiAgentBasicTextToolAsk(val.basicText),
+    ['long_text_multi']:
+      val.longTextMulti == void 0
+        ? void 0
+        : serializeAiAgentLongTextTool(val.longTextMulti),
+    ['basic_text_multi']:
+      val.basicTextMulti == void 0
+        ? void 0
+        : serializeAiAgentBasicTextToolAsk(val.basicTextMulti),
+  };
+}
+export function deserializeAiAgentAskInput(
+  val: SerializedData
+): AiAgentAskInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({ message: 'Expecting a map for "AiAgentAskInput"' });
   }
   const type: undefined | AiAgentAskTypeField =
     val.type == void 0 ? void 0 : deserializeAiAgentAskTypeField(val.type);
@@ -85,5 +170,5 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
     basicText: basicText,
     longTextMulti: longTextMulti,
     basicTextMulti: basicTextMulti,
-  } satisfies AiAgentAsk;
+  } satisfies AiAgentAskInput;
 }
