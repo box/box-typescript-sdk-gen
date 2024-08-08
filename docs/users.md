@@ -18,11 +18,6 @@ enterprise.
 
 This operation is performed by calling function `getUsers`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-users/).
-
-<!-- sample get_users -->
-
 ```ts
 await client.users.getUsers();
 ```
@@ -49,11 +44,6 @@ is only available to users and applications with the right
 admin permissions.
 
 This operation is performed by calling function `createUser`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-users/).
-
-<!-- sample post_users -->
 
 ```ts
 await client.users.createUser({
@@ -90,11 +80,6 @@ Use the `As-User` header to change who this API call is made on behalf of.
 
 This operation is performed by calling function `getUserMe`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-users-me/).
-
-<!-- sample get_users_me -->
-
 ```ts
 await client.users.getUserMe();
 ```
@@ -130,11 +115,6 @@ null instead.
 
 This operation is performed by calling function `getUserById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-users-id/).
-
-<!-- sample get_users_id -->
-
 ```ts
 await client.users.getUserById(user.id);
 ```
@@ -165,11 +145,6 @@ admin permissions.
 
 This operation is performed by calling function `updateUserById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-users-id/).
-
-<!-- sample put_users_id -->
-
 ```ts
 await client.users.updateUserById(user.id, {
   requestBody: { name: updatedUserName } satisfies UpdateUserByIdRequestBody,
@@ -197,11 +172,6 @@ before proceeding, or use the `force` field to delete
 the user and their files.
 
 This operation is performed by calling function `deleteUserById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-users-id/).
-
-<!-- sample delete_users_id -->
 
 ```ts
 await client.users.deleteUserById(createdUser.id);

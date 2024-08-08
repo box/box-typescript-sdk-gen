@@ -12,11 +12,6 @@ Retrieves all of the retention policies for an enterprise.
 
 This operation is performed by calling function `getRetentionPolicies`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-retention-policies/).
-
-<!-- sample get_retention_policies -->
-
 ```ts
 await client.retentionPolicies.getRetentionPolicies();
 ```
@@ -41,11 +36,6 @@ Returns a list retention policies in the enterprise.
 Creates a retention policy.
 
 This operation is performed by calling function `createRetentionPolicy`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-retention-policies/).
-
-<!-- sample post_retention_policies -->
 
 ```ts
 await client.retentionPolicies.createRetentionPolicy({
@@ -80,11 +70,6 @@ Retrieves a retention policy.
 
 This operation is performed by calling function `getRetentionPolicyById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-retention-policies-id/).
-
-<!-- sample get_retention_policies_id -->
-
 ```ts
 await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
 ```
@@ -107,11 +92,6 @@ Returns the retention policy object.
 Updates a retention policy.
 
 This operation is performed by calling function `updateRetentionPolicyById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-retention-policies-id/).
-
-<!-- sample put_retention_policies_id -->
 
 ```ts
 await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
@@ -139,11 +119,6 @@ Returns the updated retention policy object.
 Permanently deletes a retention policy.
 
 This operation is performed by calling function `deleteRetentionPolicyById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-retention-policies-id/).
-
-<!-- sample delete_retention_policies_id -->
 
 ```ts
 await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
