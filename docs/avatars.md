@@ -10,11 +10,6 @@ Retrieves an image of a the user's avatar.
 
 This operation is performed by calling function `getUserAvatar`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-users-id-avatar/).
-
-<!-- sample get_users_id_avatar -->
-
 ```ts
 await client.avatars.getUserAvatar(user.id);
 ```
@@ -39,11 +34,6 @@ response.
 Adds or updates a user avatar.
 
 This operation is performed by calling function `createUserAvatar`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-users-id-avatar/).
-
-<!-- sample post_users_id_avatar -->
 
 ```ts
 await client.avatars.createUserAvatar(user.id, {
@@ -78,11 +68,6 @@ Removes an existing user avatar.
 You cannot reverse this operation.
 
 This operation is performed by calling function `deleteUserAvatar`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-users-id-avatar/).
-
-<!-- sample delete_users_id_avatar -->
 
 ```ts
 await client.avatars.deleteUserAvatar(user.id);

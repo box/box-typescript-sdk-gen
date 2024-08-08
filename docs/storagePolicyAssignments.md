@@ -12,11 +12,6 @@ Fetches all the storage policy assignment for an enterprise or user.
 
 This operation is performed by calling function `getStoragePolicyAssignments`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-storage-policy-assignments/).
-
-<!-- sample get_storage_policy_assignments -->
-
 ```ts
 await client.storagePolicyAssignments.getStoragePolicyAssignments({
   resolvedForType:
@@ -44,11 +39,6 @@ the enterprise or user.
 Creates a storage policy assignment for an enterprise or user.
 
 This operation is performed by calling function `createStoragePolicyAssignment`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-storage-policy-assignments/).
-
-<!-- sample post_storage_policy_assignments -->
 
 ```ts
 await client.storagePolicyAssignments.createStoragePolicyAssignment({
@@ -81,11 +71,6 @@ Fetches a specific storage policy assignment.
 
 This operation is performed by calling function `getStoragePolicyAssignmentById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-storage-policy-assignments-id/).
-
-<!-- sample get_storage_policy_assignments_id -->
-
 ```ts
 await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
   storagePolicyAssignment.id
@@ -110,11 +95,6 @@ Returns a storage policy assignment object.
 Updates a specific storage policy assignment.
 
 This operation is performed by calling function `updateStoragePolicyAssignmentById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-storage-policy-assignments-id/).
-
-<!-- sample put_storage_policy_assignments_id -->
 
 ```ts
 await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
@@ -155,11 +135,6 @@ There is a rate limit for calling this endpoint of only
 twice per user in a 24 hour time frame.
 
 This operation is performed by calling function `deleteStoragePolicyAssignmentById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-storage-policy-assignments-id/).
-
-<!-- sample delete_storage_policy_assignments_id -->
 
 ```ts
 await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(

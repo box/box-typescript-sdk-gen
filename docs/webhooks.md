@@ -17,11 +17,6 @@ vice versa.
 
 This operation is performed by calling function `getWebhooks`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-webhooks/).
-
-<!-- sample get_webhooks -->
-
 ```ts
 await client.webhooks.getWebhooks();
 ```
@@ -46,11 +41,6 @@ Returns a list of webhooks.
 Creates a webhook.
 
 This operation is performed by calling function `createWebhook`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-webhooks/).
-
-<!-- sample post_webhooks -->
 
 ```ts
 await client.webhooks.createWebhook({
@@ -82,11 +72,6 @@ Retrieves a specific webhook
 
 This operation is performed by calling function `getWebhookById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-webhooks-id/).
-
-<!-- sample get_webhooks_id -->
-
 ```ts
 await client.webhooks.getWebhookById(webhook.id!);
 ```
@@ -109,11 +94,6 @@ Returns a webhook object
 Updates a webhook.
 
 This operation is performed by calling function `updateWebhookById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-webhooks-id/).
-
-<!-- sample put_webhooks_id -->
 
 ```ts
 await client.webhooks.updateWebhookById(webhook.id!, {
@@ -141,11 +121,6 @@ Returns the new webhook object.
 Deletes a webhook.
 
 This operation is performed by calling function `deleteWebhookById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-webhooks-id/).
-
-<!-- sample delete_webhooks_id -->
 
 ```ts
 await client.webhooks.deleteWebhookById(webhook.id!);

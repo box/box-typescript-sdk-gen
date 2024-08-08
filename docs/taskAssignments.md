@@ -12,11 +12,6 @@ Lists all of the assignments for a given task.
 
 This operation is performed by calling function `getTaskAssignments`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-tasks-id-assignments/).
-
-<!-- sample get_tasks_id_assignments -->
-
 ```ts
 await client.taskAssignments.getTaskAssignments(task.id!);
 ```
@@ -43,11 +38,6 @@ A task can be assigned to more than one user by creating multiple
 assignments.
 
 This operation is performed by calling function `createTaskAssignment`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-task-assignments/).
-
-<!-- sample post_task_assignments -->
 
 ```ts
 await client.taskAssignments.createTaskAssignment({
@@ -80,11 +70,6 @@ Retrieves information about a task assignment.
 
 This operation is performed by calling function `getTaskAssignmentById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-task-assignments-id/).
-
-<!-- sample get_task_assignments_id -->
-
 ```ts
 await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
 ```
@@ -109,11 +94,6 @@ Updates a task assignment. This endpoint can be
 used to update the state of a task assigned to a user.
 
 This operation is performed by calling function `updateTaskAssignmentById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-task-assignments-id/).
-
-<!-- sample put_task_assignments_id -->
 
 ```ts
 await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
@@ -143,11 +123,6 @@ Returns the updated task assignment object.
 Deletes a specific task assignment.
 
 This operation is performed by calling function `deleteTaskAssignmentById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-task-assignments-id/).
-
-<!-- sample delete_task_assignments_id -->
 
 ```ts
 await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);

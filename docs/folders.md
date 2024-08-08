@@ -22,11 +22,6 @@ To fetch more items within the folder, use the
 
 This operation is performed by calling function `getFolderById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folders-id/).
-
-<!-- sample get_folders_id -->
-
 ```ts
 await client.folders.getFolderById(newFolder.id);
 ```
@@ -60,11 +55,6 @@ Updates a folder. This can be also be used to move the folder,
 create shared links, update collaborations, and more.
 
 This operation is performed by calling function `updateFolderById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-folders-id/).
-
-<!-- sample put_folders_id -->
 
 ```ts
 await downscopedClient.folders.updateFolderById(folder.id, {
@@ -101,11 +91,6 @@ the trash.
 
 This operation is performed by calling function `deleteFolderById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-folders-id/).
-
-<!-- sample delete_folders_id -->
-
 ```ts
 await parentClient.folders.deleteFolderById(folder.id);
 ```
@@ -134,11 +119,6 @@ use the [Get a folder](#get-folders-id) endpoint instead.
 
 This operation is performed by calling function `getFolderItems`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folders-id-items/).
-
-<!-- sample get_folders_id_items -->
-
 ```ts
 await client.folders.getFolderItems(folderOrigin.id);
 ```
@@ -161,11 +141,6 @@ Returns a collection of files, folders, and web links contained in a folder.
 Creates a new empty folder within the specified parent folder.
 
 This operation is performed by calling function `createFolder`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-folders/).
-
-<!-- sample post_folders -->
 
 ```ts
 await parentClient.folders.createFolder({
@@ -198,11 +173,6 @@ Creates a copy of a folder within a destination folder.
 The original folder will not be changed.
 
 This operation is performed by calling function `copyFolder`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-folders-id-copy/).
-
-<!-- sample post_folders_id_copy -->
 
 ```ts
 await client.folders.copyFolder(folderOrigin.id, {

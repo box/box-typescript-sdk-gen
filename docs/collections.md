@@ -12,11 +12,6 @@ is supported.
 
 This operation is performed by calling function `getCollections`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-collections/).
-
-<!-- sample get_collections -->
-
 ```ts
 await client.collections.getCollections();
 ```
@@ -42,11 +37,6 @@ Retrieves the files and/or folders contained within
 this collection.
 
 This operation is performed by calling function `getCollectionItems`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-collections-id-items/).
-
-<!-- sample get_collections_id_items -->
 
 ```ts
 await client.collections.getCollectionItems(favouriteCollection.id!);
