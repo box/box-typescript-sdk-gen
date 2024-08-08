@@ -671,6 +671,8 @@ export class ChunkedUploadsManager {
   }
   /**
      * Return information about an upload session.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions) endpoint.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {GetFileUploadSessionByIdOptionalsInput} optionalsInput
@@ -692,8 +694,7 @@ export class ChunkedUploadsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/upload_sessions/',
+        'https://{box-upload-server}/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -708,7 +709,10 @@ export class ChunkedUploadsManager {
     return deserializeUploadSession(response.data);
   }
   /**
-     * Updates a chunk of an upload session for a file.
+     * Uploads a chunk of a file for an upload session.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {ByteStream} requestBody Request body of uploadFilePart method
@@ -742,8 +746,7 @@ export class ChunkedUploadsManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/upload_sessions/',
+        'https://{box-upload-server}/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -763,6 +766,9 @@ export class ChunkedUploadsManager {
      * Abort an upload session and discard all data uploaded.
      *
      * This cannot be reversed.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {DeleteFileUploadSessionByIdOptionalsInput} optionalsInput
@@ -784,8 +790,7 @@ export class ChunkedUploadsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/upload_sessions/',
+        'https://{box-upload-server}/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
       {
@@ -800,8 +805,10 @@ export class ChunkedUploadsManager {
     return void 0;
   }
   /**
-     * Return a list of the chunks uploaded to the upload
-     * session so far.
+     * Return a list of the chunks uploaded to the upload session so far.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {GetFileUploadSessionPartsOptionalsInput} optionalsInput
@@ -831,8 +838,7 @@ export class ChunkedUploadsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/upload_sessions/',
+        'https://{box-upload-server}/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/parts'
       ) as string,
@@ -849,8 +855,10 @@ export class ChunkedUploadsManager {
     return deserializeUploadParts(response.data);
   }
   /**
-     * Close an upload session and create a file from the
-     * uploaded chunks.
+     * Close an upload session and create a file from the uploaded chunks.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {CreateFileUploadSessionCommitRequestBody} requestBody Request body of createFileUploadSessionCommit method
@@ -888,8 +896,7 @@ export class ChunkedUploadsManager {
     });
     const response: FetchResponse = (await fetch(
       ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/upload_sessions/',
+        'https://{box-upload-server}/api/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/commit'
       ) as string,
