@@ -12,6 +12,11 @@ List the Box Skills metadata cards that are attached to a file.
 
 This operation is performed by calling function `getBoxSkillCardsOnFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-metadata-global-box-skills-cards/).
+
+<!-- sample get_files_id_metadata_global_boxSkillsCards -->
+
 ```ts
 await client.skills.getBoxSkillCardsOnFile(file.id);
 ```
@@ -37,6 +42,11 @@ all of the metadata associated to the file.
 Applies one or more Box Skills metadata cards to a file.
 
 This operation is performed by calling function `createBoxSkillCardsOnFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-id-metadata-global-box-skills-cards/).
+
+<!-- sample post_files_id_metadata_global_boxSkillsCards -->
 
 ```ts
 await client.skills.createBoxSkillCardsOnFile(file.id, {
@@ -74,6 +84,11 @@ including the data that was applied to the template.
 Updates one or more Box Skills metadata cards to a file.
 
 This operation is performed by calling function `updateBoxSkillCardsOnFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-metadata-global-box-skills-cards/).
+
+<!-- sample put_files_id_metadata_global_boxSkillsCards -->
 
 ```ts
 await client.skills.updateBoxSkillCardsOnFile(file.id, [
@@ -123,6 +138,11 @@ Removes any Box Skills cards metadata from a file.
 
 This operation is performed by calling function `deleteBoxSkillCardsFromFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-id-metadata-global-box-skills-cards/).
+
+<!-- sample delete_files_id_metadata_global_boxSkillsCards -->
+
 ```ts
 await client.skills.deleteBoxSkillCardsFromFile(file.id);
 ```
@@ -147,6 +167,9 @@ An alternative method that can be used to overwrite and update all Box Skill
 metadata cards on a file.
 
 This operation is performed by calling function `updateAllSkillCardsOnFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-skill-invocations-id/).
 
 _Currently we don't have an example for calling `updateAllSkillCardsOnFile` in integration tests_
 

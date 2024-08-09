@@ -12,6 +12,11 @@ domain restrictions.
 
 This operation is performed by calling function `getCollaborationWhitelistExemptTargets`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets/).
+
+<!-- sample get_collaboration_whitelist_exempt_targets -->
+
 ```ts
 await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargets();
 ```
@@ -37,6 +42,11 @@ Exempts a user from the restrictions set out by the allowed list of domains
 for collaborations.
 
 This operation is performed by calling function `createCollaborationWhitelistExemptTarget`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-collaboration-whitelist-exempt-targets/).
+
+<!-- sample post_collaboration_whitelist_exempt_targets -->
 
 ```ts
 await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExemptTarget(
@@ -68,6 +78,11 @@ domain restrictions.
 
 This operation is performed by calling function `getCollaborationWhitelistExemptTargetById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-collaboration-whitelist-exempt-targets-id/).
+
+<!-- sample get_collaboration_whitelist_exempt_targets_id -->
+
 ```ts
 await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
   exemptTarget.id!
@@ -93,6 +108,11 @@ Removes a user's exemption from the restrictions set out by the allowed list
 of domains for collaborations.
 
 This operation is performed by calling function `deleteCollaborationWhitelistExemptTargetById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-exempt-targets-id/).
+
+<!-- sample delete_collaboration_whitelist_exempt_targets_id -->
 
 ```ts
 await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(

@@ -13,6 +13,11 @@ an enterprise.
 
 This operation is performed by calling function `getLegalHoldPolicies`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-legal-hold-policies/).
+
+<!-- sample get_legal_hold_policies -->
+
 ```ts
 await client.legalHoldPolicies.getLegalHoldPolicies();
 ```
@@ -37,6 +42,11 @@ Returns a list of legal hold policies.
 Create a new legal hold policy.
 
 This operation is performed by calling function `createLegalHoldPolicy`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-legal-hold-policies/).
+
+<!-- sample post_legal_hold_policies -->
 
 ```ts
 await client.legalHoldPolicies.createLegalHoldPolicy({
@@ -67,6 +77,11 @@ Retrieve a legal hold policy.
 
 This operation is performed by calling function `getLegalHoldPolicyById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-legal-hold-policies-id/).
+
+<!-- sample get_legal_hold_policies_id -->
+
 ```ts
 await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
 ```
@@ -89,6 +104,11 @@ Returns a legal hold policy object.
 Update legal hold policy.
 
 This operation is performed by calling function `updateLegalHoldPolicyById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-legal-hold-policies-id/).
+
+<!-- sample put_legal_hold_policies_id -->
 
 ```ts
 await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
@@ -119,6 +139,11 @@ This is an asynchronous process. The policy will not be
 fully deleted yet when the response returns.
 
 This operation is performed by calling function `deleteLegalHoldPolicyById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-legal-hold-policies-id/).
+
+<!-- sample delete_legal_hold_policies_id -->
 
 ```ts
 await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);

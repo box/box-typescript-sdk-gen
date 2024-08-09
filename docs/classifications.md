@@ -16,6 +16,11 @@ URL explicitly, for example
 
 This operation is performed by calling function `getClassificationTemplate`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema/).
+
+<!-- sample get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema -->
+
 ```ts
 await client.classifications.getClassificationTemplate();
 ```
@@ -45,6 +50,11 @@ URL explicitly, for example
 `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
 This operation is performed by calling function `addClassification`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-add/).
+
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#add -->
 
 ```ts
 await client.classifications.addClassification([
@@ -87,6 +97,11 @@ URL explicitly, for example
 `/metadata_templates/enterprise_12345/securityClassification-6VMVochwUWo/schema`.
 
 This operation is performed by calling function `updateClassification`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-metadata-templates-enterprise-security-classification-6-vm-vochw-u-wo-schema-update/).
+
+<!-- sample put_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema#update -->
 
 ```ts
 await client.classifications.updateClassification([
@@ -131,6 +146,9 @@ exist and instead an API call should be made to add additional
 classifications.
 
 This operation is performed by calling function `createClassificationTemplate`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-metadata-templates-schema-classifications/).
 
 _Currently we don't have an example for calling `createClassificationTemplate` in integration tests_
 

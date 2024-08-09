@@ -12,6 +12,11 @@ the terms and when.
 
 This operation is performed by calling function `getTermsOfServiceUserStatuses`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-terms-of-service-user-statuses/).
+
+<!-- sample get_terms_of_service_user_statuses -->
+
 ```ts
 await client.termsOfServiceUserStatuses.getTermsOfServiceUserStatuses({
   tosId: tos.id,
@@ -37,6 +42,11 @@ Returns a list of terms of service statuses.
 Sets the status for a terms of service for a user.
 
 This operation is performed by calling function `createTermsOfServiceStatusForUser`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-terms-of-service-user-statuses/).
+
+<!-- sample post_terms_of_service_user_statuses -->
 
 ```ts
 await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
@@ -66,6 +76,11 @@ Returns a terms of service status object.
 Updates the status for a terms of service for a user.
 
 This operation is performed by calling function `updateTermsOfServiceStatusForUserById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-terms-of-service-user-statuses-id/).
+
+<!-- sample put_terms_of_service_user_statuses_id -->
 
 ```ts
 await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(

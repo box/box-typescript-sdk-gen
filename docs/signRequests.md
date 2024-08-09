@@ -12,6 +12,11 @@ Cancels a sign request.
 
 This operation is performed by calling function `cancelSignRequest`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests-id-cancel/).
+
+<!-- sample post_sign_requests_id_cancel -->
+
 ```ts
 await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 ```
@@ -35,6 +40,9 @@ Resends a signature request email to all outstanding signers.
 
 This operation is performed by calling function `resendSignRequest`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests-id-resend/).
+
 _Currently we don't have an example for calling `resendSignRequest` in integration tests_
 
 ### Arguments
@@ -56,6 +64,11 @@ The email notifications will be sent asynchronously.
 Gets a sign request by ID.
 
 This operation is performed by calling function `getSignRequestById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-sign-requests-id/).
+
+<!-- sample get_sign_requests_id -->
 
 ```ts
 await client.signRequests.getSignRequestById(createdSignRequest.id!);
@@ -80,6 +93,11 @@ Gets signature requests created by a user. If the `sign_files` and/or
 `parent_folder` are deleted, the signature request will not return in the list.
 
 This operation is performed by calling function `getSignRequests`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-sign-requests/).
+
+<!-- sample get_sign_requests -->
 
 ```ts
 await client.signRequests.getSignRequests();
@@ -106,6 +124,11 @@ Creates a signature request. This involves preparing a document for signing and
 sending the signature request to signers.
 
 This operation is performed by calling function `createSignRequest`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-sign-requests/).
+
+<!-- sample post_sign_requests -->
 
 ```ts
 await client.signRequests.createSignRequest({

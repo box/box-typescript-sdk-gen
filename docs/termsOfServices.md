@@ -12,6 +12,11 @@ for the enterprise.
 
 This operation is performed by calling function `getTermsOfService`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-terms-of-services/).
+
+<!-- sample get_terms_of_services -->
+
 ```ts
 await client.termsOfServices.getTermsOfService();
 ```
@@ -38,6 +43,11 @@ Creates a terms of service for a given enterprise
 and type of user.
 
 This operation is performed by calling function `createTermsOfService`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-terms-of-services/).
+
+<!-- sample post_terms_of_services -->
 
 ```ts
 await client.termsOfServices.createTermsOfService({
@@ -66,6 +76,9 @@ Fetches a specific terms of service.
 
 This operation is performed by calling function `getTermsOfServiceById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-terms-of-services-id/).
+
 _Currently we don't have an example for calling `getTermsOfServiceById` in integration tests_
 
 ### Arguments
@@ -86,6 +99,11 @@ Returns a terms of service object.
 Updates a specific terms of service.
 
 This operation is performed by calling function `updateTermsOfServiceById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-terms-of-services-id/).
+
+<!-- sample put_terms_of_services_id -->
 
 ```ts
 await client.termsOfServices.updateTermsOfServiceById(tos.id, {

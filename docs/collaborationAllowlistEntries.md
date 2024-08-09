@@ -12,6 +12,11 @@ for within the current enterprise.
 
 This operation is performed by calling function `getCollaborationWhitelistEntries`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries/).
+
+<!-- sample get_collaboration_whitelist_entries -->
+
 ```ts
 await client.collaborationAllowlistEntries.getCollaborationWhitelistEntries();
 ```
@@ -37,6 +42,11 @@ Creates a new entry in the list of allowed domains to allow
 collaboration for.
 
 This operation is performed by calling function `createCollaborationWhitelistEntry`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-collaboration-whitelist-entries/).
+
+<!-- sample post_collaboration_whitelist_entries -->
 
 ```ts
 await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
@@ -66,6 +76,11 @@ for within the current enterprise.
 
 This operation is performed by calling function `getCollaborationWhitelistEntryById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-collaboration-whitelist-entries-id/).
+
+<!-- sample get_collaboration_whitelist_entries_id -->
+
 ```ts
 await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
   entry.id!
@@ -91,6 +106,11 @@ Removes a domain from the list of domains that have been deemed safe to create
 collaborations for within the current enterprise.
 
 This operation is performed by calling function `deleteCollaborationWhitelistEntryById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-collaboration-whitelist-entries-id/).
+
+<!-- sample delete_collaboration_whitelist_entries_id -->
 
 ```ts
 await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
