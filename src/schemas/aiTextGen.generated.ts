@@ -1,9 +1,9 @@
+import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
+import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { serializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
 import { deserializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
+import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { AiAgentTextGen } from './aiAgentTextGen.generated.js';
-import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -24,17 +24,6 @@ export interface AiTextGenItemsField {
    * The content to use as context for generating new text or editing existing text. */
   readonly content?: string;
 }
-export interface AiTextGenDialogueHistoryField {
-  /**
-   * The prompt previously provided by the client and answered by the LLM. */
-  readonly prompt?: string;
-  /**
-   * The answer previously provided by the LLM. */
-  readonly answer?: string;
-  /**
-   * The ISO date formatted timestamp of when the previous answer to the prompt was created. */
-  readonly createdAt?: DateTime;
-}
 export interface AiTextGen {
   /**
    * The prompt provided by the client to be answered by the LLM. The prompt's length is limited to 10000 characters. */
@@ -48,7 +37,7 @@ export interface AiTextGen {
   readonly items: readonly AiTextGenItemsField[];
   /**
    * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
-  readonly dialogueHistory?: readonly AiTextGenDialogueHistoryField[];
+  readonly dialogueHistory?: readonly AiDialogueHistory[];
   readonly aiAgent?: AiAgentTextGen;
 }
 export function serializeAiTextGenItemsTypeField(
@@ -101,52 +90,6 @@ export function deserializeAiTextGenItemsField(
     val.content == void 0 ? void 0 : val.content;
   return { id: id, type: type, content: content } satisfies AiTextGenItemsField;
 }
-export function serializeAiTextGenDialogueHistoryField(
-  val: AiTextGenDialogueHistoryField
-): SerializedData {
-  return {
-    ['prompt']: val.prompt == void 0 ? void 0 : val.prompt,
-    ['answer']: val.answer == void 0 ? void 0 : val.answer,
-    ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
-  };
-}
-export function deserializeAiTextGenDialogueHistoryField(
-  val: SerializedData
-): AiTextGenDialogueHistoryField {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a map for "AiTextGenDialogueHistoryField"',
-    });
-  }
-  if (!(val.prompt == void 0) && !sdIsString(val.prompt)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "prompt" of type "AiTextGenDialogueHistoryField"',
-    });
-  }
-  const prompt: undefined | string = val.prompt == void 0 ? void 0 : val.prompt;
-  if (!(val.answer == void 0) && !sdIsString(val.answer)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "answer" of type "AiTextGenDialogueHistoryField"',
-    });
-  }
-  const answer: undefined | string = val.answer == void 0 ? void 0 : val.answer;
-  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "created_at" of type "AiTextGenDialogueHistoryField"',
-    });
-  }
-  const createdAt: undefined | DateTime =
-    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
-  return {
-    prompt: prompt,
-    answer: answer,
-    createdAt: createdAt,
-  } satisfies AiTextGenDialogueHistoryField;
-}
 export function serializeAiTextGen(val: AiTextGen): SerializedData {
   return {
     ['prompt']: val.prompt,
@@ -159,9 +102,9 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
       val.dialogueHistory == void 0
         ? void 0
         : (val.dialogueHistory.map(function (
-            item: AiTextGenDialogueHistoryField
+            item: AiDialogueHistory
           ): SerializedData {
-            return serializeAiTextGenDialogueHistoryField(item);
+            return serializeAiDialogueHistory(item);
           }) as readonly any[]),
     ['ai_agent']:
       val.aiAgent == void 0 ? void 0 : serializeAiAgentTextGen(val.aiAgent),
@@ -202,14 +145,14 @@ export function deserializeAiTextGen(val: SerializedData): AiTextGen {
       message: 'Expecting array for "dialogue_history" of type "AiTextGen"',
     });
   }
-  const dialogueHistory: undefined | readonly AiTextGenDialogueHistoryField[] =
+  const dialogueHistory: undefined | readonly AiDialogueHistory[] =
     val.dialogue_history == void 0
       ? void 0
       : sdIsList(val.dialogue_history)
       ? (val.dialogue_history.map(function (
           itm: SerializedData
-        ): AiTextGenDialogueHistoryField {
-          return deserializeAiTextGenDialogueHistoryField(itm);
+        ): AiDialogueHistory {
+          return deserializeAiDialogueHistory(itm);
         }) as readonly any[])
       : [];
   const aiAgent: undefined | AiAgentTextGen =

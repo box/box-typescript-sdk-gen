@@ -1,5 +1,8 @@
+import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
+import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { serializeAiAgentAsk } from './aiAgentAsk.generated.js';
 import { deserializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { AiAgentAsk } from './aiAgentAsk.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
@@ -61,6 +64,12 @@ export interface AiAsk {
    * If the file size exceeds 1MB, the first 1MB of text representation will be processed.
    * If you set `mode` parameter to `single_item_qa`, the `items` array can have one element only.  */
   readonly items: readonly AiAskItemsField[];
+  /**
+   * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
+  readonly dialogueHistory?: readonly AiDialogueHistory[];
+  /**
+   * A flag to indicate whether citations should be returned. */
+  readonly includeCitations?: boolean;
   readonly aiAgent?: AiAgentAsk;
 }
 export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
@@ -178,6 +187,16 @@ export function serializeAiAsk(val: AiAsk): SerializedData {
     ['items']: val.items.map(function (item: AiAskItemsField): SerializedData {
       return serializeAiAskItemsField(item);
     }) as readonly any[],
+    ['dialogue_history']:
+      val.dialogueHistory == void 0
+        ? void 0
+        : (val.dialogueHistory.map(function (
+            item: AiDialogueHistory
+          ): SerializedData {
+            return serializeAiDialogueHistory(item);
+          }) as readonly any[]),
+    ['include_citations']:
+      val.includeCitations == void 0 ? void 0 : val.includeCitations,
     ['ai_agent']:
       val.aiAgent == void 0 ? void 0 : serializeAiAgentAsk(val.aiAgent),
   };
@@ -218,12 +237,39 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
         return deserializeAiAskItemsField(itm);
       }) as readonly any[])
     : [];
+  if (!(val.dialogue_history == void 0) && !sdIsList(val.dialogue_history)) {
+    throw new BoxSdkError({
+      message: 'Expecting array for "dialogue_history" of type "AiAsk"',
+    });
+  }
+  const dialogueHistory: undefined | readonly AiDialogueHistory[] =
+    val.dialogue_history == void 0
+      ? void 0
+      : sdIsList(val.dialogue_history)
+      ? (val.dialogue_history.map(function (
+          itm: SerializedData
+        ): AiDialogueHistory {
+          return deserializeAiDialogueHistory(itm);
+        }) as readonly any[])
+      : [];
+  if (
+    !(val.include_citations == void 0) &&
+    !sdIsBoolean(val.include_citations)
+  ) {
+    throw new BoxSdkError({
+      message: 'Expecting boolean for "include_citations" of type "AiAsk"',
+    });
+  }
+  const includeCitations: undefined | boolean =
+    val.include_citations == void 0 ? void 0 : val.include_citations;
   const aiAgent: undefined | AiAgentAsk =
     val.ai_agent == void 0 ? void 0 : deserializeAiAgentAsk(val.ai_agent);
   return {
     mode: mode,
     prompt: prompt,
     items: items,
+    dialogueHistory: dialogueHistory,
+    includeCitations: includeCitations,
     aiAgent: aiAgent,
   } satisfies AiAsk;
 }

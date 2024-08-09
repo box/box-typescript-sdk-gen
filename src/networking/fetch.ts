@@ -226,8 +226,15 @@ export async function fetch(
         options
       )
     : options;
-
-  const requestInit = await createRequestInit(fetchOptions);
+  const fileStreamBuffer = fetchOptions.fileStream
+    ? await readByteStream(fetchOptions.fileStream)
+    : void 0;
+  const requestInit = await createRequestInit({
+    ...fetchOptions,
+    fileStream: fileStreamBuffer
+      ? generateByteStreamFromBuffer(fileStreamBuffer)
+      : void 0,
+  });
 
   const { params = {} } = fetchOptions;
   const response = await nodeFetch(
@@ -287,7 +294,13 @@ export async function fetch(
       await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
 
       // retry the request right away
-      return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
+      return fetch(resource, {
+        ...fetchOptions,
+        numRetries: numRetries + 1,
+        fileStream: fileStreamBuffer
+          ? generateByteStreamFromBuffer(fileStreamBuffer)
+          : void 0,
+      });
     }
 
     const isRetryable =

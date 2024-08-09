@@ -100,6 +100,34 @@ export interface CreateFileUploadSessionForExistingFileOptionalsInput {
   readonly headers?: CreateFileUploadSessionForExistingFileHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class GetFileUploadSessionByUrlOptionals {
+  readonly headers: GetFileUploadSessionByUrlHeaders =
+    new GetFileUploadSessionByUrlHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileUploadSessionByUrlOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileUploadSessionByUrlOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileUploadSessionByUrlOptionalsInput {
+  readonly headers?: GetFileUploadSessionByUrlHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetFileUploadSessionByIdOptionals {
   readonly headers: GetFileUploadSessionByIdHeaders =
     new GetFileUploadSessionByIdHeaders({});
@@ -125,6 +153,20 @@ export interface GetFileUploadSessionByIdOptionalsInput {
   readonly headers?: GetFileUploadSessionByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class UploadFilePartByUrlOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<UploadFilePartByUrlOptionals, 'cancellationToken'> &
+      Partial<Pick<UploadFilePartByUrlOptionals, 'cancellationToken'>>
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UploadFilePartByUrlOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class UploadFilePartOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -137,6 +179,34 @@ export class UploadFilePartOptionals {
   }
 }
 export interface UploadFilePartOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteFileUploadSessionByUrlOptionals {
+  readonly headers: DeleteFileUploadSessionByUrlHeaders =
+    new DeleteFileUploadSessionByUrlHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileUploadSessionByUrlOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteFileUploadSessionByUrlOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileUploadSessionByUrlOptionalsInput {
+  readonly headers?: DeleteFileUploadSessionByUrlHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class DeleteFileUploadSessionByIdOptionals {
@@ -165,6 +235,40 @@ export class DeleteFileUploadSessionByIdOptionals {
 }
 export interface DeleteFileUploadSessionByIdOptionalsInput {
   readonly headers?: DeleteFileUploadSessionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileUploadSessionPartsByUrlOptionals {
+  readonly queryParams: GetFileUploadSessionPartsByUrlQueryParams =
+    {} satisfies GetFileUploadSessionPartsByUrlQueryParams;
+  readonly headers: GetFileUploadSessionPartsByUrlHeaders =
+    new GetFileUploadSessionPartsByUrlHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileUploadSessionPartsByUrlOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileUploadSessionPartsByUrlOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.queryParams) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileUploadSessionPartsByUrlOptionalsInput {
+  readonly queryParams?: GetFileUploadSessionPartsByUrlQueryParams;
+  readonly headers?: GetFileUploadSessionPartsByUrlHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileUploadSessionPartsOptionals {
@@ -201,6 +305,25 @@ export interface GetFileUploadSessionPartsOptionalsInput {
   readonly headers?: GetFileUploadSessionPartsHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class CreateFileUploadSessionCommitByUrlOptionals {
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateFileUploadSessionCommitByUrlOptionals,
+      'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateFileUploadSessionCommitByUrlOptionals, 'cancellationToken'>
+      >
+  ) {
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateFileUploadSessionCommitByUrlOptionalsInput {
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class CreateFileUploadSessionCommitOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -219,7 +342,7 @@ interface PartAccumulator {
   readonly lastIndex: number;
   readonly parts: readonly UploadPart[];
   readonly fileSize: number;
-  readonly uploadSessionId: string;
+  readonly uploadPartUrl: string;
   readonly fileHash: Hash;
 }
 export interface CreateFileUploadSessionRequestBody {
@@ -294,6 +417,30 @@ export interface CreateFileUploadSessionForExistingFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class GetFileUploadSessionByUrlHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<GetFileUploadSessionByUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileUploadSessionByUrlHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface GetFileUploadSessionByUrlHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class GetFileUploadSessionByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -310,6 +457,92 @@ export class GetFileUploadSessionByIdHeaders {
   }
 }
 export interface GetFileUploadSessionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export class UploadFilePartByUrlHeaders {
+  /**
+   * The [RFC3230][1] message digest of the chunk uploaded.
+   *
+   * Only SHA1 is supported. The SHA1 digest must be base64
+   * encoded. The format of this header is as
+   * `sha=BASE64_ENCODED_DIGEST`.
+   *
+   * To get the value for the `SHA` digest, use the
+   * openSSL command to encode the file part:
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   *
+   * [1]: https://tools.ietf.org/html/rfc3230 */
+  readonly digest!: string;
+  /**
+   * The byte range of the chunk.
+   *
+   * Must not overlap with the range of a part already
+   * uploaded this session. Each part’s size must be
+   * exactly equal in size to the part size specified
+   * in the upload session that you created.
+   * One exception is the last part of the file, as this can be smaller.
+   *
+   * When providing the value for `content-range`, remember that:
+   *
+   * * The lower bound of each part's byte range
+   *   must be a multiple of the part size.
+   * * The higher bound must be a multiple of the part size - 1. */
+  readonly contentRange!: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<UploadFilePartByUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<UploadFilePartByUrlHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.digest) {
+      this.digest = fields.digest;
+    }
+    if (fields.contentRange) {
+      this.contentRange = fields.contentRange;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface UploadFilePartByUrlHeadersInput {
+  /**
+   * The [RFC3230][1] message digest of the chunk uploaded.
+   *
+   * Only SHA1 is supported. The SHA1 digest must be base64
+   * encoded. The format of this header is as
+   * `sha=BASE64_ENCODED_DIGEST`.
+   *
+   * To get the value for the `SHA` digest, use the
+   * openSSL command to encode the file part:
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   *
+   * [1]: https://tools.ietf.org/html/rfc3230 */
+  readonly digest: string;
+  /**
+   * The byte range of the chunk.
+   *
+   * Must not overlap with the range of a part already
+   * uploaded this session. Each part’s size must be
+   * exactly equal in size to the part size specified
+   * in the upload session that you created.
+   * One exception is the last part of the file, as this can be smaller.
+   *
+   * When providing the value for `content-range`, remember that:
+   *
+   * * The lower bound of each part's byte range
+   *   must be a multiple of the part size.
+   * * The higher bound must be a multiple of the part size - 1. */
+  readonly contentRange: string;
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -404,6 +637,30 @@ export interface UploadFilePartHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class DeleteFileUploadSessionByUrlHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<DeleteFileUploadSessionByUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteFileUploadSessionByUrlHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface DeleteFileUploadSessionByUrlHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteFileUploadSessionByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -420,6 +677,42 @@ export class DeleteFileUploadSessionByIdHeaders {
   }
 }
 export interface DeleteFileUploadSessionByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export interface GetFileUploadSessionPartsByUrlQueryParams {
+  /**
+   * The offset of the item at which to begin the response.
+   *
+   * Queries with offset parameter value
+   * exceeding 10000 will be rejected
+   * with a 400 response. */
+  readonly offset?: number;
+  /**
+   * The maximum number of items to return per page. */
+  readonly limit?: number;
+}
+export class GetFileUploadSessionPartsByUrlHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<GetFileUploadSessionPartsByUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileUploadSessionPartsByUrlHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface GetFileUploadSessionPartsByUrlHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -456,6 +749,96 @@ export class GetFileUploadSessionPartsHeaders {
   }
 }
 export interface GetFileUploadSessionPartsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export interface CreateFileUploadSessionCommitByUrlRequestBody {
+  /**
+   * The list details for the uploaded parts */
+  readonly parts: readonly UploadPart[];
+}
+export class CreateFileUploadSessionCommitByUrlHeaders {
+  /**
+   * The [RFC3230][1] message digest of the whole file.
+   *
+   * Only SHA1 is supported. The SHA1 digest must be Base64
+   * encoded. The format of this header is as
+   * `sha=BASE64_ENCODED_DIGEST`.
+   *
+   * [1]: https://tools.ietf.org/html/rfc3230 */
+  readonly digest!: string;
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
+  readonly ifMatch?: string;
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
+  readonly ifNoneMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateFileUploadSessionCommitByUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateFileUploadSessionCommitByUrlHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.digest) {
+      this.digest = fields.digest;
+    }
+    if (fields.ifMatch) {
+      this.ifMatch = fields.ifMatch;
+    }
+    if (fields.ifNoneMatch) {
+      this.ifNoneMatch = fields.ifNoneMatch;
+    }
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateFileUploadSessionCommitByUrlHeadersInput {
+  /**
+   * The [RFC3230][1] message digest of the whole file.
+   *
+   * Only SHA1 is supported. The SHA1 digest must be Base64
+   * encoded. The format of this header is as
+   * `sha=BASE64_ENCODED_DIGEST`.
+   *
+   * [1]: https://tools.ietf.org/html/rfc3230 */
+  readonly digest: string;
+  /**
+   * Ensures this item hasn't recently changed before
+   * making changes.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `412 Precondition Failed` if it
+   * has changed since. */
+  readonly ifMatch?: string;
+  /**
+   * Ensures an item is only returned if it has changed.
+   *
+   * Pass in the item's last observed `etag` value
+   * into this header and the endpoint will fail
+   * with a `304 Not Modified` if the item has not
+   * changed since. */
+  readonly ifNoneMatch?: string;
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -563,10 +946,15 @@ export class ChunkedUploadsManager {
       | 'networkSession'
       | 'createFileUploadSession'
       | 'createFileUploadSessionForExistingFile'
+      | 'getFileUploadSessionByUrl'
       | 'getFileUploadSessionById'
+      | 'uploadFilePartByUrl'
       | 'uploadFilePart'
+      | 'deleteFileUploadSessionByUrl'
       | 'deleteFileUploadSessionById'
+      | 'getFileUploadSessionPartsByUrl'
       | 'getFileUploadSessionParts'
+      | 'createFileUploadSessionCommitByUrl'
       | 'createFileUploadSessionCommit'
       | 'reducer'
       | 'uploadBigFile'
@@ -670,7 +1058,43 @@ export class ChunkedUploadsManager {
     return deserializeUploadSession(response.data);
   }
   /**
+   * Using this method with urls provided in response when creating a new upload session is preferred to use over GetFileUploadSessionById method.
+   * This allows to always upload your content to the closest Box data center and can significantly improve upload speed.
+   *  Return information about an upload session.
+   *
+   * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions) endpoint.
+   * @param {string} url URL of getFileUploadSessionById method
+   * @param {GetFileUploadSessionByUrlOptionalsInput} optionalsInput
+   * @returns {Promise<UploadSession>}
+   */
+  async getFileUploadSessionByUrl(
+    url: string,
+    optionalsInput: GetFileUploadSessionByUrlOptionalsInput = {}
+  ): Promise<UploadSession> {
+    const optionals: GetFileUploadSessionByUrlOptionals =
+      new GetFileUploadSessionByUrlOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(url, {
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeUploadSession(response.data);
+  }
+  /**
      * Return information about an upload session.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions) endpoint.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {GetFileUploadSessionByIdOptionalsInput} optionalsInput
@@ -708,7 +1132,60 @@ export class ChunkedUploadsManager {
     return deserializeUploadSession(response.data);
   }
   /**
-     * Updates a chunk of an upload session for a file.
+   * Using this method with urls provided in response when creating a new upload session is preferred to use over UploadFilePart method.
+   * This allows to always upload your content to the closest Box data center and can significantly improve upload speed.
+   *  Uploads a chunk of a file for an upload session.
+   *
+   * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+   * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
+   * @param {string} url URL of uploadFilePart method
+   * @param {ByteStream} requestBody Request body of uploadFilePart method
+   * @param {UploadFilePartByUrlHeadersInput} headersInput Headers of uploadFilePart method
+   * @param {UploadFilePartByUrlOptionalsInput} optionalsInput
+   * @returns {Promise<UploadedPart>}
+   */
+  async uploadFilePartByUrl(
+    url: string,
+    requestBody: ByteStream,
+    headersInput: UploadFilePartByUrlHeadersInput,
+    optionalsInput: UploadFilePartByUrlOptionalsInput = {}
+  ): Promise<UploadedPart> {
+    const headers: UploadFilePartByUrlHeaders = new UploadFilePartByUrlHeaders({
+      digest: headersInput.digest,
+      contentRange: headersInput.contentRange,
+      extraHeaders: headersInput.extraHeaders,
+    });
+    const optionals: UploadFilePartByUrlOptionals =
+      new UploadFilePartByUrlOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{
+        ['digest']: toString(headers.digest) as string,
+        ['content-range']: toString(headers.contentRange) as string,
+      },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse = (await fetch(url, {
+      method: 'PUT',
+      headers: headersMap,
+      fileStream: requestBody,
+      contentType: 'application/octet-stream',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeUploadedPart(response.data);
+  }
+  /**
+     * Uploads a chunk of a file for an upload session.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {ByteStream} requestBody Request body of uploadFilePart method
@@ -760,9 +1237,49 @@ export class ChunkedUploadsManager {
     return deserializeUploadedPart(response.data);
   }
   /**
+   * Using this method with urls provided in response when creating a new upload session is preferred to use over DeleteFileUploadSessionById method.
+   * This allows to always upload your content to the closest Box data center and can significantly improve upload speed.
+   *  Abort an upload session and discard all data uploaded.
+   *
+   * This cannot be reversed.
+   *
+   * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+   * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
+   * @param {string} url URL of deleteFileUploadSessionById method
+   * @param {DeleteFileUploadSessionByUrlOptionalsInput} optionalsInput
+   * @returns {Promise<undefined>}
+   */
+  async deleteFileUploadSessionByUrl(
+    url: string,
+    optionalsInput: DeleteFileUploadSessionByUrlOptionalsInput = {}
+  ): Promise<undefined> {
+    const optionals: DeleteFileUploadSessionByUrlOptionals =
+      new DeleteFileUploadSessionByUrlOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(url, {
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return void 0;
+  }
+  /**
      * Abort an upload session and discard all data uploaded.
      *
      * This cannot be reversed.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {DeleteFileUploadSessionByIdOptionalsInput} optionalsInput
@@ -800,8 +1317,54 @@ export class ChunkedUploadsManager {
     return void 0;
   }
   /**
-     * Return a list of the chunks uploaded to the upload
-     * session so far.
+   * Using this method with urls provided in response when creating a new upload session is preferred to use over GetFileUploadSessionParts method.
+   * This allows to always upload your content to the closest Box data center and can significantly improve upload speed.
+   *  Return a list of the chunks uploaded to the upload session so far.
+   *
+   * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+   * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
+   * @param {string} url URL of getFileUploadSessionParts method
+   * @param {GetFileUploadSessionPartsByUrlOptionalsInput} optionalsInput
+   * @returns {Promise<UploadParts>}
+   */
+  async getFileUploadSessionPartsByUrl(
+    url: string,
+    optionalsInput: GetFileUploadSessionPartsByUrlOptionalsInput = {}
+  ): Promise<UploadParts> {
+    const optionals: GetFileUploadSessionPartsByUrlOptionals =
+      new GetFileUploadSessionPartsByUrlOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['offset']: toString(queryParams.offset) as string,
+      ['limit']: toString(queryParams.limit) as string,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch(url, {
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeUploadParts(response.data);
+  }
+  /**
+     * Return a list of the chunks uploaded to the upload session so far.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {GetFileUploadSessionPartsOptionalsInput} optionalsInput
@@ -849,8 +1412,63 @@ export class ChunkedUploadsManager {
     return deserializeUploadParts(response.data);
   }
   /**
-     * Close an upload session and create a file from the
-     * uploaded chunks.
+   * Using this method with urls provided in response when creating a new upload session is preferred to use over CreateFileUploadSessionCommit method.
+   * This allows to always upload your content to the closest Box data center and can significantly improve upload speed.
+   *  Close an upload session and create a file from the uploaded chunks.
+   *
+   * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+   * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
+   * @param {string} url URL of createFileUploadSessionCommit method
+   * @param {CreateFileUploadSessionCommitByUrlRequestBody} requestBody Request body of createFileUploadSessionCommit method
+   * @param {CreateFileUploadSessionCommitByUrlHeadersInput} headersInput Headers of createFileUploadSessionCommit method
+   * @param {CreateFileUploadSessionCommitByUrlOptionalsInput} optionalsInput
+   * @returns {Promise<Files>}
+   */
+  async createFileUploadSessionCommitByUrl(
+    url: string,
+    requestBody: CreateFileUploadSessionCommitByUrlRequestBody,
+    headersInput: CreateFileUploadSessionCommitByUrlHeadersInput,
+    optionalsInput: CreateFileUploadSessionCommitByUrlOptionalsInput = {}
+  ): Promise<Files> {
+    const headers: CreateFileUploadSessionCommitByUrlHeaders =
+      new CreateFileUploadSessionCommitByUrlHeaders({
+        digest: headersInput.digest,
+        ifMatch: headersInput.ifMatch,
+        ifNoneMatch: headersInput.ifNoneMatch,
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const optionals: CreateFileUploadSessionCommitByUrlOptionals =
+      new CreateFileUploadSessionCommitByUrlOptionals({
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{
+        ['digest']: toString(headers.digest) as string,
+        ['if-match']: toString(headers.ifMatch) as string,
+        ['if-none-match']: toString(headers.ifNoneMatch) as string,
+      },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse = (await fetch(url, {
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateFileUploadSessionCommitRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeFiles(response.data);
+  }
+  /**
+     * Close an upload session and create a file from the uploaded chunks.
+     *
+     * The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions)
+     * and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
      * @param {string} uploadSessionId The ID of the upload session.
     Example: "D5E3F7A"
      * @param {CreateFileUploadSessionCommitRequestBody} requestBody Request body of createFileUploadSessionCommit method
@@ -933,13 +1551,13 @@ export class ChunkedUploadsManager {
       '/',
       (toString(acc.fileSize) as string)!
     ) as string;
-    const uploadedPart: UploadedPart = await this.uploadFilePart(
-      acc.uploadSessionId,
+    const uploadedPart: UploadedPart = await this.uploadFilePartByUrl(
+      acc.uploadPartUrl,
       generateByteStreamFromBuffer(chunkBuffer),
       {
         digest: digest,
         contentRange: contentRange,
-      } satisfies UploadFilePartHeadersInput
+      } satisfies UploadFilePartByUrlHeadersInput
     );
     const part: UploadPart = uploadedPart.part!;
     const partSha1: string = hexToBase64(part.sha1!);
@@ -957,7 +1575,7 @@ export class ChunkedUploadsManager {
       lastIndex: bytesEnd,
       parts: parts.concat([part]),
       fileSize: acc.fileSize,
-      uploadSessionId: acc.uploadSessionId,
+      uploadPartUrl: acc.uploadPartUrl,
       fileHash: acc.fileHash,
     } satisfies PartAccumulator;
   }
@@ -988,7 +1606,9 @@ export class ChunkedUploadsManager {
         cancellationToken: cancellationToken,
       } satisfies CreateFileUploadSessionOptionalsInput
     );
-    const uploadSessionId: string = uploadSession.id!;
+    const uploadPartUrl: string = uploadSession.sessionEndpoints!.uploadPart!;
+    const commitUrl: string = uploadSession.sessionEndpoints!.commit!;
+    const listPartsUrl: string = uploadSession.sessionEndpoints!.listParts!;
     const partSize: number = uploadSession.partSize!;
     const totalParts: number = uploadSession.totalParts!;
     if (!(partSize * totalParts >= fileSize)) {
@@ -1006,30 +1626,35 @@ export class ChunkedUploadsManager {
         lastIndex: -1,
         parts: [],
         fileSize: fileSize,
-        uploadSessionId: uploadSessionId,
+        uploadPartUrl: uploadPartUrl,
         fileHash: fileHash,
       } satisfies PartAccumulator
     );
     const parts: readonly UploadPart[] = results.parts;
     const processedSessionParts: UploadParts =
-      await this.getFileUploadSessionParts(uploadSessionId, {
-        queryParams: {} satisfies GetFileUploadSessionPartsQueryParams,
-        headers: new GetFileUploadSessionPartsHeaders({}),
+      await this.getFileUploadSessionPartsByUrl(listPartsUrl, {
+        queryParams: {} satisfies GetFileUploadSessionPartsByUrlQueryParams,
+        headers: new GetFileUploadSessionPartsByUrlHeaders({}),
         cancellationToken: cancellationToken,
-      } satisfies GetFileUploadSessionPartsOptionalsInput);
+      } satisfies GetFileUploadSessionPartsByUrlOptionalsInput);
     if (!(processedSessionParts.totalCount! == totalParts)) {
       throw new Error('Assertion failed');
     }
     const sha1: string = await fileHash.digestHash('base64');
     const digest: string = ''.concat('sha=', sha1) as string;
-    const committedSession: Files = await this.createFileUploadSessionCommit(
-      uploadSessionId,
-      { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
-      { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
-      {
-        cancellationToken: cancellationToken,
-      } satisfies CreateFileUploadSessionCommitOptionalsInput
-    );
+    const committedSession: Files =
+      await this.createFileUploadSessionCommitByUrl(
+        commitUrl,
+        {
+          parts: parts,
+        } satisfies CreateFileUploadSessionCommitByUrlRequestBody,
+        {
+          digest: digest,
+        } satisfies CreateFileUploadSessionCommitByUrlHeadersInput,
+        {
+          cancellationToken: cancellationToken,
+        } satisfies CreateFileUploadSessionCommitByUrlOptionalsInput
+      );
     return committedSession.entries![0];
   }
 }
@@ -1141,6 +1766,45 @@ export function deserializeCreateFileUploadSessionForExistingFileRequestBody(
     fileSize: fileSize,
     fileName: fileName,
   } satisfies CreateFileUploadSessionForExistingFileRequestBody;
+}
+export function serializeCreateFileUploadSessionCommitByUrlRequestBody(
+  val: CreateFileUploadSessionCommitByUrlRequestBody
+): SerializedData {
+  return {
+    ['parts']: val.parts.map(function (item: UploadPart): SerializedData {
+      return serializeUploadPart(item);
+    }) as readonly any[],
+  };
+}
+export function deserializeCreateFileUploadSessionCommitByUrlRequestBody(
+  val: SerializedData
+): CreateFileUploadSessionCommitByUrlRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "CreateFileUploadSessionCommitByUrlRequestBody"',
+    });
+  }
+  if (val.parts == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parts" of type "CreateFileUploadSessionCommitByUrlRequestBody" to be defined',
+    });
+  }
+  if (!sdIsList(val.parts)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "parts" of type "CreateFileUploadSessionCommitByUrlRequestBody"',
+    });
+  }
+  const parts: readonly UploadPart[] = sdIsList(val.parts)
+    ? (val.parts.map(function (itm: SerializedData): UploadPart {
+        return deserializeUploadPart(itm);
+      }) as readonly any[])
+    : [];
+  return {
+    parts: parts,
+  } satisfies CreateFileUploadSessionCommitByUrlRequestBody;
 }
 export function serializeCreateFileUploadSessionCommitRequestBody(
   val: CreateFileUploadSessionCommitRequestBody
