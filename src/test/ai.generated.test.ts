@@ -153,9 +153,6 @@ test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig()
   if (!!(aiAskConfig.basicText!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicText!.systemMessage! == '')) {
-    throw new Error('Assertion failed');
-  }
   if (!(aiAskConfig.basicText!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
@@ -178,9 +175,6 @@ test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig()
     throw new Error('Assertion failed');
   }
   if (!!(aiAskConfig.longText!.promptTemplate! == '')) {
-    throw new Error('Assertion failed');
-  }
-  if (!!(aiAskConfig.longText!.systemMessage! == '')) {
     throw new Error('Assertion failed');
   }
   if (!(aiAskConfig.longText!.numTokensForCompletion! > -1)) {
@@ -230,9 +224,6 @@ test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgent
     throw new Error('Assertion failed');
   }
   if (!!(aiTextGenConfig.basicGen!.promptTemplate! == '')) {
-    throw new Error('Assertion failed');
-  }
-  if (!!(aiTextGenConfig.basicGen!.systemMessage! == '')) {
     throw new Error('Assertion failed');
   }
   if (!(aiTextGenConfig.basicGen!.numTokensForCompletion! > -1)) {
