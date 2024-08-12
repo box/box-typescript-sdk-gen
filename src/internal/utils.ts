@@ -186,7 +186,7 @@ export function decodeBase64ByteStream(data: string): Readable {
     : eval('require')('stream').Readable.from(Buffer.from(data, 'base64'));
 }
 
-export async function readByteStream(byteStream: Readable): Promise<Buffer> {
+export async function readByteStream(byteStream: Readable) {
   const buffers: Buffer[] = [];
   for await (const data of byteStream) {
     buffers.push(data);
