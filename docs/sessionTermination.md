@@ -12,6 +12,11 @@ Returns the status for the POST request.
 
 This operation is performed by calling function `terminateUsersSessions`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-users-terminate-sessions/).
+
+<!-- sample post_users_terminate_sessions -->
+
 ```ts
 await client.sessionTermination.terminateUsersSessions({
   userIds: [getEnvVar('USER_ID')],
@@ -40,6 +45,11 @@ to terminate the group's sessions.
 Returns the status for the POST request.
 
 This operation is performed by calling function `terminateGroupsSessions`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-groups-terminate-sessions/).
+
+<!-- sample post_groups_terminate_sessions -->
 
 ```ts
 await client.sessionTermination.terminateGroupsSessions({

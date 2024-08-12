@@ -10,6 +10,11 @@ Retrieve the watermark for a file.
 
 This operation is performed by calling function `getFileWatermark`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-watermark/).
+
+<!-- sample get_files_id_watermark -->
+
 ```ts
 await client.fileWatermarks.getFileWatermark(file.id);
 ```
@@ -33,6 +38,11 @@ watermark associated for to this file.
 Applies or update a watermark on a file.
 
 This operation is performed by calling function `updateFileWatermark`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-watermark/).
+
+<!-- sample put_files_id_watermark -->
 
 ```ts
 await client.fileWatermarks.updateFileWatermark(file.id, {
@@ -64,6 +74,11 @@ this file yet.
 Removes the watermark from a file.
 
 This operation is performed by calling function `deleteFileWatermark`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-id-watermark/).
+
+<!-- sample delete_files_id_watermark -->
 
 ```ts
 await client.fileWatermarks.deleteFileWatermark(file.id);

@@ -14,6 +14,11 @@ use this endpoint.
 
 This operation is performed by calling function `getSlackIntegrationMapping`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-integration-mappings-slack/).
+
+<!-- sample get_integration_mappings_slack -->
+
 ```ts
 await userClient.integrationMappings.getSlackIntegrationMapping();
 ```
@@ -42,6 +47,11 @@ You need Admin or Co-Admin role to
 use this endpoint.
 
 This operation is performed by calling function `createSlackIntegrationMapping`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-integration-mappings-slack/).
+
+<!-- sample post_integration_mappings_slack -->
 
 ```ts
 await userClient.integrationMappings.createSlackIntegrationMapping({
@@ -76,6 +86,9 @@ use this endpoint.
 
 This operation is performed by calling function `updateSlackIntegrationMappingById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-integration-mappings-slack-id/).
+
 _Currently we don't have an example for calling `updateSlackIntegrationMappingById` in integration tests_
 
 ### Arguments
@@ -99,6 +112,9 @@ You need Admin or Co-Admin role to
 use this endpoint.
 
 This operation is performed by calling function `deleteSlackIntegrationMappingById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-integration-mappings-slack-id/).
 
 _Currently we don't have an example for calling `deleteSlackIntegrationMappingById` in integration tests_
 

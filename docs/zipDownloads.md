@@ -26,6 +26,11 @@ total size does not exceed 25GB.
 
 This operation is performed by calling function `createZipDownload`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-zip-downloads/).
+
+<!-- sample post_zip_downloads -->
+
 ```ts
 await client.zipDownloads.createZipDownload({
   items: [
@@ -79,6 +84,11 @@ this endpoint.
 
 This operation is performed by calling function `getZipDownloadContent`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-zip-downloads-id-content/).
+
+<!-- sample get_zip_downloads_id_content -->
+
 ```ts
 await client.zipDownloads.getZipDownloadContent(zipDownload.downloadUrl!);
 ```
@@ -113,6 +123,11 @@ the [Create zip download](e://post_zip_downloads) API to request to create a
 this endpoint.
 
 This operation is performed by calling function `getZipDownloadStatus`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-zip-downloads-id-status/).
+
+<!-- sample get_zip_downloads_id_status -->
 
 ```ts
 await client.zipDownloads.getZipDownloadStatus(zipDownload.statusUrl!);

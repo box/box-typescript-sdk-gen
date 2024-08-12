@@ -12,6 +12,11 @@ Retrieves the details about a file.
 
 This operation is performed by calling function `getFileById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id/).
+
+<!-- sample get_files_id -->
+
 ```ts
 await client.files.getFileById(file.id);
 ```
@@ -39,6 +44,11 @@ Updates a file. This can be used to rename or move a file,
 create a shared link, or lock a file.
 
 This operation is performed by calling function `updateFileById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id/).
+
+<!-- sample put_files_id -->
 
 ```ts
 await downscopedClient.files.updateFileById(file.id, {
@@ -73,6 +83,11 @@ be permanently deleted from Box or moved to the trash.
 
 This operation is performed by calling function `deleteFileById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-id/).
+
+<!-- sample delete_files_id -->
+
 ```ts
 await parentClient.files.deleteFileById(file.id);
 ```
@@ -96,6 +111,11 @@ deleted.
 Creates a copy of a file.
 
 This operation is performed by calling function `copyFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-id-copy/).
+
+<!-- sample post_files_id_copy -->
 
 ```ts
 await client.files.copyFile(fileOrigin.id, {
@@ -137,6 +157,11 @@ Thumbnails can be generated for the image and video file formats listed
 [1]: https://community.box.com/t5/Migrating-and-Previewing-Content/File-Types-and-Fonts-Supported-in-Box-Content-Preview/ta-p/327
 
 This operation is performed by calling function `getFileThumbnailById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-thumbnail-id/).
+
+<!-- sample get_files_id_thumbnail_id -->
 
 ```ts
 await client.files.getFileThumbnailById(

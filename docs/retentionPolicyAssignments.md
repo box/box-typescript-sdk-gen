@@ -13,6 +13,11 @@ retention policy.
 
 This operation is performed by calling function `getRetentionPolicyAssignments`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-retention-policies-id-assignments/).
+
+<!-- sample get_retention_policies_id_assignments -->
+
 ```ts
 await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
   retentionPolicy.id
@@ -38,6 +43,11 @@ specified retention policy.
 Assigns a retention policy to an item.
 
 This operation is performed by calling function `createRetentionPolicyAssignment`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-retention-policy-assignments/).
+
+<!-- sample post_retention_policy_assignments -->
 
 ```ts
 await client.retentionPolicyAssignments.createRetentionPolicyAssignment({
@@ -68,6 +78,11 @@ Retrieves a retention policy assignment
 
 This operation is performed by calling function `getRetentionPolicyAssignmentById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id/).
+
+<!-- sample get_retention_policy_assignments_id -->
+
 ```ts
 await client.retentionPolicyAssignments.getRetentionPolicyAssignmentById(
   retentionPolicyAssignment.id
@@ -94,6 +109,11 @@ applied to content.
 
 This operation is performed by calling function `deleteRetentionPolicyAssignmentById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-retention-policy-assignments-id/).
+
+<!-- sample delete_retention_policy_assignments_id -->
+
 ```ts
 await client.retentionPolicyAssignments.deleteRetentionPolicyAssignmentById(
   retentionPolicyAssignment.id
@@ -119,6 +139,11 @@ is successfully deleted.
 Returns a list of files under retention for a retention policy assignment.
 
 This operation is performed by calling function `getFilesUnderRetentionPolicyAssignment`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-retention-policy-assignments-id-files-under-retention/).
+
+<!-- sample get_retention_policy_assignments_id_files_under_retention -->
 
 ```ts
 await client.retentionPolicyAssignments.getFilesUnderRetentionPolicyAssignment(

@@ -11,6 +11,11 @@ Retrieves a single collaboration.
 
 This operation is performed by calling function `getCollaborationById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-collaborations-id/).
+
+<!-- sample get_collaborations_id -->
+
 ```ts
 await client.userCollaborations.getCollaborationById(collaborationId);
 ```
@@ -35,6 +40,11 @@ Can be used to change the owner of an item, or to
 accept collaboration invites.
 
 This operation is performed by calling function `updateCollaborationById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-collaborations-id/).
+
+<!-- sample put_collaborations_id -->
 
 ```ts
 await client.userCollaborations.updateCollaborationById(collaborationId, {
@@ -64,6 +74,11 @@ the old collaboration will be a `co-owner` on the new collaboration.
 Deletes a single collaboration.
 
 This operation is performed by calling function `deleteCollaborationById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-collaborations-id/).
+
+<!-- sample delete_collaborations_id -->
 
 ```ts
 await client.userCollaborations.deleteCollaborationById(groupCollaboration.id);
@@ -102,6 +117,11 @@ are redacted:
 - `name` is hidden if a collaboration was created using `login`.
 
 This operation is performed by calling function `createCollaboration`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-collaborations/).
+
+<!-- sample post_collaborations -->
 
 ```ts
 await client.userCollaborations.createCollaboration({

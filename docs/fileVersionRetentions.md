@@ -14,6 +14,11 @@ see [files under retention](e://get-retention-policy-assignments-id-files-under-
 
 This operation is performed by calling function `getFileVersionRetentions`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-file-version-retentions/).
+
+<!-- sample get_file_version_retentions -->
+
 ```ts
 await client.fileVersionRetentions.getFileVersionRetentions();
 ```
@@ -43,6 +48,11 @@ To get information about files and file versions under retention,
 see [files under retention](e://get-retention-policy-assignments-id-files-under-retention) or [file versions under retention](e://get-retention-policy-assignments-id-file-versions-under-retention) endpoints.
 
 This operation is performed by calling function `getFileVersionRetentionById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-file-version-retentions-id/).
+
+<!-- sample get_file_version_retentions_id -->
 
 ```ts
 await client.fileVersionRetentions.getFileVersionRetentionById(

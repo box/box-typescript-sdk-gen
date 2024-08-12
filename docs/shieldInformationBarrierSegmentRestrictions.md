@@ -12,6 +12,11 @@ restriction based on provided ID.
 
 This operation is performed by calling function `getShieldInformationBarrierSegmentRestrictionById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions-id/).
+
+<!-- sample get_shield_information_barrier_segment_restrictions_id -->
+
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
   segmentRestrictionId
@@ -39,6 +44,11 @@ based on provided ID.
 
 This operation is performed by calling function `deleteShieldInformationBarrierSegmentRestrictionById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-shield-information-barrier-segment-restrictions-id/).
+
+<!-- sample delete_shield_information_barrier_segment_restrictions_id -->
+
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
   segmentRestrictionId
@@ -64,6 +74,11 @@ Lists shield information barrier segment restrictions
 based on provided segment ID.
 
 This operation is performed by calling function `getShieldInformationBarrierSegmentRestrictions`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-shield-information-barrier-segment-restrictions/).
+
+<!-- sample get_shield_information_barrier_segment_restrictions -->
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
@@ -93,6 +108,11 @@ Creates a shield information barrier
 segment restriction object.
 
 This operation is performed by calling function `createShieldInformationBarrierSegmentRestriction`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-shield-information-barrier-segment-restrictions/).
+
+<!-- sample post_shield_information_barrier_segment_restrictions -->
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.createShieldInformationBarrierSegmentRestriction(

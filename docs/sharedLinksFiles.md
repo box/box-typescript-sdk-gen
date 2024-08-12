@@ -21,6 +21,11 @@ by requesting it in the `fields` query parameter.
 
 This operation is performed by calling function `findFileForSharedLink`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-shared-items/).
+
+<!-- sample get_shared_items -->
+
 ```ts
 await userClient.sharedLinksFiles.findFileForSharedLink(
   {} satisfies FindFileForSharedLinkQueryParams,
@@ -56,6 +61,11 @@ Gets the information for a shared link on a file.
 
 This operation is performed by calling function `getSharedLinkForFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-get-shared-link/).
+
+<!-- sample get_files_id#get_shared_link -->
+
 ```ts
 await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
   fields: 'shared_link',
@@ -83,6 +93,11 @@ additional shared link information.
 Adds a shared link to a file.
 
 This operation is performed by calling function `addShareLinkToFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-add-shared-link/).
+
+<!-- sample put_files_id#add_shared_link -->
 
 ```ts
 await client.sharedLinksFiles.addShareLinkToFile(
@@ -121,6 +136,11 @@ Updates a shared link on a file.
 
 This operation is performed by calling function `updateSharedLinkOnFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-update-shared-link/).
+
+<!-- sample put_files_id#update_shared_link -->
+
 ```ts
 await client.sharedLinksFiles.updateSharedLinkOnFile(
   fileId,
@@ -157,6 +177,9 @@ link attached.
 Removes a shared link from a file.
 
 This operation is performed by calling function `removeSharedLinkFromFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-remove-shared-link/).
 
 _Currently we don't have an example for calling `removeSharedLinkFromFile` in integration tests_
 

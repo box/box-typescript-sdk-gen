@@ -12,6 +12,11 @@ Retrieves a list of comments for a file.
 
 This operation is performed by calling function `getFileComments`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-comments/).
+
+<!-- sample get_files_id_comments -->
+
 ```ts
 await client.comments.getFileComments(fileId);
 ```
@@ -37,6 +42,11 @@ as information on the user who created the comment.
 
 This operation is performed by calling function `getCommentById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-comments-id/).
+
+<!-- sample get_comments_id -->
+
 ```ts
 await client.comments.getCommentById(newComment.id!);
 ```
@@ -59,6 +69,11 @@ Returns a full comment object.
 Update the message of a comment.
 
 This operation is performed by calling function `updateCommentById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-comments-id/).
+
+<!-- sample put_comments_id -->
 
 ```ts
 await client.comments.updateCommentById(newReplyComment.id!, {
@@ -85,6 +100,11 @@ Permanently deletes a comment.
 
 This operation is performed by calling function `deleteCommentById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-comments-id/).
+
+<!-- sample delete_comments_id -->
+
 ```ts
 await client.comments.deleteCommentById(newComment.id!);
 ```
@@ -108,6 +128,11 @@ Adds a comment by the user to a specific file, or
 as a reply to an other comment.
 
 This operation is performed by calling function `createComment`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-comments/).
+
+<!-- sample post_comments -->
 
 ```ts
 await client.comments.createComment({

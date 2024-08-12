@@ -14,6 +14,11 @@ folder with ID `0`.
 
 This operation is performed by calling function `getMetadataCascadePolicies`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-metadata-cascade-policies/).
+
+<!-- sample get_metadata_cascade_policies -->
+
 ```ts
 await client.metadataCascadePolicies.getMetadataCascadePolicies({
   folderId: folder.id,
@@ -44,6 +49,11 @@ be applied to the folder the policy is to be applied to.
 
 This operation is performed by calling function `createMetadataCascadePolicy`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-metadata-cascade-policies/).
+
+<!-- sample post_metadata_cascade_policies -->
+
 ```ts
 await client.metadataCascadePolicies.createMetadataCascadePolicy({
   folderId: folder.id,
@@ -71,6 +81,11 @@ Retrieve a specific metadata cascade policy assigned to a folder.
 
 This operation is performed by calling function `getMetadataCascadePolicyById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-metadata-cascade-policies-id/).
+
+<!-- sample get_metadata_cascade_policies_id -->
+
 ```ts
 await client.metadataCascadePolicies.getMetadataCascadePolicyById(
   cascadePolicyId
@@ -95,6 +110,11 @@ Returns a metadata cascade policy
 Deletes a metadata cascade policy.
 
 This operation is performed by calling function `deleteMetadataCascadePolicyById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-metadata-cascade-policies-id/).
+
+<!-- sample delete_metadata_cascade_policies_id -->
 
 ```ts
 await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
@@ -124,6 +144,11 @@ enforce the metadata to be cascaded down to all existing files within that
 folder.
 
 This operation is performed by calling function `applyMetadataCascadePolicy`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-metadata-cascade-policies-id-apply/).
+
+<!-- sample post_metadata_cascade_policies_id_apply -->
 
 ```ts
 await client.metadataCascadePolicies.applyMetadataCascadePolicy(

@@ -11,6 +11,11 @@ Creates a web link object within a folder.
 
 This operation is performed by calling function `createWebLink`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-web-links/).
+
+<!-- sample post_web_links -->
+
 ```ts
 await client.webLinks.createWebLink({
   url: 'https://www.box.com',
@@ -39,6 +44,11 @@ Retrieve information about a web link.
 
 This operation is performed by calling function `getWebLinkById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-web-links-id/).
+
+<!-- sample get_web_links_id -->
+
 ```ts
 await client.webLinks.getWebLinkById(weblink.id);
 ```
@@ -61,6 +71,11 @@ Returns the web link object.
 Updates a web link object.
 
 This operation is performed by calling function `updateWebLinkById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-web-links-id/).
+
+<!-- sample put_web_links_id -->
 
 ```ts
 await client.webLinks.updateWebLinkById(weblink.id, {
@@ -92,6 +107,11 @@ Returns the updated web link object.
 Deletes a web link.
 
 This operation is performed by calling function `deleteWebLinkById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-web-links-id/).
+
+<!-- sample delete_web_links_id -->
 
 ```ts
 await client.webLinks.deleteWebLinkById(webLinkId);

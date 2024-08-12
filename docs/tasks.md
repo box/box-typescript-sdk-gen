@@ -13,6 +13,11 @@ endpoint does not support pagination.
 
 This operation is performed by calling function `getFileTasks`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-tasks/).
+
+<!-- sample get_files_id_tasks -->
+
 ```ts
 await client.tasks.getFileTasks(file.id);
 ```
@@ -39,6 +44,11 @@ Creates a single task on a file. This task is not assigned to any user and
 will need to be assigned separately.
 
 This operation is performed by calling function `createTask`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-tasks/).
+
+<!-- sample post_tasks -->
 
 ```ts
 await client.tasks.createTask({
@@ -72,6 +82,11 @@ Retrieves information about a specific task.
 
 This operation is performed by calling function `getTaskById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-tasks-id/).
+
+<!-- sample get_tasks_id -->
+
 ```ts
 await client.tasks.getTaskById(task.id!);
 ```
@@ -95,6 +110,11 @@ Updates a task. This can be used to update a task's configuration, or to
 update its completion state.
 
 This operation is performed by calling function `updateTaskById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-tasks-id/).
+
+<!-- sample put_tasks_id -->
 
 ```ts
 await client.tasks.updateTaskById(task.id!, {
@@ -122,6 +142,11 @@ Returns the updated task object
 Removes a task from a file.
 
 This operation is performed by calling function `deleteTaskById`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-tasks-id/).
+
+<!-- sample delete_tasks_id -->
 
 ```ts
 await client.tasks.deleteTaskById(task.id!);

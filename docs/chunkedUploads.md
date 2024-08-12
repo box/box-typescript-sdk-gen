@@ -22,6 +22,11 @@ Creates an upload session for a new file.
 
 This operation is performed by calling function `createFileUploadSession`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-upload-sessions/).
+
+<!-- sample post_files_upload_sessions -->
+
 ```ts
 await client.chunkedUploads.createFileUploadSession({
   fileName: fileName,
@@ -49,6 +54,9 @@ Creates an upload session for an existing file.
 
 This operation is performed by calling function `createFileUploadSessionForExistingFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-id-upload-sessions/).
+
 _Currently we don't have an example for calling `createFileUploadSessionForExistingFile` in integration tests_
 
 ### Arguments
@@ -73,6 +81,11 @@ Return information about an upload session.
 The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions) endpoint.
 
 This operation is performed by calling function `getFileUploadSessionByUrl`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-upload-sessions-id/).
+
+<!-- sample get_files_upload_sessions_id -->
 
 ```ts
 await client.chunkedUploads.getFileUploadSessionByUrl(statusUrl);
@@ -99,6 +112,11 @@ The actual endpoint URL is returned by the [`Create upload session`](e://post-fi
 
 This operation is performed by calling function `getFileUploadSessionById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-upload-sessions-id/).
+
+<!-- sample get_files_upload_sessions_id -->
+
 ```ts
 await client.chunkedUploads.getFileUploadSessionById(uploadSessionId);
 ```
@@ -124,6 +142,11 @@ The actual endpoint URL is returned by the [`Create upload session`](e://post-fi
 and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `uploadFilePartByUrl`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-upload-sessions-id/).
+
+<!-- sample put_files_upload_sessions_id -->
 
 ```ts
 await client.chunkedUploads.uploadFilePartByUrl(
@@ -161,6 +184,11 @@ The actual endpoint URL is returned by the [`Create upload session`](e://post-fi
 and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `uploadFilePart`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-upload-sessions-id/).
+
+<!-- sample put_files_upload_sessions_id -->
 
 ```ts
 await client.chunkedUploads.uploadFilePart(
@@ -201,6 +229,11 @@ and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `deleteFileUploadSessionByUrl`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-upload-sessions-id/).
+
+<!-- sample delete_files_upload_sessions_id -->
+
 ```ts
 await client.chunkedUploads.deleteFileUploadSessionByUrl(abortUrl);
 ```
@@ -230,6 +263,11 @@ and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `deleteFileUploadSessionById`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-upload-sessions-id/).
+
+<!-- sample delete_files_upload_sessions_id -->
+
 ```ts
 await client.chunkedUploads.deleteFileUploadSessionById(uploadSessionId);
 ```
@@ -257,6 +295,11 @@ and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `getFileUploadSessionPartsByUrl`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-upload-sessions-id-parts/).
+
+<!-- sample get_files_upload_sessions_id_parts -->
+
 ```ts
 await client.chunkedUploads.getFileUploadSessionPartsByUrl(listPartsUrl);
 ```
@@ -283,6 +326,11 @@ and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `getFileUploadSessionParts`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-upload-sessions-id-parts/).
+
+<!-- sample get_files_upload_sessions_id_parts -->
+
 ```ts
 await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId);
 ```
@@ -308,6 +356,11 @@ The actual endpoint URL is returned by the [`Create upload session`](e://post-fi
 and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `createFileUploadSessionCommitByUrl`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-upload-sessions-id-commit/).
+
+<!-- sample post_files_upload_sessions_id_commit -->
 
 ```ts
 await client.chunkedUploads.createFileUploadSessionCommitByUrl(
@@ -346,6 +399,11 @@ The actual endpoint URL is returned by the [`Create upload session`](e://post-fi
 and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.
 
 This operation is performed by calling function `createFileUploadSessionCommit`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-upload-sessions-id-commit/).
+
+<!-- sample post_files_upload_sessions_id_commit -->
 
 ```ts
 await client.chunkedUploads.createFileUploadSessionCommit(

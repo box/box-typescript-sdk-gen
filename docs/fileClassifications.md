@@ -16,6 +16,11 @@ URL explicitly, for example
 
 This operation is performed by calling function `getClassificationOnFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/get-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+
+<!-- sample get_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```ts
 await client.fileClassifications.getClassificationOnFile(file.id);
 ```
@@ -46,6 +51,11 @@ URL explicitly, for example
 `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
 This operation is performed by calling function `addClassificationToFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/post-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+
+<!-- sample post_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
 ```ts
 await client.fileClassifications.addClassificationToFile(file.id, {
@@ -79,6 +89,11 @@ defined for the enterprise will be accepted.
 
 This operation is performed by calling function `updateClassificationOnFile`.
 
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/put-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+
+<!-- sample put_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
+
 ```ts
 await client.fileClassifications.updateClassificationOnFile(file.id, [
   new UpdateClassificationOnFileRequestBody({
@@ -111,6 +126,11 @@ URL explicitly, for example
 `/files/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
 
 This operation is performed by calling function `deleteClassificationFromFile`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/delete-files-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+
+<!-- sample delete_files_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
 ```ts
 await client.fileClassifications.deleteClassificationFromFile(file.id);
