@@ -16,11 +16,6 @@ template.
 
 This operation is performed by calling function `getMetadataTemplatesByInstanceId`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-metadata-templates/).
-
-<!-- sample get_metadata_templates -->
-
 ```ts
 await client.metadataTemplates.getMetadataTemplatesByInstanceId({
   metadataInstanceId: createdMetadataInstance.id!,
@@ -49,11 +44,6 @@ To find the `scope` and `templateKey` for a template, list all templates for
 an enterprise or globally, or list all templates applied to a file or folder.
 
 This operation is performed by calling function `getMetadataTemplate`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-metadata-templates-id-id-schema/).
-
-<!-- sample get_metadata_templates_id_id_schema -->
 
 ```ts
 await client.metadataTemplates.getMetadataTemplate(
@@ -89,11 +79,6 @@ The update is applied atomically. If any errors occur during the
 application of the operations, the metadata template will not be changed.
 
 This operation is performed by calling function `updateMetadataTemplate`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-metadata-templates-id-id-schema/).
-
-<!-- sample put_metadata_templates_id_id_schema -->
 
 ```ts
 await client.metadataTemplates.updateMetadataTemplate(
@@ -134,11 +119,6 @@ This deletion is permanent and can not be reversed.
 
 This operation is performed by calling function `deleteMetadataTemplate`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-metadata-templates-id-id-schema/).
-
-<!-- sample delete_metadata_templates_id_id_schema -->
-
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
   'enterprise' as DeleteMetadataTemplateScope,
@@ -168,11 +148,6 @@ Retrieves a metadata template by its ID.
 
 This operation is performed by calling function `getMetadataTemplateById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-metadata-templates-id/).
-
-<!-- sample get_metadata_templates_id -->
-
 ```ts
 await client.metadataTemplates.getMetadataTemplateById(template.id);
 ```
@@ -196,11 +171,6 @@ Used to retrieve all generic, global metadata templates available to all
 enterprises using Box.
 
 This operation is performed by calling function `getGlobalMetadataTemplates`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-metadata-templates-global/).
-
-<!-- sample get_metadata_templates_global -->
 
 ```ts
 await client.metadataTemplates.getGlobalMetadataTemplates();
@@ -229,11 +199,6 @@ the user's enterprise
 
 This operation is performed by calling function `getEnterpriseMetadataTemplates`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-metadata-templates-enterprise/).
-
-<!-- sample get_metadata_templates_enterprise -->
-
 ```ts
 await client.metadataTemplates.getEnterpriseMetadataTemplates();
 ```
@@ -260,11 +225,6 @@ Creates a new metadata template that can be applied to
 files and folders.
 
 This operation is performed by calling function `createMetadataTemplate`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-metadata-templates-schema/).
-
-<!-- sample post_metadata_templates_schema -->
 
 ```ts
 await client.metadataTemplates.createMetadataTemplate({

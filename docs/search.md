@@ -14,11 +14,6 @@ of the metadata, use the `fields` attribute in the query.
 
 This operation is performed by calling function `searchByMetadataQuery`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-metadata-queries-execute-read/).
-
-<!-- sample post_metadata_queries_execute_read -->
-
 ```ts
 await client.search.searchByMetadataQuery({
   ancestorFolderId: '0',
@@ -47,11 +42,6 @@ Searches for files, folders, web links, and shared files across the
 users content or across the entire enterprise.
 
 This operation is performed by calling function `searchForContent`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-search/).
-
-<!-- sample get_search -->
 
 ```ts
 await client.search.searchForContent({

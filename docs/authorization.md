@@ -17,9 +17,6 @@ format.
 
 This operation is performed by calling function `authorizeUser`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-authorize/).
-
 _Currently we don't have an example for calling `authorizeUser` in integration tests_
 
 ### Arguments
@@ -52,9 +49,6 @@ Box API calls.
 
 This operation is performed by calling function `requestAccessToken`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-oauth-2-token/).
-
 _Currently we don't have an example for calling `requestAccessToken` in integration tests_
 
 ### Arguments
@@ -77,9 +71,6 @@ follows `Authorization: Bearer <Token>`.
 Refresh an Access Token using its client ID, secret, and refresh token.
 
 This operation is performed by calling function `refreshAccessToken`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-oauth-2-token-refresh/).
 
 _Currently we don't have an example for calling `refreshAccessToken` in integration tests_
 
@@ -104,9 +95,6 @@ Revoke an active Access Token, effectively logging a user out
 that has been previously authenticated.
 
 This operation is performed by calling function `revokeAccessToken`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-oauth-2-revoke/).
 
 _Currently we don't have an example for calling `revokeAccessToken` in integration tests_
 
