@@ -13,11 +13,6 @@ original folder has been deleted.
 
 This operation is performed by calling function `restoreFileFromTrash`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-files-id/).
-
-<!-- sample post_files_id -->
-
 ```ts
 await client.trashedFiles.restoreFileFromTrash(file.id);
 ```
@@ -51,11 +46,6 @@ API.
 
 This operation is performed by calling function `getTrashedFileById`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-files-id-trash/).
-
-<!-- sample get_files_id_trash -->
-
 ```ts
 await client.trashedFiles.getTrashedFileById(uploadedFile.id);
 ```
@@ -81,11 +71,6 @@ Permanently deletes a file that is in the trash.
 This action cannot be undone.
 
 This operation is performed by calling function `deleteTrashedFileById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-files-id-trash/).
-
-<!-- sample delete_files_id_trash -->
 
 ```ts
 await client.trashedFiles.deleteTrashedFileById(file.id);

@@ -9,11 +9,6 @@ Gets Box Sign templates created by a user.
 
 This operation is performed by calling function `getSignTemplates`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-sign-templates/).
-
-<!-- sample get_sign_templates -->
-
 ```ts
 await client.signTemplates.getSignTemplates({
   limit: 2,
@@ -40,11 +35,6 @@ Returns a collection of templates.
 Fetches details of a specific Box Sign template.
 
 This operation is performed by calling function `getSignTemplateById`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-sign-templates-id/).
-
-<!-- sample get_sign_templates_id -->
 
 ```ts
 await client.signTemplates.getSignTemplateById(signTemplates.entries![0].id!);

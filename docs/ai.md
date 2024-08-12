@@ -10,11 +10,6 @@ Sends an AI request to supported LLMs and returns an answer specifically focused
 
 This operation is performed by calling function `createAiAsk`.
 
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-ai-ask/).
-
-<!-- sample post_ai_ask -->
-
 ```ts
 await client.ai.createAiAsk({
   mode: 'multiple_item_qa' as AiAskModeField,
@@ -52,11 +47,6 @@ A successful response including the answer from the LLM.
 Sends an AI request to supported LLMs and returns an answer specifically focused on the creation of new text.
 
 This operation is performed by calling function `createAiTextGen`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-ai-text-gen/).
-
-<!-- sample post_ai_text_gen -->
 
 ```ts
 await client.ai.createAiTextGen({
@@ -102,11 +92,6 @@ A successful response including the answer from the LLM.
 Get the AI agent default config
 
 This operation is performed by calling function `getAiAgentDefaultConfig`.
-
-See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-ai-agent-default/).
-
-<!-- sample get_ai_agent_default -->
 
 ```ts
 await client.ai.getAiAgentDefaultConfig({
