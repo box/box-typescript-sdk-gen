@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.3.0...v1.4.0) (2024-08-12)
+
+
+### Bug Fixes
+
+* add missing token scope (box/box-openapi[#442](https://github.com/box/box-typescript-sdk-gen/issues/442)) ([#281](https://github.com/box/box-typescript-sdk-gen/issues/281)) ([ca77f58](https://github.com/box/box-typescript-sdk-gen/commit/ca77f58b10d3a302748750584730f0fcdd8b4b55))
+* Fix fetch method for multipart request (box/box-codegen[#545](https://github.com/box/box-typescript-sdk-gen/issues/545)) ([#303](https://github.com/box/box-typescript-sdk-gen/issues/303)) ([f8ceac0](https://github.com/box/box-typescript-sdk-gen/commit/f8ceac005f043017e7cde310490e79ab9195f8d7))
+
+
+### New Features and Enhancements
+
+* parametrise chunked uploads endpoint urls (box/box-openapi[#444](https://github.com/box/box-typescript-sdk-gen/issues/444)) ([#302](https://github.com/box/box-typescript-sdk-gen/issues/302)) ([293a6e9](https://github.com/box/box-typescript-sdk-gen/commit/293a6e9aeabbba37e4c12e2322a79717a10e1775))
+* **ts:** add comments to properties and methods (box/box-codegen[#537](https://github.com/box/box-typescript-sdk-gen/issues/537)) ([#284](https://github.com/box/box-typescript-sdk-gen/issues/284)) ([db3a2b5](https://github.com/box/box-typescript-sdk-gen/commit/db3a2b57fbe0eec17373a2acf8089ff247c98225))
+
 ## [1.3.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.2.0...v1.3.0) (2024-07-24)
 
 
