@@ -43,7 +43,7 @@ await client.ai.createAiAsk({
 
 ### Returns
 
-This function returns a value of type `AiResponse`.
+This function returns a value of type `AiAskResponse`.
 
 A successful response including the answer from the LLM.
 
@@ -74,12 +74,12 @@ await client.ai.createAiTextGen({
       prompt: 'What does the earth go around?',
       answer: 'The sun',
       createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
-    } satisfies AiTextGenDialogueHistoryField,
+    } satisfies AiDialogueHistory,
     {
       prompt: 'On Earth, where does the sun rise?',
       answer: 'East',
       createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
-    } satisfies AiTextGenDialogueHistoryField,
+    } satisfies AiDialogueHistory,
   ],
 } satisfies AiTextGen);
 ```
