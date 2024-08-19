@@ -43,7 +43,7 @@ await client.ai.createAiAsk({
 
 ### Returns
 
-This function returns a value of type `AiAskResponse`.
+This function returns a value of type `AiResponseFull`.
 
 A successful response including the answer from the LLM.
 

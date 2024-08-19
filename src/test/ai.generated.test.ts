@@ -1,7 +1,7 @@
 import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
-import { serializeAiAskResponse } from '../schemas/aiAskResponse.generated.js';
-import { deserializeAiAskResponse } from '../schemas/aiAskResponse.generated.js';
+import { serializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
+import { deserializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskModeField } from '../schemas/aiAsk.generated.js';
@@ -30,7 +30,7 @@ import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js'
 import { deserializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
-import { AiAskResponse } from '../schemas/aiAskResponse.generated.js';
+import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiAskModeField } from '../schemas/aiAsk.generated.js';
 import { AiAskItemsField } from '../schemas/aiAsk.generated.js';
@@ -61,7 +61,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
   const fileToAsk: FileFull = await uploadNewFile();
-  const response: AiAskResponse = await client.ai.createAiAsk({
+  const response: AiResponseFull = await client.ai.createAiAsk({
     mode: 'single_item_qa' as AiAskModeField,
     prompt: 'which direction sun rises',
     items: [
@@ -83,7 +83,7 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
 test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<any> {
   const fileToAsk1: FileFull = await uploadNewFile();
   const fileToAsk2: FileFull = await uploadNewFile();
-  const response: AiAskResponse = await client.ai.createAiAsk({
+  const response: AiResponseFull = await client.ai.createAiAsk({
     mode: 'multiple_item_qa' as AiAskModeField,
     prompt: 'Which direction sun rises?',
     items: [
