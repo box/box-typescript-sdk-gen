@@ -1,16 +1,19 @@
-import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
-import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
+import { serializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
+import { deserializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
+import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
+import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
-import { AiResponse } from '../schemas/aiResponse.generated.js';
+import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
+import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -203,12 +206,12 @@ export class AiManager {
    * Sends an AI request to supported LLMs and returns an answer specifically focused on the user's question given the provided context.
    * @param {AiAsk} requestBody Request body of createAiAsk method
    * @param {CreateAiAskOptionalsInput} optionalsInput
-   * @returns {Promise<AiResponse>}
+   * @returns {Promise<AiResponseFull>}
    */
   async createAiAsk(
     requestBody: AiAsk,
     optionalsInput: CreateAiAskOptionalsInput = {}
-  ): Promise<AiResponse> {
+  ): Promise<AiResponseFull> {
     const optionals: CreateAiAskOptionals = new CreateAiAskOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -231,7 +234,7 @@ export class AiManager {
         cancellationToken: cancellationToken,
       } satisfies FetchOptions
     )) as FetchResponse;
-    return deserializeAiResponse(response.data);
+    return deserializeAiResponseFull(response.data);
   }
   /**
    * Sends an AI request to supported LLMs and returns an answer specifically focused on the creation of new text.

@@ -1,7 +1,7 @@
 import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
-import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
-import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
+import { serializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
+import { deserializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskModeField } from '../schemas/aiAsk.generated.js';
@@ -10,14 +10,16 @@ import { serializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
+import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { serializeAiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { serializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
-import { serializeAiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
-import { deserializeAiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
+import { serializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
+import { deserializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
 import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
@@ -28,15 +30,16 @@ import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js'
 import { deserializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
-import { AiResponse } from '../schemas/aiResponse.generated.js';
+import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiAskModeField } from '../schemas/aiAsk.generated.js';
 import { AiAskItemsField } from '../schemas/aiAsk.generated.js';
 import { AiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
-import { AiTextGenDialogueHistoryField } from '../schemas/aiTextGen.generated.js';
+import { AiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
 import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
 import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
 import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
@@ -58,7 +61,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
   const fileToAsk: FileFull = await uploadNewFile();
-  const response: AiResponse = await client.ai.createAiAsk({
+  const response: AiResponseFull = await client.ai.createAiAsk({
     mode: 'single_item_qa' as AiAskModeField,
     prompt: 'which direction sun rises',
     items: [
@@ -80,7 +83,7 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
 test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<any> {
   const fileToAsk1: FileFull = await uploadNewFile();
   const fileToAsk2: FileFull = await uploadNewFile();
-  const response: AiResponse = await client.ai.createAiAsk({
+  const response: AiResponseFull = await client.ai.createAiAsk({
     mode: 'multiple_item_qa' as AiAskModeField,
     prompt: 'Which direction sun rises?',
     items: [
@@ -122,12 +125,12 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
         prompt: 'What does the earth go around?',
         answer: 'The sun',
         createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
-      } satisfies AiTextGenDialogueHistoryField,
+      } satisfies AiDialogueHistory,
       {
         prompt: 'On Earth, where does the sun rise?',
         answer: 'East',
         createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
-      } satisfies AiTextGenDialogueHistoryField,
+      } satisfies AiDialogueHistory,
     ],
   } satisfies AiTextGen);
   if (!(response.answer.includes('sun') as boolean)) {
