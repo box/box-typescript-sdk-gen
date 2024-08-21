@@ -29,7 +29,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingIntegrationTypeField = 'slack';
 export class IntegrationMapping extends IntegrationMappingBase {
-  readonly boxItem: FolderMini;
+  readonly boxItem!: FolderMini;
   readonly isManuallyCreated?: boolean;
   readonly options?: IntegrationMappingSlackOptions;
   readonly createdBy?: UserIntegrationMappings;
@@ -37,7 +37,7 @@ export class IntegrationMapping extends IntegrationMappingBase {
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
   readonly integrationType?: IntegrationMappingIntegrationTypeField;
-  readonly partnerItem: IntegrationMappingPartnerItemSlackUnion;
+  readonly partnerItem!: IntegrationMappingPartnerItemSlackUnion;
   constructor(fields: IntegrationMapping) {
     super(fields);
   }

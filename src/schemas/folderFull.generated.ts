@@ -71,7 +71,7 @@ export interface FolderFullPermissionsField {
   readonly canShare: boolean;
   /**
    * Specifies if the user can upload into this folder. */
-  readonly canUpload?: boolean;
+  readonly canUpload: boolean;
 }
 export interface FolderFullMetadataField {
   readonly extraData?: {
@@ -160,7 +160,7 @@ export function serializeFolderFullPermissionsField(
     ['can_rename']: val.canRename,
     ['can_set_share_access']: val.canSetShareAccess,
     ['can_share']: val.canShare,
-    ['can_upload']: val.canUpload == void 0 ? void 0 : val.canUpload,
+    ['can_upload']: val.canUpload,
   };
 }
 export function deserializeFolderFullPermissionsField(
@@ -249,14 +249,19 @@ export function deserializeFolderFullPermissionsField(
     });
   }
   const canShare: boolean = val.can_share;
-  if (!(val.can_upload == void 0) && !sdIsBoolean(val.can_upload)) {
+  if (val.can_upload == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_upload" of type "FolderFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_upload)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_upload" of type "FolderFullPermissionsField"',
     });
   }
-  const canUpload: undefined | boolean =
-    val.can_upload == void 0 ? void 0 : val.can_upload;
+  const canUpload: boolean = val.can_upload;
   return {
     canDelete: canDelete,
     canDownload: canDownload,

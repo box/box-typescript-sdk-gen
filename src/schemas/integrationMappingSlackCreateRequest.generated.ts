@@ -18,7 +18,7 @@ import { sdIsMap } from '../serialization/json.js';
 export interface IntegrationMappingSlackCreateRequest {
   readonly boxItem: IntegrationMappingBoxItemSlack;
   readonly options?: IntegrationMappingSlackOptions;
-  readonly partnerItem?: IntegrationMappingPartnerItemSlack;
+  readonly partnerItem: IntegrationMappingPartnerItemSlack;
 }
 export function serializeIntegrationMappingSlackCreateRequest(
   val: IntegrationMappingSlackCreateRequest
@@ -29,10 +29,9 @@ export function serializeIntegrationMappingSlackCreateRequest(
       val.options == void 0
         ? void 0
         : serializeIntegrationMappingSlackOptions(val.options),
-    ['partner_item']:
-      val.partnerItem == void 0
-        ? void 0
-        : serializeIntegrationMappingPartnerItemSlack(val.partnerItem),
+    ['partner_item']: serializeIntegrationMappingPartnerItemSlack(
+      val.partnerItem
+    ),
   };
 }
 export function deserializeIntegrationMappingSlackCreateRequest(
@@ -55,10 +54,14 @@ export function deserializeIntegrationMappingSlackCreateRequest(
     val.options == void 0
       ? void 0
       : deserializeIntegrationMappingSlackOptions(val.options);
-  const partnerItem: undefined | IntegrationMappingPartnerItemSlack =
-    val.partner_item == void 0
-      ? void 0
-      : deserializeIntegrationMappingPartnerItemSlack(val.partner_item);
+  if (val.partner_item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "partner_item" of type "IntegrationMappingSlackCreateRequest" to be defined',
+    });
+  }
+  const partnerItem: IntegrationMappingPartnerItemSlack =
+    deserializeIntegrationMappingPartnerItemSlack(val.partner_item);
   return {
     boxItem: boxItem,
     options: options,

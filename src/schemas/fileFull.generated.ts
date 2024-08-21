@@ -70,23 +70,23 @@ export interface FileFullPermissionsField {
   readonly canShare: boolean;
   /**
    * Specifies if the user can place annotations on this file. */
-  readonly canAnnotate?: boolean;
+  readonly canAnnotate: boolean;
   /**
    * Specifies if the user can place comments on this file. */
-  readonly canComment?: boolean;
+  readonly canComment: boolean;
   /**
    * Specifies if the user can preview this file. */
-  readonly canPreview?: boolean;
+  readonly canPreview: boolean;
   /**
    * Specifies if the user can upload a new version of this file. */
-  readonly canUpload?: boolean;
+  readonly canUpload: boolean;
   /**
    * Specifies if the user view all annotations placed on this file */
-  readonly canViewAnnotationsAll?: boolean;
+  readonly canViewAnnotationsAll: boolean;
   /**
    * Specifies if the user view annotations placed by themselves
    * on this file */
-  readonly canViewAnnotationsSelf?: boolean;
+  readonly canViewAnnotationsSelf: boolean;
 }
 export type FileFullLockTypeField = 'lock';
 export type FileFullLockAppTypeField =
@@ -302,16 +302,12 @@ export function serializeFileFullPermissionsField(
     ['can_rename']: val.canRename,
     ['can_set_share_access']: val.canSetShareAccess,
     ['can_share']: val.canShare,
-    ['can_annotate']: val.canAnnotate == void 0 ? void 0 : val.canAnnotate,
-    ['can_comment']: val.canComment == void 0 ? void 0 : val.canComment,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_upload']: val.canUpload == void 0 ? void 0 : val.canUpload,
-    ['can_view_annotations_all']:
-      val.canViewAnnotationsAll == void 0 ? void 0 : val.canViewAnnotationsAll,
-    ['can_view_annotations_self']:
-      val.canViewAnnotationsSelf == void 0
-        ? void 0
-        : val.canViewAnnotationsSelf,
+    ['can_annotate']: val.canAnnotate,
+    ['can_comment']: val.canComment,
+    ['can_preview']: val.canPreview,
+    ['can_upload']: val.canUpload,
+    ['can_view_annotations_all']: val.canViewAnnotationsAll,
+    ['can_view_annotations_self']: val.canViewAnnotationsSelf,
   };
 }
 export function deserializeFileFullPermissionsField(
@@ -400,64 +396,84 @@ export function deserializeFileFullPermissionsField(
     });
   }
   const canShare: boolean = val.can_share;
-  if (!(val.can_annotate == void 0) && !sdIsBoolean(val.can_annotate)) {
+  if (val.can_annotate == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_annotate" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_annotate)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_annotate" of type "FileFullPermissionsField"',
     });
   }
-  const canAnnotate: undefined | boolean =
-    val.can_annotate == void 0 ? void 0 : val.can_annotate;
-  if (!(val.can_comment == void 0) && !sdIsBoolean(val.can_comment)) {
+  const canAnnotate: boolean = val.can_annotate;
+  if (val.can_comment == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_comment" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_comment)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_comment" of type "FileFullPermissionsField"',
     });
   }
-  const canComment: undefined | boolean =
-    val.can_comment == void 0 ? void 0 : val.can_comment;
-  if (!(val.can_preview == void 0) && !sdIsBoolean(val.can_preview)) {
+  const canComment: boolean = val.can_comment;
+  if (val.can_preview == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_preview" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_preview)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_preview" of type "FileFullPermissionsField"',
     });
   }
-  const canPreview: undefined | boolean =
-    val.can_preview == void 0 ? void 0 : val.can_preview;
-  if (!(val.can_upload == void 0) && !sdIsBoolean(val.can_upload)) {
+  const canPreview: boolean = val.can_preview;
+  if (val.can_upload == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_upload" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_upload)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_upload" of type "FileFullPermissionsField"',
     });
   }
-  const canUpload: undefined | boolean =
-    val.can_upload == void 0 ? void 0 : val.can_upload;
-  if (
-    !(val.can_view_annotations_all == void 0) &&
-    !sdIsBoolean(val.can_view_annotations_all)
-  ) {
+  const canUpload: boolean = val.can_upload;
+  if (val.can_view_annotations_all == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_view_annotations_all" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_view_annotations_all)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_view_annotations_all" of type "FileFullPermissionsField"',
     });
   }
-  const canViewAnnotationsAll: undefined | boolean =
-    val.can_view_annotations_all == void 0
-      ? void 0
-      : val.can_view_annotations_all;
-  if (
-    !(val.can_view_annotations_self == void 0) &&
-    !sdIsBoolean(val.can_view_annotations_self)
-  ) {
+  const canViewAnnotationsAll: boolean = val.can_view_annotations_all;
+  if (val.can_view_annotations_self == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "can_view_annotations_self" of type "FileFullPermissionsField" to be defined',
+    });
+  }
+  if (!sdIsBoolean(val.can_view_annotations_self)) {
     throw new BoxSdkError({
       message:
         'Expecting boolean for "can_view_annotations_self" of type "FileFullPermissionsField"',
     });
   }
-  const canViewAnnotationsSelf: undefined | boolean =
-    val.can_view_annotations_self == void 0
-      ? void 0
-      : val.can_view_annotations_self;
+  const canViewAnnotationsSelf: boolean = val.can_view_annotations_self;
   return {
     canDelete: canDelete,
     canDownload: canDownload,
