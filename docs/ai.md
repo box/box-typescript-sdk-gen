@@ -62,12 +62,12 @@ See the endpoint docs at
 await client.ai.createAiTextGen({
   prompt: 'Parapharse the document.s',
   items: [
-    {
+    new AiTextGenItemsField({
       id: fileToAsk.id,
       type: 'file' as AiTextGenItemsTypeField,
       content:
         'The Earth goes around the sun. Sun rises in the East in the morning.',
-    } satisfies AiTextGenItemsField,
+    }),
   ],
   dialogueHistory: [
     {

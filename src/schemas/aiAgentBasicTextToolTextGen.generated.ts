@@ -1,6 +1,9 @@
 import { serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
+import { deserializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { AiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -9,44 +12,35 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export interface AiAgentBasicTextToolTextGen {
-  /**
-   * The model to be used for the AI Agent for basic text. */
-  readonly model?: string;
+export type AiAgentBasicTextToolTextGen = AiAgentBasicTextToolBase & {
   /**
    * System messages try to help the LLM "understand" its role and what it is supposed to do.
-   * This parameter requires using `{current_date}`. */
+   * Input for `{current_date}` is optional, depending on the use. */
   readonly systemMessage?: string;
   /**
    * The prompt template contains contextual information of the request and the user prompt.
    *
    * When using the `prompt_template` parameter, you **must include** input for `{user_question}`.
-   * Inputs for  `{current_date}` and`{content}` are optional, depending on the use. */
+   * Inputs for `{current_date}` and `{content}` are optional, depending on the use. */
   readonly promptTemplate?: string;
-  /**
-   * The number of tokens for completion. */
-  readonly numTokensForCompletion?: number;
-  readonly llmEndpointParams?: AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
-}
+};
 export function serializeAiAgentBasicTextToolTextGen(
   val: AiAgentBasicTextToolTextGen
 ): SerializedData {
+  const base: any = serializeAiAgentBasicTextToolBase(val);
+  if (!sdIsMap(base)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiAgentBasicTextToolTextGen"',
+    });
+  }
   return {
-    ['model']: val.model == void 0 ? void 0 : val.model,
-    ['system_message']:
-      val.systemMessage == void 0 ? void 0 : val.systemMessage,
-    ['prompt_template']:
-      val.promptTemplate == void 0 ? void 0 : val.promptTemplate,
-    ['num_tokens_for_completion']:
-      val.numTokensForCompletion == void 0
-        ? void 0
-        : val.numTokensForCompletion,
-    ['llm_endpoint_params']:
-      val.llmEndpointParams == void 0
-        ? void 0
-        : serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-            val.llmEndpointParams
-          ),
+    ...base,
+    ...{
+      ['system_message']:
+        val.systemMessage == void 0 ? void 0 : val.systemMessage,
+      ['prompt_template']:
+        val.promptTemplate == void 0 ? void 0 : val.promptTemplate,
+    },
   };
 }
 export function deserializeAiAgentBasicTextToolTextGen(
@@ -57,13 +51,6 @@ export function deserializeAiAgentBasicTextToolTextGen(
       message: 'Expecting a map for "AiAgentBasicTextToolTextGen"',
     });
   }
-  if (!(val.model == void 0) && !sdIsString(val.model)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "model" of type "AiAgentBasicTextToolTextGen"',
-    });
-  }
-  const model: undefined | string = val.model == void 0 ? void 0 : val.model;
   if (!(val.system_message == void 0) && !sdIsString(val.system_message)) {
     throw new BoxSdkError({
       message:
@@ -80,6 +67,13 @@ export function deserializeAiAgentBasicTextToolTextGen(
   }
   const promptTemplate: undefined | string =
     val.prompt_template == void 0 ? void 0 : val.prompt_template;
+  if (!(val.model == void 0) && !sdIsString(val.model)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "model" of type "AiAgentBasicTextToolTextGen"',
+    });
+  }
+  const model: undefined | string = val.model == void 0 ? void 0 : val.model;
   if (
     !(val.num_tokens_for_completion == void 0) &&
     !sdIsNumber(val.num_tokens_for_completion)
@@ -102,9 +96,9 @@ export function deserializeAiAgentBasicTextToolTextGen(
           val.llm_endpoint_params
         );
   return {
-    model: model,
     systemMessage: systemMessage,
     promptTemplate: promptTemplate,
+    model: model,
     numTokensForCompletion: numTokensForCompletion,
     llmEndpointParams: llmEndpointParams,
   } satisfies AiAgentBasicTextToolTextGen;
