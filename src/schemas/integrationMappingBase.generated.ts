@@ -6,46 +6,60 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type IntegrationMappingBaseIntegrationTypeField = 'slack';
-export interface IntegrationMappingBase {
+export type IntegrationMappingBaseTypeField = 'integration_mapping';
+export class IntegrationMappingBase {
   /**
    * A unique identifier of a folder mapping
    * (part of a composite key together
    * with `integration_type`) */
-  readonly id?: string;
+  readonly id!: string;
   /**
-   * Identifies the Box partner app,
-   * with which the mapping is associated.
-   * Currently only supports Slack.
-   * (part of the composite key together with `id`) */
-  readonly integrationType?: IntegrationMappingBaseIntegrationTypeField;
+   * Mapping type */
+  readonly type: IntegrationMappingBaseTypeField =
+    'integration_mapping' as IntegrationMappingBaseTypeField;
+  constructor(
+    fields: Omit<IntegrationMappingBase, 'type'> &
+      Partial<Pick<IntegrationMappingBase, 'type'>>
+  ) {
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+  }
 }
-export function serializeIntegrationMappingBaseIntegrationTypeField(
-  val: IntegrationMappingBaseIntegrationTypeField
+export interface IntegrationMappingBaseInput {
+  /**
+   * A unique identifier of a folder mapping
+   * (part of a composite key together
+   * with `integration_type`) */
+  readonly id: string;
+  /**
+   * Mapping type */
+  readonly type?: IntegrationMappingBaseTypeField;
+}
+export function serializeIntegrationMappingBaseTypeField(
+  val: IntegrationMappingBaseTypeField
 ): SerializedData {
   return val;
 }
-export function deserializeIntegrationMappingBaseIntegrationTypeField(
+export function deserializeIntegrationMappingBaseTypeField(
   val: SerializedData
-): IntegrationMappingBaseIntegrationTypeField {
-  if (val == 'slack') {
+): IntegrationMappingBaseTypeField {
+  if (val == 'integration_mapping') {
     return val;
   }
   throw new BoxSdkError({
-    message: "Can't deserialize IntegrationMappingBaseIntegrationTypeField",
+    message: "Can't deserialize IntegrationMappingBaseTypeField",
   });
 }
 export function serializeIntegrationMappingBase(
   val: IntegrationMappingBase
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['integration_type']:
-      val.integrationType == void 0
-        ? void 0
-        : serializeIntegrationMappingBaseIntegrationTypeField(
-            val.integrationType
-          ),
+    ['id']: val.id,
+    ['type']: serializeIntegrationMappingBaseTypeField(val.type),
   };
 }
 export function deserializeIntegrationMappingBase(
@@ -56,22 +70,62 @@ export function deserializeIntegrationMappingBase(
       message: 'Expecting a map for "IntegrationMappingBase"',
     });
   }
-  if (!(val.id == void 0) && !sdIsString(val.id)) {
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "IntegrationMappingBase" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "id" of type "IntegrationMappingBase"',
     });
   }
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const integrationType:
-    | undefined
-    | IntegrationMappingBaseIntegrationTypeField =
-    val.integration_type == void 0
-      ? void 0
-      : deserializeIntegrationMappingBaseIntegrationTypeField(
-          val.integration_type
-        );
+  const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "type" of type "IntegrationMappingBase" to be defined',
+    });
+  }
+  const type: IntegrationMappingBaseTypeField =
+    deserializeIntegrationMappingBaseTypeField(val.type);
+  return { id: id, type: type } satisfies IntegrationMappingBase;
+}
+export function serializeIntegrationMappingBaseInput(
+  val: IntegrationMappingBaseInput
+): SerializedData {
   return {
-    id: id,
-    integrationType: integrationType,
-  } satisfies IntegrationMappingBase;
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0
+        ? void 0
+        : serializeIntegrationMappingBaseTypeField(val.type),
+  };
+}
+export function deserializeIntegrationMappingBaseInput(
+  val: SerializedData
+): IntegrationMappingBaseInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "IntegrationMappingBaseInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "IntegrationMappingBaseInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "IntegrationMappingBaseInput"',
+    });
+  }
+  const id: string = val.id;
+  const type: undefined | IntegrationMappingBaseTypeField =
+    val.type == void 0
+      ? void 0
+      : deserializeIntegrationMappingBaseTypeField(val.type);
+  return { id: id, type: type } satisfies IntegrationMappingBaseInput;
 }
