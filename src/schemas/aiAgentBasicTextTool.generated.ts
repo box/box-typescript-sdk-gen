@@ -2,17 +2,8 @@ import { serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from '.
 import { deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { serializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { deserializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
-import { serializeAiAgentBasicTextToolTextGen } from './aiAgentBasicTextToolTextGen.generated.js';
-import { deserializeAiAgentBasicTextToolTextGen } from './aiAgentBasicTextToolTextGen.generated.js';
-import { serializeAiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLongTextToolTextGen.generated.js';
-import { deserializeAiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLongTextToolTextGen.generated.js';
-import { serializeAiAgentLongTextToolTextGen } from './aiAgentLongTextToolTextGen.generated.js';
-import { deserializeAiAgentLongTextToolTextGen } from './aiAgentLongTextToolTextGen.generated.js';
 import { AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { AiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
-import { AiAgentBasicTextToolTextGen } from './aiAgentBasicTextToolTextGen.generated.js';
-import { AiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLongTextToolTextGen.generated.js';
-import { AiAgentLongTextToolTextGen } from './aiAgentLongTextToolTextGen.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -21,53 +12,49 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type AiAgentBasicGenTool = AiAgentLongTextToolTextGen & {
+export type AiAgentBasicTextTool = AiAgentBasicTextToolBase & {
   /**
-   * How the content should be included in a request to the LLM.
-   * Input for `{content}` is optional, depending on the use. */
-  readonly contentTemplate?: string;
+   * System messages try to help the LLM "understand" its role and what it is supposed to do. */
+  readonly systemMessage?: string;
+  /**
+   * The prompt template contains contextual information of the request and the user prompt.
+   *
+   * When passing `prompt_template` parameters, you **must include** inputs for `{user_question}` and `{content}`.
+   *
+   * Input for `{current_date}` is optional, depending on the use. */
+  readonly promptTemplate?: string;
 };
-export function serializeAiAgentBasicGenTool(
-  val: AiAgentBasicGenTool
+export function serializeAiAgentBasicTextTool(
+  val: AiAgentBasicTextTool
 ): SerializedData {
-  const base: any = serializeAiAgentLongTextToolTextGen(val);
+  const base: any = serializeAiAgentBasicTextToolBase(val);
   if (!sdIsMap(base)) {
     throw new BoxSdkError({
-      message: 'Expecting a map for "AiAgentBasicGenTool"',
+      message: 'Expecting a map for "AiAgentBasicTextTool"',
     });
   }
   return {
     ...base,
     ...{
-      ['content_template']:
-        val.contentTemplate == void 0 ? void 0 : val.contentTemplate,
+      ['system_message']:
+        val.systemMessage == void 0 ? void 0 : val.systemMessage,
+      ['prompt_template']:
+        val.promptTemplate == void 0 ? void 0 : val.promptTemplate,
     },
   };
 }
-export function deserializeAiAgentBasicGenTool(
+export function deserializeAiAgentBasicTextTool(
   val: SerializedData
-): AiAgentBasicGenTool {
+): AiAgentBasicTextTool {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
-      message: 'Expecting a map for "AiAgentBasicGenTool"',
+      message: 'Expecting a map for "AiAgentBasicTextTool"',
     });
   }
-  if (!(val.content_template == void 0) && !sdIsString(val.content_template)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "content_template" of type "AiAgentBasicGenTool"',
-    });
-  }
-  const contentTemplate: undefined | string =
-    val.content_template == void 0 ? void 0 : val.content_template;
-  const embeddings: undefined | AiAgentLongTextToolTextGenEmbeddingsField =
-    val.embeddings == void 0
-      ? void 0
-      : deserializeAiAgentLongTextToolTextGenEmbeddingsField(val.embeddings);
   if (!(val.system_message == void 0) && !sdIsString(val.system_message)) {
     throw new BoxSdkError({
       message:
-        'Expecting string for "system_message" of type "AiAgentBasicGenTool"',
+        'Expecting string for "system_message" of type "AiAgentBasicTextTool"',
     });
   }
   const systemMessage: undefined | string =
@@ -75,14 +62,14 @@ export function deserializeAiAgentBasicGenTool(
   if (!(val.prompt_template == void 0) && !sdIsString(val.prompt_template)) {
     throw new BoxSdkError({
       message:
-        'Expecting string for "prompt_template" of type "AiAgentBasicGenTool"',
+        'Expecting string for "prompt_template" of type "AiAgentBasicTextTool"',
     });
   }
   const promptTemplate: undefined | string =
     val.prompt_template == void 0 ? void 0 : val.prompt_template;
   if (!(val.model == void 0) && !sdIsString(val.model)) {
     throw new BoxSdkError({
-      message: 'Expecting string for "model" of type "AiAgentBasicGenTool"',
+      message: 'Expecting string for "model" of type "AiAgentBasicTextTool"',
     });
   }
   const model: undefined | string = val.model == void 0 ? void 0 : val.model;
@@ -92,7 +79,7 @@ export function deserializeAiAgentBasicGenTool(
   ) {
     throw new BoxSdkError({
       message:
-        'Expecting number for "num_tokens_for_completion" of type "AiAgentBasicGenTool"',
+        'Expecting number for "num_tokens_for_completion" of type "AiAgentBasicTextTool"',
     });
   }
   const numTokensForCompletion: undefined | number =
@@ -108,12 +95,10 @@ export function deserializeAiAgentBasicGenTool(
           val.llm_endpoint_params
         );
   return {
-    contentTemplate: contentTemplate,
-    embeddings: embeddings,
     systemMessage: systemMessage,
     promptTemplate: promptTemplate,
     model: model,
     numTokensForCompletion: numTokensForCompletion,
     llmEndpointParams: llmEndpointParams,
-  } satisfies AiAgentBasicGenTool;
+  } satisfies AiAgentBasicTextTool;
 }
