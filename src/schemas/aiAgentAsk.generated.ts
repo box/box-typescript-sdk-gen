@@ -1,9 +1,9 @@
 import { serializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
 import { deserializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { serializeAiAgentBasicTextToolAsk } from './aiAgentBasicTextToolAsk.generated.js';
-import { deserializeAiAgentBasicTextToolAsk } from './aiAgentBasicTextToolAsk.generated.js';
+import { serializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
+import { deserializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
 import { AiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { AiAgentBasicTextToolAsk } from './aiAgentBasicTextToolAsk.generated.js';
+import { AiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -18,9 +18,9 @@ export class AiAgentAsk {
    * The type of AI agent used to handle queries. */
   readonly type: AiAgentAskTypeField = 'ai_agent_ask' as AiAgentAskTypeField;
   readonly longText?: AiAgentLongTextTool;
-  readonly basicText?: AiAgentBasicTextToolAsk;
+  readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
-  readonly basicTextMulti?: AiAgentBasicTextToolAsk;
+  readonly basicTextMulti?: AiAgentBasicTextTool;
   constructor(
     fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>
   ) {
@@ -46,9 +46,9 @@ export interface AiAgentAskInput {
    * The type of AI agent used to handle queries. */
   readonly type?: AiAgentAskTypeField;
   readonly longText?: AiAgentLongTextTool;
-  readonly basicText?: AiAgentBasicTextToolAsk;
+  readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
-  readonly basicTextMulti?: AiAgentBasicTextToolAsk;
+  readonly basicTextMulti?: AiAgentBasicTextTool;
 }
 export function serializeAiAgentAskTypeField(
   val: AiAgentAskTypeField
@@ -73,7 +73,7 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
     ['basic_text']:
       val.basicText == void 0
         ? void 0
-        : serializeAiAgentBasicTextToolAsk(val.basicText),
+        : serializeAiAgentBasicTextTool(val.basicText),
     ['long_text_multi']:
       val.longTextMulti == void 0
         ? void 0
@@ -81,7 +81,7 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
     ['basic_text_multi']:
       val.basicTextMulti == void 0
         ? void 0
-        : serializeAiAgentBasicTextToolAsk(val.basicTextMulti),
+        : serializeAiAgentBasicTextTool(val.basicTextMulti),
   };
 }
 export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
@@ -98,18 +98,18 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
     val.long_text == void 0
       ? void 0
       : deserializeAiAgentLongTextTool(val.long_text);
-  const basicText: undefined | AiAgentBasicTextToolAsk =
+  const basicText: undefined | AiAgentBasicTextTool =
     val.basic_text == void 0
       ? void 0
-      : deserializeAiAgentBasicTextToolAsk(val.basic_text);
+      : deserializeAiAgentBasicTextTool(val.basic_text);
   const longTextMulti: undefined | AiAgentLongTextTool =
     val.long_text_multi == void 0
       ? void 0
       : deserializeAiAgentLongTextTool(val.long_text_multi);
-  const basicTextMulti: undefined | AiAgentBasicTextToolAsk =
+  const basicTextMulti: undefined | AiAgentBasicTextTool =
     val.basic_text_multi == void 0
       ? void 0
-      : deserializeAiAgentBasicTextToolAsk(val.basic_text_multi);
+      : deserializeAiAgentBasicTextTool(val.basic_text_multi);
   return {
     type: type,
     longText: longText,
@@ -129,7 +129,7 @@ export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
     ['basic_text']:
       val.basicText == void 0
         ? void 0
-        : serializeAiAgentBasicTextToolAsk(val.basicText),
+        : serializeAiAgentBasicTextTool(val.basicText),
     ['long_text_multi']:
       val.longTextMulti == void 0
         ? void 0
@@ -137,7 +137,7 @@ export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
     ['basic_text_multi']:
       val.basicTextMulti == void 0
         ? void 0
-        : serializeAiAgentBasicTextToolAsk(val.basicTextMulti),
+        : serializeAiAgentBasicTextTool(val.basicTextMulti),
   };
 }
 export function deserializeAiAgentAskInput(
@@ -152,18 +152,18 @@ export function deserializeAiAgentAskInput(
     val.long_text == void 0
       ? void 0
       : deserializeAiAgentLongTextTool(val.long_text);
-  const basicText: undefined | AiAgentBasicTextToolAsk =
+  const basicText: undefined | AiAgentBasicTextTool =
     val.basic_text == void 0
       ? void 0
-      : deserializeAiAgentBasicTextToolAsk(val.basic_text);
+      : deserializeAiAgentBasicTextTool(val.basic_text);
   const longTextMulti: undefined | AiAgentLongTextTool =
     val.long_text_multi == void 0
       ? void 0
       : deserializeAiAgentLongTextTool(val.long_text_multi);
-  const basicTextMulti: undefined | AiAgentBasicTextToolAsk =
+  const basicTextMulti: undefined | AiAgentBasicTextTool =
     val.basic_text_multi == void 0
       ? void 0
-      : deserializeAiAgentBasicTextToolAsk(val.basic_text_multi);
+      : deserializeAiAgentBasicTextTool(val.basic_text_multi);
   return {
     type: type,
     longText: longText,

@@ -38,6 +38,12 @@ export interface TemplateSigner {
    * A signer group is not a Box Group. It is an entity that belongs to the template itself and can only be used
    * within Box Sign requests created from it. */
   readonly signerGroupId?: string;
+  /**
+   * A placeholder label for the signer set by the template creator to differentiate between signers. */
+  readonly label?: string;
+  /**
+   * An identifier for the signer. This can be used to identify a signer within the template. */
+  readonly publicId?: string;
 }
 export function serializeTemplateSignerRoleField(
   val: TemplateSignerRoleField
@@ -75,6 +81,8 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
     ['order']: val.order == void 0 ? void 0 : val.order,
     ['signer_group_id']:
       val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
+    ['label']: val.label == void 0 ? void 0 : val.label,
+    ['public_id']: val.publicId == void 0 ? void 0 : val.publicId,
   };
 }
 export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
@@ -123,6 +131,19 @@ export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
   }
   const signerGroupId: undefined | string =
     val.signer_group_id == void 0 ? void 0 : val.signer_group_id;
+  if (!(val.label == void 0) && !sdIsString(val.label)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "label" of type "TemplateSigner"',
+    });
+  }
+  const label: undefined | string = val.label == void 0 ? void 0 : val.label;
+  if (!(val.public_id == void 0) && !sdIsString(val.public_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "public_id" of type "TemplateSigner"',
+    });
+  }
+  const publicId: undefined | string =
+    val.public_id == void 0 ? void 0 : val.public_id;
   return {
     inputs: inputs,
     email: email,
@@ -130,5 +151,7 @@ export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
     isInPerson: isInPerson,
     order: order,
     signerGroupId: signerGroupId,
+    label: label,
+    publicId: publicId,
   } satisfies TemplateSigner;
 }

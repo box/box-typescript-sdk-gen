@@ -13,10 +13,35 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiTextGenItemsTypeField = 'file';
-export interface AiTextGenItemsField {
+export class AiTextGenItemsField {
   /**
-   * The id of the item. */
-  readonly id?: string;
+   * The ID of the item. */
+  readonly id!: string;
+  /**
+   * The type of the item. */
+  readonly type: AiTextGenItemsTypeField = 'file' as AiTextGenItemsTypeField;
+  /**
+   * The content to use as context for generating new text or editing existing text. */
+  readonly content?: string;
+  constructor(
+    fields: Omit<AiTextGenItemsField, 'type'> &
+      Partial<Pick<AiTextGenItemsField, 'type'>>
+  ) {
+    if (fields.id) {
+      this.id = fields.id;
+    }
+    if (fields.type) {
+      this.type = fields.type;
+    }
+    if (fields.content) {
+      this.content = fields.content;
+    }
+  }
+}
+export interface AiTextGenItemsFieldInput {
+  /**
+   * The ID of the item. */
+  readonly id: string;
   /**
    * The type of the item. */
   readonly type?: AiTextGenItemsTypeField;
@@ -36,7 +61,7 @@ export interface AiTextGen {
    * If the file size exceeds 1MB, the first 1MB of text representation will be processed. */
   readonly items: readonly AiTextGenItemsField[];
   /**
-   * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
+   * The history of prompts and answers previously passed to the LLM. This parameter provides the additional context to the LLM when generating the response. */
   readonly dialogueHistory?: readonly AiDialogueHistory[];
   readonly aiAgent?: AiAgentTextGen;
 }
@@ -59,9 +84,8 @@ export function serializeAiTextGenItemsField(
   val: AiTextGenItemsField
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeAiTextGenItemsTypeField(val.type),
+    ['id']: val.id,
+    ['type']: serializeAiTextGenItemsTypeField(val.type),
     ['content']: val.content == void 0 ? void 0 : val.content,
   };
 }
@@ -73,14 +97,25 @@ export function deserializeAiTextGenItemsField(
       message: 'Expecting a map for "AiTextGenItemsField"',
     });
   }
-  if (!(val.id == void 0) && !sdIsString(val.id)) {
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "id" of type "AiTextGenItemsField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "id" of type "AiTextGenItemsField"',
     });
   }
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  const type: undefined | AiTextGenItemsTypeField =
-    val.type == void 0 ? void 0 : deserializeAiTextGenItemsTypeField(val.type);
+  const id: string = val.id;
+  if (val.type == void 0) {
+    throw new BoxSdkError({
+      message: 'Expecting "type" of type "AiTextGenItemsField" to be defined',
+    });
+  }
+  const type: AiTextGenItemsTypeField = deserializeAiTextGenItemsTypeField(
+    val.type
+  );
   if (!(val.content == void 0) && !sdIsString(val.content)) {
     throw new BoxSdkError({
       message: 'Expecting string for "content" of type "AiTextGenItemsField"',
@@ -89,6 +124,52 @@ export function deserializeAiTextGenItemsField(
   const content: undefined | string =
     val.content == void 0 ? void 0 : val.content;
   return { id: id, type: type, content: content } satisfies AiTextGenItemsField;
+}
+export function serializeAiTextGenItemsFieldInput(
+  val: AiTextGenItemsFieldInput
+): SerializedData {
+  return {
+    ['id']: val.id,
+    ['type']:
+      val.type == void 0 ? void 0 : serializeAiTextGenItemsTypeField(val.type),
+    ['content']: val.content == void 0 ? void 0 : val.content,
+  };
+}
+export function deserializeAiTextGenItemsFieldInput(
+  val: SerializedData
+): AiTextGenItemsFieldInput {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "AiTextGenItemsFieldInput"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "AiTextGenItemsFieldInput" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "id" of type "AiTextGenItemsFieldInput"',
+    });
+  }
+  const id: string = val.id;
+  const type: undefined | AiTextGenItemsTypeField =
+    val.type == void 0 ? void 0 : deserializeAiTextGenItemsTypeField(val.type);
+  if (!(val.content == void 0) && !sdIsString(val.content)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content" of type "AiTextGenItemsFieldInput"',
+    });
+  }
+  const content: undefined | string =
+    val.content == void 0 ? void 0 : val.content;
+  return {
+    id: id,
+    type: type,
+    content: content,
+  } satisfies AiTextGenItemsFieldInput;
 }
 export function serializeAiTextGen(val: AiTextGen): SerializedData {
   return {
