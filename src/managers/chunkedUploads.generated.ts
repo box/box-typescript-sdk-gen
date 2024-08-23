@@ -988,22 +988,20 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateFileUploadSessionRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateFileUploadSessionRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadSession(response.data);
   }
   /**
@@ -1035,26 +1033,24 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/upload_sessions'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateFileUploadSessionForExistingFileRequestBody(
-          requestBody
-        ),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateFileUploadSessionForExistingFileRequestBody(
+        requestBody
+      ),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadSession(response.data);
   }
   /**
@@ -1081,7 +1077,8 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(url, {
+    const response: FetchResponse = (await fetch({
+      url: url,
       method: 'GET',
       headers: headersMap,
       responseFormat: 'json',
@@ -1114,21 +1111,19 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
-      {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadSession(response.data);
   }
   /**
@@ -1169,7 +1164,8 @@ export class ChunkedUploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(url, {
+    const response: FetchResponse = (await fetch({
+      url: url,
       method: 'PUT',
       headers: headersMap,
       fileStream: requestBody,
@@ -1217,23 +1213,21 @@ export class ChunkedUploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
-      {
-        method: 'PUT',
-        headers: headersMap,
-        fileStream: requestBody,
-        contentType: 'application/octet-stream',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'PUT',
+      headers: headersMap,
+      fileStream: requestBody,
+      contentType: 'application/octet-stream',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadedPart(response.data);
   }
   /**
@@ -1263,7 +1257,8 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(url, {
+    const response: FetchResponse = (await fetch({
+      url: url,
       method: 'DELETE',
       headers: headersMap,
       responseFormat: void 0,
@@ -1299,21 +1294,19 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string
       ) as string,
-      {
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
   /**
@@ -1349,7 +1342,8 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(url, {
+    const response: FetchResponse = (await fetch({
+      url: url,
       method: 'GET',
       params: queryParamsMap,
       headers: headersMap,
@@ -1392,23 +1386,21 @@ export class ChunkedUploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/parts'
       ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadParts(response.data);
   }
   /**
@@ -1452,7 +1444,8 @@ export class ChunkedUploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(url, {
+    const response: FetchResponse = (await fetch({
+      url: url,
       method: 'POST',
       headers: headersMap,
       data: serializeCreateFileUploadSessionCommitRequestBody(requestBody),
@@ -1504,24 +1497,22 @@ export class ChunkedUploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/upload_sessions/',
         toString(uploadSessionId) as string,
         '/commit'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateFileUploadSessionCommitRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateFileUploadSessionCommitRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeFiles(response.data);
   }
   /**
