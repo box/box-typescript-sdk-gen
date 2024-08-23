@@ -221,19 +221,20 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(this.networkSession.baseUrls.baseUrl, '/2.0/ai/ask') as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeAiAsk(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/ai/ask'
+      ) as string,
+      method: 'POST',
+      headers: headersMap,
+      data: serializeAiAsk(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeAiResponseFull(response.data);
   }
   /**
@@ -255,22 +256,20 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/ai/text_gen'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeAiTextGen(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeAiTextGen(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeAiResponse(response.data);
   }
   /**
@@ -300,21 +299,19 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/ai_agent_default'
       ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeAiAgentAskOrAiAgentTextGen(response.data);
   }
 }

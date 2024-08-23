@@ -408,22 +408,20 @@ export class SkillsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
-      {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
   /**
@@ -455,24 +453,22 @@ export class SkillsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateBoxSkillCardsOnFileRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateBoxSkillCardsOnFileRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
   /**
@@ -504,26 +500,24 @@ export class SkillsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
-      {
-        method: 'PUT',
-        headers: headersMap,
-        data: requestBody.map(
-          serializeUpdateBoxSkillCardsOnFileRequestBody
-        ) as readonly any[],
-        contentType: 'application/json-patch+json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'PUT',
+      headers: headersMap,
+      data: requestBody.map(
+        serializeUpdateBoxSkillCardsOnFileRequestBody
+      ) as readonly any[],
+      contentType: 'application/json-patch+json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeSkillCardsMetadata(response.data);
   }
   /**
@@ -553,22 +547,20 @@ export class SkillsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/metadata/global/boxSkillsCards'
       ) as string,
-      {
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
   /**
@@ -595,23 +587,21 @@ export class SkillsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/skill_invocations/',
         toString(skillId) as string
       ) as string,
-      {
-        method: 'PUT',
-        headers: headersMap,
-        data: serializeUpdateAllSkillCardsOnFileRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'PUT',
+      headers: headersMap,
+      data: serializeUpdateAllSkillCardsOnFileRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
 }

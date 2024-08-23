@@ -230,21 +230,19 @@ export class WorkflowsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/workflows'
       ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeWorkflows(response.data);
   }
   /**
@@ -272,24 +270,22 @@ export class WorkflowsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/workflows/',
         toString(workflowId) as string,
         '/start'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeStartWorkflowRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeStartWorkflowRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
 }

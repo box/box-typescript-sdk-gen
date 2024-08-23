@@ -279,21 +279,19 @@ export class CollaborationAllowlistEntriesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries'
       ) as string,
-      {
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeCollaborationAllowlistEntries(response.data);
   }
   /**
@@ -317,24 +315,20 @@ export class CollaborationAllowlistEntriesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateCollaborationWhitelistEntryRequestBody(
-          requestBody
-        ),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeCreateCollaborationWhitelistEntryRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(response.data);
   }
   /**
@@ -359,21 +353,19 @@ export class CollaborationAllowlistEntriesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries/',
         toString(collaborationWhitelistEntryId) as string
       ) as string,
-      {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeCollaborationAllowlistEntry(response.data);
   }
   /**
@@ -398,21 +390,19 @@ export class CollaborationAllowlistEntriesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries/',
         toString(collaborationWhitelistEntryId) as string
       ) as string,
-      {
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
 }

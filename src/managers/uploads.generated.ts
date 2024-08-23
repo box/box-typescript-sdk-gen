@@ -418,38 +418,36 @@ export class UploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/',
         toString(fileId) as string,
         '/content'
       ) as string,
-      {
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'attributes',
-            data: serializeUploadFileVersionRequestBodyAttributesField(
-              requestBody.attributes
-            ),
-          } satisfies MultipartItem,
-          {
-            partName: 'file',
-            fileStream: requestBody.file,
-            fileName: requestBody.fileFileName,
-            contentType: requestBody.fileContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      params: queryParamsMap,
+      headers: headersMap,
+      multipartData: [
+        {
+          partName: 'attributes',
+          data: serializeUploadFileVersionRequestBodyAttributesField(
+            requestBody.attributes
+          ),
+        } satisfies MultipartItem,
+        {
+          partName: 'file',
+          fileStream: requestBody.file,
+          fileName: requestBody.fileFileName,
+          contentType: requestBody.fileContentType,
+        } satisfies MultipartItem,
+      ],
+      contentType: 'multipart/form-data',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeFiles(response.data);
   }
   /**
@@ -489,36 +487,34 @@ export class UploadsManager {
       ...{ ['content-md5']: toString(headers.contentMd5) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/content'
       ) as string,
-      {
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'attributes',
-            data: serializeUploadFileRequestBodyAttributesField(
-              requestBody.attributes
-            ),
-          } satisfies MultipartItem,
-          {
-            partName: 'file',
-            fileStream: requestBody.file,
-            fileName: requestBody.fileFileName,
-            contentType: requestBody.fileContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      params: queryParamsMap,
+      headers: headersMap,
+      multipartData: [
+        {
+          partName: 'attributes',
+          data: serializeUploadFileRequestBodyAttributesField(
+            requestBody.attributes
+          ),
+        } satisfies MultipartItem,
+        {
+          partName: 'file',
+          fileStream: requestBody.file,
+          fileName: requestBody.fileFileName,
+          contentType: requestBody.fileContentType,
+        } satisfies MultipartItem,
+      ],
+      contentType: 'multipart/form-data',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeFiles(response.data);
   }
   /**
@@ -543,22 +539,20 @@ export class UploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/content'
       ) as string,
-      {
-        method: 'OPTIONS',
-        headers: headersMap,
-        data: serializePreflightFileUploadCheckRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'OPTIONS',
+      headers: headersMap,
+      data: serializePreflightFileUploadCheckRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUploadUrl(response.data);
   }
 }

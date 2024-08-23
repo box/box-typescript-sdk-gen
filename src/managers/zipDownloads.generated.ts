@@ -267,22 +267,20 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/zip_downloads'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        data: serializeZipDownloadRequest(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      data: serializeZipDownloadRequest(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeZipDownload(response.data);
   }
   /**
@@ -318,7 +316,8 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(downloadUrl, {
+    const response: FetchResponse = (await fetch({
+      url: downloadUrl,
       method: 'GET',
       headers: headersMap,
       responseFormat: 'binary',
@@ -360,7 +359,8 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(statusUrl, {
+    const response: FetchResponse = (await fetch({
+      url: statusUrl,
       method: 'GET',
       headers: headersMap,
       responseFormat: 'json',

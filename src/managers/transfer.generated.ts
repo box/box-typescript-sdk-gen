@@ -188,25 +188,23 @@ export class TransferManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
         '/folders/0'
       ) as string,
-      {
-        method: 'PUT',
-        params: queryParamsMap,
-        headers: headersMap,
-        data: serializeTransferOwnedFolderRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'PUT',
+      params: queryParamsMap,
+      headers: headersMap,
+      data: serializeTransferOwnedFolderRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeFolderFull(response.data);
   }
 }
