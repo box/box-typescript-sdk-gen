@@ -37,6 +37,10 @@ export interface MultipartItem {
 
 export interface FetchOptions {
   /**
+   * A string to set request's URL.
+   */
+  readonly url: string;
+  /**
    * A string to set request's method (GET, POST, etc.). Defaults to GET.
    */
   readonly method?: string;
@@ -212,7 +216,6 @@ const STATUS_CODE_ACCEPTED = 202,
   STATUS_CODE_TOO_MANY_REQUESTS = 429;
 
 export async function fetch(
-  resource: string,
   options: FetchOptions & {
     /** @private */
     numRetries?: number;
@@ -239,8 +242,8 @@ export async function fetch(
   const { params = {} } = fetchOptions;
   const response = await nodeFetch(
     ''.concat(
-      resource,
-      Object.keys(params).length === 0 || resource.endsWith('?') ? '' : '?',
+      options.url,
+      Object.keys(params).length === 0 || options.url.endsWith('?') ? '' : '?',
       new URLSearchParams(params).toString()
     ),
     { ...requestInit, redirect: 'manual' }
@@ -276,10 +279,13 @@ export async function fetch(
   if (fetchResponse.status >= 300 && fetchResponse.status < 400) {
     if (!fetchResponse.headers['location']) {
       throw new BoxSdkError({
-        message: `Unable to follow redirect for ${resource}`,
+        message: `Unable to follow redirect for ${options.url}`,
       });
     }
-    return fetch(fetchResponse.headers['location'], options);
+    return fetch({
+      ...options,
+      url: fetchResponse.headers['location'],
+    });
   }
 
   const acceptedWithRetryAfter =
@@ -294,7 +300,7 @@ export async function fetch(
       await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
 
       // retry the request right away
-      return fetch(resource, {
+      return fetch({
         ...fetchOptions,
         numRetries: numRetries + 1,
         fileStream: fileStreamBuffer
@@ -315,7 +321,7 @@ export async function fetch(
         : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
 
       await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-      return fetch(resource, { ...fetchOptions, numRetries: numRetries + 1 });
+      return fetch({ ...fetchOptions, numRetries: numRetries + 1 });
     }
 
     const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
@@ -334,7 +340,7 @@ export async function fetch(
       timestamp: `${Date.now()}`,
       requestInfo: {
         method: requestInit.method!,
-        url: resource,
+        url: options.url,
         queryParams: params,
         headers: (requestInit.headers as { [key: string]: string }) ?? {},
         body:

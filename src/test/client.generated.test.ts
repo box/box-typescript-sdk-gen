@@ -85,6 +85,7 @@ test('testWithInterceptors', async function testWithInterceptors(): Promise<any>
   }
   function beforeRequest(options: FetchOptions): FetchOptions {
     return {
+      url: options.url,
       method: options.method,
       headers: options.headers,
       params: { ...options.params, ...{ ['fields']: 'role' } },

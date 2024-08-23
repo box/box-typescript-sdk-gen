@@ -200,22 +200,20 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
-      {
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'binary',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'GET',
+      headers: headersMap,
+      responseFormat: 'binary',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return response.content;
   }
   /**
@@ -240,31 +238,29 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
-      {
-        method: 'POST',
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'pic',
-            fileStream: requestBody.pic,
-            fileName: requestBody.picFileName,
-            contentType: requestBody.picContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json',
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'POST',
+      headers: headersMap,
+      multipartData: [
+        {
+          partName: 'pic',
+          fileStream: requestBody.pic,
+          fileName: requestBody.picFileName,
+          contentType: requestBody.picContentType,
+        } satisfies MultipartItem,
+      ],
+      contentType: 'multipart/form-data',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return deserializeUserAvatar(response.data);
   }
   /**
@@ -288,22 +284,20 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      ''.concat(
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
         '/avatar'
       ) as string,
-      {
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: void 0,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      } satisfies FetchOptions
-    )) as FetchResponse;
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
     return void 0;
   }
 }
