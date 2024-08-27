@@ -326,7 +326,7 @@ export class FolderClassificationsManager {
      *
      * This API can also be called by including the enterprise ID in the
      * URL explicitly, for example
-     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * `/folders/:id/enterprise_12345/securityClassification-6VMVochwUWo`.
      * @param {string} folderId The unique identifier that represent a folder.
     
     The ID for any folder can be determined
@@ -377,7 +377,7 @@ export class FolderClassificationsManager {
      *
      * This API can also be called by including the enterprise ID in the
      * URL explicitly, for example
-     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * `/folders/:id/enterprise_12345/securityClassification-6VMVochwUWo`.
      * @param {string} folderId The unique identifier that represent a folder.
     
     The ID for any folder can be determined
@@ -487,7 +487,7 @@ export class FolderClassificationsManager {
      *
      * This API can also be called by including the enterprise ID in the
      * URL explicitly, for example
-     * `/folders/:id//enterprise_12345/securityClassification-6VMVochwUWo`.
+     * `/folders/:id/enterprise_12345/securityClassification-6VMVochwUWo`.
      * @param {string} folderId The unique identifier that represent a folder.
     
     The ID for any folder can be determined
