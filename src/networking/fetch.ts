@@ -242,8 +242,10 @@ export async function fetch(
   const { params = {} } = fetchOptions;
   const response = await nodeFetch(
     ''.concat(
-      options.url,
-      Object.keys(params).length === 0 || options.url.endsWith('?') ? '' : '?',
+      fetchOptions.url,
+      Object.keys(params).length === 0 || fetchOptions.url.endsWith('?')
+        ? ''
+        : '?',
       new URLSearchParams(params).toString()
     ),
     { ...requestInit, redirect: 'manual' }
@@ -279,7 +281,7 @@ export async function fetch(
   if (fetchResponse.status >= 300 && fetchResponse.status < 400) {
     if (!fetchResponse.headers['location']) {
       throw new BoxSdkError({
-        message: `Unable to follow redirect for ${options.url}`,
+        message: `Unable to follow redirect for ${fetchOptions.url}`,
       });
     }
     return fetch({
@@ -301,7 +303,7 @@ export async function fetch(
 
       // retry the request right away
       return fetch({
-        ...fetchOptions,
+        ...options,
         numRetries: numRetries + 1,
         fileStream: fileStreamBuffer
           ? generateByteStreamFromBuffer(fileStreamBuffer)
@@ -321,7 +323,7 @@ export async function fetch(
         : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
 
       await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-      return fetch({ ...fetchOptions, numRetries: numRetries + 1 });
+      return fetch({ ...options, numRetries: numRetries + 1 });
     }
 
     const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
@@ -340,7 +342,7 @@ export async function fetch(
       timestamp: `${Date.now()}`,
       requestInfo: {
         method: requestInit.method!,
-        url: options.url,
+        url: fetchOptions.url,
         queryParams: params,
         headers: (requestInit.headers as { [key: string]: string }) ?? {},
         body:
