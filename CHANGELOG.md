@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.5.0...v1.5.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* Fix fetch options with interceptor (box/box-codegen[#556](https://github.com/box/box-typescript-sdk-gen/issues/556)) ([#326](https://github.com/box/box-typescript-sdk-gen/issues/326)) ([3751eea](https://github.com/box/box-typescript-sdk-gen/commit/3751eea67047021fe298c841596ae362ed1e47da))
+
 ## [1.5.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.4.0...v1.5.0) (2024-08-23)
 
 
