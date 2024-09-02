@@ -125,6 +125,7 @@ export class FolderFull extends Folder {
   readonly isAccessibleViaSharedLink?: boolean;
   readonly canNonOwnersViewCollaborators?: boolean;
   readonly classification?: FolderFullClassificationField;
+  readonly isAssociatedWithAppItem?: boolean;
   constructor(fields: FolderFull) {
     super(fields);
   }
@@ -520,6 +521,10 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
         val.classification == void 0
           ? void 0
           : serializeFolderFullClassificationField(val.classification),
+      ['is_associated_with_app_item']:
+        val.isAssociatedWithAppItem == void 0
+          ? void 0
+          : val.isAssociatedWithAppItem,
     },
   };
 }
@@ -679,6 +684,19 @@ export function deserializeFolderFull(val: SerializedData): FolderFull {
     val.classification == void 0
       ? void 0
       : deserializeFolderFullClassificationField(val.classification);
+  if (
+    !(val.is_associated_with_app_item == void 0) &&
+    !sdIsBoolean(val.is_associated_with_app_item)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_associated_with_app_item" of type "FolderFull"',
+    });
+  }
+  const isAssociatedWithAppItem: undefined | boolean =
+    val.is_associated_with_app_item == void 0
+      ? void 0
+      : val.is_associated_with_app_item;
   if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
     throw new BoxSdkError({
       message: 'Expecting string for "created_at" of type "FolderFull"',
@@ -825,6 +843,7 @@ export function deserializeFolderFull(val: SerializedData): FolderFull {
     isAccessibleViaSharedLink: isAccessibleViaSharedLink,
     canNonOwnersViewCollaborators: canNonOwnersViewCollaborators,
     classification: classification,
+    isAssociatedWithAppItem: isAssociatedWithAppItem,
     createdAt: createdAt,
     modifiedAt: modifiedAt,
     description: description,
