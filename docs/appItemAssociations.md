@@ -16,7 +16,11 @@ This operation is performed by calling function `getFileAppItemAssociations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-files-id-app-item-associations/).
 
-_Currently we don't have an example for calling `getFileAppItemAssociations` in integration tests_
+<!-- sample get_files_id_app_item_associations -->
+
+```ts
+await client.appItemAssociations.getFileAppItemAssociations(fileId);
+```
 
 ### Arguments
 
@@ -46,7 +50,11 @@ This operation is performed by calling function `getFolderAppItemAssociations`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-folders-id-app-item-associations/).
 
-_Currently we don't have an example for calling `getFolderAppItemAssociations` in integration tests_
+<!-- sample get_folders_id_app_item_associations -->
+
+```ts
+await client.appItemAssociations.getFolderAppItemAssociations(folderId);
+```
 
 ### Arguments
 
