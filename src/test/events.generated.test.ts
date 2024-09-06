@@ -50,11 +50,11 @@ test('testEvents', async function testEvents(): Promise<any> {
   if (!(events.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const event: Event = events.entries![0];
-  if (!((toString(event.createdBy!.type) as string) == 'user')) {
+  const firstEvent: Event = events.entries![0];
+  if (!((toString(firstEvent.createdBy!.type) as string) == 'user')) {
     throw new Error('Assertion failed');
   }
-  if (!!((toString(event.eventType!) as string) == '')) {
+  if (!!((toString(firstEvent.eventType!) as string) == '')) {
     throw new Error('Assertion failed');
   }
 });
@@ -66,11 +66,11 @@ test('testEventUpload', async function testEventUpload(): Promise<any> {
   if (!(events.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const event: Event = events.entries![0];
-  if (!((toString(event.eventType!) as string) == 'UPLOAD')) {
+  const firstEvent: Event = events.entries![0];
+  if (!((toString(firstEvent.eventType!) as string) == 'UPLOAD')) {
     throw new Error('Assertion failed');
   }
-  const source: EventSource = event.source! as EventSource;
+  const source: EventSource = firstEvent.source! as EventSource;
   if (
     !(
       (toString(source.itemType) as string) == 'file' ||
@@ -94,11 +94,11 @@ test('testEventDeleteUser', async function testEventDeleteUser(): Promise<any> {
   if (!(events.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const event: Event = events.entries![0];
-  if (!((toString(event.eventType!) as string) == 'DELETE_USER')) {
+  const firstEvent: Event = events.entries![0];
+  if (!((toString(firstEvent.eventType!) as string) == 'DELETE_USER')) {
     throw new Error('Assertion failed');
   }
-  const source: User = event.source! as User;
+  const source: User = firstEvent.source! as User;
   if (!((toString(source.type) as string) == 'user')) {
     throw new Error('Assertion failed');
   }
@@ -113,8 +113,8 @@ test('testEventSourceFileOrFolder', async function testEventSourceFileOrFolder()
   if (!(events.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const event: Event = events.entries![0];
-  const source: File = event.source! as File;
+  const firstEvent: Event = events.entries![0];
+  const source: File = firstEvent.source! as File;
   if (
     !(
       (toString(source.type) as string) == 'file' ||
