@@ -376,10 +376,29 @@ export function getEpochTimeInSeconds(): number {
 /**
  * Create web agent from proxy agent options.
  */
-export function createAgent(options?: AgentOptions): Agent {
+export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
   if (isBrowser()) {
     return undefined;
   }
   const ProxyAgent = eval('require')('proxy-agent').ProxyAgent;
-  return options ? new ProxyAgent(options) : new ProxyAgent();
+  let agentOptions = options;
+
+  if (proxyConfig && proxyConfig.url) {
+    if (!proxyConfig.url.startsWith('http')) {
+      throw new Error('Invalid proxy URL');
+    }
+
+    const proxyHost = proxyConfig.url.split('//')[1];
+    const proxyAuth =
+      proxyConfig.username && proxyConfig.password
+        ? `${proxyConfig.username}:${proxyConfig.password}@`
+        : '';
+    const proxyUrl = `http://${proxyAuth}${proxyHost}`;
+    agentOptions = Object.assign(
+      { getProxyForUrl: (url: string) => proxyUrl },
+      options || {}
+    );
+  }
+
+  return agentOptions ? new ProxyAgent(agentOptions) : new ProxyAgent();
 }
