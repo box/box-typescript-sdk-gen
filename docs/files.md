@@ -18,7 +18,11 @@ See the endpoint docs at
 <!-- sample get_files_id -->
 
 ```ts
-await client.files.getFileById(file.id);
+await client.files.getFileById(fileId, {
+  queryParams: {
+    fields: ['is_associated_with_app_item' as string],
+  } satisfies GetFileByIdQueryParams,
+} satisfies GetFileByIdOptionalsInput);
 ```
 
 ### Arguments

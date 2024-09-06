@@ -28,7 +28,11 @@ See the endpoint docs at
 <!-- sample get_folders_id -->
 
 ```ts
-await client.folders.getFolderById(newFolder.id);
+await client.folders.getFolderById(folderId, {
+  queryParams: {
+    fields: ['is_associated_with_app_item' as string],
+  } satisfies GetFolderByIdQueryParams,
+} satisfies GetFolderByIdOptionalsInput);
 ```
 
 ### Arguments
