@@ -1,5 +1,7 @@
 import { serializeFileOrFolderOrWebLink } from './fileOrFolderOrWebLink.generated.js';
 import { deserializeFileOrFolderOrWebLink } from './fileOrFolderOrWebLink.generated.js';
+import { serializeAppItem } from './appItem.generated.js';
+import { deserializeAppItem } from './appItem.generated.js';
 import { serializeGroupMiniOrUserCollaborations } from './groupMiniOrUserCollaborations.generated.js';
 import { deserializeGroupMiniOrUserCollaborations } from './groupMiniOrUserCollaborations.generated.js';
 import { serializeUserCollaborations } from './userCollaborations.generated.js';
@@ -9,6 +11,7 @@ import { deserializeTermsOfServiceBase } from './termsOfServiceBase.generated.js
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { FileOrFolderOrWebLink } from './fileOrFolderOrWebLink.generated.js';
+import { AppItem } from './appItem.generated.js';
 import { GroupMiniOrUserCollaborations } from './groupMiniOrUserCollaborations.generated.js';
 import { UserCollaborations } from './userCollaborations.generated.js';
 import { TermsOfServiceBase } from './termsOfServiceBase.generated.js';
@@ -76,6 +79,7 @@ export class Collaboration {
   readonly type: CollaborationTypeField =
     'collaboration' as CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
+  readonly appItem?: AppItem;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   /**
    * The email address used to invite an unregistered collaborator, if
@@ -123,6 +127,9 @@ export class Collaboration {
     if (fields.item) {
       this.item = fields.item;
     }
+    if (fields.appItem) {
+      this.appItem = fields.appItem;
+    }
     if (fields.accessibleBy) {
       this.accessibleBy = fields.accessibleBy;
     }
@@ -166,6 +173,7 @@ export interface CollaborationInput {
    * `collaboration` */
   readonly type?: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink;
+  readonly appItem?: AppItem;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   /**
    * The email address used to invite an unregistered collaborator, if
@@ -492,6 +500,8 @@ export function serializeCollaboration(val: Collaboration): SerializedData {
     ['type']: serializeCollaborationTypeField(val.type),
     ['item']:
       val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
+    ['app_item']:
+      val.appItem == void 0 ? void 0 : serializeAppItem(val.appItem),
     ['accessible_by']:
       val.accessibleBy == void 0
         ? void 0
@@ -551,6 +561,8 @@ export function deserializeCollaboration(val: SerializedData): Collaboration {
   );
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
+  const appItem: undefined | AppItem =
+    val.app_item == void 0 ? void 0 : deserializeAppItem(val.app_item);
   const accessibleBy: undefined | GroupMiniOrUserCollaborations =
     val.accessible_by == void 0
       ? void 0
@@ -621,6 +633,7 @@ export function deserializeCollaboration(val: SerializedData): Collaboration {
     id: id,
     type: type,
     item: item,
+    appItem: appItem,
     accessibleBy: accessibleBy,
     inviteEmail: inviteEmail,
     role: role,
@@ -643,6 +656,8 @@ export function serializeCollaborationInput(
       val.type == void 0 ? void 0 : serializeCollaborationTypeField(val.type),
     ['item']:
       val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
+    ['app_item']:
+      val.appItem == void 0 ? void 0 : serializeAppItem(val.appItem),
     ['accessible_by']:
       val.accessibleBy == void 0
         ? void 0
@@ -700,6 +715,8 @@ export function deserializeCollaborationInput(
     val.type == void 0 ? void 0 : deserializeCollaborationTypeField(val.type);
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
+  const appItem: undefined | AppItem =
+    val.app_item == void 0 ? void 0 : deserializeAppItem(val.app_item);
   const accessibleBy: undefined | GroupMiniOrUserCollaborations =
     val.accessible_by == void 0
       ? void 0
@@ -774,6 +791,7 @@ export function deserializeCollaborationInput(
     id: id,
     type: type,
     item: item,
+    appItem: appItem,
     accessibleBy: accessibleBy,
     inviteEmail: inviteEmail,
     role: role,

@@ -4,6 +4,7 @@ import { BaseUrlsInput } from './networking/baseUrls.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
 import { FilesManager } from './managers/files.generated.js';
 import { TrashedFilesManager } from './managers/trashedFiles.generated.js';
+import { AppItemAssociationsManager } from './managers/appItemAssociations.generated.js';
 import { DownloadsManager } from './managers/downloads.generated.js';
 import { UploadsManager } from './managers/uploads.generated.js';
 import { ChunkedUploadsManager } from './managers/chunkedUploads.generated.js';
@@ -90,6 +91,7 @@ export class BoxClient {
   readonly authorization: AuthorizationManager;
   readonly files: FilesManager;
   readonly trashedFiles: TrashedFilesManager;
+  readonly appItemAssociations: AppItemAssociationsManager;
   readonly downloads: DownloadsManager;
   readonly uploads: UploadsManager;
   readonly chunkedUploads: ChunkedUploadsManager;
@@ -162,6 +164,7 @@ export class BoxClient {
       | 'authorization'
       | 'files'
       | 'trashedFiles'
+      | 'appItemAssociations'
       | 'downloads'
       | 'uploads'
       | 'chunkedUploads'
@@ -253,6 +256,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.trashedFiles = new TrashedFilesManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.appItemAssociations = new AppItemAssociationsManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });

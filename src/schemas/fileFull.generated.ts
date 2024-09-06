@@ -288,6 +288,7 @@ export class FileFull extends File {
   readonly uploaderDisplayName?: string;
   readonly dispositionAt?: DateTime;
   readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
+  readonly isAssociatedWithAppItem?: boolean;
   constructor(fields: FileFull) {
     super(fields);
   }
@@ -1205,6 +1206,10 @@ export function serializeFileFull(val: FileFull): SerializedData {
             ): SerializedData {
               return serializeFileFullSharedLinkPermissionOptionsField(item);
             }) as readonly any[]),
+      ['is_associated_with_app_item']:
+        val.isAssociatedWithAppItem == void 0
+          ? void 0
+          : val.isAssociatedWithAppItem,
     },
   };
 }
@@ -1385,6 +1390,19 @@ export function deserializeFileFull(val: SerializedData): FileFull {
           return deserializeFileFullSharedLinkPermissionOptionsField(itm);
         }) as readonly any[])
       : [];
+  if (
+    !(val.is_associated_with_app_item == void 0) &&
+    !sdIsBoolean(val.is_associated_with_app_item)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_associated_with_app_item" of type "FileFull"',
+    });
+  }
+  const isAssociatedWithAppItem: undefined | boolean =
+    val.is_associated_with_app_item == void 0
+      ? void 0
+      : val.is_associated_with_app_item;
   if (!(val.description == void 0) && !sdIsString(val.description)) {
     throw new BoxSdkError({
       message: 'Expecting string for "description" of type "FileFull"',
@@ -1537,6 +1555,7 @@ export function deserializeFileFull(val: SerializedData): FileFull {
     uploaderDisplayName: uploaderDisplayName,
     dispositionAt: dispositionAt,
     sharedLinkPermissionOptions: sharedLinkPermissionOptions,
+    isAssociatedWithAppItem: isAssociatedWithAppItem,
     description: description,
     size: size,
     pathCollection: pathCollection,

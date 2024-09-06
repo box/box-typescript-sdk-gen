@@ -6,6 +6,7 @@ General explanations of the available functionality and examples of how to use
 the SDK are available by topic:
 
 - [Ai](ai.md)
+- [App item associations](appItemAssociations.md)
 - [Authorization](authorization.md)
 - [Avatars](avatars.md)
 - [Chunked uploads](chunkedUploads.md)
