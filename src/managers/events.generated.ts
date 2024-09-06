@@ -1,26 +1,26 @@
-import { serializeEvents } from '../schemas/events.generated.js';
-import { deserializeEvents } from '../schemas/events.generated.js';
-import { serializeClientError } from '../schemas/clientError.generated.js';
-import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeRealtimeServers } from '../schemas/realtimeServers.generated.js';
 import { deserializeRealtimeServers } from '../schemas/realtimeServers.generated.js';
+import { serializeClientError } from '../schemas/clientError.generated.js';
+import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { serializeEvents } from '../schemas/events.generated.js';
+import { deserializeEvents } from '../schemas/events.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
-import { Events } from '../schemas/events.generated.js';
-import { ClientError } from '../schemas/clientError.generated.js';
 import { RealtimeServers } from '../schemas/realtimeServers.generated.js';
+import { ClientError } from '../schemas/clientError.generated.js';
+import { Events } from '../schemas/events.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { DateTime } from '../internal/utils.js';
-import { sdToJson } from '../serialization/json.js';
 import { FetchOptions } from '../networking/fetch.js';
 import { FetchResponse } from '../networking/fetch.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
+import { DateTime } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -28,6 +28,30 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class GetEventsWithLongPollingHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'> &
+      Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface GetEventsWithLongPollingHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export type GetEventsQueryParamsStreamTypeField =
   | 'all'
   | 'changes'
@@ -228,37 +252,13 @@ export interface GetEventsHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export class GetEventsWithLongPollingHeaders {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'> &
-      Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface GetEventsWithLongPollingHeadersInput {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
 export class EventsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
     fields: Omit<
       EventsManager,
-      'networkSession' | 'getEvents' | 'getEventsWithLongPolling'
+      'networkSession' | 'getEventsWithLongPolling' | 'getEvents'
     > &
       Partial<Pick<EventsManager, 'networkSession'>>
   ) {
@@ -268,63 +268,6 @@ export class EventsManager {
     if (fields.networkSession) {
       this.networkSession = fields.networkSession;
     }
-  }
-  /**
-   * Returns up to a year of past events for a given user
-   * or for the entire enterprise.
-   *
-   * By default this returns events for the authenticated user. To retrieve events
-   * for the entire enterprise, set the `stream_type` to `admin_logs_streaming`
-   * for live monitoring of new events, or `admin_logs` for querying across
-   * historical events. The user making the API call will
-   * need to have admin privileges, and the application will need to have the
-   * scope `manage enterprise properties` checked.
-   * @param {GetEventsQueryParams} queryParams Query parameters of getEvents method
-   * @param {GetEventsHeadersInput} headersInput Headers of getEvents method
-   * @param {CancellationToken} cancellationToken Token used for request cancellation.
-   * @returns {Promise<Events>}
-   */
-  async getEvents(
-    queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,
-    headersInput: GetEventsHeadersInput = new GetEventsHeaders({}),
-    cancellationToken?: CancellationToken
-  ): Promise<Events> {
-    const headers: GetEventsHeaders = new GetEventsHeaders({
-      extraHeaders: headersInput.extraHeaders,
-    });
-    const queryParamsMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ['stream_type']: toString(queryParams.streamType) as string,
-      ['stream_position']: toString(queryParams.streamPosition) as string,
-      ['limit']: toString(queryParams.limit) as string,
-      ['event_type']: queryParams.eventType
-        ? queryParams.eventType.map(toString).join(',')
-        : undefined,
-      ['created_after']: queryParams.createdAfter
-        ? serializeDateTime(queryParams.createdAfter)
-        : undefined,
-      ['created_before']: queryParams.createdBefore
-        ? serializeDateTime(queryParams.createdBefore)
-        : undefined,
-    });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/events'
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
-    return deserializeEvents(response.data);
   }
   /**
    * Returns a list of real-time servers that can be used for long-polling updates
@@ -390,6 +333,63 @@ export class EventsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return deserializeRealtimeServers(response.data);
+  }
+  /**
+   * Returns up to a year of past events for a given user
+   * or for the entire enterprise.
+   *
+   * By default this returns events for the authenticated user. To retrieve events
+   * for the entire enterprise, set the `stream_type` to `admin_logs_streaming`
+   * for live monitoring of new events, or `admin_logs` for querying across
+   * historical events. The user making the API call will
+   * need to have admin privileges, and the application will need to have the
+   * scope `manage enterprise properties` checked.
+   * @param {GetEventsQueryParams} queryParams Query parameters of getEvents method
+   * @param {GetEventsHeadersInput} headersInput Headers of getEvents method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<Events>}
+   */
+  async getEvents(
+    queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,
+    headersInput: GetEventsHeadersInput = new GetEventsHeaders({}),
+    cancellationToken?: CancellationToken
+  ): Promise<Events> {
+    const headers: GetEventsHeaders = new GetEventsHeaders({
+      extraHeaders: headersInput.extraHeaders,
+    });
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['stream_type']: toString(queryParams.streamType) as string,
+      ['stream_position']: toString(queryParams.streamPosition) as string,
+      ['limit']: toString(queryParams.limit) as string,
+      ['event_type']: queryParams.eventType
+        ? queryParams.eventType.map(toString).join(',')
+        : undefined,
+      ['created_after']: queryParams.createdAfter
+        ? serializeDateTime(queryParams.createdAfter)
+        : undefined,
+      ['created_before']: queryParams.createdBefore
+        ? serializeDateTime(queryParams.createdBefore)
+        : undefined,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/events'
+      ) as string,
+      method: 'GET',
+      params: queryParamsMap,
+      headers: headersMap,
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeEvents(response.data);
   }
 }
 export interface EventsManagerInput {

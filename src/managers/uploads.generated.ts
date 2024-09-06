@@ -208,6 +208,44 @@ export interface UploadFileVersionHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export interface PreflightFileUploadCheckRequestBodyParentField {
+  /**
+   * The ID of parent item */
+  readonly id?: string;
+}
+export interface PreflightFileUploadCheckRequestBody {
+  /**
+   * The name for the file */
+  readonly name?: string;
+  /**
+   * The size of the file in bytes */
+  readonly size?: number;
+  readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
+}
+export class PreflightFileUploadCheckHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'> &
+      Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface PreflightFileUploadCheckHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UploadFileRequestBodyAttributesParentField {
   /**
    * The id of the parent folder. Use
@@ -310,44 +348,6 @@ export interface UploadFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface PreflightFileUploadCheckRequestBodyParentField {
-  /**
-   * The ID of parent item */
-  readonly id?: string;
-}
-export interface PreflightFileUploadCheckRequestBody {
-  /**
-   * The name for the file */
-  readonly name?: string;
-  /**
-   * The size of the file in bytes */
-  readonly size?: number;
-  readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
-}
-export class PreflightFileUploadCheckHeaders {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'> &
-      Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface PreflightFileUploadCheckHeadersInput {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
 export class UploadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -356,8 +356,8 @@ export class UploadsManager {
       UploadsManager,
       | 'networkSession'
       | 'uploadFileVersion'
-      | 'uploadFile'
       | 'preflightFileUploadCheck'
+      | 'uploadFile'
     > &
       Partial<Pick<UploadsManager, 'networkSession'>>
   ) {
@@ -451,6 +451,44 @@ export class UploadsManager {
     return deserializeFiles(response.data);
   }
   /**
+   * Performs a check to verify that a file will be accepted by Box
+   * before you upload the entire file.
+   * @param {PreflightFileUploadCheckRequestBody} requestBody Request body of preflightFileUploadCheck method
+   * @param {PreflightFileUploadCheckHeadersInput} headersInput Headers of preflightFileUploadCheck method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<UploadUrl>}
+   */
+  async preflightFileUploadCheck(
+    requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
+    headersInput: PreflightFileUploadCheckHeadersInput = new PreflightFileUploadCheckHeaders(
+      {}
+    ),
+    cancellationToken?: CancellationToken
+  ): Promise<UploadUrl> {
+    const headers: PreflightFileUploadCheckHeaders =
+      new PreflightFileUploadCheckHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/files/content'
+      ) as string,
+      method: 'OPTIONS',
+      headers: headersMap,
+      data: serializePreflightFileUploadCheckRequestBody(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeUploadUrl(response.data);
+  }
+  /**
    * Uploads a small file to Box. For file sizes over 50MB we recommend
    * using the Chunk Upload APIs.
    *
@@ -517,44 +555,6 @@ export class UploadsManager {
     } satisfies FetchOptions)) as FetchResponse;
     return deserializeFiles(response.data);
   }
-  /**
-   * Performs a check to verify that a file will be accepted by Box
-   * before you upload the entire file.
-   * @param {PreflightFileUploadCheckRequestBody} requestBody Request body of preflightFileUploadCheck method
-   * @param {PreflightFileUploadCheckHeadersInput} headersInput Headers of preflightFileUploadCheck method
-   * @param {CancellationToken} cancellationToken Token used for request cancellation.
-   * @returns {Promise<UploadUrl>}
-   */
-  async preflightFileUploadCheck(
-    requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
-    headersInput: PreflightFileUploadCheckHeadersInput = new PreflightFileUploadCheckHeaders(
-      {}
-    ),
-    cancellationToken?: CancellationToken
-  ): Promise<UploadUrl> {
-    const headers: PreflightFileUploadCheckHeaders =
-      new PreflightFileUploadCheckHeaders({
-        extraHeaders: headersInput.extraHeaders,
-      });
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/content'
-      ) as string,
-      method: 'OPTIONS',
-      headers: headersMap,
-      data: serializePreflightFileUploadCheckRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadUrl(response.data);
-  }
 }
 export interface UploadsManagerInput {
   readonly auth?: Authentication;
@@ -610,6 +610,73 @@ export function deserializeUploadFileVersionRequestBodyAttributesField(
     name: name,
     contentModifiedAt: contentModifiedAt,
   } satisfies UploadFileVersionRequestBodyAttributesField;
+}
+export function serializePreflightFileUploadCheckRequestBodyParentField(
+  val: PreflightFileUploadCheckRequestBodyParentField
+): SerializedData {
+  return { ['id']: val.id == void 0 ? void 0 : val.id };
+}
+export function deserializePreflightFileUploadCheckRequestBodyParentField(
+  val: SerializedData
+): PreflightFileUploadCheckRequestBodyParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "PreflightFileUploadCheckRequestBodyParentField"',
+    });
+  }
+  if (!(val.id == void 0) && !sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "PreflightFileUploadCheckRequestBodyParentField"',
+    });
+  }
+  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
+  return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
+}
+export function serializePreflightFileUploadCheckRequestBody(
+  val: PreflightFileUploadCheckRequestBody
+): SerializedData {
+  return {
+    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['size']: val.size == void 0 ? void 0 : val.size,
+    ['parent']:
+      val.parent == void 0
+        ? void 0
+        : serializePreflightFileUploadCheckRequestBodyParentField(val.parent),
+  };
+}
+export function deserializePreflightFileUploadCheckRequestBody(
+  val: SerializedData
+): PreflightFileUploadCheckRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message: 'Expecting a map for "PreflightFileUploadCheckRequestBody"',
+    });
+  }
+  if (!(val.name == void 0) && !sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "PreflightFileUploadCheckRequestBody"',
+    });
+  }
+  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
+  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "size" of type "PreflightFileUploadCheckRequestBody"',
+    });
+  }
+  const size: undefined | number = val.size == void 0 ? void 0 : val.size;
+  const parent: undefined | PreflightFileUploadCheckRequestBodyParentField =
+    val.parent == void 0
+      ? void 0
+      : deserializePreflightFileUploadCheckRequestBodyParentField(val.parent);
+  return {
+    name: name,
+    size: size,
+    parent: parent,
+  } satisfies PreflightFileUploadCheckRequestBody;
 }
 export function serializeUploadFileRequestBodyAttributesParentField(
   val: UploadFileRequestBodyAttributesParentField
@@ -717,71 +784,4 @@ export function deserializeUploadFileRequestBodyAttributesField(
     contentCreatedAt: contentCreatedAt,
     contentModifiedAt: contentModifiedAt,
   } satisfies UploadFileRequestBodyAttributesField;
-}
-export function serializePreflightFileUploadCheckRequestBodyParentField(
-  val: PreflightFileUploadCheckRequestBodyParentField
-): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
-}
-export function deserializePreflightFileUploadCheckRequestBodyParentField(
-  val: SerializedData
-): PreflightFileUploadCheckRequestBodyParentField {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting a map for "PreflightFileUploadCheckRequestBodyParentField"',
-    });
-  }
-  if (!(val.id == void 0) && !sdIsString(val.id)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "id" of type "PreflightFileUploadCheckRequestBodyParentField"',
-    });
-  }
-  const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
-}
-export function serializePreflightFileUploadCheckRequestBody(
-  val: PreflightFileUploadCheckRequestBody
-): SerializedData {
-  return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['size']: val.size == void 0 ? void 0 : val.size,
-    ['parent']:
-      val.parent == void 0
-        ? void 0
-        : serializePreflightFileUploadCheckRequestBodyParentField(val.parent),
-  };
-}
-export function deserializePreflightFileUploadCheckRequestBody(
-  val: SerializedData
-): PreflightFileUploadCheckRequestBody {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a map for "PreflightFileUploadCheckRequestBody"',
-    });
-  }
-  if (!(val.name == void 0) && !sdIsString(val.name)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "name" of type "PreflightFileUploadCheckRequestBody"',
-    });
-  }
-  const name: undefined | string = val.name == void 0 ? void 0 : val.name;
-  if (!(val.size == void 0) && !sdIsNumber(val.size)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting number for "size" of type "PreflightFileUploadCheckRequestBody"',
-    });
-  }
-  const size: undefined | number = val.size == void 0 ? void 0 : val.size;
-  const parent: undefined | PreflightFileUploadCheckRequestBodyParentField =
-    val.parent == void 0
-      ? void 0
-      : deserializePreflightFileUploadCheckRequestBodyParentField(val.parent);
-  return {
-    name: name,
-    size: size,
-    parent: parent,
-  } satisfies PreflightFileUploadCheckRequestBody;
 }
