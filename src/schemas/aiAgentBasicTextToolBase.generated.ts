@@ -11,7 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiAgentBasicTextToolBase {
   /**
-   * The model used for the AI Agent for basic text. */
+   * The model used for the AI Agent for basic text. For specific model values, see the [available models list](g://box-ai/supported-models). */
   readonly model?: string;
   /**
    * The number of tokens for completion. */
