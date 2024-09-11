@@ -420,8 +420,7 @@ export class UploadsManager {
     });
     const response: FetchResponse = (await fetch({
       url: ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/',
+        'https://upload.box.com/2.0/files/',
         toString(fileId) as string,
         '/content'
       ) as string,
@@ -526,10 +525,7 @@ export class UploadsManager {
       ...headers.extraHeaders,
     });
     const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/content'
-      ) as string,
+      url: ''.concat('https://upload.box.com/2.0/files/content') as string,
       method: 'POST',
       params: queryParamsMap,
       headers: headersMap,
