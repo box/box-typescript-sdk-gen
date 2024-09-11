@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.5.1...v1.6.0) (2024-09-11)
+
+
+### Bug Fixes
+
+* Add the missing license to `package.json` (box/box-codegen[#562](https://github.com/box/box-typescript-sdk-gen/issues/562)) ([#343](https://github.com/box/box-typescript-sdk-gen/issues/343)) ([cc9a8b8](https://github.com/box/box-typescript-sdk-gen/commit/cc9a8b8ac628e348d32176f8ba69add649c555bd))
+* Fix variants in metadata query results (box/box-openapi[#456](https://github.com/box/box-typescript-sdk-gen/issues/456)) ([#349](https://github.com/box/box-typescript-sdk-gen/issues/349)) ([2131e98](https://github.com/box/box-typescript-sdk-gen/commit/2131e98ff5530c7440ff50ec0da46cc317d0a4ae))
+
+
+### New Features and Enhancements
+
+* add Hubs Beta (box/box-openapi[#453](https://github.com/box/box-typescript-sdk-gen/issues/453)) ([#333](https://github.com/box/box-typescript-sdk-gen/issues/333)) ([40359c7](https://github.com/box/box-typescript-sdk-gen/commit/40359c71aa25ecfe7ec53bfa19de62b9d83d4ace))
+* Add support for proxy (box/box-codegen[#559](https://github.com/box/box-typescript-sdk-gen/issues/559)) ([#337](https://github.com/box/box-typescript-sdk-gen/issues/337)) ([0ffd9c8](https://github.com/box/box-typescript-sdk-gen/commit/0ffd9c8095d1aa742144146383ae94f1f4526af0))
+
 ### [1.5.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.5.0...v1.5.1) (2024-08-30)
 
 
