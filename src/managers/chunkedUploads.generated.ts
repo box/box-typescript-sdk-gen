@@ -990,7 +990,8 @@ export class ChunkedUploadsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch({
       url: ''.concat(
-        'https://upload.box.com/2.0/files/upload_sessions'
+        this.networkSession.baseUrls.uploadUrl,
+        '/2.0/files/upload_sessions'
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -1034,7 +1035,8 @@ export class ChunkedUploadsManager {
     } = prepareParams({ ...{}, ...headers.extraHeaders });
     const response: FetchResponse = (await fetch({
       url: ''.concat(
-        'https://upload.box.com/2.0/files/',
+        this.networkSession.baseUrls.uploadUrl,
+        '/2.0/files/',
         toString(fileId) as string,
         '/upload_sessions'
       ) as string,
