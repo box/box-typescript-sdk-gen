@@ -1,6 +1,6 @@
-import { serializeFileOrFolder } from './fileOrFolder.generated.js';
-import { deserializeFileOrFolder } from './fileOrFolder.generated.js';
-import { FileOrFolder } from './fileOrFolder.generated.js';
+import { serializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
+import { deserializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
+import { FileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -17,7 +17,7 @@ export interface MetadataQueryResults {
    * By default, this endpoint returns only the most basic info about the
    * items. To get additional fields for each item, including any of the
    * metadata, use the `fields` attribute in the query. */
-  readonly entries?: readonly FileOrFolder[];
+  readonly entries?: readonly FileFullOrFolderFull[];
   /**
    * The limit that was used for this search. This will be the same as the
    * `limit` query parameter unless that value exceeded the maximum value
@@ -34,8 +34,10 @@ export function serializeMetadataQueryResults(
     ['entries']:
       val.entries == void 0
         ? void 0
-        : (val.entries.map(function (item: FileOrFolder): SerializedData {
-            return serializeFileOrFolder(item);
+        : (val.entries.map(function (
+            item: FileFullOrFolderFull
+          ): SerializedData {
+            return serializeFileFullOrFolderFull(item);
           }) as readonly any[]),
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
     ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
@@ -54,12 +56,12 @@ export function deserializeMetadataQueryResults(
       message: 'Expecting array for "entries" of type "MetadataQueryResults"',
     });
   }
-  const entries: undefined | readonly FileOrFolder[] =
+  const entries: undefined | readonly FileFullOrFolderFull[] =
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileOrFolder {
-          return deserializeFileOrFolder(itm);
+      ? (val.entries.map(function (itm: SerializedData): FileFullOrFolderFull {
+          return deserializeFileFullOrFolderFull(itm);
         }) as readonly any[])
       : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {

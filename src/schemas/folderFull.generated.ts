@@ -20,8 +20,8 @@ import { serializeItems } from './items.generated.js';
 import { deserializeItems } from './items.generated.js';
 import { serializeFolder } from './folder.generated.js';
 import { deserializeFolder } from './folder.generated.js';
-import { serializeMetadata } from './metadata.generated.js';
-import { deserializeMetadata } from './metadata.generated.js';
+import { serializeMetadataFull } from './metadataFull.generated.js';
+import { deserializeMetadataFull } from './metadataFull.generated.js';
 import { FolderBaseTypeField } from './folderBase.generated.js';
 import { FolderBase } from './folderBase.generated.js';
 import { FolderMini } from './folderMini.generated.js';
@@ -33,7 +33,7 @@ import { FolderFolderUploadEmailField } from './folder.generated.js';
 import { FolderItemStatusField } from './folder.generated.js';
 import { Items } from './items.generated.js';
 import { Folder } from './folder.generated.js';
-import { Metadata } from './metadata.generated.js';
+import { MetadataFull } from './metadataFull.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -76,7 +76,7 @@ export interface FolderFullPermissionsField {
 export interface FolderFullMetadataField {
   readonly extraData?: {
     readonly [key: string]: {
-      readonly [key: string]: Metadata;
+      readonly [key: string]: MetadataFull;
     };
   };
 }
@@ -296,7 +296,7 @@ export function deserializeFolderFullMetadataField(
     | undefined
     | {
         readonly [key: string]: {
-          readonly [key: string]: Metadata;
+          readonly [key: string]: MetadataFull;
         };
       } =
     val == void 0
@@ -310,7 +310,7 @@ export function deserializeFolderFullMetadataField(
                 ? (Object.fromEntries(
                     Object.entries(v).map(([k, v]: [string, any]) => [
                       k,
-                      deserializeMetadata(v),
+                      deserializeMetadataFull(v),
                     ])
                   ) as {
                     readonly [key: string]: any;
