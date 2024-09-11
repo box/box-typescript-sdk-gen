@@ -20,8 +20,8 @@ import { serializeUserMini } from './userMini.generated.js';
 import { deserializeUserMini } from './userMini.generated.js';
 import { serializeFileOrFolderScope } from './fileOrFolderScope.generated.js';
 import { deserializeFileOrFolderScope } from './fileOrFolderScope.generated.js';
-import { serializeMetadata } from './metadata.generated.js';
-import { deserializeMetadata } from './metadata.generated.js';
+import { serializeMetadataFull } from './metadataFull.generated.js';
+import { deserializeMetadataFull } from './metadataFull.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { FileBaseTypeField } from './fileBase.generated.js';
@@ -35,7 +35,7 @@ import { FileItemStatusField } from './file.generated.js';
 import { File } from './file.generated.js';
 import { UserMini } from './userMini.generated.js';
 import { FileOrFolderScope } from './fileOrFolderScope.generated.js';
-import { Metadata } from './metadata.generated.js';
+import { MetadataFull } from './metadataFull.generated.js';
 import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
@@ -155,7 +155,7 @@ export type FileFullAllowedInviteeRolesField =
 export interface FileFullMetadataField {
   readonly extraData?: {
     readonly [key: string]: {
-      readonly [key: string]: Metadata;
+      readonly [key: string]: MetadataFull;
     };
   };
 }
@@ -782,7 +782,7 @@ export function deserializeFileFullMetadataField(
     | undefined
     | {
         readonly [key: string]: {
-          readonly [key: string]: Metadata;
+          readonly [key: string]: MetadataFull;
         };
       } =
     val == void 0
@@ -796,7 +796,7 @@ export function deserializeFileFullMetadataField(
                 ? (Object.fromEntries(
                     Object.entries(v).map(([k, v]: [string, any]) => [
                       k,
-                      deserializeMetadata(v),
+                      deserializeMetadataFull(v),
                     ])
                   ) as {
                     readonly [key: string]: any;
