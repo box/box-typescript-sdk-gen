@@ -93,6 +93,31 @@ export interface GetFileVersionByIdOptionalsInput {
   readonly headers?: GetFileVersionByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class DeleteFileVersionByIdOptionals {
+  readonly headers: DeleteFileVersionByIdHeaders =
+    new DeleteFileVersionByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteFileVersionByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<DeleteFileVersionByIdOptionals, 'headers' | 'cancellationToken'>
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteFileVersionByIdOptionalsInput {
+  readonly headers?: DeleteFileVersionByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class UpdateFileVersionByIdOptionals {
   readonly requestBody: UpdateFileVersionByIdRequestBody =
     {} satisfies UpdateFileVersionByIdRequestBody;
@@ -125,31 +150,6 @@ export class UpdateFileVersionByIdOptionals {
 export interface UpdateFileVersionByIdOptionalsInput {
   readonly requestBody?: UpdateFileVersionByIdRequestBody;
   readonly headers?: UpdateFileVersionByIdHeaders;
-  readonly cancellationToken?: undefined | CancellationToken;
-}
-export class DeleteFileVersionByIdOptionals {
-  readonly headers: DeleteFileVersionByIdHeaders =
-    new DeleteFileVersionByIdHeaders({});
-  readonly cancellationToken?: CancellationToken = void 0;
-  constructor(
-    fields: Omit<
-      DeleteFileVersionByIdOptionals,
-      'headers' | 'cancellationToken'
-    > &
-      Partial<
-        Pick<DeleteFileVersionByIdOptionals, 'headers' | 'cancellationToken'>
-      >
-  ) {
-    if (fields.headers) {
-      this.headers = fields.headers;
-    }
-    if (fields.cancellationToken) {
-      this.cancellationToken = fields.cancellationToken;
-    }
-  }
-}
-export interface DeleteFileVersionByIdOptionalsInput {
-  readonly headers?: DeleteFileVersionByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class PromoteFileVersionOptionals {
@@ -277,36 +277,6 @@ export interface GetFileVersionByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface UpdateFileVersionByIdRequestBody {
-  /**
-   * Set this to `null` to clear
-   * the date and restore the file. */
-  readonly trashedAt?: string;
-}
-export class UpdateFileVersionByIdHeaders {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface UpdateFileVersionByIdHeadersInput {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
 export class DeleteFileVersionByIdHeaders {
   /**
    * Ensures this item hasn't recently changed before
@@ -344,6 +314,36 @@ export interface DeleteFileVersionByIdHeadersInput {
    * with a `412 Precondition Failed` if it
    * has changed since. */
   readonly ifMatch?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export interface UpdateFileVersionByIdRequestBody {
+  /**
+   * Set this to `null` to clear
+   * the date and restore the file. */
+  readonly trashedAt?: string;
+}
+export class UpdateFileVersionByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface UpdateFileVersionByIdHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -407,8 +407,8 @@ export class FileVersionsManager {
       | 'networkSession'
       | 'getFileVersions'
       | 'getFileVersionById'
-      | 'updateFileVersionById'
       | 'deleteFileVersionById'
+      | 'updateFileVersionById'
       | 'promoteFileVersion'
     > &
       Partial<Pick<FileVersionsManager, 'networkSession'>>
@@ -537,6 +537,58 @@ export class FileVersionsManager {
     return deserializeFileVersionFull(response.data);
   }
   /**
+     * Move a file version to the trash.
+     *
+     * Versions are only tracked for Box users with premium accounts.
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {string} fileVersionId The ID of the file version
+    Example: "1234"
+     * @param {DeleteFileVersionByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
+  async deleteFileVersionById(
+    fileId: string,
+    fileVersionId: string,
+    optionalsInput: DeleteFileVersionByIdOptionalsInput = {}
+  ): Promise<undefined> {
+    const optionals: DeleteFileVersionByIdOptionals =
+      new DeleteFileVersionByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{ ['if-match']: toString(headers.ifMatch) as string },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/files/',
+        toString(fileId) as string,
+        '/versions/',
+        toString(fileVersionId) as string
+      ) as string,
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return void 0;
+  }
+  /**
      * Restores a specific version of a file after it was deleted.
      * Don't use this endpoint to restore Box Notes,
      * as it works with file formats such as PDF, DOC,
@@ -589,58 +641,6 @@ export class FileVersionsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return deserializeFileVersionFull(response.data);
-  }
-  /**
-     * Move a file version to the trash.
-     *
-     * Versions are only tracked for Box users with premium accounts.
-     * @param {string} fileId The unique identifier that represents a file.
-    
-    The ID for any file can be determined
-    by visiting a file in the web application
-    and copying the ID from the URL. For example,
-    for the URL `https://*.app.box.com/files/123`
-    the `file_id` is `123`.
-    Example: "12345"
-     * @param {string} fileVersionId The ID of the file version
-    Example: "1234"
-     * @param {DeleteFileVersionByIdOptionalsInput} optionalsInput
-     * @returns {Promise<undefined>}
-     */
-  async deleteFileVersionById(
-    fileId: string,
-    fileVersionId: string,
-    optionalsInput: DeleteFileVersionByIdOptionalsInput = {}
-  ): Promise<undefined> {
-    const optionals: DeleteFileVersionByIdOptionals =
-      new DeleteFileVersionByIdOptionals({
-        headers: optionalsInput.headers,
-        cancellationToken: optionalsInput.cancellationToken,
-      });
-    const headers: any = optionals.headers;
-    const cancellationToken: any = optionals.cancellationToken;
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({
-      ...{ ['if-match']: toString(headers.ifMatch) as string },
-      ...headers.extraHeaders,
-    });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/',
-        toString(fileId) as string,
-        '/versions/',
-        toString(fileVersionId) as string
-      ) as string,
-      method: 'DELETE',
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
-    return void 0;
   }
   /**
      * Promote a specific version of a file.

@@ -3,14 +3,16 @@ import { Interceptor } from './interceptors.generated.js';
 import { Agent } from '../internal/utils.js';
 import { AgentOptions } from '../internal/utils.js';
 import { createAgent } from '../internal/utils.js';
+import { ProxyConfig } from './proxyConfig.generated.js';
 export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
   } = {};
   readonly baseUrls: BaseUrls = new BaseUrls({});
   readonly interceptors: readonly Interceptor[] = [];
-  readonly agent: Agent = createAgent(void 0);
+  readonly agent: Agent = createAgent(void 0, void 0);
   readonly agentOptions?: AgentOptions;
+  readonly proxyConfig?: ProxyConfig;
   constructor(
     fields: Omit<
       NetworkSession,
@@ -22,6 +24,7 @@ export class NetworkSession {
       | 'withCustomBaseUrls'
       | 'withCustomAgentOptions'
       | 'withInterceptors'
+      | 'withProxy'
     > &
       Partial<
         Pick<
@@ -45,6 +48,9 @@ export class NetworkSession {
     if (fields.agentOptions) {
       this.agentOptions = fields.agentOptions;
     }
+    if (fields.proxyConfig) {
+      this.proxyConfig = fields.proxyConfig;
+    }
   }
   /**
      * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including additional headers to be attached to every API call.
@@ -64,6 +70,7 @@ export class NetworkSession {
       interceptors: this.interceptors,
       agent: this.agent,
       agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
     });
   }
   /**
@@ -78,6 +85,7 @@ export class NetworkSession {
       interceptors: this.interceptors,
       agent: this.agent,
       agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
     });
   }
   /**
@@ -90,8 +98,9 @@ export class NetworkSession {
       additionalHeaders: this.additionalHeaders,
       baseUrls: this.baseUrls,
       interceptors: this.interceptors,
-      agent: createAgent(agentOptions),
+      agent: createAgent(agentOptions, this.proxyConfig),
       agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
     });
   }
   /**
@@ -106,6 +115,22 @@ export class NetworkSession {
       interceptors: this.interceptors.concat(interceptors),
       agent: this.agent,
       agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
+    });
+  }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including a custom proxy configuration.
+   * @param {ProxyConfig} proxyConfig
+   * @returns {NetworkSession}
+   */
+  withProxy(proxyConfig: ProxyConfig): NetworkSession {
+    return new NetworkSession({
+      additionalHeaders: this.additionalHeaders,
+      baseUrls: this.baseUrls,
+      interceptors: this.interceptors,
+      agent: createAgent(this.agentOptions, proxyConfig),
+      agentOptions: this.agentOptions,
+      proxyConfig: proxyConfig,
     });
   }
 }
@@ -117,4 +142,5 @@ export interface NetworkSessionInput {
   readonly interceptors?: readonly Interceptor[];
   readonly agent?: Agent;
   readonly agentOptions?: AgentOptions;
+  readonly proxyConfig?: ProxyConfig;
 }

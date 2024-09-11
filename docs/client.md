@@ -6,12 +6,15 @@ divided across resource managers.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Client](#client)
 - [Additional headers](#additional-headers)
   - [As-User header](#as-user-header)
   - [Suppress notifications](#suppress-notifications)
   - [Custom headers](#custom-headers)
 - [Custom Base URLs](#custom-base-urls)
+- [Custom Agent Options](#custom-agent-options)
 - [Interceptors](#interceptors)
+- [Use Proxy for API calls](#use-proxy-for-api-calls)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -128,4 +131,20 @@ const clientWithInterceptor: BoxClient = client.withInterceptors([
     afterRequest: emptyAfterRequest,
   },
 ]);
+```
+
+# Use Proxy for API calls
+
+In order to use a proxy for API calls, calling the `client.withProxy(proxyConfig)` method creates a new client, leaving the original client unmodified, with the username and password being optional.
+
+If both custom agent options and proxy are provided, the proxy will take precedence.
+
+**Note:** We are only supporting http/s proxies with basic authentication. NTLM and other authentication methods are not supported.
+
+```js
+newClient = client.withProxy({
+  url: 'http://127.0.0.1:1234/',
+  username: 'user',
+  password: 'password',
+});
 ```

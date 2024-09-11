@@ -56,6 +56,34 @@ export interface GetShieldInformationBarrierSegmentByIdOptionalsInput {
   readonly headers?: GetShieldInformationBarrierSegmentByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class DeleteShieldInformationBarrierSegmentByIdOptionals {
+  readonly headers: DeleteShieldInformationBarrierSegmentByIdHeaders =
+    new DeleteShieldInformationBarrierSegmentByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteShieldInformationBarrierSegmentByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteShieldInformationBarrierSegmentByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteShieldInformationBarrierSegmentByIdOptionalsInput {
+  readonly headers?: DeleteShieldInformationBarrierSegmentByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class UpdateShieldInformationBarrierSegmentByIdOptionals {
   readonly requestBody: UpdateShieldInformationBarrierSegmentByIdRequestBody =
     {} satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody;
@@ -88,34 +116,6 @@ export class UpdateShieldInformationBarrierSegmentByIdOptionals {
 export interface UpdateShieldInformationBarrierSegmentByIdOptionalsInput {
   readonly requestBody?: UpdateShieldInformationBarrierSegmentByIdRequestBody;
   readonly headers?: UpdateShieldInformationBarrierSegmentByIdHeaders;
-  readonly cancellationToken?: undefined | CancellationToken;
-}
-export class DeleteShieldInformationBarrierSegmentByIdOptionals {
-  readonly headers: DeleteShieldInformationBarrierSegmentByIdHeaders =
-    new DeleteShieldInformationBarrierSegmentByIdHeaders({});
-  readonly cancellationToken?: CancellationToken = void 0;
-  constructor(
-    fields: Omit<
-      DeleteShieldInformationBarrierSegmentByIdOptionals,
-      'headers' | 'cancellationToken'
-    > &
-      Partial<
-        Pick<
-          DeleteShieldInformationBarrierSegmentByIdOptionals,
-          'headers' | 'cancellationToken'
-        >
-      >
-  ) {
-    if (fields.headers) {
-      this.headers = fields.headers;
-    }
-    if (fields.cancellationToken) {
-      this.cancellationToken = fields.cancellationToken;
-    }
-  }
-}
-export interface DeleteShieldInformationBarrierSegmentByIdOptionalsInput {
-  readonly headers?: DeleteShieldInformationBarrierSegmentByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetShieldInformationBarrierSegmentsOptionals {
@@ -203,6 +203,35 @@ export interface GetShieldInformationBarrierSegmentByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class DeleteShieldInformationBarrierSegmentByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<
+      DeleteShieldInformationBarrierSegmentByIdHeaders,
+      'extraHeaders'
+    > &
+      Partial<
+        Pick<DeleteShieldInformationBarrierSegmentByIdHeaders, 'extraHeaders'>
+      >
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface DeleteShieldInformationBarrierSegmentByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export interface UpdateShieldInformationBarrierSegmentByIdRequestBody {
   /**
    * The updated name for the shield information barrier segment. */
@@ -233,35 +262,6 @@ export class UpdateShieldInformationBarrierSegmentByIdHeaders {
   }
 }
 export interface UpdateShieldInformationBarrierSegmentByIdHeadersInput {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?:
-    | undefined
-    | {
-        readonly [key: string]: undefined | string;
-      };
-}
-export class DeleteShieldInformationBarrierSegmentByIdHeaders {
-  /**
-   * Extra headers that will be included in the HTTP request. */
-  readonly extraHeaders?: {
-    readonly [key: string]: undefined | string;
-  } = {};
-  constructor(
-    fields: Omit<
-      DeleteShieldInformationBarrierSegmentByIdHeaders,
-      'extraHeaders'
-    > &
-      Partial<
-        Pick<DeleteShieldInformationBarrierSegmentByIdHeaders, 'extraHeaders'>
-      >
-  ) {
-    if (fields.extraHeaders) {
-      this.extraHeaders = fields.extraHeaders;
-    }
-  }
-}
-export interface DeleteShieldInformationBarrierSegmentByIdHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -351,8 +351,8 @@ export class ShieldInformationBarrierSegmentsManager {
       ShieldInformationBarrierSegmentsManager,
       | 'networkSession'
       | 'getShieldInformationBarrierSegmentById'
-      | 'updateShieldInformationBarrierSegmentById'
       | 'deleteShieldInformationBarrierSegmentById'
+      | 'updateShieldInformationBarrierSegmentById'
       | 'getShieldInformationBarrierSegments'
       | 'createShieldInformationBarrierSegment'
     > &
@@ -402,6 +402,43 @@ export class ShieldInformationBarrierSegmentsManager {
     return deserializeShieldInformationBarrierSegment(response.data);
   }
   /**
+     * Deletes the shield information barrier segment
+     * based on provided ID.
+     * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
+    Example: "3423"
+     * @param {DeleteShieldInformationBarrierSegmentByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
+  async deleteShieldInformationBarrierSegmentById(
+    shieldInformationBarrierSegmentId: string,
+    optionalsInput: DeleteShieldInformationBarrierSegmentByIdOptionalsInput = {}
+  ): Promise<undefined> {
+    const optionals: DeleteShieldInformationBarrierSegmentByIdOptionals =
+      new DeleteShieldInformationBarrierSegmentByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/shield_information_barrier_segments/',
+        toString(shieldInformationBarrierSegmentId) as string
+      ) as string,
+      method: 'DELETE',
+      headers: headersMap,
+      responseFormat: void 0,
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return void 0;
+  }
+  /**
      * Updates the shield information barrier segment based on provided ID..
      * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
     Example: "3423"
@@ -442,43 +479,6 @@ export class ShieldInformationBarrierSegmentsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return deserializeShieldInformationBarrierSegment(response.data);
-  }
-  /**
-     * Deletes the shield information barrier segment
-     * based on provided ID.
-     * @param {string} shieldInformationBarrierSegmentId The ID of the shield information barrier segment.
-    Example: "3423"
-     * @param {DeleteShieldInformationBarrierSegmentByIdOptionalsInput} optionalsInput
-     * @returns {Promise<undefined>}
-     */
-  async deleteShieldInformationBarrierSegmentById(
-    shieldInformationBarrierSegmentId: string,
-    optionalsInput: DeleteShieldInformationBarrierSegmentByIdOptionalsInput = {}
-  ): Promise<undefined> {
-    const optionals: DeleteShieldInformationBarrierSegmentByIdOptionals =
-      new DeleteShieldInformationBarrierSegmentByIdOptionals({
-        headers: optionalsInput.headers,
-        cancellationToken: optionalsInput.cancellationToken,
-      });
-    const headers: any = optionals.headers;
-    const cancellationToken: any = optionals.cancellationToken;
-    const headersMap: {
-      readonly [key: string]: string;
-    } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barrier_segments/',
-        toString(shieldInformationBarrierSegmentId) as string
-      ) as string,
-      method: 'DELETE',
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
-    return void 0;
   }
   /**
    * Retrieves a list of shield information barrier segment objects

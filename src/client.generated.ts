@@ -74,6 +74,7 @@ import { AiManager } from './managers/ai.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BaseUrls } from './networking/baseUrls.generated.js';
+import { ProxyConfig } from './networking/proxyConfig.generated.js';
 import { AgentOptions } from './internal/utils.js';
 import { Interceptor } from './networking/interceptors.generated.js';
 import { SerializedData } from './serialization/json.js';
@@ -236,6 +237,7 @@ export class BoxClient {
       | 'withSuppressedNotifications'
       | 'withExtraHeaders'
       | 'withCustomBaseUrls'
+      | 'withProxy'
       | 'withCustomAgentOptions'
       | 'withInterceptors'
     > &
@@ -590,6 +592,17 @@ export class BoxClient {
     return new BoxClient({
       auth: this.auth,
       networkSession: this.networkSession.withCustomBaseUrls(baseUrls),
+    });
+  }
+  /**
+   * Create a new client with a custom proxy that will be used for every API call
+   * @param {ProxyConfig} config
+   * @returns {BoxClient}
+   */
+  withProxy(config: ProxyConfig): BoxClient {
+    return new BoxClient({
+      auth: this.auth,
+      networkSession: this.networkSession.withProxy(config),
     });
   }
   /**
