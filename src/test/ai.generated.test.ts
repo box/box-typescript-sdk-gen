@@ -6,10 +6,10 @@ import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskModeField } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAskModeField } from '../schemas/aiAsk.generated.js';
-import { serializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { deserializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { serializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
-import { deserializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { serializeAiItemBase } from '../schemas/aiItemBase.generated.js';
+import { deserializeAiItemBase } from '../schemas/aiItemBase.generated.js';
+import { serializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
+import { deserializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
 import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
@@ -20,8 +20,8 @@ import { serializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated
 import { deserializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { serializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
-import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { deserializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { serializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
@@ -33,14 +33,14 @@ import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiAskModeField } from '../schemas/aiAsk.generated.js';
-import { AiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { AiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { AiItemBase } from '../schemas/aiItemBase.generated.js';
+import { AiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { AiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
 import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -65,9 +65,9 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
     mode: 'single_item_qa' as AiAskModeField,
     prompt: 'which direction sun rises',
     items: [
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Sun rises in the East',
       }),
     ],
@@ -87,14 +87,14 @@ test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<
     mode: 'multiple_item_qa' as AiAskModeField,
     prompt: 'Which direction sun rises?',
     items: [
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk1.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Earth goes around the sun',
       }),
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk2.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Sun rises in the East in the morning',
       }),
     ],
@@ -142,7 +142,7 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
   await client.files.deleteFileById(fileToAsk.id);
 });
 test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig(): Promise<any> {
-  const aiAskConfig: AiAgentAskOrAiAgentTextGen =
+  const aiAskConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',
@@ -212,7 +212,7 @@ test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig()
   }
 });
 test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgentConfig(): Promise<any> {
-  const aiTextGenConfig: AiAgentAskOrAiAgentTextGen =
+  const aiTextGenConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',

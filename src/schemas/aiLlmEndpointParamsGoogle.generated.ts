@@ -14,12 +14,10 @@ export class AiLlmEndpointParamsGoogle {
   readonly type: AiLlmEndpointParamsGoogleTypeField =
     'google_params' as AiLlmEndpointParamsGoogleTypeField;
   /**
-   * The temperature is used for sampling during response generation, which occurs when `top-P` and `top-K` are applied.
-   * Temperature controls the degree of randomness in token selection. */
+   * The temperature is used for sampling during response generation, which occurs when `top-P` and `top-K` are applied. Temperature controls the degree of randomness in the token selection. */
   readonly temperature?: number;
   /**
-   * `Top-P` changes how the model selects tokens for output. Tokens are selected from the most (see `top-K`) to least probable
-   * until the sum of their probabilities equals the `top-P` value. */
+   * `Top-P` changes how the model selects tokens for output. Tokens are selected from the most (see `top-K`) to least probable until the sum of their probabilities equals the `top-P` value. */
   readonly topP?: number;
   /**
    * `Top-K` changes how the model selects tokens for output. A `top-K` of 1 means the next selected token is
@@ -50,12 +48,10 @@ export interface AiLlmEndpointParamsGoogleInput {
    * This parameter is **required**. */
   readonly type?: AiLlmEndpointParamsGoogleTypeField;
   /**
-   * The temperature is used for sampling during response generation, which occurs when `top-P` and `top-K` are applied.
-   * Temperature controls the degree of randomness in token selection. */
+   * The temperature is used for sampling during response generation, which occurs when `top-P` and `top-K` are applied. Temperature controls the degree of randomness in the token selection. */
   readonly temperature?: number;
   /**
-   * `Top-P` changes how the model selects tokens for output. Tokens are selected from the most (see `top-K`) to least probable
-   * until the sum of their probabilities equals the `top-P` value. */
+   * `Top-P` changes how the model selects tokens for output. Tokens are selected from the most (see `top-K`) to least probable until the sum of their probabilities equals the `top-P` value. */
   readonly topP?: number;
   /**
    * `Top-K` changes how the model selects tokens for output. A `top-K` of 1 means the next selected token is

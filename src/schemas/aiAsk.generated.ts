@@ -1,7 +1,10 @@
+import { serializeAiItemBase } from './aiItemBase.generated.js';
+import { deserializeAiItemBase } from './aiItemBase.generated.js';
 import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { serializeAiAgentAsk } from './aiAgentAsk.generated.js';
 import { deserializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { AiItemBase } from './aiItemBase.generated.js';
 import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { AiAgentAsk } from './aiAgentAsk.generated.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -13,43 +16,6 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAskModeField = 'multiple_item_qa' | 'single_item_qa';
-export type AiAskItemsTypeField = 'file';
-export class AiAskItemsField {
-  /**
-   * The id of the item. */
-  readonly id!: string;
-  /**
-   * The type of the item. */
-  readonly type: AiAskItemsTypeField = 'file' as AiAskItemsTypeField;
-  /**
-   * The content of the item, often the text representation. */
-  readonly content?: string;
-  constructor(
-    fields: Omit<AiAskItemsField, 'type'> &
-      Partial<Pick<AiAskItemsField, 'type'>>
-  ) {
-    if (fields.id) {
-      this.id = fields.id;
-    }
-    if (fields.type) {
-      this.type = fields.type;
-    }
-    if (fields.content) {
-      this.content = fields.content;
-    }
-  }
-}
-export interface AiAskItemsFieldInput {
-  /**
-   * The id of the item. */
-  readonly id: string;
-  /**
-   * The type of the item. */
-  readonly type?: AiAskItemsTypeField;
-  /**
-   * The content of the item, often the text representation. */
-  readonly content?: string;
-}
 export interface AiAsk {
   /**
    * The mode specifies if this request is for a single or multiple items. If you select `single_item_qa` the `items` array can have one element only. Selecting `multiple_item_qa` allows you to provide up to 25 items. */
@@ -63,7 +29,7 @@ export interface AiAsk {
    * **Note**: Box AI handles documents with text representations up to 1MB in size, or a maximum of 25 files, whichever comes first.
    * If the file size exceeds 1MB, the first 1MB of text representation will be processed.
    * If you set `mode` parameter to `single_item_qa`, the `items` array can have one element only.  */
-  readonly items: readonly AiAskItemsField[];
+  readonly items: readonly AiItemBase[];
   /**
    * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
   readonly dialogueHistory?: readonly AiDialogueHistory[];
@@ -84,108 +50,12 @@ export function deserializeAiAskModeField(val: SerializedData): AiAskModeField {
   }
   throw new BoxSdkError({ message: "Can't deserialize AiAskModeField" });
 }
-export function serializeAiAskItemsTypeField(
-  val: AiAskItemsTypeField
-): SerializedData {
-  return val;
-}
-export function deserializeAiAskItemsTypeField(
-  val: SerializedData
-): AiAskItemsTypeField {
-  if (val == 'file') {
-    return val;
-  }
-  throw new BoxSdkError({ message: "Can't deserialize AiAskItemsTypeField" });
-}
-export function serializeAiAskItemsField(val: AiAskItemsField): SerializedData {
-  return {
-    ['id']: val.id,
-    ['type']: serializeAiAskItemsTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
-  };
-}
-export function deserializeAiAskItemsField(
-  val: SerializedData
-): AiAskItemsField {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({ message: 'Expecting a map for "AiAskItemsField"' });
-  }
-  if (val.id == void 0) {
-    throw new BoxSdkError({
-      message: 'Expecting "id" of type "AiAskItemsField" to be defined',
-    });
-  }
-  if (!sdIsString(val.id)) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "id" of type "AiAskItemsField"',
-    });
-  }
-  const id: string = val.id;
-  if (val.type == void 0) {
-    throw new BoxSdkError({
-      message: 'Expecting "type" of type "AiAskItemsField" to be defined',
-    });
-  }
-  const type: AiAskItemsTypeField = deserializeAiAskItemsTypeField(val.type);
-  if (!(val.content == void 0) && !sdIsString(val.content)) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "content" of type "AiAskItemsField"',
-    });
-  }
-  const content: undefined | string =
-    val.content == void 0 ? void 0 : val.content;
-  return { id: id, type: type, content: content } satisfies AiAskItemsField;
-}
-export function serializeAiAskItemsFieldInput(
-  val: AiAskItemsFieldInput
-): SerializedData {
-  return {
-    ['id']: val.id,
-    ['type']:
-      val.type == void 0 ? void 0 : serializeAiAskItemsTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
-  };
-}
-export function deserializeAiAskItemsFieldInput(
-  val: SerializedData
-): AiAskItemsFieldInput {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a map for "AiAskItemsFieldInput"',
-    });
-  }
-  if (val.id == void 0) {
-    throw new BoxSdkError({
-      message: 'Expecting "id" of type "AiAskItemsFieldInput" to be defined',
-    });
-  }
-  if (!sdIsString(val.id)) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "id" of type "AiAskItemsFieldInput"',
-    });
-  }
-  const id: string = val.id;
-  const type: undefined | AiAskItemsTypeField =
-    val.type == void 0 ? void 0 : deserializeAiAskItemsTypeField(val.type);
-  if (!(val.content == void 0) && !sdIsString(val.content)) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "content" of type "AiAskItemsFieldInput"',
-    });
-  }
-  const content: undefined | string =
-    val.content == void 0 ? void 0 : val.content;
-  return {
-    id: id,
-    type: type,
-    content: content,
-  } satisfies AiAskItemsFieldInput;
-}
 export function serializeAiAsk(val: AiAsk): SerializedData {
   return {
     ['mode']: serializeAiAskModeField(val.mode),
     ['prompt']: val.prompt,
-    ['items']: val.items.map(function (item: AiAskItemsField): SerializedData {
-      return serializeAiAskItemsField(item);
+    ['items']: val.items.map(function (item: AiItemBase): SerializedData {
+      return serializeAiItemBase(item);
     }) as readonly any[],
     ['dialogue_history']:
       val.dialogueHistory == void 0
@@ -232,9 +102,9 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
       message: 'Expecting array for "items" of type "AiAsk"',
     });
   }
-  const items: readonly AiAskItemsField[] = sdIsList(val.items)
-    ? (val.items.map(function (itm: SerializedData): AiAskItemsField {
-        return deserializeAiAskItemsField(itm);
+  const items: readonly AiItemBase[] = sdIsList(val.items)
+    ? (val.items.map(function (itm: SerializedData): AiItemBase {
+        return deserializeAiItemBase(itm);
       }) as readonly any[])
     : [];
   if (!(val.dialogue_history == void 0) && !sdIsList(val.dialogue_history)) {
