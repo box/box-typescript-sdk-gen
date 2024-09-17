@@ -186,6 +186,22 @@ export function decodeBase64ByteStream(data: string): Readable {
     : eval('require')('stream').Readable.from(Buffer.from(data, 'base64'));
 }
 
+export function stringToByteStream(data: string): Readable {
+  return isBrowser()
+    ? new ReadableStream<Uint8Array>({
+        start(controller) {
+          const buffer = new ArrayBuffer(data.length);
+          const array = new Uint8Array(buffer);
+          for (let i = 0; i < data.length; i++) {
+            array[i] = data.charCodeAt(i);
+          }
+          controller.enqueue(array);
+          controller.close();
+        },
+      })
+    : eval('require')('stream').Readable.from(Buffer.from(data, 'ascii'));
+}
+
 export async function readByteStream(byteStream: Readable): Promise<Buffer> {
   const buffers: Buffer[] = [];
   for await (const data of byteStream) {
@@ -401,4 +417,8 @@ export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
   }
 
   return agentOptions ? new ProxyAgent(agentOptions) : new ProxyAgent();
+}
+
+export async function delayInSeconds(seconds: number): Promise<void> {
+  return await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }

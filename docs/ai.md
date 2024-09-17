@@ -147,7 +147,14 @@ This operation is performed by calling function `createAiExtract`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-ai-extract/).
 
-_Currently we don't have an example for calling `createAiExtract` in integration tests_
+<!-- sample post_ai_extract -->
+
+```ts
+await client.ai.createAiExtract({
+  prompt: 'firstName, lastName, location, yearOfBirth, company',
+  items: [new AiItemBase({ id: file.id })],
+} satisfies AiExtract);
+```
 
 ### Arguments
 
