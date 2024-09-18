@@ -17,7 +17,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface AiAgentLongTextToolTextGenEmbeddingsStrategyField {
   /**
-   * The strategy used for the AI Agent for calculating embeddings. */
+   * The strategy used for the AI agent for calculating embeddings. */
   readonly id?: string;
   /**
    * The number of tokens per chunk. */
@@ -25,7 +25,7 @@ export interface AiAgentLongTextToolTextGenEmbeddingsStrategyField {
 }
 export interface AiAgentLongTextToolTextGenEmbeddingsField {
   /**
-   * The model used for the AI Agent for calculating embeddings. */
+   * The model used for the AI agent for calculating embeddings. */
   readonly model?: string;
   readonly strategy?: AiAgentLongTextToolTextGenEmbeddingsStrategyField;
 }

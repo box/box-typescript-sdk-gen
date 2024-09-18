@@ -8,14 +8,23 @@ import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
 import { deserializeAiTextGen } from '../schemas/aiTextGen.generated.js';
-import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
-import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
+import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
+import { serializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { deserializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
+import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
-import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { AiExtract } from '../schemas/aiExtract.generated.js';
+import { AiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -97,6 +106,53 @@ export interface GetAiAgentDefaultConfigOptionalsInput {
   readonly headers?: GetAiAgentDefaultConfigHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class CreateAiExtractOptionals {
+  readonly headers: CreateAiExtractHeaders = new CreateAiExtractHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateAiExtractOptionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateAiExtractOptionals, 'headers' | 'cancellationToken'>>
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateAiExtractOptionalsInput {
+  readonly headers?: CreateAiExtractHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateAiExtractStructuredOptionals {
+  readonly headers: CreateAiExtractStructuredHeaders =
+    new CreateAiExtractStructuredHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateAiExtractStructuredOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateAiExtractStructuredOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >
+  ) {
+    if (fields.headers) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateAiExtractStructuredOptionalsInput {
+  readonly headers?: CreateAiExtractStructuredHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class CreateAiAskHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -145,7 +201,11 @@ export interface CreateAiTextGenHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetAiAgentDefaultConfigQueryParamsModeField = 'ask' | 'text_gen';
+export type GetAiAgentDefaultConfigQueryParamsModeField =
+  | 'ask'
+  | 'text_gen'
+  | 'extract'
+  | 'extract_structured';
 export interface GetAiAgentDefaultConfigQueryParams {
   /**
    * The mode to filter the agent config to return. */
@@ -182,6 +242,54 @@ export interface GetAiAgentDefaultConfigHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class CreateAiExtractHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateAiExtractHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateAiExtractHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateAiExtractHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export class CreateAiExtractStructuredHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateAiExtractStructuredHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateAiExtractStructuredHeaders, 'extraHeaders'>>
+  ) {
+    if (fields.extraHeaders) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateAiExtractStructuredHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class AiManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -192,6 +300,8 @@ export class AiManager {
       | 'createAiAsk'
       | 'createAiTextGen'
       | 'getAiAgentDefaultConfig'
+      | 'createAiExtract'
+      | 'createAiExtractStructured'
     > &
       Partial<Pick<AiManager, 'networkSession'>>
   ) {
@@ -238,7 +348,7 @@ export class AiManager {
     return deserializeAiResponseFull(response.data);
   }
   /**
-   * Sends an AI request to supported LLMs and returns an answer specifically focused on the creation of new text.
+   * Sends an AI request to supported Large Language Models (LLMs) and returns generated text based on the provided prompt.
    * @param {AiTextGen} requestBody Request body of createAiTextGen method
    * @param {CreateAiTextGenOptionalsInput} optionalsInput
    * @returns {Promise<AiResponse>}
@@ -276,12 +386,12 @@ export class AiManager {
    * Get the AI agent default config
    * @param {GetAiAgentDefaultConfigQueryParams} queryParams Query parameters of getAiAgentDefaultConfig method
    * @param {GetAiAgentDefaultConfigOptionalsInput} optionalsInput
-   * @returns {Promise<AiAgentAskOrAiAgentTextGen>}
+   * @returns {Promise<AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen>}
    */
   async getAiAgentDefaultConfig(
     queryParams: GetAiAgentDefaultConfigQueryParams,
     optionalsInput: GetAiAgentDefaultConfigOptionalsInput = {}
-  ): Promise<AiAgentAskOrAiAgentTextGen> {
+  ): Promise<AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen> {
     const optionals: GetAiAgentDefaultConfigOptionals =
       new GetAiAgentDefaultConfigOptionals({
         headers: optionalsInput.headers,
@@ -312,7 +422,84 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiAgentAskOrAiAgentTextGen(response.data);
+    return deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
+      response.data
+    );
+  }
+  /**
+   * Sends an AI request to supported Large Language Models (LLMs) and extracts metadata in form of key-value pairs.
+   * Freeform metadata extraction does not require any metadata template setup before sending the request.
+   * @param {AiExtract} requestBody Request body of createAiExtract method
+   * @param {CreateAiExtractOptionalsInput} optionalsInput
+   * @returns {Promise<AiResponse>}
+   */
+  async createAiExtract(
+    requestBody: AiExtract,
+    optionalsInput: CreateAiExtractOptionalsInput = {}
+  ): Promise<AiResponse> {
+    const optionals: CreateAiExtractOptionals = new CreateAiExtractOptionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/ai/extract'
+      ) as string,
+      method: 'POST',
+      headers: headersMap,
+      data: serializeAiExtract(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeAiResponse(response.data);
+  }
+  /**
+   * Sends an AI request to supported Large Language Models (LLMs) and returns extracted metadata as a set of key-value pairs.
+   * For this request, you need to use an already defined metadata template or a define a schema yourself.
+   * To learn more about creating templates, see [Creating metadata templates in the Admin Console](https://support.box.com/hc/en-us/articles/360044194033-Customizing-Metadata-Templates)
+   * or use the [metadata template API](g://metadata/templates/create).
+   * @param {AiExtractStructured} requestBody Request body of createAiExtractStructured method
+   * @param {CreateAiExtractStructuredOptionalsInput} optionalsInput
+   * @returns {Promise<AiExtractResponse>}
+   */
+  async createAiExtractStructured(
+    requestBody: AiExtractStructured,
+    optionalsInput: CreateAiExtractStructuredOptionalsInput = {}
+  ): Promise<AiExtractResponse> {
+    const optionals: CreateAiExtractStructuredOptionals =
+      new CreateAiExtractStructuredOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse = (await fetch({
+      url: ''.concat(
+        this.networkSession.baseUrls.baseUrl,
+        '/2.0/ai/extract_structured'
+      ) as string,
+      method: 'POST',
+      headers: headersMap,
+      data: serializeAiExtractStructured(requestBody),
+      contentType: 'application/json',
+      responseFormat: 'json',
+      auth: this.auth,
+      networkSession: this.networkSession,
+      cancellationToken: cancellationToken,
+    } satisfies FetchOptions)) as FetchResponse;
+    return deserializeAiExtractResponse(response.data);
   }
 }
 export interface AiManagerInput {
@@ -331,6 +518,12 @@ export function deserializeGetAiAgentDefaultConfigQueryParamsModeField(
     return val;
   }
   if (val == 'text_gen') {
+    return val;
+  }
+  if (val == 'extract') {
+    return val;
+  }
+  if (val == 'extract_structured') {
     return val;
   }
   throw new BoxSdkError({

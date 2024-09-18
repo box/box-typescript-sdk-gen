@@ -14,8 +14,8 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiAgentBasicTextToolTextGen = AiAgentBasicTextToolBase & {
   /**
-   * System messages try to help the LLM "understand" its role and what it is supposed to do.
-   * Input for `{current_date}` is optional, depending on the use. */
+   * System messages aim at helping the LLM understand its role and what it is supposed to do.
+   * The input for `{current_date}` is optional, depending on the use. */
   readonly systemMessage?: string;
   /**
    * The prompt template contains contextual information of the request and the user prompt.

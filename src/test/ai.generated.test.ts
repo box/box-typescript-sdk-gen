@@ -6,10 +6,10 @@ import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskModeField } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAskModeField } from '../schemas/aiAsk.generated.js';
-import { serializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { deserializeAiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { serializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
-import { deserializeAiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { serializeAiItemBase } from '../schemas/aiItemBase.generated.js';
+import { deserializeAiItemBase } from '../schemas/aiItemBase.generated.js';
+import { serializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
+import { deserializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
 import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
@@ -20,37 +20,58 @@ import { serializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated
 import { deserializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { serializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { serializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
-import { deserializeAiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { deserializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
+import { serializeFiles } from '../schemas/files.generated.js';
+import { deserializeFiles } from '../schemas/files.generated.js';
+import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
+import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
 import { serializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { deserializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { deserializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
+import { serializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { deserializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { serializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { deserializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiAskModeField } from '../schemas/aiAsk.generated.js';
-import { AiAskItemsField } from '../schemas/aiAsk.generated.js';
-import { AiAskItemsTypeField } from '../schemas/aiAsk.generated.js';
+import { AiItemBase } from '../schemas/aiItemBase.generated.js';
+import { AiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { AiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { AiAgentAskOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentTextGen.generated.js';
+import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
 import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
+import { Files } from '../schemas/files.generated.js';
+import { UploadFileRequestBody } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { AiExtract } from '../schemas/aiExtract.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getUuid } from '../internal/utils.js';
+import { stringToByteStream } from '../internal/utils.js';
+import { delayInSeconds } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
 import { dateTimeToString } from '../internal/utils.js';
 import { uploadNewFile } from './commons.generated.js';
 import { AiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { AiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
+import { AiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { AiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -65,9 +86,9 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
     mode: 'single_item_qa' as AiAskModeField,
     prompt: 'which direction sun rises',
     items: [
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Sun rises in the East',
       }),
     ],
@@ -87,14 +108,14 @@ test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<
     mode: 'multiple_item_qa' as AiAskModeField,
     prompt: 'Which direction sun rises?',
     items: [
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk1.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Earth goes around the sun',
       }),
-      new AiAskItemsField({
+      new AiItemBase({
         id: fileToAsk2.id,
-        type: 'file' as AiAskItemsTypeField,
+        type: 'file' as AiItemBaseTypeField,
         content: 'Sun rises in the East in the morning',
       }),
     ],
@@ -142,7 +163,7 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
   await client.files.deleteFileById(fileToAsk.id);
 });
 test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig(): Promise<any> {
-  const aiAskConfig: AiAgentAskOrAiAgentTextGen =
+  const aiAskConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',
@@ -212,7 +233,7 @@ test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig()
   }
 });
 test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgentConfig(): Promise<any> {
-  const aiTextGenConfig: AiAgentAskOrAiAgentTextGen =
+  const aiTextGenConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',
@@ -241,5 +262,31 @@ test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgent
   if (!!(aiTextGenConfig.basicGen!.embeddings!.strategy!.id! == '')) {
     throw new Error('Assertion failed');
   }
+});
+test('testAIExtract', async function testAIExtract(): Promise<any> {
+  const uploadedFiles: Files = await client.uploads.uploadFile({
+    attributes: {
+      name: ''.concat(getUuid(), '.txt') as string,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
+    file: stringToByteStream(
+      'My name is John Doe. I live in San Francisco. I was born in 1990. I work at Box.'
+    ),
+  } satisfies UploadFileRequestBody);
+  const file: FileFull = uploadedFiles.entries![0];
+  await delayInSeconds(2);
+  const response: AiResponse = await client.ai.createAiExtract({
+    prompt: 'firstName, lastName, location, yearOfBirth, company',
+    items: [new AiItemBase({ id: file.id })],
+  } satisfies AiExtract);
+  const expectedResponse: string =
+    '{"firstName": "John", "lastName": "Doe", "location": "San Francisco", "yearOfBirth": "1990", "company": "Box"}';
+  if (!(response.answer == expectedResponse)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(response.completionReason == 'done')) {
+    throw new Error('Assertion failed');
+  }
+  await client.files.deleteFileById(file.id);
 });
 export {};

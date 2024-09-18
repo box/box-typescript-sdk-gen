@@ -24,12 +24,11 @@ export class AiLlmEndpointParamsOpenAi {
    * mass are considered. We generally recommend altering this or temperature but not both. */
   readonly topP?: number;
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the
+   * A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the
    * text so far, decreasing the model's likelihood to repeat the same line verbatim. */
   readonly frequencyPenalty?: number;
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
-   * increasing the model's likelihood to talk about new topics. */
+   * A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. */
   readonly presencePenalty?: number;
   /**
    * Up to 4 sequences where the API will stop generating further tokens. */
@@ -74,12 +73,11 @@ export interface AiLlmEndpointParamsOpenAiInput {
    * mass are considered. We generally recommend altering this or temperature but not both. */
   readonly topP?: number;
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the
+   * A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the
    * text so far, decreasing the model's likelihood to repeat the same line verbatim. */
   readonly frequencyPenalty?: number;
   /**
-   * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far,
-   * increasing the model's likelihood to talk about new topics. */
+   * A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. */
   readonly presencePenalty?: number;
   /**
    * Up to 4 sequences where the API will stop generating further tokens. */
