@@ -274,7 +274,7 @@ test('testAIExtract', async function testAIExtract(): Promise<any> {
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
-  delayInSeconds(1);
+  await delayInSeconds(2);
   const response: AiResponse = await client.ai.createAiExtract({
     prompt: 'firstName, lastName, location, yearOfBirth, company',
     items: [new AiItemBase({ id: file.id })],
