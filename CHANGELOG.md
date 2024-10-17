@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.6.0...v1.7.0) (2024-10-17)
+
+
+### New Features and Enhancements
+
+* Include raw data in response object (box/box-codegen[#576](https://github.com/box/box-typescript-sdk-gen/issues/576)) ([#375](https://github.com/box/box-typescript-sdk-gen/issues/375)) ([bdb9d0c](https://github.com/box/box-typescript-sdk-gen/commit/bdb9d0caab1a54ca56aef5de4260215d1d3fbd35))
+* Support `ai/extract` and `ai/extract_structured` endpoints (box/box-codegen[#566](https://github.com/box/box-typescript-sdk-gen/issues/566)) ([#356](https://github.com/box/box-typescript-sdk-gen/issues/356)) ([4a33562](https://github.com/box/box-typescript-sdk-gen/commit/4a335621c7eaa413162a5daa65d63d8353ba37f5))
+
 ## [1.6.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.5.1...v1.6.0) (2024-09-11)
 
 
