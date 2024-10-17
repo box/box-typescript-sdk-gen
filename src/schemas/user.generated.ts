@@ -30,6 +30,7 @@ export interface UserNotificationEmailField {
   /**
    * Specifies if this email address has been confirmed. */
   readonly isConfirmed?: boolean;
+  readonly rawData?: SerializedData;
 }
 export class User extends UserMini {
   readonly createdAt?: DateTime;

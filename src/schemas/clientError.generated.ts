@@ -29,6 +29,7 @@ export interface ClientErrorContextInfoField {
   /**
    * More details on the error. */
   readonly message?: string;
+  readonly rawData?: SerializedData;
 }
 export interface ClientError {
   /**
@@ -55,6 +56,7 @@ export interface ClientError {
    * A unique identifier for this response, which can be used
    * when contacting Box support. */
   readonly requestId?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeClientErrorTypeField(
   val: ClientErrorTypeField

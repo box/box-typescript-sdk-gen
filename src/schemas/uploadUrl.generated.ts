@@ -14,6 +14,7 @@ export interface UploadUrl {
   /**
    * An optional access token to use to upload the file */
   readonly uploadToken?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeUploadUrl(val: UploadUrl): SerializedData {
   return {

@@ -16,6 +16,7 @@ export class AiAgentTextGen {
   readonly type: AiAgentTextGenTypeField =
     'ai_agent_text_gen' as AiAgentTextGenTypeField;
   readonly basicGen?: AiAgentBasicGenTool;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentTextGen, 'type'> & Partial<Pick<AiAgentTextGen, 'type'>>
   ) {
@@ -25,6 +26,9 @@ export class AiAgentTextGen {
     if (fields.basicGen) {
       this.basicGen = fields.basicGen;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AiAgentTextGenInput {
@@ -32,6 +36,7 @@ export interface AiAgentTextGenInput {
    * The type of AI agent used for generating text. */
   readonly type?: AiAgentTextGenTypeField;
   readonly basicGen?: AiAgentBasicGenTool;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAgentTextGenTypeField(
   val: AiAgentTextGenTypeField

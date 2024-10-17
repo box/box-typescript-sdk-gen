@@ -17,6 +17,7 @@ export interface UsersOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: UsersOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface Users {
   /**
@@ -54,6 +55,7 @@ export interface Users {
   /**
    * A list of users */
   readonly entries?: readonly UserFull[];
+  readonly rawData?: SerializedData;
 }
 export function serializeUsersOrderDirectionField(
   val: UsersOrderDirectionField

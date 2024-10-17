@@ -15,6 +15,7 @@ export class IntegrationMappingBoxItemSlack {
   /**
    * ID of the mapped item (of type referenced in `type`) */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingBoxItemSlack, 'type'> &
       Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>
@@ -25,6 +26,9 @@ export class IntegrationMappingBoxItemSlack {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface IntegrationMappingBoxItemSlackInput {
@@ -34,6 +38,7 @@ export interface IntegrationMappingBoxItemSlackInput {
   /**
    * ID of the mapped item (of type referenced in `type`) */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingBoxItemSlackTypeField(
   val: IntegrationMappingBoxItemSlackTypeField

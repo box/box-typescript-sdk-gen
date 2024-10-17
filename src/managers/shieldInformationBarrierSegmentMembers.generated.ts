@@ -262,6 +262,7 @@ export interface CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInf
   /**
    * The type of the shield barrier segment for this member. */
   readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateShieldInformationBarrierSegmentMemberRequestBody {
   /**
@@ -275,6 +276,7 @@ export interface CreateShieldInformationBarrierSegmentMemberRequestBody {
   /**
    * User to which restriction will be applied. */
   readonly user: UserBase;
+  readonly rawData?: SerializedData;
 }
 export class CreateShieldInformationBarrierSegmentMemberHeaders {
   /**
@@ -363,7 +365,10 @@ export class ShieldInformationBarrierSegmentMembersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMember(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegmentMember(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a shield information barrier
@@ -445,7 +450,10 @@ export class ShieldInformationBarrierSegmentMembersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMembers(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegmentMembers(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new shield information barrier segment member.
@@ -483,7 +491,10 @@ export class ShieldInformationBarrierSegmentMembersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentMember(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegmentMember(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ShieldInformationBarrierSegmentMembersManagerInput {

@@ -31,6 +31,7 @@ export interface WebLinkPathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type WebLinkSharedLinkAccessField = 'open' | 'company' | 'collaborators';
 export type WebLinkSharedLinkEffectiveAccessField =
@@ -62,6 +63,7 @@ export interface WebLinkSharedLinkPermissionsField {
    * This value can only be `true` if `can_download` is also `true` and if
    * the item has a type of `file`. */
   readonly canEdit: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface WebLinkSharedLinkField {
   /**
@@ -128,6 +130,7 @@ export interface WebLinkSharedLinkField {
   /**
    * The number of times this item has been previewed. */
   readonly previewCount: number;
+  readonly rawData?: SerializedData;
 }
 export type WebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
 export class WebLink extends WebLinkMini {

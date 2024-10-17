@@ -35,6 +35,7 @@ export interface ClassificationTemplateFieldsOptionsStaticConfigClassificationFi
    * * `6`: Light green
    * * `7`: Gray */
   readonly colorId?: number;
+  readonly rawData?: SerializedData;
 }
 export interface ClassificationTemplateFieldsOptionsStaticConfigField {
   /**
@@ -46,6 +47,7 @@ export interface ClassificationTemplateFieldsOptionsStaticConfigField {
    * purposes and no additional value must be derived from
    * these fields. */
   readonly classification?: ClassificationTemplateFieldsOptionsStaticConfigClassificationField;
+  readonly rawData?: SerializedData;
 }
 export interface ClassificationTemplateFieldsOptionsField {
   /**
@@ -57,6 +59,7 @@ export interface ClassificationTemplateFieldsOptionsField {
   /**
    * Additional information about the classification. */
   readonly staticConfig?: ClassificationTemplateFieldsOptionsStaticConfigField;
+  readonly rawData?: SerializedData;
 }
 export class ClassificationTemplateFieldsField {
   /**
@@ -81,6 +84,7 @@ export class ClassificationTemplateFieldsField {
   /**
    * A list of classifications available in this enterprise. */
   readonly options!: readonly ClassificationTemplateFieldsOptionsField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       ClassificationTemplateFieldsField,
@@ -108,6 +112,9 @@ export class ClassificationTemplateFieldsField {
     if (fields.options) {
       this.options = fields.options;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface ClassificationTemplateFieldsFieldInput {
@@ -130,6 +137,7 @@ export interface ClassificationTemplateFieldsFieldInput {
   /**
    * A list of classifications available in this enterprise. */
   readonly options: readonly ClassificationTemplateFieldsOptionsField[];
+  readonly rawData?: SerializedData;
 }
 export class ClassificationTemplate {
   /**
@@ -166,6 +174,7 @@ export class ClassificationTemplate {
    * only one field, the `Box__Security__Classification__Key`, which defines
    * the different classifications available in this enterprise. */
   readonly fields!: readonly ClassificationTemplateFieldsField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       ClassificationTemplate,
@@ -198,6 +207,9 @@ export class ClassificationTemplate {
     }
     if (fields.fields) {
       this.fields = fields.fields;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -233,6 +245,7 @@ export interface ClassificationTemplateInput {
    * only one field, the `Box__Security__Classification__Key`, which defines
    * the different classifications available in this enterprise. */
   readonly fields: readonly ClassificationTemplateFieldsField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeClassificationTemplateTypeField(
   val: ClassificationTemplateTypeField

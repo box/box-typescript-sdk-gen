@@ -23,6 +23,7 @@ export interface WorkflowMini {
   /**
    * Specifies if this workflow is enabled */
   readonly isEnabled?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeWorkflowMiniTypeField(
   val: WorkflowMiniTypeField

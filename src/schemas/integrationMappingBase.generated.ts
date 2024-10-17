@@ -17,6 +17,7 @@ export class IntegrationMappingBase {
    * Mapping type */
   readonly type: IntegrationMappingBaseTypeField =
     'integration_mapping' as IntegrationMappingBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingBase, 'type'> &
       Partial<Pick<IntegrationMappingBase, 'type'>>
@@ -26,6 +27,9 @@ export class IntegrationMappingBase {
     }
     if (fields.type) {
       this.type = fields.type;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -38,6 +42,7 @@ export interface IntegrationMappingBaseInput {
   /**
    * Mapping type */
   readonly type?: IntegrationMappingBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingBaseTypeField(
   val: IntegrationMappingBaseTypeField

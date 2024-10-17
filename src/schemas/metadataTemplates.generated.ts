@@ -24,6 +24,7 @@ export interface MetadataTemplates {
   /**
    * A list of metadata templates */
   readonly entries?: readonly MetadataTemplate[];
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataTemplates(
   val: MetadataTemplates

@@ -25,6 +25,7 @@ export interface LegalHoldPolicyAssignments {
    * A list of legal hold
    * policy assignments */
   readonly entries?: readonly LegalHoldPolicyAssignment[];
+  readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyAssignments(
   val: LegalHoldPolicyAssignments

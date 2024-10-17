@@ -14,6 +14,7 @@ export interface IntegrationMappingSlackOptions {
    * Depending on type of channel, access is managed
    * through creating collaborations or shared links. */
   readonly isAccessManagementDisabled?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingSlackOptions(
   val: IntegrationMappingSlackOptions

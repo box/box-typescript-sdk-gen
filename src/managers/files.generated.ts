@@ -316,6 +316,7 @@ export interface UpdateFileByIdRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type UpdateFileByIdRequestBodySharedLinkAccessField =
   | 'open'
@@ -327,6 +328,7 @@ export interface UpdateFileByIdRequestBodySharedLinkPermissionsField {
    * This can only be set when `access` is set to
    * `open` or `company`. */
   readonly canDownload?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFileByIdRequestBodySharedLinkField {
   /**
@@ -364,6 +366,7 @@ export interface UpdateFileByIdRequestBodySharedLinkField {
    * users with paid accounts. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateFileByIdRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export type UpdateFileByIdRequestBodyLockAccessField = 'lock';
 export interface UpdateFileByIdRequestBodyLockField {
@@ -376,6 +379,7 @@ export interface UpdateFileByIdRequestBodyLockField {
   /**
    * Defines if the file can be downloaded while it is locked. */
   readonly isDownloadPrevented?: boolean;
+  readonly rawData?: SerializedData;
 }
 export type UpdateFileByIdRequestBodyPermissionsCanDownloadField =
   | 'open'
@@ -391,6 +395,7 @@ export interface UpdateFileByIdRequestBodyPermissionsField {
    * `company`, this essentially removes the download option for
    * external users with `viewer` or `editor` a roles. */
   readonly canDownload?: UpdateFileByIdRequestBodyPermissionsCanDownloadField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFileByIdRequestBodyCollectionsField {
   /**
@@ -399,6 +404,7 @@ export interface UpdateFileByIdRequestBodyCollectionsField {
   /**
    * The type for this object */
   readonly type?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFileByIdRequestBody {
   /**
@@ -450,6 +456,7 @@ export interface UpdateFileByIdRequestBody {
    * There is a limit of 100 tags per item, and 10,000
    * unique tags per enterprise. */
   readonly tags?: readonly string[];
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFileByIdQueryParams {
   /**
@@ -558,6 +565,7 @@ export interface CopyFileRequestBodyParentField {
   /**
    * The ID of folder to copy the file to. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CopyFileRequestBody {
   /**
@@ -575,6 +583,7 @@ export interface CopyFileRequestBody {
   /**
    * The destination folder to copy the file to. */
   readonly parent: CopyFileRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export interface CopyFileQueryParams {
   /**
@@ -730,7 +739,10 @@ export class FilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a file. This can be used to rename or move a file,
@@ -789,7 +801,10 @@ export class FilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a file, either permanently or by moving it to
@@ -893,7 +908,10 @@ export class FilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a thumbnail, or smaller image representation, of a file.

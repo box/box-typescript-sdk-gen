@@ -240,6 +240,7 @@ export interface UpdateShieldInformationBarrierSegmentByIdRequestBody {
    * The updated description for
    * the shield information barrier segment. */
   readonly description?: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateShieldInformationBarrierSegmentByIdHeaders {
   /**
@@ -316,6 +317,7 @@ export interface CreateShieldInformationBarrierSegmentRequestBody {
   /**
    * Description of the shield information barrier segment */
   readonly description?: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateShieldInformationBarrierSegmentHeaders {
   /**
@@ -399,7 +401,10 @@ export class ShieldInformationBarrierSegmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes the shield information barrier segment
@@ -478,7 +483,10 @@ export class ShieldInformationBarrierSegmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegment(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Retrieves a list of shield information barrier segment objects
@@ -523,7 +531,10 @@ export class ShieldInformationBarrierSegmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegments(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegments(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a shield information barrier segment.
@@ -561,7 +572,10 @@ export class ShieldInformationBarrierSegmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegment(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegment(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ShieldInformationBarrierSegmentsManagerInput {

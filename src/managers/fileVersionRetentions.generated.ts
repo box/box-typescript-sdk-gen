@@ -206,7 +206,10 @@ export class FileVersionRetentionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionRetentions(response.data);
+    return {
+      ...deserializeFileVersionRetentions(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Returns information about a file version retention.
@@ -247,7 +250,10 @@ export class FileVersionRetentionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionRetention(response.data);
+    return {
+      ...deserializeFileVersionRetention(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface FileVersionRetentionsManagerInput {

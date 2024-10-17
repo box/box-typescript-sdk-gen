@@ -31,6 +31,7 @@ export interface FolderPathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type FolderSharedLinkAccessField = 'open' | 'company' | 'collaborators';
 export type FolderSharedLinkEffectiveAccessField =
@@ -62,6 +63,7 @@ export interface FolderSharedLinkPermissionsField {
    * This value can only be `true` if `can_download` is also `true` and if
    * the item has a type of `file`. */
   readonly canEdit: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface FolderSharedLinkField {
   /**
@@ -128,6 +130,7 @@ export interface FolderSharedLinkField {
   /**
    * The number of times this item has been previewed. */
   readonly previewCount: number;
+  readonly rawData?: SerializedData;
 }
 export type FolderFolderUploadEmailAccessField = 'open' | 'collaborators';
 export interface FolderFolderUploadEmailField {
@@ -149,6 +152,7 @@ export interface FolderFolderUploadEmailField {
   /**
    * The optional upload email address for this folder. */
   readonly email?: string;
+  readonly rawData?: SerializedData;
 }
 export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
 export class Folder extends FolderMini {

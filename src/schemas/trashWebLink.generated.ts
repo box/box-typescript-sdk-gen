@@ -33,6 +33,7 @@ export interface TrashWebLinkPathCollectionEntriesField {
   /**
    * The name of the Trash folder. */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface TrashWebLinkPathCollectionField {
   /**
@@ -41,6 +42,7 @@ export interface TrashWebLinkPathCollectionField {
   /**
    * Array of folders for this item's path collection */
   readonly entries: readonly TrashWebLinkPathCollectionEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export type TrashWebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
 export interface TrashWebLink {
@@ -93,6 +95,7 @@ export interface TrashWebLink {
    * `trashed` if the file has been moved to the trash, and `deleted` if
    * the file has been permanently deleted */
   readonly itemStatus?: TrashWebLinkItemStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrashWebLinkTypeField(
   val: TrashWebLinkTypeField

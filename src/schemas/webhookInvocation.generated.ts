@@ -75,6 +75,7 @@ export interface WebhookInvocation {
   readonly createdAt?: DateTime;
   readonly trigger?: WebhookInvocationTriggerField;
   readonly source?: FileOrFolder;
+  readonly rawData?: SerializedData;
 }
 export function serializeWebhookInvocationTypeField(
   val: WebhookInvocationTypeField

@@ -35,6 +35,7 @@ export class SearchResultsWithSharedLinks {
    * additional information about any shared links through
    * which the item has been shared with the user. */
   readonly entries?: readonly SearchResultWithSharedLink[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<SearchResultsWithSharedLinks, 'type'> &
       Partial<Pick<SearchResultsWithSharedLinks, 'type'>>
@@ -53,6 +54,9 @@ export class SearchResultsWithSharedLinks {
     }
     if (fields.entries) {
       this.entries = fields.entries;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -79,6 +83,7 @@ export interface SearchResultsWithSharedLinksInput {
    * additional information about any shared links through
    * which the item has been shared with the user. */
   readonly entries?: readonly SearchResultWithSharedLink[];
+  readonly rawData?: SerializedData;
 }
 export function serializeSearchResultsWithSharedLinksTypeField(
   val: SearchResultsWithSharedLinksTypeField

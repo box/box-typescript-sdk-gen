@@ -22,6 +22,7 @@ export interface SignRequestPrefillTag {
   /**
    * Date prefill value */
   readonly dateValue?: Date;
+  readonly rawData?: SerializedData;
 }
 export function serializeSignRequestPrefillTag(
   val: SignRequestPrefillTag

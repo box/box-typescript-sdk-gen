@@ -17,6 +17,7 @@ export class AppItem {
   /**
    * The type of the app that owns this app item. */
   readonly applicationType!: string;
+  readonly rawData?: SerializedData;
   constructor(fields: Omit<AppItem, 'type'> & Partial<Pick<AppItem, 'type'>>) {
     if (fields.id) {
       this.id = fields.id;
@@ -26,6 +27,9 @@ export class AppItem {
     }
     if (fields.applicationType) {
       this.applicationType = fields.applicationType;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -39,6 +43,7 @@ export interface AppItemInput {
   /**
    * The type of the app that owns this app item. */
   readonly applicationType: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeAppItemTypeField(
   val: AppItemTypeField

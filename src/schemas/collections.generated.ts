@@ -17,6 +17,7 @@ export interface CollectionsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: CollectionsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface Collections {
   /**
@@ -48,6 +49,7 @@ export interface Collections {
   /**
    * A list of collections */
   readonly entries?: readonly Collection[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCollectionsOrderDirectionField(
   val: CollectionsOrderDirectionField

@@ -41,6 +41,7 @@ export interface ShieldInformationBarrierSegment {
    * shield information barrier segment was updated. */
   readonly updatedAt?: DateTime;
   readonly updatedBy?: UserBase;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierSegmentTypeField(
   val: ShieldInformationBarrierSegmentTypeField

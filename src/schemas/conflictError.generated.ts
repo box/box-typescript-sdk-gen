@@ -25,6 +25,7 @@ export interface ConflictErrorContextInfoField {
   /**
    * A list of the file conflicts that caused this error. */
   readonly conflicts?: readonly FileConflict[];
+  readonly rawData?: SerializedData;
 }
 export type ConflictError = ClientError & {};
 export function serializeConflictErrorContextInfoField(

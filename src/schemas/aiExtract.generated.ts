@@ -20,6 +20,7 @@ export interface AiExtract {
    * The items that LLM will process. Currently, you can use files only. */
   readonly items: readonly AiItemBase[];
   readonly aiAgent?: AiAgentExtract;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiExtract(val: AiExtract): SerializedData {
   return {

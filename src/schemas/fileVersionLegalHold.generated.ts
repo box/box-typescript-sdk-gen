@@ -35,6 +35,7 @@ export interface FileVersionLegalHold {
    * Time that this File-Version-Legal-Hold was
    * deleted. */
   readonly deletedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionLegalHoldTypeField(
   val: FileVersionLegalHoldTypeField

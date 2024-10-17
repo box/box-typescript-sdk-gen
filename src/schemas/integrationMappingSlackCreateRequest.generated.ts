@@ -19,6 +19,7 @@ export interface IntegrationMappingSlackCreateRequest {
   readonly partnerItem: IntegrationMappingPartnerItemSlack;
   readonly boxItem: IntegrationMappingBoxItemSlack;
   readonly options?: IntegrationMappingSlackOptions;
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingSlackCreateRequest(
   val: IntegrationMappingSlackCreateRequest

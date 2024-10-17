@@ -21,6 +21,7 @@ export interface SignRequests {
   /**
    * A list of Box Sign requests. */
   readonly entries?: readonly SignRequest[];
+  readonly rawData?: SerializedData;
 }
 export function serializeSignRequests(val: SignRequests): SerializedData {
   return {

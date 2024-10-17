@@ -50,6 +50,7 @@ export interface SignRequestSignFilesField {
    * recommended waiting until processing is finished
    * (and this value is true) before downloading the PDFs. */
   readonly isReadyForDownload?: boolean;
+  readonly rawData?: SerializedData;
 }
 export type SignRequest = SignRequestBase & {
   /**

@@ -239,7 +239,10 @@ export class AppItemAssociationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAppItemAssociations(response.data);
+    return {
+      ...deserializeAppItemAssociations(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * **This is a beta feature, which means that its availability might be limited.**
@@ -299,7 +302,10 @@ export class AppItemAssociationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAppItemAssociations(response.data);
+    return {
+      ...deserializeAppItemAssociations(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface AppItemAssociationsManagerInput {

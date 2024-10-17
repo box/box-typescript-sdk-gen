@@ -41,6 +41,7 @@ export interface Classification {
   /**
    * Whether an end user can change the classification. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeClassificationTemplateField(
   val: ClassificationTemplateField

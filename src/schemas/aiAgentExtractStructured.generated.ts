@@ -20,6 +20,7 @@ export class AiAgentExtractStructured {
     'ai_agent_extract_structured' as AiAgentExtractStructuredTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentExtractStructured, 'type'> &
       Partial<Pick<AiAgentExtractStructured, 'type'>>
@@ -33,6 +34,9 @@ export class AiAgentExtractStructured {
     if (fields.basicText) {
       this.basicText = fields.basicText;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AiAgentExtractStructuredInput {
@@ -41,6 +45,7 @@ export interface AiAgentExtractStructuredInput {
   readonly type?: AiAgentExtractStructuredTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractStructuredTypeField(
   val: AiAgentExtractStructuredTypeField

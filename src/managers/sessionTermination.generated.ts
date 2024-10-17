@@ -78,6 +78,7 @@ export interface TerminateUsersSessionsRequestBody {
   /**
    * A list of user logins */
   readonly userLogins: readonly string[];
+  readonly rawData?: SerializedData;
 }
 export class TerminateUsersSessionsHeaders {
   /**
@@ -107,6 +108,7 @@ export interface TerminateGroupsSessionsRequestBody {
   /**
    * A list of group IDs */
   readonly groupIds: readonly string[];
+  readonly rawData?: SerializedData;
 }
 export class TerminateGroupsSessionsHeaders {
   /**
@@ -186,7 +188,10 @@ export class SessionTerminationManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSessionTerminationMessage(response.data);
+    return {
+      ...deserializeSessionTerminationMessage(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Validates the roles and permissions of the group,
@@ -225,7 +230,10 @@ export class SessionTerminationManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSessionTerminationMessage(response.data);
+    return {
+      ...deserializeSessionTerminationMessage(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SessionTerminationManagerInput {

@@ -24,6 +24,7 @@ export interface Workflows {
   /**
    * A list of workflows */
   readonly entries?: readonly Workflow[];
+  readonly rawData?: SerializedData;
 }
 export function serializeWorkflows(val: Workflows): SerializedData {
   return {

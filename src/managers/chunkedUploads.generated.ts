@@ -355,6 +355,7 @@ export interface CreateFileUploadSessionRequestBody {
   /**
    * The name of new file */
   readonly fileName: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateFileUploadSessionHeaders {
   /**
@@ -387,6 +388,7 @@ export interface CreateFileUploadSessionForExistingFileRequestBody {
   /**
    * The optional new name of new file */
   readonly fileName?: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateFileUploadSessionForExistingFileHeaders {
   /**
@@ -761,6 +763,7 @@ export interface CreateFileUploadSessionCommitByUrlRequestBody {
   /**
    * The list details for the uploaded parts */
   readonly parts: readonly UploadPart[];
+  readonly rawData?: SerializedData;
 }
 export class CreateFileUploadSessionCommitByUrlHeaders {
   /**
@@ -851,6 +854,7 @@ export interface CreateFileUploadSessionCommitRequestBody {
   /**
    * The list details for the uploaded parts */
   readonly parts: readonly UploadPart[];
+  readonly rawData?: SerializedData;
 }
 export class CreateFileUploadSessionCommitHeaders {
   /**
@@ -1002,7 +1006,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadSession(response.data);
+    return {
+      ...deserializeUploadSession(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Creates an upload session for an existing file.
@@ -1051,7 +1058,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadSession(response.data);
+    return {
+      ...deserializeUploadSession(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Using this method with urls provided in response when creating a new upload session is preferred to use over GetFileUploadSessionById method.
@@ -1086,7 +1096,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadSession(response.data);
+    return {
+      ...deserializeUploadSession(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Return information about an upload session.
@@ -1124,7 +1137,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadSession(response.data);
+    return {
+      ...deserializeUploadSession(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Using this method with urls provided in response when creating a new upload session is preferred to use over UploadFilePart method.
@@ -1175,7 +1191,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadedPart(response.data);
+    return {
+      ...deserializeUploadedPart(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Uploads a chunk of a file for an upload session.
@@ -1228,7 +1247,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadedPart(response.data);
+    return {
+      ...deserializeUploadedPart(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Using this method with urls provided in response when creating a new upload session is preferred to use over DeleteFileUploadSessionById method.
@@ -1352,7 +1374,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadParts(response.data);
+    return {
+      ...deserializeUploadParts(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Return a list of the chunks uploaded to the upload session so far.
@@ -1401,7 +1426,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadParts(response.data);
+    return {
+      ...deserializeUploadParts(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Using this method with urls provided in response when creating a new upload session is preferred to use over CreateFileUploadSessionCommit method.
@@ -1455,7 +1483,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFiles(response.data);
+    return {
+      ...deserializeFiles(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Close an upload session and create a file from the uploaded chunks.
@@ -1513,7 +1544,10 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFiles(response.data);
+    return {
+      ...deserializeFiles(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * @param {PartAccumulator} acc

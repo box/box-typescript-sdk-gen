@@ -28,6 +28,7 @@ export class RoleVariable {
   readonly variableType: RoleVariableVariableTypeField =
     'collaborator_role' as RoleVariableVariableTypeField;
   readonly variableValue!: RoleVariableVariableValueField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RoleVariable, 'type' | 'variableType'> &
       Partial<Pick<RoleVariable, 'type' | 'variableType'>>
@@ -40,6 +41,9 @@ export class RoleVariable {
     }
     if (fields.variableValue) {
       this.variableValue = fields.variableValue;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -54,6 +58,7 @@ export interface RoleVariableInput {
    *  */
   readonly variableType?: RoleVariableVariableTypeField;
   readonly variableValue: RoleVariableVariableValueField;
+  readonly rawData?: SerializedData;
 }
 export function serializeRoleVariableTypeField(
   val: RoleVariableTypeField

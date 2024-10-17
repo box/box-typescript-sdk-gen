@@ -119,6 +119,7 @@ export interface CreateWebLinkRequestBodyParentField {
   /**
    * The ID of parent folder */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateWebLinkRequestBody {
   /**
@@ -134,6 +135,7 @@ export interface CreateWebLinkRequestBody {
   /**
    * Description of the web link. */
   readonly description?: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateWebLinkHeaders {
   /**
@@ -214,6 +216,7 @@ export interface UpdateWebLinkByIdRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type UpdateWebLinkByIdRequestBodySharedLinkAccessField =
   | 'open'
@@ -256,6 +259,7 @@ export interface UpdateWebLinkByIdRequestBodySharedLinkField {
    * users with paid accounts. The value must be greater than the
    * current date and time. */
   readonly unsharedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateWebLinkByIdRequestBody {
   /**
@@ -272,6 +276,7 @@ export interface UpdateWebLinkByIdRequestBody {
   /**
    * The settings for the shared link to update. */
   readonly sharedLink?: UpdateWebLinkByIdRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateWebLinkByIdHeaders {
   /**
@@ -375,7 +380,10 @@ export class WebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieve information about a web link.
@@ -413,7 +421,10 @@ export class WebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a web link object.
@@ -453,7 +464,10 @@ export class WebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a web link.

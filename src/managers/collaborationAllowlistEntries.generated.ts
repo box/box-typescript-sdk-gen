@@ -155,6 +155,7 @@ export interface CreateCollaborationWhitelistEntryRequestBody {
   /**
    * The direction in which to allow collaborations. */
   readonly direction: CreateCollaborationWhitelistEntryRequestBodyDirectionField;
+  readonly rawData?: SerializedData;
 }
 export class CreateCollaborationWhitelistEntryHeaders {
   /**
@@ -292,7 +293,10 @@ export class CollaborationAllowlistEntriesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistEntries(response.data);
+    return {
+      ...deserializeCollaborationAllowlistEntries(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new entry in the list of allowed domains to allow
@@ -329,7 +333,10 @@ export class CollaborationAllowlistEntriesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistEntry(response.data);
+    return {
+      ...deserializeCollaborationAllowlistEntry(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Returns a domain that has been deemed safe to create collaborations
@@ -366,7 +373,10 @@ export class CollaborationAllowlistEntriesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistEntry(response.data);
+    return {
+      ...deserializeCollaborationAllowlistEntry(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a domain from the list of domains that have been deemed safe to create

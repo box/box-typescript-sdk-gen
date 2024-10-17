@@ -16,6 +16,7 @@ export interface TermsOfServiceUserStatuses {
   /**
    * A list of terms of service user statuses */
   readonly entries?: readonly TermsOfServiceUserStatus[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceUserStatuses(
   val: TermsOfServiceUserStatuses

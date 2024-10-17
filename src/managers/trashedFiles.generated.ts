@@ -129,12 +129,14 @@ export interface RestoreFileFromTrashRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreFileFromTrashRequestBody {
   /**
    * An optional new name for the file. */
   readonly name?: string;
   readonly parent?: RestoreFileFromTrashRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreFileFromTrashQueryParams {
   /**
@@ -311,7 +313,10 @@ export class TrashedFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashFileRestored(response.data);
+    return {
+      ...deserializeTrashFileRestored(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a file that has been moved to the trash.
@@ -374,7 +379,10 @@ export class TrashedFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashFile(response.data);
+    return {
+      ...deserializeTrashFile(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a file that is in the trash.

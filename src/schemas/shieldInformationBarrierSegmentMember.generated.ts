@@ -34,6 +34,7 @@ export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSe
   /**
    * The type of the shield information barrier segment */
   readonly type?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export type ShieldInformationBarrierSegmentMember =
   ShieldInformationBarrierSegmentMemberMini & {

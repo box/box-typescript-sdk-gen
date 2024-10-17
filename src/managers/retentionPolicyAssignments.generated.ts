@@ -250,6 +250,7 @@ export interface CreateRetentionPolicyAssignmentRequestBodyAssignToField {
    * Set to `null` or omit when `type` is set to
    * `enterprise`. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
   /**
@@ -259,6 +260,7 @@ export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
    * The metadata attribute field id. For value, only
    * enum and multiselect types are supported. */
   readonly value?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateRetentionPolicyAssignmentRequestBody {
   /**
@@ -279,6 +281,7 @@ export interface CreateRetentionPolicyAssignmentRequestBody {
    * If the `assigned_to` type is `metadata_template`,
    * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateRetentionPolicyAssignmentHeaders {
   /**
@@ -476,7 +479,10 @@ export class RetentionPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicyAssignments(response.data);
+    return {
+      ...deserializeRetentionPolicyAssignments(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Assigns a retention policy to an item.
@@ -512,7 +518,10 @@ export class RetentionPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicyAssignment(response.data);
+    return {
+      ...deserializeRetentionPolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a retention policy assignment
@@ -558,7 +567,10 @@ export class RetentionPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicyAssignment(response.data);
+    return {
+      ...deserializeRetentionPolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a retention policy assignment
@@ -641,7 +653,10 @@ export class RetentionPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFilesUnderRetention(response.data);
+    return {
+      ...deserializeFilesUnderRetention(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface RetentionPolicyAssignmentsManagerInput {

@@ -15,6 +15,7 @@ export class TermsOfServiceBase {
    * `terms_of_service` */
   readonly type: TermsOfServiceBaseTypeField =
     'terms_of_service' as TermsOfServiceBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TermsOfServiceBase, 'type'> &
       Partial<Pick<TermsOfServiceBase, 'type'>>
@@ -25,6 +26,9 @@ export class TermsOfServiceBase {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface TermsOfServiceBaseInput {
@@ -34,6 +38,7 @@ export interface TermsOfServiceBaseInput {
   /**
    * `terms_of_service` */
   readonly type?: TermsOfServiceBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceBaseTypeField(
   val: TermsOfServiceBaseTypeField

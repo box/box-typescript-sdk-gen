@@ -333,6 +333,7 @@ export interface CreateUserRequestBody {
    * up the user. This can be used to tie user IDs from external
    * identity providers to Box users. */
   readonly externalAppUserId?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateUserQueryParams {
   /**
@@ -455,6 +456,7 @@ export interface UpdateUserByIdRequestBodyNotificationEmailField {
   /**
    * The email address to send the notifications to. */
   readonly email?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateUserByIdRequestBody {
   /**
@@ -542,6 +544,7 @@ export interface UpdateUserByIdRequestBody {
    * Note: In order to update this field, you need to request a token
    * using the application that created the app user. */
   readonly externalAppUserId?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateUserByIdQueryParams {
   /**
@@ -689,7 +692,10 @@ export class UsersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUsers(response.data);
+    return {
+      ...deserializeUsers(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new managed user in an enterprise. This endpoint
@@ -736,7 +742,10 @@ export class UsersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUserFull(response.data);
+    return {
+      ...deserializeUserFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Retrieves information about the user who is currently authenticated.
@@ -785,7 +794,10 @@ export class UsersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUserFull(response.data);
+    return {
+      ...deserializeUserFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves information about a user in the enterprise.
@@ -840,7 +852,10 @@ export class UsersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUserFull(response.data);
+    return {
+      ...deserializeUserFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a managed or app user in an enterprise. This endpoint
@@ -891,7 +906,10 @@ export class UsersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUserFull(response.data);
+    return {
+      ...deserializeUserFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a user. By default this will fail if the user

@@ -15,6 +15,7 @@ export interface MetadataCascadePolicyOwnerEnterpriseField {
   /**
    * The ID of the enterprise that owns the policy. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type MetadataCascadePolicyParentTypeField = 'folder';
 export interface MetadataCascadePolicyParentField {
@@ -24,6 +25,7 @@ export interface MetadataCascadePolicyParentField {
   /**
    * The ID of the folder the policy is applied to. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export class MetadataCascadePolicy {
   /**
@@ -63,6 +65,7 @@ export class MetadataCascadePolicy {
    * [file]: e://get-files-id-metadata
    * [folder]: e://get-folders-id-metadata */
   readonly templateKey?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<MetadataCascadePolicy, 'type'> &
       Partial<Pick<MetadataCascadePolicy, 'type'>>
@@ -84,6 +87,9 @@ export class MetadataCascadePolicy {
     }
     if (fields.templateKey) {
       this.templateKey = fields.templateKey;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -124,6 +130,7 @@ export interface MetadataCascadePolicyInput {
    * [file]: e://get-files-id-metadata
    * [folder]: e://get-folders-id-metadata */
   readonly templateKey?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataCascadePolicyTypeField(
   val: MetadataCascadePolicyTypeField

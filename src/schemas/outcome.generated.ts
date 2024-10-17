@@ -24,6 +24,7 @@ export interface Outcome {
   readonly fileCollaboratorRole?: RoleVariable;
   readonly taskCollaborators?: CollaboratorVariable;
   readonly role?: RoleVariable;
+  readonly rawData?: SerializedData;
 }
 export function serializeOutcome(val: Outcome): SerializedData {
   return {

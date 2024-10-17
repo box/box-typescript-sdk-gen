@@ -261,7 +261,10 @@ export class ShieldInformationBarrierReportsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierReports(response.data);
+    return {
+      ...deserializeShieldInformationBarrierReports(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a shield information barrier report for a given barrier.
@@ -297,7 +300,10 @@ export class ShieldInformationBarrierReportsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierReport(response.data);
+    return {
+      ...deserializeShieldInformationBarrierReport(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a shield information barrier report by its ID.
@@ -333,7 +339,10 @@ export class ShieldInformationBarrierReportsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierReport(response.data);
+    return {
+      ...deserializeShieldInformationBarrierReport(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ShieldInformationBarrierReportsManagerInput {

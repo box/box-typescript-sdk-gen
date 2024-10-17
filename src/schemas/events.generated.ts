@@ -21,6 +21,7 @@ export interface Events {
   /**
    * A list of events */
   readonly entries?: readonly Event[];
+  readonly rawData?: SerializedData;
 }
 export function serializeEventsNextStreamPositionField(
   val: any

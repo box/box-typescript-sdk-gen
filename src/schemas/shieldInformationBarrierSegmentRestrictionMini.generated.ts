@@ -22,6 +22,7 @@ export interface ShieldInformationBarrierSegmentRestrictionMiniShieldInformation
   /**
    * The type of the shield information barrier segment */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export type ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField =
   'shield_information_barrier_segment';
@@ -33,6 +34,7 @@ export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegment
   /**
    * The type of the shield information segment */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export type ShieldInformationBarrierSegmentRestrictionMini =
   ShieldInformationBarrierSegmentRestrictionBase & {

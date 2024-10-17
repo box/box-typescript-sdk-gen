@@ -332,7 +332,10 @@ export class EventsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRealtimeServers(response.data);
+    return {
+      ...deserializeRealtimeServers(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Returns up to a year of past events for a given user
@@ -389,7 +392,10 @@ export class EventsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeEvents(response.data);
+    return {
+      ...deserializeEvents(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface EventsManagerInput {

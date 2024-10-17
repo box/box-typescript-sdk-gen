@@ -30,6 +30,7 @@ export interface SkillInvocationSkillField {
   /**
    * The client ID of the application */
   readonly apiKey?: string;
+  readonly rawData?: SerializedData;
 }
 export type SkillInvocationTokenReadTokenTypeField = 'bearer';
 export interface SkillInvocationTokenReadField {
@@ -47,6 +48,7 @@ export interface SkillInvocationTokenReadField {
    * providing a list of resources (files, folders, etc)
    * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: string;
+  readonly rawData?: SerializedData;
 }
 export type SkillInvocationTokenWriteTokenTypeField = 'bearer';
 export interface SkillInvocationTokenWriteField {
@@ -64,6 +66,7 @@ export interface SkillInvocationTokenWriteField {
    * providing a list of resources (files, folders, etc)
    * and the scopes permitted for each of those resources. */
   readonly restrictedTo?: string;
+  readonly rawData?: SerializedData;
 }
 export interface SkillInvocationTokenField {
   /**
@@ -72,6 +75,7 @@ export interface SkillInvocationTokenField {
   /**
    * The basics of an access token */
   readonly write?: SkillInvocationTokenWriteField;
+  readonly rawData?: SerializedData;
 }
 export type SkillInvocationStatusStateField =
   | 'invoked'
@@ -101,6 +105,7 @@ export interface SkillInvocationStatusField {
   /**
    * Additional status information. */
   readonly additionalInfo?: string;
+  readonly rawData?: SerializedData;
 }
 export type SkillInvocationEnterpriseTypeField = 'enterprise';
 export interface SkillInvocationEnterpriseField {
@@ -113,6 +118,7 @@ export interface SkillInvocationEnterpriseField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface SkillInvocation {
   /**
@@ -137,6 +143,7 @@ export interface SkillInvocation {
   readonly enterprise?: SkillInvocationEnterpriseField;
   readonly source?: FileOrFolder;
   readonly event?: Event;
+  readonly rawData?: SerializedData;
 }
 export function serializeSkillInvocationTypeField(
   val: SkillInvocationTypeField

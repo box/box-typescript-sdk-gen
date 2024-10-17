@@ -74,6 +74,7 @@ export interface SignRequestCreateSigner {
   /**
    * If true, no emails about the sign request will be sent */
   readonly suppressNotifications?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeSignRequestCreateSignerRoleField(
   val: SignRequestCreateSignerRoleField

@@ -36,6 +36,7 @@ export interface LegalHoldPolicyAssignmentCountsField {
   /**
    * The number of file versions this policy is applied to */
   readonly fileVersion?: number;
+  readonly rawData?: SerializedData;
 }
 export class LegalHoldPolicy extends LegalHoldPolicyMini {
   readonly policyName?: string;

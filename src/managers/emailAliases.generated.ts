@@ -135,6 +135,7 @@ export interface CreateUserEmailAliasRequestBody {
    *   https://support.box.com/hc/en-us/articles/4408619650579-Domain-Verification
    *   ) for steps to add a new domain. */
   readonly email: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateUserEmailAliasHeaders {
   /**
@@ -240,7 +241,10 @@ export class EmailAliasesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeEmailAliases(response.data);
+    return {
+      ...deserializeEmailAliases(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a new email alias to a user account..
@@ -281,7 +285,10 @@ export class EmailAliasesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeEmailAlias(response.data);
+    return {
+      ...deserializeEmailAlias(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes an email alias from a user.

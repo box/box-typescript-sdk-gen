@@ -17,6 +17,7 @@ export interface CollaborationsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: CollaborationsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface Collaborations {
   /**
@@ -54,6 +55,7 @@ export interface Collaborations {
   /**
    * A list of collaborations */
   readonly entries?: readonly Collaboration[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationsOrderDirectionField(
   val: CollaborationsOrderDirectionField

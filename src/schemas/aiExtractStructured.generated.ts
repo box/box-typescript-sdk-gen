@@ -28,11 +28,13 @@ export interface AiExtractStructuredMetadataTemplateField {
    * * The **enterprise** scope represents templates created within a specific enterprise,
    *   containing the ID of that enterprise. */
   readonly scope?: string;
+  readonly rawData?: SerializedData;
 }
 export interface AiExtractStructuredFieldsOptionsField {
   /**
    * A unique identifier for the field. */
   readonly key: string;
+  readonly rawData?: SerializedData;
 }
 export interface AiExtractStructuredFieldsField {
   /**
@@ -53,6 +55,7 @@ export interface AiExtractStructuredFieldsField {
   /**
    * A list of options for this field. This is most often used in combination with the enum and multiSelect field types. */
   readonly options?: readonly AiExtractStructuredFieldsOptionsField[];
+  readonly rawData?: SerializedData;
 }
 export interface AiExtractStructured {
   /**
@@ -67,6 +70,7 @@ export interface AiExtractStructured {
    * For your request to work, you must provide either `metadata_template` or `fields`, but not both. */
   readonly fields?: readonly AiExtractStructuredFieldsField[];
   readonly aiAgent?: AiAgentExtractStructured;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiExtractStructuredMetadataTemplateTypeField(
   val: AiExtractStructuredMetadataTemplateTypeField

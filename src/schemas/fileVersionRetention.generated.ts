@@ -37,6 +37,7 @@ export interface FileVersionRetention {
    * version retention */
   readonly dispositionAt?: DateTime;
   readonly winningRetentionPolicy?: RetentionPolicyMini;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionRetentionTypeField(
   val: FileVersionRetentionTypeField

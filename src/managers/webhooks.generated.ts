@@ -158,6 +158,7 @@ export interface CreateWebhookRequestBodyTargetField {
   /**
    * The type of item to trigger a webhook */
   readonly type?: CreateWebhookRequestBodyTargetTypeField;
+  readonly rawData?: SerializedData;
 }
 export type CreateWebhookRequestBodyTriggersField =
   | 'FILE.UPLOADED'
@@ -211,6 +212,7 @@ export interface CreateWebhookRequestBody {
    * An array of event names that this webhook is
    * to be triggered for */
   readonly triggers: readonly CreateWebhookRequestBodyTriggersField[];
+  readonly rawData?: SerializedData;
 }
 export class CreateWebhookHeaders {
   /**
@@ -268,6 +270,7 @@ export interface UpdateWebhookByIdRequestBodyTargetField {
   /**
    * The type of item to trigger a webhook */
   readonly type?: UpdateWebhookByIdRequestBodyTargetTypeField;
+  readonly rawData?: SerializedData;
 }
 export type UpdateWebhookByIdRequestBodyTriggersField =
   | 'FILE.UPLOADED'
@@ -321,6 +324,7 @@ export interface UpdateWebhookByIdRequestBody {
    * An array of event names that this webhook is
    * to be triggered for */
   readonly triggers?: readonly UpdateWebhookByIdRequestBodyTriggersField[];
+  readonly rawData?: SerializedData;
 }
 export class UpdateWebhookByIdHeaders {
   /**
@@ -434,7 +438,10 @@ export class WebhooksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebhooks(response.data);
+    return {
+      ...deserializeWebhooks(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a webhook.
@@ -469,7 +476,10 @@ export class WebhooksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebhook(response.data);
+    return {
+      ...deserializeWebhook(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a specific webhook
@@ -504,7 +514,10 @@ export class WebhooksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebhook(response.data);
+    return {
+      ...deserializeWebhook(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a webhook.
@@ -544,7 +557,10 @@ export class WebhooksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebhook(response.data);
+    return {
+      ...deserializeWebhook(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a webhook.

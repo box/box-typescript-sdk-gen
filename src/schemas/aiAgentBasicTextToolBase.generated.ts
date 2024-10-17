@@ -19,6 +19,7 @@ export interface AiAgentBasicTextToolBase {
   /**
    * The parameters for the LLM endpoint specific to OpenAI / Google models. */
   readonly llmEndpointParams?: AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAgentBasicTextToolBase(
   val: AiAgentBasicTextToolBase

@@ -24,6 +24,7 @@ export interface RecentItems {
   /**
    * A list of recent items */
   readonly entries?: readonly RecentItem[];
+  readonly rawData?: SerializedData;
 }
 export function serializeRecentItems(val: RecentItems): SerializedData {
   return {

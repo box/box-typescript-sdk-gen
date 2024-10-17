@@ -15,6 +15,7 @@ export class LegalHoldPolicyMini {
    * `legal_hold_policy` */
   readonly type: LegalHoldPolicyMiniTypeField =
     'legal_hold_policy' as LegalHoldPolicyMiniTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<LegalHoldPolicyMini, 'type'> &
       Partial<Pick<LegalHoldPolicyMini, 'type'>>
@@ -25,6 +26,9 @@ export class LegalHoldPolicyMini {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface LegalHoldPolicyMiniInput {
@@ -34,6 +38,7 @@ export interface LegalHoldPolicyMiniInput {
   /**
    * `legal_hold_policy` */
   readonly type?: LegalHoldPolicyMiniTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyMiniTypeField(
   val: LegalHoldPolicyMiniTypeField

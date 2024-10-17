@@ -35,6 +35,7 @@ export interface AccessToken {
    * The type of downscoped access token returned. This is only
    * returned if an access token has been downscoped. */
   readonly issuedTokenType?: AccessTokenIssuedTokenTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeAccessTokenTokenTypeField(
   val: AccessTokenTokenTypeField

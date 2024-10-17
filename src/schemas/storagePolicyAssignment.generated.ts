@@ -17,6 +17,7 @@ export interface StoragePolicyAssignmentAssignedToField {
   /**
    * The type for this object */
   readonly type?: string;
+  readonly rawData?: SerializedData;
 }
 export class StoragePolicyAssignment {
   /**
@@ -28,6 +29,7 @@ export class StoragePolicyAssignment {
     'storage_policy_assignment' as StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StoragePolicyAssignment, 'type'> &
       Partial<Pick<StoragePolicyAssignment, 'type'>>
@@ -44,6 +46,9 @@ export class StoragePolicyAssignment {
     if (fields.assignedTo) {
       this.assignedTo = fields.assignedTo;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface StoragePolicyAssignmentInput {
@@ -55,6 +60,7 @@ export interface StoragePolicyAssignmentInput {
   readonly type?: StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;
+  readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyAssignmentTypeField(
   val: StoragePolicyAssignmentTypeField

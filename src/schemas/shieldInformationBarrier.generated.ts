@@ -52,6 +52,7 @@ export interface ShieldInformationBarrier {
    * ISO date time string when this shield information barrier was enabled. */
   readonly enabledAt?: DateTime;
   readonly enabledBy?: UserBase;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierTypeField(
   val: ShieldInformationBarrierTypeField

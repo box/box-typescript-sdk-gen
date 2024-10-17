@@ -97,6 +97,7 @@ export class FileRequest {
   /**
    * The date and time when the file request was last updated. */
   readonly updatedAt!: DateTime;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<FileRequest, 'type'> & Partial<Pick<FileRequest, 'type'>>
   ) {
@@ -144,6 +145,9 @@ export class FileRequest {
     }
     if (fields.updatedAt) {
       this.updatedAt = fields.updatedAt;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -227,6 +231,7 @@ export interface FileRequestInput {
   /**
    * The date and time when the file request was last updated. */
   readonly updatedAt: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileRequestTypeField(
   val: FileRequestTypeField

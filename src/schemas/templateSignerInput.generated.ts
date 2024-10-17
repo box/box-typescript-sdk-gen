@@ -43,6 +43,7 @@ export interface TemplateSignerInputCoordinatesField {
   /**
    * Relative y coordinate to the page the input is on, ranging from 0 to 1. */
   readonly y?: number;
+  readonly rawData?: SerializedData;
 }
 export interface TemplateSignerInputDimensionsField {
   /**
@@ -51,6 +52,7 @@ export interface TemplateSignerInputDimensionsField {
   /**
    * Relative height to the page the input is on, ranging from 0 to 1. */
   readonly height?: number;
+  readonly rawData?: SerializedData;
 }
 export type TemplateSignerInput = SignRequestPrefillTag & {
   /**

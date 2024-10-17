@@ -87,6 +87,7 @@ export interface FileFullPermissionsField {
    * Specifies if the user view annotations placed by themselves
    * on this file */
   readonly canViewAnnotationsSelf: boolean;
+  readonly rawData?: SerializedData;
 }
 export type FileFullLockTypeField = 'lock';
 export type FileFullLockAppTypeField =
@@ -117,6 +118,7 @@ export interface FileFullLockField {
    * This is an open enum and may be extended with additional values in
    * the future. */
   readonly appType?: FileFullLockAppTypeField;
+  readonly rawData?: SerializedData;
 }
 export type FileFullExpiringEmbedLinkTokenTypeField = 'bearer';
 export interface FileFullExpiringEmbedLinkField {
@@ -138,11 +140,13 @@ export interface FileFullExpiringEmbedLinkField {
    * The actual expiring embed URL for this file, constructed
    * from the file ID and access tokens specified in this object. */
   readonly url?: string;
+  readonly rawData?: SerializedData;
 }
 export interface FileFullWatermarkInfoField {
   /**
    * Specifies if this item has a watermark applied. */
   readonly isWatermarked?: boolean;
+  readonly rawData?: SerializedData;
 }
 export type FileFullAllowedInviteeRolesField =
   | 'editor'
@@ -158,6 +162,7 @@ export interface FileFullMetadataField {
       readonly [key: string]: MetadataFull;
     };
   };
+  readonly rawData?: SerializedData;
 }
 export interface FileFullRepresentationsEntriesContentField {
   /**
@@ -187,6 +192,7 @@ export interface FileFullRepresentationsEntriesContentField {
    *   is derived from the source file name in Box combined with the
    *   extension of the representation. */
   readonly urlTemplate?: string;
+  readonly rawData?: SerializedData;
 }
 export interface FileFullRepresentationsEntriesInfoField {
   /**
@@ -194,6 +200,7 @@ export interface FileFullRepresentationsEntriesInfoField {
    * representation. Make sure to make an authenticated API call
    * to this endpoint. */
   readonly url?: string;
+  readonly rawData?: SerializedData;
 }
 export interface FileFullRepresentationsEntriesPropertiesField {
   /**
@@ -207,6 +214,7 @@ export interface FileFullRepresentationsEntriesPropertiesField {
    * Indicates if the representation can be used as a thumbnail of
    * the file. */
   readonly thumb?: boolean;
+  readonly rawData?: SerializedData;
 }
 export type FileFullRepresentationsEntriesStatusStateField =
   | 'success'
@@ -225,6 +233,7 @@ export interface FileFullRepresentationsEntriesStatusField {
    *   requested. Request the URL defined in the `info` object to
    *   trigger this generation. */
   readonly state?: FileFullRepresentationsEntriesStatusStateField;
+  readonly rawData?: SerializedData;
 }
 export interface FileFullRepresentationsEntriesField {
   /**
@@ -244,11 +253,13 @@ export interface FileFullRepresentationsEntriesField {
   /**
    * An object containing the status of this representation. */
   readonly status?: FileFullRepresentationsEntriesStatusField;
+  readonly rawData?: SerializedData;
 }
 export interface FileFullRepresentationsField {
   /**
    * A list of files */
   readonly entries?: readonly FileFullRepresentationsEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export interface FileFullClassificationField {
   /**
@@ -262,6 +273,7 @@ export interface FileFullClassificationField {
    * classification label in a user-interface. Colors are defined by the admin
    * or co-admin who created the classification in the Box web app. */
   readonly color?: string;
+  readonly rawData?: SerializedData;
 }
 export type FileFullSharedLinkPermissionOptionsField =
   | 'can_preview'

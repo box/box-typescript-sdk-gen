@@ -14,6 +14,7 @@ export interface CommentBase {
   /**
    * `comment` */
   readonly type?: CommentBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeCommentBaseTypeField(
   val: CommentBaseTypeField

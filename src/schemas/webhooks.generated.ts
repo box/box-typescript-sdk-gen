@@ -24,6 +24,7 @@ export interface Webhooks {
   /**
    * A list of webhooks */
   readonly entries?: readonly WebhookMini[];
+  readonly rawData?: SerializedData;
 }
 export function serializeWebhooks(val: Webhooks): SerializedData {
   return {

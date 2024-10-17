@@ -233,6 +233,7 @@ export interface CreateLegalHoldPolicyRequestBody {
    *
    * Required if no filter dates are set. */
   readonly isOngoing?: boolean;
+  readonly rawData?: SerializedData;
 }
 export class CreateLegalHoldPolicyHeaders {
   /**
@@ -292,6 +293,7 @@ export interface UpdateLegalHoldPolicyByIdRequestBody {
   /**
    * Notes around why the policy was released. */
   readonly releaseNotes?: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateLegalHoldPolicyByIdHeaders {
   /**
@@ -408,7 +410,10 @@ export class LegalHoldPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicies(response.data);
+    return {
+      ...deserializeLegalHoldPolicies(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Create a new legal hold policy.
@@ -444,7 +449,10 @@ export class LegalHoldPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicy(response.data);
+    return {
+      ...deserializeLegalHoldPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieve a legal hold policy.
@@ -480,7 +488,10 @@ export class LegalHoldPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicy(response.data);
+    return {
+      ...deserializeLegalHoldPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Update legal hold policy.
@@ -520,7 +531,10 @@ export class LegalHoldPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicy(response.data);
+    return {
+      ...deserializeLegalHoldPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Delete an existing legal hold policy.

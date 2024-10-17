@@ -18,6 +18,7 @@ export interface Tasks {
   /**
    * A list of tasks */
   readonly entries?: readonly Task[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTasks(val: Tasks): SerializedData {
   return {

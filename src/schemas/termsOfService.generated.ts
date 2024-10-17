@@ -27,6 +27,7 @@ export interface TermsOfServiceEnterpriseField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export type TermsOfServiceTosTypeField = 'managed' | 'external';
 export class TermsOfService extends TermsOfServiceBase {

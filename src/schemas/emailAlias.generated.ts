@@ -20,6 +20,7 @@ export interface EmailAlias {
   /**
    * Whether the email address has been confirmed */
   readonly isConfirmed?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeEmailAliasTypeField(
   val: EmailAliasTypeField

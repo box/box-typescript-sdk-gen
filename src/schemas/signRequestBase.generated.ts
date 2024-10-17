@@ -52,6 +52,7 @@ export interface SignRequestBase {
   /**
    * Used as an optional system name to appear in the signature log next to the signers who have been assigned the `embed_url_external_id`. */
   readonly externalSystemName?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
   return {

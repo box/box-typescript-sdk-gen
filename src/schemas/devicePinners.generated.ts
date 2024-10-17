@@ -18,6 +18,7 @@ export interface DevicePinnersOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: DevicePinnersOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface DevicePinners {
   /**
@@ -34,6 +35,7 @@ export interface DevicePinners {
   /**
    * The order by which items are returned. */
   readonly order?: readonly DevicePinnersOrderField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeDevicePinnersOrderByField(
   val: DevicePinnersOrderByField

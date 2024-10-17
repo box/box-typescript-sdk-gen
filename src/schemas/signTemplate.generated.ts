@@ -28,6 +28,7 @@ export interface SignTemplateAdditionalInfoRequiredField {
   /**
    * Required signer fields. */
   readonly signers?: readonly (readonly SignTemplateAdditionalInfoRequiredSignersField[])[];
+  readonly rawData?: SerializedData;
 }
 export interface SignTemplateAdditionalInfoField {
   /**
@@ -36,6 +37,7 @@ export interface SignTemplateAdditionalInfoField {
   /**
    * Required fields. */
   readonly required?: SignTemplateAdditionalInfoRequiredField;
+  readonly rawData?: SerializedData;
 }
 export interface SignTemplateReadySignLinkField {
   /**
@@ -61,6 +63,7 @@ export interface SignTemplateReadySignLinkField {
   /**
    * Whether the ready sign link is enabled or not. */
   readonly isActive?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface SignTemplateCustomBrandingField {
   /**
@@ -75,6 +78,7 @@ export interface SignTemplateCustomBrandingField {
   /**
    * Content of the email footer. */
   readonly emailFooterText?: string;
+  readonly rawData?: SerializedData;
 }
 export interface SignTemplate {
   /**
@@ -133,6 +137,7 @@ export interface SignTemplate {
    * Custom branding applied to notifications
    * and signature requests. */
   readonly customBranding?: SignTemplateCustomBrandingField;
+  readonly rawData?: SerializedData;
 }
 export function serializeSignTemplateTypeField(
   val: SignTemplateTypeField

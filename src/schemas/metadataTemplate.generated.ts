@@ -22,6 +22,7 @@ export interface MetadataTemplateFieldsOptionsField {
   /**
    * The internal unique identifier of the the option. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface MetadataTemplateFieldsField {
   /**
@@ -59,6 +60,7 @@ export interface MetadataTemplateFieldsField {
   /**
    * The unique ID of the metadata template field. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export class MetadataTemplate {
   /**
@@ -96,6 +98,7 @@ export class MetadataTemplate {
   /**
    * Whether or not to include the metadata when a file or folder is copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<MetadataTemplate, 'type'> &
       Partial<Pick<MetadataTemplate, 'type'>>
@@ -123,6 +126,9 @@ export class MetadataTemplate {
     }
     if (fields.copyInstanceOnItemCopy) {
       this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -161,6 +167,7 @@ export interface MetadataTemplateInput {
   /**
    * Whether or not to include the metadata when a file or folder is copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataTemplateTypeField(
   val: MetadataTemplateTypeField

@@ -15,6 +15,7 @@ export class FileVersionBase {
    * `file_version` */
   readonly type: FileVersionBaseTypeField =
     'file_version' as FileVersionBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<FileVersionBase, 'type'> &
       Partial<Pick<FileVersionBase, 'type'>>
@@ -25,6 +26,9 @@ export class FileVersionBase {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface FileVersionBaseInput {
@@ -34,6 +38,7 @@ export interface FileVersionBaseInput {
   /**
    * `file_version` */
   readonly type?: FileVersionBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionBaseTypeField(
   val: FileVersionBaseTypeField

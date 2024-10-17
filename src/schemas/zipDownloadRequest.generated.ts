@@ -15,6 +15,7 @@ export interface ZipDownloadRequestItemsField {
    * The identifier of the item to add to the archive. When this item is
    * a folder then this can not be the root folder with ID `0`. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface ZipDownloadRequest {
   /**
@@ -25,6 +26,7 @@ export interface ZipDownloadRequest {
    * The optional name of the `zip` archive. This name will be appended by the
    * `.zip` file extension, for example `January Financials.zip`. */
   readonly downloadFileName?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadRequestItemsTypeField(
   val: ZipDownloadRequestItemsTypeField

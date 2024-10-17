@@ -22,6 +22,7 @@ export interface FolderLockLockedOperationsField {
   /**
    * Whether deleting the folder is restricted. */
   readonly delete: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface FolderLock {
   readonly folder?: FolderMini;
@@ -44,6 +45,7 @@ export interface FolderLock {
   /**
    * The lock type, always `freeze`. */
   readonly lockType?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeFolderLockLockedOperationsField(
   val: FolderLockLockedOperationsField

@@ -24,6 +24,7 @@ export interface FilesUnderRetention {
   /**
    * A list of files */
   readonly entries?: readonly FileMini[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFilesUnderRetention(
   val: FilesUnderRetention

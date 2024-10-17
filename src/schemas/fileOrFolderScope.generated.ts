@@ -28,6 +28,7 @@ export interface FileOrFolderScope {
    * The scopes for the resource access */
   readonly scope?: FileOrFolderScopeScopeField;
   readonly object?: FileMiniOrFolderMini;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileOrFolderScopeScopeField(
   val: FileOrFolderScopeScopeField

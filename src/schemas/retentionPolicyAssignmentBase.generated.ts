@@ -16,6 +16,7 @@ export class RetentionPolicyAssignmentBase {
    * `retention_policy_assignment` */
   readonly type: RetentionPolicyAssignmentBaseTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RetentionPolicyAssignmentBase, 'type'> &
       Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>
@@ -26,6 +27,9 @@ export class RetentionPolicyAssignmentBase {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface RetentionPolicyAssignmentBaseInput {
@@ -35,6 +39,7 @@ export interface RetentionPolicyAssignmentBaseInput {
   /**
    * `retention_policy_assignment` */
   readonly type?: RetentionPolicyAssignmentBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyAssignmentBaseTypeField(
   val: RetentionPolicyAssignmentBaseTypeField

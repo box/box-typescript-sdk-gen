@@ -24,6 +24,7 @@ export interface FileRequestCopyRequestFolderField {
    * The ID of the folder to associate the new
    * file request to. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type FileRequestCopyRequest = FileRequestUpdateRequest & {
   /**

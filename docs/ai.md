@@ -181,7 +181,17 @@ This operation is performed by calling function `createAiExtractStructured`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-ai-extract-structured/).
 
-_Currently we don't have an example for calling `createAiExtractStructured` in integration tests_
+<!-- sample post_ai_extract_structured -->
+
+```ts
+await client.ai.createAiExtractStructured({
+  metadataTemplate: {
+    templateKey: templateKey,
+    scope: 'enterprise',
+  } satisfies AiExtractStructuredMetadataTemplateField,
+  items: [new AiItemBase({ id: file.id })],
+} satisfies AiExtractStructured);
+```
 
 ### Arguments
 

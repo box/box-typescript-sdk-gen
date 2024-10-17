@@ -47,6 +47,7 @@ export interface MetadataFilter {
       key: string
     ]: MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString;
   };
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataFilterScopeField(
   val: MetadataFilterScopeField

@@ -10,6 +10,7 @@ export class BaseUrls {
   readonly baseUrl: string = 'https://api.box.com';
   readonly uploadUrl: string = 'https://upload.box.com/api';
   readonly oauth2Url: string = 'https://account.box.com/api/oauth2';
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'> &
       Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>
@@ -23,12 +24,16 @@ export class BaseUrls {
     if (fields.oauth2Url) {
       this.oauth2Url = fields.oauth2Url;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface BaseUrlsInput {
   readonly baseUrl?: string;
   readonly uploadUrl?: string;
   readonly oauth2Url?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeBaseUrls(val: BaseUrls): SerializedData {
   return {

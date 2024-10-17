@@ -18,6 +18,7 @@ export interface TrackingCode {
   /**
    * The value of the tracking code */
   readonly value?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrackingCodeTypeField(
   val: TrackingCodeTypeField

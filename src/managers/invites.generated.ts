@@ -92,11 +92,13 @@ export interface CreateInviteRequestBodyEnterpriseField {
   /**
    * The ID of the enterprise */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateInviteRequestBodyActionableByField {
   /**
    * The login of the invited user */
   readonly login?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateInviteRequestBody {
   /**
@@ -105,6 +107,7 @@ export interface CreateInviteRequestBody {
   /**
    * The user to invite */
   readonly actionableBy: CreateInviteRequestBodyActionableByField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateInviteQueryParams {
   /**
@@ -248,7 +251,10 @@ export class InvitesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeInvite(response.data);
+    return {
+      ...deserializeInvite(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Returns the status of a user invite.
@@ -293,7 +299,10 @@ export class InvitesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeInvite(response.data);
+    return {
+      ...deserializeInvite(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface InvitesManagerInput {

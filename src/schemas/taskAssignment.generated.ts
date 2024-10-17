@@ -51,6 +51,7 @@ export interface TaskAssignment {
    * the `action` value of the task object. */
   readonly resolutionState?: TaskAssignmentResolutionStateField;
   readonly assignedBy?: UserMini;
+  readonly rawData?: SerializedData;
 }
 export function serializeTaskAssignmentTypeField(
   val: TaskAssignmentTypeField

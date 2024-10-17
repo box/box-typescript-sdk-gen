@@ -19,6 +19,7 @@ export interface AiDialogueHistory {
   /**
    * The ISO date formatted timestamp of when the previous answer to the prompt was created. */
   readonly createdAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiDialogueHistory(
   val: AiDialogueHistory

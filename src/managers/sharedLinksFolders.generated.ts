@@ -266,6 +266,7 @@ export interface AddShareLinkToFolderRequestBodySharedLinkPermissionsField {
    * This value can only be `false` for items
    * with a `type` of `folder`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFolderRequestBodySharedLinkField {
   /**
@@ -305,6 +306,7 @@ export interface AddShareLinkToFolderRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToFolderRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFolderRequestBody {
   /**
@@ -313,6 +315,7 @@ export interface AddShareLinkToFolderRequestBody {
    * Use an empty object (`{}`) to use the default settings for shared
    * links. */
   readonly sharedLink?: AddShareLinkToFolderRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFolderQueryParams {
   /**
@@ -363,6 +366,7 @@ export interface UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField {
    * This value can only be `false` for items
    * with a `type` of `folder`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFolderRequestBodySharedLinkField {
   /**
@@ -402,11 +406,13 @@ export interface UpdateSharedLinkOnFolderRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFolderRequestBody {
   /**
    * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnFolderRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFolderQueryParams {
   /**
@@ -438,12 +444,15 @@ export interface UpdateSharedLinkOnFolderHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface RemoveSharedLinkFromFolderRequestBodySharedLinkField {}
+export interface RemoveSharedLinkFromFolderRequestBodySharedLinkField {
+  readonly rawData?: SerializedData;
+}
 export interface RemoveSharedLinkFromFolderRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the folder. */
   readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromFolderQueryParams {
   /**
@@ -555,7 +564,10 @@ export class SharedLinksFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Gets the information for a shared link on a folder.
@@ -607,7 +619,10 @@ export class SharedLinksFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a shared link to a folder.
@@ -663,7 +678,10 @@ export class SharedLinksFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a shared link on a folder.
@@ -719,7 +737,10 @@ export class SharedLinksFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a shared link from a folder.
@@ -775,7 +796,10 @@ export class SharedLinksFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SharedLinksFoldersManagerInput {

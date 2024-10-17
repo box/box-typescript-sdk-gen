@@ -173,6 +173,7 @@ export interface AddClassificationToFolderRequestBody {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly boxSecurityClassificationKey?: string;
+  readonly rawData?: SerializedData;
 }
 export class AddClassificationToFolderHeaders {
   /**
@@ -219,6 +220,7 @@ export class UpdateClassificationOnFolderRequestBody {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly value!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'> &
       Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>
@@ -231,6 +233,9 @@ export class UpdateClassificationOnFolderRequestBody {
     }
     if (fields.value) {
       this.value = fields.value;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -250,6 +255,7 @@ export interface UpdateClassificationOnFolderRequestBodyInput {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly value: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateClassificationOnFolderHeaders {
   /**
@@ -369,7 +375,10 @@ export class FolderClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a classification to a folder by specifying the label of the
@@ -424,7 +433,10 @@ export class FolderClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a classification on a folder.
@@ -480,7 +492,10 @@ export class FolderClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes any classifications from a folder.
