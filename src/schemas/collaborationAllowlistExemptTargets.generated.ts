@@ -26,6 +26,7 @@ export interface CollaborationAllowlistExemptTargets {
    * imposed by the list of allowed collaboration domains
    * for this enterprise. */
   readonly entries?: readonly CollaborationAllowlistExemptTarget[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistExemptTargets(
   val: CollaborationAllowlistExemptTargets

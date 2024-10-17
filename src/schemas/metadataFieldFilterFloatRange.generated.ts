@@ -19,6 +19,7 @@ export interface MetadataFieldFilterFloatRange {
    * equal to this value for the search query to match this
    * template. */
   readonly gt?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataFieldFilterFloatRange(
   val: MetadataFieldFilterFloatRange

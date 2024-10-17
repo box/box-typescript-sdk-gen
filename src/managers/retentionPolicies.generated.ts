@@ -277,6 +277,7 @@ export interface CreateRetentionPolicyRequestBody {
    * A list of users notified when
    * the retention policy duration is about to end. */
   readonly customNotificationRecipients?: readonly UserMini[];
+  readonly rawData?: SerializedData;
 }
 export class CreateRetentionPolicyHeaders {
   /**
@@ -404,6 +405,7 @@ export interface UpdateRetentionPolicyByIdRequestBody {
   /**
    * A list of users notified when the retention duration is about to end. */
   readonly customNotificationRecipients?: readonly UserBase[];
+  readonly rawData?: SerializedData;
 }
 export class UpdateRetentionPolicyByIdHeaders {
   /**
@@ -521,7 +523,10 @@ export class RetentionPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicies(response.data);
+    return {
+      ...deserializeRetentionPolicies(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a retention policy.
@@ -557,7 +562,10 @@ export class RetentionPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicy(response.data);
+    return {
+      ...deserializeRetentionPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a retention policy.
@@ -603,7 +611,10 @@ export class RetentionPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicy(response.data);
+    return {
+      ...deserializeRetentionPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a retention policy.
@@ -643,7 +654,10 @@ export class RetentionPoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRetentionPolicy(response.data);
+    return {
+      ...deserializeRetentionPolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a retention policy.

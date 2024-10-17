@@ -34,6 +34,7 @@ export interface RecentItem {
    * If the item was accessed through a shared link it will appear here,
    * otherwise this will be null. */
   readonly interactionSharedLink?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeRecentItemInteractionTypeField(
   val: RecentItemInteractionTypeField

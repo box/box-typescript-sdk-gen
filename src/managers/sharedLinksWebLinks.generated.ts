@@ -268,6 +268,7 @@ export interface AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField {
   /**
    * This value can only be `true` is `type` is `file`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToWebLinkRequestBodySharedLinkField {
   /**
@@ -307,6 +308,7 @@ export interface AddShareLinkToWebLinkRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToWebLinkRequestBody {
   /**
@@ -315,6 +317,7 @@ export interface AddShareLinkToWebLinkRequestBody {
    * Use an empty object (`{}`) to use the default settings for shared
    * links. */
   readonly sharedLink?: AddShareLinkToWebLinkRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToWebLinkQueryParams {
   /**
@@ -364,6 +367,7 @@ export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField 
   /**
    * This value can only be `true` is `type` is `file`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
   /**
@@ -403,11 +407,13 @@ export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnWebLinkRequestBody {
   /**
    * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnWebLinkQueryParams {
   /**
@@ -439,12 +445,15 @@ export interface UpdateSharedLinkOnWebLinkHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {}
+export interface RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {
+  readonly rawData?: SerializedData;
+}
 export interface RemoveSharedLinkFromWebLinkRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the web link. */
   readonly sharedLink?: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromWebLinkQueryParams {
   /**
@@ -556,7 +565,10 @@ export class SharedLinksWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Gets the information for a shared link on a web link.
@@ -599,7 +611,10 @@ export class SharedLinksWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a shared link to a web link.
@@ -646,7 +661,10 @@ export class SharedLinksWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a shared link on a web link.
@@ -693,7 +711,10 @@ export class SharedLinksWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a shared link from a web link.
@@ -740,7 +761,10 @@ export class SharedLinksWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWebLink(response.data);
+    return {
+      ...deserializeWebLink(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SharedLinksWebLinksManagerInput {

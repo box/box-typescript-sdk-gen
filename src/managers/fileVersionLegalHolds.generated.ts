@@ -194,7 +194,10 @@ export class FileVersionLegalHoldsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionLegalHold(response.data);
+    return {
+      ...deserializeFileVersionLegalHold(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Get a list of file versions on legal hold for a legal hold
@@ -255,7 +258,10 @@ export class FileVersionLegalHoldsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionLegalHolds(response.data);
+    return {
+      ...deserializeFileVersionLegalHolds(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface FileVersionLegalHoldsManagerInput {

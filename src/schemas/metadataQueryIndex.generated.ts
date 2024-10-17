@@ -15,6 +15,7 @@ export interface MetadataQueryIndexFieldsField {
   /**
    * The sort direction of the field. */
   readonly sortDirection?: MetadataQueryIndexFieldsSortDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface MetadataQueryIndex {
   /**
@@ -29,6 +30,7 @@ export interface MetadataQueryIndex {
   /**
    * A list of template fields which make up the index. */
   readonly fields?: readonly MetadataQueryIndexFieldsField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataQueryIndexStatusField(
   val: MetadataQueryIndexStatusField

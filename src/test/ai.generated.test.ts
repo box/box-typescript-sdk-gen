@@ -32,6 +32,24 @@ import { serializeUploadFileRequestBodyAttributesParentField } from '../managers
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
 import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
+import { serializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { deserializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
+import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
+import { serializeAiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
+import { deserializeAiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
+import { serializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
+import { deserializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
+import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeAiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
+import { deserializeAiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
+import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { deserializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
@@ -60,6 +78,15 @@ import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { AiExtract } from '../schemas/aiExtract.generated.js';
+import { AiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
+import { AiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
+import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
+import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { AiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
+import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { stringToByteStream } from '../internal/utils.js';
@@ -67,11 +94,14 @@ import { delayInSeconds } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
 import { dateTimeToString } from '../internal/utils.js';
+import { getValueFromObjectRawData } from '../internal/utils.js';
 import { uploadNewFile } from './commons.generated.js';
 import { AiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { AiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { AiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
 import { AiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -287,6 +317,204 @@ test('testAIExtract', async function testAIExtract(): Promise<any> {
   if (!(response.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
+  await client.files.deleteFileById(file.id);
+});
+test('testAIExtractStructuredWithFields', async function testAIExtractStructuredWithFields(): Promise<any> {
+  const uploadedFiles: Files = await client.uploads.uploadFile({
+    attributes: {
+      name: ''.concat(getUuid(), '.txt') as string,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
+    file: stringToByteStream(
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.'
+    ),
+  } satisfies UploadFileRequestBody);
+  const file: FileFull = uploadedFiles.entries![0];
+  await delayInSeconds(5);
+  const response: AiExtractResponse = await client.ai.createAiExtractStructured(
+    {
+      fields: [
+        {
+          key: 'firstName',
+          displayName: 'First name',
+          description: 'Person first name',
+          prompt: 'What is the your first name?',
+          type: 'string',
+        } satisfies AiExtractStructuredFieldsField,
+        {
+          key: 'lastName',
+          displayName: 'Last name',
+          description: 'Person last name',
+          prompt: 'What is the your last name?',
+          type: 'string',
+        } satisfies AiExtractStructuredFieldsField,
+        {
+          key: 'dateOfBirth',
+          displayName: 'Birth date',
+          description: 'Person date of birth',
+          prompt: 'What is the date of your birth?',
+          type: 'date',
+        } satisfies AiExtractStructuredFieldsField,
+        {
+          key: 'age',
+          displayName: 'Age',
+          description: 'Person age',
+          prompt: 'How old are you?',
+          type: 'float',
+        } satisfies AiExtractStructuredFieldsField,
+        {
+          key: 'hobby',
+          displayName: 'Hobby',
+          description: 'Person hobby',
+          prompt: 'What is your hobby?',
+          type: 'multiSelect',
+        } satisfies AiExtractStructuredFieldsField,
+      ],
+      items: [new AiItemBase({ id: file.id })],
+    } satisfies AiExtractStructured
+  );
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
+      'John'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
+      'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'dateOfBirth')
+      ) as string) == '1990-07-04'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
+      (['guitar', 'books'].map(toString).join(',') as string)
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  await client.files.deleteFileById(file.id);
+});
+test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtractStructuredWithMetadataTemplate(): Promise<any> {
+  const uploadedFiles: Files = await client.uploads.uploadFile({
+    attributes: {
+      name: ''.concat(getUuid(), '.txt') as string,
+      parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
+    } satisfies UploadFileRequestBodyAttributesField,
+    file: stringToByteStream(
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.'
+    ),
+  } satisfies UploadFileRequestBody);
+  const file: FileFull = uploadedFiles.entries![0];
+  await delayInSeconds(5);
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          key: 'firstName',
+          displayName: 'First name',
+          description: 'Person first name',
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          key: 'lastName',
+          displayName: 'Last name',
+          description: 'Person last name',
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          key: 'dateOfBirth',
+          displayName: 'Birth date',
+          description: 'Person date of birth',
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          key: 'age',
+          displayName: 'Age',
+          description: 'Person age',
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          key: 'hobby',
+          displayName: 'Hobby',
+          description: 'Person hobby',
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
+  const response: AiExtractResponse = await client.ai.createAiExtractStructured(
+    {
+      metadataTemplate: {
+        templateKey: templateKey,
+        scope: 'enterprise',
+      } satisfies AiExtractStructuredMetadataTemplateField,
+      items: [new AiItemBase({ id: file.id })],
+    } satisfies AiExtractStructured
+  );
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
+      'John'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
+      'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'dateOfBirth')
+      ) as string) == '1990-07-04'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
+      (['guitar', 'books'].map(toString).join(',') as string)
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScope,
+    template.templateKey!
+  );
   await client.files.deleteFileById(file.id);
 });
 export {};

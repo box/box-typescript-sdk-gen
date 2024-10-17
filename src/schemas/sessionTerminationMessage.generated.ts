@@ -10,6 +10,7 @@ export interface SessionTerminationMessage {
   /**
    * The unique identifier for the termination job status */
   readonly message?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeSessionTerminationMessage(
   val: SessionTerminationMessage

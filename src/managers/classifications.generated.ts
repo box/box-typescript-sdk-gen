@@ -141,11 +141,13 @@ export interface AddClassificationRequestBodyDataStaticConfigClassificationField
    * * `6`: Light green
    * * `7`: Gray */
   readonly colorId?: number;
+  readonly rawData?: SerializedData;
 }
 export interface AddClassificationRequestBodyDataStaticConfigField {
   /**
    * Additional details for the classification. */
   readonly classification?: AddClassificationRequestBodyDataStaticConfigClassificationField;
+  readonly rawData?: SerializedData;
 }
 export interface AddClassificationRequestBodyDataField {
   /**
@@ -156,6 +158,7 @@ export interface AddClassificationRequestBodyDataField {
   /**
    * A static configuration for the classification. */
   readonly staticConfig?: AddClassificationRequestBodyDataStaticConfigField;
+  readonly rawData?: SerializedData;
 }
 export class AddClassificationRequestBody {
   /**
@@ -171,6 +174,7 @@ export class AddClassificationRequestBody {
   /**
    * The details of the classification to add. */
   readonly data!: AddClassificationRequestBodyDataField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AddClassificationRequestBody, 'op' | 'fieldKey'> &
       Partial<Pick<AddClassificationRequestBody, 'op' | 'fieldKey'>>
@@ -183,6 +187,9 @@ export class AddClassificationRequestBody {
     }
     if (fields.data) {
       this.data = fields.data;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -198,6 +205,7 @@ export interface AddClassificationRequestBodyInput {
   /**
    * The details of the classification to add. */
   readonly data: AddClassificationRequestBodyDataField;
+  readonly rawData?: SerializedData;
 }
 export class AddClassificationHeaders {
   /**
@@ -247,11 +255,13 @@ export interface UpdateClassificationRequestBodyDataStaticConfigClassificationFi
    * * `6`: Light green
    * * `7`: Gray */
   readonly colorId?: number;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateClassificationRequestBodyDataStaticConfigField {
   /**
    * Additional details for the classification. */
   readonly classification?: UpdateClassificationRequestBodyDataStaticConfigClassificationField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateClassificationRequestBodyDataField {
   /**
@@ -261,6 +271,7 @@ export interface UpdateClassificationRequestBodyDataField {
   /**
    * A static configuration for the classification. */
   readonly staticConfig?: UpdateClassificationRequestBodyDataStaticConfigField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateClassificationRequestBody {
   /**
@@ -279,6 +290,7 @@ export class UpdateClassificationRequestBody {
   /**
    * The details of the updated classification. */
   readonly data!: UpdateClassificationRequestBodyDataField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'> &
       Partial<Pick<UpdateClassificationRequestBody, 'op' | 'fieldKey'>>
@@ -294,6 +306,9 @@ export class UpdateClassificationRequestBody {
     }
     if (fields.data) {
       this.data = fields.data;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -312,6 +327,7 @@ export interface UpdateClassificationRequestBodyInput {
   /**
    * The details of the updated classification. */
   readonly data: UpdateClassificationRequestBodyDataField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateClassificationHeaders {
   /**
@@ -368,11 +384,13 @@ export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfi
    * * `6`: Light green
    * * `7`: Gray */
   readonly colorId?: number;
+  readonly rawData?: SerializedData;
 }
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField {
   /**
    * Additional information about the classification. */
   readonly classification?: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsField {
   /**
@@ -382,6 +400,7 @@ export interface CreateClassificationTemplateRequestBodyFieldsOptionsField {
   /**
    * Additional information about the classification. */
   readonly staticConfig?: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField;
+  readonly rawData?: SerializedData;
 }
 export class CreateClassificationTemplateRequestBodyFieldsField {
   /**
@@ -409,6 +428,7 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
    * The actual list of classifications that are present on
    * this template. */
   readonly options!: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       CreateClassificationTemplateRequestBodyFieldsField,
@@ -436,6 +456,9 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
     if (fields.options) {
       this.options = fields.options;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateClassificationTemplateRequestBodyFieldsFieldInput {
@@ -461,6 +484,7 @@ export interface CreateClassificationTemplateRequestBodyFieldsFieldInput {
    * The actual list of classifications that are present on
    * this template. */
   readonly options: readonly CreateClassificationTemplateRequestBodyFieldsOptionsField[];
+  readonly rawData?: SerializedData;
 }
 export class CreateClassificationTemplateRequestBody {
   /**
@@ -493,6 +517,7 @@ export class CreateClassificationTemplateRequestBody {
    * one field, which holds
    * all the valid classification values. */
   readonly fields!: readonly CreateClassificationTemplateRequestBodyFieldsField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       CreateClassificationTemplateRequestBody,
@@ -522,6 +547,9 @@ export class CreateClassificationTemplateRequestBody {
     }
     if (fields.fields) {
       this.fields = fields.fields;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -553,6 +581,7 @@ export interface CreateClassificationTemplateRequestBodyInput {
    * one field, which holds
    * all the valid classification values. */
   readonly fields: readonly CreateClassificationTemplateRequestBodyFieldsField[];
+  readonly rawData?: SerializedData;
 }
 export class CreateClassificationTemplateHeaders {
   /**
@@ -635,7 +664,10 @@ export class ClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassificationTemplate(response.data);
+    return {
+      ...deserializeClassificationTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Adds one or more new classifications to the list of classifications
@@ -678,7 +710,10 @@ export class ClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassificationTemplate(response.data);
+    return {
+      ...deserializeClassificationTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Updates the labels and descriptions of one or more classifications
@@ -721,7 +756,10 @@ export class ClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassificationTemplate(response.data);
+    return {
+      ...deserializeClassificationTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * When an enterprise does not yet have any classifications, this API call
@@ -772,7 +810,10 @@ export class ClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassificationTemplate(response.data);
+    return {
+      ...deserializeClassificationTemplate(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ClassificationsManagerInput {

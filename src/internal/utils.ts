@@ -422,3 +422,17 @@ export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
 export async function delayInSeconds(seconds: number): Promise<void> {
   return await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
+
+/**
+ * Get value from object raw data.
+ *
+ * @param obj Object with raw data from which to get the value.
+ * @param key Key of the value to get.
+ * @returns Value from object raw data.
+ */
+export function getValueFromObjectRawData(obj: any, key: string): any {
+  if (obj && typeof obj === 'object' && obj.rawData) {
+    return obj.rawData[key];
+  }
+  return undefined;
+}

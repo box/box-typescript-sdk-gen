@@ -190,6 +190,7 @@ export class CreateTaskAssignmentRequestBodyTaskField {
    * The type of the item to assign. */
   readonly type: CreateTaskAssignmentRequestBodyTaskTypeField =
     'task' as CreateTaskAssignmentRequestBodyTaskTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'> &
       Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>
@@ -200,6 +201,9 @@ export class CreateTaskAssignmentRequestBodyTaskField {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
@@ -209,6 +213,7 @@ export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
   /**
    * The type of the item to assign. */
   readonly type?: CreateTaskAssignmentRequestBodyTaskTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateTaskAssignmentRequestBodyAssignToField {
   /**
@@ -222,6 +227,7 @@ export interface CreateTaskAssignmentRequestBodyAssignToField {
    * The email address of the user to assign to the task.
    * To specify a user by their user ID please use the `id` parameter. */
   readonly login?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateTaskAssignmentRequestBody {
   /**
@@ -230,6 +236,7 @@ export interface CreateTaskAssignmentRequestBody {
   /**
    * The user to assign the task to. */
   readonly assignTo: CreateTaskAssignmentRequestBodyAssignToField;
+  readonly rawData?: SerializedData;
 }
 export class CreateTaskAssignmentHeaders {
   /**
@@ -296,6 +303,7 @@ export interface UpdateTaskAssignmentByIdRequestBody {
    * * For a task with an `action` of `review` this can be
    * `incomplete`, `approved`, or `rejected`. */
   readonly resolutionState?: UpdateTaskAssignmentByIdRequestBodyResolutionStateField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateTaskAssignmentByIdHeaders {
   /**
@@ -402,7 +410,10 @@ export class TaskAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTaskAssignments(response.data);
+    return {
+      ...deserializeTaskAssignments(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Assigns a task to a user.
@@ -441,7 +452,10 @@ export class TaskAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTaskAssignment(response.data);
+    return {
+      ...deserializeTaskAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves information about a task assignment.
@@ -477,7 +491,10 @@ export class TaskAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTaskAssignment(response.data);
+    return {
+      ...deserializeTaskAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a task assignment. This endpoint can be
@@ -518,7 +535,10 @@ export class TaskAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTaskAssignment(response.data);
+    return {
+      ...deserializeTaskAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a specific task assignment.

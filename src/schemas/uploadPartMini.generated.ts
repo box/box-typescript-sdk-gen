@@ -18,6 +18,7 @@ export interface UploadPartMini {
   /**
    * The size of the chunk in bytes. */
   readonly size?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeUploadPartMini(val: UploadPartMini): SerializedData {
   return {

@@ -254,7 +254,10 @@ export class DevicePinnersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeDevicePinner(response.data);
+    return {
+      ...deserializeDevicePinner(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes an individual device pin.
@@ -340,7 +343,10 @@ export class DevicePinnersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeDevicePinners(response.data);
+    return {
+      ...deserializeDevicePinners(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface DevicePinnersManagerInput {

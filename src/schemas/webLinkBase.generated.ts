@@ -18,6 +18,7 @@ export class WebLinkBase {
    * The entity tag of this web link. Used with `If-Match`
    * headers. */
   readonly etag?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>
   ) {
@@ -29,6 +30,9 @@ export class WebLinkBase {
     }
     if (fields.etag) {
       this.etag = fields.etag;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -43,6 +47,7 @@ export interface WebLinkBaseInput {
    * The entity tag of this web link. Used with `If-Match`
    * headers. */
   readonly etag?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeWebLinkBaseTypeField(
   val: WebLinkBaseTypeField

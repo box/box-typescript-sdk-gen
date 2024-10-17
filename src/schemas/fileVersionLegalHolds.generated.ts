@@ -24,6 +24,7 @@ export interface FileVersionLegalHolds {
   /**
    * A list of file version legal holds */
   readonly entries?: readonly FileVersionLegalHold[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionLegalHolds(
   val: FileVersionLegalHolds

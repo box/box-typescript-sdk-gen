@@ -17,6 +17,7 @@ export interface EventSourceClassificationField {
   /**
    * The classification's name */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface EventSource {
   /**
@@ -40,6 +41,7 @@ export interface EventSource {
   readonly classification?: EventSourceClassificationField;
   readonly parent?: FolderMini;
   readonly ownedBy?: UserMini;
+  readonly rawData?: SerializedData;
 }
 export function serializeEventSourceItemTypeField(
   val: EventSourceItemTypeField

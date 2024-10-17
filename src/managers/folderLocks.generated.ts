@@ -133,6 +133,7 @@ export interface CreateFolderLockRequestBodyLockedOperationsField {
   /**
    * Whether deleting the folder should be locked. */
   readonly delete: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface CreateFolderLockRequestBodyFolderField {
   /**
@@ -142,6 +143,7 @@ export interface CreateFolderLockRequestBodyFolderField {
   /**
    * The ID of the folder. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateFolderLockRequestBody {
   /**
@@ -152,6 +154,7 @@ export interface CreateFolderLockRequestBody {
   /**
    * The folder to apply the lock to. */
   readonly folder: CreateFolderLockRequestBodyFolderField;
+  readonly rawData?: SerializedData;
 }
 export class CreateFolderLockHeaders {
   /**
@@ -261,7 +264,10 @@ export class FolderLocksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderLocks(response.data);
+    return {
+      ...deserializeFolderLocks(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a folder lock on a folder, preventing it from being moved and/or
@@ -300,7 +306,10 @@ export class FolderLocksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderLock(response.data);
+    return {
+      ...deserializeFolderLock(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a folder lock on a given folder.

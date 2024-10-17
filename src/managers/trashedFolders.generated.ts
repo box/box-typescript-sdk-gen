@@ -128,12 +128,14 @@ export interface RestoreFolderFromTrashRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreFolderFromTrashRequestBody {
   /**
    * An optional new name for the folder. */
   readonly name?: string;
   readonly parent?: RestoreFolderFromTrashRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreFolderFromTrashQueryParams {
   /**
@@ -320,7 +322,10 @@ export class TrashedFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashFolderRestored(response.data);
+    return {
+      ...deserializeTrashFolderRestored(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a folder that has been moved to the trash.
@@ -386,7 +391,10 @@ export class TrashedFoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashFolder(response.data);
+    return {
+      ...deserializeTrashFolder(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a folder that is in the trash.

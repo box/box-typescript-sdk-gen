@@ -17,6 +17,7 @@ export interface UploadPartsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: UploadPartsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface UploadParts {
   /**
@@ -49,6 +50,7 @@ export interface UploadParts {
    * A list of uploaded chunks for an upload
    * session */
   readonly entries?: readonly UploadPart[];
+  readonly rawData?: SerializedData;
 }
 export function serializeUploadPartsOrderDirectionField(
   val: UploadPartsOrderDirectionField

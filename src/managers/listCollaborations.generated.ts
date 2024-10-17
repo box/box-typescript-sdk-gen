@@ -389,7 +389,10 @@ export class ListCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborations(response.data);
+    return {
+      ...deserializeCollaborations(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a list of pending and active collaborations for a
@@ -444,7 +447,10 @@ export class ListCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborations(response.data);
+    return {
+      ...deserializeCollaborations(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Retrieves all pending collaboration invites for this user.
@@ -489,7 +495,10 @@ export class ListCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborations(response.data);
+    return {
+      ...deserializeCollaborations(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves all the collaborations for a group. The user
@@ -539,7 +548,10 @@ export class ListCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborations(response.data);
+    return {
+      ...deserializeCollaborations(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ListCollaborationsManagerInput {

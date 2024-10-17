@@ -16,6 +16,7 @@ export interface ShieldInformationBarrierSegmentRestrictionBase {
    * The unique identifier for the
    * shield information barrier segment restriction. */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
   val: ShieldInformationBarrierSegmentRestrictionBaseTypeField

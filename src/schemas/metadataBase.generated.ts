@@ -25,6 +25,7 @@ export interface MetadataBase {
    * The version of the metadata instance. This version starts at 0 and
    * increases every time a user-defined property is modified. */
   readonly version?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataBase(val: MetadataBase): SerializedData {
   return {

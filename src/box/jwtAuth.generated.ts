@@ -35,6 +35,7 @@ export interface JwtConfigAppSettingsAppAuth {
   /**
    * Passphrase */
   readonly passphrase: string;
+  readonly rawData?: SerializedData;
 }
 export interface JwtConfigAppSettings {
   /**
@@ -46,6 +47,7 @@ export interface JwtConfigAppSettings {
   /**
    * App auth settings */
   readonly appAuth: JwtConfigAppSettingsAppAuth;
+  readonly rawData?: SerializedData;
 }
 export interface JwtConfigFile {
   /**
@@ -57,6 +59,7 @@ export interface JwtConfigFile {
   /**
    * App settings */
   readonly boxAppSettings: JwtConfigAppSettings;
+  readonly rawData?: SerializedData;
 }
 export class JwtConfig {
   /**
@@ -128,9 +131,10 @@ export class JwtConfig {
     configJsonString: string,
     tokenStorage?: TokenStorage
   ): JwtConfig {
-    const configJson: JwtConfigFile = deserializeJwtConfigFile(
-      jsonToSerializedData(configJsonString)
-    );
+    const configJson: JwtConfigFile = {
+      ...deserializeJwtConfigFile(jsonToSerializedData(configJsonString)),
+      rawData: jsonToSerializedData(configJsonString),
+    };
     const newConfig: JwtConfig = !(tokenStorage == void 0)
       ? new JwtConfig({
           clientId: configJson.boxAppSettings.clientId,

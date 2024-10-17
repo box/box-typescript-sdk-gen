@@ -42,6 +42,7 @@ export interface UserFullEnterpriseField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export class UserFull extends User {
   readonly role?: UserFullRoleField;

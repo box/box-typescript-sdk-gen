@@ -23,6 +23,7 @@ export class AppItemAssociation {
     'app_item_association' as AppItemAssociationTypeField;
   readonly appItem!: AppItem;
   readonly item!: FileBaseOrFolderBaseOrWebLinkBase;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AppItemAssociation, 'type'> &
       Partial<Pick<AppItemAssociation, 'type'>>
@@ -39,6 +40,9 @@ export class AppItemAssociation {
     if (fields.item) {
       this.item = fields.item;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AppItemAssociationInput {
@@ -50,6 +54,7 @@ export interface AppItemAssociationInput {
   readonly type?: AppItemAssociationTypeField;
   readonly appItem: AppItem;
   readonly item: FileBaseOrFolderBaseOrWebLinkBase;
+  readonly rawData?: SerializedData;
 }
 export function serializeAppItemAssociationTypeField(
   val: AppItemAssociationTypeField

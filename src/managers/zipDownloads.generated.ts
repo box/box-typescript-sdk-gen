@@ -281,7 +281,10 @@ export class ZipDownloadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeZipDownload(response.data);
+    return {
+      ...deserializeZipDownload(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Returns the contents of a `zip` archive in binary format. This URL does not
@@ -368,7 +371,10 @@ export class ZipDownloadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeZipDownloadStatus(response.data);
+    return {
+      ...deserializeZipDownloadStatus(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a zip and downloads its content

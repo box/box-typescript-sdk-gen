@@ -32,6 +32,7 @@ export class SearchResults {
   /**
    * The search results for the query provided. */
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<SearchResults, 'type'> & Partial<Pick<SearchResults, 'type'>>
   ) {
@@ -49,6 +50,9 @@ export class SearchResults {
     }
     if (fields.entries) {
       this.entries = fields.entries;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -73,6 +77,7 @@ export interface SearchResultsInput {
   /**
    * The search results for the query provided. */
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
+  readonly rawData?: SerializedData;
 }
 export function serializeSearchResultsTypeField(
   val: SearchResultsTypeField

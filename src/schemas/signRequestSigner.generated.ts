@@ -29,6 +29,7 @@ export interface SignRequestSignerSignerDecisionField {
   /**
    * Additional info about the decision, such as the decline reason from the signer. */
   readonly additionalInfo?: string;
+  readonly rawData?: SerializedData;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
   /**

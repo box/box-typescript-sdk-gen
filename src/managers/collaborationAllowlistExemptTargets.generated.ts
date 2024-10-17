@@ -153,11 +153,13 @@ export interface CreateCollaborationWhitelistExemptTargetRequestBodyUserField {
   /**
    * The ID of the user to exempt. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateCollaborationWhitelistExemptTargetRequestBody {
   /**
    * The user to exempt. */
   readonly user: CreateCollaborationWhitelistExemptTargetRequestBodyUserField;
+  readonly rawData?: SerializedData;
 }
 export class CreateCollaborationWhitelistExemptTargetHeaders {
   /**
@@ -313,7 +315,10 @@ export class CollaborationAllowlistExemptTargetsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTargets(response.data);
+    return {
+      ...deserializeCollaborationAllowlistExemptTargets(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Exempts a user from the restrictions set out by the allowed list of domains
@@ -352,7 +357,10 @@ export class CollaborationAllowlistExemptTargetsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTarget(response.data);
+    return {
+      ...deserializeCollaborationAllowlistExemptTarget(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Returns a users who has been exempt from the collaboration
@@ -389,7 +397,10 @@ export class CollaborationAllowlistExemptTargetsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaborationAllowlistExemptTarget(response.data);
+    return {
+      ...deserializeCollaborationAllowlistExemptTarget(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a user's exemption from the restrictions set out by the allowed list

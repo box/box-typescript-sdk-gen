@@ -142,7 +142,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
   'enterprise' as DeleteMetadataTemplateScope,
-  templateKey
+  template.templateKey!
 );
 ```
 
@@ -273,48 +273,34 @@ await client.metadataTemplates.createMetadataTemplate({
   templateKey: templateKey,
   fields: [
     {
+      key: 'firstName',
+      displayName: 'First name',
+      description: 'Person first name',
       type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'name',
-      displayName: 'name',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
-      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'age',
-      displayName: 'age',
+      key: 'lastName',
+      displayName: 'Last name',
+      description: 'Person last name',
+      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
+      key: 'dateOfBirth',
+      displayName: 'Birth date',
+      description: 'Person date of birth',
       type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'birthDate',
-      displayName: 'birthDate',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
-      type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'countryCode',
-      displayName: 'countryCode',
-      options: [
-        {
-          key: 'US',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        {
-          key: 'CA',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-      ],
+      key: 'age',
+      displayName: 'Age',
+      description: 'Person age',
+      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
     {
+      key: 'hobby',
+      displayName: 'Hobby',
+      description: 'Person hobby',
       type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      key: 'sports',
-      displayName: 'sports',
-      options: [
-        {
-          key: 'basketball',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        {
-          key: 'football',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        {
-          key: 'tennis',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-      ],
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
 } satisfies CreateMetadataTemplateRequestBody);

@@ -22,6 +22,7 @@ export interface ShieldInformationBarrierReports {
    * A list of shield information
    * barrier reports. */
   readonly entries?: readonly ShieldInformationBarrierReport[];
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReports(
   val: ShieldInformationBarrierReports

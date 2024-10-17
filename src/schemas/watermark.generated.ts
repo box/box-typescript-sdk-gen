@@ -16,9 +16,11 @@ export interface WatermarkWatermarkField {
   /**
    * When this task was modified */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export interface Watermark {
   readonly watermark?: WatermarkWatermarkField;
+  readonly rawData?: SerializedData;
 }
 export function serializeWatermarkWatermarkField(
   val: WatermarkWatermarkField

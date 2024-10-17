@@ -60,6 +60,7 @@ export interface FileRequestUpdateRequest {
    *
    * This will default to the value on the existing file request. */
   readonly expiresAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeFileRequestUpdateRequestStatusField(
   val: FileRequestUpdateRequestStatusField

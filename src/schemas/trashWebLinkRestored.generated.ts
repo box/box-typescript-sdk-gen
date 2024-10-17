@@ -23,6 +23,7 @@ export interface TrashWebLinkRestoredPathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type TrashWebLinkRestoredItemStatusField =
   | 'active'
@@ -80,6 +81,7 @@ export interface TrashWebLinkRestored {
    * `trashed` if the file has been moved to the trash, and `deleted` if
    * the file has been permanently deleted */
   readonly itemStatus?: TrashWebLinkRestoredItemStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrashWebLinkRestoredTypeField(
   val: TrashWebLinkRestoredTypeField

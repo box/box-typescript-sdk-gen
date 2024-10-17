@@ -190,6 +190,7 @@ export interface CreateBoxSkillCardsOnFileRequestBody {
   /**
    * A list of Box Skill cards to apply to this file. */
   readonly cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly rawData?: SerializedData;
 }
 export class CreateBoxSkillCardsOnFileHeaders {
   /**
@@ -226,6 +227,7 @@ export interface UpdateBoxSkillCardsOnFileRequestBody {
    * zero-indexed position of the card in the list of cards. */
   readonly path?: string;
   readonly value?: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard;
+  readonly rawData?: SerializedData;
 }
 export class UpdateBoxSkillCardsOnFileHeaders {
   /**
@@ -285,6 +287,7 @@ export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   /**
    * A list of Box Skill cards to apply to this file. */
   readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly rawData?: SerializedData;
 }
 export type UpdateAllSkillCardsOnFileRequestBodyFileTypeField = 'file';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
@@ -294,6 +297,7 @@ export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
   /**
    * The ID of the file */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
   'file_version';
@@ -304,6 +308,7 @@ export interface UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
   /**
    * The ID of the file version */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateAllSkillCardsOnFileRequestBodyUsageField {
   /**
@@ -312,6 +317,7 @@ export interface UpdateAllSkillCardsOnFileRequestBodyUsageField {
   /**
    * `1` */
   readonly value?: number;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateAllSkillCardsOnFileRequestBody {
   /**
@@ -334,6 +340,7 @@ export interface UpdateAllSkillCardsOnFileRequestBody {
    * Set this to the default values when setting a card to a `success`
    * state, and leave it out in most other situations. */
   readonly usage?: UpdateAllSkillCardsOnFileRequestBodyUsageField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateAllSkillCardsOnFileHeaders {
   /**
@@ -422,7 +429,10 @@ export class SkillsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSkillCardsMetadata(response.data);
+    return {
+      ...deserializeSkillCardsMetadata(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Applies one or more Box Skills metadata cards to a file.
@@ -469,7 +479,10 @@ export class SkillsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSkillCardsMetadata(response.data);
+    return {
+      ...deserializeSkillCardsMetadata(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates one or more Box Skills metadata cards to a file.
@@ -518,7 +531,10 @@ export class SkillsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSkillCardsMetadata(response.data);
+    return {
+      ...deserializeSkillCardsMetadata(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes any Box Skills cards metadata from a file.

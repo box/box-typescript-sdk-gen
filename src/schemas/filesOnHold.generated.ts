@@ -24,6 +24,7 @@ export interface FilesOnHold {
   /**
    * A list of files */
   readonly entries?: readonly FileMini[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFilesOnHold(val: FilesOnHold): SerializedData {
   return {

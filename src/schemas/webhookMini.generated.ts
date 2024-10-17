@@ -15,6 +15,7 @@ export interface WebhookMiniTargetField {
   /**
    * The type of item to trigger a webhook */
   readonly type?: WebhookMiniTargetTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface WebhookMini {
   /**
@@ -26,6 +27,7 @@ export interface WebhookMini {
   /**
    * The item that will trigger the webhook */
   readonly target?: WebhookMiniTargetField;
+  readonly rawData?: SerializedData;
 }
 export function serializeWebhookMiniTypeField(
   val: WebhookMiniTypeField

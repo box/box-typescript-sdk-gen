@@ -102,6 +102,7 @@ export interface PostOAuth2Token {
    * Full URL of the shared link on the file or folder
    * that the token should be generated for. */
   readonly boxSharedLink?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2TokenGrantTypeField(
   val: PostOAuth2TokenGrantTypeField

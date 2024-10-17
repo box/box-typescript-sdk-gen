@@ -125,12 +125,16 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
    * Currently only supports one option. */
   readonly imprint: UpdateFileWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFileWatermarkRequestBodyWatermarkImprintField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'> &
       Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>
   ) {
     if (fields.imprint) {
       this.imprint = fields.imprint;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -140,11 +144,13 @@ export interface UpdateFileWatermarkRequestBodyWatermarkFieldInput {
    *
    * Currently only supports one option. */
   readonly imprint?: UpdateFileWatermarkRequestBodyWatermarkImprintField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFileWatermarkRequestBody {
   /**
    * The watermark to imprint on the file */
   readonly watermark: UpdateFileWatermarkRequestBodyWatermarkField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateFileWatermarkHeaders {
   /**
@@ -254,7 +260,10 @@ export class FileWatermarksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWatermark(response.data);
+    return {
+      ...deserializeWatermark(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Applies or update a watermark on a file.
@@ -301,7 +310,10 @@ export class FileWatermarksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWatermark(response.data);
+    return {
+      ...deserializeWatermark(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes the watermark from a file.

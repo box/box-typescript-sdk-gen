@@ -21,6 +21,7 @@ export class IntegrationMappingPartnerItemSlack {
   /**
    * ID of the Slack org with which the item is associated. Use this parameter if Box for Slack is installed at the org level. Do not use `slack_workspace_id` at the same time. */
   readonly slackOrgId?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingPartnerItemSlack, 'type'> &
       Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>
@@ -37,6 +38,9 @@ export class IntegrationMappingPartnerItemSlack {
     if (fields.slackOrgId) {
       this.slackOrgId = fields.slackOrgId;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface IntegrationMappingPartnerItemSlackInput {
@@ -52,6 +56,7 @@ export interface IntegrationMappingPartnerItemSlackInput {
   /**
    * ID of the Slack org with which the item is associated. Use this parameter if Box for Slack is installed at the org level. Do not use `slack_workspace_id` at the same time. */
   readonly slackOrgId?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingPartnerItemSlackTypeField(
   val: IntegrationMappingPartnerItemSlackTypeField

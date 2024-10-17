@@ -26,6 +26,7 @@ export interface CollaborationAllowlistEntryEnterpriseField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CollaborationAllowlistEntry {
   /**
@@ -44,6 +45,7 @@ export interface CollaborationAllowlistEntry {
   /**
    * The time the entry was created at */
   readonly createdAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistEntryTypeField(
   val: CollaborationAllowlistEntryTypeField

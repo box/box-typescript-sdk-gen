@@ -204,6 +204,7 @@ export interface CreateSlackIntegrationMappingHeadersInput {
 export interface UpdateSlackIntegrationMappingByIdRequestBody {
   readonly boxItem?: IntegrationMappingBoxItemSlack;
   readonly options?: IntegrationMappingSlackOptions;
+  readonly rawData?: SerializedData;
 }
 export class UpdateSlackIntegrationMappingByIdHeaders {
   /**
@@ -324,7 +325,10 @@ export class IntegrationMappingsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeIntegrationMappings(response.data);
+    return {
+      ...deserializeIntegrationMappings(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack)
@@ -364,7 +368,10 @@ export class IntegrationMappingsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeIntegrationMapping(response.data);
+    return {
+      ...deserializeIntegrationMapping(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).
@@ -408,7 +415,10 @@ export class IntegrationMappingsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeIntegrationMapping(response.data);
+    return {
+      ...deserializeIntegrationMapping(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a [Slack integration mapping](https://support.box.com/hc/en-us/articles/4415585987859-Box-as-the-Content-Layer-for-Slack).

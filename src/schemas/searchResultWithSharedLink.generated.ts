@@ -20,6 +20,7 @@ export interface SearchResultWithSharedLink {
   /**
    * The result type. The value is always `search_result`. */
   readonly type?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeSearchResultWithSharedLink(
   val: SearchResultWithSharedLink

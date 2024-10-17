@@ -37,6 +37,7 @@ export interface AiAsk {
    * A flag to indicate whether citations should be returned. */
   readonly includeCitations?: boolean;
   readonly aiAgent?: AiAgentAsk;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAskModeField(val: AiAskModeField): SerializedData {
   return val;

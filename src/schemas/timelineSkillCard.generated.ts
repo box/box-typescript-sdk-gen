@@ -18,6 +18,7 @@ export interface TimelineSkillCardSkillCardTitleField {
   /**
    * The actual title to show in the UI. */
   readonly message: string;
+  readonly rawData?: SerializedData;
 }
 export type TimelineSkillCardSkillTypeField = 'service';
 export class TimelineSkillCardSkillField {
@@ -29,6 +30,7 @@ export class TimelineSkillCardSkillField {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCardSkillField, 'type'> &
       Partial<Pick<TimelineSkillCardSkillField, 'type'>>
@@ -38,6 +40,9 @@ export class TimelineSkillCardSkillField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -49,6 +54,7 @@ export interface TimelineSkillCardSkillFieldInput {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type TimelineSkillCardInvocationTypeField = 'skill_invocation';
 export class TimelineSkillCardInvocationField {
@@ -63,6 +69,7 @@ export class TimelineSkillCardInvocationField {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCardInvocationField, 'type'> &
       Partial<Pick<TimelineSkillCardInvocationField, 'type'>>
@@ -72,6 +79,9 @@ export class TimelineSkillCardInvocationField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -86,6 +96,7 @@ export interface TimelineSkillCardInvocationFieldInput {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface TimelineSkillCardEntriesAppearsField {
   /**
@@ -96,6 +107,7 @@ export interface TimelineSkillCardEntriesAppearsField {
    * The time in seconds when an
    * entry should stop appearing on a timeline. */
   readonly end?: number;
+  readonly rawData?: SerializedData;
 }
 export interface TimelineSkillCardEntriesField {
   /**
@@ -116,6 +128,7 @@ export interface TimelineSkillCardEntriesField {
    * the image will show the user where that entry
    * appears during the duration of this entry. */
   readonly imageUrl?: string;
+  readonly rawData?: SerializedData;
 }
 export class TimelineSkillCard {
   /**
@@ -145,6 +158,7 @@ export class TimelineSkillCard {
   /**
    * A list of entries on the timeline. */
   readonly entries!: readonly TimelineSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>
@@ -172,6 +186,9 @@ export class TimelineSkillCard {
     }
     if (fields.entries) {
       this.entries = fields.entries;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -201,6 +218,7 @@ export interface TimelineSkillCardInput {
   /**
    * A list of entries on the timeline. */
   readonly entries: readonly TimelineSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTimelineSkillCardTypeField(
   val: TimelineSkillCardTypeField

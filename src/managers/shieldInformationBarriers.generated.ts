@@ -146,6 +146,7 @@ export interface UpdateShieldInformationBarrierStatusRequestBody {
   /**
    * The desired status for the shield information barrier. */
   readonly status: UpdateShieldInformationBarrierStatusRequestBodyStatusField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateShieldInformationBarrierStatusHeaders {
   /**
@@ -208,6 +209,7 @@ export interface CreateShieldInformationBarrierRequestBody {
   /**
    * The `type` and `id` of enterprise this barrier is under. */
   readonly enterprise: EnterpriseBase;
+  readonly rawData?: SerializedData;
 }
 export class CreateShieldInformationBarrierHeaders {
   /**
@@ -288,7 +290,10 @@ export class ShieldInformationBarriersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrier(response.data);
+    return {
+      ...deserializeShieldInformationBarrier(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Change status of shield information barrier with the specified ID.
@@ -326,7 +331,10 @@ export class ShieldInformationBarriersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrier(response.data);
+    return {
+      ...deserializeShieldInformationBarrier(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Retrieves a list of shield information barrier objects
@@ -369,7 +377,10 @@ export class ShieldInformationBarriersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarriers(response.data);
+    return {
+      ...deserializeShieldInformationBarriers(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a shield information barrier to
@@ -407,7 +418,10 @@ export class ShieldInformationBarriersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrier(response.data);
+    return {
+      ...deserializeShieldInformationBarrier(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ShieldInformationBarriersManagerInput {

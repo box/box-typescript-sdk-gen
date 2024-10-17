@@ -283,6 +283,7 @@ export interface UpdateMetadataTemplateRequestBody {
    * For operations that affect multiple multi select options this
    * defines the keys of the options that are affected. */
   readonly multiSelectOptionKeys?: readonly string[];
+  readonly rawData?: SerializedData;
 }
 export class UpdateMetadataTemplateHeaders {
   /**
@@ -438,6 +439,7 @@ export interface CreateMetadataTemplateRequestBodyFieldsOptionsField {
    * The text value of the option. This represents both the display name of the
    * option and the internal key used when updating templates. */
   readonly key: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateMetadataTemplateRequestBodyFieldsField {
   /**
@@ -468,6 +470,7 @@ export interface CreateMetadataTemplateRequestBodyFieldsField {
    * A list of options for this field. This is used in combination with the
    * `enum` and `multiSelect` field types. */
   readonly options?: readonly CreateMetadataTemplateRequestBodyFieldsOptionsField[];
+  readonly rawData?: SerializedData;
 }
 export interface CreateMetadataTemplateRequestBody {
   /**
@@ -503,6 +506,7 @@ export interface CreateMetadataTemplateRequestBody {
    * when it is copied. By default, metadata is not copied along with a
    * file or folder when it is copied. */
   readonly copyInstanceOnItemCopy?: boolean;
+  readonly rawData?: SerializedData;
 }
 export class CreateMetadataTemplateHeaders {
   /**
@@ -594,7 +598,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplates(response.data);
+    return {
+      ...deserializeMetadataTemplates(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a metadata template by its `scope` and `templateKey` values.
@@ -639,7 +646,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplate(response.data);
+    return {
+      ...deserializeMetadataTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a metadata template.
@@ -693,7 +703,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplate(response.data);
+    return {
+      ...deserializeMetadataTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Delete a metadata template and its instances.
@@ -772,7 +785,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplate(response.data);
+    return {
+      ...deserializeMetadataTemplate(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Used to retrieve all generic, global metadata templates available to all
@@ -815,7 +831,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplates(response.data);
+    return {
+      ...deserializeMetadataTemplates(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Used to retrieve all metadata templates created to be used specifically within
@@ -858,7 +877,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplates(response.data);
+    return {
+      ...deserializeMetadataTemplates(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new metadata template that can be applied to
@@ -895,7 +917,10 @@ export class MetadataTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataTemplate(response.data);
+    return {
+      ...deserializeMetadataTemplate(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface MetadataTemplatesManagerInput {

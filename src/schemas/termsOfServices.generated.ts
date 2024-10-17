@@ -16,6 +16,7 @@ export interface TermsOfServices {
   /**
    * A list of terms of service objects */
   readonly entries?: readonly TermsOfService[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServices(val: TermsOfServices): SerializedData {
   return {

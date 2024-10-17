@@ -170,6 +170,7 @@ export interface AddClassificationToFileRequestBody {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly boxSecurityClassificationKey?: string;
+  readonly rawData?: SerializedData;
 }
 export class AddClassificationToFileHeaders {
   /**
@@ -216,6 +217,7 @@ export class UpdateClassificationOnFileRequestBody {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly value!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateClassificationOnFileRequestBody, 'op' | 'path'> &
       Partial<Pick<UpdateClassificationOnFileRequestBody, 'op' | 'path'>>
@@ -228,6 +230,9 @@ export class UpdateClassificationOnFileRequestBody {
     }
     if (fields.value) {
       this.value = fields.value;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -247,6 +252,7 @@ export interface UpdateClassificationOnFileRequestBodyInput {
    * [classification template](e://get_metadata_templates_enterprise_securityClassification-6VMVochwUWo_schema)
    * which lists all available classification keys. */
   readonly value: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateClassificationOnFileHeaders {
   /**
@@ -363,7 +369,10 @@ export class FileClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a classification to a file by specifying the label of the
@@ -415,7 +424,10 @@ export class FileClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a classification on a file.
@@ -468,7 +480,10 @@ export class FileClassificationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeClassification(response.data);
+    return {
+      ...deserializeClassification(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes any classifications from a file.

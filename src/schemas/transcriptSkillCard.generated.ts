@@ -18,6 +18,7 @@ export interface TranscriptSkillCardSkillCardTitleField {
   /**
    * The actual title to show in the UI. */
   readonly message: string;
+  readonly rawData?: SerializedData;
 }
 export type TranscriptSkillCardSkillTypeField = 'service';
 export class TranscriptSkillCardSkillField {
@@ -29,6 +30,7 @@ export class TranscriptSkillCardSkillField {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCardSkillField, 'type'> &
       Partial<Pick<TranscriptSkillCardSkillField, 'type'>>
@@ -38,6 +40,9 @@ export class TranscriptSkillCardSkillField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -49,6 +54,7 @@ export interface TranscriptSkillCardSkillFieldInput {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type TranscriptSkillCardInvocationTypeField = 'skill_invocation';
 export class TranscriptSkillCardInvocationField {
@@ -63,6 +69,7 @@ export class TranscriptSkillCardInvocationField {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCardInvocationField, 'type'> &
       Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>
@@ -72,6 +79,9 @@ export class TranscriptSkillCardInvocationField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -86,12 +96,14 @@ export interface TranscriptSkillCardInvocationFieldInput {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface TranscriptSkillCardEntriesAppearsField {
   /**
    * The time in seconds when an
    * entry should start appearing on a timeline. */
   readonly start?: number;
+  readonly rawData?: SerializedData;
 }
 export interface TranscriptSkillCardEntriesField {
   /**
@@ -102,6 +114,7 @@ export interface TranscriptSkillCardEntriesField {
    * Defines when a transcribed bit of text appears. This only includes a
    * start time and no end time. */
   readonly appears?: readonly TranscriptSkillCardEntriesAppearsField[];
+  readonly rawData?: SerializedData;
 }
 export class TranscriptSkillCard {
   /**
@@ -135,6 +148,7 @@ export class TranscriptSkillCard {
    * An list of entries for the card. This represents the individual entries of
    * the transcription. */
   readonly entries!: readonly TranscriptSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>
@@ -162,6 +176,9 @@ export class TranscriptSkillCard {
     }
     if (fields.entries) {
       this.entries = fields.entries;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -195,6 +212,7 @@ export interface TranscriptSkillCardInput {
    * An list of entries for the card. This represents the individual entries of
    * the transcription. */
   readonly entries: readonly TranscriptSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTranscriptSkillCardTypeField(
   val: TranscriptSkillCardTypeField

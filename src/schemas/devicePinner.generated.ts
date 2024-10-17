@@ -21,6 +21,7 @@ export interface DevicePinner {
   /**
    * The type of device being pinned */
   readonly productName?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeDevicePinnerTypeField(
   val: DevicePinnerTypeField

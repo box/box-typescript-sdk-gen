@@ -147,6 +147,7 @@ export interface CreateTermsOfServiceRequestBody {
    *
    * The text can be set to empty if the `status` is set to `disabled`. */
   readonly text: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateTermsOfServiceHeaders {
   /**
@@ -208,6 +209,7 @@ export interface UpdateTermsOfServiceByIdRequestBody {
    *
    * The text can be set to empty if the `status` is set to `disabled`. */
   readonly text: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateTermsOfServiceByIdHeaders {
   /**
@@ -293,7 +295,10 @@ export class TermsOfServicesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfServices(response.data);
+    return {
+      ...deserializeTermsOfServices(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a terms of service for a given enterprise
@@ -330,7 +335,10 @@ export class TermsOfServicesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfService(response.data);
+    return {
+      ...deserializeTermsOfService(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Fetches a specific terms of service.
@@ -366,7 +374,10 @@ export class TermsOfServicesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfService(response.data);
+    return {
+      ...deserializeTermsOfService(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a specific terms of service.
@@ -406,7 +417,10 @@ export class TermsOfServicesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfService(response.data);
+    return {
+      ...deserializeTermsOfService(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface TermsOfServicesManagerInput {

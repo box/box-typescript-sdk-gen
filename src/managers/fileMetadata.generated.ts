@@ -260,6 +260,7 @@ export interface UpdateFileMetadataByIdRequestBody {
    * from. Required for `move` or `copy` operations and must be in the
    * format of a [JSON-Pointer](https://tools.ietf.org/html/rfc6901). */
   readonly from?: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateFileMetadataByIdHeaders {
   /**
@@ -372,7 +373,10 @@ export class FileMetadataManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadatas(response.data);
+    return {
+      ...deserializeMetadatas(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves the instance of a metadata template that has been applied to a
@@ -425,7 +429,10 @@ export class FileMetadataManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataFull(response.data);
+    return {
+      ...deserializeMetadataFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Applies an instance of a metadata template to a file.
@@ -485,7 +492,10 @@ export class FileMetadataManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataFull(response.data);
+    return {
+      ...deserializeMetadataFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a piece of metadata on a file.
@@ -550,7 +560,10 @@ export class FileMetadataManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataFull(response.data);
+    return {
+      ...deserializeMetadataFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a piece of file metadata.

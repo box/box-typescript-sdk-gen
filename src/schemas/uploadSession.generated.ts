@@ -29,6 +29,7 @@ export interface UploadSessionSessionEndpointsField {
   /**
    * The URL used to get the upload log from. */
   readonly logEvent?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UploadSession {
   /**
@@ -58,6 +59,7 @@ export interface UploadSession {
    * provide insight if all parts have been uploaded correctly. */
   readonly numPartsProcessed?: number;
   readonly sessionEndpoints?: UploadSessionSessionEndpointsField;
+  readonly rawData?: SerializedData;
 }
 export function serializeUploadSessionTypeField(
   val: UploadSessionTypeField

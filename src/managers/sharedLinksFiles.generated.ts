@@ -264,6 +264,7 @@ export interface AddShareLinkToFileRequestBodySharedLinkPermissionsField {
    * This value can only be `true` is `can_download` is
    * also `true`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFileRequestBodySharedLinkField {
   /**
@@ -303,6 +304,7 @@ export interface AddShareLinkToFileRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: AddShareLinkToFileRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFileRequestBody {
   /**
@@ -310,6 +312,7 @@ export interface AddShareLinkToFileRequestBody {
    * Use an empty object (`{}`) to use the default settings for shared
    * links. */
   readonly sharedLink?: AddShareLinkToFileRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface AddShareLinkToFileQueryParams {
   /**
@@ -363,6 +366,7 @@ export interface UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField {
    * This value can only be `true` is `can_download` is
    * also `true`. */
   readonly canEdit?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFileRequestBodySharedLinkField {
   /**
@@ -402,11 +406,13 @@ export interface UpdateSharedLinkOnFileRequestBodySharedLinkField {
    * current date and time. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFileRequestBody {
   /**
    * The settings for the shared link to update. */
   readonly sharedLink?: UpdateSharedLinkOnFileRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateSharedLinkOnFileQueryParams {
   /**
@@ -438,12 +444,15 @@ export interface UpdateSharedLinkOnFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface RemoveSharedLinkFromFileRequestBodySharedLinkField {}
+export interface RemoveSharedLinkFromFileRequestBodySharedLinkField {
+  readonly rawData?: SerializedData;
+}
 export interface RemoveSharedLinkFromFileRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the file. */
   readonly sharedLink?: RemoveSharedLinkFromFileRequestBodySharedLinkField;
+  readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromFileQueryParams {
   /**
@@ -558,7 +567,10 @@ export class SharedLinksFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Gets the information for a shared link on a file.
@@ -607,7 +619,10 @@ export class SharedLinksFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Adds a shared link to a file.
@@ -660,7 +675,10 @@ export class SharedLinksFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a shared link on a file.
@@ -713,7 +731,10 @@ export class SharedLinksFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a shared link from a file.
@@ -766,7 +787,10 @@ export class SharedLinksFilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileFull(response.data);
+    return {
+      ...deserializeFileFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SharedLinksFilesManagerInput {

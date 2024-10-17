@@ -16,11 +16,13 @@ export interface UserAvatarPicUrlsField {
   /**
    * The location of the avatar preview. */
   readonly preview?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UserAvatar {
   /**
    * Represents an object with user avatar URLs. */
   readonly picUrls?: UserAvatarPicUrlsField;
+  readonly rawData?: SerializedData;
 }
 export function serializeUserAvatarPicUrlsField(
   val: UserAvatarPicUrlsField

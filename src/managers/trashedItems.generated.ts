@@ -166,7 +166,10 @@ export class TrashedItemsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeItems(response.data);
+    return {
+      ...deserializeItems(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface TrashedItemsManagerInput {

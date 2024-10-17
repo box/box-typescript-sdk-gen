@@ -11,6 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface UploadedPart {
   readonly part?: UploadPart;
+  readonly rawData?: SerializedData;
 }
 export function serializeUploadedPart(val: UploadedPart): SerializedData {
   return {

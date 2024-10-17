@@ -22,6 +22,7 @@ export interface AppItemAssociations {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string;
   readonly entries?: readonly AppItemAssociation[];
+  readonly rawData?: SerializedData;
 }
 export function serializeAppItemAssociations(
   val: AppItemAssociations

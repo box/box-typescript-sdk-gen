@@ -17,6 +17,7 @@ export interface ItemsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: ItemsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface Items {
   /**
@@ -54,6 +55,7 @@ export interface Items {
   /**
    * The items in this collection. */
   readonly entries?: readonly FileFullOrFolderMiniOrWebLink[];
+  readonly rawData?: SerializedData;
 }
 export function serializeItemsOrderDirectionField(
   val: ItemsOrderDirectionField

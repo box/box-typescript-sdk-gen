@@ -14,6 +14,7 @@ export interface EnterpriseBase {
   /**
    * `enterprise` */
   readonly type?: EnterpriseBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeEnterpriseBaseTypeField(
   val: EnterpriseBaseTypeField

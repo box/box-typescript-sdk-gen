@@ -18,6 +18,7 @@ export interface StatusSkillCardSkillCardTitleField {
   /**
    * The actual title to show in the UI. */
   readonly message: string;
+  readonly rawData?: SerializedData;
 }
 export type StatusSkillCardStatusCodeField =
   | 'invoked'
@@ -36,6 +37,7 @@ export interface StatusSkillCardStatusField {
    * A custom message that can be provided with this status.
    * This will be shown in the web app to the end user. */
   readonly message?: string;
+  readonly rawData?: SerializedData;
 }
 export type StatusSkillCardSkillTypeField = 'service';
 export class StatusSkillCardSkillField {
@@ -47,6 +49,7 @@ export class StatusSkillCardSkillField {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCardSkillField, 'type'> &
       Partial<Pick<StatusSkillCardSkillField, 'type'>>
@@ -56,6 +59,9 @@ export class StatusSkillCardSkillField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -67,6 +73,7 @@ export interface StatusSkillCardSkillFieldInput {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type StatusSkillCardInvocationTypeField = 'skill_invocation';
 export class StatusSkillCardInvocationField {
@@ -81,6 +88,7 @@ export class StatusSkillCardInvocationField {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCardInvocationField, 'type'> &
       Partial<Pick<StatusSkillCardInvocationField, 'type'>>
@@ -90,6 +98,9 @@ export class StatusSkillCardInvocationField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -104,6 +115,7 @@ export interface StatusSkillCardInvocationFieldInput {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export class StatusSkillCard {
   /**
@@ -130,6 +142,7 @@ export class StatusSkillCard {
    * The invocation of this service, used to track
    * which instance of a service applied the metadata. */
   readonly invocation!: StatusSkillCardInvocationField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>
@@ -154,6 +167,9 @@ export class StatusSkillCard {
     }
     if (fields.invocation) {
       this.invocation = fields.invocation;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -180,6 +196,7 @@ export interface StatusSkillCardInput {
    * The invocation of this service, used to track
    * which instance of a service applied the metadata. */
   readonly invocation: StatusSkillCardInvocationField;
+  readonly rawData?: SerializedData;
 }
 export function serializeStatusSkillCardTypeField(
   val: StatusSkillCardTypeField

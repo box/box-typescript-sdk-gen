@@ -25,6 +25,7 @@ export interface CommentItemField {
   /**
    * The type for this object */
   readonly type?: string;
+  readonly rawData?: SerializedData;
 }
 export type Comment = CommentBase & {
   /**

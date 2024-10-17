@@ -24,6 +24,7 @@ export class AiLlmEndpointParamsGoogle {
    * the most probable among all tokens in the model's vocabulary (also called greedy decoding),
    * while a `top-K` of 3 means that the next token is selected from among the three most probable tokens by using temperature. */
   readonly topK?: number;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsGoogle, 'type'> &
       Partial<Pick<AiLlmEndpointParamsGoogle, 'type'>>
@@ -39,6 +40,9 @@ export class AiLlmEndpointParamsGoogle {
     }
     if (fields.topK) {
       this.topK = fields.topK;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -58,6 +62,7 @@ export interface AiLlmEndpointParamsGoogleInput {
    * the most probable among all tokens in the model's vocabulary (also called greedy decoding),
    * while a `top-K` of 3 means that the next token is selected from among the three most probable tokens by using temperature. */
   readonly topK?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsGoogleTypeField(
   val: AiLlmEndpointParamsGoogleTypeField

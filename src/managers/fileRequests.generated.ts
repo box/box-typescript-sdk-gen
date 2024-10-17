@@ -303,7 +303,10 @@ export class FileRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileRequest(response.data);
+    return {
+      ...deserializeFileRequest(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a file request. This can be used to activate or
@@ -353,7 +356,10 @@ export class FileRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileRequest(response.data);
+    return {
+      ...deserializeFileRequest(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a file request permanently.
@@ -443,7 +449,10 @@ export class FileRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileRequest(response.data);
+    return {
+      ...deserializeFileRequest(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface FileRequestsManagerInput {

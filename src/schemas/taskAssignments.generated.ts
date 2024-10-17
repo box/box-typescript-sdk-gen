@@ -16,6 +16,7 @@ export interface TaskAssignments {
   /**
    * A list of task assignments */
   readonly entries?: readonly TaskAssignment[];
+  readonly rawData?: SerializedData;
 }
 export function serializeTaskAssignments(val: TaskAssignments): SerializedData {
   return {

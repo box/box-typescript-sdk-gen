@@ -29,6 +29,7 @@ export interface RetentionPolicyAssignmentAssignedToField {
   /**
    * The type of resource the policy is assigned to. */
   readonly type?: RetentionPolicyAssignmentAssignedToTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface RetentionPolicyAssignmentFilterFieldsField {
   /**
@@ -38,6 +39,7 @@ export interface RetentionPolicyAssignmentFilterFieldsField {
    * The metadata attribute field id. For value, only
    * enum and multiselect types are supported. */
   readonly value?: string;
+  readonly rawData?: SerializedData;
 }
 export class RetentionPolicyAssignment {
   /**
@@ -67,6 +69,7 @@ export class RetentionPolicyAssignment {
    * If the `assigned_to` type is `metadata_template`,
    * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RetentionPolicyAssignment, 'type'> &
       Partial<Pick<RetentionPolicyAssignment, 'type'>>
@@ -94,6 +97,9 @@ export class RetentionPolicyAssignment {
     }
     if (fields.startDateField) {
       this.startDateField = fields.startDateField;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -124,6 +130,7 @@ export interface RetentionPolicyAssignmentInput {
    * If the `assigned_to` type is `metadata_template`,
    * this field can be a date field's metadata attribute key id. */
   readonly startDateField?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyAssignmentTypeField(
   val: RetentionPolicyAssignmentTypeField

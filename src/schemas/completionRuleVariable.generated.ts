@@ -31,6 +31,7 @@ export class CompletionRuleVariable {
    * rule.
    *  */
   readonly variableValue!: CompletionRuleVariableVariableValueField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CompletionRuleVariable, 'type' | 'variableType'> &
       Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>
@@ -43,6 +44,9 @@ export class CompletionRuleVariable {
     }
     if (fields.variableValue) {
       this.variableValue = fields.variableValue;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -64,6 +68,7 @@ export interface CompletionRuleVariableInput {
    * rule.
    *  */
   readonly variableValue: CompletionRuleVariableVariableValueField;
+  readonly rawData?: SerializedData;
 }
 export function serializeCompletionRuleVariableTypeField(
   val: CompletionRuleVariableTypeField

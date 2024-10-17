@@ -16,6 +16,7 @@ export interface ShieldInformationBarrierSegmentMemberBase {
   /**
    * The type of the shield information barrier segment member */
   readonly type?: ShieldInformationBarrierSegmentMemberBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierSegmentMemberBaseTypeField(
   val: ShieldInformationBarrierSegmentMemberBaseTypeField

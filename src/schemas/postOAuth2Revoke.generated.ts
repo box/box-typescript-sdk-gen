@@ -18,6 +18,7 @@ export interface PostOAuth2Revoke {
   /**
    * The access token to revoke. */
   readonly token?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2Revoke(
   val: PostOAuth2Revoke

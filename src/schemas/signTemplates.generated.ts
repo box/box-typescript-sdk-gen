@@ -24,6 +24,7 @@ export interface SignTemplates {
   /**
    * A list of templates. */
   readonly entries?: readonly SignTemplate[];
+  readonly rawData?: SerializedData;
 }
 export function serializeSignTemplates(val: SignTemplates): SerializedData {
   return {
