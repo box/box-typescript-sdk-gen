@@ -27,6 +27,7 @@ export class AppItemEventSource {
   readonly appItemType!: string;
   readonly user?: UserMini;
   readonly group?: GroupMini;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AppItemEventSource, 'type'> &
       Partial<Pick<AppItemEventSource, 'type'>>
@@ -46,6 +47,9 @@ export class AppItemEventSource {
     if (fields.group) {
       this.group = fields.group;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AppItemEventSourceInput {
@@ -61,6 +65,7 @@ export interface AppItemEventSourceInput {
   readonly appItemType: string;
   readonly user?: UserMini;
   readonly group?: GroupMini;
+  readonly rawData?: SerializedData;
 }
 export function serializeAppItemEventSourceTypeField(
   val: AppItemEventSourceTypeField

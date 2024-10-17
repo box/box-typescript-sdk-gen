@@ -24,6 +24,7 @@ export interface StoragePolicyAssignments {
   /**
    * A list of storage policy assignments */
   readonly entries?: readonly StoragePolicyAssignment[];
+  readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyAssignments(
   val: StoragePolicyAssignments

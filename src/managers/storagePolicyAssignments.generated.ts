@@ -216,6 +216,7 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
   /**
    * The ID of the storage policy to assign. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       CreateStoragePolicyAssignmentRequestBodyStoragePolicyField,
@@ -231,6 +232,9 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput {
@@ -240,6 +244,7 @@ export interface CreateStoragePolicyAssignmentRequestBodyStoragePolicyFieldInput
   /**
    * The ID of the storage policy to assign. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField =
   | 'user'
@@ -251,6 +256,7 @@ export interface CreateStoragePolicyAssignmentRequestBodyAssignedToField {
   /**
    * The ID of the user or enterprise */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateStoragePolicyAssignmentRequestBody {
   /**
@@ -261,6 +267,7 @@ export interface CreateStoragePolicyAssignmentRequestBody {
    * The user or enterprise to assign the storage
    * policy to. */
   readonly assignedTo: CreateStoragePolicyAssignmentRequestBodyAssignedToField;
+  readonly rawData?: SerializedData;
 }
 export class CreateStoragePolicyAssignmentHeaders {
   /**
@@ -320,6 +327,7 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
   /**
    * The ID of the storage policy to assign. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField,
@@ -338,6 +346,9 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldInput {
@@ -347,12 +358,14 @@ export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldI
   /**
    * The ID of the storage policy to assign. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateStoragePolicyAssignmentByIdRequestBody {
   /**
    * The storage policy to assign to the user or
    * enterprise */
   readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateStoragePolicyAssignmentByIdHeaders {
   /**
@@ -464,7 +477,10 @@ export class StoragePolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicyAssignments(response.data);
+    return {
+      ...deserializeStoragePolicyAssignments(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a storage policy assignment for an enterprise or user.
@@ -500,7 +516,10 @@ export class StoragePolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicyAssignment(response.data);
+    return {
+      ...deserializeStoragePolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Fetches a specific storage policy assignment.
@@ -536,7 +555,10 @@ export class StoragePolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicyAssignment(response.data);
+    return {
+      ...deserializeStoragePolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a specific storage policy assignment.
@@ -576,7 +598,10 @@ export class StoragePolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicyAssignment(response.data);
+    return {
+      ...deserializeStoragePolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Delete a storage policy assignment.

@@ -41,6 +41,7 @@ export interface SkillCardsMetadata {
   /**
    * A list of Box Skill cards that have been applied to this file. */
   readonly cards?: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[];
+  readonly rawData?: SerializedData;
 }
 export function serializeSkillCardsMetadata(
   val: SkillCardsMetadata

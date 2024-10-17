@@ -440,7 +440,10 @@ export class SearchManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataQueryResults(response.data);
+    return {
+      ...deserializeMetadataQueryResults(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Searches for files, folders, web links, and shared files across the
@@ -527,9 +530,10 @@ export class SearchManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSearchResultsOrSearchResultsWithSharedLinks(
-      response.data
-    );
+    return {
+      ...deserializeSearchResultsOrSearchResultsWithSharedLinks(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SearchManagerInput {

@@ -152,7 +152,9 @@ export type EventEventTypeField =
   | 'WATERMARK_LABEL_CREATE'
   | 'WATERMARK_LABEL_DELETE'
   | string;
-export interface EventAdditionalDetailsField {}
+export interface EventAdditionalDetailsField {
+  readonly rawData?: SerializedData;
+}
 export interface Event {
   /**
    * `event` */
@@ -181,6 +183,7 @@ export interface Event {
    * have an `additional_details` object.  This object is only available in the
    * Enterprise Events. */
   readonly additionalDetails?: EventAdditionalDetailsField;
+  readonly rawData?: SerializedData;
 }
 export function serializeEventEventTypeField(
   val: EventEventTypeField

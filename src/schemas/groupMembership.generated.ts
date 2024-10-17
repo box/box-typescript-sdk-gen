@@ -35,6 +35,7 @@ export interface GroupMembership {
   /**
    * The time this membership was last modified. */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeGroupMembershipTypeField(
   val: GroupMembershipTypeField

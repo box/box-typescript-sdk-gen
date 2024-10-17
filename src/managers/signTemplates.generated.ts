@@ -165,7 +165,10 @@ export class SignTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignTemplates(response.data);
+    return {
+      ...deserializeSignTemplates(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Fetches details of a specific Box Sign template.
@@ -201,7 +204,10 @@ export class SignTemplatesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignTemplate(response.data);
+    return {
+      ...deserializeSignTemplate(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SignTemplatesManagerInput {

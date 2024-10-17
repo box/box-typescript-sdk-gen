@@ -248,6 +248,7 @@ export interface CreateLegalHoldPolicyAssignmentRequestBodyAssignToField {
   /**
    * The ID of item to assign the policy to */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateLegalHoldPolicyAssignmentRequestBody {
   /**
@@ -256,6 +257,7 @@ export interface CreateLegalHoldPolicyAssignmentRequestBody {
   /**
    * The item to assign the policy to */
   readonly assignTo: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField;
+  readonly rawData?: SerializedData;
 }
 export class CreateLegalHoldPolicyAssignmentHeaders {
   /**
@@ -447,7 +449,10 @@ export class LegalHoldPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignments(response.data);
+    return {
+      ...deserializeLegalHoldPolicyAssignments(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Assign a legal hold to a file, file version, folder, or user.
@@ -483,7 +488,10 @@ export class LegalHoldPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignment(response.data);
+    return {
+      ...deserializeLegalHoldPolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieve a legal hold policy assignment.
@@ -519,7 +527,10 @@ export class LegalHoldPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeLegalHoldPolicyAssignment(response.data);
+    return {
+      ...deserializeLegalHoldPolicyAssignment(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Remove a legal hold from an item.
@@ -625,7 +636,10 @@ export class LegalHoldPolicyAssignmentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFilesOnHold(response.data);
+    return {
+      ...deserializeFilesOnHold(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface LegalHoldPolicyAssignmentsManagerInput {

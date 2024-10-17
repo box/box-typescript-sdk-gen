@@ -6,7 +6,9 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export interface AiExtractResponse {}
+export interface AiExtractResponse {
+  readonly rawData?: SerializedData;
+}
 export function serializeAiExtractResponse(
   val: AiExtractResponse
 ): SerializedData {

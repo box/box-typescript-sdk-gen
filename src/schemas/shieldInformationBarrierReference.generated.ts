@@ -11,6 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface ShieldInformationBarrierReference {
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReference(
   val: ShieldInformationBarrierReference

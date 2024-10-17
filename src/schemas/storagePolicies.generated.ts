@@ -24,6 +24,7 @@ export interface StoragePolicies {
   /**
    * A list of storage policies */
   readonly entries?: readonly StoragePolicy[];
+  readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicies(val: StoragePolicies): SerializedData {
   return {

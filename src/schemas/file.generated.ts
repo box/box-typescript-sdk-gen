@@ -34,6 +34,7 @@ export interface FilePathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type FileSharedLinkAccessField = 'open' | 'company' | 'collaborators';
 export type FileSharedLinkEffectiveAccessField =
@@ -65,6 +66,7 @@ export interface FileSharedLinkPermissionsField {
    * This value can only be `true` if `can_download` is also `true` and if
    * the item has a type of `file`. */
   readonly canEdit: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface FileSharedLinkField {
   /**
@@ -131,6 +133,7 @@ export interface FileSharedLinkField {
   /**
    * The number of times this item has been previewed. */
   readonly previewCount: number;
+  readonly rawData?: SerializedData;
 }
 export type FileItemStatusField = 'active' | 'trashed' | 'deleted';
 export class File extends FileMini {

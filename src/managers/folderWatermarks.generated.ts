@@ -127,12 +127,16 @@ export class UpdateFolderWatermarkRequestBodyWatermarkField {
    * Currently only supports one option. */
   readonly imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
     'default' as UpdateFolderWatermarkRequestBodyWatermarkImprintField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'> &
       Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>
   ) {
     if (fields.imprint) {
       this.imprint = fields.imprint;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -142,11 +146,13 @@ export interface UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
    *
    * Currently only supports one option. */
   readonly imprint?: UpdateFolderWatermarkRequestBodyWatermarkImprintField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFolderWatermarkRequestBody {
   /**
    * The watermark to imprint on the folder */
   readonly watermark: UpdateFolderWatermarkRequestBodyWatermarkField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateFolderWatermarkHeaders {
   /**
@@ -260,7 +266,10 @@ export class FolderWatermarksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWatermark(response.data);
+    return {
+      ...deserializeWatermark(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Applies or update a watermark on a folder.
@@ -310,7 +319,10 @@ export class FolderWatermarksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWatermark(response.data);
+    return {
+      ...deserializeWatermark(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes the watermark from a folder.

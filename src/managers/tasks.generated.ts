@@ -169,6 +169,7 @@ export interface CreateTaskRequestBodyItemField {
   /**
    * `file` */
   readonly type?: CreateTaskRequestBodyItemTypeField;
+  readonly rawData?: SerializedData;
 }
 export type CreateTaskRequestBodyActionField = 'review' | 'complete';
 export type CreateTaskRequestBodyCompletionRuleField =
@@ -201,6 +202,7 @@ export interface CreateTaskRequestBody {
    * * `any_assignee` accepts any one assignee to review or
    * approve the the task in order for it to be considered completed. */
   readonly completionRule?: CreateTaskRequestBodyCompletionRuleField;
+  readonly rawData?: SerializedData;
 }
 export class CreateTaskHeaders {
   /**
@@ -277,6 +279,7 @@ export interface UpdateTaskByIdRequestBody {
    * * `any_assignee` accepts any one assignee to review or
    * approve the the task in order for it to be considered completed. */
   readonly completionRule?: UpdateTaskByIdRequestBodyCompletionRuleField;
+  readonly rawData?: SerializedData;
 }
 export class UpdateTaskByIdHeaders {
   /**
@@ -389,7 +392,10 @@ export class TasksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTasks(response.data);
+    return {
+      ...deserializeTasks(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a single task on a file. This task is not assigned to any user and
@@ -425,7 +431,10 @@ export class TasksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTask(response.data);
+    return {
+      ...deserializeTask(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves information about a specific task.
@@ -460,7 +469,10 @@ export class TasksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTask(response.data);
+    return {
+      ...deserializeTask(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a task. This can be used to update a task's configuration, or to
@@ -500,7 +512,10 @@ export class TasksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTask(response.data);
+    return {
+      ...deserializeTask(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes a task from a file.

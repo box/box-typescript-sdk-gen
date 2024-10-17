@@ -17,6 +17,7 @@ export interface FileVersionsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: FileVersionsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface FileVersions {
   /**
@@ -48,6 +49,7 @@ export interface FileVersions {
   /**
    * A list of file versions */
   readonly entries?: readonly FileVersionFull[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionsOrderDirectionField(
   val: FileVersionsOrderDirectionField

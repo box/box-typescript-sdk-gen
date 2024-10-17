@@ -270,6 +270,7 @@ export interface UpdateCommentByIdRequestBody {
   /**
    * The text of the comment to update */
   readonly message?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateCommentByIdQueryParams {
   /**
@@ -340,6 +341,7 @@ export interface CreateCommentRequestBodyItemField {
   /**
    * The type of the item that this comment will be placed on. */
   readonly type: CreateCommentRequestBodyItemTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateCommentRequestBody {
   /**
@@ -364,6 +366,7 @@ export interface CreateCommentRequestBody {
   /**
    * The item to attach the comment to. */
   readonly item: CreateCommentRequestBodyItemField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateCommentQueryParams {
   /**
@@ -476,7 +479,10 @@ export class CommentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeComments(response.data);
+    return {
+      ...deserializeComments(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves the message and metadata for a specific comment, as well
@@ -522,7 +528,10 @@ export class CommentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCommentFull(response.data);
+    return {
+      ...deserializeCommentFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Update the message of a comment.
@@ -572,7 +581,10 @@ export class CommentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCommentFull(response.data);
+    return {
+      ...deserializeCommentFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a comment.
@@ -654,7 +666,10 @@ export class CommentsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCommentFull(response.data);
+    return {
+      ...deserializeCommentFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface CommentsManagerInput {

@@ -18,6 +18,7 @@ export interface KeywordSkillCardSkillCardTitleField {
   /**
    * The actual title to show in the UI. */
   readonly message: string;
+  readonly rawData?: SerializedData;
 }
 export type KeywordSkillCardSkillTypeField = 'service';
 export class KeywordSkillCardSkillField {
@@ -29,6 +30,7 @@ export class KeywordSkillCardSkillField {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCardSkillField, 'type'> &
       Partial<Pick<KeywordSkillCardSkillField, 'type'>>
@@ -38,6 +40,9 @@ export class KeywordSkillCardSkillField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -49,6 +54,7 @@ export interface KeywordSkillCardSkillFieldInput {
    * A custom identifier that represent the service that
    * applied this metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type KeywordSkillCardInvocationTypeField = 'skill_invocation';
 export class KeywordSkillCardInvocationField {
@@ -63,6 +69,7 @@ export class KeywordSkillCardInvocationField {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCardInvocationField, 'type'> &
       Partial<Pick<KeywordSkillCardInvocationField, 'type'>>
@@ -72,6 +79,9 @@ export class KeywordSkillCardInvocationField {
     }
     if (fields.id) {
       this.id = fields.id;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -86,11 +96,13 @@ export interface KeywordSkillCardInvocationFieldInput {
    * nodes, this field can be used to identify the ID of
    * the node that was used to apply the metadata. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface KeywordSkillCardEntriesField {
   /**
    * The text of the keyword. */
   readonly text?: string;
+  readonly rawData?: SerializedData;
 }
 export class KeywordSkillCard {
   /**
@@ -117,6 +129,7 @@ export class KeywordSkillCard {
   /**
    * An list of entries in the metadata card. */
   readonly entries!: readonly KeywordSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>
@@ -141,6 +154,9 @@ export class KeywordSkillCard {
     }
     if (fields.entries) {
       this.entries = fields.entries;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -167,6 +183,7 @@ export interface KeywordSkillCardInput {
   /**
    * An list of entries in the metadata card. */
   readonly entries: readonly KeywordSkillCardEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeKeywordSkillCardTypeField(
   val: KeywordSkillCardTypeField

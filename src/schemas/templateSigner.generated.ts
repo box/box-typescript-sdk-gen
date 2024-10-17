@@ -44,6 +44,7 @@ export interface TemplateSigner {
   /**
    * An identifier for the signer. This can be used to identify a signer within the template. */
   readonly publicId?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeTemplateSignerRoleField(
   val: TemplateSignerRoleField

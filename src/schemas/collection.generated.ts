@@ -24,6 +24,7 @@ export interface Collection {
    * determine the proper visual treatment for
    * collections. */
   readonly collectionType?: CollectionCollectionTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeCollectionTypeField(
   val: CollectionTypeField

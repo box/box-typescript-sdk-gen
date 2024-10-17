@@ -25,6 +25,7 @@ export class FolderBase {
   /**
    * `folder` */
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>
   ) {
@@ -36,6 +37,9 @@ export class FolderBase {
     }
     if (fields.type) {
       this.type = fields.type;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -57,6 +61,7 @@ export interface FolderBaseInput {
   /**
    * `folder` */
   readonly type?: FolderBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeFolderBaseTypeField(
   val: FolderBaseTypeField

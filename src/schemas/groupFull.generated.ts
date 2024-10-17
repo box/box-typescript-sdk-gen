@@ -36,6 +36,7 @@ export interface GroupFullPermissionsField {
   /**
    * Specifies if the user can invite the group to collaborate on any items. */
   readonly canInviteAsCollaborator?: boolean;
+  readonly rawData?: SerializedData;
 }
 export class GroupFull extends Group {
   readonly provenance?: string;

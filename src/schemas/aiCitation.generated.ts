@@ -20,6 +20,7 @@ export interface AiCitation {
   /**
    * The name of the item. */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiCitationTypeField(
   val: AiCitationTypeField

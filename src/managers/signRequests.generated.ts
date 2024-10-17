@@ -295,7 +295,10 @@ export class SignRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignRequest(response.data);
+    return {
+      ...deserializeSignRequest(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Resends a signature request email to all outstanding signers.
@@ -368,7 +371,10 @@ export class SignRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignRequest(response.data);
+    return {
+      ...deserializeSignRequest(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Gets signature requests created by a user. If the `sign_files` and/or
@@ -408,7 +414,10 @@ export class SignRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignRequests(response.data);
+    return {
+      ...deserializeSignRequests(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a signature request. This involves preparing a document for signing and
@@ -445,7 +454,10 @@ export class SignRequestsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeSignRequest(response.data);
+    return {
+      ...deserializeSignRequest(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface SignRequestsManagerInput {

@@ -22,6 +22,7 @@ export interface MetadataFieldFilterDateRange {
    * equal to this value for the search query to match this
    * template. */
   readonly gt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataFieldFilterDateRange(
   val: MetadataFieldFilterDateRange

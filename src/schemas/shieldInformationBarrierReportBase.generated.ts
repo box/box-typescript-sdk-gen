@@ -15,6 +15,7 @@ export interface ShieldInformationBarrierReportBase {
   /**
    * The type of the shield information barrier report */
   readonly type?: ShieldInformationBarrierReportBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReportBaseTypeField(
   val: ShieldInformationBarrierReportBaseTypeField

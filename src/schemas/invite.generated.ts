@@ -24,6 +24,7 @@ export interface InviteInvitedToField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export class Invite {
   /**
@@ -46,6 +47,7 @@ export class Invite {
   /**
    * When the invite was modified. */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
   constructor(fields: Omit<Invite, 'type'> & Partial<Pick<Invite, 'type'>>) {
     if (fields.id) {
       this.id = fields.id;
@@ -71,6 +73,9 @@ export class Invite {
     if (fields.modifiedAt) {
       this.modifiedAt = fields.modifiedAt;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface InviteInput {
@@ -94,6 +99,7 @@ export interface InviteInput {
   /**
    * When the invite was modified. */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeInviteTypeField(val: InviteTypeField): SerializedData {
   return val;

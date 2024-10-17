@@ -178,7 +178,10 @@ export class StoragePoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicies(response.data);
+    return {
+      ...deserializeStoragePolicies(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Fetches a specific storage policy.
@@ -214,7 +217,10 @@ export class StoragePoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeStoragePolicy(response.data);
+    return {
+      ...deserializeStoragePolicy(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface StoragePoliciesManagerInput {

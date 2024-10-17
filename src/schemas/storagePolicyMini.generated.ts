@@ -15,6 +15,7 @@ export class StoragePolicyMini {
    * `storage_policy` */
   readonly type: StoragePolicyMiniTypeField =
     'storage_policy' as StoragePolicyMiniTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StoragePolicyMini, 'type'> &
       Partial<Pick<StoragePolicyMini, 'type'>>
@@ -25,6 +26,9 @@ export class StoragePolicyMini {
     if (fields.type) {
       this.type = fields.type;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface StoragePolicyMiniInput {
@@ -34,6 +38,7 @@ export interface StoragePolicyMiniInput {
   /**
    * `storage_policy` */
   readonly type?: StoragePolicyMiniTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyMiniTypeField(
   val: StoragePolicyMiniTypeField

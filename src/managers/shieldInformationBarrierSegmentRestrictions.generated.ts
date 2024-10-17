@@ -262,6 +262,7 @@ export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyShie
   /**
    * The type of the shield barrier segment for this member. */
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export type CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField =
   'shield_information_barrier_segment';
@@ -274,6 +275,7 @@ export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyRest
    * The type of the restricted shield
    * information barrier segment. */
   readonly type?: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField;
+  readonly rawData?: SerializedData;
 }
 export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
   /**
@@ -290,6 +292,7 @@ export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
    * The `type` and `id` of the restricted
    * shield information barrier segment. */
   readonly restrictedSegment!: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       CreateShieldInformationBarrierSegmentRestrictionRequestBody,
@@ -315,6 +318,9 @@ export class CreateShieldInformationBarrierSegmentRestrictionRequestBody {
     if (fields.restrictedSegment) {
       this.restrictedSegment = fields.restrictedSegment;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput {
@@ -331,6 +337,7 @@ export interface CreateShieldInformationBarrierSegmentRestrictionRequestBodyInpu
    * The `type` and `id` of the restricted
    * shield information barrier segment. */
   readonly restrictedSegment: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField;
+  readonly rawData?: SerializedData;
 }
 export class CreateShieldInformationBarrierSegmentRestrictionHeaders {
   /**
@@ -425,7 +432,10 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentRestriction(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegmentRestriction(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Delete shield information barrier segment restriction
@@ -507,9 +517,10 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentRestrictions(
-      response.data
-    );
+    return {
+      ...deserializeShieldInformationBarrierSegmentRestrictions(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a shield information barrier
@@ -556,7 +567,10 @@ export class ShieldInformationBarrierSegmentRestrictionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeShieldInformationBarrierSegmentRestriction(response.data);
+    return {
+      ...deserializeShieldInformationBarrierSegmentRestriction(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface ShieldInformationBarrierSegmentRestrictionsManagerInput {

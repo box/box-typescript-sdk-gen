@@ -35,6 +35,7 @@ export class TermsOfServiceUserStatus {
   /**
    * When the legal item was modified. */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TermsOfServiceUserStatus, 'type'> &
       Partial<Pick<TermsOfServiceUserStatus, 'type'>>
@@ -60,6 +61,9 @@ export class TermsOfServiceUserStatus {
     if (fields.modifiedAt) {
       this.modifiedAt = fields.modifiedAt;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface TermsOfServiceUserStatusInput {
@@ -80,6 +84,7 @@ export interface TermsOfServiceUserStatusInput {
   /**
    * When the legal item was modified. */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceUserStatusTypeField(
   val: TermsOfServiceUserStatusTypeField

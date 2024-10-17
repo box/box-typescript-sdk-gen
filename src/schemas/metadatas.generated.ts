@@ -16,6 +16,7 @@ export interface Metadatas {
   /**
    * The limit that was used for this page of results. */
   readonly limit?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadatas(val: Metadatas): SerializedData {
   return {

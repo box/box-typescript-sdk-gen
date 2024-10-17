@@ -21,6 +21,7 @@ export interface FolderLocks {
   /**
    * The marker for the start of the next page of results. */
   readonly nextMarker?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeFolderLocks(val: FolderLocks): SerializedData {
   return {

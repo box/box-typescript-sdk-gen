@@ -56,6 +56,7 @@ export interface Task {
    * * `any_assignee` accepts any one assignee to review or
    * approve the the task in order for it to be considered completed. */
   readonly completionRule?: TaskCompletionRuleField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTaskTypeField(val: TaskTypeField): SerializedData {
   return val;

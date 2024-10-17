@@ -24,6 +24,7 @@ export interface FileVersionRetentions {
   /**
    * A list of file version retentions */
   readonly entries?: readonly FileVersionRetention[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFileVersionRetentions(
   val: FileVersionRetentions

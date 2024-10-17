@@ -327,6 +327,7 @@ export interface UpdateFileVersionByIdRequestBody {
    * Set this to `null` to clear
    * the date and restore the file. */
   readonly trashedAt?: string;
+  readonly rawData?: SerializedData;
 }
 export class UpdateFileVersionByIdHeaders {
   /**
@@ -360,6 +361,7 @@ export interface PromoteFileVersionRequestBody {
   /**
    * The type to promote */
   readonly type?: PromoteFileVersionRequestBodyTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface PromoteFileVersionQueryParams {
   /**
@@ -475,7 +477,10 @@ export class FileVersionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersions(response.data);
+    return {
+      ...deserializeFileVersions(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieve a specific version of a file.
@@ -534,7 +539,10 @@ export class FileVersionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionFull(response.data);
+    return {
+      ...deserializeFileVersionFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Move a file version to the trash.
@@ -640,7 +648,10 @@ export class FileVersionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionFull(response.data);
+    return {
+      ...deserializeFileVersionFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Promote a specific version of a file.
@@ -712,7 +723,10 @@ export class FileVersionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFileVersionFull(response.data);
+    return {
+      ...deserializeFileVersionFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface FileVersionsManagerInput {

@@ -19,6 +19,7 @@ export interface AiResponse {
   /**
    * The reason the response finishes. */
   readonly completionReason?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiResponse(val: AiResponse): SerializedData {
   return {

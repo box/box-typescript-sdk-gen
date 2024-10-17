@@ -23,6 +23,7 @@ export interface TrashFolderRestoredPathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type TrashFolderRestoredItemStatusField =
   | 'active'
@@ -104,6 +105,7 @@ export interface TrashFolderRestored {
    * * `trashed` when the item has been moved to the trash but not deleted
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus?: TrashFolderRestoredItemStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrashFolderRestoredTypeField(
   val: TrashFolderRestoredTypeField

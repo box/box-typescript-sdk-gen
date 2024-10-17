@@ -30,6 +30,7 @@ export interface WorkflowFlowsTriggerScopeObjectField {
   /**
    * The id of the object */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsTriggerScopeField {
   /**
@@ -41,6 +42,7 @@ export interface WorkflowFlowsTriggerScopeField {
   /**
    * The object the `ref` points to */
   readonly object?: WorkflowFlowsTriggerScopeObjectField;
+  readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsTriggerField {
   /**
@@ -52,6 +54,7 @@ export interface WorkflowFlowsTriggerField {
   /**
    * List of trigger scopes */
   readonly scope?: readonly WorkflowFlowsTriggerScopeField[];
+  readonly rawData?: SerializedData;
 }
 export type WorkflowFlowsOutcomesTypeField = 'outcome';
 export type WorkflowFlowsOutcomesActionTypeField =
@@ -114,6 +117,7 @@ export interface WorkflowFlowsOutcomesIfRejectedField {
    * The name of the outcome */
   readonly name?: string;
   readonly actionType?: WorkflowFlowsOutcomesIfRejectedActionTypeField;
+  readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsOutcomesField {
   /**
@@ -130,6 +134,7 @@ export interface WorkflowFlowsOutcomesField {
    * If `action_type` is `assign_task` and the task is rejected, returns a
    * list of outcomes to complete */
   readonly ifRejected?: readonly WorkflowFlowsOutcomesIfRejectedField[];
+  readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsField {
   /**
@@ -144,6 +149,7 @@ export interface WorkflowFlowsField {
    * When this flow was created */
   readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
+  readonly rawData?: SerializedData;
 }
 export type Workflow = WorkflowMini & {
   /**

@@ -17,6 +17,7 @@ export interface GroupMembershipsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: GroupMembershipsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface GroupMemberships {
   /**
@@ -48,6 +49,7 @@ export interface GroupMemberships {
   /**
    * A list of group memberships */
   readonly entries?: readonly GroupMembership[];
+  readonly rawData?: SerializedData;
 }
 export function serializeGroupMembershipsOrderDirectionField(
   val: GroupMembershipsOrderDirectionField

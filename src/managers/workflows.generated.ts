@@ -121,6 +121,7 @@ export interface StartWorkflowRequestBodyFlowField {
   /**
    * The id of the flow */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type StartWorkflowRequestBodyFilesTypeField = 'file';
 export interface StartWorkflowRequestBodyFilesField {
@@ -130,6 +131,7 @@ export interface StartWorkflowRequestBodyFilesField {
   /**
    * The id of the file */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type StartWorkflowRequestBodyFolderTypeField = 'folder';
 export interface StartWorkflowRequestBodyFolderField {
@@ -139,6 +141,7 @@ export interface StartWorkflowRequestBodyFolderField {
   /**
    * The id of the folder */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface StartWorkflowRequestBody {
   /**
@@ -157,6 +160,7 @@ export interface StartWorkflowRequestBody {
   /**
    * A configurable outcome the workflow should complete. */
   readonly outcomes?: readonly Outcome[];
+  readonly rawData?: SerializedData;
 }
 export class StartWorkflowHeaders {
   /**
@@ -243,7 +247,10 @@ export class WorkflowsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeWorkflows(response.data);
+    return {
+      ...deserializeWorkflows(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Initiates a flow with a trigger type of `WORKFLOW_MANUAL_START`.

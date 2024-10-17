@@ -32,6 +32,7 @@ export interface ZipDownloadStatus {
   /**
    * The state of the archive being downloaded. */
   readonly state?: ZipDownloadStatusStateField;
+  readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadStatusStateField(
   val: ZipDownloadStatusStateField

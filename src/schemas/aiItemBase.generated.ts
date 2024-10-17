@@ -17,6 +17,7 @@ export class AiItemBase {
   /**
    * The content of the item, often the text representation. */
   readonly content?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiItemBase, 'type'> & Partial<Pick<AiItemBase, 'type'>>
   ) {
@@ -28,6 +29,9 @@ export class AiItemBase {
     }
     if (fields.content) {
       this.content = fields.content;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -41,6 +45,7 @@ export interface AiItemBaseInput {
   /**
    * The content of the item, often the text representation. */
   readonly content?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiItemBaseTypeField(
   val: AiItemBaseTypeField

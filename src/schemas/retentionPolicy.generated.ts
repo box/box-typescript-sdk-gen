@@ -37,6 +37,7 @@ export interface RetentionPolicyAssignmentCountsField {
   /**
    * The number of metadata template assignments this policy has. */
   readonly metadataTemplate?: number;
+  readonly rawData?: SerializedData;
 }
 export class RetentionPolicy extends RetentionPolicyMini {
   readonly description?: string;

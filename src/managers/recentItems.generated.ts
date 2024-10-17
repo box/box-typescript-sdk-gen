@@ -123,7 +123,10 @@ export class RecentItemsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeRecentItems(response.data);
+    return {
+      ...deserializeRecentItems(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface RecentItemsManagerInput {

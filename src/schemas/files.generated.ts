@@ -16,6 +16,7 @@ export interface Files {
   /**
    * A list of files */
   readonly entries?: readonly FileFull[];
+  readonly rawData?: SerializedData;
 }
 export function serializeFiles(val: Files): SerializedData {
   return {

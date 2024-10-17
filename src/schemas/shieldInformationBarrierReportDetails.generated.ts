@@ -10,9 +10,11 @@ export interface ShieldInformationBarrierReportDetailsDetailsField {
   /**
    * Folder ID for locating this report */
   readonly folderId?: string;
+  readonly rawData?: SerializedData;
 }
 export interface ShieldInformationBarrierReportDetails {
   readonly details?: ShieldInformationBarrierReportDetailsDetailsField;
+  readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReportDetailsDetailsField(
   val: ShieldInformationBarrierReportDetailsDetailsField

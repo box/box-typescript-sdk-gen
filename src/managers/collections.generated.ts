@@ -213,7 +213,10 @@ export class CollectionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollections(response.data);
+    return {
+      ...deserializeCollections(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves the files and/or folders contained within
@@ -263,7 +266,10 @@ export class CollectionsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeItems(response.data);
+    return {
+      ...deserializeItems(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface CollectionsManagerInput {

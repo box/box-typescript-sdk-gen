@@ -20,6 +20,7 @@ export interface MetadataQueryOrderByField {
    * The `ordering` direction must be the same for each item in the
    * array. */
   readonly direction?: MetadataQueryOrderByDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface MetadataQuery {
   /**
@@ -84,6 +85,7 @@ export interface MetadataQuery {
    * the field specified by the `field` name. Multiple fields for the same
    * `scope` and `templateKey` can be defined. */
   readonly fields?: readonly string[];
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataQueryOrderByDirectionField(
   val: MetadataQueryOrderByDirectionField

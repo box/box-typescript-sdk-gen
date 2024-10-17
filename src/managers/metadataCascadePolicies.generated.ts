@@ -246,6 +246,7 @@ export interface CreateMetadataCascadePolicyRequestBody {
    * [file]: e://get-files-id-metadata
    * [folder]: e://get-folders-id-metadata */
   readonly templateKey: string;
+  readonly rawData?: SerializedData;
 }
 export class CreateMetadataCascadePolicyHeaders {
   /**
@@ -332,6 +333,7 @@ export interface ApplyMetadataCascadePolicyRequestBody {
    * * `overwrite` will force-apply the templates values over
    *   any existing values. */
   readonly conflictResolution: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField;
+  readonly rawData?: SerializedData;
 }
 export class ApplyMetadataCascadePolicyHeaders {
   /**
@@ -424,7 +426,10 @@ export class MetadataCascadePoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataCascadePolicies(response.data);
+    return {
+      ...deserializeMetadataCascadePolicies(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new metadata cascade policy that applies a given
@@ -465,7 +470,10 @@ export class MetadataCascadePoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataCascadePolicy(response.data);
+    return {
+      ...deserializeMetadataCascadePolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieve a specific metadata cascade policy assigned to a folder.
@@ -501,7 +509,10 @@ export class MetadataCascadePoliciesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeMetadataCascadePolicy(response.data);
+    return {
+      ...deserializeMetadataCascadePolicy(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a metadata cascade policy.

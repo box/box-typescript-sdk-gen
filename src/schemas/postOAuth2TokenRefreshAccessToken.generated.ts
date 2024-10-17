@@ -21,6 +21,7 @@ export class PostOAuth2TokenRefreshAccessToken {
   /**
    * The refresh token to refresh. */
   readonly refreshToken!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'> &
       Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>
@@ -37,6 +38,9 @@ export class PostOAuth2TokenRefreshAccessToken {
     if (fields.refreshToken) {
       this.refreshToken = fields.refreshToken;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface PostOAuth2TokenRefreshAccessTokenInput {
@@ -52,6 +56,7 @@ export interface PostOAuth2TokenRefreshAccessTokenInput {
   /**
    * The refresh token to refresh. */
   readonly refreshToken: string;
+  readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   val: PostOAuth2TokenRefreshAccessTokenGrantTypeField

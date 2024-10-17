@@ -261,6 +261,7 @@ export interface CreateGroupRequestBody {
    * * `all_managed_users` - all managed users in the
    *   enterprise */
   readonly memberViewabilityLevel?: CreateGroupRequestBodyMemberViewabilityLevelField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateGroupQueryParams {
   /**
@@ -397,6 +398,7 @@ export interface UpdateGroupByIdRequestBody {
    * * `all_managed_users` - all managed users in the
    *   enterprise */
   readonly memberViewabilityLevel?: UpdateGroupByIdRequestBodyMemberViewabilityLevelField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateGroupByIdQueryParams {
   /**
@@ -523,7 +525,10 @@ export class GroupsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroups(response.data);
+    return {
+      ...deserializeGroups(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new group of users in an enterprise. Only users with admin
@@ -569,7 +574,10 @@ export class GroupsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupFull(response.data);
+    return {
+      ...deserializeGroupFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves information about a group. Only members of this
@@ -616,7 +624,10 @@ export class GroupsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupFull(response.data);
+    return {
+      ...deserializeGroupFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a specific group. Only admins of this
@@ -667,7 +678,10 @@ export class GroupsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupFull(response.data);
+    return {
+      ...deserializeGroupFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a group. Only users with

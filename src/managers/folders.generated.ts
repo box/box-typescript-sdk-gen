@@ -374,6 +374,7 @@ export interface UpdateFolderByIdRequestBodyParentField {
   /**
    * The ID of the new parent folder */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type UpdateFolderByIdRequestBodySharedLinkAccessField =
   | 'open'
@@ -385,6 +386,7 @@ export interface UpdateFolderByIdRequestBodySharedLinkPermissionsField {
    * This can only be set when `access` is set to
    * `open` or `company`. */
   readonly canDownload?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFolderByIdRequestBodySharedLinkField {
   /**
@@ -422,6 +424,7 @@ export interface UpdateFolderByIdRequestBodySharedLinkField {
    * users with paid accounts. */
   readonly unsharedAt?: DateTime;
   readonly permissions?: UpdateFolderByIdRequestBodySharedLinkPermissionsField;
+  readonly rawData?: SerializedData;
 }
 export type UpdateFolderByIdRequestBodyFolderUploadEmailAccessField =
   | 'open'
@@ -442,6 +445,7 @@ export interface UpdateFolderByIdRequestBodyFolderUploadEmailField {
    * When set to `open` it will accept emails from any email
    * address. */
   readonly access?: UpdateFolderByIdRequestBodyFolderUploadEmailAccessField;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFolderByIdRequestBodyCollectionsField {
   /**
@@ -450,6 +454,7 @@ export interface UpdateFolderByIdRequestBodyCollectionsField {
   /**
    * The type for this object */
   readonly type?: string;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFolderByIdRequestBody {
   /**
@@ -513,6 +518,7 @@ export interface UpdateFolderByIdRequestBody {
    * to also set `can_non_owners_invite_collaborators` to
    * `false` if it has not already been set. */
   readonly canNonOwnersViewCollaborators?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface UpdateFolderByIdQueryParams {
   /**
@@ -761,6 +767,7 @@ export interface CreateFolderRequestBodyParentField {
   /**
    * The ID of parent folder */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateFolderRequestBodyFolderUploadEmailAccessField =
   | 'open'
@@ -781,6 +788,7 @@ export interface CreateFolderRequestBodyFolderUploadEmailField {
    * When set to `open` it will accept emails from any email
    * address. */
   readonly access?: CreateFolderRequestBodyFolderUploadEmailAccessField;
+  readonly rawData?: SerializedData;
 }
 export type CreateFolderRequestBodySyncStateField =
   | 'synced'
@@ -807,6 +815,7 @@ export interface CreateFolderRequestBody {
    * user's device or not. This is used by Box Sync
    * (discontinued) and is not used by Box Drive. */
   readonly syncState?: CreateFolderRequestBodySyncStateField;
+  readonly rawData?: SerializedData;
 }
 export interface CreateFolderQueryParams {
   /**
@@ -849,6 +858,7 @@ export interface CopyFolderRequestBodyParentField {
   /**
    * The ID of parent folder */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CopyFolderRequestBody {
   /**
@@ -865,6 +875,7 @@ export interface CopyFolderRequestBody {
   /**
    * The destination folder to copy the folder to. */
   readonly parent: CopyFolderRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export interface CopyFolderQueryParams {
   /**
@@ -997,7 +1008,10 @@ export class FoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a folder. This can be also be used to move the folder,
@@ -1059,7 +1073,10 @@ export class FoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a folder, either permanently or by moving it to
@@ -1183,7 +1200,10 @@ export class FoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeItems(response.data);
+    return {
+      ...deserializeItems(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a new empty folder within the specified parent folder.
@@ -1228,7 +1248,10 @@ export class FoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Creates a copy of a folder within a destination folder.
@@ -1288,7 +1311,10 @@ export class FoldersManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface FoldersManagerInput {

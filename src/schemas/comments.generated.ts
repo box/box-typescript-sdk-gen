@@ -17,6 +17,7 @@ export interface CommentsOrderField {
   /**
    * The direction to order by, either ascending or descending */
   readonly direction?: CommentsOrderDirectionField;
+  readonly rawData?: SerializedData;
 }
 export interface Comments {
   /**
@@ -48,6 +49,7 @@ export interface Comments {
   /**
    * A list of comments */
   readonly entries?: readonly CommentFull[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCommentsOrderDirectionField(
   val: CommentsOrderDirectionField

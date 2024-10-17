@@ -13,6 +13,7 @@ export interface OAuth2Error {
   /**
    * The type of the error returned. */
   readonly errorDescription?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeOAuth2Error(val: OAuth2Error): SerializedData {
   return {

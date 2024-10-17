@@ -15,6 +15,7 @@ export interface LegalHoldPolicyAssignmentBase {
   /**
    * `legal_hold_policy_assignment` */
   readonly type?: LegalHoldPolicyAssignmentBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyAssignmentBaseTypeField(
   val: LegalHoldPolicyAssignmentBaseTypeField

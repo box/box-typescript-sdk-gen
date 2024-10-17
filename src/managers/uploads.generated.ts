@@ -108,6 +108,7 @@ export interface UploadFileVersionRequestBodyAttributesField {
    *
    * If not set, the upload time will be used. */
   readonly contentModifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export interface UploadFileVersionRequestBody {
   /**
@@ -212,6 +213,7 @@ export interface PreflightFileUploadCheckRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface PreflightFileUploadCheckRequestBody {
   /**
@@ -221,6 +223,7 @@ export interface PreflightFileUploadCheckRequestBody {
    * The size of the file in bytes */
   readonly size?: number;
   readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export class PreflightFileUploadCheckHeaders {
   /**
@@ -251,6 +254,7 @@ export interface UploadFileRequestBodyAttributesParentField {
    * The id of the parent folder. Use
    * `0` for the user's root folder. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface UploadFileRequestBodyAttributesField {
   /**
@@ -269,6 +273,7 @@ export interface UploadFileRequestBodyAttributesField {
    *
    * If not set, the upload time will be used. */
   readonly contentModifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export interface UploadFileRequestBody {
   /**
@@ -448,7 +453,10 @@ export class UploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFiles(response.data);
+    return {
+      ...deserializeFiles(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Performs a check to verify that a file will be accepted by Box
@@ -486,7 +494,10 @@ export class UploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUploadUrl(response.data);
+    return {
+      ...deserializeUploadUrl(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Uploads a small file to Box. For file sizes over 50MB we recommend
@@ -553,7 +564,10 @@ export class UploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFiles(response.data);
+    return {
+      ...deserializeFiles(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface UploadsManagerInput {

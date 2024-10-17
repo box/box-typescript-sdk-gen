@@ -233,6 +233,7 @@ export interface UpdateCollaborationByIdRequestBody {
    *
    * `can_view_path` can only be used for folder collaborations. */
   readonly canViewPath?: boolean;
+  readonly rawData?: SerializedData;
 }
 export class UpdateCollaborationByIdHeaders {
   /**
@@ -291,6 +292,7 @@ export interface CreateCollaborationRequestBodyItemField {
   /**
    * The ID of the item that will be granted access to */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateCollaborationRequestBodyAccessibleByTypeField =
   | 'user'
@@ -310,6 +312,7 @@ export interface CreateCollaborationRequestBodyAccessibleByField {
    *
    * Alternatively, use `id` to specify a user by user ID. */
   readonly login?: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateCollaborationRequestBodyRoleField =
   | 'editor'
@@ -362,6 +365,7 @@ export interface CreateCollaborationRequestBody {
    * collaborations can not have an expiry date and a value for this
    * field will be result in an error. */
   readonly expiresAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export interface CreateCollaborationQueryParams {
   /**
@@ -469,7 +473,10 @@ export class UserCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaboration(response.data);
+    return {
+      ...deserializeCollaboration(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a collaboration.
@@ -511,7 +518,10 @@ export class UserCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaboration(response.data);
+    return {
+      ...deserializeCollaboration(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a single collaboration.
@@ -607,7 +617,10 @@ export class UserCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeCollaboration(response.data);
+    return {
+      ...deserializeCollaboration(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface UserCollaborationsManagerInput {

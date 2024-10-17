@@ -21,6 +21,7 @@ export interface IntegrationMappings {
   /**
    * A list of integration mappings */
   readonly entries?: readonly IntegrationMapping[];
+  readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappings(
   val: IntegrationMappings

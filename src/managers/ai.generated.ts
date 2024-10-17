@@ -345,7 +345,10 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiResponseFull(response.data);
+    return {
+      ...deserializeAiResponseFull(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Sends an AI request to supported Large Language Models (LLMs) and returns generated text based on the provided prompt.
@@ -380,7 +383,10 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiResponse(response.data);
+    return {
+      ...deserializeAiResponse(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Get the AI agent default config
@@ -422,9 +428,12 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
-      response.data
-    );
+    return {
+      ...deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
+        response.data
+      ),
+      rawData: response.data,
+    };
   }
   /**
    * Sends an AI request to supported Large Language Models (LLMs) and extracts metadata in form of key-value pairs.
@@ -460,7 +469,10 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiResponse(response.data);
+    return {
+      ...deserializeAiResponse(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Sends an AI request to supported Large Language Models (LLMs) and returns extracted metadata as a set of key-value pairs.
@@ -499,7 +511,10 @@ export class AiManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAiExtractResponse(response.data);
+    return {
+      ...deserializeAiExtractResponse(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface AiManagerInput {

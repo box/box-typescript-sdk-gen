@@ -62,11 +62,13 @@ export interface TransferOwnedFolderRequestBodyOwnedByField {
    * The ID of the user who the folder will be
    * transferred to */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface TransferOwnedFolderRequestBody {
   /**
    * The user who the folder will be transferred to */
   readonly ownedBy: TransferOwnedFolderRequestBodyOwnedByField;
+  readonly rawData?: SerializedData;
 }
 export interface TransferOwnedFolderQueryParams {
   /**
@@ -205,7 +207,10 @@ export class TransferManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeFolderFull(response.data);
+    return {
+      ...deserializeFolderFull(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface TransferManagerInput {

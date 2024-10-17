@@ -24,6 +24,7 @@ export interface CollaborationAllowlistEntries {
   /**
    * A list of allowed collaboration domains */
   readonly entries?: readonly CollaborationAllowlistEntry[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistEntries(
   val: CollaborationAllowlistEntries

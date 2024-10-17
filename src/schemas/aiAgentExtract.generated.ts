@@ -20,6 +20,7 @@ export class AiAgentExtract {
     'ai_agent_extract' as AiAgentExtractTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentExtract, 'type'> & Partial<Pick<AiAgentExtract, 'type'>>
   ) {
@@ -32,6 +33,9 @@ export class AiAgentExtract {
     if (fields.basicText) {
       this.basicText = fields.basicText;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AiAgentExtractInput {
@@ -40,6 +44,7 @@ export interface AiAgentExtractInput {
   readonly type?: AiAgentExtractTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractTypeField(
   val: AiAgentExtractTypeField

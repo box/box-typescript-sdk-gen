@@ -23,6 +23,7 @@ export class AiTextGenItemsField {
   /**
    * The content to use as context for generating new text or editing existing text. */
   readonly content?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiTextGenItemsField, 'type'> &
       Partial<Pick<AiTextGenItemsField, 'type'>>
@@ -36,6 +37,9 @@ export class AiTextGenItemsField {
     if (fields.content) {
       this.content = fields.content;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AiTextGenItemsFieldInput {
@@ -48,6 +52,7 @@ export interface AiTextGenItemsFieldInput {
   /**
    * The content to use as context for generating new text or editing existing text. */
   readonly content?: string;
+  readonly rawData?: SerializedData;
 }
 export interface AiTextGen {
   /**
@@ -64,6 +69,7 @@ export interface AiTextGen {
    * The history of prompts and answers previously passed to the LLM. This parameter provides the additional context to the LLM when generating the response. */
   readonly dialogueHistory?: readonly AiDialogueHistory[];
   readonly aiAgent?: AiAgentTextGen;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiTextGenItemsTypeField(
   val: AiTextGenItemsTypeField

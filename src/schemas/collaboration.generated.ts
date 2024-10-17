@@ -41,6 +41,7 @@ export interface CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirem
    * field is `null` when there is no terms of service required. */
   readonly isAccepted?: boolean;
   readonly termsOfService?: TermsOfServiceBase;
+  readonly rawData?: SerializedData;
 }
 export interface CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField {
   /**
@@ -52,6 +53,7 @@ export interface CollaborationAcceptanceRequirementsStatusStrongPasswordRequirem
    * account. The field is `null` when a strong password is not
    * required. */
   readonly userHasStrongPassword?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField {
   /**
@@ -64,11 +66,13 @@ export interface CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticatio
    * enabled. The field is `null` when two-factor
    * authentication is not required. */
   readonly userHasTwoFactorAuthenticationEnabled?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface CollaborationAcceptanceRequirementsStatusField {
   readonly termsOfServiceRequirement?: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField;
   readonly strongPasswordRequirement?: CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField;
   readonly twoFactorAuthenticationRequirement?: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField;
+  readonly rawData?: SerializedData;
 }
 export class Collaboration {
   /**
@@ -115,6 +119,7 @@ export class Collaboration {
    * When the collaboration object was last modified. */
   readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<Collaboration, 'type'> & Partial<Pick<Collaboration, 'type'>>
   ) {
@@ -163,6 +168,9 @@ export class Collaboration {
     if (fields.acceptanceRequirementsStatus) {
       this.acceptanceRequirementsStatus = fields.acceptanceRequirementsStatus;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CollaborationInput {
@@ -209,6 +217,7 @@ export interface CollaborationInput {
    * When the collaboration object was last modified. */
   readonly modifiedAt?: DateTime;
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationTypeField(
   val: CollaborationTypeField

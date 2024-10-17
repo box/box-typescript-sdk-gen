@@ -22,12 +22,14 @@ export interface AiAgentLongTextToolEmbeddingsStrategyField {
   /**
    * The number of tokens per chunk. */
   readonly numTokensPerChunk?: number;
+  readonly rawData?: SerializedData;
 }
 export interface AiAgentLongTextToolEmbeddingsField {
   /**
    * The model used for the AI agent for calculating embeddings. */
   readonly model?: string;
   readonly strategy?: AiAgentLongTextToolEmbeddingsStrategyField;
+  readonly rawData?: SerializedData;
 }
 export type AiAgentLongTextTool = AiAgentBasicTextTool & {
   readonly embeddings?: AiAgentLongTextToolEmbeddingsField;

@@ -128,12 +128,14 @@ export interface RestoreWeblinkFromTrashRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreWeblinkFromTrashRequestBody {
   /**
    * An optional new name for the web link. */
   readonly name?: string;
   readonly parent?: RestoreWeblinkFromTrashRequestBodyParentField;
+  readonly rawData?: SerializedData;
 }
 export interface RestoreWeblinkFromTrashQueryParams {
   /**
@@ -304,7 +306,10 @@ export class TrashedWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashWebLinkRestored(response.data);
+    return {
+      ...deserializeTrashWebLinkRestored(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a web link that has been moved to the trash.
@@ -351,7 +356,10 @@ export class TrashedWebLinksManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTrashWebLink(response.data);
+    return {
+      ...deserializeTrashWebLink(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Permanently deletes a web link that is in the trash.

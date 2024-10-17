@@ -16,6 +16,7 @@ export interface RealtimeServers {
   /**
    * A list of real-time servers */
   readonly entries?: readonly RealtimeServer[];
+  readonly rawData?: SerializedData;
 }
 export function serializeRealtimeServers(val: RealtimeServers): SerializedData {
   return {

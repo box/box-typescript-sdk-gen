@@ -21,6 +21,7 @@ export class AiAgentAsk {
   readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>
   ) {
@@ -39,6 +40,9 @@ export class AiAgentAsk {
     if (fields.basicTextMulti) {
       this.basicTextMulti = fields.basicTextMulti;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface AiAgentAskInput {
@@ -49,6 +53,7 @@ export interface AiAgentAskInput {
   readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiAgentAskTypeField(
   val: AiAgentAskTypeField

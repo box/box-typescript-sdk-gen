@@ -33,6 +33,7 @@ export interface TrashFolderPathCollectionEntriesField {
   /**
    * The name of the Trash folder. */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface TrashFolderPathCollectionField {
   /**
@@ -41,6 +42,7 @@ export interface TrashFolderPathCollectionField {
   /**
    * Array of folders for this item's path collection */
   readonly entries: readonly TrashFolderPathCollectionEntriesField[];
+  readonly rawData?: SerializedData;
 }
 export type TrashFolderItemStatusField = 'active' | 'trashed' | 'deleted';
 export class TrashFolder {
@@ -118,6 +120,7 @@ export class TrashFolder {
    * * `trashed` when the item has been moved to the trash but not deleted
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus!: TrashFolderItemStatusField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TrashFolder, 'type'> & Partial<Pick<TrashFolder, 'type'>>
   ) {
@@ -183,6 +186,9 @@ export class TrashFolder {
     }
     if (fields.itemStatus) {
       this.itemStatus = fields.itemStatus;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -261,6 +267,7 @@ export interface TrashFolderInput {
    * * `trashed` when the item has been moved to the trash but not deleted
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus: TrashFolderItemStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrashFolderTypeField(
   val: TrashFolderTypeField

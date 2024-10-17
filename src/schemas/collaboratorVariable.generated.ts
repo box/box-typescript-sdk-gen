@@ -17,6 +17,7 @@ export class CollaboratorVariableVariableValueField {
   /**
    * User's ID. */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CollaboratorVariableVariableValueField, 'type'> &
       Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>
@@ -27,6 +28,9 @@ export class CollaboratorVariableVariableValueField {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CollaboratorVariableVariableValueFieldInput {
@@ -36,6 +40,7 @@ export interface CollaboratorVariableVariableValueFieldInput {
   /**
    * User's ID. */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export class CollaboratorVariable {
   /**
@@ -54,6 +59,7 @@ export class CollaboratorVariable {
   /**
    * A list of user IDs. */
   readonly variableValue!: readonly CollaboratorVariableVariableValueField[];
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CollaboratorVariable, 'type' | 'variableType'> &
       Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>
@@ -66,6 +72,9 @@ export class CollaboratorVariable {
     }
     if (fields.variableValue) {
       this.variableValue = fields.variableValue;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -84,6 +93,7 @@ export interface CollaboratorVariableInput {
   /**
    * A list of user IDs. */
   readonly variableValue: readonly CollaboratorVariableVariableValueField[];
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaboratorVariableTypeField(
   val: CollaboratorVariableTypeField

@@ -307,11 +307,13 @@ export interface CreateGroupMembershipRequestBodyUserField {
   /**
    * The ID of the user to add to the group */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateGroupMembershipRequestBodyGroupField {
   /**
    * The ID of the group to add the user to */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateGroupMembershipRequestBodyRoleField = 'member' | 'admin';
 export interface CreateGroupMembershipRequestBody {
@@ -338,6 +340,7 @@ export interface CreateGroupMembershipRequestBody {
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
+  readonly rawData?: SerializedData;
 }
 export interface CreateGroupMembershipQueryParams {
   /**
@@ -432,6 +435,7 @@ export interface UpdateGroupMembershipByIdRequestBody {
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
   };
+  readonly rawData?: SerializedData;
 }
 export interface UpdateGroupMembershipByIdQueryParams {
   /**
@@ -563,7 +567,10 @@ export class MembershipsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupMemberships(response.data);
+    return {
+      ...deserializeGroupMemberships(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves all the members for a group. Only members of this
@@ -611,7 +618,10 @@ export class MembershipsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupMemberships(response.data);
+    return {
+      ...deserializeGroupMemberships(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Creates a group membership. Only users with
@@ -658,7 +668,10 @@ export class MembershipsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupMembership(response.data);
+    return {
+      ...deserializeGroupMembership(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Retrieves a specific group membership. Only admins of this
@@ -706,7 +719,10 @@ export class MembershipsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupMembership(response.data);
+    return {
+      ...deserializeGroupMembership(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates a user's group membership. Only admins of this
@@ -758,7 +774,10 @@ export class MembershipsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeGroupMembership(response.data);
+    return {
+      ...deserializeGroupMembership(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Deletes a specific group membership. Only admins of this

@@ -26,6 +26,7 @@ export interface CollaborationAllowlistExemptTargetEnterpriseField {
   /**
    * The name of the enterprise */
   readonly name?: string;
+  readonly rawData?: SerializedData;
 }
 export interface CollaborationAllowlistExemptTarget {
   /**
@@ -42,6 +43,7 @@ export interface CollaborationAllowlistExemptTarget {
   /**
    * The time the entry was modified */
   readonly modifiedAt?: DateTime;
+  readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistExemptTargetTypeField(
   val: CollaborationAllowlistExemptTargetTypeField

@@ -261,7 +261,10 @@ export class AvatarsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeUserAvatar(response.data);
+    return {
+      ...deserializeUserAvatar(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Removes an existing user avatar.

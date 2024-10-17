@@ -151,6 +151,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
   /**
    * The ID of terms of service */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'> &
       Partial<
@@ -163,6 +164,9 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
@@ -172,6 +176,7 @@ export interface CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
   /**
    * The ID of terms of service */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export type CreateTermsOfServiceStatusForUserRequestBodyUserTypeField = 'user';
 export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
@@ -182,6 +187,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
   /**
    * The ID of user */
   readonly id!: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<
       CreateTermsOfServiceStatusForUserRequestBodyUserField,
@@ -197,6 +203,9 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
     if (fields.id) {
       this.id = fields.id;
     }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
+    }
   }
 }
 export interface CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
@@ -206,6 +215,7 @@ export interface CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
   /**
    * The ID of user */
   readonly id: string;
+  readonly rawData?: SerializedData;
 }
 export interface CreateTermsOfServiceStatusForUserRequestBody {
   /**
@@ -217,6 +227,7 @@ export interface CreateTermsOfServiceStatusForUserRequestBody {
   /**
    * Whether the user has accepted the terms. */
   readonly isAccepted: boolean;
+  readonly rawData?: SerializedData;
 }
 export class CreateTermsOfServiceStatusForUserHeaders {
   /**
@@ -246,6 +257,7 @@ export interface UpdateTermsOfServiceStatusForUserByIdRequestBody {
   /**
    * Whether the user has accepted the terms. */
   readonly isAccepted: boolean;
+  readonly rawData?: SerializedData;
 }
 export class UpdateTermsOfServiceStatusForUserByIdHeaders {
   /**
@@ -334,7 +346,10 @@ export class TermsOfServiceUserStatusesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfServiceUserStatuses(response.data);
+    return {
+      ...deserializeTermsOfServiceUserStatuses(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Sets the status for a terms of service for a user.
@@ -370,7 +385,10 @@ export class TermsOfServiceUserStatusesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfServiceUserStatus(response.data);
+    return {
+      ...deserializeTermsOfServiceUserStatus(response.data),
+      rawData: response.data,
+    };
   }
   /**
      * Updates the status for a terms of service for a user.
@@ -412,7 +430,10 @@ export class TermsOfServiceUserStatusesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeTermsOfServiceUserStatus(response.data);
+    return {
+      ...deserializeTermsOfServiceUserStatus(response.data),
+      rawData: response.data,
+    };
   }
 }
 export interface TermsOfServiceUserStatusesManagerInput {

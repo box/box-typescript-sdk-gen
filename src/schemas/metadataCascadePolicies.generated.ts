@@ -24,6 +24,7 @@ export interface MetadataCascadePolicies {
   /**
    * A list of metadata cascade policies */
   readonly entries?: readonly MetadataCascadePolicy[];
+  readonly rawData?: SerializedData;
 }
 export function serializeMetadataCascadePolicies(
   val: MetadataCascadePolicies

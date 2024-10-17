@@ -14,6 +14,7 @@ export class UserBase {
   /**
    * `user` */
   readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UserBase, 'type'> & Partial<Pick<UserBase, 'type'>>
   ) {
@@ -22,6 +23,9 @@ export class UserBase {
     }
     if (fields.type) {
       this.type = fields.type;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -32,6 +36,7 @@ export interface UserBaseInput {
   /**
    * `user` */
   readonly type?: UserBaseTypeField;
+  readonly rawData?: SerializedData;
 }
 export function serializeUserBaseTypeField(
   val: UserBaseTypeField

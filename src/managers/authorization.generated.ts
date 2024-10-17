@@ -363,7 +363,10 @@ export class AuthorizationManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAccessToken(response.data);
+    return {
+      ...deserializeAccessToken(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Refresh an Access Token using its client ID, secret, and refresh token.
@@ -406,7 +409,10 @@ export class AuthorizationManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
-    return deserializeAccessToken(response.data);
+    return {
+      ...deserializeAccessToken(response.data),
+      rawData: response.data,
+    };
   }
   /**
    * Revoke an active Access Token, effectively logging a user out

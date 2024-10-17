@@ -26,6 +26,7 @@ export interface TrashFileRestoredPathCollectionField {
   /**
    * The parent folders for this item */
   readonly entries: readonly FolderMini[];
+  readonly rawData?: SerializedData;
 }
 export type TrashFileRestoredItemStatusField = 'active' | 'trashed' | 'deleted';
 export class TrashFileRestored {
@@ -102,6 +103,7 @@ export class TrashFileRestored {
    * * `trashed` when the item has been moved to the trash but not deleted
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus!: TrashFileRestoredItemStatusField;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TrashFileRestored, 'type'> &
       Partial<Pick<TrashFileRestored, 'type'>>
@@ -171,6 +173,9 @@ export class TrashFileRestored {
     }
     if (fields.itemStatus) {
       this.itemStatus = fields.itemStatus;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -247,6 +252,7 @@ export interface TrashFileRestoredInput {
    * * `trashed` when the item has been moved to the trash but not deleted
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus: TrashFileRestoredItemStatusField;
+  readonly rawData?: SerializedData;
 }
 export function serializeTrashFileRestoredTypeField(
   val: TrashFileRestoredTypeField

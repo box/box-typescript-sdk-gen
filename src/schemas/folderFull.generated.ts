@@ -72,6 +72,7 @@ export interface FolderFullPermissionsField {
   /**
    * Specifies if the user can upload into this folder. */
   readonly canUpload: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface FolderFullMetadataField {
   readonly extraData?: {
@@ -79,6 +80,7 @@ export interface FolderFullMetadataField {
       readonly [key: string]: MetadataFull;
     };
   };
+  readonly rawData?: SerializedData;
 }
 export type FolderFullAllowedSharedLinkAccessLevelsField =
   | 'open'
@@ -96,6 +98,7 @@ export interface FolderFullWatermarkInfoField {
   /**
    * Specifies if this item has a watermark applied. */
   readonly isWatermarked?: boolean;
+  readonly rawData?: SerializedData;
 }
 export interface FolderFullClassificationField {
   /**
@@ -109,6 +112,7 @@ export interface FolderFullClassificationField {
    * classification label in a user-interface. Colors are defined by the admin
    * or co-admin who created the classification in the Box web app. */
   readonly color?: string;
+  readonly rawData?: SerializedData;
 }
 export class FolderFull extends Folder {
   readonly syncState?: FolderFullSyncStateField;

@@ -29,6 +29,7 @@ export interface RealtimeServer {
    * poll looks to be working but no packages are coming
    * through. */
   readonly retryTimeout?: number;
+  readonly rawData?: SerializedData;
 }
 export function serializeRealtimeServer(val: RealtimeServer): SerializedData {
   return {

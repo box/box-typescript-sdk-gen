@@ -16,6 +16,7 @@ export interface EmailAliases {
   /**
    * A list of email aliases */
   readonly entries?: readonly EmailAlias[];
+  readonly rawData?: SerializedData;
 }
 export function serializeEmailAliases(val: EmailAliases): SerializedData {
   return {

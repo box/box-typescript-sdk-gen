@@ -24,6 +24,7 @@ export interface ZipDownloadNameConflictsField {
    * The new name of this item as it will appear in the
    * downloaded `zip` archive. */
   readonly downloadName?: string;
+  readonly rawData?: SerializedData;
 }
 export interface ZipDownload {
   /**
@@ -68,6 +69,7 @@ export interface ZipDownload {
    * For every conflict, both files will be renamed and therefore this list
    * will always be a multiple of 2. */
   readonly nameConflicts?: readonly (readonly ZipDownloadNameConflictsField[])[];
+  readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadNameConflictsTypeField(
   val: ZipDownloadNameConflictsTypeField

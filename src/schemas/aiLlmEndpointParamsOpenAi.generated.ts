@@ -33,6 +33,7 @@ export class AiLlmEndpointParamsOpenAi {
   /**
    * Up to 4 sequences where the API will stop generating further tokens. */
   readonly stop?: string;
+  readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsOpenAi, 'type'> &
       Partial<Pick<AiLlmEndpointParamsOpenAi, 'type'>>
@@ -54,6 +55,9 @@ export class AiLlmEndpointParamsOpenAi {
     }
     if (fields.stop) {
       this.stop = fields.stop;
+    }
+    if (fields.rawData) {
+      this.rawData = fields.rawData;
     }
   }
 }
@@ -82,6 +86,7 @@ export interface AiLlmEndpointParamsOpenAiInput {
   /**
    * Up to 4 sequences where the API will stop generating further tokens. */
   readonly stop?: string;
+  readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsOpenAiTypeField(
   val: AiLlmEndpointParamsOpenAiTypeField
