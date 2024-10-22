@@ -26,9 +26,6 @@ export type ClientErrorCodeField =
   | 'item_name_invalid'
   | 'insufficient_scope';
 export interface ClientErrorContextInfoField {
-  /**
-   * More details on the error. */
-  readonly message?: string;
   readonly rawData?: SerializedData;
 }
 export interface ClientError {
@@ -135,7 +132,7 @@ export function deserializeClientErrorCodeField(
 export function serializeClientErrorContextInfoField(
   val: ClientErrorContextInfoField
 ): SerializedData {
-  return { ['message']: val.message == void 0 ? void 0 : val.message };
+  return {};
 }
 export function deserializeClientErrorContextInfoField(
   val: SerializedData
@@ -145,15 +142,7 @@ export function deserializeClientErrorContextInfoField(
       message: 'Expecting a map for "ClientErrorContextInfoField"',
     });
   }
-  if (!(val.message == void 0) && !sdIsString(val.message)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "message" of type "ClientErrorContextInfoField"',
-    });
-  }
-  const message: undefined | string =
-    val.message == void 0 ? void 0 : val.message;
-  return { message: message } satisfies ClientErrorContextInfoField;
+  return {} satisfies ClientErrorContextInfoField;
 }
 export function serializeClientError(val: ClientError): SerializedData {
   return {
