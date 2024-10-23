@@ -25,9 +25,6 @@ export type ClientErrorCodeField =
   | 'unavailable'
   | 'item_name_invalid'
   | 'insufficient_scope';
-export interface ClientErrorContextInfoField {
-  readonly rawData?: SerializedData;
-}
 export interface ClientError {
   /**
    * error */
@@ -45,7 +42,9 @@ export interface ClientError {
    * A free-form object that contains additional context
    * about the error. The possible fields are defined on
    * a per-endpoint basis. `message` is only one example. */
-  readonly contextInfo?: ClientErrorContextInfoField;
+  readonly contextInfo?: {
+    readonly [key: string]: any;
+  };
   /**
    * A URL that links to more information about why this error occurred. */
   readonly helpUrl?: string;
@@ -129,21 +128,6 @@ export function deserializeClientErrorCodeField(
   }
   throw new BoxSdkError({ message: "Can't deserialize ClientErrorCodeField" });
 }
-export function serializeClientErrorContextInfoField(
-  val: ClientErrorContextInfoField
-): SerializedData {
-  return {};
-}
-export function deserializeClientErrorContextInfoField(
-  val: SerializedData
-): ClientErrorContextInfoField {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a map for "ClientErrorContextInfoField"',
-    });
-  }
-  return {} satisfies ClientErrorContextInfoField;
-}
 export function serializeClientError(val: ClientError): SerializedData {
   return {
     ['type']:
@@ -155,7 +139,16 @@ export function serializeClientError(val: ClientError): SerializedData {
     ['context_info']:
       val.contextInfo == void 0
         ? void 0
-        : serializeClientErrorContextInfoField(val.contextInfo),
+        : (Object.fromEntries(
+            Object.entries(val.contextInfo).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ])
+          ) as {
+            readonly [key: string]: any;
+          }),
     ['help_url']: val.helpUrl == void 0 ? void 0 : val.helpUrl,
     ['request_id']: val.requestId == void 0 ? void 0 : val.requestId,
   };
@@ -181,10 +174,30 @@ export function deserializeClientError(val: SerializedData): ClientError {
   }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const contextInfo: undefined | ClientErrorContextInfoField =
+  if (!(val.context_info == void 0) && !sdIsMap(val.context_info)) {
+    throw new BoxSdkError({
+      message: 'Expecting object for "context_info" of type "ClientError"',
+    });
+  }
+  const contextInfo:
+    | undefined
+    | {
+        readonly [key: string]: any;
+      } =
     val.context_info == void 0
       ? void 0
-      : deserializeClientErrorContextInfoField(val.context_info);
+      : sdIsMap(val.context_info)
+      ? (Object.fromEntries(
+          Object.entries(val.context_info).map(([k, v]: [string, any]) => [
+            k,
+            (function (v: any): any {
+              return v;
+            })(v),
+          ])
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "help_url" of type "ClientError"',
