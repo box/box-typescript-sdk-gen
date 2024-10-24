@@ -2,15 +2,12 @@ import { serializeClientErrorTypeField } from './clientError.generated.js';
 import { deserializeClientErrorTypeField } from './clientError.generated.js';
 import { serializeClientErrorCodeField } from './clientError.generated.js';
 import { deserializeClientErrorCodeField } from './clientError.generated.js';
-import { serializeClientErrorContextInfoField } from './clientError.generated.js';
-import { deserializeClientErrorContextInfoField } from './clientError.generated.js';
 import { serializeClientError } from './clientError.generated.js';
 import { deserializeClientError } from './clientError.generated.js';
 import { serializeFileConflict } from './fileConflict.generated.js';
 import { deserializeFileConflict } from './fileConflict.generated.js';
 import { ClientErrorTypeField } from './clientError.generated.js';
 import { ClientErrorCodeField } from './clientError.generated.js';
-import { ClientErrorContextInfoField } from './clientError.generated.js';
 import { ClientError } from './clientError.generated.js';
 import { FileConflict } from './fileConflict.generated.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -92,10 +89,30 @@ export function deserializeConflictError(val: SerializedData): ConflictError {
   }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const contextInfo: undefined | ClientErrorContextInfoField =
+  if (!(val.context_info == void 0) && !sdIsMap(val.context_info)) {
+    throw new BoxSdkError({
+      message: 'Expecting object for "context_info" of type "ConflictError"',
+    });
+  }
+  const contextInfo:
+    | undefined
+    | {
+        readonly [key: string]: any;
+      } =
     val.context_info == void 0
       ? void 0
-      : deserializeClientErrorContextInfoField(val.context_info);
+      : sdIsMap(val.context_info)
+      ? (Object.fromEntries(
+          Object.entries(val.context_info).map(([k, v]: [string, any]) => [
+            k,
+            (function (v: any): any {
+              return v;
+            })(v),
+          ])
+        ) as {
+          readonly [key: string]: any;
+        })
+      : {};
   if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "help_url" of type "ConflictError"',
