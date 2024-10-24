@@ -1,7 +1,10 @@
+import { serializeAiLlmEndpointParamsAws } from './aiLlmEndpointParamsAws.generated.js';
+import { deserializeAiLlmEndpointParamsAws } from './aiLlmEndpointParamsAws.generated.js';
 import { serializeAiLlmEndpointParamsGoogle } from './aiLlmEndpointParamsGoogle.generated.js';
 import { deserializeAiLlmEndpointParamsGoogle } from './aiLlmEndpointParamsGoogle.generated.js';
 import { serializeAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsOpenAi.generated.js';
 import { deserializeAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsOpenAi.generated.js';
+import { AiLlmEndpointParamsAws } from './aiLlmEndpointParamsAws.generated.js';
 import { AiLlmEndpointParamsGoogle } from './aiLlmEndpointParamsGoogle.generated.js';
 import { AiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsOpenAi.generated.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -12,12 +15,17 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
-  | AiLlmEndpointParamsGoogle
-  | AiLlmEndpointParamsOpenAi;
-export function serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
+export type AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+
+    | AiLlmEndpointParamsAws
+    | AiLlmEndpointParamsGoogle
+    | AiLlmEndpointParamsOpenAi;
+export function serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
   val: any
 ): SerializedData {
+  if (val.type == 'aws_params') {
+    return serializeAiLlmEndpointParamsAws(val);
+  }
   if (val.type == 'google_params') {
     return serializeAiLlmEndpointParamsGoogle(val);
   }
@@ -26,14 +34,17 @@ export function serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
   }
   throw new BoxSdkError({ message: 'unknown type' });
 }
-export function deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
+export function deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
   val: SerializedData
-): AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi {
+): AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
       message:
-        'Expecting a map for "AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi"',
+        'Expecting a map for "AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi"',
     });
+  }
+  if (val.type == 'aws_params') {
+    return deserializeAiLlmEndpointParamsAws(val);
   }
   if (val.type == 'google_params') {
     return deserializeAiLlmEndpointParamsGoogle(val);
@@ -43,6 +54,6 @@ export function deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
   }
   throw new BoxSdkError({
     message:
-      "Can't deserialize AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi",
+      "Can't deserialize AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi",
   });
 }
