@@ -339,18 +339,18 @@ export class BoxJwtAuth implements Authentication {
   }
   /**
    * Create a new BoxJWTAuth instance that uses the provided enterprise ID as the subject of the JWT assertion.
-   * @param {string} userId The id of the enterprise to authenticate
+   * @param {string} enterpriseId The id of the enterprise to authenticate
    * @param {TokenStorage} tokenStorage Object responsible for storing token in newly created BoxJWTAuth. If no custom implementation provided, the token will be stored in memory.
    * @returns {BoxJwtAuth}
    */
   withEnterpriseSubject(
-    userId: string,
+    enterpriseId: string,
     tokenStorage: TokenStorage = new InMemoryTokenStorage({})
   ): BoxJwtAuth {
     const newConfig: JwtConfig = new JwtConfig({
       clientId: this.config.clientId,
       clientSecret: this.config.clientSecret,
-      enterpriseId: userId,
+      enterpriseId: enterpriseId,
       userId: void 0,
       jwtKeyId: this.config.jwtKeyId,
       privateKey: this.config.privateKey,
