@@ -1,6 +1,6 @@
-import { serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -18,7 +18,7 @@ export interface AiAgentBasicTextToolBase {
   readonly numTokensForCompletion?: number;
   /**
    * The parameters for the LLM endpoint specific to OpenAI / Google models. */
-  readonly llmEndpointParams?: AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
+  readonly llmEndpointParams?: AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentBasicTextToolBase(
@@ -33,7 +33,7 @@ export function serializeAiAgentBasicTextToolBase(
     ['llm_endpoint_params']:
       val.llmEndpointParams == void 0
         ? void 0
-        : serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
+        : serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
             val.llmEndpointParams
           ),
   };
@@ -68,10 +68,10 @@ export function deserializeAiAgentBasicTextToolBase(
       : val.num_tokens_for_completion;
   const llmEndpointParams:
     | undefined
-    | AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+    | AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
     val.llm_endpoint_params == void 0
       ? void 0
-      : deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
+      : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
           val.llm_endpoint_params
         );
   return {

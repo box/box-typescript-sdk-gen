@@ -1,5 +1,5 @@
-import { serializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { serializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { deserializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { serializeAiAgentBasicTextToolTextGen } from './aiAgentBasicTextToolTextGen.generated.js';
@@ -8,7 +8,7 @@ import { serializeAiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLon
 import { deserializeAiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLongTextToolTextGen.generated.js';
 import { serializeAiAgentLongTextToolTextGen } from './aiAgentLongTextToolTextGen.generated.js';
 import { deserializeAiAgentLongTextToolTextGen } from './aiAgentLongTextToolTextGen.generated.js';
-import { AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
 import { AiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { AiAgentBasicTextToolTextGen } from './aiAgentBasicTextToolTextGen.generated.js';
 import { AiAgentLongTextToolTextGenEmbeddingsField } from './aiAgentLongTextToolTextGen.generated.js';
@@ -101,10 +101,10 @@ export function deserializeAiAgentBasicGenTool(
       : val.num_tokens_for_completion;
   const llmEndpointParams:
     | undefined
-    | AiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+    | AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
     val.llm_endpoint_params == void 0
       ? void 0
-      : deserializeAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
+      : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
           val.llm_endpoint_params
         );
   return {
