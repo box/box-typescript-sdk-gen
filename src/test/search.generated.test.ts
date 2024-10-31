@@ -6,6 +6,8 @@ import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../manage
 import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeFiles } from '../schemas/files.generated.js';
 import { deserializeFiles } from '../schemas/files.generated.js';
 import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -28,8 +30,6 @@ import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { serializeMetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
@@ -43,6 +43,7 @@ import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -56,7 +57,6 @@ import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.gener
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { SearchForContentQueryParams } from '../managers/search.generated.js';
 import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
-import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { MetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { MetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
 import { getUuid } from '../internal/utils.js';
@@ -84,9 +84,20 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       templateKey: templateKey,
       fields: [
         {
-          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-          key: 'testName',
-          displayName: 'testName',
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'testColor',
+          displayName: 'testColor',
+          options: [
+            {
+              key: 'red',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'green',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'blue',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
       ],
     } satisfies CreateMetadataTemplateRequestBody);
@@ -106,7 +117,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
-      { ['testName']: 1 }
+      { ['testColor']: ['red', 'blue'] }
     );
   if (!(metadata.template == templateKey)) {
     throw new Error('Assertion failed');
@@ -123,8 +134,8 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     {
       ancestorFolderId: '0',
       from: searchFrom,
-      query: 'testName >= :value',
-      queryParams: { ['value']: '0.0' },
+      query: 'testColor = :value',
+      queryParams: { ['value']: ['red', 'blue'] },
     } satisfies MetadataQuery
   );
   if (!(query.entries!.length >= 0)) {
