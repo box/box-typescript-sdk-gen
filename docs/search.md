@@ -23,8 +23,8 @@ See the endpoint docs at
 await client.search.searchByMetadataQuery({
   ancestorFolderId: '0',
   from: searchFrom,
-  query: 'testName >= :value',
-  queryParams: { ['value']: '0.0' },
+  query: 'testColor = :value',
+  queryParams: { ['value']: ['red', 'blue'] },
 } satisfies MetadataQuery);
 ```
 
