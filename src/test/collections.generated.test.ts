@@ -27,6 +27,8 @@ import { UpdateFolderByIdRequestBody } from '../managers/folders.generated.js';
 import { UpdateFolderByIdRequestBodyCollectionsField } from '../managers/folders.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -37,7 +39,16 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testCollections', async function testCollections(): Promise<any> {
   const collections: Collections = await client.collections.getCollections();
-  const favouriteCollection: Collection = collections.entries![0];
+  const favouriteCollection: Collection =
+    await client.collections.getCollectionById(collections.entries![0].id!);
+  if (!((toString(favouriteCollection.type!) as string) == 'collection')) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !((toString(favouriteCollection.collectionType!) as string) == 'favorites')
+  ) {
+    throw new Error('Assertion failed');
+  }
   const collectionItems: Items = await client.collections.getCollectionItems(
     favouriteCollection.id!,
   );
