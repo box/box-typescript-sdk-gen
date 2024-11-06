@@ -43,7 +43,7 @@ export interface MetadataQuery {
    * `query`. The type of each parameter used in the `query_params` must match
    * the type of the corresponding metadata template field. */
   readonly queryParams?: {
-    readonly [key: string]: string;
+    readonly [key: string]: any;
   };
   /**
    * The ID of the folder that you are restricting the query to. A
@@ -145,7 +145,19 @@ export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
   return {
     ['from']: val.from,
     ['query']: val.query == void 0 ? void 0 : val.query,
-    ['query_params']: val.queryParams == void 0 ? void 0 : val.queryParams,
+    ['query_params']:
+      val.queryParams == void 0
+        ? void 0
+        : (Object.fromEntries(
+            Object.entries(val.queryParams).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          }),
     ['ancestor_folder_id']: val.ancestorFolderId,
     ['order_by']:
       val.orderBy == void 0
@@ -194,7 +206,7 @@ export function deserializeMetadataQuery(val: SerializedData): MetadataQuery {
   const queryParams:
     | undefined
     | {
-        readonly [key: string]: string;
+        readonly [key: string]: any;
       } =
     val.query_params == void 0
       ? void 0
@@ -203,11 +215,6 @@ export function deserializeMetadataQuery(val: SerializedData): MetadataQuery {
             Object.entries(val.query_params).map(([k, v]: [string, any]) => [
               k,
               (function (v: any): any {
-                if (!sdIsString(v)) {
-                  throw new BoxSdkError({
-                    message: 'Expecting string for "MetadataQuery"',
-                  });
-                }
                 return v;
               })(v),
             ]),
