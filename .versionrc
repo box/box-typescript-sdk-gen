@@ -11,6 +11,11 @@
       "hidden": false
     },
     {
+      "type": "schema-change",
+      "section": "API Schema Updates",
+      "hidden": false
+    },
+    {
       "type": "chore",
       "hidden": true
     },
