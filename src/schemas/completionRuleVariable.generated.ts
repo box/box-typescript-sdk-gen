@@ -34,7 +34,7 @@ export class CompletionRuleVariable {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CompletionRuleVariable, 'type' | 'variableType'> &
-      Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>
+      Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -71,12 +71,12 @@ export interface CompletionRuleVariableInput {
   readonly rawData?: SerializedData;
 }
 export function serializeCompletionRuleVariableTypeField(
-  val: CompletionRuleVariableTypeField
+  val: CompletionRuleVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCompletionRuleVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CompletionRuleVariableTypeField {
   if (val == 'variable') {
     return val;
@@ -86,12 +86,12 @@ export function deserializeCompletionRuleVariableTypeField(
   });
 }
 export function serializeCompletionRuleVariableVariableTypeField(
-  val: CompletionRuleVariableVariableTypeField
+  val: CompletionRuleVariableVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCompletionRuleVariableVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CompletionRuleVariableVariableTypeField {
   if (val == 'task_completion_rule') {
     return val;
@@ -101,12 +101,12 @@ export function deserializeCompletionRuleVariableVariableTypeField(
   });
 }
 export function serializeCompletionRuleVariableVariableValueField(
-  val: CompletionRuleVariableVariableValueField
+  val: CompletionRuleVariableVariableValueField,
 ): SerializedData {
   return val;
 }
 export function deserializeCompletionRuleVariableVariableValueField(
-  val: SerializedData
+  val: SerializedData,
 ): CompletionRuleVariableVariableValueField {
   if (val == 'all_assignees') {
     return val;
@@ -119,20 +119,20 @@ export function deserializeCompletionRuleVariableVariableValueField(
   });
 }
 export function serializeCompletionRuleVariable(
-  val: CompletionRuleVariable
+  val: CompletionRuleVariable,
 ): SerializedData {
   return {
     ['type']: serializeCompletionRuleVariableTypeField(val.type),
     ['variable_type']: serializeCompletionRuleVariableVariableTypeField(
-      val.variableType
+      val.variableType,
     ),
     ['variable_value']: serializeCompletionRuleVariableVariableValueField(
-      val.variableValue
+      val.variableValue,
     ),
   };
 }
 export function deserializeCompletionRuleVariable(
-  val: SerializedData
+  val: SerializedData,
 ): CompletionRuleVariable {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -170,7 +170,7 @@ export function deserializeCompletionRuleVariable(
   } satisfies CompletionRuleVariable;
 }
 export function serializeCompletionRuleVariableInput(
-  val: CompletionRuleVariableInput
+  val: CompletionRuleVariableInput,
 ): SerializedData {
   return {
     ['type']:
@@ -182,12 +182,12 @@ export function serializeCompletionRuleVariableInput(
         ? void 0
         : serializeCompletionRuleVariableVariableTypeField(val.variableType),
     ['variable_value']: serializeCompletionRuleVariableVariableValueField(
-      val.variableValue
+      val.variableValue,
     ),
   };
 }
 export function deserializeCompletionRuleVariableInput(
-  val: SerializedData
+  val: SerializedData,
 ): CompletionRuleVariableInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

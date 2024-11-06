@@ -21,7 +21,7 @@ export type AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointPara
     | AiLlmEndpointParamsGoogle
     | AiLlmEndpointParamsOpenAi;
 export function serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'aws_params') {
     return serializeAiLlmEndpointParamsAws(val);
@@ -35,7 +35,7 @@ export function serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLl
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

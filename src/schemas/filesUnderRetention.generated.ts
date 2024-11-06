@@ -27,7 +27,7 @@ export interface FilesUnderRetention {
   readonly rawData?: SerializedData;
 }
 export function serializeFilesUnderRetention(
-  val: FilesUnderRetention
+  val: FilesUnderRetention,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -42,7 +42,7 @@ export function serializeFilesUnderRetention(
   };
 }
 export function deserializeFilesUnderRetention(
-  val: SerializedData
+  val: SerializedData,
 ): FilesUnderRetention {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -80,10 +80,10 @@ export function deserializeFilesUnderRetention(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileMini {
-          return deserializeFileMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): FileMini {
+            return deserializeFileMini(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

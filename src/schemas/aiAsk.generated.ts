@@ -62,7 +62,7 @@ export function serializeAiAsk(val: AiAsk): SerializedData {
       val.dialogueHistory == void 0
         ? void 0
         : (val.dialogueHistory.map(function (
-            item: AiDialogueHistory
+            item: AiDialogueHistory,
           ): SerializedData {
             return serializeAiDialogueHistory(item);
           }) as readonly any[]),
@@ -117,12 +117,12 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
     val.dialogue_history == void 0
       ? void 0
       : sdIsList(val.dialogue_history)
-      ? (val.dialogue_history.map(function (
-          itm: SerializedData
-        ): AiDialogueHistory {
-          return deserializeAiDialogueHistory(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.dialogue_history.map(function (
+            itm: SerializedData,
+          ): AiDialogueHistory {
+            return deserializeAiDialogueHistory(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.include_citations == void 0) &&
     !sdIsBoolean(val.include_citations)

@@ -18,7 +18,8 @@ export class AiAgentTextGen {
   readonly basicGen?: AiAgentBasicGenTool;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<AiAgentTextGen, 'type'> & Partial<Pick<AiAgentTextGen, 'type'>>
+    fields: Omit<AiAgentTextGen, 'type'> &
+      Partial<Pick<AiAgentTextGen, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -39,12 +40,12 @@ export interface AiAgentTextGenInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentTextGenTypeField(
-  val: AiAgentTextGenTypeField
+  val: AiAgentTextGenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiAgentTextGenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentTextGenTypeField {
   if (val == 'ai_agent_text_gen') {
     return val;
@@ -72,7 +73,7 @@ export function deserializeAiAgentTextGen(val: SerializedData): AiAgentTextGen {
     });
   }
   const type: AiAgentTextGenTypeField = deserializeAiAgentTextGenTypeField(
-    val.type
+    val.type,
   );
   const basicGen: undefined | AiAgentBasicGenTool =
     val.basic_gen == void 0
@@ -81,7 +82,7 @@ export function deserializeAiAgentTextGen(val: SerializedData): AiAgentTextGen {
   return { type: type, basicGen: basicGen } satisfies AiAgentTextGen;
 }
 export function serializeAiAgentTextGenInput(
-  val: AiAgentTextGenInput
+  val: AiAgentTextGenInput,
 ): SerializedData {
   return {
     ['type']:
@@ -93,7 +94,7 @@ export function serializeAiAgentTextGenInput(
   };
 }
 export function deserializeAiAgentTextGenInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentTextGenInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

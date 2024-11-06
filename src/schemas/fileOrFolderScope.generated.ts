@@ -31,12 +31,12 @@ export interface FileOrFolderScope {
   readonly rawData?: SerializedData;
 }
 export function serializeFileOrFolderScopeScopeField(
-  val: FileOrFolderScopeScopeField
+  val: FileOrFolderScopeScopeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileOrFolderScopeScopeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileOrFolderScopeScopeField {
   if (val == 'annotation_edit') {
     return val;
@@ -82,7 +82,7 @@ export function deserializeFileOrFolderScopeScopeField(
   });
 }
 export function serializeFileOrFolderScope(
-  val: FileOrFolderScope
+  val: FileOrFolderScope,
 ): SerializedData {
   return {
     ['scope']:
@@ -94,7 +94,7 @@ export function serializeFileOrFolderScope(
   };
 }
 export function deserializeFileOrFolderScope(
-  val: SerializedData
+  val: SerializedData,
 ): FileOrFolderScope {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

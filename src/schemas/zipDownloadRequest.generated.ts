@@ -29,12 +29,12 @@ export interface ZipDownloadRequest {
   readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadRequestItemsTypeField(
-  val: ZipDownloadRequestItemsTypeField
+  val: ZipDownloadRequestItemsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeZipDownloadRequestItemsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadRequestItemsTypeField {
   if (val == 'file') {
     return val;
@@ -47,7 +47,7 @@ export function deserializeZipDownloadRequestItemsTypeField(
   });
 }
 export function serializeZipDownloadRequestItemsField(
-  val: ZipDownloadRequestItemsField
+  val: ZipDownloadRequestItemsField,
 ): SerializedData {
   return {
     ['type']: serializeZipDownloadRequestItemsTypeField(val.type),
@@ -55,7 +55,7 @@ export function serializeZipDownloadRequestItemsField(
   };
 }
 export function deserializeZipDownloadRequestItemsField(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadRequestItemsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -86,11 +86,11 @@ export function deserializeZipDownloadRequestItemsField(
   return { type: type, id: id } satisfies ZipDownloadRequestItemsField;
 }
 export function serializeZipDownloadRequest(
-  val: ZipDownloadRequest
+  val: ZipDownloadRequest,
 ): SerializedData {
   return {
     ['items']: val.items.map(function (
-      item: ZipDownloadRequestItemsField
+      item: ZipDownloadRequestItemsField,
     ): SerializedData {
       return serializeZipDownloadRequestItemsField(item);
     }) as readonly any[],
@@ -99,7 +99,7 @@ export function serializeZipDownloadRequest(
   };
 }
 export function deserializeZipDownloadRequest(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadRequest {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -118,7 +118,7 @@ export function deserializeZipDownloadRequest(
   }
   const items: readonly ZipDownloadRequestItemsField[] = sdIsList(val.items)
     ? (val.items.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): ZipDownloadRequestItemsField {
         return deserializeZipDownloadRequestItemsField(itm);
       }) as readonly any[])

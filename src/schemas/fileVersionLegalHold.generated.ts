@@ -38,12 +38,12 @@ export interface FileVersionLegalHold {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionLegalHoldTypeField(
-  val: FileVersionLegalHoldTypeField
+  val: FileVersionLegalHoldTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileVersionLegalHoldTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionLegalHoldTypeField {
   if (val == 'file_version_legal_hold') {
     return val;
@@ -53,7 +53,7 @@ export function deserializeFileVersionLegalHoldTypeField(
   });
 }
 export function serializeFileVersionLegalHold(
-  val: FileVersionLegalHold
+  val: FileVersionLegalHold,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -70,7 +70,7 @@ export function serializeFileVersionLegalHold(
       val.legalHoldPolicyAssignments == void 0
         ? void 0
         : (val.legalHoldPolicyAssignments.map(function (
-            item: LegalHoldPolicyAssignment
+            item: LegalHoldPolicyAssignment,
           ): SerializedData {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
@@ -79,7 +79,7 @@ export function serializeFileVersionLegalHold(
   };
 }
 export function deserializeFileVersionLegalHold(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionLegalHold {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -117,12 +117,12 @@ export function deserializeFileVersionLegalHold(
     val.legal_hold_policy_assignments == void 0
       ? void 0
       : sdIsList(val.legal_hold_policy_assignments)
-      ? (val.legal_hold_policy_assignments.map(function (
-          itm: SerializedData
-        ): LegalHoldPolicyAssignment {
-          return deserializeLegalHoldPolicyAssignment(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.legal_hold_policy_assignments.map(function (
+            itm: SerializedData,
+          ): LegalHoldPolicyAssignment {
+            return deserializeLegalHoldPolicyAssignment(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.deleted_at == void 0) && !sdIsString(val.deleted_at)) {
     throw new BoxSdkError({
       message:

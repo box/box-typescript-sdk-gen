@@ -19,7 +19,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
-  segmentMember.id!
+  segmentMember.id!,
 );
 ```
 
@@ -50,7 +50,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarrierSegmentMemberById(
-  segmentMember.id!
+  segmentMember.id!,
 );
 ```
 
@@ -84,7 +84,7 @@ See the endpoint docs at
 await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMembers(
   {
     shieldInformationBarrierSegmentId: segment.id!,
-  } satisfies GetShieldInformationBarrierSegmentMembersQueryParams
+  } satisfies GetShieldInformationBarrierSegmentMembersQueryParams,
 );
 ```
 
@@ -121,7 +121,7 @@ await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarri
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField,
     } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
     user: new UserBase({ id: getEnvVar('USER_ID') }),
-  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
+  } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody,
 );
 ```
 

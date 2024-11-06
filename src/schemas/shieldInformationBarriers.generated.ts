@@ -24,7 +24,7 @@ export interface ShieldInformationBarriers {
   readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarriers(
-  val: ShieldInformationBarriers
+  val: ShieldInformationBarriers,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -33,14 +33,14 @@ export function serializeShieldInformationBarriers(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: ShieldInformationBarrier
+            item: ShieldInformationBarrier,
           ): SerializedData {
             return serializeShieldInformationBarrier(item);
           }) as readonly any[]),
   };
 }
 export function deserializeShieldInformationBarriers(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarriers {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -72,12 +72,12 @@ export function deserializeShieldInformationBarriers(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): ShieldInformationBarrier {
-          return deserializeShieldInformationBarrier(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): ShieldInformationBarrier {
+            return deserializeShieldInformationBarrier(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

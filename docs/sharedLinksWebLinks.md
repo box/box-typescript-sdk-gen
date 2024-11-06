@@ -30,9 +30,9 @@ await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       webLinkFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword'
+      '&shared_link_password=incorrectPassword',
     ) as string,
-  } satisfies FindWebLinkForSharedLinkHeadersInput
+  } satisfies FindWebLinkForSharedLinkHeadersInput,
 );
 ```
 
@@ -105,7 +105,7 @@ await client.sharedLinksWebLinks.addShareLinkToWebLink(
       password: 'Secret123@',
     } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField,
   } satisfies AddShareLinkToWebLinkRequestBody,
-  { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams
+  { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams,
 );
 ```
 
@@ -147,7 +147,7 @@ await client.sharedLinksWebLinks.updateSharedLinkOnWebLink(
         'collaborators' as UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField,
     } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField,
   } satisfies UpdateSharedLinkOnWebLinkRequestBody,
-  { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams
+  { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams,
 );
 ```
 

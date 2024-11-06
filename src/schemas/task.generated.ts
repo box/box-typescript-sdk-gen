@@ -71,7 +71,7 @@ export function serializeTaskActionField(val: TaskActionField): SerializedData {
   return val;
 }
 export function deserializeTaskActionField(
-  val: SerializedData
+  val: SerializedData,
 ): TaskActionField {
   if (val == 'review') {
     return val;
@@ -82,12 +82,12 @@ export function deserializeTaskActionField(
   throw new BoxSdkError({ message: "Can't deserialize TaskActionField" });
 }
 export function serializeTaskCompletionRuleField(
-  val: TaskCompletionRuleField
+  val: TaskCompletionRuleField,
 ): SerializedData {
   return val;
 }
 export function deserializeTaskCompletionRuleField(
-  val: SerializedData
+  val: SerializedData,
 ): TaskCompletionRuleField {
   if (val == 'all_assignees') {
     return val;

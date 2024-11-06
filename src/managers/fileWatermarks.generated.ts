@@ -27,7 +27,7 @@ export class GetFileWatermarkOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -43,7 +43,7 @@ export interface GetFileWatermarkOptionalsInput {
 }
 export class UpdateFileWatermarkOptionals {
   readonly headers: UpdateFileWatermarkHeaders = new UpdateFileWatermarkHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -53,7 +53,7 @@ export class UpdateFileWatermarkOptionals {
     > &
       Partial<
         Pick<UpdateFileWatermarkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -69,7 +69,7 @@ export interface UpdateFileWatermarkOptionalsInput {
 }
 export class DeleteFileWatermarkOptionals {
   readonly headers: DeleteFileWatermarkHeaders = new DeleteFileWatermarkHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -79,7 +79,7 @@ export class DeleteFileWatermarkOptionals {
     > &
       Partial<
         Pick<DeleteFileWatermarkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -101,7 +101,7 @@ export class GetFileWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -128,7 +128,7 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'> &
-      Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>
+      Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>,
   ) {
     if (fields.imprint) {
       this.imprint = fields.imprint;
@@ -160,7 +160,7 @@ export class UpdateFileWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFileWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFileWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -184,7 +184,7 @@ export class DeleteFileWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFileWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFileWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -211,7 +211,7 @@ export class FileWatermarksManager {
       | 'updateFileWatermark'
       | 'deleteFileWatermark'
     > &
-      Partial<Pick<FileWatermarksManager, 'networkSession'>>
+      Partial<Pick<FileWatermarksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -235,7 +235,7 @@ export class FileWatermarksManager {
      */
   async getFileWatermark(
     fileId: string,
-    optionalsInput: GetFileWatermarkOptionalsInput = {}
+    optionalsInput: GetFileWatermarkOptionalsInput = {},
   ): Promise<Watermark> {
     const optionals: GetFileWatermarkOptionals = new GetFileWatermarkOptionals({
       headers: optionalsInput.headers,
@@ -251,7 +251,7 @@ export class FileWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -282,7 +282,7 @@ export class FileWatermarksManager {
   async updateFileWatermark(
     fileId: string,
     requestBody: UpdateFileWatermarkRequestBody,
-    optionalsInput: UpdateFileWatermarkOptionalsInput = {}
+    optionalsInput: UpdateFileWatermarkOptionalsInput = {},
   ): Promise<Watermark> {
     const optionals: UpdateFileWatermarkOptionals =
       new UpdateFileWatermarkOptionals({
@@ -299,7 +299,7 @@ export class FileWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -330,7 +330,7 @@ export class FileWatermarksManager {
      */
   async deleteFileWatermark(
     fileId: string,
-    optionalsInput: DeleteFileWatermarkOptionalsInput = {}
+    optionalsInput: DeleteFileWatermarkOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFileWatermarkOptionals =
       new DeleteFileWatermarkOptionals({
@@ -347,7 +347,7 @@ export class FileWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -364,12 +364,12 @@ export interface FileWatermarksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-  val: UpdateFileWatermarkRequestBodyWatermarkImprintField
+  val: UpdateFileWatermarkRequestBodyWatermarkImprintField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileWatermarkRequestBodyWatermarkImprintField {
   if (val == 'default') {
     return val;
@@ -380,16 +380,16 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
   });
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkField(
-  val: UpdateFileWatermarkRequestBodyWatermarkField
+  val: UpdateFileWatermarkRequestBodyWatermarkField,
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-      val.imprint
+      val.imprint,
     ),
   };
 }
 export function deserializeUpdateFileWatermarkRequestBodyWatermarkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileWatermarkRequestBodyWatermarkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -410,19 +410,19 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkField(
   } satisfies UpdateFileWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
-  val: UpdateFileWatermarkRequestBodyWatermarkFieldInput
+  val: UpdateFileWatermarkRequestBodyWatermarkFieldInput,
 ): SerializedData {
   return {
     ['imprint']:
       val.imprint == void 0
         ? void 0
         : serializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-            val.imprint
+            val.imprint,
           ),
   };
 }
 export function deserializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileWatermarkRequestBodyWatermarkFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -436,23 +436,23 @@ export function deserializeUpdateFileWatermarkRequestBodyWatermarkFieldInput(
     val.imprint == void 0
       ? void 0
       : deserializeUpdateFileWatermarkRequestBodyWatermarkImprintField(
-          val.imprint
+          val.imprint,
         );
   return {
     imprint: imprint,
   } satisfies UpdateFileWatermarkRequestBodyWatermarkFieldInput;
 }
 export function serializeUpdateFileWatermarkRequestBody(
-  val: UpdateFileWatermarkRequestBody
+  val: UpdateFileWatermarkRequestBody,
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFileWatermarkRequestBodyWatermarkField(
-      val.watermark
+      val.watermark,
     ),
   };
 }
 export function deserializeUpdateFileWatermarkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileWatermarkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

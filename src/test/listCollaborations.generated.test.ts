@@ -113,7 +113,7 @@ test('testListCollaborations', async function testListCollaborations(): Promise<
     throw new Error('Assertion failed');
   }
   await client.userCollaborations.deleteCollaborationById(
-    groupCollaboration.id
+    groupCollaboration.id,
   );
   await client.files.deleteFileById(file.id);
   await client.folders.deleteFolderById(folder.id);

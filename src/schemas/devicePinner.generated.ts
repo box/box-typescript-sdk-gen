@@ -24,12 +24,12 @@ export interface DevicePinner {
   readonly rawData?: SerializedData;
 }
 export function serializeDevicePinnerTypeField(
-  val: DevicePinnerTypeField
+  val: DevicePinnerTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeDevicePinnerTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): DevicePinnerTypeField {
   if (val == 'device_pinner') {
     return val;

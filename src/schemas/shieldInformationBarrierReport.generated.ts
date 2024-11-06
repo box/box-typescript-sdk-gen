@@ -47,12 +47,12 @@ export type ShieldInformationBarrierReport =
     readonly updatedAt?: DateTime;
   };
 export function serializeShieldInformationBarrierReportStatusField(
-  val: ShieldInformationBarrierReportStatusField
+  val: ShieldInformationBarrierReportStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeShieldInformationBarrierReportStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierReportStatusField {
   if (val == 'pending') {
     return val;
@@ -71,7 +71,7 @@ export function deserializeShieldInformationBarrierReportStatusField(
   });
 }
 export function serializeShieldInformationBarrierReport(
-  val: ShieldInformationBarrierReport
+  val: ShieldInformationBarrierReport,
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierReportBase(val);
   if (!sdIsMap(base)) {
@@ -86,7 +86,7 @@ export function serializeShieldInformationBarrierReport(
         val.shieldInformationBarrier == void 0
           ? void 0
           : serializeShieldInformationBarrierReference(
-              val.shieldInformationBarrier
+              val.shieldInformationBarrier,
             ),
       ['status']:
         val.status == void 0
@@ -106,7 +106,7 @@ export function serializeShieldInformationBarrierReport(
   };
 }
 export function deserializeShieldInformationBarrierReport(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierReport {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -119,7 +119,7 @@ export function deserializeShieldInformationBarrierReport(
     val.shield_information_barrier == void 0
       ? void 0
       : deserializeShieldInformationBarrierReference(
-          val.shield_information_barrier
+          val.shield_information_barrier,
         );
   const status: undefined | ShieldInformationBarrierReportStatusField =
     val.status == void 0

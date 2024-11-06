@@ -30,7 +30,9 @@ export class GetFolderMetadataOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -55,7 +57,7 @@ export class GetFolderMetadataByIdOptionals {
     > &
       Partial<
         Pick<GetFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -80,7 +82,7 @@ export class CreateFolderMetadataByIdOptionals {
     > &
       Partial<
         Pick<CreateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -105,7 +107,7 @@ export class UpdateFolderMetadataByIdOptionals {
     > &
       Partial<
         Pick<UpdateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -130,7 +132,7 @@ export class DeleteFolderMetadataByIdOptionals {
     > &
       Partial<
         Pick<DeleteFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -152,7 +154,7 @@ export class GetFolderMetadataHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderMetadataHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -177,7 +179,7 @@ export class GetFolderMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -205,7 +207,7 @@ export class CreateFolderMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<CreateFolderMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -269,7 +271,7 @@ export class UpdateFolderMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFolderMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -294,7 +296,7 @@ export class DeleteFolderMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFolderMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -323,7 +325,7 @@ export class FolderMetadataManager {
       | 'updateFolderMetadataById'
       | 'deleteFolderMetadataById'
     > &
-      Partial<Pick<FolderMetadataManager, 'networkSession'>>
+      Partial<Pick<FolderMetadataManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -351,7 +353,7 @@ export class FolderMetadataManager {
      */
   async getFolderMetadata(
     folderId: string,
-    optionalsInput: GetFolderMetadataOptionalsInput = {}
+    optionalsInput: GetFolderMetadataOptionalsInput = {},
   ): Promise<Metadatas> {
     const optionals: GetFolderMetadataOptionals =
       new GetFolderMetadataOptionals({
@@ -368,7 +370,7 @@ export class FolderMetadataManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/metadata'
+        '/metadata',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -407,7 +409,7 @@ export class FolderMetadataManager {
     folderId: string,
     scope: GetFolderMetadataByIdScope,
     templateKey: string,
-    optionalsInput: GetFolderMetadataByIdOptionalsInput = {}
+    optionalsInput: GetFolderMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: GetFolderMetadataByIdOptionals =
       new GetFolderMetadataByIdOptionals({
@@ -427,7 +429,7 @@ export class FolderMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -475,7 +477,7 @@ export class FolderMetadataManager {
     scope: CreateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFolderMetadataByIdRequestBody,
-    optionalsInput: CreateFolderMetadataByIdOptionalsInput = {}
+    optionalsInput: CreateFolderMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: CreateFolderMetadataByIdOptionals =
       new CreateFolderMetadataByIdOptionals({
@@ -495,7 +497,7 @@ export class FolderMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -544,7 +546,7 @@ export class FolderMetadataManager {
     scope: UpdateFolderMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFolderMetadataByIdRequestBody[],
-    optionalsInput: UpdateFolderMetadataByIdOptionalsInput = {}
+    optionalsInput: UpdateFolderMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: UpdateFolderMetadataByIdOptionals =
       new UpdateFolderMetadataByIdOptionals({
@@ -564,12 +566,12 @@ export class FolderMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: requestBody.map(
-        serializeUpdateFolderMetadataByIdRequestBody
+        serializeUpdateFolderMetadataByIdRequestBody,
       ) as readonly any[],
       contentType: 'application/json-patch+json',
       responseFormat: 'json',
@@ -606,7 +608,7 @@ export class FolderMetadataManager {
     folderId: string,
     scope: DeleteFolderMetadataByIdScope,
     templateKey: string,
-    optionalsInput: DeleteFolderMetadataByIdOptionalsInput = {}
+    optionalsInput: DeleteFolderMetadataByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFolderMetadataByIdOptionals =
       new DeleteFolderMetadataByIdOptionals({
@@ -626,7 +628,7 @@ export class FolderMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -643,12 +645,12 @@ export interface FolderMetadataManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFolderMetadataByIdScope(
-  val: GetFolderMetadataByIdScope
+  val: GetFolderMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFolderMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): GetFolderMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -661,12 +663,12 @@ export function deserializeGetFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdScope(
-  val: CreateFolderMetadataByIdScope
+  val: CreateFolderMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateFolderMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -679,7 +681,7 @@ export function deserializeCreateFolderMetadataByIdScope(
   });
 }
 export function serializeCreateFolderMetadataByIdRequestBody(
-  val: CreateFolderMetadataByIdRequestBody
+  val: CreateFolderMetadataByIdRequestBody,
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -687,13 +689,13 @@ export function serializeCreateFolderMetadataByIdRequestBody(
       (function (v: any): any {
         return v;
       })(v),
-    ])
+    ]),
   ) as {
     readonly [key: string]: any;
   };
 }
 export function deserializeCreateFolderMetadataByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderMetadataByIdRequestBody {
   return sdIsMap(val)
     ? (Object.fromEntries(
@@ -702,19 +704,19 @@ export function deserializeCreateFolderMetadataByIdRequestBody(
           (function (v: any): any {
             return v;
           })(v),
-        ])
+        ]),
       ) as {
         readonly [key: string]: any;
       })
     : {};
 }
 export function serializeUpdateFolderMetadataByIdScope(
-  val: UpdateFolderMetadataByIdScope
+  val: UpdateFolderMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -727,12 +729,12 @@ export function deserializeUpdateFolderMetadataByIdScope(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBodyOpField(
-  val: UpdateFolderMetadataByIdRequestBodyOpField
+  val: UpdateFolderMetadataByIdRequestBodyOpField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderMetadataByIdRequestBodyOpField {
   if (val == 'add') {
     return val;
@@ -757,7 +759,7 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFolderMetadataByIdRequestBody(
-  val: UpdateFolderMetadataByIdRequestBody
+  val: UpdateFolderMetadataByIdRequestBody,
 ): SerializedData {
   return {
     ['op']:
@@ -770,7 +772,7 @@ export function serializeUpdateFolderMetadataByIdRequestBody(
   };
 }
 export function deserializeUpdateFolderMetadataByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderMetadataByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -810,12 +812,12 @@ export function deserializeUpdateFolderMetadataByIdRequestBody(
   } satisfies UpdateFolderMetadataByIdRequestBody;
 }
 export function serializeDeleteFolderMetadataByIdScope(
-  val: DeleteFolderMetadataByIdScope
+  val: DeleteFolderMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeDeleteFolderMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): DeleteFolderMetadataByIdScope {
   if (val == 'global') {
     return val;

@@ -55,12 +55,12 @@ export interface ClientError {
   readonly rawData?: SerializedData;
 }
 export function serializeClientErrorTypeField(
-  val: ClientErrorTypeField
+  val: ClientErrorTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeClientErrorTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ClientErrorTypeField {
   if (val == 'error') {
     return val;
@@ -68,12 +68,12 @@ export function deserializeClientErrorTypeField(
   throw new BoxSdkError({ message: "Can't deserialize ClientErrorTypeField" });
 }
 export function serializeClientErrorCodeField(
-  val: ClientErrorCodeField
+  val: ClientErrorCodeField,
 ): SerializedData {
   return val;
 }
 export function deserializeClientErrorCodeField(
-  val: SerializedData
+  val: SerializedData,
 ): ClientErrorCodeField {
   if (val == 'created') {
     return val;
@@ -145,7 +145,7 @@ export function serializeClientError(val: ClientError): SerializedData {
               (function (v: any): any {
                 return v;
               })(v),
-            ])
+            ]),
           ) as {
             readonly [key: string]: any;
           }),
@@ -187,17 +187,17 @@ export function deserializeClientError(val: SerializedData): ClientError {
     val.context_info == void 0
       ? void 0
       : sdIsMap(val.context_info)
-      ? (Object.fromEntries(
-          Object.entries(val.context_info).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return v;
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.context_info).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "help_url" of type "ClientError"',

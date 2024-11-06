@@ -16,7 +16,7 @@ export type SearchResultsOrSearchResultsWithSharedLinks =
   | SearchResults
   | SearchResultsWithSharedLinks;
 export function serializeSearchResultsOrSearchResultsWithSharedLinks(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'search_results_items') {
     return serializeSearchResults(val);
@@ -27,7 +27,7 @@ export function serializeSearchResultsOrSearchResultsWithSharedLinks(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeSearchResultsOrSearchResultsWithSharedLinks(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsOrSearchResultsWithSharedLinks {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

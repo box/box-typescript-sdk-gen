@@ -16,7 +16,7 @@ export class UserBase {
   readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<UserBase, 'type'> & Partial<Pick<UserBase, 'type'>>
+    fields: Omit<UserBase, 'type'> & Partial<Pick<UserBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -39,12 +39,12 @@ export interface UserBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeUserBaseTypeField(
-  val: UserBaseTypeField
+  val: UserBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUserBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UserBaseTypeField {
   if (val == 'user') {
     return val;

@@ -16,7 +16,7 @@ export class GroupBase {
   readonly type: GroupBaseTypeField = 'group' as GroupBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<GroupBase, 'type'> & Partial<Pick<GroupBase, 'type'>>
+    fields: Omit<GroupBase, 'type'> & Partial<Pick<GroupBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -39,12 +39,12 @@ export interface GroupBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeGroupBaseTypeField(
-  val: GroupBaseTypeField
+  val: GroupBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupBaseTypeField {
   if (val == 'group') {
     return val;

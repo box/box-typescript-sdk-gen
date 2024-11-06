@@ -52,12 +52,12 @@ export type SignRequestSigner = SignRequestCreateSigner & {
   readonly iframeableEmbedUrl?: string;
 };
 export function serializeSignRequestSignerSignerDecisionTypeField(
-  val: SignRequestSignerSignerDecisionTypeField
+  val: SignRequestSignerSignerDecisionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestSignerSignerDecisionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignerSignerDecisionTypeField {
   if (val == 'signed') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeSignRequestSignerSignerDecisionTypeField(
   });
 }
 export function serializeSignRequestSignerSignerDecisionField(
-  val: SignRequestSignerSignerDecisionField
+  val: SignRequestSignerSignerDecisionField,
 ): SerializedData {
   return {
     ['type']:
@@ -84,7 +84,7 @@ export function serializeSignRequestSignerSignerDecisionField(
   };
 }
 export function deserializeSignRequestSignerSignerDecisionField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignerSignerDecisionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -118,7 +118,7 @@ export function deserializeSignRequestSignerSignerDecisionField(
   } satisfies SignRequestSignerSignerDecisionField;
 }
 export function serializeSignRequestSigner(
-  val: SignRequestSigner
+  val: SignRequestSigner,
 ): SerializedData {
   const base: any = serializeSignRequestCreateSigner(val);
   if (!sdIsMap(base)) {
@@ -139,7 +139,7 @@ export function serializeSignRequestSigner(
         val.inputs == void 0
           ? void 0
           : (val.inputs.map(function (
-              item: SignRequestSignerInput
+              item: SignRequestSignerInput,
             ): SerializedData {
               return serializeSignRequestSignerInput(item);
             }) as readonly any[]),
@@ -150,7 +150,7 @@ export function serializeSignRequestSigner(
   };
 }
 export function deserializeSignRequestSigner(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSigner {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -181,10 +181,12 @@ export function deserializeSignRequestSigner(
     val.inputs == void 0
       ? void 0
       : sdIsList(val.inputs)
-      ? (val.inputs.map(function (itm: SerializedData): SignRequestSignerInput {
-          return deserializeSignRequestSignerInput(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.inputs.map(function (
+            itm: SerializedData,
+          ): SignRequestSignerInput {
+            return deserializeSignRequestSignerInput(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.embed_url == void 0) && !sdIsString(val.embed_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "embed_url" of type "SignRequestSigner"',

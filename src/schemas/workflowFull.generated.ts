@@ -84,10 +84,10 @@ export function deserializeWorkflowFull(val: SerializedData): WorkflowFull {
     val.flows == void 0
       ? void 0
       : sdIsList(val.flows)
-      ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
-          return deserializeWorkflowFlowsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
+            return deserializeWorkflowFlowsField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "id" of type "WorkflowFull"',

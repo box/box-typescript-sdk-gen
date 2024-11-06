@@ -37,7 +37,7 @@ export class CreateInviteOptionals {
           CreateInviteOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -70,7 +70,7 @@ export class GetInviteByIdOptionals {
           GetInviteByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -130,7 +130,7 @@ export class CreateInviteHeaders {
   } = {};
   constructor(
     fields: Omit<CreateInviteHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateInviteHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateInviteHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -167,7 +167,7 @@ export class GetInviteByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetInviteByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetInviteByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetInviteByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -191,7 +191,7 @@ export class InvitesManager {
       InvitesManager,
       'networkSession' | 'createInvite' | 'getInviteById'
     > &
-      Partial<Pick<InvitesManager, 'networkSession'>>
+      Partial<Pick<InvitesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -216,7 +216,7 @@ export class InvitesManager {
    */
   async createInvite(
     requestBody: CreateInviteRequestBody,
-    optionalsInput: CreateInviteOptionalsInput = {}
+    optionalsInput: CreateInviteOptionalsInput = {},
   ): Promise<Invite> {
     const optionals: CreateInviteOptionals = new CreateInviteOptionals({
       queryParams: optionalsInput.queryParams,
@@ -239,7 +239,7 @@ export class InvitesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/invites'
+        '/2.0/invites',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -265,7 +265,7 @@ export class InvitesManager {
      */
   async getInviteById(
     inviteId: string,
-    optionalsInput: GetInviteByIdOptionalsInput = {}
+    optionalsInput: GetInviteByIdOptionalsInput = {},
   ): Promise<Invite> {
     const optionals: GetInviteByIdOptionals = new GetInviteByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -289,7 +289,7 @@ export class InvitesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/invites/',
-        toString(inviteId) as string
+        toString(inviteId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -310,12 +310,12 @@ export interface InvitesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateInviteRequestBodyEnterpriseField(
-  val: CreateInviteRequestBodyEnterpriseField
+  val: CreateInviteRequestBodyEnterpriseField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateInviteRequestBodyEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateInviteRequestBodyEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -338,12 +338,12 @@ export function deserializeCreateInviteRequestBodyEnterpriseField(
   return { id: id } satisfies CreateInviteRequestBodyEnterpriseField;
 }
 export function serializeCreateInviteRequestBodyActionableByField(
-  val: CreateInviteRequestBodyActionableByField
+  val: CreateInviteRequestBodyActionableByField,
 ): SerializedData {
   return { ['login']: val.login == void 0 ? void 0 : val.login };
 }
 export function deserializeCreateInviteRequestBodyActionableByField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateInviteRequestBodyActionableByField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -360,19 +360,19 @@ export function deserializeCreateInviteRequestBodyActionableByField(
   return { login: login } satisfies CreateInviteRequestBodyActionableByField;
 }
 export function serializeCreateInviteRequestBody(
-  val: CreateInviteRequestBody
+  val: CreateInviteRequestBody,
 ): SerializedData {
   return {
     ['enterprise']: serializeCreateInviteRequestBodyEnterpriseField(
-      val.enterprise
+      val.enterprise,
     ),
     ['actionable_by']: serializeCreateInviteRequestBodyActionableByField(
-      val.actionableBy
+      val.actionableBy,
     ),
   };
 }
 export function deserializeCreateInviteRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateInviteRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -18,7 +18,7 @@ export class FileVersionBase {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<FileVersionBase, 'type'> &
-      Partial<Pick<FileVersionBase, 'type'>>
+      Partial<Pick<FileVersionBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -41,12 +41,12 @@ export interface FileVersionBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionBaseTypeField(
-  val: FileVersionBaseTypeField
+  val: FileVersionBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileVersionBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionBaseTypeField {
   if (val == 'file_version') {
     return val;
@@ -62,7 +62,7 @@ export function serializeFileVersionBase(val: FileVersionBase): SerializedData {
   };
 }
 export function deserializeFileVersionBase(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionBase"' });
@@ -84,12 +84,12 @@ export function deserializeFileVersionBase(
     });
   }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
-    val.type
+    val.type,
   );
   return { id: id, type: type } satisfies FileVersionBase;
 }
 export function serializeFileVersionBaseInput(
-  val: FileVersionBaseInput
+  val: FileVersionBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -98,7 +98,7 @@ export function serializeFileVersionBaseInput(
   };
 }
 export function deserializeFileVersionBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

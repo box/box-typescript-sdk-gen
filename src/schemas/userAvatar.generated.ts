@@ -25,7 +25,7 @@ export interface UserAvatar {
   readonly rawData?: SerializedData;
 }
 export function serializeUserAvatarPicUrlsField(
-  val: UserAvatarPicUrlsField
+  val: UserAvatarPicUrlsField,
 ): SerializedData {
   return {
     ['small']: val.small == void 0 ? void 0 : val.small,
@@ -34,7 +34,7 @@ export function serializeUserAvatarPicUrlsField(
   };
 }
 export function deserializeUserAvatarPicUrlsField(
-  val: SerializedData
+  val: SerializedData,
 ): UserAvatarPicUrlsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

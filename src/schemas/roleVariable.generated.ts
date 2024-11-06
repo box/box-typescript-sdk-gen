@@ -31,7 +31,7 @@ export class RoleVariable {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RoleVariable, 'type' | 'variableType'> &
-      Partial<Pick<RoleVariable, 'type' | 'variableType'>>
+      Partial<Pick<RoleVariable, 'type' | 'variableType'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -61,12 +61,12 @@ export interface RoleVariableInput {
   readonly rawData?: SerializedData;
 }
 export function serializeRoleVariableTypeField(
-  val: RoleVariableTypeField
+  val: RoleVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRoleVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RoleVariableTypeField {
   if (val == 'variable') {
     return val;
@@ -74,12 +74,12 @@ export function deserializeRoleVariableTypeField(
   throw new BoxSdkError({ message: "Can't deserialize RoleVariableTypeField" });
 }
 export function serializeRoleVariableVariableTypeField(
-  val: RoleVariableVariableTypeField
+  val: RoleVariableVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRoleVariableVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RoleVariableVariableTypeField {
   if (val == 'collaborator_role') {
     return val;
@@ -89,12 +89,12 @@ export function deserializeRoleVariableVariableTypeField(
   });
 }
 export function serializeRoleVariableVariableValueField(
-  val: RoleVariableVariableValueField
+  val: RoleVariableVariableValueField,
 ): SerializedData {
   return val;
 }
 export function deserializeRoleVariableVariableValueField(
-  val: SerializedData
+  val: SerializedData,
 ): RoleVariableVariableValueField {
   if (val == 'editor') {
     return val;
@@ -126,7 +126,7 @@ export function serializeRoleVariable(val: RoleVariable): SerializedData {
     ['type']: serializeRoleVariableTypeField(val.type),
     ['variable_type']: serializeRoleVariableVariableTypeField(val.variableType),
     ['variable_value']: serializeRoleVariableVariableValueField(
-      val.variableValue
+      val.variableValue,
     ),
   };
 }
@@ -140,7 +140,7 @@ export function deserializeRoleVariable(val: SerializedData): RoleVariable {
     });
   }
   const type: RoleVariableTypeField = deserializeRoleVariableTypeField(
-    val.type
+    val.type,
   );
   if (val.variable_type == void 0) {
     throw new BoxSdkError({
@@ -164,7 +164,7 @@ export function deserializeRoleVariable(val: SerializedData): RoleVariable {
   } satisfies RoleVariable;
 }
 export function serializeRoleVariableInput(
-  val: RoleVariableInput
+  val: RoleVariableInput,
 ): SerializedData {
   return {
     ['type']:
@@ -174,12 +174,12 @@ export function serializeRoleVariableInput(
         ? void 0
         : serializeRoleVariableVariableTypeField(val.variableType),
     ['variable_value']: serializeRoleVariableVariableValueField(
-      val.variableValue
+      val.variableValue,
     ),
   };
 }
 export function deserializeRoleVariableInput(
-  val: SerializedData
+  val: SerializedData,
 ): RoleVariableInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

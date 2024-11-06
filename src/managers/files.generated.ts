@@ -40,7 +40,7 @@ export class GetFileByIdOptionals {
           GetFileByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -75,7 +75,7 @@ export class UpdateFileByIdOptionals {
           UpdateFileByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -102,7 +102,7 @@ export class DeleteFileByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -127,7 +127,7 @@ export class CopyFileOptionals {
     > &
       Partial<
         Pick<CopyFileOptionals, 'queryParams' | 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -161,7 +161,7 @@ export class GetFileThumbnailByIdOptionals {
           GetFileThumbnailByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -246,7 +246,7 @@ export class GetFileByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifNoneMatch) {
       this.ifNoneMatch = fields.ifNoneMatch;
@@ -488,7 +488,7 @@ export class UpdateFileByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFileByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -533,7 +533,7 @@ export class DeleteFileByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFileByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -606,7 +606,7 @@ export class CopyFileHeaders {
   } = {};
   constructor(
     fields: Omit<CopyFileHeaders, 'extraHeaders'> &
-      Partial<Pick<CopyFileHeaders, 'extraHeaders'>>
+      Partial<Pick<CopyFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -645,7 +645,7 @@ export class GetFileThumbnailByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileThumbnailByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -674,7 +674,7 @@ export class FilesManager {
       | 'copyFile'
       | 'getFileThumbnailById'
     > &
-      Partial<Pick<FilesManager, 'networkSession'>>
+      Partial<Pick<FilesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -698,7 +698,7 @@ export class FilesManager {
      */
   async getFileById(
     fileId: string,
-    optionalsInput: GetFileByIdOptionalsInput = {}
+    optionalsInput: GetFileByIdOptionalsInput = {},
   ): Promise<FileFull> {
     const optionals: GetFileByIdOptionals = new GetFileByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -729,7 +729,7 @@ export class FilesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
-        toString(fileId) as string
+        toString(fileId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -760,7 +760,7 @@ export class FilesManager {
      */
   async updateFileById(
     fileId: string,
-    optionalsInput: UpdateFileByIdOptionalsInput = {}
+    optionalsInput: UpdateFileByIdOptionalsInput = {},
   ): Promise<FileFull> {
     const optionals: UpdateFileByIdOptionals = new UpdateFileByIdOptionals({
       requestBody: optionalsInput.requestBody,
@@ -789,7 +789,7 @@ export class FilesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
-        toString(fileId) as string
+        toString(fileId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -825,7 +825,7 @@ export class FilesManager {
      */
   async deleteFileById(
     fileId: string,
-    optionalsInput: DeleteFileByIdOptionalsInput = {}
+    optionalsInput: DeleteFileByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFileByIdOptionals = new DeleteFileByIdOptionals({
       headers: optionalsInput.headers,
@@ -843,7 +843,7 @@ export class FilesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
-        toString(fileId) as string
+        toString(fileId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -871,7 +871,7 @@ export class FilesManager {
   async copyFile(
     fileId: string,
     requestBody: CopyFileRequestBody,
-    optionalsInput: CopyFileOptionalsInput = {}
+    optionalsInput: CopyFileOptionalsInput = {},
   ): Promise<FileFull> {
     const optionals: CopyFileOptionals = new CopyFileOptionals({
       queryParams: optionalsInput.queryParams,
@@ -896,7 +896,7 @@ export class FilesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/copy'
+        '/copy',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -940,7 +940,7 @@ export class FilesManager {
   async getFileThumbnailById(
     fileId: string,
     extension: GetFileThumbnailByIdExtension,
-    optionalsInput: GetFileThumbnailByIdOptionalsInput = {}
+    optionalsInput: GetFileThumbnailByIdOptionalsInput = {},
   ): Promise<ByteStream> {
     const optionals: GetFileThumbnailByIdOptionals =
       new GetFileThumbnailByIdOptionals({
@@ -968,7 +968,7 @@ export class FilesManager {
         '/2.0/files/',
         toString(fileId) as string,
         '/thumbnail.',
-        toString(extension) as string
+        toString(extension) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -986,12 +986,12 @@ export interface FilesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFileByIdRequestBodyParentField(
-  val: UpdateFileByIdRequestBodyParentField
+  val: UpdateFileByIdRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFileByIdRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1008,12 +1008,12 @@ export function deserializeUpdateFileByIdRequestBodyParentField(
   return { id: id } satisfies UpdateFileByIdRequestBodyParentField;
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkAccessField(
-  val: UpdateFileByIdRequestBodySharedLinkAccessField
+  val: UpdateFileByIdRequestBodySharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodySharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -1029,14 +1029,14 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-  val: UpdateFileByIdRequestBodySharedLinkPermissionsField
+  val: UpdateFileByIdRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
   };
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodySharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1057,7 +1057,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   } satisfies UpdateFileByIdRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodySharedLinkField(
-  val: UpdateFileByIdRequestBodySharedLinkField
+  val: UpdateFileByIdRequestBodySharedLinkField,
 ): SerializedData {
   return {
     ['access']:
@@ -1072,12 +1072,12 @@ export function serializeUpdateFileByIdRequestBodySharedLinkField(
       val.permissions == void 0
         ? void 0
         : serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-            val.permissions
+            val.permissions,
           ),
   };
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1118,7 +1118,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkField(
     val.permissions == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
-          val.permissions
+          val.permissions,
         );
   return {
     access: access,
@@ -1129,12 +1129,12 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkField(
   } satisfies UpdateFileByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateFileByIdRequestBodyLockAccessField(
-  val: UpdateFileByIdRequestBodyLockAccessField
+  val: UpdateFileByIdRequestBodyLockAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyLockAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyLockAccessField {
   if (val == 'lock') {
     return val;
@@ -1144,7 +1144,7 @@ export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   });
 }
 export function serializeUpdateFileByIdRequestBodyLockField(
-  val: UpdateFileByIdRequestBodyLockField
+  val: UpdateFileByIdRequestBodyLockField,
 ): SerializedData {
   return {
     ['access']:
@@ -1158,7 +1158,7 @@ export function serializeUpdateFileByIdRequestBodyLockField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodyLockField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyLockField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1195,12 +1195,12 @@ export function deserializeUpdateFileByIdRequestBodyLockField(
   } satisfies UpdateFileByIdRequestBodyLockField;
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-  val: UpdateFileByIdRequestBodyPermissionsCanDownloadField
+  val: UpdateFileByIdRequestBodyPermissionsCanDownloadField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyPermissionsCanDownloadField {
   if (val == 'open') {
     return val;
@@ -1214,19 +1214,19 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
   });
 }
 export function serializeUpdateFileByIdRequestBodyPermissionsField(
-  val: UpdateFileByIdRequestBodyPermissionsField
+  val: UpdateFileByIdRequestBodyPermissionsField,
 ): SerializedData {
   return {
     ['can_download']:
       val.canDownload == void 0
         ? void 0
         : serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-            val.canDownload
+            val.canDownload,
           ),
   };
 }
 export function deserializeUpdateFileByIdRequestBodyPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1240,14 +1240,14 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsField(
     val.can_download == void 0
       ? void 0
       : deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
-          val.can_download
+          val.can_download,
         );
   return {
     canDownload: canDownload,
   } satisfies UpdateFileByIdRequestBodyPermissionsField;
 }
 export function serializeUpdateFileByIdRequestBodyCollectionsField(
-  val: UpdateFileByIdRequestBodyCollectionsField
+  val: UpdateFileByIdRequestBodyCollectionsField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -1255,7 +1255,7 @@ export function serializeUpdateFileByIdRequestBodyCollectionsField(
   };
 }
 export function deserializeUpdateFileByIdRequestBodyCollectionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBodyCollectionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1283,7 +1283,7 @@ export function deserializeUpdateFileByIdRequestBodyCollectionsField(
   } satisfies UpdateFileByIdRequestBodyCollectionsField;
 }
 export function serializeUpdateFileByIdRequestBody(
-  val: UpdateFileByIdRequestBody
+  val: UpdateFileByIdRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -1312,7 +1312,7 @@ export function serializeUpdateFileByIdRequestBody(
       val.collections == void 0
         ? void 0
         : (val.collections.map(function (
-            item: UpdateFileByIdRequestBodyCollectionsField
+            item: UpdateFileByIdRequestBodyCollectionsField,
           ): SerializedData {
             return serializeUpdateFileByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
@@ -1325,7 +1325,7 @@ export function serializeUpdateFileByIdRequestBody(
   };
 }
 export function deserializeUpdateFileByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1385,12 +1385,12 @@ export function deserializeUpdateFileByIdRequestBody(
     val.collections == void 0
       ? void 0
       : sdIsList(val.collections)
-      ? (val.collections.map(function (
-          itm: SerializedData
-        ): UpdateFileByIdRequestBodyCollectionsField {
-          return deserializeUpdateFileByIdRequestBodyCollectionsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.collections.map(function (
+            itm: SerializedData,
+          ): UpdateFileByIdRequestBodyCollectionsField {
+            return deserializeUpdateFileByIdRequestBodyCollectionsField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.tags == void 0) && !sdIsList(val.tags)) {
     throw new BoxSdkError({
       message: 'Expecting array for "tags" of type "UpdateFileByIdRequestBody"',
@@ -1400,15 +1400,15 @@ export function deserializeUpdateFileByIdRequestBody(
     val.tags == void 0
       ? void 0
       : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "UpdateFileByIdRequestBody"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.tags.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "UpdateFileByIdRequestBody"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   return {
     name: name,
     description: description,
@@ -1422,12 +1422,12 @@ export function deserializeUpdateFileByIdRequestBody(
   } satisfies UpdateFileByIdRequestBody;
 }
 export function serializeCopyFileRequestBodyParentField(
-  val: CopyFileRequestBodyParentField
+  val: CopyFileRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCopyFileRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): CopyFileRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1450,7 +1450,7 @@ export function deserializeCopyFileRequestBodyParentField(
   return { id: id } satisfies CopyFileRequestBodyParentField;
 }
 export function serializeCopyFileRequestBody(
-  val: CopyFileRequestBody
+  val: CopyFileRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -1459,7 +1459,7 @@ export function serializeCopyFileRequestBody(
   };
 }
 export function deserializeCopyFileRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CopyFileRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1493,12 +1493,12 @@ export function deserializeCopyFileRequestBody(
   } satisfies CopyFileRequestBody;
 }
 export function serializeGetFileThumbnailByIdExtension(
-  val: GetFileThumbnailByIdExtension
+  val: GetFileThumbnailByIdExtension,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFileThumbnailByIdExtension(
-  val: SerializedData
+  val: SerializedData,
 ): GetFileThumbnailByIdExtension {
   if (val == 'png') {
     return val;

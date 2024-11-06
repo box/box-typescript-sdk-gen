@@ -29,14 +29,14 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetFileRequestByIdOptionals {
   readonly headers: GetFileRequestByIdHeaders = new GetFileRequestByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFileRequestByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<GetFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -61,7 +61,7 @@ export class UpdateFileRequestByIdOptionals {
     > &
       Partial<
         Pick<UpdateFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -86,7 +86,7 @@ export class DeleteFileRequestByIdOptionals {
     > &
       Partial<
         Pick<DeleteFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -111,7 +111,7 @@ export class CreateFileRequestCopyOptionals {
     > &
       Partial<
         Pick<CreateFileRequestCopyOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -133,7 +133,7 @@ export class GetFileRequestByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileRequestByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -166,7 +166,7 @@ export class UpdateFileRequestByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFileRequestByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -202,7 +202,7 @@ export class DeleteFileRequestByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFileRequestByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -226,7 +226,7 @@ export class CreateFileRequestCopyHeaders {
   } = {};
   constructor(
     fields: Omit<CreateFileRequestCopyHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -254,7 +254,7 @@ export class FileRequestsManager {
       | 'deleteFileRequestById'
       | 'createFileRequestCopy'
     > &
-      Partial<Pick<FileRequestsManager, 'networkSession'>>
+      Partial<Pick<FileRequestsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -278,7 +278,7 @@ export class FileRequestsManager {
      */
   async getFileRequestById(
     fileRequestId: string,
-    optionalsInput: GetFileRequestByIdOptionalsInput = {}
+    optionalsInput: GetFileRequestByIdOptionalsInput = {},
   ): Promise<FileRequest> {
     const optionals: GetFileRequestByIdOptionals =
       new GetFileRequestByIdOptionals({
@@ -294,7 +294,7 @@ export class FileRequestsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_requests/',
-        toString(fileRequestId) as string
+        toString(fileRequestId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -326,7 +326,7 @@ export class FileRequestsManager {
   async updateFileRequestById(
     fileRequestId: string,
     requestBody: FileRequestUpdateRequest,
-    optionalsInput: UpdateFileRequestByIdOptionalsInput = {}
+    optionalsInput: UpdateFileRequestByIdOptionalsInput = {},
   ): Promise<FileRequest> {
     const optionals: UpdateFileRequestByIdOptionals =
       new UpdateFileRequestByIdOptionals({
@@ -345,7 +345,7 @@ export class FileRequestsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_requests/',
-        toString(fileRequestId) as string
+        toString(fileRequestId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -376,7 +376,7 @@ export class FileRequestsManager {
      */
   async deleteFileRequestById(
     fileRequestId: string,
-    optionalsInput: DeleteFileRequestByIdOptionalsInput = {}
+    optionalsInput: DeleteFileRequestByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFileRequestByIdOptionals =
       new DeleteFileRequestByIdOptionals({
@@ -392,7 +392,7 @@ export class FileRequestsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_requests/',
-        toString(fileRequestId) as string
+        toString(fileRequestId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -421,7 +421,7 @@ export class FileRequestsManager {
   async createFileRequestCopy(
     fileRequestId: string,
     requestBody: FileRequestCopyRequest,
-    optionalsInput: CreateFileRequestCopyOptionalsInput = {}
+    optionalsInput: CreateFileRequestCopyOptionalsInput = {},
   ): Promise<FileRequest> {
     const optionals: CreateFileRequestCopyOptionals =
       new CreateFileRequestCopyOptionals({
@@ -438,7 +438,7 @@ export class FileRequestsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_requests/',
         toString(fileRequestId) as string,
-        '/copy'
+        '/copy',
       ) as string,
       method: 'POST',
       headers: headersMap,

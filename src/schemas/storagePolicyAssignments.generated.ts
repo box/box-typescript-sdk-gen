@@ -27,7 +27,7 @@ export interface StoragePolicyAssignments {
   readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyAssignments(
-  val: StoragePolicyAssignments
+  val: StoragePolicyAssignments,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -37,14 +37,14 @@ export function serializeStoragePolicyAssignments(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: StoragePolicyAssignment
+            item: StoragePolicyAssignment,
           ): SerializedData {
             return serializeStoragePolicyAssignment(item);
           }) as readonly any[]),
   };
 }
 export function deserializeStoragePolicyAssignments(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyAssignments {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -84,12 +84,12 @@ export function deserializeStoragePolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): StoragePolicyAssignment {
-          return deserializeStoragePolicyAssignment(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): StoragePolicyAssignment {
+            return deserializeStoragePolicyAssignment(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

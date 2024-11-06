@@ -25,7 +25,7 @@ export type AiAgentBasicTextToolTextGen = AiAgentBasicTextToolBase & {
   readonly promptTemplate?: string;
 };
 export function serializeAiAgentBasicTextToolTextGen(
-  val: AiAgentBasicTextToolTextGen
+  val: AiAgentBasicTextToolTextGen,
 ): SerializedData {
   const base: any = serializeAiAgentBasicTextToolBase(val);
   if (!sdIsMap(base)) {
@@ -44,7 +44,7 @@ export function serializeAiAgentBasicTextToolTextGen(
   };
 }
 export function deserializeAiAgentBasicTextToolTextGen(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentBasicTextToolTextGen {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -93,7 +93,7 @@ export function deserializeAiAgentBasicTextToolTextGen(
     val.llm_endpoint_params == void 0
       ? void 0
       : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params
+          val.llm_endpoint_params,
         );
   return {
     systemMessage: systemMessage,

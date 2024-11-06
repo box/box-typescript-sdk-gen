@@ -30,7 +30,7 @@ export class CreateWebLinkOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateWebLinkOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateWebLinkOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateWebLinkOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -49,7 +49,7 @@ export class GetWebLinkByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -78,7 +78,7 @@ export class UpdateWebLinkByIdOptionals {
           UpdateWebLinkByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -101,7 +101,9 @@ export class DeleteWebLinkByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -145,7 +147,7 @@ export class CreateWebLinkHeaders {
   } = {};
   constructor(
     fields: Omit<CreateWebLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -181,7 +183,7 @@ export class GetWebLinkByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetWebLinkByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.boxapi) {
       this.boxapi = fields.boxapi;
@@ -286,7 +288,7 @@ export class UpdateWebLinkByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateWebLinkByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -310,7 +312,7 @@ export class DeleteWebLinkByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteWebLinkByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -338,7 +340,7 @@ export class WebLinksManager {
       | 'updateWebLinkById'
       | 'deleteWebLinkById'
     > &
-      Partial<Pick<WebLinksManager, 'networkSession'>>
+      Partial<Pick<WebLinksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -355,7 +357,7 @@ export class WebLinksManager {
    */
   async createWebLink(
     requestBody: CreateWebLinkRequestBody,
-    optionalsInput: CreateWebLinkOptionalsInput = {}
+    optionalsInput: CreateWebLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: CreateWebLinkOptionals = new CreateWebLinkOptionals({
       headers: optionalsInput.headers,
@@ -369,7 +371,7 @@ export class WebLinksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links'
+        '/2.0/web_links',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -394,7 +396,7 @@ export class WebLinksManager {
      */
   async getWebLinkById(
     webLinkId: string,
-    optionalsInput: GetWebLinkByIdOptionalsInput = {}
+    optionalsInput: GetWebLinkByIdOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: GetWebLinkByIdOptionals = new GetWebLinkByIdOptionals({
       headers: optionalsInput.headers,
@@ -412,7 +414,7 @@ export class WebLinksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
-        toString(webLinkId) as string
+        toString(webLinkId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -435,7 +437,7 @@ export class WebLinksManager {
      */
   async updateWebLinkById(
     webLinkId: string,
-    optionalsInput: UpdateWebLinkByIdOptionalsInput = {}
+    optionalsInput: UpdateWebLinkByIdOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: UpdateWebLinkByIdOptionals =
       new UpdateWebLinkByIdOptionals({
@@ -453,7 +455,7 @@ export class WebLinksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
-        toString(webLinkId) as string
+        toString(webLinkId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -478,7 +480,7 @@ export class WebLinksManager {
      */
   async deleteWebLinkById(
     webLinkId: string,
-    optionalsInput: DeleteWebLinkByIdOptionalsInput = {}
+    optionalsInput: DeleteWebLinkByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteWebLinkByIdOptionals =
       new DeleteWebLinkByIdOptionals({
@@ -494,7 +496,7 @@ export class WebLinksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
-        toString(webLinkId) as string
+        toString(webLinkId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -511,12 +513,12 @@ export interface WebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebLinkRequestBodyParentField(
-  val: CreateWebLinkRequestBodyParentField
+  val: CreateWebLinkRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateWebLinkRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebLinkRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -539,7 +541,7 @@ export function deserializeCreateWebLinkRequestBodyParentField(
   return { id: id } satisfies CreateWebLinkRequestBodyParentField;
 }
 export function serializeCreateWebLinkRequestBody(
-  val: CreateWebLinkRequestBody
+  val: CreateWebLinkRequestBody,
 ): SerializedData {
   return {
     ['url']: val.url,
@@ -549,7 +551,7 @@ export function serializeCreateWebLinkRequestBody(
   };
 }
 export function deserializeCreateWebLinkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebLinkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -598,12 +600,12 @@ export function deserializeCreateWebLinkRequestBody(
   } satisfies CreateWebLinkRequestBody;
 }
 export function serializeUpdateWebLinkByIdRequestBodyParentField(
-  val: UpdateWebLinkByIdRequestBodyParentField
+  val: UpdateWebLinkByIdRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateWebLinkByIdRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebLinkByIdRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -620,12 +622,12 @@ export function deserializeUpdateWebLinkByIdRequestBodyParentField(
   return { id: id } satisfies UpdateWebLinkByIdRequestBodyParentField;
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-  val: UpdateWebLinkByIdRequestBodySharedLinkAccessField
+  val: UpdateWebLinkByIdRequestBodySharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebLinkByIdRequestBodySharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -642,14 +644,14 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
-  val: UpdateWebLinkByIdRequestBodySharedLinkField
+  val: UpdateWebLinkByIdRequestBodySharedLinkField,
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
         : serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-            val.access
+            val.access,
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
@@ -658,7 +660,7 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebLinkByIdRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -670,7 +672,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
     val.access == void 0
       ? void 0
       : deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
-          val.access
+          val.access,
         );
   if (!(val.password == void 0) && !sdIsString(val.password)) {
     throw new BoxSdkError({
@@ -704,7 +706,7 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
   } satisfies UpdateWebLinkByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateWebLinkByIdRequestBody(
-  val: UpdateWebLinkByIdRequestBody
+  val: UpdateWebLinkByIdRequestBody,
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -721,7 +723,7 @@ export function serializeUpdateWebLinkByIdRequestBody(
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebLinkByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

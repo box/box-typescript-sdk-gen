@@ -61,10 +61,10 @@ export function deserializeSignRequests(val: SerializedData): SignRequests {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): SignRequest {
-          return deserializeSignRequest(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): SignRequest {
+            return deserializeSignRequest(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

@@ -50,12 +50,12 @@ export type SignRequestSignerInput = SignRequestPrefillTag & {
   readonly readOnly?: boolean;
 };
 export function serializeSignRequestSignerInputTypeField(
-  val: SignRequestSignerInputTypeField
+  val: SignRequestSignerInputTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestSignerInputTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignerInputTypeField {
   if (val == 'signature') {
     return val;
@@ -80,12 +80,12 @@ export function deserializeSignRequestSignerInputTypeField(
   });
 }
 export function serializeSignRequestSignerInputContentTypeField(
-  val: SignRequestSignerInputContentTypeField
+  val: SignRequestSignerInputContentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestSignerInputContentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignerInputContentTypeField {
   if (val == 'signature') {
     return val;
@@ -137,7 +137,7 @@ export function deserializeSignRequestSignerInputContentTypeField(
   });
 }
 export function serializeSignRequestSignerInput(
-  val: SignRequestSignerInput
+  val: SignRequestSignerInput,
 ): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
@@ -162,7 +162,7 @@ export function serializeSignRequestSignerInput(
   };
 }
 export function deserializeSignRequestSignerInput(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignerInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

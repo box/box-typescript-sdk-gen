@@ -122,7 +122,7 @@ export class TrashFile {
   readonly itemStatus!: TrashFileItemStatusField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<TrashFile, 'type'> & Partial<Pick<TrashFile, 'type'>>
+    fields: Omit<TrashFile, 'type'> & Partial<Pick<TrashFile, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -270,12 +270,12 @@ export interface TrashFileInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashFileTypeField(
-  val: TrashFileTypeField
+  val: TrashFileTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFileTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileTypeField {
   if (val == 'file') {
     return val;
@@ -283,12 +283,12 @@ export function deserializeTrashFileTypeField(
   throw new BoxSdkError({ message: "Can't deserialize TrashFileTypeField" });
 }
 export function serializeTrashFilePathCollectionEntriesTypeField(
-  val: TrashFilePathCollectionEntriesTypeField
+  val: TrashFilePathCollectionEntriesTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFilePathCollectionEntriesTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFilePathCollectionEntriesTypeField {
   if (val == 'folder') {
     return val;
@@ -298,7 +298,7 @@ export function deserializeTrashFilePathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashFilePathCollectionEntriesField(
-  val: TrashFilePathCollectionEntriesField
+  val: TrashFilePathCollectionEntriesField,
 ): SerializedData {
   return {
     ['type']:
@@ -312,7 +312,7 @@ export function serializeTrashFilePathCollectionEntriesField(
   };
 }
 export function deserializeTrashFilePathCollectionEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFilePathCollectionEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -361,19 +361,19 @@ export function deserializeTrashFilePathCollectionEntriesField(
   } satisfies TrashFilePathCollectionEntriesField;
 }
 export function serializeTrashFilePathCollectionField(
-  val: TrashFilePathCollectionField
+  val: TrashFilePathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
-      item: TrashFilePathCollectionEntriesField
+      item: TrashFilePathCollectionEntriesField,
     ): SerializedData {
       return serializeTrashFilePathCollectionEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTrashFilePathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFilePathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -406,10 +406,10 @@ export function deserializeTrashFilePathCollectionField(
     });
   }
   const entries: readonly TrashFilePathCollectionEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TrashFilePathCollectionEntriesField {
         return deserializeTrashFilePathCollectionEntriesField(itm);
       }) as readonly any[])
@@ -420,12 +420,12 @@ export function deserializeTrashFilePathCollectionField(
   } satisfies TrashFilePathCollectionField;
 }
 export function serializeTrashFileItemStatusField(
-  val: TrashFileItemStatusField
+  val: TrashFileItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFileItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileItemStatusField {
   if (val == 'active') {
     return val;
@@ -455,7 +455,7 @@ export function serializeTrashFile(val: TrashFile): SerializedData {
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFilePathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
@@ -699,7 +699,7 @@ export function serializeTrashFileInput(val: TrashFileInput): SerializedData {
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFilePathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),

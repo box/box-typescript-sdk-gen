@@ -53,12 +53,12 @@ export interface UploadParts {
   readonly rawData?: SerializedData;
 }
 export function serializeUploadPartsOrderDirectionField(
-  val: UploadPartsOrderDirectionField
+  val: UploadPartsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeUploadPartsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadPartsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -71,7 +71,7 @@ export function deserializeUploadPartsOrderDirectionField(
   });
 }
 export function serializeUploadPartsOrderField(
-  val: UploadPartsOrderField
+  val: UploadPartsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -82,7 +82,7 @@ export function serializeUploadPartsOrderField(
   };
 }
 export function deserializeUploadPartsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadPartsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -110,7 +110,7 @@ export function serializeUploadParts(val: UploadParts): SerializedData {
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: UploadPartsOrderField
+            item: UploadPartsOrderField,
           ): SerializedData {
             return serializeUploadPartsOrderField(item);
           }) as readonly any[]),
@@ -154,10 +154,10 @@ export function deserializeUploadParts(val: SerializedData): UploadParts {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): UploadPartsOrderField {
-          return deserializeUploadPartsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): UploadPartsOrderField {
+            return deserializeUploadPartsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "UploadParts"',
@@ -167,10 +167,10 @@ export function deserializeUploadParts(val: SerializedData): UploadParts {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): UploadPart {
-          return deserializeUploadPart(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): UploadPart {
+            return deserializeUploadPart(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

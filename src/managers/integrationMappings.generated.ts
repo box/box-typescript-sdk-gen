@@ -48,7 +48,7 @@ export class CreateSlackIntegrationMappingOptionals {
           CreateSlackIntegrationMappingOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -78,7 +78,7 @@ export class UpdateSlackIntegrationMappingByIdOptionals {
           UpdateSlackIntegrationMappingByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -110,7 +110,7 @@ export class DeleteSlackIntegrationMappingByIdOptionals {
           DeleteSlackIntegrationMappingByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -161,7 +161,7 @@ export class GetSlackIntegrationMappingHeaders {
   } = {};
   constructor(
     fields: Omit<GetSlackIntegrationMappingHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -185,7 +185,7 @@ export class CreateSlackIntegrationMappingHeaders {
   } = {};
   constructor(
     fields: Omit<CreateSlackIntegrationMappingHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -214,7 +214,7 @@ export class UpdateSlackIntegrationMappingByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -238,7 +238,7 @@ export class DeleteSlackIntegrationMappingByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -266,7 +266,7 @@ export class IntegrationMappingsManager {
       | 'updateSlackIntegrationMappingById'
       | 'deleteSlackIntegrationMappingById'
     > &
-      Partial<Pick<IntegrationMappingsManager, 'networkSession'>>
+      Partial<Pick<IntegrationMappingsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -288,9 +288,9 @@ export class IntegrationMappingsManager {
   async getSlackIntegrationMapping(
     queryParams: GetSlackIntegrationMappingQueryParams = {} satisfies GetSlackIntegrationMappingQueryParams,
     headersInput: GetSlackIntegrationMappingHeadersInput = new GetSlackIntegrationMappingHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<IntegrationMappings> {
     const headers: GetSlackIntegrationMappingHeaders =
       new GetSlackIntegrationMappingHeaders({
@@ -306,7 +306,7 @@ export class IntegrationMappingsManager {
       ['box_item_id']: toString(queryParams.boxItemId) as string,
       ['box_item_type']: toString(queryParams.boxItemType) as string,
       ['is_manually_created']: toString(
-        queryParams.isManuallyCreated
+        queryParams.isManuallyCreated,
       ) as string,
     });
     const headersMap: {
@@ -315,7 +315,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/integration_mappings/slack'
+        '/2.0/integration_mappings/slack',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -342,7 +342,7 @@ export class IntegrationMappingsManager {
    */
   async createSlackIntegrationMapping(
     requestBody: IntegrationMappingSlackCreateRequest,
-    optionalsInput: CreateSlackIntegrationMappingOptionalsInput = {}
+    optionalsInput: CreateSlackIntegrationMappingOptionalsInput = {},
   ): Promise<IntegrationMapping> {
     const optionals: CreateSlackIntegrationMappingOptionals =
       new CreateSlackIntegrationMappingOptionals({
@@ -357,7 +357,7 @@ export class IntegrationMappingsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/integration_mappings/slack'
+        '/2.0/integration_mappings/slack',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -386,7 +386,7 @@ export class IntegrationMappingsManager {
      */
   async updateSlackIntegrationMappingById(
     integrationMappingId: string,
-    optionalsInput: UpdateSlackIntegrationMappingByIdOptionalsInput = {}
+    optionalsInput: UpdateSlackIntegrationMappingByIdOptionalsInput = {},
   ): Promise<IntegrationMapping> {
     const optionals: UpdateSlackIntegrationMappingByIdOptionals =
       new UpdateSlackIntegrationMappingByIdOptionals({
@@ -404,7 +404,7 @@ export class IntegrationMappingsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/integration_mappings/slack/',
-        toString(integrationMappingId) as string
+        toString(integrationMappingId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -433,7 +433,7 @@ export class IntegrationMappingsManager {
      */
   async deleteSlackIntegrationMappingById(
     integrationMappingId: string,
-    optionalsInput: DeleteSlackIntegrationMappingByIdOptionalsInput = {}
+    optionalsInput: DeleteSlackIntegrationMappingByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteSlackIntegrationMappingByIdOptionals =
       new DeleteSlackIntegrationMappingByIdOptionals({
@@ -449,7 +449,7 @@ export class IntegrationMappingsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/integration_mappings/slack/',
-        toString(integrationMappingId) as string
+        toString(integrationMappingId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -466,12 +466,12 @@ export interface IntegrationMappingsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
-  val: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField
+  val: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetSlackIntegrationMappingQueryParamsPartnerItemTypeField {
   if (val == 'channel') {
     return val;
@@ -482,12 +482,12 @@ export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeF
   });
 }
 export function serializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
-  val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField
+  val: GetSlackIntegrationMappingQueryParamsBoxItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
   if (val == 'folder') {
     return val;
@@ -498,7 +498,7 @@ export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField
   });
 }
 export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
-  val: UpdateSlackIntegrationMappingByIdRequestBody
+  val: UpdateSlackIntegrationMappingByIdRequestBody,
 ): SerializedData {
   return {
     ['box_item']:
@@ -512,7 +512,7 @@ export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
   };
 }
 export function deserializeUpdateSlackIntegrationMappingByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateSlackIntegrationMappingByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -17,12 +17,12 @@ export interface EnterpriseBase {
   readonly rawData?: SerializedData;
 }
 export function serializeEnterpriseBaseTypeField(
-  val: EnterpriseBaseTypeField
+  val: EnterpriseBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeEnterpriseBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): EnterpriseBaseTypeField {
   if (val == 'enterprise') {
     return val;

@@ -35,12 +35,12 @@ export interface ZipDownloadStatus {
   readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadStatusStateField(
-  val: ZipDownloadStatusStateField
+  val: ZipDownloadStatusStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeZipDownloadStatusStateField(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadStatusStateField {
   if (val == 'in_progress') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeZipDownloadStatusStateField(
   });
 }
 export function serializeZipDownloadStatus(
-  val: ZipDownloadStatus
+  val: ZipDownloadStatus,
 ): SerializedData {
   return {
     ['total_file_count']:
@@ -74,7 +74,7 @@ export function serializeZipDownloadStatus(
   };
 }
 export function deserializeZipDownloadStatus(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadStatus {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

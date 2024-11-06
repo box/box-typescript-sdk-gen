@@ -39,7 +39,7 @@ export class GetFileVersionRetentionByIdOptionals {
           GetFileVersionRetentionByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -96,7 +96,7 @@ export class GetFileVersionRetentionsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileVersionRetentionsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -120,7 +120,7 @@ export class GetFileVersionRetentionByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileVersionRetentionByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -146,7 +146,7 @@ export class FileVersionRetentionsManager {
       | 'getFileVersionRetentions'
       | 'getFileVersionRetentionById'
     > &
-      Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>
+      Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -170,9 +170,9 @@ export class FileVersionRetentionsManager {
   async getFileVersionRetentions(
     queryParams: GetFileVersionRetentionsQueryParams = {} satisfies GetFileVersionRetentionsQueryParams,
     headersInput: GetFileVersionRetentionsHeadersInput = new GetFileVersionRetentionsHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<FileVersionRetentions> {
     const headers: GetFileVersionRetentionsHeaders =
       new GetFileVersionRetentionsHeaders({
@@ -196,7 +196,7 @@ export class FileVersionRetentionsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/file_version_retentions'
+        '/2.0/file_version_retentions',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -225,7 +225,7 @@ export class FileVersionRetentionsManager {
      */
   async getFileVersionRetentionById(
     fileVersionRetentionId: string,
-    optionalsInput: GetFileVersionRetentionByIdOptionalsInput = {}
+    optionalsInput: GetFileVersionRetentionByIdOptionalsInput = {},
   ): Promise<FileVersionRetention> {
     const optionals: GetFileVersionRetentionByIdOptionals =
       new GetFileVersionRetentionByIdOptionals({
@@ -241,7 +241,7 @@ export class FileVersionRetentionsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_version_retentions/',
-        toString(fileVersionRetentionId) as string
+        toString(fileVersionRetentionId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -261,12 +261,12 @@ export interface FileVersionRetentionsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFileVersionRetentionsQueryParamsDispositionActionField(
-  val: GetFileVersionRetentionsQueryParamsDispositionActionField
+  val: GetFileVersionRetentionsQueryParamsDispositionActionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionField(
-  val: SerializedData
+  val: SerializedData,
 ): GetFileVersionRetentionsQueryParamsDispositionActionField {
   if (val == 'permanently_delete') {
     return val;

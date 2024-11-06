@@ -55,7 +55,7 @@ await client.transfer.transferOwnedFolder(
   } satisfies TransferOwnedFolderRequestBody,
   {
     queryParams: { notify: false } satisfies TransferOwnedFolderQueryParams,
-  } satisfies TransferOwnedFolderOptionalsInput
+  } satisfies TransferOwnedFolderOptionalsInput,
 );
 ```
 

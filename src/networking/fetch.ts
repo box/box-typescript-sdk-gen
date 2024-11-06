@@ -195,7 +195,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       ...headers,
       ...(options.auth && {
         Authorization: await options.auth.retrieveAuthorizationHeader(
-          options.networkSession
+          options.networkSession,
         ),
       }),
       'User-Agent': userAgentHeader,
@@ -219,14 +219,14 @@ export async function fetch(
   options: FetchOptions & {
     /** @private */
     numRetries?: number;
-  }
+  },
 ): Promise<FetchResponse> {
   const fetchOptions: typeof options = options.networkSession?.interceptors
     ?.length
     ? options.networkSession?.interceptors.reduce(
         (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
           interceptor.beforeRequest(modifiedOptions),
-        options
+        options,
       )
     : options;
   const fileStreamBuffer = fetchOptions.fileStream
@@ -246,9 +246,9 @@ export async function fetch(
       Object.keys(params).length === 0 || fetchOptions.url.endsWith('?')
         ? ''
         : '?',
-      new URLSearchParams(params).toString()
+      new URLSearchParams(params).toString(),
     ),
-    { ...requestInit, redirect: 'manual' }
+    { ...requestInit, redirect: 'manual' },
   );
 
   const contentType = response.headers.get('content-type') ?? '';
@@ -274,7 +274,7 @@ export async function fetch(
     fetchResponse = fetchOptions.networkSession?.interceptors.reduce(
       (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
         interceptor.afterRequest(modifiedResponse),
-      fetchResponse
+      fetchResponse,
     );
   }
 

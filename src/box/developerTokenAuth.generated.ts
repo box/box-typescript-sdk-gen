@@ -32,7 +32,7 @@ export class BoxDeveloperTokenAuth implements Authentication {
       | 'revokeToken'
       | 'downscopeToken'
     > &
-      Partial<Pick<BoxDeveloperTokenAuth, 'config'>>
+      Partial<Pick<BoxDeveloperTokenAuth, 'config'>>,
   ) {
     if (fields.token) {
       this.token = fields.token;
@@ -71,7 +71,7 @@ export class BoxDeveloperTokenAuth implements Authentication {
    * @returns {Promise<string>}
    */
   async retrieveAuthorizationHeader(
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<string> {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
@@ -111,7 +111,7 @@ export class BoxDeveloperTokenAuth implements Authentication {
     scopes: readonly string[],
     resource?: string,
     sharedLink?: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0 || token!.accessToken == void 0) {

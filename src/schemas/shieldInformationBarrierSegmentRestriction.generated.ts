@@ -47,7 +47,7 @@ export type ShieldInformationBarrierSegmentRestriction =
     readonly updatedBy?: UserBase;
   };
 export function serializeShieldInformationBarrierSegmentRestriction(
-  val: ShieldInformationBarrierSegmentRestriction
+  val: ShieldInformationBarrierSegmentRestriction,
 ): SerializedData {
   const base: any =
     serializeShieldInformationBarrierSegmentRestrictionMini(val);
@@ -76,7 +76,7 @@ export function serializeShieldInformationBarrierSegmentRestriction(
   };
 }
 export function deserializeShieldInformationBarrierSegmentRestriction(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentRestriction {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -116,7 +116,7 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
   }
   const shieldInformationBarrierSegment: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField =
     deserializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField(
-      val.shield_information_barrier_segment
+      val.shield_information_barrier_segment,
     );
   if (val.restricted_segment == void 0) {
     throw new BoxSdkError({
@@ -126,7 +126,7 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
   }
   const restrictedSegment: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField =
     deserializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField(
-      val.restricted_segment
+      val.restricted_segment,
     );
   const type:
     | undefined
@@ -134,7 +134,7 @@ export function deserializeShieldInformationBarrierSegmentRestriction(
     val.type == void 0
       ? void 0
       : deserializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
-          val.type
+          val.type,
         );
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({

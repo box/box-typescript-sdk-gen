@@ -68,7 +68,7 @@ export class MetadataCascadePolicy {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<MetadataCascadePolicy, 'type'> &
-      Partial<Pick<MetadataCascadePolicy, 'type'>>
+      Partial<Pick<MetadataCascadePolicy, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -133,12 +133,12 @@ export interface MetadataCascadePolicyInput {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataCascadePolicyTypeField(
-  val: MetadataCascadePolicyTypeField
+  val: MetadataCascadePolicyTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataCascadePolicyTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyTypeField {
   if (val == 'metadata_cascade_policy') {
     return val;
@@ -148,12 +148,12 @@ export function deserializeMetadataCascadePolicyTypeField(
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseTypeField(
-  val: MetadataCascadePolicyOwnerEnterpriseTypeField
+  val: MetadataCascadePolicyOwnerEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyOwnerEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -163,7 +163,7 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseTypeField(
   });
 }
 export function serializeMetadataCascadePolicyOwnerEnterpriseField(
-  val: MetadataCascadePolicyOwnerEnterpriseField
+  val: MetadataCascadePolicyOwnerEnterpriseField,
 ): SerializedData {
   return {
     ['type']:
@@ -174,7 +174,7 @@ export function serializeMetadataCascadePolicyOwnerEnterpriseField(
   };
 }
 export function deserializeMetadataCascadePolicyOwnerEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyOwnerEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -199,12 +199,12 @@ export function deserializeMetadataCascadePolicyOwnerEnterpriseField(
   } satisfies MetadataCascadePolicyOwnerEnterpriseField;
 }
 export function serializeMetadataCascadePolicyParentTypeField(
-  val: MetadataCascadePolicyParentTypeField
+  val: MetadataCascadePolicyParentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataCascadePolicyParentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyParentTypeField {
   if (val == 'folder') {
     return val;
@@ -214,7 +214,7 @@ export function deserializeMetadataCascadePolicyParentTypeField(
   });
 }
 export function serializeMetadataCascadePolicyParentField(
-  val: MetadataCascadePolicyParentField
+  val: MetadataCascadePolicyParentField,
 ): SerializedData {
   return {
     ['type']:
@@ -225,7 +225,7 @@ export function serializeMetadataCascadePolicyParentField(
   };
 }
 export function deserializeMetadataCascadePolicyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -246,7 +246,7 @@ export function deserializeMetadataCascadePolicyParentField(
   return { type: type, id: id } satisfies MetadataCascadePolicyParentField;
 }
 export function serializeMetadataCascadePolicy(
-  val: MetadataCascadePolicy
+  val: MetadataCascadePolicy,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -255,7 +255,7 @@ export function serializeMetadataCascadePolicy(
       val.ownerEnterprise == void 0
         ? void 0
         : serializeMetadataCascadePolicyOwnerEnterpriseField(
-            val.ownerEnterprise
+            val.ownerEnterprise,
           ),
     ['parent']:
       val.parent == void 0
@@ -266,7 +266,7 @@ export function serializeMetadataCascadePolicy(
   };
 }
 export function deserializeMetadataCascadePolicy(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicy {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -295,7 +295,7 @@ export function deserializeMetadataCascadePolicy(
     val.owner_enterprise == void 0
       ? void 0
       : deserializeMetadataCascadePolicyOwnerEnterpriseField(
-          val.owner_enterprise
+          val.owner_enterprise,
         );
   const parent: undefined | MetadataCascadePolicyParentField =
     val.parent == void 0
@@ -325,7 +325,7 @@ export function deserializeMetadataCascadePolicy(
   } satisfies MetadataCascadePolicy;
 }
 export function serializeMetadataCascadePolicyInput(
-  val: MetadataCascadePolicyInput
+  val: MetadataCascadePolicyInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -337,7 +337,7 @@ export function serializeMetadataCascadePolicyInput(
       val.ownerEnterprise == void 0
         ? void 0
         : serializeMetadataCascadePolicyOwnerEnterpriseField(
-            val.ownerEnterprise
+            val.ownerEnterprise,
           ),
     ['parent']:
       val.parent == void 0
@@ -348,7 +348,7 @@ export function serializeMetadataCascadePolicyInput(
   };
 }
 export function deserializeMetadataCascadePolicyInput(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicyInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -375,7 +375,7 @@ export function deserializeMetadataCascadePolicyInput(
     val.owner_enterprise == void 0
       ? void 0
       : deserializeMetadataCascadePolicyOwnerEnterpriseField(
-          val.owner_enterprise
+          val.owner_enterprise,
         );
   const parent: undefined | MetadataCascadePolicyParentField =
     val.parent == void 0

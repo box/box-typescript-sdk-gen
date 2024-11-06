@@ -33,12 +33,12 @@ export interface MetadataQueryIndex {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataQueryIndexStatusField(
-  val: MetadataQueryIndexStatusField
+  val: MetadataQueryIndexStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataQueryIndexStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryIndexStatusField {
   if (val == 'building') {
     return val;
@@ -54,12 +54,12 @@ export function deserializeMetadataQueryIndexStatusField(
   });
 }
 export function serializeMetadataQueryIndexFieldsSortDirectionField(
-  val: MetadataQueryIndexFieldsSortDirectionField
+  val: MetadataQueryIndexFieldsSortDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataQueryIndexFieldsSortDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryIndexFieldsSortDirectionField {
   if (val == 'asc') {
     return val;
@@ -72,7 +72,7 @@ export function deserializeMetadataQueryIndexFieldsSortDirectionField(
   });
 }
 export function serializeMetadataQueryIndexFieldsField(
-  val: MetadataQueryIndexFieldsField
+  val: MetadataQueryIndexFieldsField,
 ): SerializedData {
   return {
     ['key']: val.key == void 0 ? void 0 : val.key,
@@ -80,12 +80,12 @@ export function serializeMetadataQueryIndexFieldsField(
       val.sortDirection == void 0
         ? void 0
         : serializeMetadataQueryIndexFieldsSortDirectionField(
-            val.sortDirection
+            val.sortDirection,
           ),
   };
 }
 export function deserializeMetadataQueryIndexFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryIndexFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -103,7 +103,7 @@ export function deserializeMetadataQueryIndexFieldsField(
     val.sort_direction == void 0
       ? void 0
       : deserializeMetadataQueryIndexFieldsSortDirectionField(
-          val.sort_direction
+          val.sort_direction,
         );
   return {
     key: key,
@@ -111,7 +111,7 @@ export function deserializeMetadataQueryIndexFieldsField(
   } satisfies MetadataQueryIndexFieldsField;
 }
 export function serializeMetadataQueryIndex(
-  val: MetadataQueryIndex
+  val: MetadataQueryIndex,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -121,14 +121,14 @@ export function serializeMetadataQueryIndex(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: MetadataQueryIndexFieldsField
+            item: MetadataQueryIndexFieldsField,
           ): SerializedData {
             return serializeMetadataQueryIndexFieldsField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeMetadataQueryIndex(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryIndex {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -168,12 +168,12 @@ export function deserializeMetadataQueryIndex(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (
-          itm: SerializedData
-        ): MetadataQueryIndexFieldsField {
-          return deserializeMetadataQueryIndexFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (
+            itm: SerializedData,
+          ): MetadataQueryIndexFieldsField {
+            return deserializeMetadataQueryIndexFieldsField(itm);
+          }) as readonly any[])
+        : [];
   return {
     id: id,
     type: type,

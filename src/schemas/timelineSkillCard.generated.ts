@@ -33,7 +33,7 @@ export class TimelineSkillCardSkillField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCardSkillField, 'type'> &
-      Partial<Pick<TimelineSkillCardSkillField, 'type'>>
+      Partial<Pick<TimelineSkillCardSkillField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -72,7 +72,7 @@ export class TimelineSkillCardInvocationField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCardInvocationField, 'type'> &
-      Partial<Pick<TimelineSkillCardInvocationField, 'type'>>
+      Partial<Pick<TimelineSkillCardInvocationField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -161,7 +161,7 @@ export class TimelineSkillCard {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TimelineSkillCard, 'type' | 'skillCardType'> &
-      Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>
+      Partial<Pick<TimelineSkillCard, 'type' | 'skillCardType'>>,
   ) {
     if (fields.createdAt) {
       this.createdAt = fields.createdAt;
@@ -221,12 +221,12 @@ export interface TimelineSkillCardInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTimelineSkillCardTypeField(
-  val: TimelineSkillCardTypeField
+  val: TimelineSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTimelineSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardTypeField {
   if (val == 'skill_card') {
     return val;
@@ -236,12 +236,12 @@ export function deserializeTimelineSkillCardTypeField(
   });
 }
 export function serializeTimelineSkillCardSkillCardTypeField(
-  val: TimelineSkillCardSkillCardTypeField
+  val: TimelineSkillCardSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTimelineSkillCardSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardSkillCardTypeField {
   if (val == 'timeline') {
     return val;
@@ -251,7 +251,7 @@ export function deserializeTimelineSkillCardSkillCardTypeField(
   });
 }
 export function serializeTimelineSkillCardSkillCardTitleField(
-  val: TimelineSkillCardSkillCardTitleField
+  val: TimelineSkillCardSkillCardTitleField,
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -259,7 +259,7 @@ export function serializeTimelineSkillCardSkillCardTitleField(
   };
 }
 export function deserializeTimelineSkillCardSkillCardTitleField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardSkillCardTitleField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -292,12 +292,12 @@ export function deserializeTimelineSkillCardSkillCardTitleField(
   } satisfies TimelineSkillCardSkillCardTitleField;
 }
 export function serializeTimelineSkillCardSkillTypeField(
-  val: TimelineSkillCardSkillTypeField
+  val: TimelineSkillCardSkillTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTimelineSkillCardSkillTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardSkillTypeField {
   if (val == 'service') {
     return val;
@@ -307,7 +307,7 @@ export function deserializeTimelineSkillCardSkillTypeField(
   });
 }
 export function serializeTimelineSkillCardSkillField(
-  val: TimelineSkillCardSkillField
+  val: TimelineSkillCardSkillField,
 ): SerializedData {
   return {
     ['type']: serializeTimelineSkillCardSkillTypeField(val.type),
@@ -315,7 +315,7 @@ export function serializeTimelineSkillCardSkillField(
   };
 }
 export function deserializeTimelineSkillCardSkillField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardSkillField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -346,7 +346,7 @@ export function deserializeTimelineSkillCardSkillField(
   return { type: type, id: id } satisfies TimelineSkillCardSkillField;
 }
 export function serializeTimelineSkillCardSkillFieldInput(
-  val: TimelineSkillCardSkillFieldInput
+  val: TimelineSkillCardSkillFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -357,7 +357,7 @@ export function serializeTimelineSkillCardSkillFieldInput(
   };
 }
 export function deserializeTimelineSkillCardSkillFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardSkillFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -384,12 +384,12 @@ export function deserializeTimelineSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies TimelineSkillCardSkillFieldInput;
 }
 export function serializeTimelineSkillCardInvocationTypeField(
-  val: TimelineSkillCardInvocationTypeField
+  val: TimelineSkillCardInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTimelineSkillCardInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardInvocationTypeField {
   if (val == 'skill_invocation') {
     return val;
@@ -399,7 +399,7 @@ export function deserializeTimelineSkillCardInvocationTypeField(
   });
 }
 export function serializeTimelineSkillCardInvocationField(
-  val: TimelineSkillCardInvocationField
+  val: TimelineSkillCardInvocationField,
 ): SerializedData {
   return {
     ['type']: serializeTimelineSkillCardInvocationTypeField(val.type),
@@ -407,7 +407,7 @@ export function serializeTimelineSkillCardInvocationField(
   };
 }
 export function deserializeTimelineSkillCardInvocationField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardInvocationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -438,7 +438,7 @@ export function deserializeTimelineSkillCardInvocationField(
   return { type: type, id: id } satisfies TimelineSkillCardInvocationField;
 }
 export function serializeTimelineSkillCardInvocationFieldInput(
-  val: TimelineSkillCardInvocationFieldInput
+  val: TimelineSkillCardInvocationFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -449,7 +449,7 @@ export function serializeTimelineSkillCardInvocationFieldInput(
   };
 }
 export function deserializeTimelineSkillCardInvocationFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardInvocationFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -476,7 +476,7 @@ export function deserializeTimelineSkillCardInvocationFieldInput(
   return { type: type, id: id } satisfies TimelineSkillCardInvocationFieldInput;
 }
 export function serializeTimelineSkillCardEntriesAppearsField(
-  val: TimelineSkillCardEntriesAppearsField
+  val: TimelineSkillCardEntriesAppearsField,
 ): SerializedData {
   return {
     ['start']: val.start == void 0 ? void 0 : val.start,
@@ -484,7 +484,7 @@ export function serializeTimelineSkillCardEntriesAppearsField(
   };
 }
 export function deserializeTimelineSkillCardEntriesAppearsField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardEntriesAppearsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -511,7 +511,7 @@ export function deserializeTimelineSkillCardEntriesAppearsField(
   } satisfies TimelineSkillCardEntriesAppearsField;
 }
 export function serializeTimelineSkillCardEntriesField(
-  val: TimelineSkillCardEntriesField
+  val: TimelineSkillCardEntriesField,
 ): SerializedData {
   return {
     ['text']: val.text == void 0 ? void 0 : val.text,
@@ -519,7 +519,7 @@ export function serializeTimelineSkillCardEntriesField(
       val.appears == void 0
         ? void 0
         : (val.appears.map(function (
-            item: TimelineSkillCardEntriesAppearsField
+            item: TimelineSkillCardEntriesAppearsField,
           ): SerializedData {
             return serializeTimelineSkillCardEntriesAppearsField(item);
           }) as readonly any[]),
@@ -527,7 +527,7 @@ export function serializeTimelineSkillCardEntriesField(
   };
 }
 export function deserializeTimelineSkillCardEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -551,12 +551,12 @@ export function deserializeTimelineSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : sdIsList(val.appears)
-      ? (val.appears.map(function (
-          itm: SerializedData
-        ): TimelineSkillCardEntriesAppearsField {
-          return deserializeTimelineSkillCardEntriesAppearsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.appears.map(function (
+            itm: SerializedData,
+          ): TimelineSkillCardEntriesAppearsField {
+            return deserializeTimelineSkillCardEntriesAppearsField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.image_url == void 0) && !sdIsString(val.image_url)) {
     throw new BoxSdkError({
       message:
@@ -572,14 +572,14 @@ export function deserializeTimelineSkillCardEntriesField(
   } satisfies TimelineSkillCardEntriesField;
 }
 export function serializeTimelineSkillCard(
-  val: TimelineSkillCard
+  val: TimelineSkillCard,
 ): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeTimelineSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTimelineSkillCardSkillCardTypeField(
-      val.skillCardType
+      val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
@@ -589,14 +589,14 @@ export function serializeTimelineSkillCard(
     ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
-      item: TimelineSkillCardEntriesField
+      item: TimelineSkillCardEntriesField,
     ): SerializedData {
       return serializeTimelineSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTimelineSkillCard(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -662,10 +662,10 @@ export function deserializeTimelineSkillCard(
     });
   }
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TimelineSkillCardEntriesField {
         return deserializeTimelineSkillCardEntriesField(itm);
       }) as readonly any[])
@@ -682,7 +682,7 @@ export function deserializeTimelineSkillCard(
   } satisfies TimelineSkillCard;
 }
 export function serializeTimelineSkillCardInput(
-  val: TimelineSkillCardInput
+  val: TimelineSkillCardInput,
 ): SerializedData {
   return {
     ['created_at']:
@@ -703,14 +703,14 @@ export function serializeTimelineSkillCardInput(
     ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
-      item: TimelineSkillCardEntriesField
+      item: TimelineSkillCardEntriesField,
     ): SerializedData {
       return serializeTimelineSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTimelineSkillCardInput(
-  val: SerializedData
+  val: SerializedData,
 ): TimelineSkillCardInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -773,10 +773,10 @@ export function deserializeTimelineSkillCardInput(
     });
   }
   const entries: readonly TimelineSkillCardEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TimelineSkillCardEntriesField {
         return deserializeTimelineSkillCardEntriesField(itm);
       }) as readonly any[])

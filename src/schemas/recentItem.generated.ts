@@ -37,12 +37,12 @@ export interface RecentItem {
   readonly rawData?: SerializedData;
 }
 export function serializeRecentItemInteractionTypeField(
-  val: RecentItemInteractionTypeField
+  val: RecentItemInteractionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRecentItemInteractionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RecentItemInteractionTypeField {
   if (val == 'item_preview') {
     return val;

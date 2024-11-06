@@ -44,12 +44,12 @@ export interface EventSource {
   readonly rawData?: SerializedData;
 }
 export function serializeEventSourceItemTypeField(
-  val: EventSourceItemTypeField
+  val: EventSourceItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeEventSourceItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): EventSourceItemTypeField {
   if (val == 'file') {
     return val;
@@ -62,12 +62,12 @@ export function deserializeEventSourceItemTypeField(
   });
 }
 export function serializeEventSourceClassificationField(
-  val: EventSourceClassificationField
+  val: EventSourceClassificationField,
 ): SerializedData {
   return { ['name']: val.name == void 0 ? void 0 : val.name };
 }
 export function deserializeEventSourceClassificationField(
-  val: SerializedData
+  val: SerializedData,
 ): EventSourceClassificationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

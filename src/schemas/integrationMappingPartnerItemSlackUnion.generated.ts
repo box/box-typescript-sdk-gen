@@ -12,7 +12,7 @@ import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingPartnerItemSlackUnion =
   IntegrationMappingPartnerItemSlack;
 export function serializeIntegrationMappingPartnerItemSlackUnion(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'channel') {
     return serializeIntegrationMappingPartnerItemSlack(val);
@@ -20,7 +20,7 @@ export function serializeIntegrationMappingPartnerItemSlackUnion(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeIntegrationMappingPartnerItemSlackUnion(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingPartnerItemSlackUnion {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

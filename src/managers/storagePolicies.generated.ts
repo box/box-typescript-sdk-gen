@@ -35,7 +35,7 @@ export class GetStoragePolicyByIdOptionals {
     > &
       Partial<
         Pick<GetStoragePolicyByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -79,7 +79,7 @@ export class GetStoragePoliciesHeaders {
   } = {};
   constructor(
     fields: Omit<GetStoragePoliciesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetStoragePoliciesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetStoragePoliciesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -103,7 +103,7 @@ export class GetStoragePolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetStoragePolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetStoragePolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetStoragePolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -127,7 +127,7 @@ export class StoragePoliciesManager {
       StoragePoliciesManager,
       'networkSession' | 'getStoragePolicies' | 'getStoragePolicyById'
     > &
-      Partial<Pick<StoragePoliciesManager, 'networkSession'>>
+      Partial<Pick<StoragePoliciesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -146,9 +146,9 @@ export class StoragePoliciesManager {
   async getStoragePolicies(
     queryParams: GetStoragePoliciesQueryParams = {} satisfies GetStoragePoliciesQueryParams,
     headersInput: GetStoragePoliciesHeadersInput = new GetStoragePoliciesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<StoragePolicies> {
     const headers: GetStoragePoliciesHeaders = new GetStoragePoliciesHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -168,7 +168,7 @@ export class StoragePoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/storage_policies'
+        '/2.0/storage_policies',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -192,7 +192,7 @@ export class StoragePoliciesManager {
      */
   async getStoragePolicyById(
     storagePolicyId: string,
-    optionalsInput: GetStoragePolicyByIdOptionalsInput = {}
+    optionalsInput: GetStoragePolicyByIdOptionalsInput = {},
   ): Promise<StoragePolicy> {
     const optionals: GetStoragePolicyByIdOptionals =
       new GetStoragePolicyByIdOptionals({
@@ -208,7 +208,7 @@ export class StoragePoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/storage_policies/',
-        toString(storagePolicyId) as string
+        toString(storagePolicyId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,

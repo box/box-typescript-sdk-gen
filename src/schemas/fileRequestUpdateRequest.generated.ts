@@ -63,12 +63,12 @@ export interface FileRequestUpdateRequest {
   readonly rawData?: SerializedData;
 }
 export function serializeFileRequestUpdateRequestStatusField(
-  val: FileRequestUpdateRequestStatusField
+  val: FileRequestUpdateRequestStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileRequestUpdateRequestStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestUpdateRequestStatusField {
   if (val == 'active') {
     return val;
@@ -81,7 +81,7 @@ export function deserializeFileRequestUpdateRequestStatusField(
   });
 }
 export function serializeFileRequestUpdateRequest(
-  val: FileRequestUpdateRequest
+  val: FileRequestUpdateRequest,
 ): SerializedData {
   return {
     ['title']: val.title == void 0 ? void 0 : val.title,
@@ -99,7 +99,7 @@ export function serializeFileRequestUpdateRequest(
   };
 }
 export function deserializeFileRequestUpdateRequest(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestUpdateRequest {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

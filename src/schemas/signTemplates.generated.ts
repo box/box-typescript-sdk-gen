@@ -72,10 +72,10 @@ export function deserializeSignTemplates(val: SerializedData): SignTemplates {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): SignTemplate {
-          return deserializeSignTemplate(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): SignTemplate {
+            return deserializeSignTemplate(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

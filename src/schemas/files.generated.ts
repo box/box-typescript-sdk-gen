@@ -49,9 +49,9 @@ export function deserializeFiles(val: SerializedData): Files {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileFull {
-          return deserializeFileFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): FileFull {
+            return deserializeFileFull(itm);
+          }) as readonly any[])
+        : [];
   return { totalCount: totalCount, entries: entries } satisfies Files;
 }

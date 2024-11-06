@@ -65,7 +65,7 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
       requestBody: {
         name: updatedGroupName,
       } satisfies UpdateGroupByIdRequestBody,
-    } satisfies UpdateGroupByIdOptionalsInput
+    } satisfies UpdateGroupByIdOptionalsInput,
   );
   if (!(updatedGroup.name == updatedGroupName)) {
     throw new Error('Assertion failed');

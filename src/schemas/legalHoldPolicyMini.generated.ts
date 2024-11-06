@@ -18,7 +18,7 @@ export class LegalHoldPolicyMini {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<LegalHoldPolicyMini, 'type'> &
-      Partial<Pick<LegalHoldPolicyMini, 'type'>>
+      Partial<Pick<LegalHoldPolicyMini, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -41,12 +41,12 @@ export interface LegalHoldPolicyMiniInput {
   readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyMiniTypeField(
-  val: LegalHoldPolicyMiniTypeField
+  val: LegalHoldPolicyMiniTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeLegalHoldPolicyMiniTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyMiniTypeField {
   if (val == 'legal_hold_policy') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeLegalHoldPolicyMiniTypeField(
   });
 }
 export function serializeLegalHoldPolicyMini(
-  val: LegalHoldPolicyMini
+  val: LegalHoldPolicyMini,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -64,7 +64,7 @@ export function serializeLegalHoldPolicyMini(
   };
 }
 export function deserializeLegalHoldPolicyMini(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -92,7 +92,7 @@ export function deserializeLegalHoldPolicyMini(
   return { id: id, type: type } satisfies LegalHoldPolicyMini;
 }
 export function serializeLegalHoldPolicyMiniInput(
-  val: LegalHoldPolicyMiniInput
+  val: LegalHoldPolicyMiniInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -103,7 +103,7 @@ export function serializeLegalHoldPolicyMiniInput(
   };
 }
 export function deserializeLegalHoldPolicyMiniInput(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyMiniInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

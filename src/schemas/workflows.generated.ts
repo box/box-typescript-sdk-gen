@@ -72,10 +72,10 @@ export function deserializeWorkflows(val: SerializedData): Workflows {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): Workflow {
-          return deserializeWorkflow(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): Workflow {
+            return deserializeWorkflow(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

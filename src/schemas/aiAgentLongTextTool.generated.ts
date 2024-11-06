@@ -35,7 +35,7 @@ export type AiAgentLongTextTool = AiAgentBasicTextTool & {
   readonly embeddings?: AiAgentLongTextToolEmbeddingsField;
 };
 export function serializeAiAgentLongTextToolEmbeddingsStrategyField(
-  val: AiAgentLongTextToolEmbeddingsStrategyField
+  val: AiAgentLongTextToolEmbeddingsStrategyField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -44,7 +44,7 @@ export function serializeAiAgentLongTextToolEmbeddingsStrategyField(
   };
 }
 export function deserializeAiAgentLongTextToolEmbeddingsStrategyField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextToolEmbeddingsStrategyField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -76,7 +76,7 @@ export function deserializeAiAgentLongTextToolEmbeddingsStrategyField(
   } satisfies AiAgentLongTextToolEmbeddingsStrategyField;
 }
 export function serializeAiAgentLongTextToolEmbeddingsField(
-  val: AiAgentLongTextToolEmbeddingsField
+  val: AiAgentLongTextToolEmbeddingsField,
 ): SerializedData {
   return {
     ['model']: val.model == void 0 ? void 0 : val.model,
@@ -87,7 +87,7 @@ export function serializeAiAgentLongTextToolEmbeddingsField(
   };
 }
 export function deserializeAiAgentLongTextToolEmbeddingsField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextToolEmbeddingsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -111,7 +111,7 @@ export function deserializeAiAgentLongTextToolEmbeddingsField(
   } satisfies AiAgentLongTextToolEmbeddingsField;
 }
 export function serializeAiAgentLongTextTool(
-  val: AiAgentLongTextTool
+  val: AiAgentLongTextTool,
 ): SerializedData {
   const base: any = serializeAiAgentBasicTextTool(val);
   if (!sdIsMap(base)) {
@@ -130,7 +130,7 @@ export function serializeAiAgentLongTextTool(
   };
 }
 export function deserializeAiAgentLongTextTool(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextTool {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -182,7 +182,7 @@ export function deserializeAiAgentLongTextTool(
     val.llm_endpoint_params == void 0
       ? void 0
       : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params
+          val.llm_endpoint_params,
         );
   return {
     embeddings: embeddings,

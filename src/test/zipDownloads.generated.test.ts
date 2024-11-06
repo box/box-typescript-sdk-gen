@@ -103,7 +103,7 @@ test('testManualZipDownloadAndCheckStatus', async function testManualZipDownload
     throw new Error('Assertion failed');
   }
   const zipStream: ByteStream = await client.zipDownloads.getZipDownloadContent(
-    zipDownload.downloadUrl!
+    zipDownload.downloadUrl!,
   );
   if (
     !(

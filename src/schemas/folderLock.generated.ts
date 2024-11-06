@@ -48,12 +48,12 @@ export interface FolderLock {
   readonly rawData?: SerializedData;
 }
 export function serializeFolderLockLockedOperationsField(
-  val: FolderLockLockedOperationsField
+  val: FolderLockLockedOperationsField,
 ): SerializedData {
   return { ['move']: val.move, ['delete']: val.delete };
 }
 export function deserializeFolderLockLockedOperationsField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderLockLockedOperationsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

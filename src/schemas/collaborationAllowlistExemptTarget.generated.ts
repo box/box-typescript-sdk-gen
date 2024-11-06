@@ -46,12 +46,12 @@ export interface CollaborationAllowlistExemptTarget {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistExemptTargetTypeField(
-  val: CollaborationAllowlistExemptTargetTypeField
+  val: CollaborationAllowlistExemptTargetTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationAllowlistExemptTargetTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistExemptTargetTypeField {
   if (val == 'collaboration_whitelist_exempt_target') {
     return val;
@@ -61,12 +61,12 @@ export function deserializeCollaborationAllowlistExemptTargetTypeField(
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-  val: CollaborationAllowlistExemptTargetEnterpriseTypeField
+  val: CollaborationAllowlistExemptTargetEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistExemptTargetEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -77,7 +77,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField
   });
 }
 export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: CollaborationAllowlistExemptTargetEnterpriseField
+  val: CollaborationAllowlistExemptTargetEnterpriseField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -85,13 +85,13 @@ export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
       val.type == void 0
         ? void 0
         : serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-            val.type
+            val.type,
           ),
     ['name']: val.name == void 0 ? void 0 : val.name,
   };
 }
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistExemptTargetEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -112,7 +112,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
     val.type == void 0
       ? void 0
       : deserializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
-          val.type
+          val.type,
         );
   if (!(val.name == void 0) && !sdIsString(val.name)) {
     throw new BoxSdkError({
@@ -128,7 +128,7 @@ export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
   } satisfies CollaborationAllowlistExemptTargetEnterpriseField;
 }
 export function serializeCollaborationAllowlistExemptTarget(
-  val: CollaborationAllowlistExemptTarget
+  val: CollaborationAllowlistExemptTarget,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -140,7 +140,7 @@ export function serializeCollaborationAllowlistExemptTarget(
       val.enterprise == void 0
         ? void 0
         : serializeCollaborationAllowlistExemptTargetEnterpriseField(
-            val.enterprise
+            val.enterprise,
           ),
     ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
     ['created_at']:
@@ -150,7 +150,7 @@ export function serializeCollaborationAllowlistExemptTarget(
   };
 }
 export function deserializeCollaborationAllowlistExemptTarget(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistExemptTarget {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -174,7 +174,7 @@ export function deserializeCollaborationAllowlistExemptTarget(
     val.enterprise == void 0
       ? void 0
       : deserializeCollaborationAllowlistExemptTargetEnterpriseField(
-          val.enterprise
+          val.enterprise,
         );
   const user: undefined | UserMini =
     val.user == void 0 ? void 0 : deserializeUserMini(val.user);

@@ -43,7 +43,7 @@ export class RestoreFileFromTrashOptionals {
           RestoreFileFromTrashOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -69,7 +69,7 @@ export class GetTrashedFileByIdOptionals {
   readonly queryParams: GetTrashedFileByIdQueryParams =
     {} satisfies GetTrashedFileByIdQueryParams;
   readonly headers: GetTrashedFileByIdHeaders = new GetTrashedFileByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -82,7 +82,7 @@ export class GetTrashedFileByIdOptionals {
           GetTrashedFileByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -111,7 +111,7 @@ export class DeleteTrashedFileByIdOptionals {
     > &
       Partial<
         Pick<DeleteTrashedFileByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -159,7 +159,7 @@ export class RestoreFileFromTrashHeaders {
   } = {};
   constructor(
     fields: Omit<RestoreFileFromTrashHeaders, 'extraHeaders'> &
-      Partial<Pick<RestoreFileFromTrashHeaders, 'extraHeaders'>>
+      Partial<Pick<RestoreFileFromTrashHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -196,7 +196,7 @@ export class GetTrashedFileByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTrashedFileByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTrashedFileByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTrashedFileByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -220,7 +220,7 @@ export class DeleteTrashedFileByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteTrashedFileByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteTrashedFileByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteTrashedFileByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -247,7 +247,7 @@ export class TrashedFilesManager {
       | 'getTrashedFileById'
       | 'deleteTrashedFileById'
     > &
-      Partial<Pick<TrashedFilesManager, 'networkSession'>>
+      Partial<Pick<TrashedFilesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -274,7 +274,7 @@ export class TrashedFilesManager {
      */
   async restoreFileFromTrash(
     fileId: string,
-    optionalsInput: RestoreFileFromTrashOptionalsInput = {}
+    optionalsInput: RestoreFileFromTrashOptionalsInput = {},
   ): Promise<TrashFileRestored> {
     const optionals: RestoreFileFromTrashOptionals =
       new RestoreFileFromTrashOptionals({
@@ -301,7 +301,7 @@ export class TrashedFilesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
-        toString(fileId) as string
+        toString(fileId) as string,
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -343,7 +343,7 @@ export class TrashedFilesManager {
      */
   async getTrashedFileById(
     fileId: string,
-    optionalsInput: GetTrashedFileByIdOptionalsInput = {}
+    optionalsInput: GetTrashedFileByIdOptionalsInput = {},
   ): Promise<TrashFile> {
     const optionals: GetTrashedFileByIdOptionals =
       new GetTrashedFileByIdOptionals({
@@ -369,7 +369,7 @@ export class TrashedFilesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -400,7 +400,7 @@ export class TrashedFilesManager {
      */
   async deleteTrashedFileById(
     fileId: string,
-    optionalsInput: DeleteTrashedFileByIdOptionalsInput = {}
+    optionalsInput: DeleteTrashedFileByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteTrashedFileByIdOptionals =
       new DeleteTrashedFileByIdOptionals({
@@ -417,7 +417,7 @@ export class TrashedFilesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -434,12 +434,12 @@ export interface TrashedFilesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreFileFromTrashRequestBodyParentField(
-  val: RestoreFileFromTrashRequestBodyParentField
+  val: RestoreFileFromTrashRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreFileFromTrashRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreFileFromTrashRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -457,7 +457,7 @@ export function deserializeRestoreFileFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFileFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFileFromTrashRequestBody(
-  val: RestoreFileFromTrashRequestBody
+  val: RestoreFileFromTrashRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -468,7 +468,7 @@ export function serializeRestoreFileFromTrashRequestBody(
   };
 }
 export function deserializeRestoreFileFromTrashRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreFileFromTrashRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

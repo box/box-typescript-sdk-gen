@@ -68,7 +68,7 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
         password: 'Secret123@',
       } satisfies AddShareLinkToFileRequestBodySharedLinkField,
     } satisfies AddShareLinkToFileRequestBody,
-    { fields: 'shared_link' } satisfies AddShareLinkToFileQueryParams
+    { fields: 'shared_link' } satisfies AddShareLinkToFileQueryParams,
   );
   const fileFromApi: FileFull =
     await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
@@ -86,9 +86,9 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
-          '&shared_link_password=Secret123@'
+          '&shared_link_password=Secret123@',
         ) as string,
-      } satisfies FindFileForSharedLinkHeadersInput
+      } satisfies FindFileForSharedLinkHeadersInput,
     );
   if (!(fileId == fileFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -100,9 +100,9 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
         boxapi: ''.concat(
           'shared_link=',
           fileFromApi.sharedLink!.url,
-          '&shared_link_password=incorrectPassword'
+          '&shared_link_password=incorrectPassword',
         ) as string,
-      } satisfies FindFileForSharedLinkHeadersInput
+      } satisfies FindFileForSharedLinkHeadersInput,
     );
   }).rejects.toThrow();
   const updatedFile: FileFull =
@@ -114,7 +114,7 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
             'collaborators' as UpdateSharedLinkOnFileRequestBodySharedLinkAccessField,
         } satisfies UpdateSharedLinkOnFileRequestBodySharedLinkField,
       } satisfies UpdateSharedLinkOnFileRequestBody,
-      { fields: 'shared_link' } satisfies UpdateSharedLinkOnFileQueryParams
+      { fields: 'shared_link' } satisfies UpdateSharedLinkOnFileQueryParams,
     );
   if (
     !((toString(updatedFile.sharedLink!.access) as string) == 'collaborators')

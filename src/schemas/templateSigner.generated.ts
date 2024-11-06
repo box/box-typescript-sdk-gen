@@ -47,12 +47,12 @@ export interface TemplateSigner {
   readonly rawData?: SerializedData;
 }
 export function serializeTemplateSignerRoleField(
-  val: TemplateSignerRoleField
+  val: TemplateSignerRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeTemplateSignerRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerRoleField {
   if (val == 'signer') {
     return val;
@@ -99,10 +99,10 @@ export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
     val.inputs == void 0
       ? void 0
       : sdIsList(val.inputs)
-      ? (val.inputs.map(function (itm: SerializedData): TemplateSignerInput {
-          return deserializeTemplateSignerInput(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.inputs.map(function (itm: SerializedData): TemplateSignerInput {
+            return deserializeTemplateSignerInput(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.email == void 0) && !sdIsString(val.email)) {
     throw new BoxSdkError({
       message: 'Expecting string for "email" of type "TemplateSigner"',

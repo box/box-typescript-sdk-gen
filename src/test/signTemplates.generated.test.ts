@@ -18,7 +18,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
@@ -30,7 +30,7 @@ test('testGetSignTemplates', async function testGetSignTemplates(): Promise<any>
 });
 test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const signTemplates: SignTemplates =
     await client.signTemplates.getSignTemplates({
@@ -42,7 +42,7 @@ test('testGetSignTemplate', async function testGetSignTemplate(): Promise<any> {
   if (signTemplates.entries!.length > 0) {
     const signTemplate: SignTemplate =
       await client.signTemplates.getSignTemplateById(
-        signTemplates.entries![0].id!
+        signTemplates.entries![0].id!,
       );
     if (!(signTemplate.id == signTemplates.entries![0].id)) {
       throw new Error('Assertion failed');

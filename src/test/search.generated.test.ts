@@ -6,8 +6,6 @@ import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../manage
 import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
-import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
-import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeFiles } from '../schemas/files.generated.js';
 import { deserializeFiles } from '../schemas/files.generated.js';
 import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -30,6 +28,8 @@ import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { serializeMetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
@@ -43,7 +43,6 @@ import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
-import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -57,6 +56,7 @@ import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.gener
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { SearchForContentQueryParams } from '../managers/search.generated.js';
 import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { MetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { MetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
 import { getUuid } from '../internal/utils.js';
@@ -84,20 +84,9 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       templateKey: templateKey,
       fields: [
         {
-          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-          key: 'testColor',
-          displayName: 'testColor',
-          options: [
-            {
-              key: 'red',
-            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-            {
-              key: 'green',
-            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-            {
-              key: 'blue',
-            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-          ],
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'testName',
+          displayName: 'testName',
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
       ],
     } satisfies CreateMetadataTemplateRequestBody);
@@ -117,7 +106,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
-      { ['testColor']: ['red', 'blue'] }
+      { ['testName']: 1 },
     );
   if (!(metadata.template == templateKey)) {
     throw new Error('Assertion failed');
@@ -128,22 +117,22 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   const searchFrom: string = ''.concat(
     template.scope!,
     '.',
-    template.templateKey
+    template.templateKey,
   ) as string;
   const query: MetadataQueryResults = await client.search.searchByMetadataQuery(
     {
       ancestorFolderId: '0',
       from: searchFrom,
-      query: 'testColor = :value',
-      queryParams: { ['value']: ['red', 'blue'] },
-    } satisfies MetadataQuery
+      query: 'testName >= :value',
+      queryParams: { ['value']: '0.0' },
+    } satisfies MetadataQuery,
   );
   if (!(query.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey
+    template.templateKey,
   );
   await client.files.deleteFileById(file.id);
 });
@@ -252,7 +241,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
         ['dateField']: '2035-01-02T00:00:00Z',
         ['enumField']: 'enumValue2',
         ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-      }
+      },
     );
   const query: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
@@ -282,7 +271,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey!
+    template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
 });

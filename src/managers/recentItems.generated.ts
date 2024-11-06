@@ -51,7 +51,7 @@ export class GetRecentItemsHeaders {
   } = {};
   constructor(
     fields: Omit<GetRecentItemsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -72,7 +72,7 @@ export class RecentItemsManager {
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
     fields: Omit<RecentItemsManager, 'networkSession' | 'getRecentItems'> &
-      Partial<Pick<RecentItemsManager, 'networkSession'>>
+      Partial<Pick<RecentItemsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -93,7 +93,7 @@ export class RecentItemsManager {
   async getRecentItems(
     queryParams: GetRecentItemsQueryParams = {} satisfies GetRecentItemsQueryParams,
     headersInput: GetRecentItemsHeadersInput = new GetRecentItemsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<RecentItems> {
     const headers: GetRecentItemsHeaders = new GetRecentItemsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -113,7 +113,7 @@ export class RecentItemsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/recent_items'
+        '/2.0/recent_items',
       ) as string,
       method: 'GET',
       params: queryParamsMap,

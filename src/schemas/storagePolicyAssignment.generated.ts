@@ -32,7 +32,7 @@ export class StoragePolicyAssignment {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StoragePolicyAssignment, 'type'> &
-      Partial<Pick<StoragePolicyAssignment, 'type'>>
+      Partial<Pick<StoragePolicyAssignment, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -63,12 +63,12 @@ export interface StoragePolicyAssignmentInput {
   readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyAssignmentTypeField(
-  val: StoragePolicyAssignmentTypeField
+  val: StoragePolicyAssignmentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStoragePolicyAssignmentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyAssignmentTypeField {
   if (val == 'storage_policy_assignment') {
     return val;
@@ -78,7 +78,7 @@ export function deserializeStoragePolicyAssignmentTypeField(
   });
 }
 export function serializeStoragePolicyAssignmentAssignedToField(
-  val: StoragePolicyAssignmentAssignedToField
+  val: StoragePolicyAssignmentAssignedToField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -86,7 +86,7 @@ export function serializeStoragePolicyAssignmentAssignedToField(
   };
 }
 export function deserializeStoragePolicyAssignmentAssignedToField(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyAssignmentAssignedToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -113,7 +113,7 @@ export function deserializeStoragePolicyAssignmentAssignedToField(
   } satisfies StoragePolicyAssignmentAssignedToField;
 }
 export function serializeStoragePolicyAssignment(
-  val: StoragePolicyAssignment
+  val: StoragePolicyAssignment,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -129,7 +129,7 @@ export function serializeStoragePolicyAssignment(
   };
 }
 export function deserializeStoragePolicyAssignment(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyAssignment {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -171,7 +171,7 @@ export function deserializeStoragePolicyAssignment(
   } satisfies StoragePolicyAssignment;
 }
 export function serializeStoragePolicyAssignmentInput(
-  val: StoragePolicyAssignmentInput
+  val: StoragePolicyAssignmentInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -190,7 +190,7 @@ export function serializeStoragePolicyAssignmentInput(
   };
 }
 export function deserializeStoragePolicyAssignmentInput(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyAssignmentInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

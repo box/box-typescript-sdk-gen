@@ -76,7 +76,7 @@ test('test_createGetDeleteWeblink', async function test_createGetDeleteWeblink()
           password: password,
         } satisfies UpdateWebLinkByIdRequestBodySharedLinkField,
       } satisfies UpdateWebLinkByIdRequestBody,
-    } satisfies UpdateWebLinkByIdOptionalsInput
+    } satisfies UpdateWebLinkByIdOptionalsInput,
   );
   if (!(updatedWeblink.name == updatedName)) {
     throw new Error('Assertion failed');
@@ -86,7 +86,7 @@ test('test_createGetDeleteWeblink', async function test_createGetDeleteWeblink()
   }
   await client.webLinks.deleteWebLinkById(weblink.id);
   const deletedWeblink: WebLink = await client.webLinks.getWebLinkById(
-    weblink.id
+    weblink.id,
   );
   if (!((toString(deletedWeblink.itemStatus!) as string) == 'trashed')) {
     throw new Error('Assertion failed');

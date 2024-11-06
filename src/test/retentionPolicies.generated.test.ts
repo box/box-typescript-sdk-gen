@@ -72,7 +72,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
         requestBody: {
           policyName: updatedRetentionPolicyName,
         } satisfies UpdateRetentionPolicyByIdRequestBody,
-      } satisfies UpdateRetentionPolicyByIdOptionalsInput
+      } satisfies UpdateRetentionPolicyByIdOptionalsInput,
     );
   if (!(updatedRetentionPolicy.policyName == updatedRetentionPolicyName)) {
     throw new Error('Assertion failed');

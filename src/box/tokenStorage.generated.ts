@@ -18,7 +18,7 @@ export class InMemoryTokenStorage implements TokenStorage {
   token?: AccessToken = void 0;
   constructor(
     fields: Omit<InMemoryTokenStorage, 'token' | 'store' | 'get' | 'clear'> &
-      Partial<Pick<InMemoryTokenStorage, 'token'>>
+      Partial<Pick<InMemoryTokenStorage, 'token'>>,
   ) {
     if (fields.token) {
       this.token = fields.token;

@@ -71,7 +71,7 @@ test('test_create_and_delete_folder', async function test_create_and_delete_fold
     parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
   } satisfies CreateFolderRequestBody);
   const createdFolder: FolderFull = await client.folders.getFolderById(
-    newFolder.id
+    newFolder.id,
   );
   if (!(createdFolder.name == newFolderName)) {
     throw new Error('Assertion failed');
@@ -95,7 +95,7 @@ test('test_update_folder', async function test_update_folder(): Promise<any> {
         name: updatedName,
         description: 'Updated description',
       } satisfies UpdateFolderByIdRequestBody,
-    } satisfies UpdateFolderByIdOptionalsInput
+    } satisfies UpdateFolderByIdOptionalsInput,
   );
   if (!(updatedFolder.name == updatedName)) {
     throw new Error('Assertion failed');
@@ -117,7 +117,7 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
     {
       parent: { id: '0' } satisfies CopyFolderRequestBodyParentField,
       name: copiedFolderName,
-    } satisfies CopyFolderRequestBody
+    } satisfies CopyFolderRequestBody,
   );
   if (!(copiedFolder.parent!.id == '0')) {
     throw new Error('Assertion failed');
@@ -132,13 +132,13 @@ test('test_copy_move_folder_and_list_folder_items', async function test_copy_mov
         } satisfies UpdateFolderByIdRequestBodyParentField,
         name: movedFolderName,
       } satisfies UpdateFolderByIdRequestBody,
-    } satisfies UpdateFolderByIdOptionalsInput
+    } satisfies UpdateFolderByIdOptionalsInput,
   );
   if (!(movedFolder.parent!.id == folderOrigin.id)) {
     throw new Error('Assertion failed');
   }
   const folderItems: Items = await client.folders.getFolderItems(
-    folderOrigin.id
+    folderOrigin.id,
   );
   if (!(folderItems.entries![0].id == movedFolder.id)) {
     throw new Error('Assertion failed');

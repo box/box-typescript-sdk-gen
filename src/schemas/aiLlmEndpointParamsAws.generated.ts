@@ -26,7 +26,7 @@ export class AiLlmEndpointParamsAws {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsAws, 'type'> &
-      Partial<Pick<AiLlmEndpointParamsAws, 'type'>>
+      Partial<Pick<AiLlmEndpointParamsAws, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -60,12 +60,12 @@ export interface AiLlmEndpointParamsAwsInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsAwsTypeField(
-  val: AiLlmEndpointParamsAwsTypeField
+  val: AiLlmEndpointParamsAwsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiLlmEndpointParamsAwsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsAwsTypeField {
   if (val == 'aws_params') {
     return val;
@@ -75,7 +75,7 @@ export function deserializeAiLlmEndpointParamsAwsTypeField(
   });
 }
 export function serializeAiLlmEndpointParamsAws(
-  val: AiLlmEndpointParamsAws
+  val: AiLlmEndpointParamsAws,
 ): SerializedData {
   return {
     ['type']: serializeAiLlmEndpointParamsAwsTypeField(val.type),
@@ -84,7 +84,7 @@ export function serializeAiLlmEndpointParamsAws(
   };
 }
 export function deserializeAiLlmEndpointParamsAws(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsAws {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -120,7 +120,7 @@ export function deserializeAiLlmEndpointParamsAws(
   } satisfies AiLlmEndpointParamsAws;
 }
 export function serializeAiLlmEndpointParamsAwsInput(
-  val: AiLlmEndpointParamsAwsInput
+  val: AiLlmEndpointParamsAwsInput,
 ): SerializedData {
   return {
     ['type']:
@@ -132,7 +132,7 @@ export function serializeAiLlmEndpointParamsAwsInput(
   };
 }
 export function deserializeAiLlmEndpointParamsAwsInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsAwsInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

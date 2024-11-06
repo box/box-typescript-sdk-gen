@@ -45,7 +45,7 @@ export type Comment = CommentBase & {
   readonly item?: CommentItemField;
 };
 export function serializeCommentItemField(
-  val: CommentItemField
+  val: CommentItemField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -53,7 +53,7 @@ export function serializeCommentItemField(
   };
 }
 export function deserializeCommentItemField(
-  val: SerializedData
+  val: SerializedData,
 ): CommentItemField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

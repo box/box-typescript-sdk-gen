@@ -43,7 +43,7 @@ export class GetFolderByIdOptionals {
           GetFolderByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -78,7 +78,7 @@ export class UpdateFolderByIdOptionals {
           UpdateFolderByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -115,7 +115,7 @@ export class DeleteFolderByIdOptionals {
           DeleteFolderByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -148,7 +148,7 @@ export class GetFolderItemsOptionals {
           GetFolderItemsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -181,7 +181,7 @@ export class CreateFolderOptionals {
           CreateFolderOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -214,7 +214,7 @@ export class CopyFolderOptionals {
           CopyFolderOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -324,7 +324,7 @@ export class GetFolderByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifNoneMatch) {
       this.ifNoneMatch = fields.ifNoneMatch;
@@ -550,7 +550,7 @@ export class UpdateFolderByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFolderByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFolderByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFolderByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -601,7 +601,7 @@ export class DeleteFolderByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFolderByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFolderByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFolderByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -732,7 +732,7 @@ export class GetFolderItemsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderItemsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderItemsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderItemsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.boxapi) {
       this.boxapi = fields.boxapi;
@@ -838,7 +838,7 @@ export class CreateFolderHeaders {
   } = {};
   constructor(
     fields: Omit<CreateFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -898,7 +898,7 @@ export class CopyFolderHeaders {
   } = {};
   constructor(
     fields: Omit<CopyFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<CopyFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<CopyFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -928,7 +928,7 @@ export class FoldersManager {
       | 'createFolder'
       | 'copyFolder'
     > &
-      Partial<Pick<FoldersManager, 'networkSession'>>
+      Partial<Pick<FoldersManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -964,7 +964,7 @@ export class FoldersManager {
      */
   async getFolderById(
     folderId: string,
-    optionalsInput: GetFolderByIdOptionalsInput = {}
+    optionalsInput: GetFolderByIdOptionalsInput = {},
   ): Promise<FolderFull> {
     const optionals: GetFolderByIdOptionals = new GetFolderByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -998,7 +998,7 @@ export class FoldersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
-        toString(folderId) as string
+        toString(folderId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -1032,7 +1032,7 @@ export class FoldersManager {
      */
   async updateFolderById(
     folderId: string,
-    optionalsInput: UpdateFolderByIdOptionalsInput = {}
+    optionalsInput: UpdateFolderByIdOptionalsInput = {},
   ): Promise<FolderFull> {
     const optionals: UpdateFolderByIdOptionals = new UpdateFolderByIdOptionals({
       requestBody: optionalsInput.requestBody,
@@ -1061,7 +1061,7 @@ export class FoldersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
-        toString(folderId) as string
+        toString(folderId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -1097,7 +1097,7 @@ export class FoldersManager {
      */
   async deleteFolderById(
     folderId: string,
-    optionalsInput: DeleteFolderByIdOptionalsInput = {}
+    optionalsInput: DeleteFolderByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFolderByIdOptionals = new DeleteFolderByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -1122,7 +1122,7 @@ export class FoldersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
-        toString(folderId) as string
+        toString(folderId) as string,
       ) as string,
       method: 'DELETE',
       params: queryParamsMap,
@@ -1156,7 +1156,7 @@ export class FoldersManager {
      */
   async getFolderItems(
     folderId: string,
-    optionalsInput: GetFolderItemsOptionalsInput = {}
+    optionalsInput: GetFolderItemsOptionalsInput = {},
   ): Promise<Items> {
     const optionals: GetFolderItemsOptionals = new GetFolderItemsOptionals({
       queryParams: optionalsInput.queryParams,
@@ -1190,7 +1190,7 @@ export class FoldersManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/items'
+        '/items',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -1213,7 +1213,7 @@ export class FoldersManager {
    */
   async createFolder(
     requestBody: CreateFolderRequestBody,
-    optionalsInput: CreateFolderOptionalsInput = {}
+    optionalsInput: CreateFolderOptionalsInput = {},
   ): Promise<FolderFull> {
     const optionals: CreateFolderOptionals = new CreateFolderOptionals({
       queryParams: optionalsInput.queryParams,
@@ -1236,7 +1236,7 @@ export class FoldersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders'
+        '/2.0/folders',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -1274,7 +1274,7 @@ export class FoldersManager {
   async copyFolder(
     folderId: string,
     requestBody: CopyFolderRequestBody,
-    optionalsInput: CopyFolderOptionalsInput = {}
+    optionalsInput: CopyFolderOptionalsInput = {},
   ): Promise<FolderFull> {
     const optionals: CopyFolderOptionals = new CopyFolderOptionals({
       queryParams: optionalsInput.queryParams,
@@ -1299,7 +1299,7 @@ export class FoldersManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/copy'
+        '/copy',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -1322,12 +1322,12 @@ export interface FoldersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFolderByIdQueryParamsSortField(
-  val: GetFolderByIdQueryParamsSortField
+  val: GetFolderByIdQueryParamsSortField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsSortField(
-  val: SerializedData
+  val: SerializedData,
 ): GetFolderByIdQueryParamsSortField {
   if (val == 'id') {
     return val;
@@ -1346,12 +1346,12 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   });
 }
 export function serializeGetFolderByIdQueryParamsDirectionField(
-  val: GetFolderByIdQueryParamsDirectionField
+  val: GetFolderByIdQueryParamsDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFolderByIdQueryParamsDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GetFolderByIdQueryParamsDirectionField {
   if (val == 'ASC') {
     return val;
@@ -1364,12 +1364,12 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodySyncStateField(
-  val: UpdateFolderByIdRequestBodySyncStateField
+  val: UpdateFolderByIdRequestBodySyncStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodySyncStateField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodySyncStateField {
   if (val == 'synced') {
     return val;
@@ -1385,12 +1385,12 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodyParentField(
-  val: UpdateFolderByIdRequestBodyParentField
+  val: UpdateFolderByIdRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeUpdateFolderByIdRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1407,12 +1407,12 @@ export function deserializeUpdateFolderByIdRequestBodyParentField(
   return { id: id } satisfies UpdateFolderByIdRequestBodyParentField;
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkAccessField(
-  val: UpdateFolderByIdRequestBodySharedLinkAccessField
+  val: UpdateFolderByIdRequestBodySharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodySharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -1429,14 +1429,14 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
   });
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-  val: UpdateFolderByIdRequestBodySharedLinkPermissionsField
+  val: UpdateFolderByIdRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
   };
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodySharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1457,7 +1457,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField
   } satisfies UpdateFolderByIdRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateFolderByIdRequestBodySharedLinkField(
-  val: UpdateFolderByIdRequestBodySharedLinkField
+  val: UpdateFolderByIdRequestBodySharedLinkField,
 ): SerializedData {
   return {
     ['access']:
@@ -1472,12 +1472,12 @@ export function serializeUpdateFolderByIdRequestBodySharedLinkField(
       val.permissions == void 0
         ? void 0
         : serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-            val.permissions
+            val.permissions,
           ),
   };
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1519,7 +1519,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkField(
     val.permissions == void 0
       ? void 0
       : deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
-          val.permissions
+          val.permissions,
         );
   return {
     access: access,
@@ -1530,12 +1530,12 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkField(
   } satisfies UpdateFolderByIdRequestBodySharedLinkField;
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-  val: UpdateFolderByIdRequestBodyFolderUploadEmailAccessField
+  val: UpdateFolderByIdRequestBodyFolderUploadEmailAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodyFolderUploadEmailAccessField {
   if (val == 'open') {
     return val;
@@ -1549,19 +1549,19 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
   });
 }
 export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-  val: UpdateFolderByIdRequestBodyFolderUploadEmailField
+  val: UpdateFolderByIdRequestBodyFolderUploadEmailField,
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
         : serializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-            val.access
+            val.access,
           ),
   };
 }
 export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodyFolderUploadEmailField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1575,14 +1575,14 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
     val.access == void 0
       ? void 0
       : deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
-          val.access
+          val.access,
         );
   return {
     access: access,
   } satisfies UpdateFolderByIdRequestBodyFolderUploadEmailField;
 }
 export function serializeUpdateFolderByIdRequestBodyCollectionsField(
-  val: UpdateFolderByIdRequestBodyCollectionsField
+  val: UpdateFolderByIdRequestBodyCollectionsField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -1590,7 +1590,7 @@ export function serializeUpdateFolderByIdRequestBodyCollectionsField(
   };
 }
 export function deserializeUpdateFolderByIdRequestBodyCollectionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBodyCollectionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1618,7 +1618,7 @@ export function deserializeUpdateFolderByIdRequestBodyCollectionsField(
   } satisfies UpdateFolderByIdRequestBodyCollectionsField;
 }
 export function serializeUpdateFolderByIdRequestBody(
-  val: UpdateFolderByIdRequestBody
+  val: UpdateFolderByIdRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -1641,7 +1641,7 @@ export function serializeUpdateFolderByIdRequestBody(
       val.folderUploadEmail == void 0
         ? void 0
         : serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-            val.folderUploadEmail
+            val.folderUploadEmail,
           ),
     ['tags']:
       val.tags == void 0
@@ -1657,7 +1657,7 @@ export function serializeUpdateFolderByIdRequestBody(
       val.collections == void 0
         ? void 0
         : (val.collections.map(function (
-            item: UpdateFolderByIdRequestBodyCollectionsField
+            item: UpdateFolderByIdRequestBodyCollectionsField,
           ): SerializedData {
             return serializeUpdateFolderByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
@@ -1668,7 +1668,7 @@ export function serializeUpdateFolderByIdRequestBody(
   };
 }
 export function deserializeUpdateFolderByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1719,7 +1719,7 @@ export function deserializeUpdateFolderByIdRequestBody(
     val.folder_upload_email == void 0
       ? void 0
       : deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
-          val.folder_upload_email
+          val.folder_upload_email,
         );
   if (!(val.tags == void 0) && !sdIsList(val.tags)) {
     throw new BoxSdkError({
@@ -1731,15 +1731,15 @@ export function deserializeUpdateFolderByIdRequestBody(
     val.tags == void 0
       ? void 0
       : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "UpdateFolderByIdRequestBody"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.tags.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "UpdateFolderByIdRequestBody"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (
     !(val.is_collaboration_restricted_to_enterprise == void 0) &&
     !sdIsBoolean(val.is_collaboration_restricted_to_enterprise)
@@ -1765,12 +1765,12 @@ export function deserializeUpdateFolderByIdRequestBody(
     val.collections == void 0
       ? void 0
       : sdIsList(val.collections)
-      ? (val.collections.map(function (
-          itm: SerializedData
-        ): UpdateFolderByIdRequestBodyCollectionsField {
-          return deserializeUpdateFolderByIdRequestBodyCollectionsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.collections.map(function (
+            itm: SerializedData,
+          ): UpdateFolderByIdRequestBodyCollectionsField {
+            return deserializeUpdateFolderByIdRequestBodyCollectionsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.can_non_owners_view_collaborators == void 0) &&
     !sdIsBoolean(val.can_non_owners_view_collaborators)
@@ -1800,12 +1800,12 @@ export function deserializeUpdateFolderByIdRequestBody(
   } satisfies UpdateFolderByIdRequestBody;
 }
 export function serializeGetFolderItemsQueryParamsSortField(
-  val: GetFolderItemsQueryParamsSortField
+  val: GetFolderItemsQueryParamsSortField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsSortField(
-  val: SerializedData
+  val: SerializedData,
 ): GetFolderItemsQueryParamsSortField {
   if (val == 'id') {
     return val;
@@ -1824,12 +1824,12 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   });
 }
 export function serializeGetFolderItemsQueryParamsDirectionField(
-  val: GetFolderItemsQueryParamsDirectionField
+  val: GetFolderItemsQueryParamsDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFolderItemsQueryParamsDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GetFolderItemsQueryParamsDirectionField {
   if (val == 'ASC') {
     return val;
@@ -1842,12 +1842,12 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
   });
 }
 export function serializeCreateFolderRequestBodyParentField(
-  val: CreateFolderRequestBodyParentField
+  val: CreateFolderRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateFolderRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1870,12 +1870,12 @@ export function deserializeCreateFolderRequestBodyParentField(
   return { id: id } satisfies CreateFolderRequestBodyParentField;
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-  val: CreateFolderRequestBodyFolderUploadEmailAccessField
+  val: CreateFolderRequestBodyFolderUploadEmailAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderRequestBodyFolderUploadEmailAccessField {
   if (val == 'open') {
     return val;
@@ -1889,19 +1889,19 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
   });
 }
 export function serializeCreateFolderRequestBodyFolderUploadEmailField(
-  val: CreateFolderRequestBodyFolderUploadEmailField
+  val: CreateFolderRequestBodyFolderUploadEmailField,
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
         : serializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-            val.access
+            val.access,
           ),
   };
 }
 export function deserializeCreateFolderRequestBodyFolderUploadEmailField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderRequestBodyFolderUploadEmailField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1915,19 +1915,19 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailField(
     val.access == void 0
       ? void 0
       : deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
-          val.access
+          val.access,
         );
   return {
     access: access,
   } satisfies CreateFolderRequestBodyFolderUploadEmailField;
 }
 export function serializeCreateFolderRequestBodySyncStateField(
-  val: CreateFolderRequestBodySyncStateField
+  val: CreateFolderRequestBodySyncStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateFolderRequestBodySyncStateField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderRequestBodySyncStateField {
   if (val == 'synced') {
     return val;
@@ -1943,7 +1943,7 @@ export function deserializeCreateFolderRequestBodySyncStateField(
   });
 }
 export function serializeCreateFolderRequestBody(
-  val: CreateFolderRequestBody
+  val: CreateFolderRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -1952,7 +1952,7 @@ export function serializeCreateFolderRequestBody(
       val.folderUploadEmail == void 0
         ? void 0
         : serializeCreateFolderRequestBodyFolderUploadEmailField(
-            val.folderUploadEmail
+            val.folderUploadEmail,
           ),
     ['sync_state']:
       val.syncState == void 0
@@ -1961,7 +1961,7 @@ export function serializeCreateFolderRequestBody(
   };
 }
 export function deserializeCreateFolderRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1994,7 +1994,7 @@ export function deserializeCreateFolderRequestBody(
     val.folder_upload_email == void 0
       ? void 0
       : deserializeCreateFolderRequestBodyFolderUploadEmailField(
-          val.folder_upload_email
+          val.folder_upload_email,
         );
   const syncState: undefined | CreateFolderRequestBodySyncStateField =
     val.sync_state == void 0
@@ -2008,12 +2008,12 @@ export function deserializeCreateFolderRequestBody(
   } satisfies CreateFolderRequestBody;
 }
 export function serializeCopyFolderRequestBodyParentField(
-  val: CopyFolderRequestBodyParentField
+  val: CopyFolderRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCopyFolderRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): CopyFolderRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -2036,7 +2036,7 @@ export function deserializeCopyFolderRequestBodyParentField(
   return { id: id } satisfies CopyFolderRequestBodyParentField;
 }
 export function serializeCopyFolderRequestBody(
-  val: CopyFolderRequestBody
+  val: CopyFolderRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -2044,7 +2044,7 @@ export function serializeCopyFolderRequestBody(
   };
 }
 export function deserializeCopyFolderRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CopyFolderRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -77,7 +77,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
-    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
+    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   const userAuth: BoxJwtAuth = auth.withUserSubject(userId);
@@ -103,7 +103,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
 });
 test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promise<any> {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
-    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
+    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   const parentClient: BoxClient = new BoxClient({ auth: auth });
@@ -117,11 +117,11 @@ test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promis
   const file: FileFull = uploadedFiles.entries![0];
   const resourcePath: string = ''.concat(
     'https://api.box.com/2.0/files/',
-    file.id
+    file.id,
   ) as string;
   const downscopedToken: AccessToken = await auth.downscopeToken(
     ['item_rename', 'item_preview'],
-    resourcePath
+    resourcePath,
   );
   if (!!(downscopedToken.accessToken == void 0)) {
     throw new Error('Assertion failed');
@@ -139,7 +139,7 @@ test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promis
 });
 test('test_jwt_auth_revoke', async function test_jwt_auth_revoke(): Promise<any> {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
-    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
+    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   const tokenFromStorageBeforeRevoke: AccessToken = await auth.retrieveToken();
@@ -220,11 +220,11 @@ test('test_ccg_auth_downscope', async function test_ccg_auth_downscope(): Promis
   } satisfies CreateFolderRequestBody);
   const resourcePath: string = ''.concat(
     'https://api.box.com/2.0/folders/',
-    folder.id
+    folder.id,
   ) as string;
   const downscopedToken: AccessToken = await auth.downscopeToken(
     ['item_rename', 'item_preview'],
-    resourcePath
+    resourcePath,
   );
   if (!!(downscopedToken.accessToken == void 0)) {
     throw new Error('Assertion failed');
@@ -298,11 +298,11 @@ test('test_developer_token_auth_downscope', async function test_developer_token_
   } satisfies CreateFolderRequestBody);
   const resourcePath: string = ''.concat(
     'https://api.box.com/2.0/folders/',
-    folder.id
+    folder.id,
   ) as string;
   const downscopedToken: AccessToken = await auth.downscopeToken(
     ['item_rename', 'item_preview'],
-    resourcePath
+    resourcePath,
   );
   if (!!(downscopedToken.accessToken == void 0)) {
     throw new Error('Assertion failed');
@@ -370,11 +370,11 @@ test('test_oauth_auth_downscope', async function test_oauth_auth_downscope(): Pr
   const file: FileFull = uploadedFiles.entries![0];
   const resourcePath: string = ''.concat(
     'https://api.box.com/2.0/files/',
-    file.id
+    file.id,
   ) as string;
   const downscopedToken: AccessToken = await auth.downscopeToken(
     ['item_rename', 'item_preview'],
-    resourcePath
+    resourcePath,
   );
   if (!!(downscopedToken.accessToken == void 0)) {
     throw new Error('Assertion failed');

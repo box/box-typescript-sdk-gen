@@ -19,7 +19,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
-  segmentRestrictionId
+  segmentRestrictionId,
 );
 ```
 
@@ -51,7 +51,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
-  segmentRestrictionId
+  segmentRestrictionId,
 );
 ```
 
@@ -84,7 +84,7 @@ See the endpoint docs at
 await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
   {
     shieldInformationBarrierSegmentId: segmentId,
-  } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams
+  } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams,
 );
 ```
 
@@ -126,7 +126,7 @@ await client.shieldInformationBarrierSegmentRestrictions.createShieldInformation
       type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
     } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
     type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput
+  } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput,
 );
 ```
 

@@ -27,7 +27,7 @@ export class FileBase {
   readonly type: FileBaseTypeField = 'file' as FileBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<FileBase, 'type'> & Partial<Pick<FileBase, 'type'>>
+    fields: Omit<FileBase, 'type'> & Partial<Pick<FileBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -64,12 +64,12 @@ export interface FileBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeFileBaseTypeField(
-  val: FileBaseTypeField
+  val: FileBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileBaseTypeField {
   if (val == 'file') {
     return val;

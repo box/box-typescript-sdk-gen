@@ -53,7 +53,7 @@ See the endpoint docs at
 ```ts
 await client.fileVersions.getFileVersionById(
   file.id,
-  fileVersions.entries![0].id
+  fileVersions.entries![0].id,
 );
 ```
 

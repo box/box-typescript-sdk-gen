@@ -41,7 +41,7 @@ export class GetShieldInformationBarrierReportsOptionals {
           GetShieldInformationBarrierReportsOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -69,7 +69,7 @@ export class CreateShieldInformationBarrierReportOptionals {
           CreateShieldInformationBarrierReportOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -97,7 +97,7 @@ export class GetShieldInformationBarrierReportByIdOptionals {
           GetShieldInformationBarrierReportByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -133,7 +133,7 @@ export class GetShieldInformationBarrierReportsHeaders {
   } = {};
   constructor(
     fields: Omit<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -157,7 +157,9 @@ export class CreateShieldInformationBarrierReportHeaders {
   } = {};
   constructor(
     fields: Omit<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'>>
+      Partial<
+        Pick<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'>
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -183,7 +185,7 @@ export class GetShieldInformationBarrierReportByIdHeaders {
     fields: Omit<GetShieldInformationBarrierReportByIdHeaders, 'extraHeaders'> &
       Partial<
         Pick<GetShieldInformationBarrierReportByIdHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -210,7 +212,7 @@ export class ShieldInformationBarrierReportsManager {
       | 'createShieldInformationBarrierReport'
       | 'getShieldInformationBarrierReportById'
     > &
-      Partial<Pick<ShieldInformationBarrierReportsManager, 'networkSession'>>
+      Partial<Pick<ShieldInformationBarrierReportsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -227,7 +229,7 @@ export class ShieldInformationBarrierReportsManager {
    */
   async getShieldInformationBarrierReports(
     queryParams: GetShieldInformationBarrierReportsQueryParams,
-    optionalsInput: GetShieldInformationBarrierReportsOptionalsInput = {}
+    optionalsInput: GetShieldInformationBarrierReportsOptionalsInput = {},
   ): Promise<ShieldInformationBarrierReports> {
     const optionals: GetShieldInformationBarrierReportsOptionals =
       new GetShieldInformationBarrierReportsOptionals({
@@ -240,7 +242,7 @@ export class ShieldInformationBarrierReportsManager {
       readonly [key: string]: string;
     } = prepareParams({
       ['shield_information_barrier_id']: toString(
-        queryParams.shieldInformationBarrierId
+        queryParams.shieldInformationBarrierId,
       ) as string,
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
@@ -251,7 +253,7 @@ export class ShieldInformationBarrierReportsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barrier_reports'
+        '/2.0/shield_information_barrier_reports',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -274,7 +276,7 @@ export class ShieldInformationBarrierReportsManager {
    */
   async createShieldInformationBarrierReport(
     requestBody: ShieldInformationBarrierReference,
-    optionalsInput: CreateShieldInformationBarrierReportOptionalsInput = {}
+    optionalsInput: CreateShieldInformationBarrierReportOptionalsInput = {},
   ): Promise<ShieldInformationBarrierReport> {
     const optionals: CreateShieldInformationBarrierReportOptionals =
       new CreateShieldInformationBarrierReportOptionals({
@@ -289,7 +291,7 @@ export class ShieldInformationBarrierReportsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barrier_reports'
+        '/2.0/shield_information_barrier_reports',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -314,7 +316,7 @@ export class ShieldInformationBarrierReportsManager {
      */
   async getShieldInformationBarrierReportById(
     shieldInformationBarrierReportId: string,
-    optionalsInput: GetShieldInformationBarrierReportByIdOptionalsInput = {}
+    optionalsInput: GetShieldInformationBarrierReportByIdOptionalsInput = {},
   ): Promise<ShieldInformationBarrierReport> {
     const optionals: GetShieldInformationBarrierReportByIdOptionals =
       new GetShieldInformationBarrierReportByIdOptionals({
@@ -330,7 +332,7 @@ export class ShieldInformationBarrierReportsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/shield_information_barrier_reports/',
-        toString(shieldInformationBarrierReportId) as string
+        toString(shieldInformationBarrierReportId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,

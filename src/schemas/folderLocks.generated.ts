@@ -48,10 +48,10 @@ export function deserializeFolderLocks(val: SerializedData): FolderLocks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FolderLock {
-          return deserializeFolderLock(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): FolderLock {
+            return deserializeFolderLock(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsString(val.limit)) {
     throw new BoxSdkError({
       message: 'Expecting string for "limit" of type "FolderLocks"',

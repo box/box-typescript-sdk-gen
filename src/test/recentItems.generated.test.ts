@@ -15,7 +15,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testRecentItems', async function testRecentItems(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const recentItems: RecentItems = await client.recentItems.getRecentItems();
   if (!(recentItems.entries!.length >= 0)) {

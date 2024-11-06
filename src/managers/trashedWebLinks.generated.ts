@@ -43,7 +43,7 @@ export class RestoreWeblinkFromTrashOptionals {
           RestoreWeblinkFromTrashOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -81,7 +81,7 @@ export class GetTrashedWebLinkByIdOptionals {
           GetTrashedWebLinkByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -110,7 +110,7 @@ export class DeleteTrashedWebLinkByIdOptionals {
     > &
       Partial<
         Pick<DeleteTrashedWebLinkByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -158,7 +158,7 @@ export class RestoreWeblinkFromTrashHeaders {
   } = {};
   constructor(
     fields: Omit<RestoreWeblinkFromTrashHeaders, 'extraHeaders'> &
-      Partial<Pick<RestoreWeblinkFromTrashHeaders, 'extraHeaders'>>
+      Partial<Pick<RestoreWeblinkFromTrashHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -195,7 +195,7 @@ export class GetTrashedWebLinkByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTrashedWebLinkByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTrashedWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -219,7 +219,7 @@ export class DeleteTrashedWebLinkByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteTrashedWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -246,7 +246,7 @@ export class TrashedWebLinksManager {
       | 'getTrashedWebLinkById'
       | 'deleteTrashedWebLinkById'
     > &
-      Partial<Pick<TrashedWebLinksManager, 'networkSession'>>
+      Partial<Pick<TrashedWebLinksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -267,7 +267,7 @@ export class TrashedWebLinksManager {
      */
   async restoreWeblinkFromTrash(
     webLinkId: string,
-    optionalsInput: RestoreWeblinkFromTrashOptionalsInput = {}
+    optionalsInput: RestoreWeblinkFromTrashOptionalsInput = {},
   ): Promise<TrashWebLinkRestored> {
     const optionals: RestoreWeblinkFromTrashOptionals =
       new RestoreWeblinkFromTrashOptionals({
@@ -294,7 +294,7 @@ export class TrashedWebLinksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
-        toString(webLinkId) as string
+        toString(webLinkId) as string,
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -320,7 +320,7 @@ export class TrashedWebLinksManager {
      */
   async getTrashedWebLinkById(
     webLinkId: string,
-    optionalsInput: GetTrashedWebLinkByIdOptionalsInput = {}
+    optionalsInput: GetTrashedWebLinkByIdOptionalsInput = {},
   ): Promise<TrashWebLink> {
     const optionals: GetTrashedWebLinkByIdOptionals =
       new GetTrashedWebLinkByIdOptionals({
@@ -346,7 +346,7 @@ export class TrashedWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -371,7 +371,7 @@ export class TrashedWebLinksManager {
      */
   async deleteTrashedWebLinkById(
     webLinkId: string,
-    optionalsInput: DeleteTrashedWebLinkByIdOptionalsInput = {}
+    optionalsInput: DeleteTrashedWebLinkByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteTrashedWebLinkByIdOptionals =
       new DeleteTrashedWebLinkByIdOptionals({
@@ -388,7 +388,7 @@ export class TrashedWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -405,12 +405,12 @@ export interface TrashedWebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
-  val: RestoreWeblinkFromTrashRequestBodyParentField
+  val: RestoreWeblinkFromTrashRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreWeblinkFromTrashRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -428,7 +428,7 @@ export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
 export function serializeRestoreWeblinkFromTrashRequestBody(
-  val: RestoreWeblinkFromTrashRequestBody
+  val: RestoreWeblinkFromTrashRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -439,7 +439,7 @@ export function serializeRestoreWeblinkFromTrashRequestBody(
   };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreWeblinkFromTrashRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

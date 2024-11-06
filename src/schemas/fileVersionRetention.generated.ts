@@ -40,12 +40,12 @@ export interface FileVersionRetention {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionRetentionTypeField(
-  val: FileVersionRetentionTypeField
+  val: FileVersionRetentionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileVersionRetentionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionRetentionTypeField {
   if (val == 'file_version_retention') {
     return val;
@@ -55,7 +55,7 @@ export function deserializeFileVersionRetentionTypeField(
   });
 }
 export function serializeFileVersionRetention(
-  val: FileVersionRetention
+  val: FileVersionRetention,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -81,7 +81,7 @@ export function serializeFileVersionRetention(
   };
 }
 export function deserializeFileVersionRetention(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionRetention {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

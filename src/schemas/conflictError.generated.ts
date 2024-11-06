@@ -26,7 +26,7 @@ export interface ConflictErrorContextInfoField {
 }
 export type ConflictError = ClientError & {};
 export function serializeConflictErrorContextInfoField(
-  val: ConflictErrorContextInfoField
+  val: ConflictErrorContextInfoField,
 ): SerializedData {
   return {
     ['conflicts']:
@@ -38,7 +38,7 @@ export function serializeConflictErrorContextInfoField(
   };
 }
 export function deserializeConflictErrorContextInfoField(
-  val: SerializedData
+  val: SerializedData,
 ): ConflictErrorContextInfoField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -55,10 +55,10 @@ export function deserializeConflictErrorContextInfoField(
     val.conflicts == void 0
       ? void 0
       : sdIsList(val.conflicts)
-      ? (val.conflicts.map(function (itm: SerializedData): FileConflict {
-          return deserializeFileConflict(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.conflicts.map(function (itm: SerializedData): FileConflict {
+            return deserializeFileConflict(itm);
+          }) as readonly any[])
+        : [];
   return { conflicts: conflicts } satisfies ConflictErrorContextInfoField;
 }
 export function serializeConflictError(val: ConflictError): SerializedData {
@@ -102,17 +102,17 @@ export function deserializeConflictError(val: SerializedData): ConflictError {
     val.context_info == void 0
       ? void 0
       : sdIsMap(val.context_info)
-      ? (Object.fromEntries(
-          Object.entries(val.context_info).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return v;
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.context_info).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "help_url" of type "ConflictError"',

@@ -22,7 +22,7 @@ export interface AiDialogueHistory {
   readonly rawData?: SerializedData;
 }
 export function serializeAiDialogueHistory(
-  val: AiDialogueHistory
+  val: AiDialogueHistory,
 ): SerializedData {
   return {
     ['prompt']: val.prompt == void 0 ? void 0 : val.prompt,
@@ -32,7 +32,7 @@ export function serializeAiDialogueHistory(
   };
 }
 export function deserializeAiDialogueHistory(
-  val: SerializedData
+  val: SerializedData,
 ): AiDialogueHistory {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

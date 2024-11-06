@@ -23,7 +23,7 @@ export class AiAgentAsk {
   readonly basicTextMulti?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>
+    fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -56,12 +56,12 @@ export interface AiAgentAskInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentAskTypeField(
-  val: AiAgentAskTypeField
+  val: AiAgentAskTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiAgentAskTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentAskTypeField {
   if (val == 'ai_agent_ask') {
     return val;
@@ -146,7 +146,7 @@ export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
   };
 }
 export function deserializeAiAgentAskInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentAskInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "AiAgentAskInput"' });

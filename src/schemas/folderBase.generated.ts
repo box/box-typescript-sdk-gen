@@ -27,7 +27,7 @@ export class FolderBase {
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>
+    fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -64,12 +64,12 @@ export interface FolderBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeFolderBaseTypeField(
-  val: FolderBaseTypeField
+  val: FolderBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderBaseTypeField {
   if (val == 'folder') {
     return val;
@@ -121,7 +121,7 @@ export function serializeFolderBaseInput(val: FolderBaseInput): SerializedData {
   };
 }
 export function deserializeFolderBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): FolderBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FolderBaseInput"' });

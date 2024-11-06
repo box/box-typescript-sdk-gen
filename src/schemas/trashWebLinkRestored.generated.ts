@@ -84,12 +84,12 @@ export interface TrashWebLinkRestored {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashWebLinkRestoredTypeField(
-  val: TrashWebLinkRestoredTypeField
+  val: TrashWebLinkRestoredTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkRestoredTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkRestoredTypeField {
   if (val == 'web_link') {
     return val;
@@ -99,7 +99,7 @@ export function deserializeTrashWebLinkRestoredTypeField(
   });
 }
 export function serializeTrashWebLinkRestoredPathCollectionField(
-  val: TrashWebLinkRestoredPathCollectionField
+  val: TrashWebLinkRestoredPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -109,7 +109,7 @@ export function serializeTrashWebLinkRestoredPathCollectionField(
   };
 }
 export function deserializeTrashWebLinkRestoredPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkRestoredPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -152,12 +152,12 @@ export function deserializeTrashWebLinkRestoredPathCollectionField(
   } satisfies TrashWebLinkRestoredPathCollectionField;
 }
 export function serializeTrashWebLinkRestoredItemStatusField(
-  val: TrashWebLinkRestoredItemStatusField
+  val: TrashWebLinkRestoredItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkRestoredItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkRestoredItemStatusField {
   if (val == 'active') {
     return val;
@@ -173,7 +173,7 @@ export function deserializeTrashWebLinkRestoredItemStatusField(
   });
 }
 export function serializeTrashWebLinkRestored(
-  val: TrashWebLinkRestored
+  val: TrashWebLinkRestored,
 ): SerializedData {
   return {
     ['type']:
@@ -188,7 +188,7 @@ export function serializeTrashWebLinkRestored(
     ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['path_collection']: serializeTrashWebLinkRestoredPathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -210,7 +210,7 @@ export function serializeTrashWebLinkRestored(
   };
 }
 export function deserializeTrashWebLinkRestored(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkRestored {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -43,12 +43,12 @@ export class IntegrationMapping extends IntegrationMappingBase {
   }
 }
 export function serializeIntegrationMappingIntegrationTypeField(
-  val: IntegrationMappingIntegrationTypeField
+  val: IntegrationMappingIntegrationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeIntegrationMappingIntegrationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingIntegrationTypeField {
   if (val == 'slack') {
     return val;
@@ -58,7 +58,7 @@ export function deserializeIntegrationMappingIntegrationTypeField(
   });
 }
 export function serializeIntegrationMapping(
-  val: IntegrationMapping
+  val: IntegrationMapping,
 ): SerializedData {
   const base: any = serializeIntegrationMappingBase(val);
   if (!sdIsMap(base)) {
@@ -73,7 +73,7 @@ export function serializeIntegrationMapping(
         val.integrationType == void 0
           ? void 0
           : serializeIntegrationMappingIntegrationTypeField(
-              val.integrationType
+              val.integrationType,
             ),
       ['is_manually_created']:
         val.isManuallyCreated == void 0 ? void 0 : val.isManuallyCreated,
@@ -90,7 +90,7 @@ export function serializeIntegrationMapping(
           ? void 0
           : serializeUserIntegrationMappings(val.modifiedBy),
       ['partner_item']: serializeIntegrationMappingPartnerItemSlackUnion(
-        val.partnerItem
+        val.partnerItem,
       ),
       ['box_item']: serializeFolderMini(val.boxItem),
       ['created_at']:
@@ -101,7 +101,7 @@ export function serializeIntegrationMapping(
   };
 }
 export function deserializeIntegrationMapping(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMapping {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -58,12 +58,12 @@ export interface Items {
   readonly rawData?: SerializedData;
 }
 export function serializeItemsOrderDirectionField(
-  val: ItemsOrderDirectionField
+  val: ItemsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeItemsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): ItemsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -85,7 +85,7 @@ export function serializeItemsOrderField(val: ItemsOrderField): SerializedData {
   };
 }
 export function deserializeItemsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): ItemsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "ItemsOrderField"' });
@@ -119,7 +119,7 @@ export function serializeItems(val: Items): SerializedData {
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileFullOrFolderMiniOrWebLink
+            item: FileFullOrFolderMiniOrWebLink,
           ): SerializedData {
             return serializeFileFullOrFolderMiniOrWebLink(item);
           }) as readonly any[]),
@@ -171,10 +171,10 @@ export function deserializeItems(val: SerializedData): Items {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): ItemsOrderField {
-          return deserializeItemsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): ItemsOrderField {
+            return deserializeItemsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Items"',
@@ -184,12 +184,12 @@ export function deserializeItems(val: SerializedData): Items {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): FileFullOrFolderMiniOrWebLink {
-          return deserializeFileFullOrFolderMiniOrWebLink(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileFullOrFolderMiniOrWebLink {
+            return deserializeFileFullOrFolderMiniOrWebLink(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

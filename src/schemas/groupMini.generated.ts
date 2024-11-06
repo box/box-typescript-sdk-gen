@@ -21,12 +21,12 @@ export class GroupMini extends GroupBase {
   }
 }
 export function serializeGroupMiniGroupTypeField(
-  val: GroupMiniGroupTypeField
+  val: GroupMiniGroupTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupMiniGroupTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMiniGroupTypeField {
   if (val == 'managed_group') {
     return val;

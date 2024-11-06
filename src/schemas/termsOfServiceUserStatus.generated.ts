@@ -38,7 +38,7 @@ export class TermsOfServiceUserStatus {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TermsOfServiceUserStatus, 'type'> &
-      Partial<Pick<TermsOfServiceUserStatus, 'type'>>
+      Partial<Pick<TermsOfServiceUserStatus, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -87,12 +87,12 @@ export interface TermsOfServiceUserStatusInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceUserStatusTypeField(
-  val: TermsOfServiceUserStatusTypeField
+  val: TermsOfServiceUserStatusTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceUserStatusTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceUserStatusTypeField {
   if (val == 'terms_of_service_user_status') {
     return val;
@@ -102,7 +102,7 @@ export function deserializeTermsOfServiceUserStatusTypeField(
   });
 }
 export function serializeTermsOfServiceUserStatus(
-  val: TermsOfServiceUserStatus
+  val: TermsOfServiceUserStatus,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -117,7 +117,7 @@ export function serializeTermsOfServiceUserStatus(
   };
 }
 export function deserializeTermsOfServiceUserStatus(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceUserStatus {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -183,7 +183,7 @@ export function deserializeTermsOfServiceUserStatus(
   } satisfies TermsOfServiceUserStatus;
 }
 export function serializeTermsOfServiceUserStatusInput(
-  val: TermsOfServiceUserStatusInput
+  val: TermsOfServiceUserStatusInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -201,7 +201,7 @@ export function serializeTermsOfServiceUserStatusInput(
   };
 }
 export function deserializeTermsOfServiceUserStatusInput(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceUserStatusInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

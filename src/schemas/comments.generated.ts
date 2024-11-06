@@ -52,12 +52,12 @@ export interface Comments {
   readonly rawData?: SerializedData;
 }
 export function serializeCommentsOrderDirectionField(
-  val: CommentsOrderDirectionField
+  val: CommentsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCommentsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): CommentsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeCommentsOrderDirectionField(
   });
 }
 export function serializeCommentsOrderField(
-  val: CommentsOrderField
+  val: CommentsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -81,7 +81,7 @@ export function serializeCommentsOrderField(
   };
 }
 export function deserializeCommentsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): CommentsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -151,10 +151,10 @@ export function deserializeComments(val: SerializedData): Comments {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): CommentsOrderField {
-          return deserializeCommentsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): CommentsOrderField {
+            return deserializeCommentsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Comments"',
@@ -164,10 +164,10 @@ export function deserializeComments(val: SerializedData): Comments {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): CommentFull {
-          return deserializeCommentFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): CommentFull {
+            return deserializeCommentFull(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

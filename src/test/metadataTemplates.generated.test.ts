@@ -93,7 +93,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
           fieldKey: 'newfieldname',
           data: { ['type']: 'string', ['displayName']: 'newFieldName' },
         } satisfies UpdateMetadataTemplateRequestBody,
-      ]
+      ],
     );
   if (!(updatedTemplate.fields!.length == 2)) {
     throw new Error('Assertion failed');
@@ -112,7 +112,7 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   const getMetadataTemplateSchema: MetadataTemplate =
     await client.metadataTemplates.getMetadataTemplate(
       'enterprise' as GetMetadataTemplateScope,
-      template.templateKey!
+      template.templateKey!,
     );
   if (!(getMetadataTemplateSchema.id == template.id)) {
     throw new Error('Assertion failed');
@@ -129,12 +129,12 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey!
+    template.templateKey!,
   );
   await expect(async () => {
     await client.metadataTemplates.deleteMetadataTemplate(
       'enterprise' as DeleteMetadataTemplateScope,
-      template.templateKey!
+      template.templateKey!,
     );
   }).rejects.toThrow();
 });
@@ -159,7 +159,7 @@ test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplate
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
-      { ['testName']: 'xyz' }
+      { ['testName']: 'xyz' },
     );
   const metadataTemplates: MetadataTemplates =
     await client.metadataTemplates.getMetadataTemplatesByInstanceId({
@@ -177,11 +177,11 @@ test('testGetMetadataTemplateByInstance', async function testGetMetadataTemplate
   await client.fileMetadata.deleteFileMetadataById(
     file.id,
     'enterprise' as DeleteFileMetadataByIdScope,
-    templateKey
+    templateKey,
   );
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey!
+    template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
 });

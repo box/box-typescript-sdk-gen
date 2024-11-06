@@ -19,7 +19,7 @@ export class RetentionPolicyAssignmentBase {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RetentionPolicyAssignmentBase, 'type'> &
-      Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>
+      Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -42,12 +42,12 @@ export interface RetentionPolicyAssignmentBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyAssignmentBaseTypeField(
-  val: RetentionPolicyAssignmentBaseTypeField
+  val: RetentionPolicyAssignmentBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyAssignmentBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentBaseTypeField {
   if (val == 'retention_policy_assignment') {
     return val;
@@ -57,7 +57,7 @@ export function deserializeRetentionPolicyAssignmentBaseTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentBase(
-  val: RetentionPolicyAssignmentBase
+  val: RetentionPolicyAssignmentBase,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -65,7 +65,7 @@ export function serializeRetentionPolicyAssignmentBase(
   };
 }
 export function deserializeRetentionPolicyAssignmentBase(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -96,7 +96,7 @@ export function deserializeRetentionPolicyAssignmentBase(
   return { id: id, type: type } satisfies RetentionPolicyAssignmentBase;
 }
 export function serializeRetentionPolicyAssignmentBaseInput(
-  val: RetentionPolicyAssignmentBaseInput
+  val: RetentionPolicyAssignmentBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -107,7 +107,7 @@ export function serializeRetentionPolicyAssignmentBaseInput(
   };
 }
 export function deserializeRetentionPolicyAssignmentBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

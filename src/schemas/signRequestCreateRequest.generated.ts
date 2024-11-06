@@ -45,12 +45,12 @@ export type SignRequestCreateRequest = SignRequestBase & {
   readonly parentFolder?: FolderMini;
 };
 export function serializeSignRequestCreateRequestSignatureColorField(
-  val: SignRequestCreateRequestSignatureColorField
+  val: SignRequestCreateRequestSignatureColorField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestCreateRequestSignatureColorField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestCreateRequestSignatureColorField {
   if (val == 'blue') {
     return val;
@@ -66,7 +66,7 @@ export function deserializeSignRequestCreateRequestSignatureColorField(
   });
 }
 export function serializeSignRequestCreateRequest(
-  val: SignRequestCreateRequest
+  val: SignRequestCreateRequest,
 ): SerializedData {
   const base: any = serializeSignRequestBase(val);
   if (!sdIsMap(base)) {
@@ -87,10 +87,10 @@ export function serializeSignRequestCreateRequest(
         val.signatureColor == void 0
           ? void 0
           : serializeSignRequestCreateRequestSignatureColorField(
-              val.signatureColor
+              val.signatureColor,
             ),
       ['signers']: val.signers.map(function (
-        item: SignRequestCreateSigner
+        item: SignRequestCreateSigner,
       ): SerializedData {
         return serializeSignRequestCreateSigner(item);
       }) as readonly any[],
@@ -102,7 +102,7 @@ export function serializeSignRequestCreateRequest(
   };
 }
 export function deserializeSignRequestCreateRequest(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestCreateRequest {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -119,17 +119,17 @@ export function deserializeSignRequestCreateRequest(
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): FileBase {
-          return deserializeFileBase(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.source_files.map(function (itm: SerializedData): FileBase {
+            return deserializeFileBase(itm);
+          }) as readonly any[])
+        : [];
   const signatureColor:
     | undefined
     | SignRequestCreateRequestSignatureColorField =
     val.signature_color == void 0
       ? void 0
       : deserializeSignRequestCreateRequestSignatureColorField(
-          val.signature_color
+          val.signature_color,
         );
   if (val.signers == void 0) {
     throw new BoxSdkError({
@@ -240,12 +240,12 @@ export function deserializeSignRequestCreateRequest(
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (
-          itm: SerializedData
-        ): SignRequestPrefillTag {
-          return deserializeSignRequestPrefillTag(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.prefill_tags.map(function (
+            itm: SerializedData,
+          ): SignRequestPrefillTag {
+            return deserializeSignRequestPrefillTag(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.days_valid == void 0) && !sdIsNumber(val.days_valid)) {
     throw new BoxSdkError({
       message:

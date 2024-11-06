@@ -77,12 +77,12 @@ export interface SignRequestCreateSigner {
   readonly rawData?: SerializedData;
 }
 export function serializeSignRequestCreateSignerRoleField(
-  val: SignRequestCreateSignerRoleField
+  val: SignRequestCreateSignerRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestCreateSignerRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestCreateSignerRoleField {
   if (val == 'signer') {
     return val;
@@ -98,7 +98,7 @@ export function deserializeSignRequestCreateSignerRoleField(
   });
 }
 export function serializeSignRequestCreateSigner(
-  val: SignRequestCreateSigner
+  val: SignRequestCreateSigner,
 ): SerializedData {
   return {
     ['email']: val.email == void 0 ? void 0 : val.email,
@@ -129,7 +129,7 @@ export function serializeSignRequestCreateSigner(
   };
 }
 export function deserializeSignRequestCreateSigner(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestCreateSigner {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

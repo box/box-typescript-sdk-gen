@@ -92,7 +92,7 @@ export class ClassificationTemplateFieldsField {
     > &
       Partial<
         Pick<ClassificationTemplateFieldsField, 'type' | 'key' | 'displayName'>
-      >
+      >,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -182,7 +182,7 @@ export class ClassificationTemplate {
     > &
       Partial<
         Pick<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
-      >
+      >,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -248,12 +248,12 @@ export interface ClassificationTemplateInput {
   readonly rawData?: SerializedData;
 }
 export function serializeClassificationTemplateTypeField(
-  val: ClassificationTemplateTypeField
+  val: ClassificationTemplateTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateTypeField {
   if (val == 'metadata_template') {
     return val;
@@ -263,12 +263,12 @@ export function deserializeClassificationTemplateTypeField(
   });
 }
 export function serializeClassificationTemplateTemplateKeyField(
-  val: ClassificationTemplateTemplateKeyField
+  val: ClassificationTemplateTemplateKeyField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateTemplateKeyField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateTemplateKeyField {
   if (val == 'securityClassification-6VMVochwUWo') {
     return val;
@@ -278,12 +278,12 @@ export function deserializeClassificationTemplateTemplateKeyField(
   });
 }
 export function serializeClassificationTemplateDisplayNameField(
-  val: ClassificationTemplateDisplayNameField
+  val: ClassificationTemplateDisplayNameField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateDisplayNameField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateDisplayNameField {
   if (val == 'Classification') {
     return val;
@@ -293,12 +293,12 @@ export function deserializeClassificationTemplateDisplayNameField(
   });
 }
 export function serializeClassificationTemplateFieldsTypeField(
-  val: ClassificationTemplateFieldsTypeField
+  val: ClassificationTemplateFieldsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateFieldsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsTypeField {
   if (val == 'enum') {
     return val;
@@ -308,12 +308,12 @@ export function deserializeClassificationTemplateFieldsTypeField(
   });
 }
 export function serializeClassificationTemplateFieldsKeyField(
-  val: ClassificationTemplateFieldsKeyField
+  val: ClassificationTemplateFieldsKeyField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateFieldsKeyField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsKeyField {
   if (val == 'Box__Security__Classification__Key') {
     return val;
@@ -323,12 +323,12 @@ export function deserializeClassificationTemplateFieldsKeyField(
   });
 }
 export function serializeClassificationTemplateFieldsDisplayNameField(
-  val: ClassificationTemplateFieldsDisplayNameField
+  val: ClassificationTemplateFieldsDisplayNameField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateFieldsDisplayNameField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsDisplayNameField {
   if (val == 'Classification') {
     return val;
@@ -338,7 +338,7 @@ export function deserializeClassificationTemplateFieldsDisplayNameField(
   });
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
-  val: ClassificationTemplateFieldsOptionsStaticConfigClassificationField
+  val: ClassificationTemplateFieldsOptionsStaticConfigClassificationField,
 ): SerializedData {
   return {
     ['classificationDefinition']:
@@ -349,7 +349,7 @@ export function serializeClassificationTemplateFieldsOptionsStaticConfigClassifi
   };
 }
 export function deserializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsOptionsStaticConfigClassificationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -384,19 +384,19 @@ export function deserializeClassificationTemplateFieldsOptionsStaticConfigClassi
   } satisfies ClassificationTemplateFieldsOptionsStaticConfigClassificationField;
 }
 export function serializeClassificationTemplateFieldsOptionsStaticConfigField(
-  val: ClassificationTemplateFieldsOptionsStaticConfigField
+  val: ClassificationTemplateFieldsOptionsStaticConfigField,
 ): SerializedData {
   return {
     ['classification']:
       val.classification == void 0
         ? void 0
         : serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
-            val.classification
+            val.classification,
           ),
   };
 }
 export function deserializeClassificationTemplateFieldsOptionsStaticConfigField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsOptionsStaticConfigField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -410,14 +410,14 @@ export function deserializeClassificationTemplateFieldsOptionsStaticConfigField(
     val.classification == void 0
       ? void 0
       : deserializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
-          val.classification
+          val.classification,
         );
   return {
     classification: classification,
   } satisfies ClassificationTemplateFieldsOptionsStaticConfigField;
 }
 export function serializeClassificationTemplateFieldsOptionsField(
-  val: ClassificationTemplateFieldsOptionsField
+  val: ClassificationTemplateFieldsOptionsField,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -426,12 +426,12 @@ export function serializeClassificationTemplateFieldsOptionsField(
       val.staticConfig == void 0
         ? void 0
         : serializeClassificationTemplateFieldsOptionsStaticConfigField(
-            val.staticConfig
+            val.staticConfig,
           ),
   };
 }
 export function deserializeClassificationTemplateFieldsOptionsField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsOptionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -470,7 +470,7 @@ export function deserializeClassificationTemplateFieldsOptionsField(
     val.staticConfig == void 0
       ? void 0
       : deserializeClassificationTemplateFieldsOptionsStaticConfigField(
-          val.staticConfig
+          val.staticConfig,
         );
   return {
     id: id,
@@ -479,25 +479,25 @@ export function deserializeClassificationTemplateFieldsOptionsField(
   } satisfies ClassificationTemplateFieldsOptionsField;
 }
 export function serializeClassificationTemplateFieldsField(
-  val: ClassificationTemplateFieldsField
+  val: ClassificationTemplateFieldsField,
 ): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeClassificationTemplateFieldsTypeField(val.type),
     ['key']: serializeClassificationTemplateFieldsKeyField(val.key),
     ['displayName']: serializeClassificationTemplateFieldsDisplayNameField(
-      val.displayName
+      val.displayName,
     ),
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
-      item: ClassificationTemplateFieldsOptionsField
+      item: ClassificationTemplateFieldsOptionsField,
     ): SerializedData {
       return serializeClassificationTemplateFieldsOptionsField(item);
     }) as readonly any[],
   };
 }
 export function deserializeClassificationTemplateFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -562,10 +562,10 @@ export function deserializeClassificationTemplateFieldsField(
     });
   }
   const options: readonly ClassificationTemplateFieldsOptionsField[] = sdIsList(
-    val.options
+    val.options,
   )
     ? (val.options.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): ClassificationTemplateFieldsOptionsField {
         return deserializeClassificationTemplateFieldsOptionsField(itm);
       }) as readonly any[])
@@ -580,7 +580,7 @@ export function deserializeClassificationTemplateFieldsField(
   } satisfies ClassificationTemplateFieldsField;
 }
 export function serializeClassificationTemplateFieldsFieldInput(
-  val: ClassificationTemplateFieldsFieldInput
+  val: ClassificationTemplateFieldsFieldInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -596,18 +596,18 @@ export function serializeClassificationTemplateFieldsFieldInput(
       val.displayName == void 0
         ? void 0
         : serializeClassificationTemplateFieldsDisplayNameField(
-            val.displayName
+            val.displayName,
           ),
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['options']: val.options.map(function (
-      item: ClassificationTemplateFieldsOptionsField
+      item: ClassificationTemplateFieldsOptionsField,
     ): SerializedData {
       return serializeClassificationTemplateFieldsOptionsField(item);
     }) as readonly any[],
   };
 }
 export function deserializeClassificationTemplateFieldsFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateFieldsFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -639,7 +639,7 @@ export function deserializeClassificationTemplateFieldsFieldInput(
     val.displayName == void 0
       ? void 0
       : deserializeClassificationTemplateFieldsDisplayNameField(
-          val.displayName
+          val.displayName,
         );
   if (!(val.hidden == void 0) && !sdIsBoolean(val.hidden)) {
     throw new BoxSdkError({
@@ -662,10 +662,10 @@ export function deserializeClassificationTemplateFieldsFieldInput(
     });
   }
   const options: readonly ClassificationTemplateFieldsOptionsField[] = sdIsList(
-    val.options
+    val.options,
   )
     ? (val.options.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): ClassificationTemplateFieldsOptionsField {
         return deserializeClassificationTemplateFieldsOptionsField(itm);
       }) as readonly any[])
@@ -680,17 +680,17 @@ export function deserializeClassificationTemplateFieldsFieldInput(
   } satisfies ClassificationTemplateFieldsFieldInput;
 }
 export function serializeClassificationTemplate(
-  val: ClassificationTemplate
+  val: ClassificationTemplate,
 ): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeClassificationTemplateTypeField(val.type),
     ['scope']: val.scope,
     ['templateKey']: serializeClassificationTemplateTemplateKeyField(
-      val.templateKey
+      val.templateKey,
     ),
     ['displayName']: serializeClassificationTemplateDisplayNameField(
-      val.displayName
+      val.displayName,
     ),
     ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
     ['copyInstanceOnItemCopy']:
@@ -698,14 +698,14 @@ export function serializeClassificationTemplate(
         ? void 0
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
-      item: ClassificationTemplateFieldsField
+      item: ClassificationTemplateFieldsField,
     ): SerializedData {
       return serializeClassificationTemplateFieldsField(item);
     }) as readonly any[],
   };
 }
 export function deserializeClassificationTemplate(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplate {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -790,10 +790,10 @@ export function deserializeClassificationTemplate(
     });
   }
   const fields: readonly ClassificationTemplateFieldsField[] = sdIsList(
-    val.fields
+    val.fields,
   )
     ? (val.fields.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): ClassificationTemplateFieldsField {
         return deserializeClassificationTemplateFieldsField(itm);
       }) as readonly any[])
@@ -810,7 +810,7 @@ export function deserializeClassificationTemplate(
   } satisfies ClassificationTemplate;
 }
 export function serializeClassificationTemplateInput(
-  val: ClassificationTemplateInput
+  val: ClassificationTemplateInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -833,14 +833,14 @@ export function serializeClassificationTemplateInput(
         ? void 0
         : val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
-      item: ClassificationTemplateFieldsField
+      item: ClassificationTemplateFieldsField,
     ): SerializedData {
       return serializeClassificationTemplateFieldsField(item);
     }) as readonly any[],
   };
 }
 export function deserializeClassificationTemplateInput(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -917,10 +917,10 @@ export function deserializeClassificationTemplateInput(
     });
   }
   const fields: readonly ClassificationTemplateFieldsField[] = sdIsList(
-    val.fields
+    val.fields,
   )
     ? (val.fields.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): ClassificationTemplateFieldsField {
         return deserializeClassificationTemplateFieldsField(itm);
       }) as readonly any[])

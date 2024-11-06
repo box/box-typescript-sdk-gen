@@ -91,7 +91,7 @@ test('testGetTermsOfServiceUserStatuses', async function testGetTermsOfServiceUs
       createdTosUserStatus.id,
       {
         isAccepted: true,
-      } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody
+      } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody,
     );
   if (!(updatedTosUserStatus.isAccepted == true)) {
     throw new Error('Assertion failed');

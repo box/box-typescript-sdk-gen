@@ -27,7 +27,7 @@ export interface MetadataTemplates {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataTemplates(
-  val: MetadataTemplates
+  val: MetadataTemplates,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -42,7 +42,7 @@ export function serializeMetadataTemplates(
   };
 }
 export function deserializeMetadataTemplates(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplates {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -78,10 +78,10 @@ export function deserializeMetadataTemplates(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): MetadataTemplate {
-          return deserializeMetadataTemplate(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): MetadataTemplate {
+            return deserializeMetadataTemplate(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

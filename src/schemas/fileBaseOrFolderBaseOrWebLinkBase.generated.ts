@@ -20,7 +20,7 @@ export type FileBaseOrFolderBaseOrWebLinkBase =
   | FolderBase
   | WebLinkBase;
 export function serializeFileBaseOrFolderBaseOrWebLinkBase(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'file') {
     return serializeFileBase(val);
@@ -34,7 +34,7 @@ export function serializeFileBaseOrFolderBaseOrWebLinkBase(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileBaseOrFolderBaseOrWebLinkBase(
-  val: SerializedData
+  val: SerializedData,
 ): FileBaseOrFolderBaseOrWebLinkBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

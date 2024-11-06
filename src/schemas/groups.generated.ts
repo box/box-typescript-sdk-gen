@@ -52,12 +52,12 @@ export interface Groups {
   readonly rawData?: SerializedData;
 }
 export function serializeGroupsOrderDirectionField(
-  val: GroupsOrderDirectionField
+  val: GroupsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeGroupsOrderDirectionField(
   });
 }
 export function serializeGroupsOrderField(
-  val: GroupsOrderField
+  val: GroupsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -81,7 +81,7 @@ export function serializeGroupsOrderField(
   };
 }
 export function deserializeGroupsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -151,10 +151,10 @@ export function deserializeGroups(val: SerializedData): Groups {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): GroupsOrderField {
-          return deserializeGroupsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): GroupsOrderField {
+            return deserializeGroupsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Groups"',
@@ -164,10 +164,10 @@ export function deserializeGroups(val: SerializedData): Groups {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): GroupFull {
-          return deserializeGroupFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): GroupFull {
+            return deserializeGroupFull(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

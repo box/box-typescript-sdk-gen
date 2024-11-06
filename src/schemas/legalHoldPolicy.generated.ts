@@ -55,12 +55,12 @@ export class LegalHoldPolicy extends LegalHoldPolicyMini {
   }
 }
 export function serializeLegalHoldPolicyStatusField(
-  val: LegalHoldPolicyStatusField
+  val: LegalHoldPolicyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeLegalHoldPolicyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyStatusField {
   if (val == 'active') {
     return val;
@@ -79,7 +79,7 @@ export function deserializeLegalHoldPolicyStatusField(
   });
 }
 export function serializeLegalHoldPolicyAssignmentCountsField(
-  val: LegalHoldPolicyAssignmentCountsField
+  val: LegalHoldPolicyAssignmentCountsField,
 ): SerializedData {
   return {
     ['user']: val.user == void 0 ? void 0 : val.user,
@@ -89,7 +89,7 @@ export function serializeLegalHoldPolicyAssignmentCountsField(
   };
 }
 export function deserializeLegalHoldPolicyAssignmentCountsField(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyAssignmentCountsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -171,7 +171,7 @@ export function serializeLegalHoldPolicy(val: LegalHoldPolicy): SerializedData {
   };
 }
 export function deserializeLegalHoldPolicy(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicy {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "LegalHoldPolicy"' });

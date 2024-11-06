@@ -170,7 +170,7 @@ See the endpoint docs at
 ```ts
 await client.files.getFileThumbnailById(
   thumbnailFile.id,
-  'png' as GetFileThumbnailByIdExtension
+  'png' as GetFileThumbnailByIdExtension,
 );
 ```
 

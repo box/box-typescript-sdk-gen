@@ -56,7 +56,7 @@ See the endpoint docs at
 
 ```ts
 await client.fileVersionRetentions.getFileVersionRetentionById(
-  fileVersionRetention.id!
+  fileVersionRetention.id!,
 );
 ```
 

@@ -27,7 +27,7 @@ export interface LegalHoldPolicies {
   readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicies(
-  val: LegalHoldPolicies
+  val: LegalHoldPolicies,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -42,7 +42,7 @@ export function serializeLegalHoldPolicies(
   };
 }
 export function deserializeLegalHoldPolicies(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicies {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -78,10 +78,10 @@ export function deserializeLegalHoldPolicies(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): LegalHoldPolicy {
-          return deserializeLegalHoldPolicy(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): LegalHoldPolicy {
+            return deserializeLegalHoldPolicy(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

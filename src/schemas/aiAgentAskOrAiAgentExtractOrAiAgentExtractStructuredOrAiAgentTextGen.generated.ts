@@ -21,7 +21,7 @@ import { sdIsMap } from '../serialization/json.js';
 export type AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
   AiAgentAsk | AiAgentExtract | AiAgentExtractStructured | AiAgentTextGen;
 export function serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'ai_agent_ask') {
     return serializeAiAgentAsk(val);
@@ -38,7 +38,7 @@ export function serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrA
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

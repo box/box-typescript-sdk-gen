@@ -43,7 +43,7 @@ export class CreateUserOptionals {
           CreateUserOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -76,7 +76,7 @@ export class GetUserByIdOptionals {
           GetUserByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -111,7 +111,7 @@ export class UpdateUserByIdOptionals {
           UpdateUserByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -148,7 +148,7 @@ export class DeleteUserByIdOptionals {
           DeleteUserByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -244,7 +244,7 @@ export class GetUsersHeaders {
   } = {};
   constructor(
     fields: Omit<GetUsersHeaders, 'extraHeaders'> &
-      Partial<Pick<GetUsersHeaders, 'extraHeaders'>>
+      Partial<Pick<GetUsersHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -356,7 +356,7 @@ export class CreateUserHeaders {
   } = {};
   constructor(
     fields: Omit<CreateUserHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateUserHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateUserHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -393,7 +393,7 @@ export class GetUserMeHeaders {
   } = {};
   constructor(
     fields: Omit<GetUserMeHeaders, 'extraHeaders'> &
-      Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>
+      Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -430,7 +430,7 @@ export class GetUserByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetUserByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -567,7 +567,7 @@ export class UpdateUserByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateUserByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -601,7 +601,7 @@ export class DeleteUserByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteUserByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -631,7 +631,7 @@ export class UsersManager {
       | 'updateUserById'
       | 'deleteUserById'
     > &
-      Partial<Pick<UsersManager, 'networkSession'>>
+      Partial<Pick<UsersManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -655,7 +655,7 @@ export class UsersManager {
   async getUsers(
     queryParams: GetUsersQueryParams = {} satisfies GetUsersQueryParams,
     headersInput: GetUsersHeadersInput = new GetUsersHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Users> {
     const headers: GetUsersHeaders = new GetUsersHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -666,7 +666,7 @@ export class UsersManager {
       ['filter_term']: toString(queryParams.filterTerm) as string,
       ['user_type']: toString(queryParams.userType) as string,
       ['external_app_user_id']: toString(
-        queryParams.externalAppUserId
+        queryParams.externalAppUserId,
       ) as string,
       ['fields']: queryParams.fields
         ? queryParams.fields.map(toString).join(',')
@@ -682,7 +682,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/users'
+        '/2.0/users',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -707,7 +707,7 @@ export class UsersManager {
    */
   async createUser(
     requestBody: CreateUserRequestBody,
-    optionalsInput: CreateUserOptionalsInput = {}
+    optionalsInput: CreateUserOptionalsInput = {},
   ): Promise<UserFull> {
     const optionals: CreateUserOptionals = new CreateUserOptionals({
       queryParams: optionalsInput.queryParams,
@@ -730,7 +730,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/users'
+        '/2.0/users',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -766,7 +766,7 @@ export class UsersManager {
   async getUserMe(
     queryParams: GetUserMeQueryParams = {} satisfies GetUserMeQueryParams,
     headersInput: GetUserMeHeadersInput = new GetUserMeHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<UserFull> {
     const headers: GetUserMeHeaders = new GetUserMeHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -784,7 +784,7 @@ export class UsersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/users/me'
+        '/2.0/users/me',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -818,7 +818,7 @@ export class UsersManager {
      */
   async getUserById(
     userId: string,
-    optionalsInput: GetUserByIdOptionalsInput = {}
+    optionalsInput: GetUserByIdOptionalsInput = {},
   ): Promise<UserFull> {
     const optionals: GetUserByIdOptionals = new GetUserByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -842,7 +842,7 @@ export class UsersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
-        toString(userId) as string
+        toString(userId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -868,7 +868,7 @@ export class UsersManager {
      */
   async updateUserById(
     userId: string,
-    optionalsInput: UpdateUserByIdOptionalsInput = {}
+    optionalsInput: UpdateUserByIdOptionalsInput = {},
   ): Promise<UserFull> {
     const optionals: UpdateUserByIdOptionals = new UpdateUserByIdOptionals({
       requestBody: optionalsInput.requestBody,
@@ -894,7 +894,7 @@ export class UsersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
-        toString(userId) as string
+        toString(userId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -923,7 +923,7 @@ export class UsersManager {
      */
   async deleteUserById(
     userId: string,
-    optionalsInput: DeleteUserByIdOptionalsInput = {}
+    optionalsInput: DeleteUserByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteUserByIdOptionals = new DeleteUserByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -946,7 +946,7 @@ export class UsersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
-        toString(userId) as string
+        toString(userId) as string,
       ) as string,
       method: 'DELETE',
       params: queryParamsMap,
@@ -964,12 +964,12 @@ export interface UsersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetUsersQueryParamsUserTypeField(
-  val: GetUsersQueryParamsUserTypeField
+  val: GetUsersQueryParamsUserTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetUsersQueryParamsUserTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetUsersQueryParamsUserTypeField {
   if (val == 'all') {
     return val;
@@ -985,12 +985,12 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   });
 }
 export function serializeCreateUserRequestBodyRoleField(
-  val: CreateUserRequestBodyRoleField
+  val: CreateUserRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateUserRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateUserRequestBodyRoleField {
   if (val == 'coadmin') {
     return val;
@@ -1003,12 +1003,12 @@ export function deserializeCreateUserRequestBodyRoleField(
   });
 }
 export function serializeCreateUserRequestBodyStatusField(
-  val: CreateUserRequestBodyStatusField
+  val: CreateUserRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateUserRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateUserRequestBodyStatusField {
   if (val == 'active') {
     return val;
@@ -1027,7 +1027,7 @@ export function deserializeCreateUserRequestBodyStatusField(
   });
 }
 export function serializeCreateUserRequestBody(
-  val: CreateUserRequestBody
+  val: CreateUserRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -1075,7 +1075,7 @@ export function serializeCreateUserRequestBody(
   };
 }
 export function deserializeCreateUserRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateUserRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1171,10 +1171,10 @@ export function deserializeCreateUserRequestBody(
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
-          return deserializeTrackingCode(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
+            return deserializeTrackingCode(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.can_see_managed_users == void 0) &&
     !sdIsBoolean(val.can_see_managed_users)
@@ -1270,12 +1270,12 @@ export function deserializeCreateUserRequestBody(
   } satisfies CreateUserRequestBody;
 }
 export function serializeUpdateUserByIdRequestBodyRoleField(
-  val: UpdateUserByIdRequestBodyRoleField
+  val: UpdateUserByIdRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateUserByIdRequestBodyRoleField {
   if (val == 'coadmin') {
     return val;
@@ -1288,12 +1288,12 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyStatusField(
-  val: UpdateUserByIdRequestBodyStatusField
+  val: UpdateUserByIdRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateUserByIdRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateUserByIdRequestBodyStatusField {
   if (val == 'active') {
     return val;
@@ -1312,12 +1312,12 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
-  val: UpdateUserByIdRequestBodyNotificationEmailField
+  val: UpdateUserByIdRequestBodyNotificationEmailField,
 ): SerializedData {
   return { ['email']: val.email == void 0 ? void 0 : val.email };
 }
 export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateUserByIdRequestBodyNotificationEmailField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1337,7 +1337,7 @@ export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
   } satisfies UpdateUserByIdRequestBodyNotificationEmailField;
 }
 export function serializeUpdateUserByIdRequestBody(
-  val: UpdateUserByIdRequestBody
+  val: UpdateUserByIdRequestBody,
 ): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
@@ -1388,14 +1388,14 @@ export function serializeUpdateUserByIdRequestBody(
       val.notificationEmail == void 0
         ? void 0
         : serializeUpdateUserByIdRequestBodyNotificationEmailField(
-            val.notificationEmail
+            val.notificationEmail,
           ),
     ['external_app_user_id']:
       val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
   };
 }
 export function deserializeUpdateUserByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateUserByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1485,10 +1485,10 @@ export function deserializeUpdateUserByIdRequestBody(
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
-          return deserializeTrackingCode(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
+            return deserializeTrackingCode(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.can_see_managed_users == void 0) &&
     !sdIsBoolean(val.can_see_managed_users)
@@ -1578,7 +1578,7 @@ export function deserializeUpdateUserByIdRequestBody(
     val.notification_email == void 0
       ? void 0
       : deserializeUpdateUserByIdRequestBodyNotificationEmailField(
-          val.notification_email
+          val.notification_email,
         );
   if (
     !(val.external_app_user_id == void 0) &&

@@ -6,7 +6,7 @@ jest.mock('node-fetch', () =>
   jest.fn(async () => ({
     text: async () => '',
     arrayBuffer: async () => new ArrayBuffer(0),
-  }))
+  })),
 );
 
 // The fetch method is using NetworkSession, but NetworkSession using BaseUrls

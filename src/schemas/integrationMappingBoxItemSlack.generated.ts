@@ -18,7 +18,7 @@ export class IntegrationMappingBoxItemSlack {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingBoxItemSlack, 'type'> &
-      Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>
+      Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -41,12 +41,12 @@ export interface IntegrationMappingBoxItemSlackInput {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingBoxItemSlackTypeField(
-  val: IntegrationMappingBoxItemSlackTypeField
+  val: IntegrationMappingBoxItemSlackTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeIntegrationMappingBoxItemSlackTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBoxItemSlackTypeField {
   if (val == 'folder') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeIntegrationMappingBoxItemSlackTypeField(
   });
 }
 export function serializeIntegrationMappingBoxItemSlack(
-  val: IntegrationMappingBoxItemSlack
+  val: IntegrationMappingBoxItemSlack,
 ): SerializedData {
   return {
     ['type']: serializeIntegrationMappingBoxItemSlackTypeField(val.type),
@@ -64,7 +64,7 @@ export function serializeIntegrationMappingBoxItemSlack(
   };
 }
 export function deserializeIntegrationMappingBoxItemSlack(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBoxItemSlack {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -95,7 +95,7 @@ export function deserializeIntegrationMappingBoxItemSlack(
   return { type: type, id: id } satisfies IntegrationMappingBoxItemSlack;
 }
 export function serializeIntegrationMappingBoxItemSlackInput(
-  val: IntegrationMappingBoxItemSlackInput
+  val: IntegrationMappingBoxItemSlackInput,
 ): SerializedData {
   return {
     ['type']:
@@ -106,7 +106,7 @@ export function serializeIntegrationMappingBoxItemSlackInput(
   };
 }
 export function deserializeIntegrationMappingBoxItemSlackInput(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBoxItemSlackInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

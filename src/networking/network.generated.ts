@@ -31,7 +31,7 @@ export class NetworkSession {
           NetworkSession,
           'additionalHeaders' | 'baseUrls' | 'interceptors' | 'agent'
         >
-      >
+      >,
   ) {
     if (fields.additionalHeaders) {
       this.additionalHeaders = fields.additionalHeaders;
@@ -62,7 +62,7 @@ export class NetworkSession {
   withAdditionalHeaders(
     additionalHeaders: {
       readonly [key: string]: string;
-    } = {}
+    } = {},
   ): NetworkSession {
     return new NetworkSession({
       additionalHeaders: { ...this.additionalHeaders, ...additionalHeaders },

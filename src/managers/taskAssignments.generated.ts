@@ -27,14 +27,14 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetTaskAssignmentsOptionals {
   readonly headers: GetTaskAssignmentsHeaders = new GetTaskAssignmentsHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetTaskAssignmentsOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<GetTaskAssignmentsOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -59,7 +59,7 @@ export class CreateTaskAssignmentOptionals {
     > &
       Partial<
         Pick<CreateTaskAssignmentOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -84,7 +84,7 @@ export class GetTaskAssignmentByIdOptionals {
     > &
       Partial<
         Pick<GetTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -114,7 +114,7 @@ export class UpdateTaskAssignmentByIdOptionals {
           UpdateTaskAssignmentByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -143,7 +143,7 @@ export class DeleteTaskAssignmentByIdOptionals {
     > &
       Partial<
         Pick<DeleteTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -165,7 +165,7 @@ export class GetTaskAssignmentsHeaders {
   } = {};
   constructor(
     fields: Omit<GetTaskAssignmentsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTaskAssignmentsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTaskAssignmentsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -193,7 +193,7 @@ export class CreateTaskAssignmentRequestBodyTaskField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'> &
-      Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>
+      Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -246,7 +246,7 @@ export class CreateTaskAssignmentHeaders {
   } = {};
   constructor(
     fields: Omit<CreateTaskAssignmentHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateTaskAssignmentHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateTaskAssignmentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -270,7 +270,7 @@ export class GetTaskAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTaskAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTaskAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -313,7 +313,7 @@ export class UpdateTaskAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -337,7 +337,7 @@ export class DeleteTaskAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -366,7 +366,7 @@ export class TaskAssignmentsManager {
       | 'updateTaskAssignmentById'
       | 'deleteTaskAssignmentById'
     > &
-      Partial<Pick<TaskAssignmentsManager, 'networkSession'>>
+      Partial<Pick<TaskAssignmentsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -384,7 +384,7 @@ export class TaskAssignmentsManager {
      */
   async getTaskAssignments(
     taskId: string,
-    optionalsInput: GetTaskAssignmentsOptionalsInput = {}
+    optionalsInput: GetTaskAssignmentsOptionalsInput = {},
   ): Promise<TaskAssignments> {
     const optionals: GetTaskAssignmentsOptionals =
       new GetTaskAssignmentsOptionals({
@@ -401,7 +401,7 @@ export class TaskAssignmentsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/tasks/',
         toString(taskId) as string,
-        '/assignments'
+        '/assignments',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -426,7 +426,7 @@ export class TaskAssignmentsManager {
    */
   async createTaskAssignment(
     requestBody: CreateTaskAssignmentRequestBody,
-    optionalsInput: CreateTaskAssignmentOptionalsInput = {}
+    optionalsInput: CreateTaskAssignmentOptionalsInput = {},
   ): Promise<TaskAssignment> {
     const optionals: CreateTaskAssignmentOptionals =
       new CreateTaskAssignmentOptionals({
@@ -441,7 +441,7 @@ export class TaskAssignmentsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/task_assignments'
+        '/2.0/task_assignments',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -466,7 +466,7 @@ export class TaskAssignmentsManager {
      */
   async getTaskAssignmentById(
     taskAssignmentId: string,
-    optionalsInput: GetTaskAssignmentByIdOptionalsInput = {}
+    optionalsInput: GetTaskAssignmentByIdOptionalsInput = {},
   ): Promise<TaskAssignment> {
     const optionals: GetTaskAssignmentByIdOptionals =
       new GetTaskAssignmentByIdOptionals({
@@ -482,7 +482,7 @@ export class TaskAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/task_assignments/',
-        toString(taskAssignmentId) as string
+        toString(taskAssignmentId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -506,7 +506,7 @@ export class TaskAssignmentsManager {
      */
   async updateTaskAssignmentById(
     taskAssignmentId: string,
-    optionalsInput: UpdateTaskAssignmentByIdOptionalsInput = {}
+    optionalsInput: UpdateTaskAssignmentByIdOptionalsInput = {},
   ): Promise<TaskAssignment> {
     const optionals: UpdateTaskAssignmentByIdOptionals =
       new UpdateTaskAssignmentByIdOptionals({
@@ -524,7 +524,7 @@ export class TaskAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/task_assignments/',
-        toString(taskAssignmentId) as string
+        toString(taskAssignmentId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -549,7 +549,7 @@ export class TaskAssignmentsManager {
      */
   async deleteTaskAssignmentById(
     taskAssignmentId: string,
-    optionalsInput: DeleteTaskAssignmentByIdOptionalsInput = {}
+    optionalsInput: DeleteTaskAssignmentByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteTaskAssignmentByIdOptionals =
       new DeleteTaskAssignmentByIdOptionals({
@@ -565,7 +565,7 @@ export class TaskAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/task_assignments/',
-        toString(taskAssignmentId) as string
+        toString(taskAssignmentId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -582,12 +582,12 @@ export interface TaskAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskTypeField(
-  val: CreateTaskAssignmentRequestBodyTaskTypeField
+  val: CreateTaskAssignmentRequestBodyTaskTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskAssignmentRequestBodyTaskTypeField {
   if (val == 'task') {
     return val;
@@ -597,7 +597,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskTypeField(
   });
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskField(
-  val: CreateTaskAssignmentRequestBodyTaskField
+  val: CreateTaskAssignmentRequestBodyTaskField,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -605,7 +605,7 @@ export function serializeCreateTaskAssignmentRequestBodyTaskField(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskAssignmentRequestBodyTaskField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -639,7 +639,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskField(
   } satisfies CreateTaskAssignmentRequestBodyTaskField;
 }
 export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
-  val: CreateTaskAssignmentRequestBodyTaskFieldInput
+  val: CreateTaskAssignmentRequestBodyTaskFieldInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -650,7 +650,7 @@ export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskAssignmentRequestBodyTaskFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -681,7 +681,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
   } satisfies CreateTaskAssignmentRequestBodyTaskFieldInput;
 }
 export function serializeCreateTaskAssignmentRequestBodyAssignToField(
-  val: CreateTaskAssignmentRequestBodyAssignToField
+  val: CreateTaskAssignmentRequestBodyAssignToField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -689,7 +689,7 @@ export function serializeCreateTaskAssignmentRequestBodyAssignToField(
   };
 }
 export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskAssignmentRequestBodyAssignToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -717,17 +717,17 @@ export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
   } satisfies CreateTaskAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateTaskAssignmentRequestBody(
-  val: CreateTaskAssignmentRequestBody
+  val: CreateTaskAssignmentRequestBody,
 ): SerializedData {
   return {
     ['task']: serializeCreateTaskAssignmentRequestBodyTaskField(val.task),
     ['assign_to']: serializeCreateTaskAssignmentRequestBodyAssignToField(
-      val.assignTo
+      val.assignTo,
     ),
   };
 }
 export function deserializeCreateTaskAssignmentRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskAssignmentRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -756,12 +756,12 @@ export function deserializeCreateTaskAssignmentRequestBody(
   } satisfies CreateTaskAssignmentRequestBody;
 }
 export function serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-  val: UpdateTaskAssignmentByIdRequestBodyResolutionStateField
+  val: UpdateTaskAssignmentByIdRequestBodyResolutionStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTaskAssignmentByIdRequestBodyResolutionStateField {
   if (val == 'completed') {
     return val;
@@ -781,7 +781,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
   });
 }
 export function serializeUpdateTaskAssignmentByIdRequestBody(
-  val: UpdateTaskAssignmentByIdRequestBody
+  val: UpdateTaskAssignmentByIdRequestBody,
 ): SerializedData {
   return {
     ['message']: val.message == void 0 ? void 0 : val.message,
@@ -789,12 +789,12 @@ export function serializeUpdateTaskAssignmentByIdRequestBody(
       val.resolutionState == void 0
         ? void 0
         : serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-            val.resolutionState
+            val.resolutionState,
           ),
   };
 }
 export function deserializeUpdateTaskAssignmentByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTaskAssignmentByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -815,7 +815,7 @@ export function deserializeUpdateTaskAssignmentByIdRequestBody(
     val.resolution_state == void 0
       ? void 0
       : deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
-          val.resolution_state
+          val.resolution_state,
         );
   return {
     message: message,

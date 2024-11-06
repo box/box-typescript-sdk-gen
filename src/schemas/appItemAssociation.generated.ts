@@ -26,7 +26,7 @@ export class AppItemAssociation {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AppItemAssociation, 'type'> &
-      Partial<Pick<AppItemAssociation, 'type'>>
+      Partial<Pick<AppItemAssociation, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -57,12 +57,12 @@ export interface AppItemAssociationInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAppItemAssociationTypeField(
-  val: AppItemAssociationTypeField
+  val: AppItemAssociationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAppItemAssociationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemAssociationTypeField {
   if (val == 'app_item_association') {
     return val;
@@ -72,7 +72,7 @@ export function deserializeAppItemAssociationTypeField(
   });
 }
 export function serializeAppItemAssociation(
-  val: AppItemAssociation
+  val: AppItemAssociation,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -82,7 +82,7 @@ export function serializeAppItemAssociation(
   };
 }
 export function deserializeAppItemAssociation(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemAssociation {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -129,7 +129,7 @@ export function deserializeAppItemAssociation(
   } satisfies AppItemAssociation;
 }
 export function serializeAppItemAssociationInput(
-  val: AppItemAssociationInput
+  val: AppItemAssociationInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -142,7 +142,7 @@ export function serializeAppItemAssociationInput(
   };
 }
 export function deserializeAppItemAssociationInput(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemAssociationInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

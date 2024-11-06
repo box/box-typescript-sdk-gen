@@ -67,7 +67,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
         password: 'Secret123@',
       } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField,
     } satisfies AddShareLinkToWebLinkRequestBody,
-    { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams
+    { fields: 'shared_link' } satisfies AddShareLinkToWebLinkQueryParams,
   );
   const webLinkFromApi: WebLink =
     await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
@@ -85,9 +85,9 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
-          '&shared_link_password=Secret123@'
+          '&shared_link_password=Secret123@',
         ) as string,
-      } satisfies FindWebLinkForSharedLinkHeadersInput
+      } satisfies FindWebLinkForSharedLinkHeadersInput,
     );
   if (!(webLinkId == webLinkFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -99,9 +99,9 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
         boxapi: ''.concat(
           'shared_link=',
           webLinkFromApi.sharedLink!.url,
-          '&shared_link_password=incorrectPassword'
+          '&shared_link_password=incorrectPassword',
         ) as string,
-      } satisfies FindWebLinkForSharedLinkHeadersInput
+      } satisfies FindWebLinkForSharedLinkHeadersInput,
     );
   }).rejects.toThrow();
   const updatedWebLink: WebLink =
@@ -113,7 +113,7 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
             'collaborators' as UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField,
         } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField,
       } satisfies UpdateSharedLinkOnWebLinkRequestBody,
-      { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams
+      { fields: 'shared_link' } satisfies UpdateSharedLinkOnWebLinkQueryParams,
     );
   if (
     !(

@@ -36,7 +36,7 @@ export class GetClassificationOnFolderOptionals {
           GetClassificationOnFolderOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -66,7 +66,7 @@ export class AddClassificationToFolderOptionals {
           AddClassificationToFolderOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -98,7 +98,7 @@ export class UpdateClassificationOnFolderOptionals {
           UpdateClassificationOnFolderOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -126,7 +126,7 @@ export class DeleteClassificationFromFolderOptionals {
           DeleteClassificationFromFolderOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -148,7 +148,7 @@ export class GetClassificationOnFolderHeaders {
   } = {};
   constructor(
     fields: Omit<GetClassificationOnFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<GetClassificationOnFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<GetClassificationOnFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -183,7 +183,7 @@ export class AddClassificationToFolderHeaders {
   } = {};
   constructor(
     fields: Omit<AddClassificationToFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<AddClassificationToFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<AddClassificationToFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -223,7 +223,7 @@ export class UpdateClassificationOnFolderRequestBody {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'> &
-      Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>
+      Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>,
   ) {
     if (fields.op) {
       this.op = fields.op;
@@ -265,7 +265,7 @@ export class UpdateClassificationOnFolderHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateClassificationOnFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateClassificationOnFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateClassificationOnFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -289,7 +289,7 @@ export class DeleteClassificationFromFolderHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteClassificationFromFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteClassificationFromFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteClassificationFromFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -317,7 +317,7 @@ export class FolderClassificationsManager {
       | 'updateClassificationOnFolder'
       | 'deleteClassificationFromFolder'
     > &
-      Partial<Pick<FolderClassificationsManager, 'networkSession'>>
+      Partial<Pick<FolderClassificationsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -349,7 +349,7 @@ export class FolderClassificationsManager {
      */
   async getClassificationOnFolder(
     folderId: string,
-    optionalsInput: GetClassificationOnFolderOptionalsInput = {}
+    optionalsInput: GetClassificationOnFolderOptionalsInput = {},
   ): Promise<Classification> {
     const optionals: GetClassificationOnFolderOptionals =
       new GetClassificationOnFolderOptionals({
@@ -366,7 +366,7 @@ export class FolderClassificationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/metadata/enterprise/securityClassification-6VMVochwUWo'
+        '/metadata/enterprise/securityClassification-6VMVochwUWo',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -403,7 +403,7 @@ export class FolderClassificationsManager {
      */
   async addClassificationToFolder(
     folderId: string,
-    optionalsInput: AddClassificationToFolderOptionalsInput = {}
+    optionalsInput: AddClassificationToFolderOptionalsInput = {},
   ): Promise<Classification> {
     const optionals: AddClassificationToFolderOptionals =
       new AddClassificationToFolderOptionals({
@@ -422,7 +422,7 @@ export class FolderClassificationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/metadata/enterprise/securityClassification-6VMVochwUWo'
+        '/metadata/enterprise/securityClassification-6VMVochwUWo',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -462,7 +462,7 @@ export class FolderClassificationsManager {
   async updateClassificationOnFolder(
     folderId: string,
     requestBody: readonly UpdateClassificationOnFolderRequestBody[],
-    optionalsInput: UpdateClassificationOnFolderOptionalsInput = {}
+    optionalsInput: UpdateClassificationOnFolderOptionalsInput = {},
   ): Promise<Classification> {
     const optionals: UpdateClassificationOnFolderOptionals =
       new UpdateClassificationOnFolderOptionals({
@@ -479,12 +479,12 @@ export class FolderClassificationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/metadata/enterprise/securityClassification-6VMVochwUWo'
+        '/metadata/enterprise/securityClassification-6VMVochwUWo',
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: requestBody.map(
-        serializeUpdateClassificationOnFolderRequestBody
+        serializeUpdateClassificationOnFolderRequestBody,
       ) as readonly any[],
       contentType: 'application/json-patch+json',
       responseFormat: 'json',
@@ -519,7 +519,7 @@ export class FolderClassificationsManager {
      */
   async deleteClassificationFromFolder(
     folderId: string,
-    optionalsInput: DeleteClassificationFromFolderOptionalsInput = {}
+    optionalsInput: DeleteClassificationFromFolderOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteClassificationFromFolderOptionals =
       new DeleteClassificationFromFolderOptionals({
@@ -536,7 +536,7 @@ export class FolderClassificationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/metadata/enterprise/securityClassification-6VMVochwUWo'
+        '/metadata/enterprise/securityClassification-6VMVochwUWo',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -553,7 +553,7 @@ export interface FolderClassificationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddClassificationToFolderRequestBody(
-  val: AddClassificationToFolderRequestBody
+  val: AddClassificationToFolderRequestBody,
 ): SerializedData {
   return {
     ['Box__Security__Classification__Key']:
@@ -563,7 +563,7 @@ export function serializeAddClassificationToFolderRequestBody(
   };
 }
 export function deserializeAddClassificationToFolderRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): AddClassificationToFolderRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -588,12 +588,12 @@ export function deserializeAddClassificationToFolderRequestBody(
   } satisfies AddClassificationToFolderRequestBody;
 }
 export function serializeUpdateClassificationOnFolderRequestBodyOpField(
-  val: UpdateClassificationOnFolderRequestBodyOpField
+  val: UpdateClassificationOnFolderRequestBodyOpField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateClassificationOnFolderRequestBodyOpField {
   if (val == 'replace') {
     return val;
@@ -603,12 +603,12 @@ export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
   });
 }
 export function serializeUpdateClassificationOnFolderRequestBodyPathField(
-  val: UpdateClassificationOnFolderRequestBodyPathField
+  val: UpdateClassificationOnFolderRequestBodyPathField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateClassificationOnFolderRequestBodyPathField {
   if (val == '/Box__Security__Classification__Key') {
     return val;
@@ -619,18 +619,18 @@ export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
   });
 }
 export function serializeUpdateClassificationOnFolderRequestBody(
-  val: UpdateClassificationOnFolderRequestBody
+  val: UpdateClassificationOnFolderRequestBody,
 ): SerializedData {
   return {
     ['op']: serializeUpdateClassificationOnFolderRequestBodyOpField(val.op),
     ['path']: serializeUpdateClassificationOnFolderRequestBodyPathField(
-      val.path
+      val.path,
     ),
     ['value']: val.value,
   };
 }
 export function deserializeUpdateClassificationOnFolderRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateClassificationOnFolderRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -673,7 +673,7 @@ export function deserializeUpdateClassificationOnFolderRequestBody(
   } satisfies UpdateClassificationOnFolderRequestBody;
 }
 export function serializeUpdateClassificationOnFolderRequestBodyInput(
-  val: UpdateClassificationOnFolderRequestBodyInput
+  val: UpdateClassificationOnFolderRequestBodyInput,
 ): SerializedData {
   return {
     ['op']:
@@ -688,7 +688,7 @@ export function serializeUpdateClassificationOnFolderRequestBodyInput(
   };
 }
 export function deserializeUpdateClassificationOnFolderRequestBodyInput(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateClassificationOnFolderRequestBodyInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

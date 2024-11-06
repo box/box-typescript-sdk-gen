@@ -27,7 +27,7 @@ export class AiLlmEndpointParamsGoogle {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsGoogle, 'type'> &
-      Partial<Pick<AiLlmEndpointParamsGoogle, 'type'>>
+      Partial<Pick<AiLlmEndpointParamsGoogle, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -65,12 +65,12 @@ export interface AiLlmEndpointParamsGoogleInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsGoogleTypeField(
-  val: AiLlmEndpointParamsGoogleTypeField
+  val: AiLlmEndpointParamsGoogleTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiLlmEndpointParamsGoogleTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsGoogleTypeField {
   if (val == 'google_params') {
     return val;
@@ -80,7 +80,7 @@ export function deserializeAiLlmEndpointParamsGoogleTypeField(
   });
 }
 export function serializeAiLlmEndpointParamsGoogle(
-  val: AiLlmEndpointParamsGoogle
+  val: AiLlmEndpointParamsGoogle,
 ): SerializedData {
   return {
     ['type']: serializeAiLlmEndpointParamsGoogleTypeField(val.type),
@@ -90,7 +90,7 @@ export function serializeAiLlmEndpointParamsGoogle(
   };
 }
 export function deserializeAiLlmEndpointParamsGoogle(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsGoogle {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -135,7 +135,7 @@ export function deserializeAiLlmEndpointParamsGoogle(
   } satisfies AiLlmEndpointParamsGoogle;
 }
 export function serializeAiLlmEndpointParamsGoogleInput(
-  val: AiLlmEndpointParamsGoogleInput
+  val: AiLlmEndpointParamsGoogleInput,
 ): SerializedData {
   return {
     ['type']:
@@ -148,7 +148,7 @@ export function serializeAiLlmEndpointParamsGoogleInput(
   };
 }
 export function deserializeAiLlmEndpointParamsGoogleInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsGoogleInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

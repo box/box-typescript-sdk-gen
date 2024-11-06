@@ -58,7 +58,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.getMetadataTemplate(
   'enterprise' as GetMetadataTemplateScope,
-  template.templateKey!
+  template.templateKey!,
 );
 ```
 
@@ -105,7 +105,7 @@ await client.metadataTemplates.updateMetadataTemplate(
       fieldKey: 'newfieldname',
       data: { ['type']: 'string', ['displayName']: 'newFieldName' },
     } satisfies UpdateMetadataTemplateRequestBody,
-  ]
+  ],
 );
 ```
 
@@ -142,7 +142,7 @@ See the endpoint docs at
 ```ts
 await client.metadataTemplates.deleteMetadataTemplate(
   'enterprise' as DeleteMetadataTemplateScope,
-  template.templateKey!
+  template.templateKey!,
 );
 ```
 

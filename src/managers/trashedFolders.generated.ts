@@ -43,7 +43,7 @@ export class RestoreFolderFromTrashOptionals {
           RestoreFolderFromTrashOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -81,7 +81,7 @@ export class GetTrashedFolderByIdOptionals {
           GetTrashedFolderByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -110,7 +110,7 @@ export class DeleteTrashedFolderByIdOptionals {
     > &
       Partial<
         Pick<DeleteTrashedFolderByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -158,7 +158,7 @@ export class RestoreFolderFromTrashHeaders {
   } = {};
   constructor(
     fields: Omit<RestoreFolderFromTrashHeaders, 'extraHeaders'> &
-      Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>
+      Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -195,7 +195,7 @@ export class GetTrashedFolderByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTrashedFolderByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTrashedFolderByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTrashedFolderByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -219,7 +219,7 @@ export class DeleteTrashedFolderByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteTrashedFolderByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -246,7 +246,7 @@ export class TrashedFoldersManager {
       | 'getTrashedFolderById'
       | 'deleteTrashedFolderById'
     > &
-      Partial<Pick<TrashedFoldersManager, 'networkSession'>>
+      Partial<Pick<TrashedFoldersManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -283,7 +283,7 @@ export class TrashedFoldersManager {
      */
   async restoreFolderFromTrash(
     folderId: string,
-    optionalsInput: RestoreFolderFromTrashOptionalsInput = {}
+    optionalsInput: RestoreFolderFromTrashOptionalsInput = {},
   ): Promise<TrashFolderRestored> {
     const optionals: RestoreFolderFromTrashOptionals =
       new RestoreFolderFromTrashOptionals({
@@ -310,7 +310,7 @@ export class TrashedFoldersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
-        toString(folderId) as string
+        toString(folderId) as string,
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -355,7 +355,7 @@ export class TrashedFoldersManager {
      */
   async getTrashedFolderById(
     folderId: string,
-    optionalsInput: GetTrashedFolderByIdOptionalsInput = {}
+    optionalsInput: GetTrashedFolderByIdOptionalsInput = {},
   ): Promise<TrashFolder> {
     const optionals: GetTrashedFolderByIdOptionals =
       new GetTrashedFolderByIdOptionals({
@@ -381,7 +381,7 @@ export class TrashedFoldersManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -415,7 +415,7 @@ export class TrashedFoldersManager {
      */
   async deleteTrashedFolderById(
     folderId: string,
-    optionalsInput: DeleteTrashedFolderByIdOptionalsInput = {}
+    optionalsInput: DeleteTrashedFolderByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteTrashedFolderByIdOptionals =
       new DeleteTrashedFolderByIdOptionals({
@@ -432,7 +432,7 @@ export class TrashedFoldersManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/trash'
+        '/trash',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -449,12 +449,12 @@ export interface TrashedFoldersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeRestoreFolderFromTrashRequestBodyParentField(
-  val: RestoreFolderFromTrashRequestBodyParentField
+  val: RestoreFolderFromTrashRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeRestoreFolderFromTrashRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreFolderFromTrashRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -472,7 +472,7 @@ export function deserializeRestoreFolderFromTrashRequestBodyParentField(
   return { id: id } satisfies RestoreFolderFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFolderFromTrashRequestBody(
-  val: RestoreFolderFromTrashRequestBody
+  val: RestoreFolderFromTrashRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -483,7 +483,7 @@ export function serializeRestoreFolderFromTrashRequestBody(
   };
 }
 export function deserializeRestoreFolderFromTrashRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): RestoreFolderFromTrashRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

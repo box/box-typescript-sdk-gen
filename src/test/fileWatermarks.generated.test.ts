@@ -53,7 +53,7 @@ test('testCreateGetDeleteFileWatermark', async function testCreateGetDeleteFileW
       }),
     } satisfies UpdateFileWatermarkRequestBody);
   const watermark: Watermark = await client.fileWatermarks.getFileWatermark(
-    file.id
+    file.id,
   );
   await client.fileWatermarks.deleteFileWatermark(file.id);
   await expect(async () => {

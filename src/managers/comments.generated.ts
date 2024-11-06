@@ -40,7 +40,7 @@ export class GetFileCommentsOptionals {
           GetFileCommentsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -73,7 +73,7 @@ export class GetCommentByIdOptionals {
           GetCommentByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -108,7 +108,7 @@ export class UpdateCommentByIdOptionals {
           UpdateCommentByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -135,7 +135,9 @@ export class DeleteCommentByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteCommentByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteCommentByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<DeleteCommentByIdOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -164,7 +166,7 @@ export class CreateCommentOptionals {
           CreateCommentOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -213,7 +215,7 @@ export class GetFileCommentsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileCommentsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileCommentsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileCommentsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -250,7 +252,7 @@ export class GetCommentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetCommentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCommentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCommentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -293,7 +295,7 @@ export class UpdateCommentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateCommentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateCommentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateCommentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -317,7 +319,7 @@ export class DeleteCommentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteCommentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteCommentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteCommentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -389,7 +391,7 @@ export class CreateCommentHeaders {
   } = {};
   constructor(
     fields: Omit<CreateCommentHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateCommentHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateCommentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -418,7 +420,7 @@ export class CommentsManager {
       | 'deleteCommentById'
       | 'createComment'
     > &
-      Partial<Pick<CommentsManager, 'networkSession'>>
+      Partial<Pick<CommentsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -442,7 +444,7 @@ export class CommentsManager {
      */
   async getFileComments(
     fileId: string,
-    optionalsInput: GetFileCommentsOptionalsInput = {}
+    optionalsInput: GetFileCommentsOptionalsInput = {},
   ): Promise<Comments> {
     const optionals: GetFileCommentsOptionals = new GetFileCommentsOptionals({
       queryParams: optionalsInput.queryParams,
@@ -469,7 +471,7 @@ export class CommentsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/comments'
+        '/comments',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -494,7 +496,7 @@ export class CommentsManager {
      */
   async getCommentById(
     commentId: string,
-    optionalsInput: GetCommentByIdOptionalsInput = {}
+    optionalsInput: GetCommentByIdOptionalsInput = {},
   ): Promise<CommentFull> {
     const optionals: GetCommentByIdOptionals = new GetCommentByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -518,7 +520,7 @@ export class CommentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/comments/',
-        toString(commentId) as string
+        toString(commentId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -542,7 +544,7 @@ export class CommentsManager {
      */
   async updateCommentById(
     commentId: string,
-    optionalsInput: UpdateCommentByIdOptionalsInput = {}
+    optionalsInput: UpdateCommentByIdOptionalsInput = {},
   ): Promise<CommentFull> {
     const optionals: UpdateCommentByIdOptionals =
       new UpdateCommentByIdOptionals({
@@ -569,7 +571,7 @@ export class CommentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/comments/',
-        toString(commentId) as string
+        toString(commentId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -595,7 +597,7 @@ export class CommentsManager {
      */
   async deleteCommentById(
     commentId: string,
-    optionalsInput: DeleteCommentByIdOptionalsInput = {}
+    optionalsInput: DeleteCommentByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteCommentByIdOptionals =
       new DeleteCommentByIdOptionals({
@@ -611,7 +613,7 @@ export class CommentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/comments/',
-        toString(commentId) as string
+        toString(commentId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -631,7 +633,7 @@ export class CommentsManager {
    */
   async createComment(
     requestBody: CreateCommentRequestBody,
-    optionalsInput: CreateCommentOptionalsInput = {}
+    optionalsInput: CreateCommentOptionalsInput = {},
   ): Promise<CommentFull> {
     const optionals: CreateCommentOptionals = new CreateCommentOptionals({
       queryParams: optionalsInput.queryParams,
@@ -654,7 +656,7 @@ export class CommentsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/comments'
+        '/2.0/comments',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -677,12 +679,12 @@ export interface CommentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCommentByIdRequestBody(
-  val: UpdateCommentByIdRequestBody
+  val: UpdateCommentByIdRequestBody,
 ): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeUpdateCommentByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateCommentByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -700,12 +702,12 @@ export function deserializeUpdateCommentByIdRequestBody(
   return { message: message } satisfies UpdateCommentByIdRequestBody;
 }
 export function serializeCreateCommentRequestBodyItemTypeField(
-  val: CreateCommentRequestBodyItemTypeField
+  val: CreateCommentRequestBodyItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateCommentRequestBodyItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCommentRequestBodyItemTypeField {
   if (val == 'file') {
     return val;
@@ -718,7 +720,7 @@ export function deserializeCreateCommentRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCommentRequestBodyItemField(
-  val: CreateCommentRequestBodyItemField
+  val: CreateCommentRequestBodyItemField,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -726,7 +728,7 @@ export function serializeCreateCommentRequestBodyItemField(
   };
 }
 export function deserializeCreateCommentRequestBodyItemField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCommentRequestBodyItemField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -757,7 +759,7 @@ export function deserializeCreateCommentRequestBodyItemField(
   return { id: id, type: type } satisfies CreateCommentRequestBodyItemField;
 }
 export function serializeCreateCommentRequestBody(
-  val: CreateCommentRequestBody
+  val: CreateCommentRequestBody,
 ): SerializedData {
   return {
     ['message']: val.message,
@@ -767,7 +769,7 @@ export function serializeCreateCommentRequestBody(
   };
 }
 export function deserializeCreateCommentRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCommentRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

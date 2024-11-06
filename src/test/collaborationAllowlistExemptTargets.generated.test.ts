@@ -46,7 +46,7 @@ test('testCollaborationAllowlistExemptTargets', async function testCollaboration
         user: {
           id: user.id,
         } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField,
-      } satisfies CreateCollaborationWhitelistExemptTargetRequestBody
+      } satisfies CreateCollaborationWhitelistExemptTargetRequestBody,
     );
   if (
     !(
@@ -61,7 +61,7 @@ test('testCollaborationAllowlistExemptTargets', async function testCollaboration
   }
   const exemptTarget: CollaborationAllowlistExemptTarget =
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
-      newExemptTarget.id!
+      newExemptTarget.id!,
     );
   if (!(exemptTarget.id == newExemptTarget.id)) {
     throw new Error('Assertion failed');
@@ -70,11 +70,11 @@ test('testCollaborationAllowlistExemptTargets', async function testCollaboration
     throw new Error('Assertion failed');
   }
   await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExemptTargetById(
-    exemptTarget.id!
+    exemptTarget.id!,
   );
   await expect(async () => {
     await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExemptTargetById(
-      exemptTarget.id!
+      exemptTarget.id!,
     );
   }).rejects.toThrow();
   await client.users.deleteUserById(user.id);

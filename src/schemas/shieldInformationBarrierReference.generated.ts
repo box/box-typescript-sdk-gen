@@ -14,7 +14,7 @@ export interface ShieldInformationBarrierReference {
   readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReference(
-  val: ShieldInformationBarrierReference
+  val: ShieldInformationBarrierReference,
 ): SerializedData {
   return {
     ['shield_information_barrier']:
@@ -24,7 +24,7 @@ export function serializeShieldInformationBarrierReference(
   };
 }
 export function deserializeShieldInformationBarrierReference(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierReference {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

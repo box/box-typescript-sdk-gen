@@ -20,7 +20,7 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
-  retentionPolicy.id
+  retentionPolicy.id,
 );
 ```
 
@@ -85,7 +85,7 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicyAssignments.getRetentionPolicyAssignmentById(
-  retentionPolicyAssignment.id
+  retentionPolicyAssignment.id,
 );
 ```
 
@@ -116,7 +116,7 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicyAssignments.deleteRetentionPolicyAssignmentById(
-  retentionPolicyAssignment.id
+  retentionPolicyAssignment.id,
 );
 ```
 
@@ -147,7 +147,7 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicyAssignments.getFilesUnderRetentionPolicyAssignment(
-  retentionPolicyAssignment.id
+  retentionPolicyAssignment.id,
 );
 ```
 

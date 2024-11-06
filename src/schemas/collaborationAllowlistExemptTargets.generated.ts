@@ -29,7 +29,7 @@ export interface CollaborationAllowlistExemptTargets {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistExemptTargets(
-  val: CollaborationAllowlistExemptTargets
+  val: CollaborationAllowlistExemptTargets,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -39,14 +39,14 @@ export function serializeCollaborationAllowlistExemptTargets(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: CollaborationAllowlistExemptTarget
+            item: CollaborationAllowlistExemptTarget,
           ): SerializedData {
             return serializeCollaborationAllowlistExemptTarget(item);
           }) as readonly any[]),
   };
 }
 export function deserializeCollaborationAllowlistExemptTargets(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistExemptTargets {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -86,12 +86,12 @@ export function deserializeCollaborationAllowlistExemptTargets(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): CollaborationAllowlistExemptTarget {
-          return deserializeCollaborationAllowlistExemptTarget(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): CollaborationAllowlistExemptTarget {
+            return deserializeCollaborationAllowlistExemptTarget(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

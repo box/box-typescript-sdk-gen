@@ -29,9 +29,8 @@ test('testGetCopyUpdateDeleteFileRequest', async function testGetCopyUpdateDelet
   const fileRequestId: string = getEnvVar('BOX_FILE_REQUEST_ID');
   const userId: string = getEnvVar('USER_ID');
   const client: BoxClient = getDefaultClientWithUserSubject(userId);
-  const fileRequest: FileRequest = await client.fileRequests.getFileRequestById(
-    fileRequestId
-  );
+  const fileRequest: FileRequest =
+    await client.fileRequests.getFileRequestById(fileRequestId);
   if (!(fileRequest.id == fileRequestId)) {
     throw new Error('Assertion failed');
   }

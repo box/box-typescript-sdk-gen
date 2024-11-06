@@ -108,12 +108,12 @@ export interface TrashFolderRestored {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashFolderRestoredTypeField(
-  val: TrashFolderRestoredTypeField
+  val: TrashFolderRestoredTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFolderRestoredTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderRestoredTypeField {
   if (val == 'folder') {
     return val;
@@ -123,7 +123,7 @@ export function deserializeTrashFolderRestoredTypeField(
   });
 }
 export function serializeTrashFolderRestoredPathCollectionField(
-  val: TrashFolderRestoredPathCollectionField
+  val: TrashFolderRestoredPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -133,7 +133,7 @@ export function serializeTrashFolderRestoredPathCollectionField(
   };
 }
 export function deserializeTrashFolderRestoredPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderRestoredPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -176,12 +176,12 @@ export function deserializeTrashFolderRestoredPathCollectionField(
   } satisfies TrashFolderRestoredPathCollectionField;
 }
 export function serializeTrashFolderRestoredItemStatusField(
-  val: TrashFolderRestoredItemStatusField
+  val: TrashFolderRestoredItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFolderRestoredItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderRestoredItemStatusField {
   if (val == 'active') {
     return val;
@@ -197,7 +197,7 @@ export function deserializeTrashFolderRestoredItemStatusField(
   });
 }
 export function serializeTrashFolderRestored(
-  val: TrashFolderRestored
+  val: TrashFolderRestored,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -245,7 +245,7 @@ export function serializeTrashFolderRestored(
   };
 }
 export function deserializeTrashFolderRestored(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderRestored {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

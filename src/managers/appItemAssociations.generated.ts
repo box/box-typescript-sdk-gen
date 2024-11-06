@@ -37,7 +37,7 @@ export class GetFileAppItemAssociationsOptionals {
           GetFileAppItemAssociationsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -71,7 +71,7 @@ export class GetFolderAppItemAssociationsOptionals {
           GetFolderAppItemAssociationsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -111,7 +111,7 @@ export class GetFileAppItemAssociationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileAppItemAssociationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileAppItemAssociationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileAppItemAssociationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -149,7 +149,7 @@ export class GetFolderAppItemAssociationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderAppItemAssociationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderAppItemAssociationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderAppItemAssociationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -175,7 +175,7 @@ export class AppItemAssociationsManager {
       | 'getFileAppItemAssociations'
       | 'getFolderAppItemAssociations'
     > &
-      Partial<Pick<AppItemAssociationsManager, 'networkSession'>>
+      Partial<Pick<AppItemAssociationsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -203,7 +203,7 @@ export class AppItemAssociationsManager {
      */
   async getFileAppItemAssociations(
     fileId: string,
-    optionalsInput: GetFileAppItemAssociationsOptionalsInput = {}
+    optionalsInput: GetFileAppItemAssociationsOptionalsInput = {},
   ): Promise<AppItemAssociations> {
     const optionals: GetFileAppItemAssociationsOptionals =
       new GetFileAppItemAssociationsOptionals({
@@ -229,7 +229,7 @@ export class AppItemAssociationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/app_item_associations'
+        '/app_item_associations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -266,7 +266,7 @@ export class AppItemAssociationsManager {
      */
   async getFolderAppItemAssociations(
     folderId: string,
-    optionalsInput: GetFolderAppItemAssociationsOptionalsInput = {}
+    optionalsInput: GetFolderAppItemAssociationsOptionalsInput = {},
   ): Promise<AppItemAssociations> {
     const optionals: GetFolderAppItemAssociationsOptionals =
       new GetFolderAppItemAssociationsOptionals({
@@ -292,7 +292,7 @@ export class AppItemAssociationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/app_item_associations'
+        '/app_item_associations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,

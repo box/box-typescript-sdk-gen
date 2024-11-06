@@ -25,7 +25,7 @@ export interface AppItemAssociations {
   readonly rawData?: SerializedData;
 }
 export function serializeAppItemAssociations(
-  val: AppItemAssociations
+  val: AppItemAssociations,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -40,7 +40,7 @@ export function serializeAppItemAssociations(
   };
 }
 export function deserializeAppItemAssociations(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemAssociations {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -78,10 +78,10 @@ export function deserializeAppItemAssociations(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): AppItemAssociation {
-          return deserializeAppItemAssociation(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): AppItemAssociation {
+            return deserializeAppItemAssociation(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,
