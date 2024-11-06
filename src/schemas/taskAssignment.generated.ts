@@ -54,12 +54,12 @@ export interface TaskAssignment {
   readonly rawData?: SerializedData;
 }
 export function serializeTaskAssignmentTypeField(
-  val: TaskAssignmentTypeField
+  val: TaskAssignmentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTaskAssignmentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TaskAssignmentTypeField {
   if (val == 'task_assignment') {
     return val;
@@ -69,12 +69,12 @@ export function deserializeTaskAssignmentTypeField(
   });
 }
 export function serializeTaskAssignmentResolutionStateField(
-  val: TaskAssignmentResolutionStateField
+  val: TaskAssignmentResolutionStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeTaskAssignmentResolutionStateField(
-  val: SerializedData
+  val: SerializedData,
 ): TaskAssignmentResolutionStateField {
   if (val == 'completed') {
     return val;

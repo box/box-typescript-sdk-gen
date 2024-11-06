@@ -19,12 +19,12 @@ export interface ShieldInformationBarrierSegmentMemberBase {
   readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierSegmentMemberBaseTypeField(
-  val: ShieldInformationBarrierSegmentMemberBaseTypeField
+  val: ShieldInformationBarrierSegmentMemberBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMemberBaseTypeField {
   if (val == 'shield_information_barrier_segment_member') {
     return val;
@@ -35,7 +35,7 @@ export function deserializeShieldInformationBarrierSegmentMemberBaseTypeField(
   });
 }
 export function serializeShieldInformationBarrierSegmentMemberBase(
-  val: ShieldInformationBarrierSegmentMemberBase
+  val: ShieldInformationBarrierSegmentMemberBase,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -46,7 +46,7 @@ export function serializeShieldInformationBarrierSegmentMemberBase(
   };
 }
 export function deserializeShieldInformationBarrierSegmentMemberBase(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMemberBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

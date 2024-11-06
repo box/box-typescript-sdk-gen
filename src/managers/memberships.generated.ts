@@ -29,7 +29,7 @@ export class GetUserMembershipsOptionals {
   readonly queryParams: GetUserMembershipsQueryParams =
     {} satisfies GetUserMembershipsQueryParams;
   readonly headers: GetUserMembershipsHeaders = new GetUserMembershipsHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -42,7 +42,7 @@ export class GetUserMembershipsOptionals {
           GetUserMembershipsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -64,7 +64,7 @@ export class GetGroupMembershipsOptionals {
   readonly queryParams: GetGroupMembershipsQueryParams =
     {} satisfies GetGroupMembershipsQueryParams;
   readonly headers: GetGroupMembershipsHeaders = new GetGroupMembershipsHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -77,7 +77,7 @@ export class GetGroupMembershipsOptionals {
           GetGroupMembershipsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -111,7 +111,7 @@ export class CreateGroupMembershipOptionals {
           CreateGroupMembershipOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -145,7 +145,7 @@ export class GetGroupMembershipByIdOptionals {
           GetGroupMembershipByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -181,7 +181,7 @@ export class UpdateGroupMembershipByIdOptionals {
           UpdateGroupMembershipByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -217,7 +217,7 @@ export class DeleteGroupMembershipByIdOptionals {
           DeleteGroupMembershipByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -251,7 +251,7 @@ export class GetUserMembershipsHeaders {
   } = {};
   constructor(
     fields: Omit<GetUserMembershipsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetUserMembershipsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetUserMembershipsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -287,7 +287,7 @@ export class GetGroupMembershipsHeaders {
   } = {};
   constructor(
     fields: Omit<GetGroupMembershipsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGroupMembershipsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGroupMembershipsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -363,7 +363,7 @@ export class CreateGroupMembershipHeaders {
   } = {};
   constructor(
     fields: Omit<CreateGroupMembershipHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateGroupMembershipHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateGroupMembershipHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -400,7 +400,7 @@ export class GetGroupMembershipByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetGroupMembershipByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGroupMembershipByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGroupMembershipByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -458,7 +458,7 @@ export class UpdateGroupMembershipByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateGroupMembershipByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateGroupMembershipByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -482,7 +482,7 @@ export class DeleteGroupMembershipByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteGroupMembershipByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteGroupMembershipByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -512,7 +512,7 @@ export class MembershipsManager {
       | 'updateGroupMembershipById'
       | 'deleteGroupMembershipById'
     > &
-      Partial<Pick<MembershipsManager, 'networkSession'>>
+      Partial<Pick<MembershipsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -532,7 +532,7 @@ export class MembershipsManager {
      */
   async getUserMemberships(
     userId: string,
-    optionalsInput: GetUserMembershipsOptionalsInput = {}
+    optionalsInput: GetUserMembershipsOptionalsInput = {},
   ): Promise<GroupMemberships> {
     const optionals: GetUserMembershipsOptionals =
       new GetUserMembershipsOptionals({
@@ -557,7 +557,7 @@ export class MembershipsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
-        '/memberships'
+        '/memberships',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -583,7 +583,7 @@ export class MembershipsManager {
      */
   async getGroupMemberships(
     groupId: string,
-    optionalsInput: GetGroupMembershipsOptionalsInput = {}
+    optionalsInput: GetGroupMembershipsOptionalsInput = {},
   ): Promise<GroupMemberships> {
     const optionals: GetGroupMembershipsOptionals =
       new GetGroupMembershipsOptionals({
@@ -608,7 +608,7 @@ export class MembershipsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/groups/',
         toString(groupId) as string,
-        '/memberships'
+        '/memberships',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -632,7 +632,7 @@ export class MembershipsManager {
    */
   async createGroupMembership(
     requestBody: CreateGroupMembershipRequestBody,
-    optionalsInput: CreateGroupMembershipOptionalsInput = {}
+    optionalsInput: CreateGroupMembershipOptionalsInput = {},
   ): Promise<GroupMembership> {
     const optionals: CreateGroupMembershipOptionals =
       new CreateGroupMembershipOptionals({
@@ -656,7 +656,7 @@ export class MembershipsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/group_memberships'
+        '/2.0/group_memberships',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -684,7 +684,7 @@ export class MembershipsManager {
      */
   async getGroupMembershipById(
     groupMembershipId: string,
-    optionalsInput: GetGroupMembershipByIdOptionalsInput = {}
+    optionalsInput: GetGroupMembershipByIdOptionalsInput = {},
   ): Promise<GroupMembership> {
     const optionals: GetGroupMembershipByIdOptionals =
       new GetGroupMembershipByIdOptionals({
@@ -709,7 +709,7 @@ export class MembershipsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/group_memberships/',
-        toString(groupMembershipId) as string
+        toString(groupMembershipId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -735,7 +735,7 @@ export class MembershipsManager {
      */
   async updateGroupMembershipById(
     groupMembershipId: string,
-    optionalsInput: UpdateGroupMembershipByIdOptionalsInput = {}
+    optionalsInput: UpdateGroupMembershipByIdOptionalsInput = {},
   ): Promise<GroupMembership> {
     const optionals: UpdateGroupMembershipByIdOptionals =
       new UpdateGroupMembershipByIdOptionals({
@@ -762,7 +762,7 @@ export class MembershipsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/group_memberships/',
-        toString(groupMembershipId) as string
+        toString(groupMembershipId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -790,7 +790,7 @@ export class MembershipsManager {
      */
   async deleteGroupMembershipById(
     groupMembershipId: string,
-    optionalsInput: DeleteGroupMembershipByIdOptionalsInput = {}
+    optionalsInput: DeleteGroupMembershipByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteGroupMembershipByIdOptionals =
       new DeleteGroupMembershipByIdOptionals({
@@ -806,7 +806,7 @@ export class MembershipsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/group_memberships/',
-        toString(groupMembershipId) as string
+        toString(groupMembershipId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -823,12 +823,12 @@ export interface MembershipsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupMembershipRequestBodyUserField(
-  val: CreateGroupMembershipRequestBodyUserField
+  val: CreateGroupMembershipRequestBodyUserField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyUserField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupMembershipRequestBodyUserField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -852,12 +852,12 @@ export function deserializeCreateGroupMembershipRequestBodyUserField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyUserField;
 }
 export function serializeCreateGroupMembershipRequestBodyGroupField(
-  val: CreateGroupMembershipRequestBodyGroupField
+  val: CreateGroupMembershipRequestBodyGroupField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateGroupMembershipRequestBodyGroupField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupMembershipRequestBodyGroupField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -881,12 +881,12 @@ export function deserializeCreateGroupMembershipRequestBodyGroupField(
   return { id: id } satisfies CreateGroupMembershipRequestBodyGroupField;
 }
 export function serializeCreateGroupMembershipRequestBodyRoleField(
-  val: CreateGroupMembershipRequestBodyRoleField
+  val: CreateGroupMembershipRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateGroupMembershipRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupMembershipRequestBodyRoleField {
   if (val == 'member') {
     return val;
@@ -899,7 +899,7 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   });
 }
 export function serializeCreateGroupMembershipRequestBody(
-  val: CreateGroupMembershipRequestBody
+  val: CreateGroupMembershipRequestBody,
 ): SerializedData {
   return {
     ['user']: serializeCreateGroupMembershipRequestBodyUserField(val.user),
@@ -915,7 +915,7 @@ export function serializeCreateGroupMembershipRequestBody(
   };
 }
 export function deserializeCreateGroupMembershipRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupMembershipRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -959,25 +959,25 @@ export function deserializeCreateGroupMembershipRequestBody(
     val.configurable_permissions == void 0
       ? void 0
       : sdIsMap(val.configurable_permissions)
-      ? (Object.fromEntries(
-          Object.entries(val.configurable_permissions).map(
-            ([k, v]: [string, any]) => [
-              k,
-              (function (v: any): any {
-                if (!sdIsBoolean(v)) {
-                  throw new BoxSdkError({
-                    message:
-                      'Expecting boolean for "CreateGroupMembershipRequestBody"',
-                  });
-                }
-                return v;
-              })(v),
-            ]
-          )
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.configurable_permissions).map(
+              ([k, v]: [string, any]) => [
+                k,
+                (function (v: any): any {
+                  if (!sdIsBoolean(v)) {
+                    throw new BoxSdkError({
+                      message:
+                        'Expecting boolean for "CreateGroupMembershipRequestBody"',
+                    });
+                  }
+                  return v;
+                })(v),
+              ],
+            ),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   return {
     user: user,
     group: group,
@@ -986,12 +986,12 @@ export function deserializeCreateGroupMembershipRequestBody(
   } satisfies CreateGroupMembershipRequestBody;
 }
 export function serializeUpdateGroupMembershipByIdRequestBodyRoleField(
-  val: UpdateGroupMembershipByIdRequestBodyRoleField
+  val: UpdateGroupMembershipByIdRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateGroupMembershipByIdRequestBodyRoleField {
   if (val == 'member') {
     return val;
@@ -1004,7 +1004,7 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateGroupMembershipByIdRequestBody(
-  val: UpdateGroupMembershipByIdRequestBody
+  val: UpdateGroupMembershipByIdRequestBody,
 ): SerializedData {
   return {
     ['role']:
@@ -1018,7 +1018,7 @@ export function serializeUpdateGroupMembershipByIdRequestBody(
   };
 }
 export function deserializeUpdateGroupMembershipByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateGroupMembershipByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1046,25 +1046,25 @@ export function deserializeUpdateGroupMembershipByIdRequestBody(
     val.configurable_permissions == void 0
       ? void 0
       : sdIsMap(val.configurable_permissions)
-      ? (Object.fromEntries(
-          Object.entries(val.configurable_permissions).map(
-            ([k, v]: [string, any]) => [
-              k,
-              (function (v: any): any {
-                if (!sdIsBoolean(v)) {
-                  throw new BoxSdkError({
-                    message:
-                      'Expecting boolean for "UpdateGroupMembershipByIdRequestBody"',
-                  });
-                }
-                return v;
-              })(v),
-            ]
-          )
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.configurable_permissions).map(
+              ([k, v]: [string, any]) => [
+                k,
+                (function (v: any): any {
+                  if (!sdIsBoolean(v)) {
+                    throw new BoxSdkError({
+                      message:
+                        'Expecting boolean for "UpdateGroupMembershipByIdRequestBody"',
+                    });
+                  }
+                  return v;
+                })(v),
+              ],
+            ),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   return {
     role: role,
     configurablePermissions: configurablePermissions,

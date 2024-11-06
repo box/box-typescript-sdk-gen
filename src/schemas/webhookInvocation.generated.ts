@@ -78,12 +78,12 @@ export interface WebhookInvocation {
   readonly rawData?: SerializedData;
 }
 export function serializeWebhookInvocationTypeField(
-  val: WebhookInvocationTypeField
+  val: WebhookInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebhookInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookInvocationTypeField {
   if (val == 'webhook_event') {
     return val;
@@ -93,12 +93,12 @@ export function deserializeWebhookInvocationTypeField(
   });
 }
 export function serializeWebhookInvocationTriggerField(
-  val: WebhookInvocationTriggerField
+  val: WebhookInvocationTriggerField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebhookInvocationTriggerField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookInvocationTriggerField {
   if (val == 'FILE.UPLOADED') {
     return val;
@@ -225,7 +225,7 @@ export function deserializeWebhookInvocationTriggerField(
   });
 }
 export function serializeWebhookInvocation(
-  val: WebhookInvocation
+  val: WebhookInvocation,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -247,7 +247,7 @@ export function serializeWebhookInvocation(
   };
 }
 export function deserializeWebhookInvocation(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookInvocation {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

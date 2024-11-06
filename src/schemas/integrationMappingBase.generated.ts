@@ -20,7 +20,7 @@ export class IntegrationMappingBase {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingBase, 'type'> &
-      Partial<Pick<IntegrationMappingBase, 'type'>>
+      Partial<Pick<IntegrationMappingBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -45,12 +45,12 @@ export interface IntegrationMappingBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingBaseTypeField(
-  val: IntegrationMappingBaseTypeField
+  val: IntegrationMappingBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeIntegrationMappingBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBaseTypeField {
   if (val == 'integration_mapping') {
     return val;
@@ -60,7 +60,7 @@ export function deserializeIntegrationMappingBaseTypeField(
   });
 }
 export function serializeIntegrationMappingBase(
-  val: IntegrationMappingBase
+  val: IntegrationMappingBase,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -68,7 +68,7 @@ export function serializeIntegrationMappingBase(
   };
 }
 export function deserializeIntegrationMappingBase(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -97,7 +97,7 @@ export function deserializeIntegrationMappingBase(
   return { id: id, type: type } satisfies IntegrationMappingBase;
 }
 export function serializeIntegrationMappingBaseInput(
-  val: IntegrationMappingBaseInput
+  val: IntegrationMappingBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -108,7 +108,7 @@ export function serializeIntegrationMappingBaseInput(
   };
 }
 export function deserializeIntegrationMappingBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

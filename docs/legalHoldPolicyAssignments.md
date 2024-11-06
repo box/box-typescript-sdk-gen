@@ -83,7 +83,7 @@ See the endpoint docs at
 
 ```ts
 await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
-  legalHoldPolicyAssignmentId
+  legalHoldPolicyAssignmentId,
 );
 ```
 
@@ -116,7 +116,7 @@ See the endpoint docs at
 
 ```ts
 await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
-  legalHoldPolicyAssignmentId
+  legalHoldPolicyAssignmentId,
 );
 ```
 
@@ -165,7 +165,7 @@ See the endpoint docs at
 
 ```ts
 await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
-  legalHoldPolicyAssignmentId
+  legalHoldPolicyAssignmentId,
 );
 ```
 

@@ -48,7 +48,7 @@ export class CreateAiAskOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateAiAskOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateAiAskOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateAiAskOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -67,7 +67,7 @@ export class CreateAiTextGenOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateAiTextGenOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateAiTextGenOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateAiTextGenOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -92,7 +92,7 @@ export class GetAiAgentDefaultConfigOptionals {
     > &
       Partial<
         Pick<GetAiAgentDefaultConfigOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -111,7 +111,7 @@ export class CreateAiExtractOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateAiExtractOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateAiExtractOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateAiExtractOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -139,7 +139,7 @@ export class CreateAiExtractStructuredOptionals {
           CreateAiExtractStructuredOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -161,7 +161,7 @@ export class CreateAiAskHeaders {
   } = {};
   constructor(
     fields: Omit<CreateAiAskHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateAiAskHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateAiAskHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -185,7 +185,7 @@ export class CreateAiTextGenHeaders {
   } = {};
   constructor(
     fields: Omit<CreateAiTextGenHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateAiTextGenHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateAiTextGenHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -226,7 +226,7 @@ export class GetAiAgentDefaultConfigHeaders {
   } = {};
   constructor(
     fields: Omit<GetAiAgentDefaultConfigHeaders, 'extraHeaders'> &
-      Partial<Pick<GetAiAgentDefaultConfigHeaders, 'extraHeaders'>>
+      Partial<Pick<GetAiAgentDefaultConfigHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -250,7 +250,7 @@ export class CreateAiExtractHeaders {
   } = {};
   constructor(
     fields: Omit<CreateAiExtractHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateAiExtractHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateAiExtractHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -274,7 +274,7 @@ export class CreateAiExtractStructuredHeaders {
   } = {};
   constructor(
     fields: Omit<CreateAiExtractStructuredHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateAiExtractStructuredHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateAiExtractStructuredHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -303,7 +303,7 @@ export class AiManager {
       | 'createAiExtract'
       | 'createAiExtractStructured'
     > &
-      Partial<Pick<AiManager, 'networkSession'>>
+      Partial<Pick<AiManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -320,7 +320,7 @@ export class AiManager {
    */
   async createAiAsk(
     requestBody: AiAsk,
-    optionalsInput: CreateAiAskOptionalsInput = {}
+    optionalsInput: CreateAiAskOptionalsInput = {},
   ): Promise<AiResponseFull> {
     const optionals: CreateAiAskOptionals = new CreateAiAskOptionals({
       headers: optionalsInput.headers,
@@ -334,7 +334,7 @@ export class AiManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/ask'
+        '/2.0/ai/ask',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -358,7 +358,7 @@ export class AiManager {
    */
   async createAiTextGen(
     requestBody: AiTextGen,
-    optionalsInput: CreateAiTextGenOptionalsInput = {}
+    optionalsInput: CreateAiTextGenOptionalsInput = {},
   ): Promise<AiResponse> {
     const optionals: CreateAiTextGenOptionals = new CreateAiTextGenOptionals({
       headers: optionalsInput.headers,
@@ -372,7 +372,7 @@ export class AiManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/text_gen'
+        '/2.0/ai/text_gen',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -396,7 +396,7 @@ export class AiManager {
    */
   async getAiAgentDefaultConfig(
     queryParams: GetAiAgentDefaultConfigQueryParams,
-    optionalsInput: GetAiAgentDefaultConfigOptionalsInput = {}
+    optionalsInput: GetAiAgentDefaultConfigOptionalsInput = {},
   ): Promise<AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen> {
     const optionals: GetAiAgentDefaultConfigOptionals =
       new GetAiAgentDefaultConfigOptionals({
@@ -418,7 +418,7 @@ export class AiManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai_agent_default'
+        '/2.0/ai_agent_default',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -430,7 +430,7 @@ export class AiManager {
     } satisfies FetchOptions)) as FetchResponse;
     return {
       ...deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
-        response.data
+        response.data,
       ),
       rawData: response.data,
     };
@@ -444,7 +444,7 @@ export class AiManager {
    */
   async createAiExtract(
     requestBody: AiExtract,
-    optionalsInput: CreateAiExtractOptionalsInput = {}
+    optionalsInput: CreateAiExtractOptionalsInput = {},
   ): Promise<AiResponse> {
     const optionals: CreateAiExtractOptionals = new CreateAiExtractOptionals({
       headers: optionalsInput.headers,
@@ -458,7 +458,7 @@ export class AiManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/extract'
+        '/2.0/ai/extract',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -485,7 +485,7 @@ export class AiManager {
    */
   async createAiExtractStructured(
     requestBody: AiExtractStructured,
-    optionalsInput: CreateAiExtractStructuredOptionalsInput = {}
+    optionalsInput: CreateAiExtractStructuredOptionalsInput = {},
   ): Promise<AiExtractResponse> {
     const optionals: CreateAiExtractStructuredOptionals =
       new CreateAiExtractStructuredOptionals({
@@ -500,7 +500,7 @@ export class AiManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/extract_structured'
+        '/2.0/ai/extract_structured',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -522,12 +522,12 @@ export interface AiManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetAiAgentDefaultConfigQueryParamsModeField(
-  val: GetAiAgentDefaultConfigQueryParamsModeField
+  val: GetAiAgentDefaultConfigQueryParamsModeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetAiAgentDefaultConfigQueryParamsModeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetAiAgentDefaultConfigQueryParamsModeField {
   if (val == 'ask') {
     return val;

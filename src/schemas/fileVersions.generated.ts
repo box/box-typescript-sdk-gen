@@ -52,12 +52,12 @@ export interface FileVersions {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionsOrderDirectionField(
-  val: FileVersionsOrderDirectionField
+  val: FileVersionsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileVersionsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeFileVersionsOrderDirectionField(
   });
 }
 export function serializeFileVersionsOrderField(
-  val: FileVersionsOrderField
+  val: FileVersionsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -81,7 +81,7 @@ export function serializeFileVersionsOrderField(
   };
 }
 export function deserializeFileVersionsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -109,7 +109,7 @@ export function serializeFileVersions(val: FileVersions): SerializedData {
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: FileVersionsOrderField
+            item: FileVersionsOrderField,
           ): SerializedData {
             return serializeFileVersionsOrderField(item);
           }) as readonly any[]),
@@ -153,10 +153,12 @@ export function deserializeFileVersions(val: SerializedData): FileVersions {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): FileVersionsOrderField {
-          return deserializeFileVersionsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (
+            itm: SerializedData,
+          ): FileVersionsOrderField {
+            return deserializeFileVersionsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "FileVersions"',
@@ -166,10 +168,10 @@ export function deserializeFileVersions(val: SerializedData): FileVersions {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileVersionFull {
-          return deserializeFileVersionFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): FileVersionFull {
+            return deserializeFileVersionFull(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

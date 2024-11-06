@@ -50,12 +50,12 @@ export class GroupFull extends Group {
   }
 }
 export function serializeGroupFullInvitabilityLevelField(
-  val: GroupFullInvitabilityLevelField
+  val: GroupFullInvitabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupFullInvitabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupFullInvitabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -71,12 +71,12 @@ export function deserializeGroupFullInvitabilityLevelField(
   });
 }
 export function serializeGroupFullMemberViewabilityLevelField(
-  val: GroupFullMemberViewabilityLevelField
+  val: GroupFullMemberViewabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupFullMemberViewabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupFullMemberViewabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -92,7 +92,7 @@ export function deserializeGroupFullMemberViewabilityLevelField(
   });
 }
 export function serializeGroupFullPermissionsField(
-  val: GroupFullPermissionsField
+  val: GroupFullPermissionsField,
 ): SerializedData {
   return {
     ['can_invite_as_collaborator']:
@@ -102,7 +102,7 @@ export function serializeGroupFullPermissionsField(
   };
 }
 export function deserializeGroupFullPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupFullPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -148,7 +148,7 @@ export function serializeGroupFull(val: GroupFull): SerializedData {
         val.memberViewabilityLevel == void 0
           ? void 0
           : serializeGroupFullMemberViewabilityLevelField(
-              val.memberViewabilityLevel
+              val.memberViewabilityLevel,
             ),
       ['permissions']:
         val.permissions == void 0
@@ -198,7 +198,7 @@ export function deserializeGroupFull(val: SerializedData): GroupFull {
     val.member_viewability_level == void 0
       ? void 0
       : deserializeGroupFullMemberViewabilityLevelField(
-          val.member_viewability_level
+          val.member_viewability_level,
         );
   const permissions: undefined | GroupFullPermissionsField =
     val.permissions == void 0

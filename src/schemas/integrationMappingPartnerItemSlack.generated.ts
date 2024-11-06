@@ -24,7 +24,7 @@ export class IntegrationMappingPartnerItemSlack {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<IntegrationMappingPartnerItemSlack, 'type'> &
-      Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>
+      Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -59,12 +59,12 @@ export interface IntegrationMappingPartnerItemSlackInput {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingPartnerItemSlackTypeField(
-  val: IntegrationMappingPartnerItemSlackTypeField
+  val: IntegrationMappingPartnerItemSlackTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeIntegrationMappingPartnerItemSlackTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingPartnerItemSlackTypeField {
   if (val == 'channel') {
     return val;
@@ -74,7 +74,7 @@ export function deserializeIntegrationMappingPartnerItemSlackTypeField(
   });
 }
 export function serializeIntegrationMappingPartnerItemSlack(
-  val: IntegrationMappingPartnerItemSlack
+  val: IntegrationMappingPartnerItemSlack,
 ): SerializedData {
   return {
     ['type']: serializeIntegrationMappingPartnerItemSlackTypeField(val.type),
@@ -85,7 +85,7 @@ export function serializeIntegrationMappingPartnerItemSlack(
   };
 }
 export function deserializeIntegrationMappingPartnerItemSlack(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingPartnerItemSlack {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -140,7 +140,7 @@ export function deserializeIntegrationMappingPartnerItemSlack(
   } satisfies IntegrationMappingPartnerItemSlack;
 }
 export function serializeIntegrationMappingPartnerItemSlackInput(
-  val: IntegrationMappingPartnerItemSlackInput
+  val: IntegrationMappingPartnerItemSlackInput,
 ): SerializedData {
   return {
     ['type']:
@@ -154,7 +154,7 @@ export function serializeIntegrationMappingPartnerItemSlackInput(
   };
 }
 export function deserializeIntegrationMappingPartnerItemSlackInput(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingPartnerItemSlackInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

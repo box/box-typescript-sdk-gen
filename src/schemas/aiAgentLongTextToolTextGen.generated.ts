@@ -35,7 +35,7 @@ export type AiAgentLongTextToolTextGen = AiAgentBasicTextToolTextGen & {
   readonly embeddings?: AiAgentLongTextToolTextGenEmbeddingsField;
 };
 export function serializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
-  val: AiAgentLongTextToolTextGenEmbeddingsStrategyField
+  val: AiAgentLongTextToolTextGenEmbeddingsStrategyField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -44,7 +44,7 @@ export function serializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
   };
 }
 export function deserializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextToolTextGenEmbeddingsStrategyField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -76,7 +76,7 @@ export function deserializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
   } satisfies AiAgentLongTextToolTextGenEmbeddingsStrategyField;
 }
 export function serializeAiAgentLongTextToolTextGenEmbeddingsField(
-  val: AiAgentLongTextToolTextGenEmbeddingsField
+  val: AiAgentLongTextToolTextGenEmbeddingsField,
 ): SerializedData {
   return {
     ['model']: val.model == void 0 ? void 0 : val.model,
@@ -84,12 +84,12 @@ export function serializeAiAgentLongTextToolTextGenEmbeddingsField(
       val.strategy == void 0
         ? void 0
         : serializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
-            val.strategy
+            val.strategy,
           ),
   };
 }
 export function deserializeAiAgentLongTextToolTextGenEmbeddingsField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextToolTextGenEmbeddingsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -110,7 +110,7 @@ export function deserializeAiAgentLongTextToolTextGenEmbeddingsField(
     val.strategy == void 0
       ? void 0
       : deserializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
-          val.strategy
+          val.strategy,
         );
   return {
     model: model,
@@ -118,7 +118,7 @@ export function deserializeAiAgentLongTextToolTextGenEmbeddingsField(
   } satisfies AiAgentLongTextToolTextGenEmbeddingsField;
 }
 export function serializeAiAgentLongTextToolTextGen(
-  val: AiAgentLongTextToolTextGen
+  val: AiAgentLongTextToolTextGen,
 ): SerializedData {
   const base: any = serializeAiAgentBasicTextToolTextGen(val);
   if (!sdIsMap(base)) {
@@ -137,7 +137,7 @@ export function serializeAiAgentLongTextToolTextGen(
   };
 }
 export function deserializeAiAgentLongTextToolTextGen(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentLongTextToolTextGen {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -190,7 +190,7 @@ export function deserializeAiAgentLongTextToolTextGen(
     val.llm_endpoint_params == void 0
       ? void 0
       : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params
+          val.llm_endpoint_params,
         );
   return {
     embeddings: embeddings,

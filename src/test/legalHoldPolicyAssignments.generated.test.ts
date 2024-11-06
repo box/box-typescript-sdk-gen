@@ -82,7 +82,7 @@ test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignm
   const legalHoldPolicyAssignmentId: string = legalHoldPolicyAssignment.id!;
   const legalHoldPolicyAssignmentFromApi: LegalHoldPolicyAssignment =
     await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
-      legalHoldPolicyAssignmentId
+      legalHoldPolicyAssignmentId,
     );
   if (!(legalHoldPolicyAssignmentFromApi.id! == legalHoldPolicyAssignmentId)) {
     throw new Error('Assertion failed');
@@ -96,7 +96,7 @@ test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignm
   }
   const filesOnHold: FilesOnHold =
     await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
-      legalHoldPolicyAssignmentId
+      legalHoldPolicyAssignmentId,
     );
   if (!(filesOnHold.entries!.length == 1)) {
     throw new Error('Assertion failed');
@@ -105,11 +105,11 @@ test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignm
     throw new Error('Assertion failed');
   }
   await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
-    legalHoldPolicyAssignmentId
+    legalHoldPolicyAssignmentId,
   );
   await expect(async () => {
     await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
-      legalHoldPolicyAssignmentId
+      legalHoldPolicyAssignmentId,
     );
   }).rejects.toThrow();
   await client.files.deleteFileById(fileId);
@@ -119,8 +119,8 @@ test('testLegalHoldPolicyAssignments', async function testLegalHoldPolicyAssignm
     console.log(
       ''.concat(
         'Could not delete Legal Policy with id: ',
-        legalHoldPolicyId
-      ) as string
+        legalHoldPolicyId,
+      ) as string,
     );
   } finally {
   }

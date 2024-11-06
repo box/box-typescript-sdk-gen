@@ -159,7 +159,7 @@ export function deserializeFileVersion(val: SerializedData): FileVersion {
     });
   }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
-    val.type
+    val.type,
   );
   return {
     name: name,

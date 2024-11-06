@@ -20,7 +20,7 @@ export class UserIntegrationMappings extends UserBase {
   }
 }
 export function serializeUserIntegrationMappings(
-  val: UserIntegrationMappings
+  val: UserIntegrationMappings,
 ): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
@@ -37,7 +37,7 @@ export function serializeUserIntegrationMappings(
   };
 }
 export function deserializeUserIntegrationMappings(
-  val: SerializedData
+  val: SerializedData,
 ): UserIntegrationMappings {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

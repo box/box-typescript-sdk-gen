@@ -306,7 +306,7 @@ export class FileFull extends File {
   }
 }
 export function serializeFileFullPermissionsField(
-  val: FileFullPermissionsField
+  val: FileFullPermissionsField,
 ): SerializedData {
   return {
     ['can_delete']: val.canDelete,
@@ -324,7 +324,7 @@ export function serializeFileFullPermissionsField(
   };
 }
 export function deserializeFileFullPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -503,12 +503,12 @@ export function deserializeFileFullPermissionsField(
   } satisfies FileFullPermissionsField;
 }
 export function serializeFileFullLockTypeField(
-  val: FileFullLockTypeField
+  val: FileFullLockTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullLockTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullLockTypeField {
   if (val == 'lock') {
     return val;
@@ -516,12 +516,12 @@ export function deserializeFileFullLockTypeField(
   throw new BoxSdkError({ message: "Can't deserialize FileFullLockTypeField" });
 }
 export function serializeFileFullLockAppTypeField(
-  val: FileFullLockAppTypeField
+  val: FileFullLockAppTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullLockAppTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullLockAppTypeField {
   if (val == 'gsuite') {
     return val;
@@ -540,7 +540,7 @@ export function deserializeFileFullLockAppTypeField(
   });
 }
 export function serializeFileFullLockField(
-  val: FileFullLockField
+  val: FileFullLockField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -561,7 +561,7 @@ export function serializeFileFullLockField(
   };
 }
 export function deserializeFileFullLockField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullLockField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -618,12 +618,12 @@ export function deserializeFileFullLockField(
   } satisfies FileFullLockField;
 }
 export function serializeFileFullExpiringEmbedLinkTokenTypeField(
-  val: FileFullExpiringEmbedLinkTokenTypeField
+  val: FileFullExpiringEmbedLinkTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullExpiringEmbedLinkTokenTypeField {
   if (val == 'bearer') {
     return val;
@@ -633,7 +633,7 @@ export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
   });
 }
 export function serializeFileFullExpiringEmbedLinkField(
-  val: FileFullExpiringEmbedLinkField
+  val: FileFullExpiringEmbedLinkField,
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -646,7 +646,7 @@ export function serializeFileFullExpiringEmbedLinkField(
       val.restrictedTo == void 0
         ? void 0
         : (val.restrictedTo.map(function (
-            item: FileOrFolderScope
+            item: FileOrFolderScope,
           ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
@@ -654,7 +654,7 @@ export function serializeFileFullExpiringEmbedLinkField(
   };
 }
 export function deserializeFileFullExpiringEmbedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullExpiringEmbedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -691,12 +691,12 @@ export function deserializeFileFullExpiringEmbedLinkField(
     val.restricted_to == void 0
       ? void 0
       : sdIsList(val.restricted_to)
-      ? (val.restricted_to.map(function (
-          itm: SerializedData
-        ): FileOrFolderScope {
-          return deserializeFileOrFolderScope(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.restricted_to.map(function (
+            itm: SerializedData,
+          ): FileOrFolderScope {
+            return deserializeFileOrFolderScope(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.url == void 0) && !sdIsString(val.url)) {
     throw new BoxSdkError({
       message:
@@ -713,7 +713,7 @@ export function deserializeFileFullExpiringEmbedLinkField(
   } satisfies FileFullExpiringEmbedLinkField;
 }
 export function serializeFileFullWatermarkInfoField(
-  val: FileFullWatermarkInfoField
+  val: FileFullWatermarkInfoField,
 ): SerializedData {
   return {
     ['is_watermarked']:
@@ -721,7 +721,7 @@ export function serializeFileFullWatermarkInfoField(
   };
 }
 export function deserializeFileFullWatermarkInfoField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullWatermarkInfoField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -739,12 +739,12 @@ export function deserializeFileFullWatermarkInfoField(
   return { isWatermarked: isWatermarked } satisfies FileFullWatermarkInfoField;
 }
 export function serializeFileFullAllowedInviteeRolesField(
-  val: FileFullAllowedInviteeRolesField
+  val: FileFullAllowedInviteeRolesField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullAllowedInviteeRolesField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullAllowedInviteeRolesField {
   if (val == 'editor') {
     return val;
@@ -772,12 +772,12 @@ export function deserializeFileFullAllowedInviteeRolesField(
   });
 }
 export function serializeFileFullMetadataField(
-  val: FileFullMetadataField
+  val: FileFullMetadataField,
 ): SerializedData {
   return { ...{}, ...val.extraData };
 }
 export function deserializeFileFullMetadataField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullMetadataField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -800,37 +800,37 @@ export function deserializeFileFullMetadataField(
     val == void 0
       ? void 0
       : sdIsMap(val)
-      ? (Object.fromEntries(
-          Object.entries(val).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return sdIsMap(v)
-                ? (Object.fromEntries(
-                    Object.entries(v).map(([k, v]: [string, any]) => [
-                      k,
-                      deserializeMetadataFull(v),
-                    ])
-                  ) as {
-                    readonly [key: string]: any;
-                  })
-                : {};
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return sdIsMap(v)
+                  ? (Object.fromEntries(
+                      Object.entries(v).map(([k, v]: [string, any]) => [
+                        k,
+                        deserializeMetadataFull(v),
+                      ]),
+                    ) as {
+                      readonly [key: string]: any;
+                    })
+                  : {};
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   return { extraData: extraData } satisfies FileFullMetadataField;
 }
 export function serializeFileFullRepresentationsEntriesContentField(
-  val: FileFullRepresentationsEntriesContentField
+  val: FileFullRepresentationsEntriesContentField,
 ): SerializedData {
   return {
     ['url_template']: val.urlTemplate == void 0 ? void 0 : val.urlTemplate,
   };
 }
 export function deserializeFileFullRepresentationsEntriesContentField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesContentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -851,12 +851,12 @@ export function deserializeFileFullRepresentationsEntriesContentField(
   } satisfies FileFullRepresentationsEntriesContentField;
 }
 export function serializeFileFullRepresentationsEntriesInfoField(
-  val: FileFullRepresentationsEntriesInfoField
+  val: FileFullRepresentationsEntriesInfoField,
 ): SerializedData {
   return { ['url']: val.url == void 0 ? void 0 : val.url };
 }
 export function deserializeFileFullRepresentationsEntriesInfoField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesInfoField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -873,7 +873,7 @@ export function deserializeFileFullRepresentationsEntriesInfoField(
   return { url: url } satisfies FileFullRepresentationsEntriesInfoField;
 }
 export function serializeFileFullRepresentationsEntriesPropertiesField(
-  val: FileFullRepresentationsEntriesPropertiesField
+  val: FileFullRepresentationsEntriesPropertiesField,
 ): SerializedData {
   return {
     ['dimensions']: val.dimensions == void 0 ? void 0 : val.dimensions,
@@ -882,7 +882,7 @@ export function serializeFileFullRepresentationsEntriesPropertiesField(
   };
 }
 export function deserializeFileFullRepresentationsEntriesPropertiesField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesPropertiesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -919,12 +919,12 @@ export function deserializeFileFullRepresentationsEntriesPropertiesField(
   } satisfies FileFullRepresentationsEntriesPropertiesField;
 }
 export function serializeFileFullRepresentationsEntriesStatusStateField(
-  val: FileFullRepresentationsEntriesStatusStateField
+  val: FileFullRepresentationsEntriesStatusStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullRepresentationsEntriesStatusStateField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesStatusStateField {
   if (val == 'success') {
     return val;
@@ -943,7 +943,7 @@ export function deserializeFileFullRepresentationsEntriesStatusStateField(
   });
 }
 export function serializeFileFullRepresentationsEntriesStatusField(
-  val: FileFullRepresentationsEntriesStatusField
+  val: FileFullRepresentationsEntriesStatusField,
 ): SerializedData {
   return {
     ['state']:
@@ -953,7 +953,7 @@ export function serializeFileFullRepresentationsEntriesStatusField(
   };
 }
 export function deserializeFileFullRepresentationsEntriesStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesStatusField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -968,7 +968,7 @@ export function deserializeFileFullRepresentationsEntriesStatusField(
   return { state: state } satisfies FileFullRepresentationsEntriesStatusField;
 }
 export function serializeFileFullRepresentationsEntriesField(
-  val: FileFullRepresentationsEntriesField
+  val: FileFullRepresentationsEntriesField,
 ): SerializedData {
   return {
     ['content']:
@@ -983,7 +983,7 @@ export function serializeFileFullRepresentationsEntriesField(
       val.properties == void 0
         ? void 0
         : serializeFileFullRepresentationsEntriesPropertiesField(
-            val.properties
+            val.properties,
           ),
     ['representation']:
       val.representation == void 0 ? void 0 : val.representation,
@@ -994,7 +994,7 @@ export function serializeFileFullRepresentationsEntriesField(
   };
 }
 export function deserializeFileFullRepresentationsEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1013,7 +1013,7 @@ export function deserializeFileFullRepresentationsEntriesField(
     val.properties == void 0
       ? void 0
       : deserializeFileFullRepresentationsEntriesPropertiesField(
-          val.properties
+          val.properties,
         );
   if (!(val.representation == void 0) && !sdIsString(val.representation)) {
     throw new BoxSdkError({
@@ -1036,21 +1036,21 @@ export function deserializeFileFullRepresentationsEntriesField(
   } satisfies FileFullRepresentationsEntriesField;
 }
 export function serializeFileFullRepresentationsField(
-  val: FileFullRepresentationsField
+  val: FileFullRepresentationsField,
 ): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileFullRepresentationsEntriesField
+            item: FileFullRepresentationsEntriesField,
           ): SerializedData {
             return serializeFileFullRepresentationsEntriesField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeFileFullRepresentationsField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullRepresentationsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1067,16 +1067,16 @@ export function deserializeFileFullRepresentationsField(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): FileFullRepresentationsEntriesField {
-          return deserializeFileFullRepresentationsEntriesField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileFullRepresentationsEntriesField {
+            return deserializeFileFullRepresentationsEntriesField(itm);
+          }) as readonly any[])
+        : [];
   return { entries: entries } satisfies FileFullRepresentationsField;
 }
 export function serializeFileFullClassificationField(
-  val: FileFullClassificationField
+  val: FileFullClassificationField,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -1085,7 +1085,7 @@ export function serializeFileFullClassificationField(
   };
 }
 export function deserializeFileFullClassificationField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullClassificationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1121,12 +1121,12 @@ export function deserializeFileFullClassificationField(
   } satisfies FileFullClassificationField;
 }
 export function serializeFileFullSharedLinkPermissionOptionsField(
-  val: FileFullSharedLinkPermissionOptionsField
+  val: FileFullSharedLinkPermissionOptionsField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileFullSharedLinkPermissionOptionsField(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullSharedLinkPermissionOptionsField {
   if (val == 'can_preview') {
     return val;
@@ -1182,7 +1182,7 @@ export function serializeFileFull(val: FileFull): SerializedData {
         val.allowedInviteeRoles == void 0
           ? void 0
           : (val.allowedInviteeRoles.map(function (
-              item: FileFullAllowedInviteeRolesField
+              item: FileFullAllowedInviteeRolesField,
             ): SerializedData {
               return serializeFileFullAllowedInviteeRolesField(item);
             }) as readonly any[]),
@@ -1214,7 +1214,7 @@ export function serializeFileFull(val: FileFull): SerializedData {
         val.sharedLinkPermissionOptions == void 0
           ? void 0
           : (val.sharedLinkPermissionOptions.map(function (
-              item: FileFullSharedLinkPermissionOptionsField
+              item: FileFullSharedLinkPermissionOptionsField,
             ): SerializedData {
               return serializeFileFullSharedLinkPermissionOptionsField(item);
             }) as readonly any[]),
@@ -1256,15 +1256,15 @@ export function deserializeFileFull(val: SerializedData): FileFull {
     val.tags == void 0
       ? void 0
       : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "FileFull"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.tags.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "FileFull"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   const lock: undefined | FileFullLockField =
     val.lock == void 0 ? void 0 : deserializeFileFullLockField(val.lock);
   if (!(val.extension == void 0) && !sdIsString(val.extension)) {
@@ -1316,12 +1316,12 @@ export function deserializeFileFull(val: SerializedData): FileFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : sdIsList(val.allowed_invitee_roles)
-      ? (val.allowed_invitee_roles.map(function (
-          itm: SerializedData
-        ): FileFullAllowedInviteeRolesField {
-          return deserializeFileFullAllowedInviteeRolesField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.allowed_invitee_roles.map(function (
+            itm: SerializedData,
+          ): FileFullAllowedInviteeRolesField {
+            return deserializeFileFullAllowedInviteeRolesField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.is_externally_owned == void 0) &&
     !sdIsBoolean(val.is_externally_owned)
@@ -1396,12 +1396,12 @@ export function deserializeFileFull(val: SerializedData): FileFull {
     val.shared_link_permission_options == void 0
       ? void 0
       : sdIsList(val.shared_link_permission_options)
-      ? (val.shared_link_permission_options.map(function (
-          itm: SerializedData
-        ): FileFullSharedLinkPermissionOptionsField {
-          return deserializeFileFullSharedLinkPermissionOptionsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.shared_link_permission_options.map(function (
+            itm: SerializedData,
+          ): FileFullSharedLinkPermissionOptionsField {
+            return deserializeFileFullSharedLinkPermissionOptionsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.is_associated_with_app_item == void 0) &&
     !sdIsBoolean(val.is_associated_with_app_item)

@@ -50,7 +50,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 export async function uploadFile(
   fileName: string,
-  fileStream: ByteStream
+  fileStream: ByteStream,
 ): Promise<FileFull> {
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
@@ -66,7 +66,7 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
   const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);
   const thumbnailFile: FileFull = await uploadFile(
     thumbnailFileName,
-    thumbnailContentStream
+    thumbnailContentStream,
   );
   if (
     !!(
@@ -74,10 +74,10 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
         await readByteStream(
           await client.files.getFileThumbnailById(
             thumbnailFile.id,
-            'png' as GetFileThumbnailByIdExtension
-          )
+            'png' as GetFileThumbnailByIdExtension,
+          ),
         ),
-        await readByteStream(thumbnailContentStream)
+        await readByteStream(thumbnailContentStream),
       ) == true
     )
   ) {
@@ -107,7 +107,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   const updatedContentStream: ByteStream = generateByteStream(1024 * 1024);
   const uploadedFile: FileFull = await uploadFile(
     newFileName,
-    updatedContentStream
+    updatedContentStream,
   );
   const file: FileFull = await client.files.getFileById(uploadedFile.id);
   await expect(async () => {
@@ -125,7 +125,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   }
   await client.files.deleteFileById(uploadedFile.id);
   const trashedFile: TrashFile = await client.trashedFiles.getTrashedFileById(
-    uploadedFile.id
+    uploadedFile.id,
   );
   if (!(file.id == trashedFile.id)) {
     throw new Error('Assertion failed');
@@ -141,7 +141,7 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
         name: updatedName,
         description: 'Updated description',
       } satisfies UpdateFileByIdRequestBody,
-    } satisfies UpdateFileByIdOptionalsInput
+    } satisfies UpdateFileByIdOptionalsInput,
   );
   if (!(updatedFile.name == updatedName)) {
     throw new Error('Assertion failed');

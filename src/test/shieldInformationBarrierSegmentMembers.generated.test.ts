@@ -46,7 +46,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierSegmentMembers', async function testShieldInformationBarrierSegmentMembers(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
@@ -61,7 +61,7 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
           type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
         } satisfies ShieldInformationBarrierBase,
         name: segmentName,
-      } satisfies CreateShieldInformationBarrierSegmentRequestBody
+      } satisfies CreateShieldInformationBarrierSegmentRequestBody,
     );
   if (!(segment.name! == segmentName)) {
     throw new Error('Assertion failed');
@@ -74,7 +74,7 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField,
         } satisfies CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
         user: new UserBase({ id: getEnvVar('USER_ID') }),
-      } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody
+      } satisfies CreateShieldInformationBarrierSegmentMemberRequestBody,
     );
   if (!(segmentMember.user!.id == getEnvVar('USER_ID'))) {
     throw new Error('Assertion failed');
@@ -86,28 +86,28 @@ test('testShieldInformationBarrierSegmentMembers', async function testShieldInfo
     await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMembers(
       {
         shieldInformationBarrierSegmentId: segment.id!,
-      } satisfies GetShieldInformationBarrierSegmentMembersQueryParams
+      } satisfies GetShieldInformationBarrierSegmentMembersQueryParams,
     );
   if (!(segmentMembers.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
   const segmentMemberGet: ShieldInformationBarrierSegmentMember =
     await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
-      segmentMember.id!
+      segmentMember.id!,
     );
   if (!(segmentMemberGet.id! == segmentMember.id!)) {
     throw new Error('Assertion failed');
   }
   await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarrierSegmentMemberById(
-    segmentMember.id!
+    segmentMember.id!,
   );
   await expect(async () => {
     await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierSegmentMemberById(
-      segmentMember.id!
+      segmentMember.id!,
     );
   }).rejects.toThrow();
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
-    segment.id!
+    segment.id!,
   );
 });
 export {};

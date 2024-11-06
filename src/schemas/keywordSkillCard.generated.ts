@@ -33,7 +33,7 @@ export class KeywordSkillCardSkillField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCardSkillField, 'type'> &
-      Partial<Pick<KeywordSkillCardSkillField, 'type'>>
+      Partial<Pick<KeywordSkillCardSkillField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -72,7 +72,7 @@ export class KeywordSkillCardInvocationField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCardInvocationField, 'type'> &
-      Partial<Pick<KeywordSkillCardInvocationField, 'type'>>
+      Partial<Pick<KeywordSkillCardInvocationField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -132,7 +132,7 @@ export class KeywordSkillCard {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<KeywordSkillCard, 'type' | 'skillCardType'> &
-      Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>
+      Partial<Pick<KeywordSkillCard, 'type' | 'skillCardType'>>,
   ) {
     if (fields.createdAt) {
       this.createdAt = fields.createdAt;
@@ -186,12 +186,12 @@ export interface KeywordSkillCardInput {
   readonly rawData?: SerializedData;
 }
 export function serializeKeywordSkillCardTypeField(
-  val: KeywordSkillCardTypeField
+  val: KeywordSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeKeywordSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardTypeField {
   if (val == 'skill_card') {
     return val;
@@ -201,12 +201,12 @@ export function deserializeKeywordSkillCardTypeField(
   });
 }
 export function serializeKeywordSkillCardSkillCardTypeField(
-  val: KeywordSkillCardSkillCardTypeField
+  val: KeywordSkillCardSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeKeywordSkillCardSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardSkillCardTypeField {
   if (val == 'keyword') {
     return val;
@@ -216,7 +216,7 @@ export function deserializeKeywordSkillCardSkillCardTypeField(
   });
 }
 export function serializeKeywordSkillCardSkillCardTitleField(
-  val: KeywordSkillCardSkillCardTitleField
+  val: KeywordSkillCardSkillCardTitleField,
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -224,7 +224,7 @@ export function serializeKeywordSkillCardSkillCardTitleField(
   };
 }
 export function deserializeKeywordSkillCardSkillCardTitleField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardSkillCardTitleField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -257,12 +257,12 @@ export function deserializeKeywordSkillCardSkillCardTitleField(
   } satisfies KeywordSkillCardSkillCardTitleField;
 }
 export function serializeKeywordSkillCardSkillTypeField(
-  val: KeywordSkillCardSkillTypeField
+  val: KeywordSkillCardSkillTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeKeywordSkillCardSkillTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardSkillTypeField {
   if (val == 'service') {
     return val;
@@ -272,7 +272,7 @@ export function deserializeKeywordSkillCardSkillTypeField(
   });
 }
 export function serializeKeywordSkillCardSkillField(
-  val: KeywordSkillCardSkillField
+  val: KeywordSkillCardSkillField,
 ): SerializedData {
   return {
     ['type']: serializeKeywordSkillCardSkillTypeField(val.type),
@@ -280,7 +280,7 @@ export function serializeKeywordSkillCardSkillField(
   };
 }
 export function deserializeKeywordSkillCardSkillField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardSkillField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -310,7 +310,7 @@ export function deserializeKeywordSkillCardSkillField(
   return { type: type, id: id } satisfies KeywordSkillCardSkillField;
 }
 export function serializeKeywordSkillCardSkillFieldInput(
-  val: KeywordSkillCardSkillFieldInput
+  val: KeywordSkillCardSkillFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -321,7 +321,7 @@ export function serializeKeywordSkillCardSkillFieldInput(
   };
 }
 export function deserializeKeywordSkillCardSkillFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardSkillFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -348,12 +348,12 @@ export function deserializeKeywordSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies KeywordSkillCardSkillFieldInput;
 }
 export function serializeKeywordSkillCardInvocationTypeField(
-  val: KeywordSkillCardInvocationTypeField
+  val: KeywordSkillCardInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeKeywordSkillCardInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardInvocationTypeField {
   if (val == 'skill_invocation') {
     return val;
@@ -363,7 +363,7 @@ export function deserializeKeywordSkillCardInvocationTypeField(
   });
 }
 export function serializeKeywordSkillCardInvocationField(
-  val: KeywordSkillCardInvocationField
+  val: KeywordSkillCardInvocationField,
 ): SerializedData {
   return {
     ['type']: serializeKeywordSkillCardInvocationTypeField(val.type),
@@ -371,7 +371,7 @@ export function serializeKeywordSkillCardInvocationField(
   };
 }
 export function deserializeKeywordSkillCardInvocationField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardInvocationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -402,7 +402,7 @@ export function deserializeKeywordSkillCardInvocationField(
   return { type: type, id: id } satisfies KeywordSkillCardInvocationField;
 }
 export function serializeKeywordSkillCardInvocationFieldInput(
-  val: KeywordSkillCardInvocationFieldInput
+  val: KeywordSkillCardInvocationFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -413,7 +413,7 @@ export function serializeKeywordSkillCardInvocationFieldInput(
   };
 }
 export function deserializeKeywordSkillCardInvocationFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardInvocationFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -440,12 +440,12 @@ export function deserializeKeywordSkillCardInvocationFieldInput(
   return { type: type, id: id } satisfies KeywordSkillCardInvocationFieldInput;
 }
 export function serializeKeywordSkillCardEntriesField(
-  val: KeywordSkillCardEntriesField
+  val: KeywordSkillCardEntriesField,
 ): SerializedData {
   return { ['text']: val.text == void 0 ? void 0 : val.text };
 }
 export function deserializeKeywordSkillCardEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -462,14 +462,14 @@ export function deserializeKeywordSkillCardEntriesField(
   return { text: text } satisfies KeywordSkillCardEntriesField;
 }
 export function serializeKeywordSkillCard(
-  val: KeywordSkillCard
+  val: KeywordSkillCard,
 ): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeKeywordSkillCardTypeField(val.type),
     ['skill_card_type']: serializeKeywordSkillCardSkillCardTypeField(
-      val.skillCardType
+      val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
@@ -478,14 +478,14 @@ export function serializeKeywordSkillCard(
     ['skill']: serializeKeywordSkillCardSkillField(val.skill),
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
     ['entries']: val.entries.map(function (
-      item: KeywordSkillCardEntriesField
+      item: KeywordSkillCardEntriesField,
     ): SerializedData {
       return serializeKeywordSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeKeywordSkillCard(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -505,7 +505,7 @@ export function deserializeKeywordSkillCard(
     });
   }
   const type: KeywordSkillCardTypeField = deserializeKeywordSkillCardTypeField(
-    val.type
+    val.type,
   );
   if (val.skill_card_type == void 0) {
     throw new BoxSdkError({
@@ -546,7 +546,7 @@ export function deserializeKeywordSkillCard(
   }
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): KeywordSkillCardEntriesField {
         return deserializeKeywordSkillCardEntriesField(itm);
       }) as readonly any[])
@@ -562,7 +562,7 @@ export function deserializeKeywordSkillCard(
   } satisfies KeywordSkillCard;
 }
 export function serializeKeywordSkillCardInput(
-  val: KeywordSkillCardInput
+  val: KeywordSkillCardInput,
 ): SerializedData {
   return {
     ['created_at']:
@@ -582,14 +582,14 @@ export function serializeKeywordSkillCardInput(
     ['skill']: serializeKeywordSkillCardSkillField(val.skill),
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
     ['entries']: val.entries.map(function (
-      item: KeywordSkillCardEntriesField
+      item: KeywordSkillCardEntriesField,
     ): SerializedData {
       return serializeKeywordSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeKeywordSkillCardInput(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -645,7 +645,7 @@ export function deserializeKeywordSkillCardInput(
   }
   const entries: readonly KeywordSkillCardEntriesField[] = sdIsList(val.entries)
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): KeywordSkillCardEntriesField {
         return deserializeKeywordSkillCardEntriesField(itm);
       }) as readonly any[])

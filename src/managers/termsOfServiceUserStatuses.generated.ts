@@ -39,7 +39,7 @@ export class GetTermsOfServiceUserStatusesOptionals {
           GetTermsOfServiceUserStatusesOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -67,7 +67,7 @@ export class CreateTermsOfServiceStatusForUserOptionals {
           CreateTermsOfServiceStatusForUserOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -95,7 +95,7 @@ export class UpdateTermsOfServiceStatusForUserByIdOptionals {
           UpdateTermsOfServiceStatusForUserByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -125,7 +125,7 @@ export class GetTermsOfServiceUserStatusesHeaders {
   } = {};
   constructor(
     fields: Omit<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -156,7 +156,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
     fields: Omit<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'> &
       Partial<
         Pick<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'>
-      >
+      >,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -195,7 +195,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
     > &
       Partial<
         Pick<CreateTermsOfServiceStatusForUserRequestBodyUserField, 'type'>
-      >
+      >,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -237,7 +237,7 @@ export class CreateTermsOfServiceStatusForUserHeaders {
   } = {};
   constructor(
     fields: Omit<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -269,7 +269,7 @@ export class UpdateTermsOfServiceStatusForUserByIdHeaders {
     fields: Omit<UpdateTermsOfServiceStatusForUserByIdHeaders, 'extraHeaders'> &
       Partial<
         Pick<UpdateTermsOfServiceStatusForUserByIdHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -296,7 +296,7 @@ export class TermsOfServiceUserStatusesManager {
       | 'createTermsOfServiceStatusForUser'
       | 'updateTermsOfServiceStatusForUserById'
     > &
-      Partial<Pick<TermsOfServiceUserStatusesManager, 'networkSession'>>
+      Partial<Pick<TermsOfServiceUserStatusesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -315,7 +315,7 @@ export class TermsOfServiceUserStatusesManager {
    */
   async getTermsOfServiceUserStatuses(
     queryParams: GetTermsOfServiceUserStatusesQueryParams,
-    optionalsInput: GetTermsOfServiceUserStatusesOptionalsInput = {}
+    optionalsInput: GetTermsOfServiceUserStatusesOptionalsInput = {},
   ): Promise<TermsOfServiceUserStatuses> {
     const optionals: GetTermsOfServiceUserStatusesOptionals =
       new GetTermsOfServiceUserStatusesOptionals({
@@ -336,7 +336,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_service_user_statuses'
+        '/2.0/terms_of_service_user_statuses',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -359,7 +359,7 @@ export class TermsOfServiceUserStatusesManager {
    */
   async createTermsOfServiceStatusForUser(
     requestBody: CreateTermsOfServiceStatusForUserRequestBody,
-    optionalsInput: CreateTermsOfServiceStatusForUserOptionalsInput = {}
+    optionalsInput: CreateTermsOfServiceStatusForUserOptionalsInput = {},
   ): Promise<TermsOfServiceUserStatus> {
     const optionals: CreateTermsOfServiceStatusForUserOptionals =
       new CreateTermsOfServiceStatusForUserOptionals({
@@ -374,7 +374,7 @@ export class TermsOfServiceUserStatusesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_service_user_statuses'
+        '/2.0/terms_of_service_user_statuses',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -401,7 +401,7 @@ export class TermsOfServiceUserStatusesManager {
   async updateTermsOfServiceStatusForUserById(
     termsOfServiceUserStatusId: string,
     requestBody: UpdateTermsOfServiceStatusForUserByIdRequestBody,
-    optionalsInput: UpdateTermsOfServiceStatusForUserByIdOptionalsInput = {}
+    optionalsInput: UpdateTermsOfServiceStatusForUserByIdOptionalsInput = {},
   ): Promise<TermsOfServiceUserStatus> {
     const optionals: UpdateTermsOfServiceStatusForUserByIdOptionals =
       new UpdateTermsOfServiceStatusForUserByIdOptionals({
@@ -417,12 +417,12 @@ export class TermsOfServiceUserStatusesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/terms_of_service_user_statuses/',
-        toString(termsOfServiceUserStatusId) as string
+        toString(termsOfServiceUserStatusId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-        requestBody
+        requestBody,
       ),
       contentType: 'application/json',
       responseFormat: 'json',
@@ -441,12 +441,12 @@ export interface TermsOfServiceUserStatusesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyTosTypeField {
   if (val == 'terms_of_service') {
     return val;
@@ -457,17 +457,17 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeFi
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyTosField
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosField,
 ): SerializedData {
   return {
     ['type']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-      val.type
+      val.type,
     ),
     ['id']: val.id,
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyTosField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -483,7 +483,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   }
   const type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-      val.type
+      val.type,
     );
   if (val.id == void 0) {
     throw new BoxSdkError({
@@ -504,20 +504,20 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
-  val: CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput
+  val: CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput,
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
         : serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-            val.type
+            val.type,
           ),
     ['id']: val.id,
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -531,7 +531,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldI
     val.type == void 0
       ? void 0
       : deserializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
-          val.type
+          val.type,
         );
   if (val.id == void 0) {
     throw new BoxSdkError({
@@ -552,12 +552,12 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldI
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyUserTypeField {
   if (val == 'user') {
     return val;
@@ -568,18 +568,18 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeF
   });
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-  val: CreateTermsOfServiceStatusForUserRequestBodyUserField
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserField,
 ): SerializedData {
   return {
     ['type']:
       serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-        val.type
+        val.type,
       ),
     ['id']: val.id,
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyUserField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -595,7 +595,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   }
   const type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
     deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-      val.type
+      val.type,
     );
   if (val.id == void 0) {
     throw new BoxSdkError({
@@ -616,20 +616,20 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserField;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
-  val: CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput
+  val: CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput,
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
         : serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-            val.type
+            val.type,
           ),
     ['id']: val.id,
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -643,7 +643,7 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
     val.type == void 0
       ? void 0
       : deserializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
-          val.type
+          val.type,
         );
   if (val.id == void 0) {
     throw new BoxSdkError({
@@ -664,20 +664,20 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBodyUserField
   } satisfies CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput;
 }
 export function serializeCreateTermsOfServiceStatusForUserRequestBody(
-  val: CreateTermsOfServiceStatusForUserRequestBody
+  val: CreateTermsOfServiceStatusForUserRequestBody,
 ): SerializedData {
   return {
     ['tos']: serializeCreateTermsOfServiceStatusForUserRequestBodyTosField(
-      val.tos
+      val.tos,
     ),
     ['user']: serializeCreateTermsOfServiceStatusForUserRequestBodyUserField(
-      val.user
+      val.user,
     ),
     ['is_accepted']: val.isAccepted,
   };
 }
 export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceStatusForUserRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -721,12 +721,12 @@ export function deserializeCreateTermsOfServiceStatusForUserRequestBody(
   } satisfies CreateTermsOfServiceStatusForUserRequestBody;
 }
 export function serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-  val: UpdateTermsOfServiceStatusForUserByIdRequestBody
+  val: UpdateTermsOfServiceStatusForUserByIdRequestBody,
 ): SerializedData {
   return { ['is_accepted']: val.isAccepted };
 }
 export function deserializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTermsOfServiceStatusForUserByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

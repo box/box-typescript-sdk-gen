@@ -58,12 +58,12 @@ export interface Collaborations {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationsOrderDirectionField(
-  val: CollaborationsOrderDirectionField
+  val: CollaborationsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -76,7 +76,7 @@ export function deserializeCollaborationsOrderDirectionField(
   });
 }
 export function serializeCollaborationsOrderField(
-  val: CollaborationsOrderField
+  val: CollaborationsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -87,7 +87,7 @@ export function serializeCollaborationsOrderField(
   };
 }
 export function deserializeCollaborationsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -117,7 +117,7 @@ export function serializeCollaborations(val: Collaborations): SerializedData {
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: CollaborationsOrderField
+            item: CollaborationsOrderField,
           ): SerializedData {
             return serializeCollaborationsOrderField(item);
           }) as readonly any[]),
@@ -175,12 +175,12 @@ export function deserializeCollaborations(val: SerializedData): Collaborations {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (
-          itm: SerializedData
-        ): CollaborationsOrderField {
-          return deserializeCollaborationsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (
+            itm: SerializedData,
+          ): CollaborationsOrderField {
+            return deserializeCollaborationsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Collaborations"',
@@ -190,10 +190,10 @@ export function deserializeCollaborations(val: SerializedData): Collaborations {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): Collaboration {
-          return deserializeCollaboration(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): Collaboration {
+            return deserializeCollaboration(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

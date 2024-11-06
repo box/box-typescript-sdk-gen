@@ -62,7 +62,7 @@ test('testCreateUpdateGetDeleteLegalHoldPolicy', async function testCreateUpdate
         requestBody: {
           policyName: updatedLegalHoldPolicyName,
         } satisfies UpdateLegalHoldPolicyByIdRequestBody,
-      } satisfies UpdateLegalHoldPolicyByIdOptionalsInput
+      } satisfies UpdateLegalHoldPolicyByIdOptionalsInput,
     );
   if (!(updatedLegalHoldPolicy.policyName == updatedLegalHoldPolicyName)) {
     throw new Error('Assertion failed');
@@ -73,10 +73,10 @@ test('testCreateNotOngoingLegalHoldPolicy', async function testCreateNotOngoingL
   const legalHoldPolicyName: string = getUuid();
   const legalHoldDescription: string = 'test description';
   const filterStartedAt: DateTime = dateTimeFromString(
-    '2021-01-01T00:00:00-08:00'
+    '2021-01-01T00:00:00-08:00',
   );
   const filterEndedAt: DateTime = dateTimeFromString(
-    '2022-01-01T00:00:00-08:00'
+    '2022-01-01T00:00:00-08:00',
   );
   const legalHoldPolicy: LegalHoldPolicy =
     await client.legalHoldPolicies.createLegalHoldPolicy({

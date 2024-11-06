@@ -195,7 +195,7 @@ var sdk = new BoxSDK({
 
 var serviceAccountClient = sdk.getAppAuthClient(
   'enterprise',
-  'YOUR-ENTERPRISE-ID'
+  'YOUR-ENTERPRISE-ID',
 );
 ```
 

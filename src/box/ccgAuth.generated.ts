@@ -28,7 +28,7 @@ export class CcgConfig {
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
     fields: Omit<CcgConfig, 'tokenStorage'> &
-      Partial<Pick<CcgConfig, 'tokenStorage'>>
+      Partial<Pick<CcgConfig, 'tokenStorage'>>,
   ) {
     if (fields.clientId) {
       this.clientId = fields.clientId;
@@ -90,7 +90,7 @@ export class BoxCcgAuth implements Authentication {
       | 'withEnterpriseSubject'
       | 'downscopeToken'
       | 'revokeToken'
-    >
+    >,
   ) {
     if (fields.config) {
       this.config = fields.config;
@@ -142,7 +142,7 @@ export class BoxCcgAuth implements Authentication {
    * @returns {Promise<string>}
    */
   async retrieveAuthorizationHeader(
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<string> {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
@@ -158,7 +158,7 @@ export class BoxCcgAuth implements Authentication {
    */
   withUserSubject(
     userId: string,
-    tokenStorage: TokenStorage = new InMemoryTokenStorage({})
+    tokenStorage: TokenStorage = new InMemoryTokenStorage({}),
   ): BoxCcgAuth {
     const newConfig: CcgConfig = new CcgConfig({
       clientId: this.config.clientId,
@@ -177,7 +177,7 @@ export class BoxCcgAuth implements Authentication {
    */
   withEnterpriseSubject(
     enterpriseId: string,
-    tokenStorage: TokenStorage = new InMemoryTokenStorage({})
+    tokenStorage: TokenStorage = new InMemoryTokenStorage({}),
   ): BoxCcgAuth {
     const newConfig: CcgConfig = new CcgConfig({
       clientId: this.config.clientId,
@@ -200,7 +200,7 @@ export class BoxCcgAuth implements Authentication {
     scopes: readonly string[],
     resource?: string,
     sharedLink?: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {

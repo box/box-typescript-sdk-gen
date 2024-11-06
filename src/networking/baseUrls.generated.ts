@@ -13,7 +13,7 @@ export class BaseUrls {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'> &
-      Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>
+      Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>,
   ) {
     if (fields.baseUrl) {
       this.baseUrl = fields.baseUrl;

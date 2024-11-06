@@ -26,7 +26,7 @@ export function serializeFileVersionMini(val: FileVersionMini): SerializedData {
   return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
 }
 export function deserializeFileVersionMini(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionMini"' });
@@ -54,7 +54,7 @@ export function deserializeFileVersionMini(
     });
   }
   const type: FileVersionBaseTypeField = deserializeFileVersionBaseTypeField(
-    val.type
+    val.type,
   );
   return { sha1: sha1, id: id, type: type } satisfies FileVersionMini;
 }

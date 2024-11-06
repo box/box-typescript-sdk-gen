@@ -26,7 +26,7 @@ export class AiTextGenItemsField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiTextGenItemsField, 'type'> &
-      Partial<Pick<AiTextGenItemsField, 'type'>>
+      Partial<Pick<AiTextGenItemsField, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -72,12 +72,12 @@ export interface AiTextGen {
   readonly rawData?: SerializedData;
 }
 export function serializeAiTextGenItemsTypeField(
-  val: AiTextGenItemsTypeField
+  val: AiTextGenItemsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiTextGenItemsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiTextGenItemsTypeField {
   if (val == 'file') {
     return val;
@@ -87,7 +87,7 @@ export function deserializeAiTextGenItemsTypeField(
   });
 }
 export function serializeAiTextGenItemsField(
-  val: AiTextGenItemsField
+  val: AiTextGenItemsField,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -96,7 +96,7 @@ export function serializeAiTextGenItemsField(
   };
 }
 export function deserializeAiTextGenItemsField(
-  val: SerializedData
+  val: SerializedData,
 ): AiTextGenItemsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -120,7 +120,7 @@ export function deserializeAiTextGenItemsField(
     });
   }
   const type: AiTextGenItemsTypeField = deserializeAiTextGenItemsTypeField(
-    val.type
+    val.type,
   );
   if (!(val.content == void 0) && !sdIsString(val.content)) {
     throw new BoxSdkError({
@@ -132,7 +132,7 @@ export function deserializeAiTextGenItemsField(
   return { id: id, type: type, content: content } satisfies AiTextGenItemsField;
 }
 export function serializeAiTextGenItemsFieldInput(
-  val: AiTextGenItemsFieldInput
+  val: AiTextGenItemsFieldInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -142,7 +142,7 @@ export function serializeAiTextGenItemsFieldInput(
   };
 }
 export function deserializeAiTextGenItemsFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiTextGenItemsFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -181,7 +181,7 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
   return {
     ['prompt']: val.prompt,
     ['items']: val.items.map(function (
-      item: AiTextGenItemsField
+      item: AiTextGenItemsField,
     ): SerializedData {
       return serializeAiTextGenItemsField(item);
     }) as readonly any[],
@@ -189,7 +189,7 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
       val.dialogueHistory == void 0
         ? void 0
         : (val.dialogueHistory.map(function (
-            item: AiDialogueHistory
+            item: AiDialogueHistory,
           ): SerializedData {
             return serializeAiDialogueHistory(item);
           }) as readonly any[]),
@@ -236,12 +236,12 @@ export function deserializeAiTextGen(val: SerializedData): AiTextGen {
     val.dialogue_history == void 0
       ? void 0
       : sdIsList(val.dialogue_history)
-      ? (val.dialogue_history.map(function (
-          itm: SerializedData
-        ): AiDialogueHistory {
-          return deserializeAiDialogueHistory(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.dialogue_history.map(function (
+            itm: SerializedData,
+          ): AiDialogueHistory {
+            return deserializeAiDialogueHistory(itm);
+          }) as readonly any[])
+        : [];
   const aiAgent: undefined | AiAgentTextGen =
     val.ai_agent == void 0 ? void 0 : deserializeAiAgentTextGen(val.ai_agent);
   return {

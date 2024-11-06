@@ -29,7 +29,7 @@ export class FindWebLinkForSharedLinkOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<FindWebLinkForSharedLinkOptionals, 'cancellationToken'> &
-      Partial<Pick<FindWebLinkForSharedLinkOptionals, 'cancellationToken'>>
+      Partial<Pick<FindWebLinkForSharedLinkOptionals, 'cancellationToken'>>,
   ) {
     if (fields.cancellationToken) {
       this.cancellationToken = fields.cancellationToken;
@@ -50,7 +50,7 @@ export class GetSharedLinkForWebLinkOptionals {
     > &
       Partial<
         Pick<GetSharedLinkForWebLinkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -75,7 +75,7 @@ export class AddShareLinkToWebLinkOptionals {
     > &
       Partial<
         Pick<AddShareLinkToWebLinkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -103,7 +103,7 @@ export class UpdateSharedLinkOnWebLinkOptionals {
           UpdateSharedLinkOnWebLinkOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -131,7 +131,7 @@ export class RemoveSharedLinkFromWebLinkOptionals {
           RemoveSharedLinkFromWebLinkOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -182,7 +182,7 @@ export class FindWebLinkForSharedLinkHeaders {
   } = {};
   constructor(
     fields: Omit<FindWebLinkForSharedLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifNoneMatch) {
       this.ifNoneMatch = fields.ifNoneMatch;
@@ -234,7 +234,7 @@ export class GetSharedLinkForWebLinkHeaders {
   } = {};
   constructor(
     fields: Omit<GetSharedLinkForWebLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -333,7 +333,7 @@ export class AddShareLinkToWebLinkHeaders {
   } = {};
   constructor(
     fields: Omit<AddShareLinkToWebLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<AddShareLinkToWebLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<AddShareLinkToWebLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -429,7 +429,7 @@ export class UpdateSharedLinkOnWebLinkHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -469,7 +469,7 @@ export class RemoveSharedLinkFromWebLinkHeaders {
   } = {};
   constructor(
     fields: Omit<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'> &
-      Partial<Pick<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>>
+      Partial<Pick<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -498,7 +498,7 @@ export class SharedLinksWebLinksManager {
       | 'updateSharedLinkOnWebLink'
       | 'removeSharedLinkFromWebLink'
     > &
-      Partial<Pick<SharedLinksWebLinksManager, 'networkSession'>>
+      Partial<Pick<SharedLinksWebLinksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -523,7 +523,7 @@ export class SharedLinksWebLinksManager {
   async findWebLinkForSharedLink(
     queryParams: FindWebLinkForSharedLinkQueryParams = {} satisfies FindWebLinkForSharedLinkQueryParams,
     headersInput: FindWebLinkForSharedLinkHeadersInput,
-    optionalsInput: FindWebLinkForSharedLinkOptionalsInput = {}
+    optionalsInput: FindWebLinkForSharedLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const headers: FindWebLinkForSharedLinkHeaders =
       new FindWebLinkForSharedLinkHeaders({
@@ -555,7 +555,7 @@ export class SharedLinksWebLinksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shared_items#web_links'
+        '/2.0/shared_items#web_links',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -581,7 +581,7 @@ export class SharedLinksWebLinksManager {
   async getSharedLinkForWebLink(
     webLinkId: string,
     queryParams: GetSharedLinkForWebLinkQueryParams,
-    optionalsInput: GetSharedLinkForWebLinkOptionalsInput = {}
+    optionalsInput: GetSharedLinkForWebLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: GetSharedLinkForWebLinkOptionals =
       new GetSharedLinkForWebLinkOptionals({
@@ -601,7 +601,7 @@ export class SharedLinksWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '#get_shared_link'
+        '#get_shared_link',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -629,7 +629,7 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: AddShareLinkToWebLinkRequestBody = {} satisfies AddShareLinkToWebLinkRequestBody,
     queryParams: AddShareLinkToWebLinkQueryParams,
-    optionalsInput: AddShareLinkToWebLinkOptionalsInput = {}
+    optionalsInput: AddShareLinkToWebLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: AddShareLinkToWebLinkOptionals =
       new AddShareLinkToWebLinkOptionals({
@@ -649,7 +649,7 @@ export class SharedLinksWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '#add_shared_link'
+        '#add_shared_link',
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -679,7 +679,7 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: UpdateSharedLinkOnWebLinkRequestBody = {} satisfies UpdateSharedLinkOnWebLinkRequestBody,
     queryParams: UpdateSharedLinkOnWebLinkQueryParams,
-    optionalsInput: UpdateSharedLinkOnWebLinkOptionalsInput = {}
+    optionalsInput: UpdateSharedLinkOnWebLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: UpdateSharedLinkOnWebLinkOptionals =
       new UpdateSharedLinkOnWebLinkOptionals({
@@ -699,7 +699,7 @@ export class SharedLinksWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '#update_shared_link'
+        '#update_shared_link',
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -729,7 +729,7 @@ export class SharedLinksWebLinksManager {
     webLinkId: string,
     requestBody: RemoveSharedLinkFromWebLinkRequestBody = {} satisfies RemoveSharedLinkFromWebLinkRequestBody,
     queryParams: RemoveSharedLinkFromWebLinkQueryParams,
-    optionalsInput: RemoveSharedLinkFromWebLinkOptionalsInput = {}
+    optionalsInput: RemoveSharedLinkFromWebLinkOptionalsInput = {},
   ): Promise<WebLink> {
     const optionals: RemoveSharedLinkFromWebLinkOptionals =
       new RemoveSharedLinkFromWebLinkOptionals({
@@ -749,7 +749,7 @@ export class SharedLinksWebLinksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/web_links/',
         toString(webLinkId) as string,
-        '#remove_shared_link'
+        '#remove_shared_link',
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -772,12 +772,12 @@ export interface SharedLinksWebLinksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkAccessField
+  val: AddShareLinkToWebLinkRequestBodySharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): AddShareLinkToWebLinkRequestBodySharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -794,7 +794,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField
   });
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField
+  val: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -803,7 +803,7 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsFi
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -842,14 +842,14 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissions
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-  val: AddShareLinkToWebLinkRequestBodySharedLinkField
+  val: AddShareLinkToWebLinkRequestBodySharedLinkField,
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-            val.access
+            val.access,
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
@@ -859,12 +859,12 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
       val.permissions == void 0
         ? void 0
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-            val.permissions
+            val.permissions,
           ),
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): AddShareLinkToWebLinkRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -878,7 +878,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
     val.access == void 0
       ? void 0
       : deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
-          val.access
+          val.access,
         );
   if (!(val.password == void 0) && !sdIsString(val.password)) {
     throw new BoxSdkError({
@@ -910,7 +910,7 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
     val.permissions == void 0
       ? void 0
       : deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
-          val.permissions
+          val.permissions,
         );
   return {
     access: access,
@@ -921,19 +921,19 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
   } satisfies AddShareLinkToWebLinkRequestBodySharedLinkField;
 }
 export function serializeAddShareLinkToWebLinkRequestBody(
-  val: AddShareLinkToWebLinkRequestBody
+  val: AddShareLinkToWebLinkRequestBody,
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-            val.sharedLink
+            val.sharedLink,
           ),
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): AddShareLinkToWebLinkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -946,17 +946,17 @@ export function deserializeAddShareLinkToWebLinkRequestBody(
     val.shared_link == void 0
       ? void 0
       : deserializeAddShareLinkToWebLinkRequestBodySharedLinkField(
-          val.shared_link
+          val.shared_link,
         );
   return { sharedLink: sharedLink } satisfies AddShareLinkToWebLinkRequestBody;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -973,7 +973,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessF
   });
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
@@ -982,7 +982,7 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissio
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1021,14 +1021,14 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermiss
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField
+  val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkField,
 ): SerializedData {
   return {
     ['access']:
       val.access == void 0
         ? void 0
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-            val.access
+            val.access,
           ),
     ['password']: val.password == void 0 ? void 0 : val.password,
     ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
@@ -1038,12 +1038,12 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
       val.permissions == void 0
         ? void 0
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-            val.permissions
+            val.permissions,
           ),
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1057,7 +1057,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
     val.access == void 0
       ? void 0
       : deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
-          val.access
+          val.access,
         );
   if (!(val.password == void 0) && !sdIsString(val.password)) {
     throw new BoxSdkError({
@@ -1089,7 +1089,7 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
     val.permissions == void 0
       ? void 0
       : deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
-          val.permissions
+          val.permissions,
         );
   return {
     access: access,
@@ -1100,19 +1100,19 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
   } satisfies UpdateSharedLinkOnWebLinkRequestBodySharedLinkField;
 }
 export function serializeUpdateSharedLinkOnWebLinkRequestBody(
-  val: UpdateSharedLinkOnWebLinkRequestBody
+  val: UpdateSharedLinkOnWebLinkRequestBody,
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-            val.sharedLink
+            val.sharedLink,
           ),
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateSharedLinkOnWebLinkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1125,19 +1125,19 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBody(
     val.shared_link == void 0
       ? void 0
       : deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
-          val.shared_link
+          val.shared_link,
         );
   return {
     sharedLink: sharedLink,
   } satisfies UpdateSharedLinkOnWebLinkRequestBody;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-  val: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField
+  val: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField,
 ): SerializedData {
   return {};
 }
 export function deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): RemoveSharedLinkFromWebLinkRequestBodySharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1148,19 +1148,19 @@ export function deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField
   return {} satisfies RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
 }
 export function serializeRemoveSharedLinkFromWebLinkRequestBody(
-  val: RemoveSharedLinkFromWebLinkRequestBody
+  val: RemoveSharedLinkFromWebLinkRequestBody,
 ): SerializedData {
   return {
     ['shared_link']:
       val.sharedLink == void 0
         ? void 0
         : serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-            val.sharedLink
+            val.sharedLink,
           ),
   };
 }
 export function deserializeRemoveSharedLinkFromWebLinkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): RemoveSharedLinkFromWebLinkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1173,7 +1173,7 @@ export function deserializeRemoveSharedLinkFromWebLinkRequestBody(
     val.shared_link == void 0
       ? void 0
       : deserializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
-          val.shared_link
+          val.shared_link,
         );
   return {
     sharedLink: sharedLink,

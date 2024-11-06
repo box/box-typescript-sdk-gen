@@ -90,12 +90,12 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
   readonly readOnly?: boolean;
 };
 export function serializeTemplateSignerInputTypeField(
-  val: TemplateSignerInputTypeField
+  val: TemplateSignerInputTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTemplateSignerInputTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerInputTypeField {
   if (val == 'signature') {
     return val;
@@ -123,12 +123,12 @@ export function deserializeTemplateSignerInputTypeField(
   });
 }
 export function serializeTemplateSignerInputContentTypeField(
-  val: TemplateSignerInputContentTypeField
+  val: TemplateSignerInputContentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTemplateSignerInputContentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerInputContentTypeField {
   if (val == 'signature') {
     return val;
@@ -180,7 +180,7 @@ export function deserializeTemplateSignerInputContentTypeField(
   });
 }
 export function serializeTemplateSignerInputCoordinatesField(
-  val: TemplateSignerInputCoordinatesField
+  val: TemplateSignerInputCoordinatesField,
 ): SerializedData {
   return {
     ['x']: val.x == void 0 ? void 0 : val.x,
@@ -188,7 +188,7 @@ export function serializeTemplateSignerInputCoordinatesField(
   };
 }
 export function deserializeTemplateSignerInputCoordinatesField(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerInputCoordinatesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -212,7 +212,7 @@ export function deserializeTemplateSignerInputCoordinatesField(
   return { x: x, y: y } satisfies TemplateSignerInputCoordinatesField;
 }
 export function serializeTemplateSignerInputDimensionsField(
-  val: TemplateSignerInputDimensionsField
+  val: TemplateSignerInputDimensionsField,
 ): SerializedData {
   return {
     ['width']: val.width == void 0 ? void 0 : val.width,
@@ -220,7 +220,7 @@ export function serializeTemplateSignerInputDimensionsField(
   };
 }
 export function deserializeTemplateSignerInputDimensionsField(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerInputDimensionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -247,7 +247,7 @@ export function deserializeTemplateSignerInputDimensionsField(
   } satisfies TemplateSignerInputDimensionsField;
 }
 export function serializeTemplateSignerInput(
-  val: TemplateSignerInput
+  val: TemplateSignerInput,
 ): SerializedData {
   const base: any = serializeSignRequestPrefillTag(val);
   if (!sdIsMap(base)) {
@@ -290,7 +290,7 @@ export function serializeTemplateSignerInput(
   };
 }
 export function deserializeTemplateSignerInput(
-  val: SerializedData
+  val: SerializedData,
 ): TemplateSignerInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -344,15 +344,15 @@ export function deserializeTemplateSignerInput(
     val.dropdown_choices == void 0
       ? void 0
       : sdIsList(val.dropdown_choices)
-      ? (val.dropdown_choices.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "TemplateSignerInput"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.dropdown_choices.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "TemplateSignerInput"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (!(val.group_id == void 0) && !sdIsString(val.group_id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "group_id" of type "TemplateSignerInput"',

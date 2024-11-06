@@ -32,7 +32,7 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
     login: newUserLogin,
   } satisfies CreateUserRequestBody);
   const aliases: EmailAliases = await client.emailAliases.getUserEmailAliases(
-    newUser.id
+    newUser.id,
   );
   if (!(aliases.totalCount == 0)) {
     throw new Error('Assertion failed');
@@ -40,7 +40,7 @@ test('testEmailAliases', async function testEmailAliases(): Promise<any> {
   const newAliasEmail: string = ''.concat(newUser.id, '@boxdemo.com') as string;
   const newAlias: EmailAlias = await client.emailAliases.createUserEmailAlias(
     newUser.id,
-    { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBody
+    { email: newAliasEmail } satisfies CreateUserEmailAliasRequestBody,
   );
   const updatedAliases: EmailAliases =
     await client.emailAliases.getUserEmailAliases(newUser.id);

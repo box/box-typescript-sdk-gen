@@ -31,7 +31,7 @@ export class GetCollectionItemsOptionals {
   readonly queryParams: GetCollectionItemsQueryParams =
     {} satisfies GetCollectionItemsQueryParams;
   readonly headers: GetCollectionItemsHeaders = new GetCollectionItemsHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -44,7 +44,7 @@ export class GetCollectionItemsOptionals {
           GetCollectionItemsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -67,7 +67,9 @@ export class GetCollectionByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetCollectionByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetCollectionByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<GetCollectionByIdOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -112,7 +114,7 @@ export class GetCollectionsHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollectionsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -159,7 +161,7 @@ export class GetCollectionItemsHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollectionItemsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -183,7 +185,7 @@ export class GetCollectionByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollectionByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollectionByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollectionByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -210,7 +212,7 @@ export class CollectionsManager {
       | 'getCollectionItems'
       | 'getCollectionById'
     > &
-      Partial<Pick<CollectionsManager, 'networkSession'>>
+      Partial<Pick<CollectionsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -232,7 +234,7 @@ export class CollectionsManager {
   async getCollections(
     queryParams: GetCollectionsQueryParams = {} satisfies GetCollectionsQueryParams,
     headersInput: GetCollectionsHeadersInput = new GetCollectionsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Collections> {
     const headers: GetCollectionsHeaders = new GetCollectionsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -252,7 +254,7 @@ export class CollectionsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collections'
+        '/2.0/collections',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -277,7 +279,7 @@ export class CollectionsManager {
      */
   async getCollectionItems(
     collectionId: string,
-    optionalsInput: GetCollectionItemsOptionalsInput = {}
+    optionalsInput: GetCollectionItemsOptionalsInput = {},
   ): Promise<Items> {
     const optionals: GetCollectionItemsOptionals =
       new GetCollectionItemsOptionals({
@@ -305,7 +307,7 @@ export class CollectionsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collections/',
         toString(collectionId) as string,
-        '/items'
+        '/items',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -329,7 +331,7 @@ export class CollectionsManager {
      */
   async getCollectionById(
     collectionId: string,
-    optionalsInput: GetCollectionByIdOptionalsInput = {}
+    optionalsInput: GetCollectionByIdOptionalsInput = {},
   ): Promise<Collection> {
     const optionals: GetCollectionByIdOptionals =
       new GetCollectionByIdOptionals({
@@ -345,7 +347,7 @@ export class CollectionsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collections/',
-        toString(collectionId) as string
+        toString(collectionId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,

@@ -105,7 +105,7 @@ export function serializeInviteTypeField(val: InviteTypeField): SerializedData {
   return val;
 }
 export function deserializeInviteTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): InviteTypeField {
   if (val == 'invite') {
     return val;
@@ -113,12 +113,12 @@ export function deserializeInviteTypeField(
   throw new BoxSdkError({ message: "Can't deserialize InviteTypeField" });
 }
 export function serializeInviteInvitedToTypeField(
-  val: InviteInvitedToTypeField
+  val: InviteInvitedToTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeInviteInvitedToTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): InviteInvitedToTypeField {
   if (val == 'enterprise') {
     return val;
@@ -128,7 +128,7 @@ export function deserializeInviteInvitedToTypeField(
   });
 }
 export function serializeInviteInvitedToField(
-  val: InviteInvitedToField
+  val: InviteInvitedToField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -138,7 +138,7 @@ export function serializeInviteInvitedToField(
   };
 }
 export function deserializeInviteInvitedToField(
-  val: SerializedData
+  val: SerializedData,
 ): InviteInvitedToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

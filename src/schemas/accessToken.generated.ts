@@ -38,12 +38,12 @@ export interface AccessToken {
   readonly rawData?: SerializedData;
 }
 export function serializeAccessTokenTokenTypeField(
-  val: AccessTokenTokenTypeField
+  val: AccessTokenTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAccessTokenTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AccessTokenTokenTypeField {
   if (val == 'bearer') {
     return val;
@@ -53,12 +53,12 @@ export function deserializeAccessTokenTokenTypeField(
   });
 }
 export function serializeAccessTokenIssuedTokenTypeField(
-  val: AccessTokenIssuedTokenTypeField
+  val: AccessTokenIssuedTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAccessTokenIssuedTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AccessTokenIssuedTokenTypeField {
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
     return val;
@@ -79,7 +79,7 @@ export function serializeAccessToken(val: AccessToken): SerializedData {
       val.restrictedTo == void 0
         ? void 0
         : (val.restrictedTo.map(function (
-            item: FileOrFolderScope
+            item: FileOrFolderScope,
           ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
@@ -121,12 +121,12 @@ export function deserializeAccessToken(val: SerializedData): AccessToken {
     val.restricted_to == void 0
       ? void 0
       : sdIsList(val.restricted_to)
-      ? (val.restricted_to.map(function (
-          itm: SerializedData
-        ): FileOrFolderScope {
-          return deserializeFileOrFolderScope(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.restricted_to.map(function (
+            itm: SerializedData,
+          ): FileOrFolderScope {
+            return deserializeFileOrFolderScope(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.refresh_token == void 0) && !sdIsString(val.refresh_token)) {
     throw new BoxSdkError({
       message: 'Expecting string for "refresh_token" of type "AccessToken"',

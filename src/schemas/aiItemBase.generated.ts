@@ -19,7 +19,7 @@ export class AiItemBase {
   readonly content?: string;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<AiItemBase, 'type'> & Partial<Pick<AiItemBase, 'type'>>
+    fields: Omit<AiItemBase, 'type'> & Partial<Pick<AiItemBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -48,12 +48,12 @@ export interface AiItemBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiItemBaseTypeField(
-  val: AiItemBaseTypeField
+  val: AiItemBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiItemBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiItemBaseTypeField {
   if (val == 'file') {
     return val;
@@ -106,7 +106,7 @@ export function serializeAiItemBaseInput(val: AiItemBaseInput): SerializedData {
   };
 }
 export function deserializeAiItemBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiItemBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "AiItemBaseInput"' });

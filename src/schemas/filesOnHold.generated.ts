@@ -72,10 +72,10 @@ export function deserializeFilesOnHold(val: SerializedData): FilesOnHold {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileMini {
-          return deserializeFileMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): FileMini {
+            return deserializeFileMini(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

@@ -42,12 +42,12 @@ export class TermsOfService extends TermsOfServiceBase {
   }
 }
 export function serializeTermsOfServiceStatusField(
-  val: TermsOfServiceStatusField
+  val: TermsOfServiceStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceStatusField {
   if (val == 'enabled') {
     return val;
@@ -60,12 +60,12 @@ export function deserializeTermsOfServiceStatusField(
   });
 }
 export function serializeTermsOfServiceEnterpriseTypeField(
-  val: TermsOfServiceEnterpriseTypeField
+  val: TermsOfServiceEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -75,7 +75,7 @@ export function deserializeTermsOfServiceEnterpriseTypeField(
   });
 }
 export function serializeTermsOfServiceEnterpriseField(
-  val: TermsOfServiceEnterpriseField
+  val: TermsOfServiceEnterpriseField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -87,7 +87,7 @@ export function serializeTermsOfServiceEnterpriseField(
   };
 }
 export function deserializeTermsOfServiceEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -119,12 +119,12 @@ export function deserializeTermsOfServiceEnterpriseField(
   } satisfies TermsOfServiceEnterpriseField;
 }
 export function serializeTermsOfServiceTosTypeField(
-  val: TermsOfServiceTosTypeField
+  val: TermsOfServiceTosTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceTosTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceTosTypeField {
   if (val == 'managed') {
     return val;

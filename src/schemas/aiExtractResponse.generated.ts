@@ -10,12 +10,12 @@ export interface AiExtractResponse {
   readonly rawData?: SerializedData;
 }
 export function serializeAiExtractResponse(
-  val: AiExtractResponse
+  val: AiExtractResponse,
 ): SerializedData {
   return {};
 }
 export function deserializeAiExtractResponse(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractResponse {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -27,7 +27,7 @@ export interface CollaborationAllowlistEntries {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistEntries(
-  val: CollaborationAllowlistEntries
+  val: CollaborationAllowlistEntries,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -37,14 +37,14 @@ export function serializeCollaborationAllowlistEntries(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: CollaborationAllowlistEntry
+            item: CollaborationAllowlistEntry,
           ): SerializedData {
             return serializeCollaborationAllowlistEntry(item);
           }) as readonly any[]),
   };
 }
 export function deserializeCollaborationAllowlistEntries(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntries {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -84,12 +84,12 @@ export function deserializeCollaborationAllowlistEntries(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): CollaborationAllowlistEntry {
-          return deserializeCollaborationAllowlistEntry(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): CollaborationAllowlistEntry {
+            return deserializeCollaborationAllowlistEntry(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

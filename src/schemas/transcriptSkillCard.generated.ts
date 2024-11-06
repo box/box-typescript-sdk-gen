@@ -33,7 +33,7 @@ export class TranscriptSkillCardSkillField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCardSkillField, 'type'> &
-      Partial<Pick<TranscriptSkillCardSkillField, 'type'>>
+      Partial<Pick<TranscriptSkillCardSkillField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -72,7 +72,7 @@ export class TranscriptSkillCardInvocationField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCardInvocationField, 'type'> &
-      Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>
+      Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -151,7 +151,7 @@ export class TranscriptSkillCard {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TranscriptSkillCard, 'type' | 'skillCardType'> &
-      Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>
+      Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>,
   ) {
     if (fields.createdAt) {
       this.createdAt = fields.createdAt;
@@ -215,12 +215,12 @@ export interface TranscriptSkillCardInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTranscriptSkillCardTypeField(
-  val: TranscriptSkillCardTypeField
+  val: TranscriptSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTranscriptSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardTypeField {
   if (val == 'skill_card') {
     return val;
@@ -230,12 +230,12 @@ export function deserializeTranscriptSkillCardTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillCardTypeField(
-  val: TranscriptSkillCardSkillCardTypeField
+  val: TranscriptSkillCardSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTranscriptSkillCardSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardSkillCardTypeField {
   if (val == 'transcript') {
     return val;
@@ -245,7 +245,7 @@ export function deserializeTranscriptSkillCardSkillCardTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillCardTitleField(
-  val: TranscriptSkillCardSkillCardTitleField
+  val: TranscriptSkillCardSkillCardTitleField,
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -253,7 +253,7 @@ export function serializeTranscriptSkillCardSkillCardTitleField(
   };
 }
 export function deserializeTranscriptSkillCardSkillCardTitleField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardSkillCardTitleField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -286,12 +286,12 @@ export function deserializeTranscriptSkillCardSkillCardTitleField(
   } satisfies TranscriptSkillCardSkillCardTitleField;
 }
 export function serializeTranscriptSkillCardSkillTypeField(
-  val: TranscriptSkillCardSkillTypeField
+  val: TranscriptSkillCardSkillTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTranscriptSkillCardSkillTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardSkillTypeField {
   if (val == 'service') {
     return val;
@@ -301,7 +301,7 @@ export function deserializeTranscriptSkillCardSkillTypeField(
   });
 }
 export function serializeTranscriptSkillCardSkillField(
-  val: TranscriptSkillCardSkillField
+  val: TranscriptSkillCardSkillField,
 ): SerializedData {
   return {
     ['type']: serializeTranscriptSkillCardSkillTypeField(val.type),
@@ -309,7 +309,7 @@ export function serializeTranscriptSkillCardSkillField(
   };
 }
 export function deserializeTranscriptSkillCardSkillField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardSkillField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -340,7 +340,7 @@ export function deserializeTranscriptSkillCardSkillField(
   return { type: type, id: id } satisfies TranscriptSkillCardSkillField;
 }
 export function serializeTranscriptSkillCardSkillFieldInput(
-  val: TranscriptSkillCardSkillFieldInput
+  val: TranscriptSkillCardSkillFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -351,7 +351,7 @@ export function serializeTranscriptSkillCardSkillFieldInput(
   };
 }
 export function deserializeTranscriptSkillCardSkillFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardSkillFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -378,12 +378,12 @@ export function deserializeTranscriptSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies TranscriptSkillCardSkillFieldInput;
 }
 export function serializeTranscriptSkillCardInvocationTypeField(
-  val: TranscriptSkillCardInvocationTypeField
+  val: TranscriptSkillCardInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTranscriptSkillCardInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardInvocationTypeField {
   if (val == 'skill_invocation') {
     return val;
@@ -393,7 +393,7 @@ export function deserializeTranscriptSkillCardInvocationTypeField(
   });
 }
 export function serializeTranscriptSkillCardInvocationField(
-  val: TranscriptSkillCardInvocationField
+  val: TranscriptSkillCardInvocationField,
 ): SerializedData {
   return {
     ['type']: serializeTranscriptSkillCardInvocationTypeField(val.type),
@@ -401,7 +401,7 @@ export function serializeTranscriptSkillCardInvocationField(
   };
 }
 export function deserializeTranscriptSkillCardInvocationField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardInvocationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -432,7 +432,7 @@ export function deserializeTranscriptSkillCardInvocationField(
   return { type: type, id: id } satisfies TranscriptSkillCardInvocationField;
 }
 export function serializeTranscriptSkillCardInvocationFieldInput(
-  val: TranscriptSkillCardInvocationFieldInput
+  val: TranscriptSkillCardInvocationFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -443,7 +443,7 @@ export function serializeTranscriptSkillCardInvocationFieldInput(
   };
 }
 export function deserializeTranscriptSkillCardInvocationFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardInvocationFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -473,12 +473,12 @@ export function deserializeTranscriptSkillCardInvocationFieldInput(
   } satisfies TranscriptSkillCardInvocationFieldInput;
 }
 export function serializeTranscriptSkillCardEntriesAppearsField(
-  val: TranscriptSkillCardEntriesAppearsField
+  val: TranscriptSkillCardEntriesAppearsField,
 ): SerializedData {
   return { ['start']: val.start == void 0 ? void 0 : val.start };
 }
 export function deserializeTranscriptSkillCardEntriesAppearsField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardEntriesAppearsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -495,7 +495,7 @@ export function deserializeTranscriptSkillCardEntriesAppearsField(
   return { start: start } satisfies TranscriptSkillCardEntriesAppearsField;
 }
 export function serializeTranscriptSkillCardEntriesField(
-  val: TranscriptSkillCardEntriesField
+  val: TranscriptSkillCardEntriesField,
 ): SerializedData {
   return {
     ['text']: val.text == void 0 ? void 0 : val.text,
@@ -503,14 +503,14 @@ export function serializeTranscriptSkillCardEntriesField(
       val.appears == void 0
         ? void 0
         : (val.appears.map(function (
-            item: TranscriptSkillCardEntriesAppearsField
+            item: TranscriptSkillCardEntriesAppearsField,
           ): SerializedData {
             return serializeTranscriptSkillCardEntriesAppearsField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeTranscriptSkillCardEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -534,26 +534,26 @@ export function deserializeTranscriptSkillCardEntriesField(
     val.appears == void 0
       ? void 0
       : sdIsList(val.appears)
-      ? (val.appears.map(function (
-          itm: SerializedData
-        ): TranscriptSkillCardEntriesAppearsField {
-          return deserializeTranscriptSkillCardEntriesAppearsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.appears.map(function (
+            itm: SerializedData,
+          ): TranscriptSkillCardEntriesAppearsField {
+            return deserializeTranscriptSkillCardEntriesAppearsField(itm);
+          }) as readonly any[])
+        : [];
   return {
     text: text,
     appears: appears,
   } satisfies TranscriptSkillCardEntriesField;
 }
 export function serializeTranscriptSkillCard(
-  val: TranscriptSkillCard
+  val: TranscriptSkillCard,
 ): SerializedData {
   return {
     ['created_at']:
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeTranscriptSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTranscriptSkillCardSkillCardTypeField(
-      val.skillCardType
+      val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
@@ -563,14 +563,14 @@ export function serializeTranscriptSkillCard(
     ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
-      item: TranscriptSkillCardEntriesField
+      item: TranscriptSkillCardEntriesField,
     ): SerializedData {
       return serializeTranscriptSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTranscriptSkillCard(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -638,10 +638,10 @@ export function deserializeTranscriptSkillCard(
     });
   }
   const entries: readonly TranscriptSkillCardEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TranscriptSkillCardEntriesField {
         return deserializeTranscriptSkillCardEntriesField(itm);
       }) as readonly any[])
@@ -658,7 +658,7 @@ export function deserializeTranscriptSkillCard(
   } satisfies TranscriptSkillCard;
 }
 export function serializeTranscriptSkillCardInput(
-  val: TranscriptSkillCardInput
+  val: TranscriptSkillCardInput,
 ): SerializedData {
   return {
     ['created_at']:
@@ -679,14 +679,14 @@ export function serializeTranscriptSkillCardInput(
     ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
     ['duration']: val.duration == void 0 ? void 0 : val.duration,
     ['entries']: val.entries.map(function (
-      item: TranscriptSkillCardEntriesField
+      item: TranscriptSkillCardEntriesField,
     ): SerializedData {
       return serializeTranscriptSkillCardEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTranscriptSkillCardInput(
-  val: SerializedData
+  val: SerializedData,
 ): TranscriptSkillCardInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -750,10 +750,10 @@ export function deserializeTranscriptSkillCardInput(
     });
   }
   const entries: readonly TranscriptSkillCardEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TranscriptSkillCardEntriesField {
         return deserializeTranscriptSkillCardEntriesField(itm);
       }) as readonly any[])

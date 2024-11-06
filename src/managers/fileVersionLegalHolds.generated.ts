@@ -38,7 +38,7 @@ export class GetFileVersionLegalHoldByIdOptionals {
           GetFileVersionLegalHoldByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -63,7 +63,7 @@ export class GetFileVersionLegalHoldsOptionals {
     > &
       Partial<
         Pick<GetFileVersionLegalHoldsOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -85,7 +85,7 @@ export class GetFileVersionLegalHoldByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileVersionLegalHoldByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -124,7 +124,7 @@ export class GetFileVersionLegalHoldsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileVersionLegalHoldsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileVersionLegalHoldsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileVersionLegalHoldsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -150,7 +150,7 @@ export class FileVersionLegalHoldsManager {
       | 'getFileVersionLegalHoldById'
       | 'getFileVersionLegalHolds'
     > &
-      Partial<Pick<FileVersionLegalHoldsManager, 'networkSession'>>
+      Partial<Pick<FileVersionLegalHoldsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -169,7 +169,7 @@ export class FileVersionLegalHoldsManager {
      */
   async getFileVersionLegalHoldById(
     fileVersionLegalHoldId: string,
-    optionalsInput: GetFileVersionLegalHoldByIdOptionalsInput = {}
+    optionalsInput: GetFileVersionLegalHoldByIdOptionalsInput = {},
   ): Promise<FileVersionLegalHold> {
     const optionals: GetFileVersionLegalHoldByIdOptionals =
       new GetFileVersionLegalHoldByIdOptionals({
@@ -185,7 +185,7 @@ export class FileVersionLegalHoldsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/file_version_legal_holds/',
-        toString(fileVersionLegalHoldId) as string
+        toString(fileVersionLegalHoldId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -226,7 +226,7 @@ export class FileVersionLegalHoldsManager {
    */
   async getFileVersionLegalHolds(
     queryParams: GetFileVersionLegalHoldsQueryParams,
-    optionalsInput: GetFileVersionLegalHoldsOptionalsInput = {}
+    optionalsInput: GetFileVersionLegalHoldsOptionalsInput = {},
   ): Promise<FileVersionLegalHolds> {
     const optionals: GetFileVersionLegalHoldsOptionals =
       new GetFileVersionLegalHoldsOptionals({
@@ -248,7 +248,7 @@ export class FileVersionLegalHoldsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/file_version_legal_holds'
+        '/2.0/file_version_legal_holds',
       ) as string,
       method: 'GET',
       params: queryParamsMap,

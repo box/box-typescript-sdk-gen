@@ -44,7 +44,7 @@ export interface SkillCardsMetadata {
   readonly rawData?: SerializedData;
 }
 export function serializeSkillCardsMetadata(
-  val: SkillCardsMetadata
+  val: SkillCardsMetadata,
 ): SerializedData {
   return {
     ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
@@ -59,16 +59,16 @@ export function serializeSkillCardsMetadata(
       val.cards == void 0
         ? void 0
         : (val.cards.map(function (
-            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
           ): SerializedData {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-              item
+              item,
             );
           }) as readonly any[]),
   };
 }
 export function deserializeSkillCardsMetadata(
-  val: SerializedData
+  val: SerializedData,
 ): SkillCardsMetadata {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -140,14 +140,14 @@ export function deserializeSkillCardsMetadata(
     val.cards == void 0
       ? void 0
       : sdIsList(val.cards)
-      ? (val.cards.map(function (
-          itm: SerializedData
-        ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
-          return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-            itm
-          );
-        }) as readonly any[])
-      : [];
+        ? (val.cards.map(function (
+            itm: SerializedData,
+          ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
+            return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+              itm,
+            );
+          }) as readonly any[])
+        : [];
   return {
     canEdit: canEdit,
     id: id,

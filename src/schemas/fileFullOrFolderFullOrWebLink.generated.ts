@@ -17,7 +17,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type FileFullOrFolderFullOrWebLink = FileFull | FolderFull | WebLink;
 export function serializeFileFullOrFolderFullOrWebLink(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'file') {
     return serializeFileFull(val);
@@ -31,7 +31,7 @@ export function serializeFileFullOrFolderFullOrWebLink(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileFullOrFolderFullOrWebLink(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullOrFolderFullOrWebLink {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

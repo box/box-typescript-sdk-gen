@@ -157,7 +157,7 @@ export class File extends FileMini {
   }
 }
 export function serializeFilePathCollectionField(
-  val: FilePathCollectionField
+  val: FilePathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -167,7 +167,7 @@ export function serializeFilePathCollectionField(
   };
 }
 export function deserializeFilePathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): FilePathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -210,12 +210,12 @@ export function deserializeFilePathCollectionField(
   } satisfies FilePathCollectionField;
 }
 export function serializeFileSharedLinkAccessField(
-  val: FileSharedLinkAccessField
+  val: FileSharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileSharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): FileSharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -231,12 +231,12 @@ export function deserializeFileSharedLinkAccessField(
   });
 }
 export function serializeFileSharedLinkEffectiveAccessField(
-  val: FileSharedLinkEffectiveAccessField
+  val: FileSharedLinkEffectiveAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileSharedLinkEffectiveAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): FileSharedLinkEffectiveAccessField {
   if (val == 'open') {
     return val;
@@ -252,12 +252,12 @@ export function deserializeFileSharedLinkEffectiveAccessField(
   });
 }
 export function serializeFileSharedLinkEffectivePermissionField(
-  val: FileSharedLinkEffectivePermissionField
+  val: FileSharedLinkEffectivePermissionField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileSharedLinkEffectivePermissionField(
-  val: SerializedData
+  val: SerializedData,
 ): FileSharedLinkEffectivePermissionField {
   if (val == 'can_edit') {
     return val;
@@ -276,7 +276,7 @@ export function deserializeFileSharedLinkEffectivePermissionField(
   });
 }
 export function serializeFileSharedLinkPermissionsField(
-  val: FileSharedLinkPermissionsField
+  val: FileSharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -285,7 +285,7 @@ export function serializeFileSharedLinkPermissionsField(
   };
 }
 export function deserializeFileSharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): FileSharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -338,7 +338,7 @@ export function deserializeFileSharedLinkPermissionsField(
   } satisfies FileSharedLinkPermissionsField;
 }
 export function serializeFileSharedLinkField(
-  val: FileSharedLinkField
+  val: FileSharedLinkField,
 ): SerializedData {
   return {
     ['url']: val.url,
@@ -350,10 +350,10 @@ export function serializeFileSharedLinkField(
         ? void 0
         : serializeFileSharedLinkAccessField(val.access),
     ['effective_access']: serializeFileSharedLinkEffectiveAccessField(
-      val.effectiveAccess
+      val.effectiveAccess,
     ),
     ['effective_permission']: serializeFileSharedLinkEffectivePermissionField(
-      val.effectivePermission
+      val.effectivePermission,
     ),
     ['unshared_at']:
       val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
@@ -367,7 +367,7 @@ export function serializeFileSharedLinkField(
   };
 }
 export function deserializeFileSharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): FileSharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -496,12 +496,12 @@ export function deserializeFileSharedLinkField(
   } satisfies FileSharedLinkField;
 }
 export function serializeFileItemStatusField(
-  val: FileItemStatusField
+  val: FileItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): FileItemStatusField {
   if (val == 'active') {
     return val;

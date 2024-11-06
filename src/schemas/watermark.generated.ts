@@ -23,7 +23,7 @@ export interface Watermark {
   readonly rawData?: SerializedData;
 }
 export function serializeWatermarkWatermarkField(
-  val: WatermarkWatermarkField
+  val: WatermarkWatermarkField,
 ): SerializedData {
   return {
     ['created_at']:
@@ -33,7 +33,7 @@ export function serializeWatermarkWatermarkField(
   };
 }
 export function deserializeWatermarkWatermarkField(
-  val: SerializedData
+  val: SerializedData,
 ): WatermarkWatermarkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

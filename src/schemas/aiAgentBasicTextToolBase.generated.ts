@@ -22,7 +22,7 @@ export interface AiAgentBasicTextToolBase {
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentBasicTextToolBase(
-  val: AiAgentBasicTextToolBase
+  val: AiAgentBasicTextToolBase,
 ): SerializedData {
   return {
     ['model']: val.model == void 0 ? void 0 : val.model,
@@ -34,12 +34,12 @@ export function serializeAiAgentBasicTextToolBase(
       val.llmEndpointParams == void 0
         ? void 0
         : serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-            val.llmEndpointParams
+            val.llmEndpointParams,
           ),
   };
 }
 export function deserializeAiAgentBasicTextToolBase(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentBasicTextToolBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -72,7 +72,7 @@ export function deserializeAiAgentBasicTextToolBase(
     val.llm_endpoint_params == void 0
       ? void 0
       : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params
+          val.llm_endpoint_params,
         );
   return {
     model: model,

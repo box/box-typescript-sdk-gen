@@ -54,7 +54,7 @@ See the endpoint docs at
 await client.folderMetadata.getFolderMetadataById(
   folder.id,
   'global' as GetFolderMetadataByIdScope,
-  'properties'
+  'properties',
 );
 ```
 
@@ -107,7 +107,7 @@ await client.folderMetadata.createFolderMetadataById(
     ['birthDate']: '2001-01-03T02:20:50.520Z',
     ['countryCode']: 'US',
     ['sports']: ['basketball', 'tennis'],
-  }
+  },
 );
 ```
 
@@ -160,7 +160,7 @@ await client.folderMetadata.updateFolderMetadataById(
       path: '/abc',
       value: newValue,
     } satisfies UpdateFolderMetadataByIdRequestBody,
-  ]
+  ],
 );
 ```
 
@@ -199,7 +199,7 @@ See the endpoint docs at
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
   'enterprise' as DeleteFolderMetadataByIdScope,
-  templateKey
+  templateKey,
 );
 ```
 

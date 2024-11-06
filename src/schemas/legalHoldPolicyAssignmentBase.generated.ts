@@ -18,12 +18,12 @@ export interface LegalHoldPolicyAssignmentBase {
   readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyAssignmentBaseTypeField(
-  val: LegalHoldPolicyAssignmentBaseTypeField
+  val: LegalHoldPolicyAssignmentBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyAssignmentBaseTypeField {
   if (val == 'legal_hold_policy_assignment') {
     return val;
@@ -33,7 +33,7 @@ export function deserializeLegalHoldPolicyAssignmentBaseTypeField(
   });
 }
 export function serializeLegalHoldPolicyAssignmentBase(
-  val: LegalHoldPolicyAssignmentBase
+  val: LegalHoldPolicyAssignmentBase,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -44,7 +44,7 @@ export function serializeLegalHoldPolicyAssignmentBase(
   };
 }
 export function deserializeLegalHoldPolicyAssignmentBase(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyAssignmentBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

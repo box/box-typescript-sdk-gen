@@ -135,12 +135,12 @@ export class FolderFull extends Folder {
   }
 }
 export function serializeFolderFullSyncStateField(
-  val: FolderFullSyncStateField
+  val: FolderFullSyncStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderFullSyncStateField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullSyncStateField {
   if (val == 'synced') {
     return val;
@@ -156,7 +156,7 @@ export function deserializeFolderFullSyncStateField(
   });
 }
 export function serializeFolderFullPermissionsField(
-  val: FolderFullPermissionsField
+  val: FolderFullPermissionsField,
 ): SerializedData {
   return {
     ['can_delete']: val.canDelete,
@@ -169,7 +169,7 @@ export function serializeFolderFullPermissionsField(
   };
 }
 export function deserializeFolderFullPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -278,12 +278,12 @@ export function deserializeFolderFullPermissionsField(
   } satisfies FolderFullPermissionsField;
 }
 export function serializeFolderFullMetadataField(
-  val: FolderFullMetadataField
+  val: FolderFullMetadataField,
 ): SerializedData {
   return { ...{}, ...val.extraData };
 }
 export function deserializeFolderFullMetadataField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullMetadataField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -306,35 +306,35 @@ export function deserializeFolderFullMetadataField(
     val == void 0
       ? void 0
       : sdIsMap(val)
-      ? (Object.fromEntries(
-          Object.entries(val).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return sdIsMap(v)
-                ? (Object.fromEntries(
-                    Object.entries(v).map(([k, v]: [string, any]) => [
-                      k,
-                      deserializeMetadataFull(v),
-                    ])
-                  ) as {
-                    readonly [key: string]: any;
-                  })
-                : {};
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return sdIsMap(v)
+                  ? (Object.fromEntries(
+                      Object.entries(v).map(([k, v]: [string, any]) => [
+                        k,
+                        deserializeMetadataFull(v),
+                      ]),
+                    ) as {
+                      readonly [key: string]: any;
+                    })
+                  : {};
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   return { extraData: extraData } satisfies FolderFullMetadataField;
 }
 export function serializeFolderFullAllowedSharedLinkAccessLevelsField(
-  val: FolderFullAllowedSharedLinkAccessLevelsField
+  val: FolderFullAllowedSharedLinkAccessLevelsField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullAllowedSharedLinkAccessLevelsField {
   if (val == 'open') {
     return val;
@@ -350,12 +350,12 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   });
 }
 export function serializeFolderFullAllowedInviteeRolesField(
-  val: FolderFullAllowedInviteeRolesField
+  val: FolderFullAllowedInviteeRolesField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderFullAllowedInviteeRolesField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullAllowedInviteeRolesField {
   if (val == 'editor') {
     return val;
@@ -383,7 +383,7 @@ export function deserializeFolderFullAllowedInviteeRolesField(
   });
 }
 export function serializeFolderFullWatermarkInfoField(
-  val: FolderFullWatermarkInfoField
+  val: FolderFullWatermarkInfoField,
 ): SerializedData {
   return {
     ['is_watermarked']:
@@ -391,7 +391,7 @@ export function serializeFolderFullWatermarkInfoField(
   };
 }
 export function deserializeFolderFullWatermarkInfoField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullWatermarkInfoField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -411,7 +411,7 @@ export function deserializeFolderFullWatermarkInfoField(
   } satisfies FolderFullWatermarkInfoField;
 }
 export function serializeFolderFullClassificationField(
-  val: FolderFullClassificationField
+  val: FolderFullClassificationField,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -420,7 +420,7 @@ export function serializeFolderFullClassificationField(
   };
 }
 export function deserializeFolderFullClassificationField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFullClassificationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -495,17 +495,17 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
         val.allowedSharedLinkAccessLevels == void 0
           ? void 0
           : (val.allowedSharedLinkAccessLevels.map(function (
-              item: FolderFullAllowedSharedLinkAccessLevelsField
+              item: FolderFullAllowedSharedLinkAccessLevelsField,
             ): SerializedData {
               return serializeFolderFullAllowedSharedLinkAccessLevelsField(
-                item
+                item,
               );
             }) as readonly any[]),
       ['allowed_invitee_roles']:
         val.allowedInviteeRoles == void 0
           ? void 0
           : (val.allowedInviteeRoles.map(function (
-              item: FolderFullAllowedInviteeRolesField
+              item: FolderFullAllowedInviteeRolesField,
             ): SerializedData {
               return serializeFolderFullAllowedInviteeRolesField(item);
             }) as readonly any[]),
@@ -564,15 +564,15 @@ export function deserializeFolderFull(val: SerializedData): FolderFull {
     val.tags == void 0
       ? void 0
       : sdIsList(val.tags)
-      ? (val.tags.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "FolderFull"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.tags.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "FolderFull"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (
     !(val.can_non_owners_invite == void 0) &&
     !sdIsBoolean(val.can_non_owners_invite)
@@ -627,12 +627,12 @@ export function deserializeFolderFull(val: SerializedData): FolderFull {
     val.allowed_shared_link_access_levels == void 0
       ? void 0
       : sdIsList(val.allowed_shared_link_access_levels)
-      ? (val.allowed_shared_link_access_levels.map(function (
-          itm: SerializedData
-        ): FolderFullAllowedSharedLinkAccessLevelsField {
-          return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.allowed_shared_link_access_levels.map(function (
+            itm: SerializedData,
+          ): FolderFullAllowedSharedLinkAccessLevelsField {
+            return deserializeFolderFullAllowedSharedLinkAccessLevelsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.allowed_invitee_roles == void 0) &&
     !sdIsList(val.allowed_invitee_roles)
@@ -648,12 +648,12 @@ export function deserializeFolderFull(val: SerializedData): FolderFull {
     val.allowed_invitee_roles == void 0
       ? void 0
       : sdIsList(val.allowed_invitee_roles)
-      ? (val.allowed_invitee_roles.map(function (
-          itm: SerializedData
-        ): FolderFullAllowedInviteeRolesField {
-          return deserializeFolderFullAllowedInviteeRolesField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.allowed_invitee_roles.map(function (
+            itm: SerializedData,
+          ): FolderFullAllowedInviteeRolesField {
+            return deserializeFolderFullAllowedInviteeRolesField(itm);
+          }) as readonly any[])
+        : [];
   const watermarkInfo: undefined | FolderFullWatermarkInfoField =
     val.watermark_info == void 0
       ? void 0

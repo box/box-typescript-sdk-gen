@@ -69,7 +69,7 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
       folder.id,
       'global' as CreateFolderMetadataByIdScope,
       'properties',
-      { ['abc']: 'xyz' }
+      { ['abc']: 'xyz' },
     );
   if (!((toString(createdMetadata.template) as string) == 'properties')) {
     throw new Error('Assertion failed');
@@ -84,7 +84,7 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScope,
-      'properties'
+      'properties',
     );
   if (!((toString(receivedMetadata.extraData!.abc) as string) == 'xyz')) {
     throw new Error('Assertion failed');
@@ -100,13 +100,13 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
         path: '/abc',
         value: newValue,
       } satisfies UpdateFolderMetadataByIdRequestBody,
-    ]
+    ],
   );
   const receivedUpdatedMetadata: MetadataFull =
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScope,
-      'properties'
+      'properties',
     );
   if (
     !((toString(receivedUpdatedMetadata.extraData!.abc) as string) == newValue)
@@ -116,13 +116,13 @@ test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Prom
   await client.folderMetadata.deleteFolderMetadataById(
     folder.id,
     'global' as DeleteFolderMetadataByIdScope,
-    'properties'
+    'properties',
   );
   await expect(async () => {
     await client.folderMetadata.getFolderMetadataById(
       folder.id,
       'global' as GetFolderMetadataByIdScope,
-      'properties'
+      'properties',
     );
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);
@@ -193,7 +193,7 @@ test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata
         ['birthDate']: '2001-01-03T02:20:50.520Z',
         ['countryCode']: 'US',
         ['sports']: ['basketball', 'tennis'],
-      }
+      },
     );
   if (!((toString(createdMetadata.template) as string) == templateKey)) {
     throw new Error('Assertion failed');
@@ -225,11 +225,11 @@ test('testEnterpriseFolderMetadata', async function testEnterpriseFolderMetadata
   await client.folderMetadata.deleteFolderMetadataById(
     folder.id,
     'enterprise' as DeleteFolderMetadataByIdScope,
-    templateKey
+    templateKey,
   );
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    templateKey
+    templateKey,
   );
   await client.folders.deleteFolderById(folder.id);
 });

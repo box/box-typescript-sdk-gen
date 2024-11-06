@@ -30,7 +30,7 @@ export class GetFolderLocksOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFolderLocksOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetFolderLocksOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetFolderLocksOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -49,7 +49,7 @@ export class CreateFolderLockOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateFolderLockOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateFolderLockOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateFolderLockOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -74,7 +74,7 @@ export class DeleteFolderLockByIdOptionals {
     > &
       Partial<
         Pick<DeleteFolderLockByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -110,7 +110,7 @@ export class GetFolderLocksHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderLocksHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderLocksHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderLocksHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -164,7 +164,7 @@ export class CreateFolderLockHeaders {
   } = {};
   constructor(
     fields: Omit<CreateFolderLockHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateFolderLockHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateFolderLockHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -188,7 +188,7 @@ export class DeleteFolderLockByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFolderLockByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFolderLockByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFolderLockByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -215,7 +215,7 @@ export class FolderLocksManager {
       | 'createFolderLock'
       | 'deleteFolderLockById'
     > &
-      Partial<Pick<FolderLocksManager, 'networkSession'>>
+      Partial<Pick<FolderLocksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -235,7 +235,7 @@ export class FolderLocksManager {
    */
   async getFolderLocks(
     queryParams: GetFolderLocksQueryParams,
-    optionalsInput: GetFolderLocksOptionalsInput = {}
+    optionalsInput: GetFolderLocksOptionalsInput = {},
   ): Promise<FolderLocks> {
     const optionals: GetFolderLocksOptionals = new GetFolderLocksOptionals({
       headers: optionalsInput.headers,
@@ -254,7 +254,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/folder_locks'
+        '/2.0/folder_locks',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -281,7 +281,7 @@ export class FolderLocksManager {
    */
   async createFolderLock(
     requestBody: CreateFolderLockRequestBody,
-    optionalsInput: CreateFolderLockOptionalsInput = {}
+    optionalsInput: CreateFolderLockOptionalsInput = {},
   ): Promise<FolderLock> {
     const optionals: CreateFolderLockOptionals = new CreateFolderLockOptionals({
       headers: optionalsInput.headers,
@@ -295,7 +295,7 @@ export class FolderLocksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/folder_locks'
+        '/2.0/folder_locks',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -323,7 +323,7 @@ export class FolderLocksManager {
      */
   async deleteFolderLockById(
     folderLockId: string,
-    optionalsInput: DeleteFolderLockByIdOptionalsInput = {}
+    optionalsInput: DeleteFolderLockByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFolderLockByIdOptionals =
       new DeleteFolderLockByIdOptionals({
@@ -339,7 +339,7 @@ export class FolderLocksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folder_locks/',
-        toString(folderLockId) as string
+        toString(folderLockId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -356,12 +356,12 @@ export interface FolderLocksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateFolderLockRequestBodyLockedOperationsField(
-  val: CreateFolderLockRequestBodyLockedOperationsField
+  val: CreateFolderLockRequestBodyLockedOperationsField,
 ): SerializedData {
   return { ['move']: val.move, ['delete']: val.delete };
 }
 export function deserializeCreateFolderLockRequestBodyLockedOperationsField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderLockRequestBodyLockedOperationsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -401,12 +401,12 @@ export function deserializeCreateFolderLockRequestBodyLockedOperationsField(
   } satisfies CreateFolderLockRequestBodyLockedOperationsField;
 }
 export function serializeCreateFolderLockRequestBodyFolderField(
-  val: CreateFolderLockRequestBodyFolderField
+  val: CreateFolderLockRequestBodyFolderField,
 ): SerializedData {
   return { ['type']: val.type, ['id']: val.id };
 }
 export function deserializeCreateFolderLockRequestBodyFolderField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderLockRequestBodyFolderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -445,20 +445,20 @@ export function deserializeCreateFolderLockRequestBodyFolderField(
   } satisfies CreateFolderLockRequestBodyFolderField;
 }
 export function serializeCreateFolderLockRequestBody(
-  val: CreateFolderLockRequestBody
+  val: CreateFolderLockRequestBody,
 ): SerializedData {
   return {
     ['locked_operations']:
       val.lockedOperations == void 0
         ? void 0
         : serializeCreateFolderLockRequestBodyLockedOperationsField(
-            val.lockedOperations
+            val.lockedOperations,
           ),
     ['folder']: serializeCreateFolderLockRequestBodyFolderField(val.folder),
   };
 }
 export function deserializeCreateFolderLockRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFolderLockRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -471,7 +471,7 @@ export function deserializeCreateFolderLockRequestBody(
     val.locked_operations == void 0
       ? void 0
       : deserializeCreateFolderLockRequestBodyLockedOperationsField(
-          val.locked_operations
+          val.locked_operations,
         );
   if (val.folder == void 0) {
     throw new BoxSdkError({

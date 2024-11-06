@@ -27,7 +27,7 @@ export interface MetadataCascadePolicies {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataCascadePolicies(
-  val: MetadataCascadePolicies
+  val: MetadataCascadePolicies,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -37,14 +37,14 @@ export function serializeMetadataCascadePolicies(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: MetadataCascadePolicy
+            item: MetadataCascadePolicy,
           ): SerializedData {
             return serializeMetadataCascadePolicy(item);
           }) as readonly any[]),
   };
 }
 export function deserializeMetadataCascadePolicies(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataCascadePolicies {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -83,10 +83,12 @@ export function deserializeMetadataCascadePolicies(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): MetadataCascadePolicy {
-          return deserializeMetadataCascadePolicy(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): MetadataCascadePolicy {
+            return deserializeMetadataCascadePolicy(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

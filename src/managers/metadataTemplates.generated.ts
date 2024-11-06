@@ -39,7 +39,7 @@ export class GetMetadataTemplatesByInstanceIdOptionals {
           GetMetadataTemplatesByInstanceIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -55,7 +55,7 @@ export interface GetMetadataTemplatesByInstanceIdOptionalsInput {
 }
 export class GetMetadataTemplateOptionals {
   readonly headers: GetMetadataTemplateHeaders = new GetMetadataTemplateHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -65,7 +65,7 @@ export class GetMetadataTemplateOptionals {
     > &
       Partial<
         Pick<GetMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -90,7 +90,7 @@ export class UpdateMetadataTemplateOptionals {
     > &
       Partial<
         Pick<UpdateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -115,7 +115,7 @@ export class DeleteMetadataTemplateOptionals {
     > &
       Partial<
         Pick<DeleteMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -140,7 +140,7 @@ export class GetMetadataTemplateByIdOptionals {
     > &
       Partial<
         Pick<GetMetadataTemplateByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -165,7 +165,7 @@ export class CreateMetadataTemplateOptionals {
     > &
       Partial<
         Pick<CreateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -192,7 +192,7 @@ export class GetMetadataTemplatesByInstanceIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -217,7 +217,7 @@ export class GetMetadataTemplateHeaders {
   } = {};
   constructor(
     fields: Omit<GetMetadataTemplateHeaders, 'extraHeaders'> &
-      Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>
+      Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -293,7 +293,7 @@ export class UpdateMetadataTemplateHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateMetadataTemplateHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -318,7 +318,7 @@ export class DeleteMetadataTemplateHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteMetadataTemplateHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -342,7 +342,7 @@ export class GetMetadataTemplateByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetMetadataTemplateByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -377,7 +377,7 @@ export class GetGlobalMetadataTemplatesHeaders {
   } = {};
   constructor(
     fields: Omit<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -412,7 +412,7 @@ export class GetEnterpriseMetadataTemplatesHeaders {
   } = {};
   constructor(
     fields: Omit<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -516,7 +516,7 @@ export class CreateMetadataTemplateHeaders {
   } = {};
   constructor(
     fields: Omit<CreateMetadataTemplateHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -548,7 +548,7 @@ export class MetadataTemplatesManager {
       | 'getEnterpriseMetadataTemplates'
       | 'createMetadataTemplate'
     > &
-      Partial<Pick<MetadataTemplatesManager, 'networkSession'>>
+      Partial<Pick<MetadataTemplatesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -566,7 +566,7 @@ export class MetadataTemplatesManager {
    */
   async getMetadataTemplatesByInstanceId(
     queryParams: GetMetadataTemplatesByInstanceIdQueryParams,
-    optionalsInput: GetMetadataTemplatesByInstanceIdOptionalsInput = {}
+    optionalsInput: GetMetadataTemplatesByInstanceIdOptionalsInput = {},
   ): Promise<MetadataTemplates> {
     const optionals: GetMetadataTemplatesByInstanceIdOptionals =
       new GetMetadataTemplatesByInstanceIdOptionals({
@@ -579,7 +579,7 @@ export class MetadataTemplatesManager {
       readonly [key: string]: string;
     } = prepareParams({
       ['metadata_instance_id']: toString(
-        queryParams.metadataInstanceId
+        queryParams.metadataInstanceId,
       ) as string,
     });
     const headersMap: {
@@ -588,7 +588,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates'
+        '/2.0/metadata_templates',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -618,7 +618,7 @@ export class MetadataTemplatesManager {
   async getMetadataTemplate(
     scope: GetMetadataTemplateScope,
     templateKey: string,
-    optionalsInput: GetMetadataTemplateOptionalsInput = {}
+    optionalsInput: GetMetadataTemplateOptionalsInput = {},
   ): Promise<MetadataTemplate> {
     const optionals: GetMetadataTemplateOptionals =
       new GetMetadataTemplateOptionals({
@@ -637,7 +637,7 @@ export class MetadataTemplatesManager {
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
-        '/schema'
+        '/schema',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -671,7 +671,7 @@ export class MetadataTemplatesManager {
     scope: UpdateMetadataTemplateScope,
     templateKey: string,
     requestBody: readonly UpdateMetadataTemplateRequestBody[],
-    optionalsInput: UpdateMetadataTemplateOptionalsInput = {}
+    optionalsInput: UpdateMetadataTemplateOptionalsInput = {},
   ): Promise<MetadataTemplate> {
     const optionals: UpdateMetadataTemplateOptionals =
       new UpdateMetadataTemplateOptionals({
@@ -690,12 +690,12 @@ export class MetadataTemplatesManager {
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
-        '/schema'
+        '/schema',
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: requestBody.map(
-        serializeUpdateMetadataTemplateRequestBody
+        serializeUpdateMetadataTemplateRequestBody,
       ) as readonly any[],
       contentType: 'application/json-patch+json',
       responseFormat: 'json',
@@ -721,7 +721,7 @@ export class MetadataTemplatesManager {
   async deleteMetadataTemplate(
     scope: DeleteMetadataTemplateScope,
     templateKey: string,
-    optionalsInput: DeleteMetadataTemplateOptionalsInput = {}
+    optionalsInput: DeleteMetadataTemplateOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteMetadataTemplateOptionals =
       new DeleteMetadataTemplateOptionals({
@@ -740,7 +740,7 @@ export class MetadataTemplatesManager {
         toString(scope) as string,
         '/',
         toString(templateKey) as string,
-        '/schema'
+        '/schema',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -760,7 +760,7 @@ export class MetadataTemplatesManager {
      */
   async getMetadataTemplateById(
     templateId: string,
-    optionalsInput: GetMetadataTemplateByIdOptionalsInput = {}
+    optionalsInput: GetMetadataTemplateByIdOptionalsInput = {},
   ): Promise<MetadataTemplate> {
     const optionals: GetMetadataTemplateByIdOptionals =
       new GetMetadataTemplateByIdOptionals({
@@ -776,7 +776,7 @@ export class MetadataTemplatesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/metadata_templates/',
-        toString(templateId) as string
+        toString(templateId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -801,9 +801,9 @@ export class MetadataTemplatesManager {
   async getGlobalMetadataTemplates(
     queryParams: GetGlobalMetadataTemplatesQueryParams = {} satisfies GetGlobalMetadataTemplatesQueryParams,
     headersInput: GetGlobalMetadataTemplatesHeadersInput = new GetGlobalMetadataTemplatesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<MetadataTemplates> {
     const headers: GetGlobalMetadataTemplatesHeaders =
       new GetGlobalMetadataTemplatesHeaders({
@@ -821,7 +821,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/global'
+        '/2.0/metadata_templates/global',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -847,9 +847,9 @@ export class MetadataTemplatesManager {
   async getEnterpriseMetadataTemplates(
     queryParams: GetEnterpriseMetadataTemplatesQueryParams = {} satisfies GetEnterpriseMetadataTemplatesQueryParams,
     headersInput: GetEnterpriseMetadataTemplatesHeadersInput = new GetEnterpriseMetadataTemplatesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<MetadataTemplates> {
     const headers: GetEnterpriseMetadataTemplatesHeaders =
       new GetEnterpriseMetadataTemplatesHeaders({
@@ -867,7 +867,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/enterprise'
+        '/2.0/metadata_templates/enterprise',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -891,7 +891,7 @@ export class MetadataTemplatesManager {
    */
   async createMetadataTemplate(
     requestBody: CreateMetadataTemplateRequestBody,
-    optionalsInput: CreateMetadataTemplateOptionalsInput = {}
+    optionalsInput: CreateMetadataTemplateOptionalsInput = {},
   ): Promise<MetadataTemplate> {
     const optionals: CreateMetadataTemplateOptionals =
       new CreateMetadataTemplateOptionals({
@@ -906,7 +906,7 @@ export class MetadataTemplatesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/schema'
+        '/2.0/metadata_templates/schema',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -928,12 +928,12 @@ export interface MetadataTemplatesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetMetadataTemplateScope(
-  val: GetMetadataTemplateScope
+  val: GetMetadataTemplateScope,
 ): SerializedData {
   return val;
 }
 export function deserializeGetMetadataTemplateScope(
-  val: SerializedData
+  val: SerializedData,
 ): GetMetadataTemplateScope {
   if (val == 'global') {
     return val;
@@ -946,12 +946,12 @@ export function deserializeGetMetadataTemplateScope(
   });
 }
 export function serializeUpdateMetadataTemplateScope(
-  val: UpdateMetadataTemplateScope
+  val: UpdateMetadataTemplateScope,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateMetadataTemplateScope(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateMetadataTemplateScope {
   if (val == 'global') {
     return val;
@@ -964,12 +964,12 @@ export function deserializeUpdateMetadataTemplateScope(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBodyOpField(
-  val: UpdateMetadataTemplateRequestBodyOpField
+  val: UpdateMetadataTemplateRequestBodyOpField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateMetadataTemplateRequestBodyOpField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateMetadataTemplateRequestBodyOpField {
   if (val == 'editTemplate') {
     return val;
@@ -1015,7 +1015,7 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
   });
 }
 export function serializeUpdateMetadataTemplateRequestBody(
-  val: UpdateMetadataTemplateRequestBody
+  val: UpdateMetadataTemplateRequestBody,
 ): SerializedData {
   return {
     ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
@@ -1028,7 +1028,7 @@ export function serializeUpdateMetadataTemplateRequestBody(
               (function (v: any): any {
                 return v;
               })(v),
-            ])
+            ]),
           ) as {
             readonly [key: string]: any;
           }),
@@ -1052,14 +1052,14 @@ export function serializeUpdateMetadataTemplateRequestBody(
       val.multiSelectOptionKeys == void 0
         ? void 0
         : (val.multiSelectOptionKeys.map(function (
-            item: string
+            item: string,
           ): SerializedData {
             return item;
           }) as readonly any[]),
   };
 }
 export function deserializeUpdateMetadataTemplateRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateMetadataTemplateRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1088,17 +1088,17 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.data == void 0
       ? void 0
       : sdIsMap(val.data)
-      ? (Object.fromEntries(
-          Object.entries(val.data).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return v;
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.data).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (!(val.fieldKey == void 0) && !sdIsString(val.fieldKey)) {
     throw new BoxSdkError({
       message:
@@ -1117,16 +1117,16 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.fieldKeys == void 0
       ? void 0
       : sdIsList(val.fieldKeys)
-      ? (val.fieldKeys.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message:
-                'Expecting string for "UpdateMetadataTemplateRequestBody"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.fieldKeys.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message:
+                  'Expecting string for "UpdateMetadataTemplateRequestBody"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (!(val.enumOptionKey == void 0) && !sdIsString(val.enumOptionKey)) {
     throw new BoxSdkError({
       message:
@@ -1145,16 +1145,16 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.enumOptionKeys == void 0
       ? void 0
       : sdIsList(val.enumOptionKeys)
-      ? (val.enumOptionKeys.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message:
-                'Expecting string for "UpdateMetadataTemplateRequestBody"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.enumOptionKeys.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message:
+                  'Expecting string for "UpdateMetadataTemplateRequestBody"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (
     !(val.multiSelectOptionKey == void 0) &&
     !sdIsString(val.multiSelectOptionKey)
@@ -1179,16 +1179,18 @@ export function deserializeUpdateMetadataTemplateRequestBody(
     val.multiSelectOptionKeys == void 0
       ? void 0
       : sdIsList(val.multiSelectOptionKeys)
-      ? (val.multiSelectOptionKeys.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message:
-                'Expecting string for "UpdateMetadataTemplateRequestBody"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.multiSelectOptionKeys.map(function (
+            itm: SerializedData,
+          ): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message:
+                  'Expecting string for "UpdateMetadataTemplateRequestBody"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   return {
     op: op,
     data: data,
@@ -1201,12 +1203,12 @@ export function deserializeUpdateMetadataTemplateRequestBody(
   } satisfies UpdateMetadataTemplateRequestBody;
 }
 export function serializeDeleteMetadataTemplateScope(
-  val: DeleteMetadataTemplateScope
+  val: DeleteMetadataTemplateScope,
 ): SerializedData {
   return val;
 }
 export function deserializeDeleteMetadataTemplateScope(
-  val: SerializedData
+  val: SerializedData,
 ): DeleteMetadataTemplateScope {
   if (val == 'global') {
     return val;
@@ -1219,12 +1221,12 @@ export function deserializeDeleteMetadataTemplateScope(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-  val: CreateMetadataTemplateRequestBodyFieldsTypeField
+  val: CreateMetadataTemplateRequestBodyFieldsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataTemplateRequestBodyFieldsTypeField {
   if (val == 'string') {
     return val;
@@ -1247,12 +1249,12 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsTypeField(
   });
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-  val: CreateMetadataTemplateRequestBodyFieldsOptionsField
+  val: CreateMetadataTemplateRequestBodyFieldsOptionsField,
 ): SerializedData {
   return { ['key']: val.key };
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataTemplateRequestBodyFieldsOptionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1278,11 +1280,11 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField;
 }
 export function serializeCreateMetadataTemplateRequestBodyFieldsField(
-  val: CreateMetadataTemplateRequestBodyFieldsField
+  val: CreateMetadataTemplateRequestBodyFieldsField,
 ): SerializedData {
   return {
     ['type']: serializeCreateMetadataTemplateRequestBodyFieldsTypeField(
-      val.type
+      val.type,
     ),
     ['key']: val.key,
     ['displayName']: val.displayName,
@@ -1292,16 +1294,16 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsField(
       val.options == void 0
         ? void 0
         : (val.options.map(function (
-            item: CreateMetadataTemplateRequestBodyFieldsOptionsField
+            item: CreateMetadataTemplateRequestBodyFieldsOptionsField,
           ): SerializedData {
             return serializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-              item
+              item,
             );
           }) as readonly any[]),
   };
 }
 export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataTemplateRequestBodyFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1371,14 +1373,14 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
-      ? (val.options.map(function (
-          itm: SerializedData
-        ): CreateMetadataTemplateRequestBodyFieldsOptionsField {
-          return deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
-            itm
-          );
-        }) as readonly any[])
-      : [];
+        ? (val.options.map(function (
+            itm: SerializedData,
+          ): CreateMetadataTemplateRequestBodyFieldsOptionsField {
+            return deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField(
+              itm,
+            );
+          }) as readonly any[])
+        : [];
   return {
     type: type,
     key: key,
@@ -1389,7 +1391,7 @@ export function deserializeCreateMetadataTemplateRequestBodyFieldsField(
   } satisfies CreateMetadataTemplateRequestBodyFieldsField;
 }
 export function serializeCreateMetadataTemplateRequestBody(
-  val: CreateMetadataTemplateRequestBody
+  val: CreateMetadataTemplateRequestBody,
 ): SerializedData {
   return {
     ['scope']: val.scope,
@@ -1400,7 +1402,7 @@ export function serializeCreateMetadataTemplateRequestBody(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: CreateMetadataTemplateRequestBodyFieldsField
+            item: CreateMetadataTemplateRequestBodyFieldsField,
           ): SerializedData {
             return serializeCreateMetadataTemplateRequestBodyFieldsField(item);
           }) as readonly any[]),
@@ -1411,7 +1413,7 @@ export function serializeCreateMetadataTemplateRequestBody(
   };
 }
 export function deserializeCreateMetadataTemplateRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataTemplateRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1472,12 +1474,12 @@ export function deserializeCreateMetadataTemplateRequestBody(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (
-          itm: SerializedData
-        ): CreateMetadataTemplateRequestBodyFieldsField {
-          return deserializeCreateMetadataTemplateRequestBodyFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (
+            itm: SerializedData,
+          ): CreateMetadataTemplateRequestBodyFieldsField {
+            return deserializeCreateMetadataTemplateRequestBodyFieldsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.copyInstanceOnItemCopy == void 0) &&
     !sdIsBoolean(val.copyInstanceOnItemCopy)

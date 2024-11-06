@@ -36,7 +36,7 @@ export class GetEventsWithLongPollingHeaders {
   } = {};
   constructor(
     fields: Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'> &
-      Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>
+      Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -236,7 +236,7 @@ export class GetEventsHeaders {
   } = {};
   constructor(
     fields: Omit<GetEventsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetEventsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetEventsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -260,7 +260,7 @@ export class EventsManager {
       EventsManager,
       'networkSession' | 'getEventsWithLongPolling' | 'getEvents'
     > &
-      Partial<Pick<EventsManager, 'networkSession'>>
+      Partial<Pick<EventsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -309,9 +309,9 @@ export class EventsManager {
    */
   async getEventsWithLongPolling(
     headersInput: GetEventsWithLongPollingHeadersInput = new GetEventsWithLongPollingHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<RealtimeServers> {
     const headers: GetEventsWithLongPollingHeaders =
       new GetEventsWithLongPollingHeaders({
@@ -323,7 +323,7 @@ export class EventsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/events'
+        '/2.0/events',
       ) as string,
       method: 'OPTIONS',
       headers: headersMap,
@@ -355,7 +355,7 @@ export class EventsManager {
   async getEvents(
     queryParams: GetEventsQueryParams = {} satisfies GetEventsQueryParams,
     headersInput: GetEventsHeadersInput = new GetEventsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Events> {
     const headers: GetEventsHeaders = new GetEventsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -382,7 +382,7 @@ export class EventsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/events'
+        '/2.0/events',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -403,12 +403,12 @@ export interface EventsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetEventsQueryParamsStreamTypeField(
-  val: GetEventsQueryParamsStreamTypeField
+  val: GetEventsQueryParamsStreamTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetEventsQueryParamsStreamTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetEventsQueryParamsStreamTypeField {
   if (val == 'all') {
     return val;
@@ -430,12 +430,12 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
   });
 }
 export function serializeGetEventsQueryParamsEventTypeField(
-  val: GetEventsQueryParamsEventTypeField
+  val: GetEventsQueryParamsEventTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetEventsQueryParamsEventTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetEventsQueryParamsEventTypeField {
   if (val == 'ACCESS_GRANTED') {
     return val;

@@ -21,12 +21,12 @@ export interface TrackingCode {
   readonly rawData?: SerializedData;
 }
 export function serializeTrackingCodeTypeField(
-  val: TrackingCodeTypeField
+  val: TrackingCodeTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrackingCodeTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrackingCodeTypeField {
   if (val == 'tracking_code') {
     return val;

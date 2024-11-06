@@ -62,12 +62,12 @@ export class UserFull extends User {
   }
 }
 export function serializeUserFullRoleField(
-  val: UserFullRoleField
+  val: UserFullRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeUserFullRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): UserFullRoleField {
   if (val == 'admin') {
     return val;
@@ -81,12 +81,12 @@ export function deserializeUserFullRoleField(
   throw new BoxSdkError({ message: "Can't deserialize UserFullRoleField" });
 }
 export function serializeUserFullEnterpriseTypeField(
-  val: UserFullEnterpriseTypeField
+  val: UserFullEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUserFullEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UserFullEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -96,7 +96,7 @@ export function deserializeUserFullEnterpriseTypeField(
   });
 }
 export function serializeUserFullEnterpriseField(
-  val: UserFullEnterpriseField
+  val: UserFullEnterpriseField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -108,7 +108,7 @@ export function serializeUserFullEnterpriseField(
   };
 }
 export function deserializeUserFullEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): UserFullEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -147,7 +147,7 @@ export function serializeUserFull(val: UserFull): SerializedData {
         val.trackingCodes == void 0
           ? void 0
           : (val.trackingCodes.map(function (
-              item: TrackingCode
+              item: TrackingCode,
             ): SerializedData {
               return serializeTrackingCode(item);
             }) as readonly any[]),
@@ -200,10 +200,10 @@ export function deserializeUserFull(val: SerializedData): UserFull {
     val.tracking_codes == void 0
       ? void 0
       : sdIsList(val.tracking_codes)
-      ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
-          return deserializeTrackingCode(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.tracking_codes.map(function (itm: SerializedData): TrackingCode {
+            return deserializeTrackingCode(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.can_see_managed_users == void 0) &&
     !sdIsBoolean(val.can_see_managed_users)
@@ -274,15 +274,15 @@ export function deserializeUserFull(val: SerializedData): UserFull {
     val.my_tags == void 0
       ? void 0
       : sdIsList(val.my_tags)
-      ? (val.my_tags.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "UserFull"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.my_tags.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "UserFull"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   if (!(val.hostname == void 0) && !sdIsString(val.hostname)) {
     throw new BoxSdkError({
       message: 'Expecting string for "hostname" of type "UserFull"',

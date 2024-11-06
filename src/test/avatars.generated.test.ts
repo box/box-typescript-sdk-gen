@@ -29,11 +29,11 @@ test('testAvatars', async function testAvatars(): Promise<any> {
     user.id,
     {
       pic: decodeBase64ByteStream(
-        'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg=='
+        'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg==',
       ),
       picContentType: 'image/png',
       picFileName: 'avatar.png',
-    } satisfies CreateUserAvatarRequestBody
+    } satisfies CreateUserAvatarRequestBody,
   );
   if (!!(createdAvatar.picUrls!.small == void 0)) {
     throw new Error('Assertion failed');

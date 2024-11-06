@@ -32,7 +32,9 @@ export class CreateZipDownloadOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -57,7 +59,7 @@ export class GetZipDownloadContentOptionals {
     > &
       Partial<
         Pick<GetZipDownloadContentOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -82,7 +84,7 @@ export class GetZipDownloadStatusOptionals {
     > &
       Partial<
         Pick<GetZipDownloadStatusOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -101,7 +103,7 @@ export class DownloadZipOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DownloadZipOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DownloadZipOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<DownloadZipOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -123,7 +125,7 @@ export class CreateZipDownloadHeaders {
   } = {};
   constructor(
     fields: Omit<CreateZipDownloadHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateZipDownloadHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateZipDownloadHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -147,7 +149,7 @@ export class GetZipDownloadContentHeaders {
   } = {};
   constructor(
     fields: Omit<GetZipDownloadContentHeaders, 'extraHeaders'> &
-      Partial<Pick<GetZipDownloadContentHeaders, 'extraHeaders'>>
+      Partial<Pick<GetZipDownloadContentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -171,7 +173,7 @@ export class GetZipDownloadStatusHeaders {
   } = {};
   constructor(
     fields: Omit<GetZipDownloadStatusHeaders, 'extraHeaders'> &
-      Partial<Pick<GetZipDownloadStatusHeaders, 'extraHeaders'>>
+      Partial<Pick<GetZipDownloadStatusHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -195,7 +197,7 @@ export class DownloadZipHeaders {
   } = {};
   constructor(
     fields: Omit<DownloadZipHeaders, 'extraHeaders'> &
-      Partial<Pick<DownloadZipHeaders, 'extraHeaders'>>
+      Partial<Pick<DownloadZipHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -223,7 +225,7 @@ export class ZipDownloadsManager {
       | 'getZipDownloadStatus'
       | 'downloadZip'
     > &
-      Partial<Pick<ZipDownloadsManager, 'networkSession'>>
+      Partial<Pick<ZipDownloadsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -255,7 +257,7 @@ export class ZipDownloadsManager {
    */
   async createZipDownload(
     requestBody: ZipDownloadRequest,
-    optionalsInput: CreateZipDownloadOptionalsInput = {}
+    optionalsInput: CreateZipDownloadOptionalsInput = {},
   ): Promise<ZipDownload> {
     const optionals: CreateZipDownloadOptionals =
       new CreateZipDownloadOptionals({
@@ -270,7 +272,7 @@ export class ZipDownloadsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/zip_downloads'
+        '/2.0/zip_downloads',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -307,7 +309,7 @@ export class ZipDownloadsManager {
      */
   async getZipDownloadContent(
     downloadUrl: string,
-    optionalsInput: GetZipDownloadContentOptionalsInput = {}
+    optionalsInput: GetZipDownloadContentOptionalsInput = {},
   ): Promise<ByteStream> {
     const optionals: GetZipDownloadContentOptionals =
       new GetZipDownloadContentOptionals({
@@ -350,7 +352,7 @@ export class ZipDownloadsManager {
      */
   async getZipDownloadStatus(
     statusUrl: string,
-    optionalsInput: GetZipDownloadStatusOptionalsInput = {}
+    optionalsInput: GetZipDownloadStatusOptionalsInput = {},
   ): Promise<ZipDownloadStatus> {
     const optionals: GetZipDownloadStatusOptionals =
       new GetZipDownloadStatusOptionals({
@@ -384,7 +386,7 @@ export class ZipDownloadsManager {
    */
   async downloadZip(
     requestBody: ZipDownloadRequest,
-    optionalsInput: DownloadZipOptionalsInput = {}
+    optionalsInput: DownloadZipOptionalsInput = {},
   ): Promise<ByteStream> {
     const optionals: DownloadZipOptionals = new DownloadZipOptionals({
       headers: optionalsInput.headers,
@@ -402,7 +404,7 @@ export class ZipDownloadsManager {
           extraHeaders: headers.extraHeaders,
         }),
         cancellationToken: cancellationToken,
-      } satisfies CreateZipDownloadOptionalsInput
+      } satisfies CreateZipDownloadOptionalsInput,
     );
     return await this.getZipDownloadContent(zipDownloadSession.downloadUrl!, {
       headers: new GetZipDownloadContentHeaders({

@@ -140,12 +140,12 @@ export interface SignTemplate {
   readonly rawData?: SerializedData;
 }
 export function serializeSignTemplateTypeField(
-  val: SignTemplateTypeField
+  val: SignTemplateTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignTemplateTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateTypeField {
   if (val == 'sign-template') {
     return val;
@@ -153,12 +153,12 @@ export function deserializeSignTemplateTypeField(
   throw new BoxSdkError({ message: "Can't deserialize SignTemplateTypeField" });
 }
 export function serializeSignTemplateAdditionalInfoNonEditableField(
-  val: SignTemplateAdditionalInfoNonEditableField
+  val: SignTemplateAdditionalInfoNonEditableField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignTemplateAdditionalInfoNonEditableField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateAdditionalInfoNonEditableField {
   if (val == 'email_subject') {
     return val;
@@ -183,12 +183,12 @@ export function deserializeSignTemplateAdditionalInfoNonEditableField(
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredSignersField(
-  val: SignTemplateAdditionalInfoRequiredSignersField
+  val: SignTemplateAdditionalInfoRequiredSignersField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateAdditionalInfoRequiredSignersField {
   if (val == 'email') {
     return val;
@@ -198,27 +198,27 @@ export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
   });
 }
 export function serializeSignTemplateAdditionalInfoRequiredField(
-  val: SignTemplateAdditionalInfoRequiredField
+  val: SignTemplateAdditionalInfoRequiredField,
 ): SerializedData {
   return {
     ['signers']:
       val.signers == void 0
         ? void 0
         : (val.signers.map(function (
-            item: readonly SignTemplateAdditionalInfoRequiredSignersField[]
+            item: readonly SignTemplateAdditionalInfoRequiredSignersField[],
           ): SerializedData {
             return item.map(function (
-              item: SignTemplateAdditionalInfoRequiredSignersField
+              item: SignTemplateAdditionalInfoRequiredSignersField,
             ): SerializedData {
               return serializeSignTemplateAdditionalInfoRequiredSignersField(
-                item
+                item,
               );
             }) as readonly any[];
           }) as readonly any[]),
   };
 }
 export function deserializeSignTemplateAdditionalInfoRequiredField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateAdditionalInfoRequiredField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -237,31 +237,31 @@ export function deserializeSignTemplateAdditionalInfoRequiredField(
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (
-          itm: SerializedData
-        ): readonly SignTemplateAdditionalInfoRequiredSignersField[] {
-          return sdIsList(itm)
-            ? (itm.map(function (
-                itm: SerializedData
-              ): SignTemplateAdditionalInfoRequiredSignersField {
-                return deserializeSignTemplateAdditionalInfoRequiredSignersField(
-                  itm
-                );
-              }) as readonly any[])
-            : [];
-        }) as readonly any[])
-      : [];
+        ? (val.signers.map(function (
+            itm: SerializedData,
+          ): readonly SignTemplateAdditionalInfoRequiredSignersField[] {
+            return sdIsList(itm)
+              ? (itm.map(function (
+                  itm: SerializedData,
+                ): SignTemplateAdditionalInfoRequiredSignersField {
+                  return deserializeSignTemplateAdditionalInfoRequiredSignersField(
+                    itm,
+                  );
+                }) as readonly any[])
+              : [];
+          }) as readonly any[])
+        : [];
   return { signers: signers } satisfies SignTemplateAdditionalInfoRequiredField;
 }
 export function serializeSignTemplateAdditionalInfoField(
-  val: SignTemplateAdditionalInfoField
+  val: SignTemplateAdditionalInfoField,
 ): SerializedData {
   return {
     ['non_editable']:
       val.nonEditable == void 0
         ? void 0
         : (val.nonEditable.map(function (
-            item: SignTemplateAdditionalInfoNonEditableField
+            item: SignTemplateAdditionalInfoNonEditableField,
           ): SerializedData {
             return serializeSignTemplateAdditionalInfoNonEditableField(item);
           }) as readonly any[]),
@@ -272,7 +272,7 @@ export function serializeSignTemplateAdditionalInfoField(
   };
 }
 export function deserializeSignTemplateAdditionalInfoField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateAdditionalInfoField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -291,12 +291,12 @@ export function deserializeSignTemplateAdditionalInfoField(
     val.non_editable == void 0
       ? void 0
       : sdIsList(val.non_editable)
-      ? (val.non_editable.map(function (
-          itm: SerializedData
-        ): SignTemplateAdditionalInfoNonEditableField {
-          return deserializeSignTemplateAdditionalInfoNonEditableField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.non_editable.map(function (
+            itm: SerializedData,
+          ): SignTemplateAdditionalInfoNonEditableField {
+            return deserializeSignTemplateAdditionalInfoNonEditableField(itm);
+          }) as readonly any[])
+        : [];
   const required: undefined | SignTemplateAdditionalInfoRequiredField =
     val.required == void 0
       ? void 0
@@ -307,7 +307,7 @@ export function deserializeSignTemplateAdditionalInfoField(
   } satisfies SignTemplateAdditionalInfoField;
 }
 export function serializeSignTemplateReadySignLinkField(
-  val: SignTemplateReadySignLinkField
+  val: SignTemplateReadySignLinkField,
 ): SerializedData {
   return {
     ['url']: val.url == void 0 ? void 0 : val.url,
@@ -322,7 +322,7 @@ export function serializeSignTemplateReadySignLinkField(
   };
 }
 export function deserializeSignTemplateReadySignLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateReadySignLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -390,7 +390,7 @@ export function deserializeSignTemplateReadySignLinkField(
   } satisfies SignTemplateReadySignLinkField;
 }
 export function serializeSignTemplateCustomBrandingField(
-  val: SignTemplateCustomBrandingField
+  val: SignTemplateCustomBrandingField,
 ): SerializedData {
   return {
     ['company_name']: val.companyName == void 0 ? void 0 : val.companyName,
@@ -402,7 +402,7 @@ export function serializeSignTemplateCustomBrandingField(
   };
 }
 export function deserializeSignTemplateCustomBrandingField(
-  val: SerializedData
+  val: SerializedData,
 ): SignTemplateCustomBrandingField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -554,10 +554,10 @@ export function deserializeSignTemplate(val: SerializedData): SignTemplate {
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): FileMini {
-          return deserializeFileMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.source_files.map(function (itm: SerializedData): FileMini {
+            return deserializeFileMini(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.are_fields_locked == void 0) &&
     !sdIsBoolean(val.are_fields_locked)
@@ -621,10 +621,10 @@ export function deserializeSignTemplate(val: SerializedData): SignTemplate {
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (itm: SerializedData): TemplateSigner {
-          return deserializeTemplateSigner(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.signers.map(function (itm: SerializedData): TemplateSigner {
+            return deserializeTemplateSigner(itm);
+          }) as readonly any[])
+        : [];
   const additionalInfo: undefined | SignTemplateAdditionalInfoField =
     val.additional_info == void 0
       ? void 0

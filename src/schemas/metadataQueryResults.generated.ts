@@ -29,14 +29,14 @@ export interface MetadataQueryResults {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataQueryResults(
-  val: MetadataQueryResults
+  val: MetadataQueryResults,
 ): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileFullOrFolderFull
+            item: FileFullOrFolderFull,
           ): SerializedData {
             return serializeFileFullOrFolderFull(item);
           }) as readonly any[]),
@@ -45,7 +45,7 @@ export function serializeMetadataQueryResults(
   };
 }
 export function deserializeMetadataQueryResults(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryResults {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -61,10 +61,12 @@ export function deserializeMetadataQueryResults(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileFullOrFolderFull {
-          return deserializeFileFullOrFolderFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileFullOrFolderFull {
+            return deserializeFileFullOrFolderFull(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
     throw new BoxSdkError({
       message: 'Expecting number for "limit" of type "MetadataQueryResults"',

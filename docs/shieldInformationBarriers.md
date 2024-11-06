@@ -18,7 +18,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarriers.getShieldInformationBarrierById(
-  barrierId
+  barrierId,
 );
 ```
 

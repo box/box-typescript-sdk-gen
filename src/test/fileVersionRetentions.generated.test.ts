@@ -144,7 +144,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
   }
   if (fileVersionRetentionsCount == 0) {
     await client.retentionPolicies.deleteRetentionPolicyById(
-      retentionPolicy.id
+      retentionPolicy.id,
     );
     await client.folders.deleteFolderById(folder.id, {
       queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
@@ -155,7 +155,7 @@ test('testCreateUpdateGetDeleteRetentionPolicy', async function testCreateUpdate
     fileVersionRetentions.entries![0];
   const fileVersionRetentionById: FileVersionRetention =
     await client.fileVersionRetentions.getFileVersionRetentionById(
-      fileVersionRetention.id!
+      fileVersionRetention.id!,
     );
   if (!(fileVersionRetentionById.id == fileVersionRetention.id)) {
     throw new Error('Assertion failed');

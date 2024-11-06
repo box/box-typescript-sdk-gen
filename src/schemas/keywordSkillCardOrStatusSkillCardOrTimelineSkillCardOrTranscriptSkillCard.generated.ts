@@ -21,7 +21,7 @@ import { sdIsMap } from '../serialization/json.js';
 export type KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard =
   KeywordSkillCard | StatusSkillCard | TimelineSkillCard | TranscriptSkillCard;
 export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.skillCardType == 'keyword') {
     return serializeKeywordSkillCard(val);
@@ -38,7 +38,7 @@ export function serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrT
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-  val: SerializedData
+  val: SerializedData,
 ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

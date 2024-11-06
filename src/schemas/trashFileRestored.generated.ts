@@ -106,7 +106,7 @@ export class TrashFileRestored {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TrashFileRestored, 'type'> &
-      Partial<Pick<TrashFileRestored, 'type'>>
+      Partial<Pick<TrashFileRestored, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -255,12 +255,12 @@ export interface TrashFileRestoredInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashFileRestoredTypeField(
-  val: TrashFileRestoredTypeField
+  val: TrashFileRestoredTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFileRestoredTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileRestoredTypeField {
   if (val == 'file') {
     return val;
@@ -270,7 +270,7 @@ export function deserializeTrashFileRestoredTypeField(
   });
 }
 export function serializeTrashFileRestoredPathCollectionField(
-  val: TrashFileRestoredPathCollectionField
+  val: TrashFileRestoredPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -280,7 +280,7 @@ export function serializeTrashFileRestoredPathCollectionField(
   };
 }
 export function deserializeTrashFileRestoredPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileRestoredPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -323,12 +323,12 @@ export function deserializeTrashFileRestoredPathCollectionField(
   } satisfies TrashFileRestoredPathCollectionField;
 }
 export function serializeTrashFileRestoredItemStatusField(
-  val: TrashFileRestoredItemStatusField
+  val: TrashFileRestoredItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFileRestoredItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileRestoredItemStatusField {
   if (val == 'active') {
     return val;
@@ -344,7 +344,7 @@ export function deserializeTrashFileRestoredItemStatusField(
   });
 }
 export function serializeTrashFileRestored(
-  val: TrashFileRestored
+  val: TrashFileRestored,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -360,7 +360,7 @@ export function serializeTrashFileRestored(
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFileRestoredPathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
@@ -384,7 +384,7 @@ export function serializeTrashFileRestored(
   };
 }
 export function deserializeTrashFileRestored(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileRestored {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -601,7 +601,7 @@ export function deserializeTrashFileRestored(
   } satisfies TrashFileRestored;
 }
 export function serializeTrashFileRestoredInput(
-  val: TrashFileRestoredInput
+  val: TrashFileRestoredInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -620,7 +620,7 @@ export function serializeTrashFileRestoredInput(
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFileRestoredPathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
@@ -644,7 +644,7 @@ export function serializeTrashFileRestoredInput(
   };
 }
 export function deserializeTrashFileRestoredInput(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFileRestoredInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

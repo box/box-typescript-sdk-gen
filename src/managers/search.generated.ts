@@ -42,7 +42,7 @@ export class SearchByMetadataQueryOptionals {
     > &
       Partial<
         Pick<SearchByMetadataQueryOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -64,7 +64,7 @@ export class SearchByMetadataQueryHeaders {
   } = {};
   constructor(
     fields: Omit<SearchByMetadataQueryHeaders, 'extraHeaders'> &
-      Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>
+      Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -368,7 +368,7 @@ export class SearchForContentHeaders {
   } = {};
   constructor(
     fields: Omit<SearchForContentHeaders, 'extraHeaders'> &
-      Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>
+      Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -392,7 +392,7 @@ export class SearchManager {
       SearchManager,
       'networkSession' | 'searchByMetadataQuery' | 'searchForContent'
     > &
-      Partial<Pick<SearchManager, 'networkSession'>>
+      Partial<Pick<SearchManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -414,7 +414,7 @@ export class SearchManager {
    */
   async searchByMetadataQuery(
     requestBody: MetadataQuery,
-    optionalsInput: SearchByMetadataQueryOptionalsInput = {}
+    optionalsInput: SearchByMetadataQueryOptionalsInput = {},
   ): Promise<MetadataQueryResults> {
     const optionals: SearchByMetadataQueryOptionals =
       new SearchByMetadataQueryOptionals({
@@ -429,7 +429,7 @@ export class SearchManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_queries/execute_read'
+        '/2.0/metadata_queries/execute_read',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -456,9 +456,9 @@ export class SearchManager {
   async searchForContent(
     queryParams: SearchForContentQueryParams = {} satisfies SearchForContentQueryParams,
     headersInput: SearchForContentHeadersInput = new SearchForContentHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<SearchResultsOrSearchResultsWithSharedLinks> {
     const headers: SearchForContentHeaders = new SearchForContentHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -501,7 +501,7 @@ export class SearchManager {
       ['direction']: toString(queryParams.direction) as string,
       ['limit']: toString(queryParams.limit) as string,
       ['include_recent_shared_links']: toString(
-        queryParams.includeRecentSharedLinks
+        queryParams.includeRecentSharedLinks,
       ) as string,
       ['fields']: queryParams.fields
         ? queryParams.fields.map(toString).join(',')
@@ -520,7 +520,7 @@ export class SearchManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/search'
+        '/2.0/search',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -541,12 +541,12 @@ export interface SearchManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeSearchForContentQueryParamsScopeField(
-  val: SearchForContentQueryParamsScopeField
+  val: SearchForContentQueryParamsScopeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsScopeField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsScopeField {
   if (val == 'user_content') {
     return val;
@@ -559,12 +559,12 @@ export function deserializeSearchForContentQueryParamsScopeField(
   });
 }
 export function serializeSearchForContentQueryParamsContentTypesField(
-  val: SearchForContentQueryParamsContentTypesField
+  val: SearchForContentQueryParamsContentTypesField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsContentTypesField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsContentTypesField {
   if (val == 'name') {
     return val;
@@ -586,12 +586,12 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
   });
 }
 export function serializeSearchForContentQueryParamsTypeField(
-  val: SearchForContentQueryParamsTypeField
+  val: SearchForContentQueryParamsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsTypeField {
   if (val == 'file') {
     return val;
@@ -607,12 +607,12 @@ export function deserializeSearchForContentQueryParamsTypeField(
   });
 }
 export function serializeSearchForContentQueryParamsTrashContentField(
-  val: SearchForContentQueryParamsTrashContentField
+  val: SearchForContentQueryParamsTrashContentField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsTrashContentField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsTrashContentField {
   if (val == 'non_trashed_only') {
     return val;
@@ -628,12 +628,12 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   });
 }
 export function serializeSearchForContentQueryParamsSortField(
-  val: SearchForContentQueryParamsSortField
+  val: SearchForContentQueryParamsSortField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsSortField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsSortField {
   if (val == 'modified_at') {
     return val;
@@ -646,12 +646,12 @@ export function deserializeSearchForContentQueryParamsSortField(
   });
 }
 export function serializeSearchForContentQueryParamsDirectionField(
-  val: SearchForContentQueryParamsDirectionField
+  val: SearchForContentQueryParamsDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchForContentQueryParamsDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchForContentQueryParamsDirectionField {
   if (val == 'DESC') {
     return val;

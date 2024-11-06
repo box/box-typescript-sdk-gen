@@ -84,7 +84,7 @@ export class GetTrashedItemsHeaders {
   } = {};
   constructor(
     fields: Omit<GetTrashedItemsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -105,7 +105,7 @@ export class TrashedItemsManager {
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
     fields: Omit<TrashedItemsManager, 'networkSession' | 'getTrashedItems'> &
-      Partial<Pick<TrashedItemsManager, 'networkSession'>>
+      Partial<Pick<TrashedItemsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -132,7 +132,7 @@ export class TrashedItemsManager {
   async getTrashedItems(
     queryParams: GetTrashedItemsQueryParams = {} satisfies GetTrashedItemsQueryParams,
     headersInput: GetTrashedItemsHeadersInput = new GetTrashedItemsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Items> {
     const headers: GetTrashedItemsHeaders = new GetTrashedItemsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -156,7 +156,7 @@ export class TrashedItemsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/trash/items'
+        '/2.0/folders/trash/items',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -177,12 +177,12 @@ export interface TrashedItemsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetTrashedItemsQueryParamsDirectionField(
-  val: GetTrashedItemsQueryParamsDirectionField
+  val: GetTrashedItemsQueryParamsDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetTrashedItemsQueryParamsDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GetTrashedItemsQueryParamsDirectionField {
   if (val == 'ASC') {
     return val;
@@ -195,12 +195,12 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   });
 }
 export function serializeGetTrashedItemsQueryParamsSortField(
-  val: GetTrashedItemsQueryParamsSortField
+  val: GetTrashedItemsQueryParamsSortField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetTrashedItemsQueryParamsSortField(
-  val: SerializedData
+  val: SerializedData,
 ): GetTrashedItemsQueryParamsSortField {
   if (val == 'name') {
     return val;

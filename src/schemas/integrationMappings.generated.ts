@@ -24,7 +24,7 @@ export interface IntegrationMappings {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappings(
-  val: IntegrationMappings
+  val: IntegrationMappings,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -38,7 +38,7 @@ export function serializeIntegrationMappings(
   };
 }
 export function deserializeIntegrationMappings(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappings {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -68,10 +68,10 @@ export function deserializeIntegrationMappings(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): IntegrationMapping {
-          return deserializeIntegrationMapping(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): IntegrationMapping {
+            return deserializeIntegrationMapping(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

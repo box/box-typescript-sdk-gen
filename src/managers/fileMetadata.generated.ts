@@ -30,7 +30,7 @@ export class GetFileMetadataOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFileMetadataOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetFileMetadataOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetFileMetadataOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -46,7 +46,7 @@ export interface GetFileMetadataOptionalsInput {
 }
 export class GetFileMetadataByIdOptionals {
   readonly headers: GetFileMetadataByIdHeaders = new GetFileMetadataByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -56,7 +56,7 @@ export class GetFileMetadataByIdOptionals {
     > &
       Partial<
         Pick<GetFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -81,7 +81,7 @@ export class CreateFileMetadataByIdOptionals {
     > &
       Partial<
         Pick<CreateFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -106,7 +106,7 @@ export class UpdateFileMetadataByIdOptionals {
     > &
       Partial<
         Pick<UpdateFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -131,7 +131,7 @@ export class DeleteFileMetadataByIdOptionals {
     > &
       Partial<
         Pick<DeleteFileMetadataByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -153,7 +153,7 @@ export class GetFileMetadataHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileMetadataHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileMetadataHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileMetadataHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -178,7 +178,7 @@ export class GetFileMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -206,7 +206,7 @@ export class CreateFileMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<CreateFileMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateFileMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateFileMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -270,7 +270,7 @@ export class UpdateFileMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFileMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFileMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFileMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -295,7 +295,7 @@ export class DeleteFileMetadataByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFileMetadataByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFileMetadataByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFileMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -324,7 +324,7 @@ export class FileMetadataManager {
       | 'updateFileMetadataById'
       | 'deleteFileMetadataById'
     > &
-      Partial<Pick<FileMetadataManager, 'networkSession'>>
+      Partial<Pick<FileMetadataManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -348,7 +348,7 @@ export class FileMetadataManager {
      */
   async getFileMetadata(
     fileId: string,
-    optionalsInput: GetFileMetadataOptionalsInput = {}
+    optionalsInput: GetFileMetadataOptionalsInput = {},
   ): Promise<Metadatas> {
     const optionals: GetFileMetadataOptionals = new GetFileMetadataOptionals({
       headers: optionalsInput.headers,
@@ -364,7 +364,7 @@ export class FileMetadataManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/metadata'
+        '/metadata',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -400,7 +400,7 @@ export class FileMetadataManager {
     fileId: string,
     scope: GetFileMetadataByIdScope,
     templateKey: string,
-    optionalsInput: GetFileMetadataByIdOptionalsInput = {}
+    optionalsInput: GetFileMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: GetFileMetadataByIdOptionals =
       new GetFileMetadataByIdOptionals({
@@ -420,7 +420,7 @@ export class FileMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -461,7 +461,7 @@ export class FileMetadataManager {
     scope: CreateFileMetadataByIdScope,
     templateKey: string,
     requestBody: CreateFileMetadataByIdRequestBody,
-    optionalsInput: CreateFileMetadataByIdOptionalsInput = {}
+    optionalsInput: CreateFileMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: CreateFileMetadataByIdOptionals =
       new CreateFileMetadataByIdOptionals({
@@ -481,7 +481,7 @@ export class FileMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -527,7 +527,7 @@ export class FileMetadataManager {
     scope: UpdateFileMetadataByIdScope,
     templateKey: string,
     requestBody: readonly UpdateFileMetadataByIdRequestBody[],
-    optionalsInput: UpdateFileMetadataByIdOptionalsInput = {}
+    optionalsInput: UpdateFileMetadataByIdOptionalsInput = {},
   ): Promise<MetadataFull> {
     const optionals: UpdateFileMetadataByIdOptionals =
       new UpdateFileMetadataByIdOptionals({
@@ -547,12 +547,12 @@ export class FileMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: requestBody.map(
-        serializeUpdateFileMetadataByIdRequestBody
+        serializeUpdateFileMetadataByIdRequestBody,
       ) as readonly any[],
       contentType: 'application/json-patch+json',
       responseFormat: 'json',
@@ -586,7 +586,7 @@ export class FileMetadataManager {
     fileId: string,
     scope: DeleteFileMetadataByIdScope,
     templateKey: string,
-    optionalsInput: DeleteFileMetadataByIdOptionalsInput = {}
+    optionalsInput: DeleteFileMetadataByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFileMetadataByIdOptionals =
       new DeleteFileMetadataByIdOptionals({
@@ -606,7 +606,7 @@ export class FileMetadataManager {
         '/metadata/',
         toString(scope) as string,
         '/',
-        toString(templateKey) as string
+        toString(templateKey) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -623,12 +623,12 @@ export interface FileMetadataManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetFileMetadataByIdScope(
-  val: GetFileMetadataByIdScope
+  val: GetFileMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeGetFileMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): GetFileMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -641,12 +641,12 @@ export function deserializeGetFileMetadataByIdScope(
   });
 }
 export function serializeCreateFileMetadataByIdScope(
-  val: CreateFileMetadataByIdScope
+  val: CreateFileMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateFileMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFileMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -659,7 +659,7 @@ export function deserializeCreateFileMetadataByIdScope(
   });
 }
 export function serializeCreateFileMetadataByIdRequestBody(
-  val: CreateFileMetadataByIdRequestBody
+  val: CreateFileMetadataByIdRequestBody,
 ): SerializedData {
   return Object.fromEntries(
     Object.entries(val).map(([k, v]: [string, any]) => [
@@ -667,13 +667,13 @@ export function serializeCreateFileMetadataByIdRequestBody(
       (function (v: any): any {
         return v;
       })(v),
-    ])
+    ]),
   ) as {
     readonly [key: string]: any;
   };
 }
 export function deserializeCreateFileMetadataByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateFileMetadataByIdRequestBody {
   return sdIsMap(val)
     ? (Object.fromEntries(
@@ -682,19 +682,19 @@ export function deserializeCreateFileMetadataByIdRequestBody(
           (function (v: any): any {
             return v;
           })(v),
-        ])
+        ]),
       ) as {
         readonly [key: string]: any;
       })
     : {};
 }
 export function serializeUpdateFileMetadataByIdScope(
-  val: UpdateFileMetadataByIdScope
+  val: UpdateFileMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileMetadataByIdScope {
   if (val == 'global') {
     return val;
@@ -707,12 +707,12 @@ export function deserializeUpdateFileMetadataByIdScope(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBodyOpField(
-  val: UpdateFileMetadataByIdRequestBodyOpField
+  val: UpdateFileMetadataByIdRequestBodyOpField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileMetadataByIdRequestBodyOpField {
   if (val == 'add') {
     return val;
@@ -737,7 +737,7 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
   });
 }
 export function serializeUpdateFileMetadataByIdRequestBody(
-  val: UpdateFileMetadataByIdRequestBody
+  val: UpdateFileMetadataByIdRequestBody,
 ): SerializedData {
   return {
     ['op']:
@@ -750,7 +750,7 @@ export function serializeUpdateFileMetadataByIdRequestBody(
   };
 }
 export function deserializeUpdateFileMetadataByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFileMetadataByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -790,12 +790,12 @@ export function deserializeUpdateFileMetadataByIdRequestBody(
   } satisfies UpdateFileMetadataByIdRequestBody;
 }
 export function serializeDeleteFileMetadataByIdScope(
-  val: DeleteFileMetadataByIdScope
+  val: DeleteFileMetadataByIdScope,
 ): SerializedData {
   return val;
 }
 export function deserializeDeleteFileMetadataByIdScope(
-  val: SerializedData
+  val: SerializedData,
 ): DeleteFileMetadataByIdScope {
   if (val == 'global') {
     return val;

@@ -30,7 +30,7 @@ test('testGetFileVersionLegalHoldById', async function testGetFileVersionLegalHo
   const fileVersionLegalHoldId: string = '987654321';
   await expect(async () => {
     await client.fileVersionLegalHolds.getFileVersionLegalHoldById(
-      fileVersionLegalHoldId
+      fileVersionLegalHoldId,
     );
   }).rejects.toThrow();
 });

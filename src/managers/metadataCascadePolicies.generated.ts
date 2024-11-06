@@ -42,7 +42,7 @@ export class GetMetadataCascadePoliciesOptionals {
           GetMetadataCascadePoliciesOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -70,7 +70,7 @@ export class CreateMetadataCascadePolicyOptionals {
           CreateMetadataCascadePolicyOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -98,7 +98,7 @@ export class GetMetadataCascadePolicyByIdOptionals {
           GetMetadataCascadePolicyByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -126,7 +126,7 @@ export class DeleteMetadataCascadePolicyByIdOptionals {
           DeleteMetadataCascadePolicyByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -154,7 +154,7 @@ export class ApplyMetadataCascadePolicyOptionals {
           ApplyMetadataCascadePolicyOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -200,7 +200,7 @@ export class GetMetadataCascadePoliciesHeaders {
   } = {};
   constructor(
     fields: Omit<GetMetadataCascadePoliciesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -256,7 +256,7 @@ export class CreateMetadataCascadePolicyHeaders {
   } = {};
   constructor(
     fields: Omit<CreateMetadataCascadePolicyHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -280,7 +280,7 @@ export class GetMetadataCascadePolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -304,7 +304,7 @@ export class DeleteMetadataCascadePolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -343,7 +343,7 @@ export class ApplyMetadataCascadePolicyHeaders {
   } = {};
   constructor(
     fields: Omit<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'> &
-      Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>
+      Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -372,7 +372,7 @@ export class MetadataCascadePoliciesManager {
       | 'deleteMetadataCascadePolicyById'
       | 'applyMetadataCascadePolicy'
     > &
-      Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>
+      Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -391,7 +391,7 @@ export class MetadataCascadePoliciesManager {
    */
   async getMetadataCascadePolicies(
     queryParams: GetMetadataCascadePoliciesQueryParams,
-    optionalsInput: GetMetadataCascadePoliciesOptionalsInput = {}
+    optionalsInput: GetMetadataCascadePoliciesOptionalsInput = {},
   ): Promise<MetadataCascadePolicies> {
     const optionals: GetMetadataCascadePoliciesOptionals =
       new GetMetadataCascadePoliciesOptionals({
@@ -405,7 +405,7 @@ export class MetadataCascadePoliciesManager {
     } = prepareParams({
       ['folder_id']: toString(queryParams.folderId) as string,
       ['owner_enterprise_id']: toString(
-        queryParams.ownerEnterpriseId
+        queryParams.ownerEnterpriseId,
       ) as string,
       ['marker']: toString(queryParams.marker) as string,
       ['offset']: toString(queryParams.offset) as string,
@@ -416,7 +416,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies'
+        '/2.0/metadata_cascade_policies',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -444,7 +444,7 @@ export class MetadataCascadePoliciesManager {
    */
   async createMetadataCascadePolicy(
     requestBody: CreateMetadataCascadePolicyRequestBody,
-    optionalsInput: CreateMetadataCascadePolicyOptionalsInput = {}
+    optionalsInput: CreateMetadataCascadePolicyOptionalsInput = {},
   ): Promise<MetadataCascadePolicy> {
     const optionals: CreateMetadataCascadePolicyOptionals =
       new CreateMetadataCascadePolicyOptionals({
@@ -459,7 +459,7 @@ export class MetadataCascadePoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies'
+        '/2.0/metadata_cascade_policies',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -484,7 +484,7 @@ export class MetadataCascadePoliciesManager {
      */
   async getMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    optionalsInput: GetMetadataCascadePolicyByIdOptionalsInput = {}
+    optionalsInput: GetMetadataCascadePolicyByIdOptionalsInput = {},
   ): Promise<MetadataCascadePolicy> {
     const optionals: GetMetadataCascadePolicyByIdOptionals =
       new GetMetadataCascadePolicyByIdOptionals({
@@ -500,7 +500,7 @@ export class MetadataCascadePoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/metadata_cascade_policies/',
-        toString(metadataCascadePolicyId) as string
+        toString(metadataCascadePolicyId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -523,7 +523,7 @@ export class MetadataCascadePoliciesManager {
      */
   async deleteMetadataCascadePolicyById(
     metadataCascadePolicyId: string,
-    optionalsInput: DeleteMetadataCascadePolicyByIdOptionalsInput = {}
+    optionalsInput: DeleteMetadataCascadePolicyByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteMetadataCascadePolicyByIdOptionals =
       new DeleteMetadataCascadePolicyByIdOptionals({
@@ -539,7 +539,7 @@ export class MetadataCascadePoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/metadata_cascade_policies/',
-        toString(metadataCascadePolicyId) as string
+        toString(metadataCascadePolicyId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -564,7 +564,7 @@ export class MetadataCascadePoliciesManager {
   async applyMetadataCascadePolicy(
     metadataCascadePolicyId: string,
     requestBody: ApplyMetadataCascadePolicyRequestBody,
-    optionalsInput: ApplyMetadataCascadePolicyOptionalsInput = {}
+    optionalsInput: ApplyMetadataCascadePolicyOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: ApplyMetadataCascadePolicyOptionals =
       new ApplyMetadataCascadePolicyOptionals({
@@ -581,7 +581,7 @@ export class MetadataCascadePoliciesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/metadata_cascade_policies/',
         toString(metadataCascadePolicyId) as string,
-        '/apply'
+        '/apply',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -600,12 +600,12 @@ export interface MetadataCascadePoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateMetadataCascadePolicyRequestBodyScopeField(
-  val: CreateMetadataCascadePolicyRequestBodyScopeField
+  val: CreateMetadataCascadePolicyRequestBodyScopeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataCascadePolicyRequestBodyScopeField {
   if (val == 'global') {
     return val;
@@ -619,18 +619,18 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   });
 }
 export function serializeCreateMetadataCascadePolicyRequestBody(
-  val: CreateMetadataCascadePolicyRequestBody
+  val: CreateMetadataCascadePolicyRequestBody,
 ): SerializedData {
   return {
     ['folder_id']: val.folderId,
     ['scope']: serializeCreateMetadataCascadePolicyRequestBodyScopeField(
-      val.scope
+      val.scope,
     ),
     ['templateKey']: val.templateKey,
   };
 }
 export function deserializeCreateMetadataCascadePolicyRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateMetadataCascadePolicyRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -678,12 +678,12 @@ export function deserializeCreateMetadataCascadePolicyRequestBody(
   } satisfies CreateMetadataCascadePolicyRequestBody;
 }
 export function serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-  val: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField
+  val: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
 ): SerializedData {
   return val;
 }
 export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-  val: SerializedData
+  val: SerializedData,
 ): ApplyMetadataCascadePolicyRequestBodyConflictResolutionField {
   if (val == 'none') {
     return val;
@@ -697,17 +697,17 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
   });
 }
 export function serializeApplyMetadataCascadePolicyRequestBody(
-  val: ApplyMetadataCascadePolicyRequestBody
+  val: ApplyMetadataCascadePolicyRequestBody,
 ): SerializedData {
   return {
     ['conflict_resolution']:
       serializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-        val.conflictResolution
+        val.conflictResolution,
       ),
   };
 }
 export function deserializeApplyMetadataCascadePolicyRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): ApplyMetadataCascadePolicyRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -722,7 +722,7 @@ export function deserializeApplyMetadataCascadePolicyRequestBody(
   }
   const conflictResolution: ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
     deserializeApplyMetadataCascadePolicyRequestBodyConflictResolutionField(
-      val.conflict_resolution
+      val.conflict_resolution,
     );
   return {
     conflictResolution: conflictResolution,

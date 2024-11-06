@@ -44,12 +44,12 @@ export interface Classification {
   readonly rawData?: SerializedData;
 }
 export function serializeClassificationTemplateField(
-  val: ClassificationTemplateField
+  val: ClassificationTemplateField,
 ): SerializedData {
   return val;
 }
 export function deserializeClassificationTemplateField(
-  val: SerializedData
+  val: SerializedData,
 ): ClassificationTemplateField {
   if (val == 'securityClassification-6VMVochwUWo') {
     return val;

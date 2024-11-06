@@ -30,7 +30,7 @@ export function serializeRealtimeServers(val: RealtimeServers): SerializedData {
   };
 }
 export function deserializeRealtimeServers(
-  val: SerializedData
+  val: SerializedData,
 ): RealtimeServers {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "RealtimeServers"' });
@@ -51,9 +51,9 @@ export function deserializeRealtimeServers(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): RealtimeServer {
-          return deserializeRealtimeServer(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): RealtimeServer {
+            return deserializeRealtimeServer(itm);
+          }) as readonly any[])
+        : [];
   return { chunkSize: chunkSize, entries: entries } satisfies RealtimeServers;
 }

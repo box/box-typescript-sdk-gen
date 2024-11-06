@@ -57,7 +57,7 @@ test('testUploadFileAndFileVersion', async function testUploadFileAndFileVersion
         name: newFileVersionName,
       } satisfies UploadFileVersionRequestBodyAttributesField,
       file: newFileContentStream,
-    } satisfies UploadFileVersionRequestBody
+    } satisfies UploadFileVersionRequestBody,
   );
   const newFileVersion: FileFull = uploadedFilesVersion.entries![0];
   if (!(newFileVersion.name == newFileVersionName)) {
@@ -85,7 +85,7 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
         queryParams: {} satisfies UploadFileQueryParams,
         headers: new UploadFileHeaders({}),
         cancellationToken: cancellationToken,
-      } satisfies UploadFileOptionalsInput
+      } satisfies UploadFileOptionalsInput,
     );
   }).rejects.toThrow();
 });

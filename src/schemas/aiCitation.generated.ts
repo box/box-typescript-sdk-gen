@@ -23,12 +23,12 @@ export interface AiCitation {
   readonly rawData?: SerializedData;
 }
 export function serializeAiCitationTypeField(
-  val: AiCitationTypeField
+  val: AiCitationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiCitationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiCitationTypeField {
   if (val == 'file') {
     return val;

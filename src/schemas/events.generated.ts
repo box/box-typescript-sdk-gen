@@ -24,12 +24,12 @@ export interface Events {
   readonly rawData?: SerializedData;
 }
 export function serializeEventsNextStreamPositionField(
-  val: any
+  val: any,
 ): SerializedData {
   return val;
 }
 export function deserializeEventsNextStreamPositionField(
-  val: SerializedData
+  val: SerializedData,
 ): EventsNextStreamPositionField {
   if (sdIsString(val)) {
     return val;
@@ -80,10 +80,10 @@ export function deserializeEvents(val: SerializedData): Events {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): Event {
-          return deserializeEvent(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): Event {
+            return deserializeEvent(itm);
+          }) as readonly any[])
+        : [];
   return {
     chunkSize: chunkSize,
     nextStreamPosition: nextStreamPosition,

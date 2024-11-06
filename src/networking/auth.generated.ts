@@ -32,6 +32,6 @@ export interface Authentication {
     scopes: readonly string[],
     resource?: string,
     sharedLink?: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken>;
 }

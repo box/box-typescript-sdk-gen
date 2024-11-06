@@ -48,12 +48,12 @@ export interface CollaborationAllowlistEntry {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationAllowlistEntryTypeField(
-  val: CollaborationAllowlistEntryTypeField
+  val: CollaborationAllowlistEntryTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationAllowlistEntryTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntryTypeField {
   if (val == 'collaboration_whitelist_entry') {
     return val;
@@ -63,12 +63,12 @@ export function deserializeCollaborationAllowlistEntryTypeField(
   });
 }
 export function serializeCollaborationAllowlistEntryDirectionField(
-  val: CollaborationAllowlistEntryDirectionField
+  val: CollaborationAllowlistEntryDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationAllowlistEntryDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntryDirectionField {
   if (val == 'inbound') {
     return val;
@@ -84,12 +84,12 @@ export function deserializeCollaborationAllowlistEntryDirectionField(
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseTypeField(
-  val: CollaborationAllowlistEntryEnterpriseTypeField
+  val: CollaborationAllowlistEntryEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntryEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -99,7 +99,7 @@ export function deserializeCollaborationAllowlistEntryEnterpriseTypeField(
   });
 }
 export function serializeCollaborationAllowlistEntryEnterpriseField(
-  val: CollaborationAllowlistEntryEnterpriseField
+  val: CollaborationAllowlistEntryEnterpriseField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -111,7 +111,7 @@ export function serializeCollaborationAllowlistEntryEnterpriseField(
   };
 }
 export function deserializeCollaborationAllowlistEntryEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntryEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -144,7 +144,7 @@ export function deserializeCollaborationAllowlistEntryEnterpriseField(
   } satisfies CollaborationAllowlistEntryEnterpriseField;
 }
 export function serializeCollaborationAllowlistEntry(
-  val: CollaborationAllowlistEntry
+  val: CollaborationAllowlistEntry,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -166,7 +166,7 @@ export function serializeCollaborationAllowlistEntry(
   };
 }
 export function deserializeCollaborationAllowlistEntry(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAllowlistEntry {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

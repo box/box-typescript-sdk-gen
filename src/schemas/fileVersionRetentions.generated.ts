@@ -27,7 +27,7 @@ export interface FileVersionRetentions {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionRetentions(
-  val: FileVersionRetentions
+  val: FileVersionRetentions,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -37,14 +37,14 @@ export function serializeFileVersionRetentions(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileVersionRetention
+            item: FileVersionRetention,
           ): SerializedData {
             return serializeFileVersionRetention(item);
           }) as readonly any[]),
   };
 }
 export function deserializeFileVersionRetentions(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionRetentions {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -82,10 +82,12 @@ export function deserializeFileVersionRetentions(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileVersionRetention {
-          return deserializeFileVersionRetention(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileVersionRetention {
+            return deserializeFileVersionRetention(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

@@ -241,7 +241,7 @@ export class BoxClient {
       | 'withCustomAgentOptions'
       | 'withInterceptors'
     > &
-      Partial<Pick<BoxClient, 'networkSession'>>
+      Partial<Pick<BoxClient, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -571,7 +571,7 @@ export class BoxClient {
   withExtraHeaders(
     extraHeaders: {
       readonly [key: string]: string;
-    } = {}
+    } = {},
   ): BoxClient {
     return new BoxClient({
       auth: this.auth,

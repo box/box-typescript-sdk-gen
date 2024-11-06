@@ -29,7 +29,7 @@ export function serializeFileOrFolderOrWebLink(val: any): SerializedData {
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileOrFolderOrWebLink(
-  val: SerializedData
+  val: SerializedData,
 ): FileOrFolderOrWebLink {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

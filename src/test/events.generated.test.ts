@@ -144,7 +144,7 @@ test('testGetEventsWithLongPolling', async function testGetEventsWithLongPolling
 test('testGetEventsWithDateFilters', async function testGetEventsWithDateFilters(): Promise<any> {
   const createdAfterDate: DateTime = dateTimeFromString('2024-06-09T00:00:00Z');
   const createdBeforeDate: DateTime = dateTimeFromString(
-    '2025-06-09T00:00:00Z'
+    '2025-06-09T00:00:00Z',
   );
   const servers: Events = await client.events.getEvents({
     streamType: 'admin_logs' as GetEventsQueryParamsStreamTypeField,

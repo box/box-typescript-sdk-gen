@@ -105,12 +105,12 @@ export interface PostOAuth2Token {
   readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2TokenGrantTypeField(
-  val: PostOAuth2TokenGrantTypeField
+  val: PostOAuth2TokenGrantTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializePostOAuth2TokenGrantTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenGrantTypeField {
   if (val == 'authorization_code') {
     return val;
@@ -132,12 +132,12 @@ export function deserializePostOAuth2TokenGrantTypeField(
   });
 }
 export function serializePostOAuth2TokenSubjectTokenTypeField(
-  val: PostOAuth2TokenSubjectTokenTypeField
+  val: PostOAuth2TokenSubjectTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializePostOAuth2TokenSubjectTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenSubjectTokenTypeField {
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
     return val;
@@ -147,12 +147,12 @@ export function deserializePostOAuth2TokenSubjectTokenTypeField(
   });
 }
 export function serializePostOAuth2TokenActorTokenTypeField(
-  val: PostOAuth2TokenActorTokenTypeField
+  val: PostOAuth2TokenActorTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializePostOAuth2TokenActorTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenActorTokenTypeField {
   if (val == 'urn:ietf:params:oauth:token-type:id_token') {
     return val;
@@ -162,12 +162,12 @@ export function deserializePostOAuth2TokenActorTokenTypeField(
   });
 }
 export function serializePostOAuth2TokenBoxSubjectTypeField(
-  val: PostOAuth2TokenBoxSubjectTypeField
+  val: PostOAuth2TokenBoxSubjectTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializePostOAuth2TokenBoxSubjectTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenBoxSubjectTypeField {
   if (val == 'enterprise') {
     return val;
@@ -209,7 +209,7 @@ export function serializePostOAuth2Token(val: PostOAuth2Token): SerializedData {
   };
 }
 export function deserializePostOAuth2Token(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2Token {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "PostOAuth2Token"' });

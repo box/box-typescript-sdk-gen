@@ -28,7 +28,7 @@ export interface LegalHoldPolicyAssignments {
   readonly rawData?: SerializedData;
 }
 export function serializeLegalHoldPolicyAssignments(
-  val: LegalHoldPolicyAssignments
+  val: LegalHoldPolicyAssignments,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -38,14 +38,14 @@ export function serializeLegalHoldPolicyAssignments(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: LegalHoldPolicyAssignment
+            item: LegalHoldPolicyAssignment,
           ): SerializedData {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
   };
 }
 export function deserializeLegalHoldPolicyAssignments(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyAssignments {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -85,12 +85,12 @@ export function deserializeLegalHoldPolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): LegalHoldPolicyAssignment {
-          return deserializeLegalHoldPolicyAssignment(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): LegalHoldPolicyAssignment {
+            return deserializeLegalHoldPolicyAssignment(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

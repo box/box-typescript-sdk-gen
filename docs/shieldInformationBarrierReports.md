@@ -19,7 +19,7 @@ See the endpoint docs at
 await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
   {
     shieldInformationBarrierId: barrierId,
-  } satisfies GetShieldInformationBarrierReportsQueryParams
+  } satisfies GetShieldInformationBarrierReportsQueryParams,
 );
 ```
 
@@ -54,7 +54,7 @@ await client.shieldInformationBarrierReports.createShieldInformationBarrierRepor
       id: barrierId,
       type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
     } satisfies ShieldInformationBarrierBase,
-  } satisfies ShieldInformationBarrierReference
+  } satisfies ShieldInformationBarrierReference,
 );
 ```
 
@@ -84,7 +84,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierReports.getShieldInformationBarrierReportById(
-  createdReport.id!
+  createdReport.id!,
 );
 ```
 

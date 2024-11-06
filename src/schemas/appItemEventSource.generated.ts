@@ -30,7 +30,7 @@ export class AppItemEventSource {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AppItemEventSource, 'type'> &
-      Partial<Pick<AppItemEventSource, 'type'>>
+      Partial<Pick<AppItemEventSource, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -68,12 +68,12 @@ export interface AppItemEventSourceInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAppItemEventSourceTypeField(
-  val: AppItemEventSourceTypeField
+  val: AppItemEventSourceTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAppItemEventSourceTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemEventSourceTypeField {
   if (val == 'app_item') {
     return val;
@@ -83,7 +83,7 @@ export function deserializeAppItemEventSourceTypeField(
   });
 }
 export function serializeAppItemEventSource(
-  val: AppItemEventSource
+  val: AppItemEventSource,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -94,7 +94,7 @@ export function serializeAppItemEventSource(
   };
 }
 export function deserializeAppItemEventSource(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemEventSource {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -145,7 +145,7 @@ export function deserializeAppItemEventSource(
   } satisfies AppItemEventSource;
 }
 export function serializeAppItemEventSourceInput(
-  val: AppItemEventSourceInput
+  val: AppItemEventSourceInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -159,7 +159,7 @@ export function serializeAppItemEventSourceInput(
   };
 }
 export function deserializeAppItemEventSourceInput(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemEventSourceInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

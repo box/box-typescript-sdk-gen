@@ -178,7 +178,7 @@ export class Folder extends FolderMini {
   }
 }
 export function serializeFolderPathCollectionField(
-  val: FolderPathCollectionField
+  val: FolderPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -188,7 +188,7 @@ export function serializeFolderPathCollectionField(
   };
 }
 export function deserializeFolderPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -231,12 +231,12 @@ export function deserializeFolderPathCollectionField(
   } satisfies FolderPathCollectionField;
 }
 export function serializeFolderSharedLinkAccessField(
-  val: FolderSharedLinkAccessField
+  val: FolderSharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderSharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderSharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -252,12 +252,12 @@ export function deserializeFolderSharedLinkAccessField(
   });
 }
 export function serializeFolderSharedLinkEffectiveAccessField(
-  val: FolderSharedLinkEffectiveAccessField
+  val: FolderSharedLinkEffectiveAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderSharedLinkEffectiveAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderSharedLinkEffectiveAccessField {
   if (val == 'open') {
     return val;
@@ -273,12 +273,12 @@ export function deserializeFolderSharedLinkEffectiveAccessField(
   });
 }
 export function serializeFolderSharedLinkEffectivePermissionField(
-  val: FolderSharedLinkEffectivePermissionField
+  val: FolderSharedLinkEffectivePermissionField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderSharedLinkEffectivePermissionField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderSharedLinkEffectivePermissionField {
   if (val == 'can_edit') {
     return val;
@@ -297,7 +297,7 @@ export function deserializeFolderSharedLinkEffectivePermissionField(
   });
 }
 export function serializeFolderSharedLinkPermissionsField(
-  val: FolderSharedLinkPermissionsField
+  val: FolderSharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -306,7 +306,7 @@ export function serializeFolderSharedLinkPermissionsField(
   };
 }
 export function deserializeFolderSharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderSharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -359,7 +359,7 @@ export function deserializeFolderSharedLinkPermissionsField(
   } satisfies FolderSharedLinkPermissionsField;
 }
 export function serializeFolderSharedLinkField(
-  val: FolderSharedLinkField
+  val: FolderSharedLinkField,
 ): SerializedData {
   return {
     ['url']: val.url,
@@ -371,10 +371,10 @@ export function serializeFolderSharedLinkField(
         ? void 0
         : serializeFolderSharedLinkAccessField(val.access),
     ['effective_access']: serializeFolderSharedLinkEffectiveAccessField(
-      val.effectiveAccess
+      val.effectiveAccess,
     ),
     ['effective_permission']: serializeFolderSharedLinkEffectivePermissionField(
-      val.effectivePermission
+      val.effectivePermission,
     ),
     ['unshared_at']:
       val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
@@ -388,7 +388,7 @@ export function serializeFolderSharedLinkField(
   };
 }
 export function deserializeFolderSharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderSharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -450,7 +450,7 @@ export function deserializeFolderSharedLinkField(
   }
   const effectivePermission: FolderSharedLinkEffectivePermissionField =
     deserializeFolderSharedLinkEffectivePermissionField(
-      val.effective_permission
+      val.effective_permission,
     );
   if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
     throw new BoxSdkError({
@@ -519,12 +519,12 @@ export function deserializeFolderSharedLinkField(
   } satisfies FolderSharedLinkField;
 }
 export function serializeFolderFolderUploadEmailAccessField(
-  val: FolderFolderUploadEmailAccessField
+  val: FolderFolderUploadEmailAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderFolderUploadEmailAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFolderUploadEmailAccessField {
   if (val == 'open') {
     return val;
@@ -537,7 +537,7 @@ export function deserializeFolderFolderUploadEmailAccessField(
   });
 }
 export function serializeFolderFolderUploadEmailField(
-  val: FolderFolderUploadEmailField
+  val: FolderFolderUploadEmailField,
 ): SerializedData {
   return {
     ['access']:
@@ -548,7 +548,7 @@ export function serializeFolderFolderUploadEmailField(
   };
 }
 export function deserializeFolderFolderUploadEmailField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderFolderUploadEmailField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -572,12 +572,12 @@ export function deserializeFolderFolderUploadEmailField(
   } satisfies FolderFolderUploadEmailField;
 }
 export function serializeFolderItemStatusField(
-  val: FolderItemStatusField
+  val: FolderItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeFolderItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): FolderItemStatusField {
   if (val == 'active') {
     return val;

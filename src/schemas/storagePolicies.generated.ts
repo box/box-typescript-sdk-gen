@@ -40,7 +40,7 @@ export function serializeStoragePolicies(val: StoragePolicies): SerializedData {
   };
 }
 export function deserializeStoragePolicies(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicies {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "StoragePolicies"' });
@@ -74,10 +74,10 @@ export function deserializeStoragePolicies(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): StoragePolicy {
-          return deserializeStoragePolicy(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): StoragePolicy {
+            return deserializeStoragePolicy(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

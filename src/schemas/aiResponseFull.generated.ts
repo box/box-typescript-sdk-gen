@@ -50,10 +50,10 @@ export function deserializeAiResponseFull(val: SerializedData): AiResponseFull {
     val.citations == void 0
       ? void 0
       : sdIsList(val.citations)
-      ? (val.citations.map(function (itm: SerializedData): AiCitation {
-          return deserializeAiCitation(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.citations.map(function (itm: SerializedData): AiCitation {
+            return deserializeAiCitation(itm);
+          }) as readonly any[])
+        : [];
   if (val.answer == void 0) {
     throw new BoxSdkError({
       message: 'Expecting "answer" of type "AiResponseFull" to be defined',

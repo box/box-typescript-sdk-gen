@@ -30,7 +30,7 @@ export function serializeTaskAssignments(val: TaskAssignments): SerializedData {
   };
 }
 export function deserializeTaskAssignments(
-  val: SerializedData
+  val: SerializedData,
 ): TaskAssignments {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "TaskAssignments"' });
@@ -51,9 +51,9 @@ export function deserializeTaskAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): TaskAssignment {
-          return deserializeTaskAssignment(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): TaskAssignment {
+            return deserializeTaskAssignment(itm);
+          }) as readonly any[])
+        : [];
   return { totalCount: totalCount, entries: entries } satisfies TaskAssignments;
 }

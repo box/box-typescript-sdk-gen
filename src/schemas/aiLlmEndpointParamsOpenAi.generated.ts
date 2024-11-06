@@ -36,7 +36,7 @@ export class AiLlmEndpointParamsOpenAi {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsOpenAi, 'type'> &
-      Partial<Pick<AiLlmEndpointParamsOpenAi, 'type'>>
+      Partial<Pick<AiLlmEndpointParamsOpenAi, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -89,12 +89,12 @@ export interface AiLlmEndpointParamsOpenAiInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsOpenAiTypeField(
-  val: AiLlmEndpointParamsOpenAiTypeField
+  val: AiLlmEndpointParamsOpenAiTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiLlmEndpointParamsOpenAiTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsOpenAiTypeField {
   if (val == 'openai_params') {
     return val;
@@ -104,7 +104,7 @@ export function deserializeAiLlmEndpointParamsOpenAiTypeField(
   });
 }
 export function serializeAiLlmEndpointParamsOpenAi(
-  val: AiLlmEndpointParamsOpenAi
+  val: AiLlmEndpointParamsOpenAi,
 ): SerializedData {
   return {
     ['type']: serializeAiLlmEndpointParamsOpenAiTypeField(val.type),
@@ -118,7 +118,7 @@ export function serializeAiLlmEndpointParamsOpenAi(
   };
 }
 export function deserializeAiLlmEndpointParamsOpenAi(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsOpenAi {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -184,7 +184,7 @@ export function deserializeAiLlmEndpointParamsOpenAi(
   } satisfies AiLlmEndpointParamsOpenAi;
 }
 export function serializeAiLlmEndpointParamsOpenAiInput(
-  val: AiLlmEndpointParamsOpenAiInput
+  val: AiLlmEndpointParamsOpenAiInput,
 ): SerializedData {
   return {
     ['type']:
@@ -201,7 +201,7 @@ export function serializeAiLlmEndpointParamsOpenAiInput(
   };
 }
 export function deserializeAiLlmEndpointParamsOpenAiInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiLlmEndpointParamsOpenAiInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

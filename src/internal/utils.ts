@@ -115,7 +115,7 @@ export class Hash {
     if (isBrowser()) {
       this.#hash = await window.crypto.subtle.digest(
         this.algorithm,
-        this.#chunks
+        this.#chunks,
       );
       const hashArray = Array.from(new Uint8Array(this.#hash));
       const hashHex = hashArray
@@ -145,7 +145,7 @@ export function generateByteBuffer(size: number): Buffer {
 }
 
 export function generateByteStreamFromBuffer(
-  buffer: Buffer | ArrayBuffer
+  buffer: Buffer | ArrayBuffer,
 ): Readable {
   return isBrowser()
     ? new ReadableStream<Uint8Array>({
@@ -213,7 +213,7 @@ export async function readByteStream(byteStream: Readable): Promise<Buffer> {
 export async function* iterateChunks(
   stream: Readable,
   chunkSize: number,
-  fileSize: number
+  fileSize: number,
 ): Iterator<Readable> {
   let buffers: Buffer[] = [];
   let totalSize = 0;
@@ -236,7 +236,7 @@ export async function* iterateChunks(
       let start = 0;
       while (totalSize >= chunkSize) {
         yield generateByteStreamFromBuffer(
-          buffer.subarray(start, start + chunkSize)
+          buffer.subarray(start, start + chunkSize),
         );
         start += chunkSize;
         totalSize -= chunkSize;
@@ -248,7 +248,7 @@ export async function* iterateChunks(
 
   if (consumedSize !== fileSize) {
     throw new Error(
-      `Stream size ${consumedSize} does not match expected file size ${fileSize}`
+      `Stream size ${consumedSize} does not match expected file size ${fileSize}`,
     );
   }
   if (totalSize > 0) {
@@ -259,7 +259,7 @@ export async function* iterateChunks(
 export async function reduceIterator<T, U>(
   iterator: Iterator<T>,
   reducer: (accumulator: U, current: T) => Promise<U>,
-  initialValue: U
+  initialValue: U,
 ): Promise<U> {
   let result = initialValue;
   let iteration = await iterator.next();
@@ -280,8 +280,8 @@ export function prepareParams(map: {
   }
   return Object.fromEntries(
     Object.entries(map).filter<[string, string]>(
-      (entry): entry is [string, string] => typeof entry[1] === 'string'
-    )
+      (entry): entry is [string, string] => typeof entry[1] === 'string',
+    ),
   );
 }
 
@@ -348,7 +348,7 @@ export async function createJwtAssertion(
     readonly [key: string]: any;
   },
   key: JwtKey,
-  options: JwtSignOptions
+  options: JwtSignOptions,
 ): Promise<string> {
   const crypto = eval('require')('crypto');
   const privateKey = crypto.createPrivateKey({
@@ -412,7 +412,7 @@ export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
     const proxyUrl = `http://${proxyAuth}${proxyHost}`;
     agentOptions = Object.assign(
       { getProxyForUrl: (url: string) => proxyUrl },
-      options || {}
+      options || {},
     );
   }
 

@@ -72,10 +72,10 @@ export function deserializeRecentItems(val: SerializedData): RecentItems {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): RecentItem {
-          return deserializeRecentItem(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): RecentItem {
+            return deserializeRecentItem(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

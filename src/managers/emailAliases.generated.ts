@@ -27,7 +27,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetUserEmailAliasesOptionals {
   readonly headers: GetUserEmailAliasesHeaders = new GetUserEmailAliasesHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -37,7 +37,7 @@ export class GetUserEmailAliasesOptionals {
     > &
       Partial<
         Pick<GetUserEmailAliasesOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -62,7 +62,7 @@ export class CreateUserEmailAliasOptionals {
     > &
       Partial<
         Pick<CreateUserEmailAliasOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -87,7 +87,7 @@ export class DeleteUserEmailAliasByIdOptionals {
     > &
       Partial<
         Pick<DeleteUserEmailAliasByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -109,7 +109,7 @@ export class GetUserEmailAliasesHeaders {
   } = {};
   constructor(
     fields: Omit<GetUserEmailAliasesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetUserEmailAliasesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetUserEmailAliasesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -145,7 +145,7 @@ export class CreateUserEmailAliasHeaders {
   } = {};
   constructor(
     fields: Omit<CreateUserEmailAliasHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateUserEmailAliasHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateUserEmailAliasHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -169,7 +169,7 @@ export class DeleteUserEmailAliasByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -196,7 +196,7 @@ export class EmailAliasesManager {
       | 'createUserEmailAlias'
       | 'deleteUserEmailAliasById'
     > &
-      Partial<Pick<EmailAliasesManager, 'networkSession'>>
+      Partial<Pick<EmailAliasesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -215,7 +215,7 @@ export class EmailAliasesManager {
      */
   async getUserEmailAliases(
     userId: string,
-    optionalsInput: GetUserEmailAliasesOptionalsInput = {}
+    optionalsInput: GetUserEmailAliasesOptionalsInput = {},
   ): Promise<EmailAliases> {
     const optionals: GetUserEmailAliasesOptionals =
       new GetUserEmailAliasesOptionals({
@@ -232,7 +232,7 @@ export class EmailAliasesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
-        '/email_aliases'
+        '/email_aliases',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -257,7 +257,7 @@ export class EmailAliasesManager {
   async createUserEmailAlias(
     userId: string,
     requestBody: CreateUserEmailAliasRequestBody,
-    optionalsInput: CreateUserEmailAliasOptionalsInput = {}
+    optionalsInput: CreateUserEmailAliasOptionalsInput = {},
   ): Promise<EmailAlias> {
     const optionals: CreateUserEmailAliasOptionals =
       new CreateUserEmailAliasOptionals({
@@ -274,7 +274,7 @@ export class EmailAliasesManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
-        '/email_aliases'
+        '/email_aliases',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -302,7 +302,7 @@ export class EmailAliasesManager {
   async deleteUserEmailAliasById(
     userId: string,
     emailAliasId: string,
-    optionalsInput: DeleteUserEmailAliasByIdOptionalsInput = {}
+    optionalsInput: DeleteUserEmailAliasByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteUserEmailAliasByIdOptionals =
       new DeleteUserEmailAliasByIdOptionals({
@@ -320,7 +320,7 @@ export class EmailAliasesManager {
         '/2.0/users/',
         toString(userId) as string,
         '/email_aliases/',
-        toString(emailAliasId) as string
+        toString(emailAliasId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -337,12 +337,12 @@ export interface EmailAliasesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateUserEmailAliasRequestBody(
-  val: CreateUserEmailAliasRequestBody
+  val: CreateUserEmailAliasRequestBody,
 ): SerializedData {
   return { ['email']: val.email };
 }
 export function deserializeCreateUserEmailAliasRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateUserEmailAliasRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

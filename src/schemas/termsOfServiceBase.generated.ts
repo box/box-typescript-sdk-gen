@@ -18,7 +18,7 @@ export class TermsOfServiceBase {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<TermsOfServiceBase, 'type'> &
-      Partial<Pick<TermsOfServiceBase, 'type'>>
+      Partial<Pick<TermsOfServiceBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -41,12 +41,12 @@ export interface TermsOfServiceBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceBaseTypeField(
-  val: TermsOfServiceBaseTypeField
+  val: TermsOfServiceBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTermsOfServiceBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceBaseTypeField {
   if (val == 'terms_of_service') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeTermsOfServiceBaseTypeField(
   });
 }
 export function serializeTermsOfServiceBase(
-  val: TermsOfServiceBase
+  val: TermsOfServiceBase,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -64,7 +64,7 @@ export function serializeTermsOfServiceBase(
   };
 }
 export function deserializeTermsOfServiceBase(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -92,7 +92,7 @@ export function deserializeTermsOfServiceBase(
   return { id: id, type: type } satisfies TermsOfServiceBase;
 }
 export function serializeTermsOfServiceBaseInput(
-  val: TermsOfServiceBaseInput
+  val: TermsOfServiceBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -103,7 +103,7 @@ export function serializeTermsOfServiceBaseInput(
   };
 }
 export function deserializeTermsOfServiceBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

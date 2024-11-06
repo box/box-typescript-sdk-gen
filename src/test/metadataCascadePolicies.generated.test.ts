@@ -110,7 +110,7 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
   const cascadePolicyId: string = cascadePolicy.id;
   const policyFromTheApi: MetadataCascadePolicy =
     await client.metadataCascadePolicies.getMetadataCascadePolicyById(
-      cascadePolicyId
+      cascadePolicyId,
     );
   if (!(cascadePolicyId == policyFromTheApi.id)) {
     throw new Error('Assertion failed');
@@ -128,33 +128,33 @@ test('testMetadataCascadePolicies', async function testMetadataCascadePolicies()
       {
         conflictResolution:
           'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
-      } satisfies ApplyMetadataCascadePolicyRequestBody
+      } satisfies ApplyMetadataCascadePolicyRequestBody,
     );
   }).rejects.toThrow();
   await client.folderMetadata.createFolderMetadataById(
     folder.id,
     'enterprise' as CreateFolderMetadataByIdScope,
     templateKey,
-    { ['testName']: 'xyz' }
+    { ['testName']: 'xyz' },
   );
   await client.metadataCascadePolicies.applyMetadataCascadePolicy(
     cascadePolicyId,
     {
       conflictResolution:
         'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
-    } satisfies ApplyMetadataCascadePolicyRequestBody
+    } satisfies ApplyMetadataCascadePolicyRequestBody,
   );
   await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
-    cascadePolicyId
+    cascadePolicyId,
   );
   await expect(async () => {
     await client.metadataCascadePolicies.getMetadataCascadePolicyById(
-      cascadePolicyId
+      cascadePolicyId,
     );
   }).rejects.toThrow();
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    templateKey
+    templateKey,
   );
   await client.folders.deleteFolderById(folder.id);
 });

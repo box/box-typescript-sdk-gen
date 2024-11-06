@@ -53,7 +53,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierSegmentRestrictions', async function testShieldInformationBarrierSegmentRestrictions(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
@@ -68,7 +68,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
         } satisfies ShieldInformationBarrierBase,
         name: getUuid(),
         description: 'barrier segment description',
-      } satisfies CreateShieldInformationBarrierSegmentRequestBody
+      } satisfies CreateShieldInformationBarrierSegmentRequestBody,
     );
   const segmentId: string = segment.id!;
   const segmentToRestrict: ShieldInformationBarrierSegment =
@@ -80,7 +80,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
         } satisfies ShieldInformationBarrierBase,
         name: getUuid(),
         description: 'barrier segment description',
-      } satisfies CreateShieldInformationBarrierSegmentRequestBody
+      } satisfies CreateShieldInformationBarrierSegmentRequestBody,
     );
   const segmentToRestrictId: string = segmentToRestrict.id!;
   const segmentRestriction: ShieldInformationBarrierSegmentRestriction =
@@ -95,7 +95,7 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
           type: 'shield_information_barrier_segment' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField,
         } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
         type: 'shield_information_barrier_segment_restriction' as CreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField,
-      } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput
+      } satisfies CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput,
     );
   const segmentRestrictionId: string = segmentRestriction.id!;
   if (!(segmentRestriction.shieldInformationBarrierSegment.id == segmentId)) {
@@ -105,14 +105,14 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictions(
       {
         shieldInformationBarrierSegmentId: segmentId,
-      } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams
+      } satisfies GetShieldInformationBarrierSegmentRestrictionsQueryParams,
     );
   if (!(segmentRestrictions.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
   const segmentRestrictionFromApi: ShieldInformationBarrierSegmentRestriction =
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
-      segmentRestrictionId
+      segmentRestrictionId,
     );
   if (!(segmentRestrictionFromApi.id! == segmentRestrictionId)) {
     throw new Error('Assertion failed');
@@ -131,18 +131,18 @@ test('testShieldInformationBarrierSegmentRestrictions', async function testShiel
     throw new Error('Assertion failed');
   }
   await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformationBarrierSegmentRestrictionById(
-    segmentRestrictionId
+    segmentRestrictionId,
   );
   await expect(async () => {
     await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBarrierSegmentRestrictionById(
-      segmentRestrictionId
+      segmentRestrictionId,
     );
   }).rejects.toThrow();
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
-    segmentId
+    segmentId,
   );
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
-    segmentToRestrictId
+    segmentToRestrictId,
   );
 });
 export {};

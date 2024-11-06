@@ -23,7 +23,7 @@ export function serializeFileFullOrFolderFull(val: any): SerializedData {
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileFullOrFolderFull(
-  val: SerializedData
+  val: SerializedData,
 ): FileFullOrFolderFull {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

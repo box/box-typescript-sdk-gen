@@ -30,7 +30,7 @@ export class GetWorkflowsOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetWorkflowsOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetWorkflowsOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetWorkflowsOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -49,7 +49,7 @@ export class StartWorkflowOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<StartWorkflowOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<StartWorkflowOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<StartWorkflowOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -97,7 +97,7 @@ export class GetWorkflowsHeaders {
   } = {};
   constructor(
     fields: Omit<GetWorkflowsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -170,7 +170,7 @@ export class StartWorkflowHeaders {
   } = {};
   constructor(
     fields: Omit<StartWorkflowHeaders, 'extraHeaders'> &
-      Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>
+      Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -194,7 +194,7 @@ export class WorkflowsManager {
       WorkflowsManager,
       'networkSession' | 'getWorkflows' | 'startWorkflow'
     > &
-      Partial<Pick<WorkflowsManager, 'networkSession'>>
+      Partial<Pick<WorkflowsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -215,7 +215,7 @@ export class WorkflowsManager {
    */
   async getWorkflows(
     queryParams: GetWorkflowsQueryParams,
-    optionalsInput: GetWorkflowsOptionalsInput = {}
+    optionalsInput: GetWorkflowsOptionalsInput = {},
   ): Promise<Workflows> {
     const optionals: GetWorkflowsOptionals = new GetWorkflowsOptionals({
       headers: optionalsInput.headers,
@@ -237,7 +237,7 @@ export class WorkflowsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/workflows'
+        '/2.0/workflows',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -266,7 +266,7 @@ export class WorkflowsManager {
   async startWorkflow(
     workflowId: string,
     requestBody: StartWorkflowRequestBody,
-    optionalsInput: StartWorkflowOptionalsInput = {}
+    optionalsInput: StartWorkflowOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: StartWorkflowOptionals = new StartWorkflowOptionals({
       headers: optionalsInput.headers,
@@ -282,7 +282,7 @@ export class WorkflowsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/workflows/',
         toString(workflowId) as string,
-        '/start'
+        '/start',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -301,12 +301,12 @@ export interface WorkflowsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeStartWorkflowRequestBodyTypeField(
-  val: StartWorkflowRequestBodyTypeField
+  val: StartWorkflowRequestBodyTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStartWorkflowRequestBodyTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyTypeField {
   if (val == 'workflow_parameters') {
     return val;
@@ -316,7 +316,7 @@ export function deserializeStartWorkflowRequestBodyTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFlowField(
-  val: StartWorkflowRequestBodyFlowField
+  val: StartWorkflowRequestBodyFlowField,
 ): SerializedData {
   return {
     ['type']: val.type == void 0 ? void 0 : val.type,
@@ -324,7 +324,7 @@ export function serializeStartWorkflowRequestBodyFlowField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFlowField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyFlowField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -348,12 +348,12 @@ export function deserializeStartWorkflowRequestBodyFlowField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFlowField;
 }
 export function serializeStartWorkflowRequestBodyFilesTypeField(
-  val: StartWorkflowRequestBodyFilesTypeField
+  val: StartWorkflowRequestBodyFilesTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStartWorkflowRequestBodyFilesTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyFilesTypeField {
   if (val == 'file') {
     return val;
@@ -363,7 +363,7 @@ export function deserializeStartWorkflowRequestBodyFilesTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFilesField(
-  val: StartWorkflowRequestBodyFilesField
+  val: StartWorkflowRequestBodyFilesField,
 ): SerializedData {
   return {
     ['type']:
@@ -374,7 +374,7 @@ export function serializeStartWorkflowRequestBodyFilesField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFilesField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyFilesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -395,12 +395,12 @@ export function deserializeStartWorkflowRequestBodyFilesField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFilesField;
 }
 export function serializeStartWorkflowRequestBodyFolderTypeField(
-  val: StartWorkflowRequestBodyFolderTypeField
+  val: StartWorkflowRequestBodyFolderTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStartWorkflowRequestBodyFolderTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyFolderTypeField {
   if (val == 'folder') {
     return val;
@@ -410,7 +410,7 @@ export function deserializeStartWorkflowRequestBodyFolderTypeField(
   });
 }
 export function serializeStartWorkflowRequestBodyFolderField(
-  val: StartWorkflowRequestBodyFolderField
+  val: StartWorkflowRequestBodyFolderField,
 ): SerializedData {
   return {
     ['type']:
@@ -421,7 +421,7 @@ export function serializeStartWorkflowRequestBodyFolderField(
   };
 }
 export function deserializeStartWorkflowRequestBodyFolderField(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBodyFolderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -442,7 +442,7 @@ export function deserializeStartWorkflowRequestBodyFolderField(
   return { type: type, id: id } satisfies StartWorkflowRequestBodyFolderField;
 }
 export function serializeStartWorkflowRequestBody(
-  val: StartWorkflowRequestBody
+  val: StartWorkflowRequestBody,
 ): SerializedData {
   return {
     ['type']:
@@ -451,7 +451,7 @@ export function serializeStartWorkflowRequestBody(
         : serializeStartWorkflowRequestBodyTypeField(val.type),
     ['flow']: serializeStartWorkflowRequestBodyFlowField(val.flow),
     ['files']: val.files.map(function (
-      item: StartWorkflowRequestBodyFilesField
+      item: StartWorkflowRequestBodyFilesField,
     ): SerializedData {
       return serializeStartWorkflowRequestBodyFilesField(item);
     }) as readonly any[],
@@ -465,7 +465,7 @@ export function serializeStartWorkflowRequestBody(
   };
 }
 export function deserializeStartWorkflowRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): StartWorkflowRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -496,10 +496,10 @@ export function deserializeStartWorkflowRequestBody(
     });
   }
   const files: readonly StartWorkflowRequestBodyFilesField[] = sdIsList(
-    val.files
+    val.files,
   )
     ? (val.files.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): StartWorkflowRequestBodyFilesField {
         return deserializeStartWorkflowRequestBodyFilesField(itm);
       }) as readonly any[])
@@ -522,10 +522,10 @@ export function deserializeStartWorkflowRequestBody(
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
-      ? (val.outcomes.map(function (itm: SerializedData): Outcome {
-          return deserializeOutcome(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.outcomes.map(function (itm: SerializedData): Outcome {
+            return deserializeOutcome(itm);
+          }) as readonly any[])
+        : [];
   return {
     type: type,
     flow: flow,

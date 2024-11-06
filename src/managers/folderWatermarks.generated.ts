@@ -24,14 +24,14 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetFolderWatermarkOptionals {
   readonly headers: GetFolderWatermarkHeaders = new GetFolderWatermarkHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFolderWatermarkOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<GetFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -56,7 +56,7 @@ export class UpdateFolderWatermarkOptionals {
     > &
       Partial<
         Pick<UpdateFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -81,7 +81,7 @@ export class DeleteFolderWatermarkOptionals {
     > &
       Partial<
         Pick<DeleteFolderWatermarkOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -103,7 +103,7 @@ export class GetFolderWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -130,7 +130,7 @@ export class UpdateFolderWatermarkRequestBodyWatermarkField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'> &
-      Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>
+      Partial<Pick<UpdateFolderWatermarkRequestBodyWatermarkField, 'imprint'>>,
   ) {
     if (fields.imprint) {
       this.imprint = fields.imprint;
@@ -162,7 +162,7 @@ export class UpdateFolderWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateFolderWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateFolderWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateFolderWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -186,7 +186,7 @@ export class DeleteFolderWatermarkHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteFolderWatermarkHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteFolderWatermarkHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteFolderWatermarkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -213,7 +213,7 @@ export class FolderWatermarksManager {
       | 'updateFolderWatermark'
       | 'deleteFolderWatermark'
     > &
-      Partial<Pick<FolderWatermarksManager, 'networkSession'>>
+      Partial<Pick<FolderWatermarksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -240,7 +240,7 @@ export class FolderWatermarksManager {
      */
   async getFolderWatermark(
     folderId: string,
-    optionalsInput: GetFolderWatermarkOptionalsInput = {}
+    optionalsInput: GetFolderWatermarkOptionalsInput = {},
   ): Promise<Watermark> {
     const optionals: GetFolderWatermarkOptionals =
       new GetFolderWatermarkOptionals({
@@ -257,7 +257,7 @@ export class FolderWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -291,7 +291,7 @@ export class FolderWatermarksManager {
   async updateFolderWatermark(
     folderId: string,
     requestBody: UpdateFolderWatermarkRequestBody,
-    optionalsInput: UpdateFolderWatermarkOptionalsInput = {}
+    optionalsInput: UpdateFolderWatermarkOptionalsInput = {},
   ): Promise<Watermark> {
     const optionals: UpdateFolderWatermarkOptionals =
       new UpdateFolderWatermarkOptionals({
@@ -308,7 +308,7 @@ export class FolderWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -342,7 +342,7 @@ export class FolderWatermarksManager {
      */
   async deleteFolderWatermark(
     folderId: string,
-    optionalsInput: DeleteFolderWatermarkOptionalsInput = {}
+    optionalsInput: DeleteFolderWatermarkOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteFolderWatermarkOptionals =
       new DeleteFolderWatermarkOptionals({
@@ -359,7 +359,7 @@ export class FolderWatermarksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/watermark'
+        '/watermark',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -376,12 +376,12 @@ export interface FolderWatermarksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-  val: UpdateFolderWatermarkRequestBodyWatermarkImprintField
+  val: UpdateFolderWatermarkRequestBodyWatermarkImprintField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderWatermarkRequestBodyWatermarkImprintField {
   if (val == 'default') {
     return val;
@@ -392,16 +392,16 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField
   });
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkField(
-  val: UpdateFolderWatermarkRequestBodyWatermarkField
+  val: UpdateFolderWatermarkRequestBodyWatermarkField,
 ): SerializedData {
   return {
     ['imprint']: serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-      val.imprint
+      val.imprint,
     ),
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderWatermarkRequestBodyWatermarkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -417,26 +417,26 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkField(
   }
   const imprint: UpdateFolderWatermarkRequestBodyWatermarkImprintField =
     deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-      val.imprint
+      val.imprint,
     );
   return {
     imprint: imprint,
   } satisfies UpdateFolderWatermarkRequestBodyWatermarkField;
 }
 export function serializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
-  val: UpdateFolderWatermarkRequestBodyWatermarkFieldInput
+  val: UpdateFolderWatermarkRequestBodyWatermarkFieldInput,
 ): SerializedData {
   return {
     ['imprint']:
       val.imprint == void 0
         ? void 0
         : serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-            val.imprint
+            val.imprint,
           ),
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -450,23 +450,23 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
     val.imprint == void 0
       ? void 0
       : deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
-          val.imprint
+          val.imprint,
         );
   return {
     imprint: imprint,
   } satisfies UpdateFolderWatermarkRequestBodyWatermarkFieldInput;
 }
 export function serializeUpdateFolderWatermarkRequestBody(
-  val: UpdateFolderWatermarkRequestBody
+  val: UpdateFolderWatermarkRequestBody,
 ): SerializedData {
   return {
     ['watermark']: serializeUpdateFolderWatermarkRequestBodyWatermarkField(
-      val.watermark
+      val.watermark,
     ),
   };
 }
 export function deserializeUpdateFolderWatermarkRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateFolderWatermarkRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -60,7 +60,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
         password: 'Secret123@',
       } satisfies AddShareLinkToFolderRequestBodySharedLinkField,
     } satisfies AddShareLinkToFolderRequestBody,
-    { fields: 'shared_link' } satisfies AddShareLinkToFolderQueryParams
+    { fields: 'shared_link' } satisfies AddShareLinkToFolderQueryParams,
   );
   const folderFromApi: FolderFull =
     await client.sharedLinksFolders.getSharedLinkForFolder(folder.id, {
@@ -78,9 +78,9 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
-          '&shared_link_password=Secret123@'
+          '&shared_link_password=Secret123@',
         ) as string,
-      } satisfies FindFolderForSharedLinkHeadersInput
+      } satisfies FindFolderForSharedLinkHeadersInput,
     );
   if (!(folder.id == folderFromSharedLinkPassword.id)) {
     throw new Error('Assertion failed');
@@ -92,9 +92,9 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
         boxapi: ''.concat(
           'shared_link=',
           folderFromApi.sharedLink!.url,
-          '&shared_link_password=incorrectPassword'
+          '&shared_link_password=incorrectPassword',
         ) as string,
-      } satisfies FindFolderForSharedLinkHeadersInput
+      } satisfies FindFolderForSharedLinkHeadersInput,
     );
   }).rejects.toThrow();
   const updatedFolder: FolderFull =
@@ -106,7 +106,7 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
             'collaborators' as UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField,
         } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkField,
       } satisfies UpdateSharedLinkOnFolderRequestBody,
-      { fields: 'shared_link' } satisfies UpdateSharedLinkOnFolderQueryParams
+      { fields: 'shared_link' } satisfies UpdateSharedLinkOnFolderQueryParams,
     );
   if (
     !((toString(updatedFolder.sharedLink!.access) as string) == 'collaborators')

@@ -32,7 +32,7 @@ export class TerminateUsersSessionsOptionals {
     > &
       Partial<
         Pick<TerminateUsersSessionsOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -57,7 +57,7 @@ export class TerminateGroupsSessionsOptionals {
     > &
       Partial<
         Pick<TerminateGroupsSessionsOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -88,7 +88,7 @@ export class TerminateUsersSessionsHeaders {
   } = {};
   constructor(
     fields: Omit<TerminateUsersSessionsHeaders, 'extraHeaders'> &
-      Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>
+      Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -118,7 +118,7 @@ export class TerminateGroupsSessionsHeaders {
   } = {};
   constructor(
     fields: Omit<TerminateGroupsSessionsHeaders, 'extraHeaders'> &
-      Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>
+      Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -142,7 +142,7 @@ export class SessionTerminationManager {
       SessionTerminationManager,
       'networkSession' | 'terminateUsersSessions' | 'terminateGroupsSessions'
     > &
-      Partial<Pick<SessionTerminationManager, 'networkSession'>>
+      Partial<Pick<SessionTerminationManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -162,7 +162,7 @@ export class SessionTerminationManager {
    */
   async terminateUsersSessions(
     requestBody: TerminateUsersSessionsRequestBody,
-    optionalsInput: TerminateUsersSessionsOptionalsInput = {}
+    optionalsInput: TerminateUsersSessionsOptionalsInput = {},
   ): Promise<SessionTerminationMessage> {
     const optionals: TerminateUsersSessionsOptionals =
       new TerminateUsersSessionsOptionals({
@@ -177,7 +177,7 @@ export class SessionTerminationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/users/terminate_sessions'
+        '/2.0/users/terminate_sessions',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -204,7 +204,7 @@ export class SessionTerminationManager {
    */
   async terminateGroupsSessions(
     requestBody: TerminateGroupsSessionsRequestBody,
-    optionalsInput: TerminateGroupsSessionsOptionalsInput = {}
+    optionalsInput: TerminateGroupsSessionsOptionalsInput = {},
   ): Promise<SessionTerminationMessage> {
     const optionals: TerminateGroupsSessionsOptionals =
       new TerminateGroupsSessionsOptionals({
@@ -219,7 +219,7 @@ export class SessionTerminationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/groups/terminate_sessions'
+        '/2.0/groups/terminate_sessions',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -241,21 +241,21 @@ export interface SessionTerminationManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeTerminateUsersSessionsRequestBody(
-  val: TerminateUsersSessionsRequestBody
+  val: TerminateUsersSessionsRequestBody,
 ): SerializedData {
   return {
     ['user_ids']: val.userIds.map(function (item: string): SerializedData {
       return item;
     }) as readonly any[],
     ['user_logins']: val.userLogins.map(function (
-      item: string
+      item: string,
     ): SerializedData {
       return item;
     }) as readonly any[],
   };
 }
 export function deserializeTerminateUsersSessionsRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): TerminateUsersSessionsRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -312,7 +312,7 @@ export function deserializeTerminateUsersSessionsRequestBody(
   } satisfies TerminateUsersSessionsRequestBody;
 }
 export function serializeTerminateGroupsSessionsRequestBody(
-  val: TerminateGroupsSessionsRequestBody
+  val: TerminateGroupsSessionsRequestBody,
 ): SerializedData {
   return {
     ['group_ids']: val.groupIds.map(function (item: string): SerializedData {
@@ -321,7 +321,7 @@ export function serializeTerminateGroupsSessionsRequestBody(
   };
 }
 export function deserializeTerminateGroupsSessionsRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): TerminateGroupsSessionsRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

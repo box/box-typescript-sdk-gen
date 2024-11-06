@@ -19,7 +19,7 @@ export interface TermsOfServiceUserStatuses {
   readonly rawData?: SerializedData;
 }
 export function serializeTermsOfServiceUserStatuses(
-  val: TermsOfServiceUserStatuses
+  val: TermsOfServiceUserStatuses,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -27,14 +27,14 @@ export function serializeTermsOfServiceUserStatuses(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: TermsOfServiceUserStatus
+            item: TermsOfServiceUserStatus,
           ): SerializedData {
             return serializeTermsOfServiceUserStatus(item);
           }) as readonly any[]),
   };
 }
 export function deserializeTermsOfServiceUserStatuses(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServiceUserStatuses {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -59,12 +59,12 @@ export function deserializeTermsOfServiceUserStatuses(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): TermsOfServiceUserStatus {
-          return deserializeTermsOfServiceUserStatus(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): TermsOfServiceUserStatus {
+            return deserializeTermsOfServiceUserStatus(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     entries: entries,

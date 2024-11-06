@@ -88,7 +88,7 @@ See the endpoint docs at
 
 ```ts
 await client.metadataCascadePolicies.getMetadataCascadePolicyById(
-  cascadePolicyId
+  cascadePolicyId,
 );
 ```
 
@@ -118,7 +118,7 @@ See the endpoint docs at
 
 ```ts
 await client.metadataCascadePolicies.deleteMetadataCascadePolicyById(
-  cascadePolicyId
+  cascadePolicyId,
 );
 ```
 
@@ -156,7 +156,7 @@ await client.metadataCascadePolicies.applyMetadataCascadePolicy(
   {
     conflictResolution:
       'overwrite' as ApplyMetadataCascadePolicyRequestBodyConflictResolutionField,
-  } satisfies ApplyMetadataCascadePolicyRequestBody
+  } satisfies ApplyMetadataCascadePolicyRequestBody,
 );
 ```
 

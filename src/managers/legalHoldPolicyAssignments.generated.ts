@@ -42,7 +42,7 @@ export class GetLegalHoldPolicyAssignmentsOptionals {
           GetLegalHoldPolicyAssignmentsOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -70,7 +70,7 @@ export class CreateLegalHoldPolicyAssignmentOptionals {
           CreateLegalHoldPolicyAssignmentOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -98,7 +98,7 @@ export class GetLegalHoldPolicyAssignmentByIdOptionals {
           GetLegalHoldPolicyAssignmentByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -126,7 +126,7 @@ export class DeleteLegalHoldPolicyAssignmentByIdOptionals {
           DeleteLegalHoldPolicyAssignmentByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -156,7 +156,7 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldOptionals {
           GetLegalHoldPolicyAssignmentFileOnHoldOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -220,7 +220,7 @@ export class GetLegalHoldPolicyAssignmentsHeaders {
   } = {};
   constructor(
     fields: Omit<GetLegalHoldPolicyAssignmentsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetLegalHoldPolicyAssignmentsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetLegalHoldPolicyAssignmentsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -267,7 +267,7 @@ export class CreateLegalHoldPolicyAssignmentHeaders {
   } = {};
   constructor(
     fields: Omit<CreateLegalHoldPolicyAssignmentHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateLegalHoldPolicyAssignmentHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateLegalHoldPolicyAssignmentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -291,7 +291,7 @@ export class GetLegalHoldPolicyAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -315,7 +315,7 @@ export class DeleteLegalHoldPolicyAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -366,7 +366,7 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldHeaders {
     > &
       Partial<
         Pick<GetLegalHoldPolicyAssignmentFileOnHoldHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -395,7 +395,7 @@ export class LegalHoldPolicyAssignmentsManager {
       | 'deleteLegalHoldPolicyAssignmentById'
       | 'getLegalHoldPolicyAssignmentFileOnHold'
     > &
-      Partial<Pick<LegalHoldPolicyAssignmentsManager, 'networkSession'>>
+      Partial<Pick<LegalHoldPolicyAssignmentsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -412,7 +412,7 @@ export class LegalHoldPolicyAssignmentsManager {
    */
   async getLegalHoldPolicyAssignments(
     queryParams: GetLegalHoldPolicyAssignmentsQueryParams,
-    optionalsInput: GetLegalHoldPolicyAssignmentsOptionalsInput = {}
+    optionalsInput: GetLegalHoldPolicyAssignmentsOptionalsInput = {},
   ): Promise<LegalHoldPolicyAssignments> {
     const optionals: GetLegalHoldPolicyAssignmentsOptionals =
       new GetLegalHoldPolicyAssignmentsOptionals({
@@ -439,7 +439,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/legal_hold_policy_assignments'
+        '/2.0/legal_hold_policy_assignments',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -462,7 +462,7 @@ export class LegalHoldPolicyAssignmentsManager {
    */
   async createLegalHoldPolicyAssignment(
     requestBody: CreateLegalHoldPolicyAssignmentRequestBody,
-    optionalsInput: CreateLegalHoldPolicyAssignmentOptionalsInput = {}
+    optionalsInput: CreateLegalHoldPolicyAssignmentOptionalsInput = {},
   ): Promise<LegalHoldPolicyAssignment> {
     const optionals: CreateLegalHoldPolicyAssignmentOptionals =
       new CreateLegalHoldPolicyAssignmentOptionals({
@@ -477,7 +477,7 @@ export class LegalHoldPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/legal_hold_policy_assignments'
+        '/2.0/legal_hold_policy_assignments',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -502,7 +502,7 @@ export class LegalHoldPolicyAssignmentsManager {
      */
   async getLegalHoldPolicyAssignmentById(
     legalHoldPolicyAssignmentId: string,
-    optionalsInput: GetLegalHoldPolicyAssignmentByIdOptionalsInput = {}
+    optionalsInput: GetLegalHoldPolicyAssignmentByIdOptionalsInput = {},
   ): Promise<LegalHoldPolicyAssignment> {
     const optionals: GetLegalHoldPolicyAssignmentByIdOptionals =
       new GetLegalHoldPolicyAssignmentByIdOptionals({
@@ -518,7 +518,7 @@ export class LegalHoldPolicyAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policy_assignments/',
-        toString(legalHoldPolicyAssignmentId) as string
+        toString(legalHoldPolicyAssignmentId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -544,7 +544,7 @@ export class LegalHoldPolicyAssignmentsManager {
      */
   async deleteLegalHoldPolicyAssignmentById(
     legalHoldPolicyAssignmentId: string,
-    optionalsInput: DeleteLegalHoldPolicyAssignmentByIdOptionalsInput = {}
+    optionalsInput: DeleteLegalHoldPolicyAssignmentByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteLegalHoldPolicyAssignmentByIdOptionals =
       new DeleteLegalHoldPolicyAssignmentByIdOptionals({
@@ -560,7 +560,7 @@ export class LegalHoldPolicyAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policy_assignments/',
-        toString(legalHoldPolicyAssignmentId) as string
+        toString(legalHoldPolicyAssignmentId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -598,7 +598,7 @@ export class LegalHoldPolicyAssignmentsManager {
      */
   async getLegalHoldPolicyAssignmentFileOnHold(
     legalHoldPolicyAssignmentId: string,
-    optionalsInput: GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput = {}
+    optionalsInput: GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput = {},
   ): Promise<FilesOnHold> {
     const optionals: GetLegalHoldPolicyAssignmentFileOnHoldOptionals =
       new GetLegalHoldPolicyAssignmentFileOnHoldOptionals({
@@ -626,7 +626,7 @@ export class LegalHoldPolicyAssignmentsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policy_assignments/',
         toString(legalHoldPolicyAssignmentId) as string,
-        '/files_on_hold'
+        '/files_on_hold',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -647,12 +647,12 @@ export interface LegalHoldPolicyAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
-  val: GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField
+  val: GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField {
   if (val == 'file') {
     return val;
@@ -672,12 +672,12 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeF
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField
+  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField {
   if (val == 'file') {
     return val;
@@ -697,18 +697,18 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField
+  val: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField,
 ): SerializedData {
   return {
     ['type']:
       serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-        val.type
+        val.type,
       ),
     ['id']: val.id,
   };
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateLegalHoldPolicyAssignmentRequestBodyAssignToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -724,7 +724,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToFie
   }
   const type: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField =
     deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField(
-      val.type
+      val.type,
     );
   if (val.id == void 0) {
     throw new BoxSdkError({
@@ -745,18 +745,18 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateLegalHoldPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateLegalHoldPolicyAssignmentRequestBody(
-  val: CreateLegalHoldPolicyAssignmentRequestBody
+  val: CreateLegalHoldPolicyAssignmentRequestBody,
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,
     ['assign_to']:
       serializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-        val.assignTo
+        val.assignTo,
       ),
   };
 }
 export function deserializeCreateLegalHoldPolicyAssignmentRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateLegalHoldPolicyAssignmentRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -785,7 +785,7 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBody(
   }
   const assignTo: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField =
     deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToField(
-      val.assign_to
+      val.assign_to,
     );
   return {
     policyId: policyId,

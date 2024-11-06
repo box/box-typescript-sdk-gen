@@ -20,7 +20,7 @@ export type ShieldInformationBarrierSegmentMemberMini =
     readonly user?: UserBase;
   };
 export function serializeShieldInformationBarrierSegmentMemberMini(
-  val: ShieldInformationBarrierSegmentMemberMini
+  val: ShieldInformationBarrierSegmentMemberMini,
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberBase(val);
   if (!sdIsMap(base)) {
@@ -35,7 +35,7 @@ export function serializeShieldInformationBarrierSegmentMemberMini(
   };
 }
 export function deserializeShieldInformationBarrierSegmentMemberMini(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMemberMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

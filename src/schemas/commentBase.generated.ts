@@ -17,12 +17,12 @@ export interface CommentBase {
   readonly rawData?: SerializedData;
 }
 export function serializeCommentBaseTypeField(
-  val: CommentBaseTypeField
+  val: CommentBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCommentBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CommentBaseTypeField {
   if (val == 'comment') {
     return val;

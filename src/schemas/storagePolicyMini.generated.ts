@@ -18,7 +18,7 @@ export class StoragePolicyMini {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StoragePolicyMini, 'type'> &
-      Partial<Pick<StoragePolicyMini, 'type'>>
+      Partial<Pick<StoragePolicyMini, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -41,12 +41,12 @@ export interface StoragePolicyMiniInput {
   readonly rawData?: SerializedData;
 }
 export function serializeStoragePolicyMiniTypeField(
-  val: StoragePolicyMiniTypeField
+  val: StoragePolicyMiniTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStoragePolicyMiniTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyMiniTypeField {
   if (val == 'storage_policy') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeStoragePolicyMiniTypeField(
   });
 }
 export function serializeStoragePolicyMini(
-  val: StoragePolicyMini
+  val: StoragePolicyMini,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -64,7 +64,7 @@ export function serializeStoragePolicyMini(
   };
 }
 export function deserializeStoragePolicyMini(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -92,7 +92,7 @@ export function deserializeStoragePolicyMini(
   return { id: id, type: type } satisfies StoragePolicyMini;
 }
 export function serializeStoragePolicyMiniInput(
-  val: StoragePolicyMiniInput
+  val: StoragePolicyMiniInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -103,7 +103,7 @@ export function serializeStoragePolicyMiniInput(
   };
 }
 export function deserializeStoragePolicyMiniInput(
-  val: SerializedData
+  val: SerializedData,
 ): StoragePolicyMiniInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

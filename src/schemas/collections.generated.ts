@@ -52,12 +52,12 @@ export interface Collections {
   readonly rawData?: SerializedData;
 }
 export function serializeCollectionsOrderDirectionField(
-  val: CollectionsOrderDirectionField
+  val: CollectionsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollectionsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): CollectionsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeCollectionsOrderDirectionField(
   });
 }
 export function serializeCollectionsOrderField(
-  val: CollectionsOrderField
+  val: CollectionsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -81,7 +81,7 @@ export function serializeCollectionsOrderField(
   };
 }
 export function deserializeCollectionsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): CollectionsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -109,7 +109,7 @@ export function serializeCollections(val: Collections): SerializedData {
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: CollectionsOrderField
+            item: CollectionsOrderField,
           ): SerializedData {
             return serializeCollectionsOrderField(item);
           }) as readonly any[]),
@@ -153,10 +153,10 @@ export function deserializeCollections(val: SerializedData): Collections {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): CollectionsOrderField {
-          return deserializeCollectionsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): CollectionsOrderField {
+            return deserializeCollectionsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Collections"',
@@ -166,10 +166,10 @@ export function deserializeCollections(val: SerializedData): Collections {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): Collection {
-          return deserializeCollection(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): Collection {
+            return deserializeCollection(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

@@ -58,7 +58,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testWorkflows', async function testWorkflows(): Promise<any> {
   const adminClient: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const workflowFolderId: string = getEnvVar('WORKFLOW_FOLDER_ID');
   const uploadedFiles: Files = await adminClient.uploads.uploadFile({

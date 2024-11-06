@@ -30,12 +30,12 @@ export interface WebhookMini {
   readonly rawData?: SerializedData;
 }
 export function serializeWebhookMiniTypeField(
-  val: WebhookMiniTypeField
+  val: WebhookMiniTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebhookMiniTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookMiniTypeField {
   if (val == 'webhook') {
     return val;
@@ -43,12 +43,12 @@ export function deserializeWebhookMiniTypeField(
   throw new BoxSdkError({ message: "Can't deserialize WebhookMiniTypeField" });
 }
 export function serializeWebhookMiniTargetTypeField(
-  val: WebhookMiniTargetTypeField
+  val: WebhookMiniTargetTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebhookMiniTargetTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookMiniTargetTypeField {
   if (val == 'file') {
     return val;
@@ -61,7 +61,7 @@ export function deserializeWebhookMiniTargetTypeField(
   });
 }
 export function serializeWebhookMiniTargetField(
-  val: WebhookMiniTargetField
+  val: WebhookMiniTargetField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -72,7 +72,7 @@ export function serializeWebhookMiniTargetField(
   };
 }
 export function deserializeWebhookMiniTargetField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookMiniTargetField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

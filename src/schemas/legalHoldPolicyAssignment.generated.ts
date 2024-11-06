@@ -41,7 +41,7 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
   readonly deletedAt?: DateTime;
 };
 export function serializeLegalHoldPolicyAssignment(
-  val: LegalHoldPolicyAssignment
+  val: LegalHoldPolicyAssignment,
 ): SerializedData {
   const base: any = serializeLegalHoldPolicyAssignmentBase(val);
   if (!sdIsMap(base)) {
@@ -70,7 +70,7 @@ export function serializeLegalHoldPolicyAssignment(
   };
 }
 export function deserializeLegalHoldPolicyAssignment(
-  val: SerializedData
+  val: SerializedData,
 ): LegalHoldPolicyAssignment {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

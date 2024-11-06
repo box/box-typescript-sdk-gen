@@ -46,7 +46,7 @@ test('testTrashedFiles', async function testTrashedFiles(): Promise<any> {
   const file: FileFull = files.entries![0];
   await client.files.deleteFileById(file.id);
   const fromTrash: TrashFile = await client.trashedFiles.getTrashedFileById(
-    file.id
+    file.id,
   );
   if (!(fromTrash.id == file.id)) {
     throw new Error('Assertion failed');

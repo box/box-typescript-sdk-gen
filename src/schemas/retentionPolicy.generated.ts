@@ -56,12 +56,12 @@ export class RetentionPolicy extends RetentionPolicyMini {
   }
 }
 export function serializeRetentionPolicyPolicyTypeField(
-  val: RetentionPolicyPolicyTypeField
+  val: RetentionPolicyPolicyTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyPolicyTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyPolicyTypeField {
   if (val == 'finite') {
     return val;
@@ -74,12 +74,12 @@ export function deserializeRetentionPolicyPolicyTypeField(
   });
 }
 export function serializeRetentionPolicyRetentionTypeField(
-  val: RetentionPolicyRetentionTypeField
+  val: RetentionPolicyRetentionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyRetentionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyRetentionTypeField {
   if (val == 'modifiable') {
     return val;
@@ -92,12 +92,12 @@ export function deserializeRetentionPolicyRetentionTypeField(
   });
 }
 export function serializeRetentionPolicyStatusField(
-  val: RetentionPolicyStatusField
+  val: RetentionPolicyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyStatusField {
   if (val == 'active') {
     return val;
@@ -110,7 +110,7 @@ export function deserializeRetentionPolicyStatusField(
   });
 }
 export function serializeRetentionPolicyAssignmentCountsField(
-  val: RetentionPolicyAssignmentCountsField
+  val: RetentionPolicyAssignmentCountsField,
 ): SerializedData {
   return {
     ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
@@ -120,7 +120,7 @@ export function serializeRetentionPolicyAssignmentCountsField(
   };
 }
 export function deserializeRetentionPolicyAssignmentCountsField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentCountsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -196,7 +196,7 @@ export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
         val.customNotificationRecipients == void 0
           ? void 0
           : (val.customNotificationRecipients.map(function (
-              item: UserMini
+              item: UserMini,
             ): SerializedData {
               return serializeUserMini(item);
             }) as readonly any[]),
@@ -208,7 +208,7 @@ export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
   };
 }
 export function deserializeRetentionPolicy(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicy {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "RetentionPolicy"' });
@@ -285,12 +285,12 @@ export function deserializeRetentionPolicy(
     val.custom_notification_recipients == void 0
       ? void 0
       : sdIsList(val.custom_notification_recipients)
-      ? (val.custom_notification_recipients.map(function (
-          itm: SerializedData
-        ): UserMini {
-          return deserializeUserMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.custom_notification_recipients.map(function (
+            itm: SerializedData,
+          ): UserMini {
+            return deserializeUserMini(itm);
+          }) as readonly any[])
+        : [];
   const assignmentCounts: undefined | RetentionPolicyAssignmentCountsField =
     val.assignment_counts == void 0
       ? void 0
@@ -316,7 +316,7 @@ export function deserializeRetentionPolicy(
     val.disposition_action == void 0
       ? void 0
       : deserializeRetentionPolicyMiniDispositionActionField(
-          val.disposition_action
+          val.disposition_action,
         );
   if (val.id == void 0) {
     throw new BoxSdkError({

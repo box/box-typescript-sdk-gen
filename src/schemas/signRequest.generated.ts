@@ -91,12 +91,12 @@ export type SignRequest = SignRequestBase & {
   readonly parentFolder?: FolderMini;
 };
 export function serializeSignRequestTypeField(
-  val: SignRequestTypeField
+  val: SignRequestTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestTypeField {
   if (val == 'sign-request') {
     return val;
@@ -104,12 +104,12 @@ export function deserializeSignRequestTypeField(
   throw new BoxSdkError({ message: "Can't deserialize SignRequestTypeField" });
 }
 export function serializeSignRequestStatusField(
-  val: SignRequestStatusField
+  val: SignRequestStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeSignRequestStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestStatusField {
   if (val == 'converting') {
     return val;
@@ -152,7 +152,7 @@ export function deserializeSignRequestStatusField(
   });
 }
 export function serializeSignRequestSignFilesField(
-  val: SignRequestSignFilesField
+  val: SignRequestSignFilesField,
 ): SerializedData {
   return {
     ['files']:
@@ -166,7 +166,7 @@ export function serializeSignRequestSignFilesField(
   };
 }
 export function deserializeSignRequestSignFilesField(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestSignFilesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -183,10 +183,10 @@ export function deserializeSignRequestSignFilesField(
     val.files == void 0
       ? void 0
       : sdIsList(val.files)
-      ? (val.files.map(function (itm: SerializedData): FileMini {
-          return deserializeFileMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.files.map(function (itm: SerializedData): FileMini {
+            return deserializeFileMini(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.is_ready_for_download == void 0) &&
     !sdIsBoolean(val.is_ready_for_download)
@@ -223,7 +223,7 @@ export function serializeSignRequest(val: SignRequest): SerializedData {
         val.signers == void 0
           ? void 0
           : (val.signers.map(function (
-              item: SignRequestSigner
+              item: SignRequestSigner,
             ): SerializedData {
               return serializeSignRequestSigner(item);
             }) as readonly any[]),
@@ -267,10 +267,10 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     val.source_files == void 0
       ? void 0
       : sdIsList(val.source_files)
-      ? (val.source_files.map(function (itm: SerializedData): FileBase {
-          return deserializeFileBase(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.source_files.map(function (itm: SerializedData): FileBase {
+            return deserializeFileBase(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.signers == void 0) && !sdIsList(val.signers)) {
     throw new BoxSdkError({
       message: 'Expecting array for "signers" of type "SignRequest"',
@@ -280,10 +280,10 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     val.signers == void 0
       ? void 0
       : sdIsList(val.signers)
-      ? (val.signers.map(function (itm: SerializedData): SignRequestSigner {
-          return deserializeSignRequestSigner(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.signers.map(function (itm: SerializedData): SignRequestSigner {
+            return deserializeSignRequestSigner(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.signature_color == void 0) && !sdIsString(val.signature_color)) {
     throw new BoxSdkError({
       message: 'Expecting string for "signature_color" of type "SignRequest"',
@@ -411,12 +411,12 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (
-          itm: SerializedData
-        ): SignRequestPrefillTag {
-          return deserializeSignRequestPrefillTag(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.prefill_tags.map(function (
+            itm: SerializedData,
+          ): SignRequestPrefillTag {
+            return deserializeSignRequestPrefillTag(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.days_valid == void 0) && !sdIsNumber(val.days_valid)) {
     throw new BoxSdkError({
       message: 'Expecting number for "days_valid" of type "SignRequest"',
