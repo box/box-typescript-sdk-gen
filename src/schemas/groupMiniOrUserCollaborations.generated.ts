@@ -14,7 +14,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type GroupMiniOrUserCollaborations = GroupMini | UserCollaborations;
 export function serializeGroupMiniOrUserCollaborations(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'group') {
     return serializeGroupMini(val);
@@ -25,7 +25,7 @@ export function serializeGroupMiniOrUserCollaborations(
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeGroupMiniOrUserCollaborations(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMiniOrUserCollaborations {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

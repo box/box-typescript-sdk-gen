@@ -55,12 +55,12 @@ export type ShieldInformationBarrierSegmentMember =
     readonly updatedBy?: UserBase;
   };
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
-  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField
+  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField {
   if (val == 'shield_information_barrier_segment') {
     return val;
@@ -71,7 +71,7 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
   });
 }
 export function serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
-  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField
+  val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -79,12 +79,12 @@ export function serializeShieldInformationBarrierSegmentMemberShieldInformationB
       val.type == void 0
         ? void 0
         : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
-            val.type
+            val.type,
           ),
   };
 }
 export function deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -105,7 +105,7 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
     val.type == void 0
       ? void 0
       : deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
-          val.type
+          val.type,
         );
   return {
     id: id,
@@ -113,7 +113,7 @@ export function deserializeShieldInformationBarrierSegmentMemberShieldInformatio
   } satisfies ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField;
 }
 export function serializeShieldInformationBarrierSegmentMember(
-  val: ShieldInformationBarrierSegmentMember
+  val: ShieldInformationBarrierSegmentMember,
 ): SerializedData {
   const base: any = serializeShieldInformationBarrierSegmentMemberMini(val);
   if (!sdIsMap(base)) {
@@ -132,7 +132,7 @@ export function serializeShieldInformationBarrierSegmentMember(
         val.shieldInformationBarrierSegment == void 0
           ? void 0
           : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
-              val.shieldInformationBarrierSegment
+              val.shieldInformationBarrierSegment,
             ),
       ['created_at']:
         val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
@@ -146,7 +146,7 @@ export function serializeShieldInformationBarrierSegmentMember(
   };
 }
 export function deserializeShieldInformationBarrierSegmentMember(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierSegmentMember {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -163,7 +163,7 @@ export function deserializeShieldInformationBarrierSegmentMember(
     val.shield_information_barrier_segment == void 0
       ? void 0
       : deserializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
-          val.shield_information_barrier_segment
+          val.shield_information_barrier_segment,
         );
   if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
     throw new BoxSdkError({

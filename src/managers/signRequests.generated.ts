@@ -32,7 +32,9 @@ export class CancelSignRequestOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CancelSignRequestOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CancelSignRequestOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<CancelSignRequestOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -51,7 +53,9 @@ export class ResendSignRequestOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<ResendSignRequestOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<ResendSignRequestOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<ResendSignRequestOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -67,14 +71,14 @@ export interface ResendSignRequestOptionalsInput {
 }
 export class GetSignRequestByIdOptionals {
   readonly headers: GetSignRequestByIdHeaders = new GetSignRequestByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetSignRequestByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<GetSignRequestByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -93,7 +97,9 @@ export class CreateSignRequestOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateSignRequestOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateSignRequestOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<CreateSignRequestOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -115,7 +121,7 @@ export class CancelSignRequestHeaders {
   } = {};
   constructor(
     fields: Omit<CancelSignRequestHeaders, 'extraHeaders'> &
-      Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>
+      Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -139,7 +145,7 @@ export class ResendSignRequestHeaders {
   } = {};
   constructor(
     fields: Omit<ResendSignRequestHeaders, 'extraHeaders'> &
-      Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>
+      Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -163,7 +169,7 @@ export class GetSignRequestByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetSignRequestByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -198,7 +204,7 @@ export class GetSignRequestsHeaders {
   } = {};
   constructor(
     fields: Omit<GetSignRequestsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -222,7 +228,7 @@ export class CreateSignRequestHeaders {
   } = {};
   constructor(
     fields: Omit<CreateSignRequestHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -251,7 +257,7 @@ export class SignRequestsManager {
       | 'getSignRequests'
       | 'createSignRequest'
     > &
-      Partial<Pick<SignRequestsManager, 'networkSession'>>
+      Partial<Pick<SignRequestsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -269,7 +275,7 @@ export class SignRequestsManager {
      */
   async cancelSignRequest(
     signRequestId: string,
-    optionalsInput: CancelSignRequestOptionalsInput = {}
+    optionalsInput: CancelSignRequestOptionalsInput = {},
   ): Promise<SignRequest> {
     const optionals: CancelSignRequestOptionals =
       new CancelSignRequestOptionals({
@@ -286,7 +292,7 @@ export class SignRequestsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/sign_requests/',
         toString(signRequestId) as string,
-        '/cancel'
+        '/cancel',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -309,7 +315,7 @@ export class SignRequestsManager {
      */
   async resendSignRequest(
     signRequestId: string,
-    optionalsInput: ResendSignRequestOptionalsInput = {}
+    optionalsInput: ResendSignRequestOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: ResendSignRequestOptionals =
       new ResendSignRequestOptionals({
@@ -326,7 +332,7 @@ export class SignRequestsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/sign_requests/',
         toString(signRequestId) as string,
-        '/resend'
+        '/resend',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -346,7 +352,7 @@ export class SignRequestsManager {
      */
   async getSignRequestById(
     signRequestId: string,
-    optionalsInput: GetSignRequestByIdOptionalsInput = {}
+    optionalsInput: GetSignRequestByIdOptionalsInput = {},
   ): Promise<SignRequest> {
     const optionals: GetSignRequestByIdOptionals =
       new GetSignRequestByIdOptionals({
@@ -362,7 +368,7 @@ export class SignRequestsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/sign_requests/',
-        toString(signRequestId) as string
+        toString(signRequestId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -387,7 +393,7 @@ export class SignRequestsManager {
   async getSignRequests(
     queryParams: GetSignRequestsQueryParams = {} satisfies GetSignRequestsQueryParams,
     headersInput: GetSignRequestsHeadersInput = new GetSignRequestsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<SignRequests> {
     const headers: GetSignRequestsHeaders = new GetSignRequestsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -404,7 +410,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/sign_requests'
+        '/2.0/sign_requests',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -428,7 +434,7 @@ export class SignRequestsManager {
    */
   async createSignRequest(
     requestBody: SignRequestCreateRequest,
-    optionalsInput: CreateSignRequestOptionalsInput = {}
+    optionalsInput: CreateSignRequestOptionalsInput = {},
   ): Promise<SignRequest> {
     const optionals: CreateSignRequestOptionals =
       new CreateSignRequestOptionals({
@@ -443,7 +449,7 @@ export class SignRequestsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/sign_requests'
+        '/2.0/sign_requests',
       ) as string,
       method: 'POST',
       headers: headersMap,

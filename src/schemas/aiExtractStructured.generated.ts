@@ -73,12 +73,12 @@ export interface AiExtractStructured {
   readonly rawData?: SerializedData;
 }
 export function serializeAiExtractStructuredMetadataTemplateTypeField(
-  val: AiExtractStructuredMetadataTemplateTypeField
+  val: AiExtractStructuredMetadataTemplateTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiExtractStructuredMetadataTemplateTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractStructuredMetadataTemplateTypeField {
   if (val == 'metadata_template') {
     return val;
@@ -88,7 +88,7 @@ export function deserializeAiExtractStructuredMetadataTemplateTypeField(
   });
 }
 export function serializeAiExtractStructuredMetadataTemplateField(
-  val: AiExtractStructuredMetadataTemplateField
+  val: AiExtractStructuredMetadataTemplateField,
 ): SerializedData {
   return {
     ['template_key']: val.templateKey == void 0 ? void 0 : val.templateKey,
@@ -100,7 +100,7 @@ export function serializeAiExtractStructuredMetadataTemplateField(
   };
 }
 export function deserializeAiExtractStructuredMetadataTemplateField(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractStructuredMetadataTemplateField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -133,12 +133,12 @@ export function deserializeAiExtractStructuredMetadataTemplateField(
   } satisfies AiExtractStructuredMetadataTemplateField;
 }
 export function serializeAiExtractStructuredFieldsOptionsField(
-  val: AiExtractStructuredFieldsOptionsField
+  val: AiExtractStructuredFieldsOptionsField,
 ): SerializedData {
   return { ['key']: val.key };
 }
 export function deserializeAiExtractStructuredFieldsOptionsField(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractStructuredFieldsOptionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -161,7 +161,7 @@ export function deserializeAiExtractStructuredFieldsOptionsField(
   return { key: key } satisfies AiExtractStructuredFieldsOptionsField;
 }
 export function serializeAiExtractStructuredFieldsField(
-  val: AiExtractStructuredFieldsField
+  val: AiExtractStructuredFieldsField,
 ): SerializedData {
   return {
     ['key']: val.key,
@@ -173,14 +173,14 @@ export function serializeAiExtractStructuredFieldsField(
       val.options == void 0
         ? void 0
         : (val.options.map(function (
-            item: AiExtractStructuredFieldsOptionsField
+            item: AiExtractStructuredFieldsOptionsField,
           ): SerializedData {
             return serializeAiExtractStructuredFieldsOptionsField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeAiExtractStructuredFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractStructuredFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -240,12 +240,12 @@ export function deserializeAiExtractStructuredFieldsField(
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
-      ? (val.options.map(function (
-          itm: SerializedData
-        ): AiExtractStructuredFieldsOptionsField {
-          return deserializeAiExtractStructuredFieldsOptionsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.options.map(function (
+            itm: SerializedData,
+          ): AiExtractStructuredFieldsOptionsField {
+            return deserializeAiExtractStructuredFieldsOptionsField(itm);
+          }) as readonly any[])
+        : [];
   return {
     key: key,
     description: description,
@@ -256,7 +256,7 @@ export function deserializeAiExtractStructuredFieldsField(
   } satisfies AiExtractStructuredFieldsField;
 }
 export function serializeAiExtractStructured(
-  val: AiExtractStructured
+  val: AiExtractStructured,
 ): SerializedData {
   return {
     ['items']: val.items.map(function (item: AiItemBase): SerializedData {
@@ -266,13 +266,13 @@ export function serializeAiExtractStructured(
       val.metadataTemplate == void 0
         ? void 0
         : serializeAiExtractStructuredMetadataTemplateField(
-            val.metadataTemplate
+            val.metadataTemplate,
           ),
     ['fields']:
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: AiExtractStructuredFieldsField
+            item: AiExtractStructuredFieldsField,
           ): SerializedData {
             return serializeAiExtractStructuredFieldsField(item);
           }) as readonly any[]),
@@ -283,7 +283,7 @@ export function serializeAiExtractStructured(
   };
 }
 export function deserializeAiExtractStructured(
-  val: SerializedData
+  val: SerializedData,
 ): AiExtractStructured {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -309,7 +309,7 @@ export function deserializeAiExtractStructured(
     val.metadata_template == void 0
       ? void 0
       : deserializeAiExtractStructuredMetadataTemplateField(
-          val.metadata_template
+          val.metadata_template,
         );
   if (!(val.fields == void 0) && !sdIsList(val.fields)) {
     throw new BoxSdkError({
@@ -320,12 +320,12 @@ export function deserializeAiExtractStructured(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (
-          itm: SerializedData
-        ): AiExtractStructuredFieldsField {
-          return deserializeAiExtractStructuredFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (
+            itm: SerializedData,
+          ): AiExtractStructuredFieldsField {
+            return deserializeAiExtractStructuredFieldsField(itm);
+          }) as readonly any[])
+        : [];
   const aiAgent: undefined | AiAgentExtractStructured =
     val.ai_agent == void 0
       ? void 0

@@ -94,17 +94,17 @@ export function deserializeMetadataFull(val: SerializedData): MetadataFull {
     val == void 0
       ? void 0
       : sdIsMap(val)
-      ? (Object.fromEntries(
-          Object.entries(val).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return v;
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (!(val.$parent == void 0) && !sdIsString(val.$parent)) {
     throw new BoxSdkError({
       message: 'Expecting string for "$parent" of type "MetadataFull"',

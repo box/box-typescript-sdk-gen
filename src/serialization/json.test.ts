@@ -11,12 +11,12 @@ test('sdToJson', () =>
     sdToJson({
       firstName: 'John',
       lastName: 'Smith',
-    })
+    }),
   ).toBe('{"firstName":"John","lastName":"Smith"}'));
 
 test('jsonToSerializedData', () =>
   expect(
-    jsonToSerializedData('{"firstName":"John","lastName":"Smith"}')
+    jsonToSerializedData('{"firstName":"John","lastName":"Smith"}'),
   ).toEqual({
     firstName: 'John',
     lastName: 'Smith',

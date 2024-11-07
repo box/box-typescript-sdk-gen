@@ -17,7 +17,7 @@ See the endpoint docs at
 
 ```ts
 await client.fileVersionLegalHolds.getFileVersionLegalHoldById(
-  fileVersionLegalHoldId
+  fileVersionLegalHoldId,
 );
 ```
 

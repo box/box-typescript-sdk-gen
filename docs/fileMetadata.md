@@ -53,7 +53,7 @@ See the endpoint docs at
 await client.fileMetadata.getFileMetadataById(
   file.id,
   'global' as GetFileMetadataByIdScope,
-  'properties'
+  'properties',
 );
 ```
 
@@ -102,7 +102,7 @@ await client.fileMetadata.createFileMetadataById(
     ['birthDate']: '2001-01-03T02:20:50.520Z',
     ['countryCode']: 'US',
     ['sports']: ['basketball', 'tennis'],
-  }
+  },
 );
 ```
 
@@ -155,7 +155,7 @@ await client.fileMetadata.updateFileMetadataById(
       path: '/abc',
       value: newValue,
     } satisfies UpdateFileMetadataByIdRequestBody,
-  ]
+  ],
 );
 ```
 
@@ -194,7 +194,7 @@ See the endpoint docs at
 await client.fileMetadata.deleteFileMetadataById(
   file.id,
   'enterprise' as DeleteFileMetadataByIdScope,
-  templateKey
+  templateKey,
 );
 ```
 

@@ -38,12 +38,12 @@ export interface DevicePinners {
   readonly rawData?: SerializedData;
 }
 export function serializeDevicePinnersOrderByField(
-  val: DevicePinnersOrderByField
+  val: DevicePinnersOrderByField,
 ): SerializedData {
   return val;
 }
 export function deserializeDevicePinnersOrderByField(
-  val: SerializedData
+  val: SerializedData,
 ): DevicePinnersOrderByField {
   if (val == 'id') {
     return val;
@@ -53,12 +53,12 @@ export function deserializeDevicePinnersOrderByField(
   });
 }
 export function serializeDevicePinnersOrderDirectionField(
-  val: DevicePinnersOrderDirectionField
+  val: DevicePinnersOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeDevicePinnersOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): DevicePinnersOrderDirectionField {
   if (val == 'asc') {
     return val;
@@ -71,7 +71,7 @@ export function deserializeDevicePinnersOrderDirectionField(
   });
 }
 export function serializeDevicePinnersOrderField(
-  val: DevicePinnersOrderField
+  val: DevicePinnersOrderField,
 ): SerializedData {
   return {
     ['by']:
@@ -83,7 +83,7 @@ export function serializeDevicePinnersOrderField(
   };
 }
 export function deserializeDevicePinnersOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): DevicePinnersOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -112,7 +112,7 @@ export function serializeDevicePinners(val: DevicePinners): SerializedData {
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: DevicePinnersOrderField
+            item: DevicePinnersOrderField,
           ): SerializedData {
             return serializeDevicePinnersOrderField(item);
           }) as readonly any[]),
@@ -131,10 +131,10 @@ export function deserializeDevicePinners(val: SerializedData): DevicePinners {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): DevicePinner {
-          return deserializeDevicePinner(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): DevicePinner {
+            return deserializeDevicePinner(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
     throw new BoxSdkError({
       message: 'Expecting number for "limit" of type "DevicePinners"',
@@ -157,10 +157,12 @@ export function deserializeDevicePinners(val: SerializedData): DevicePinners {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): DevicePinnersOrderField {
-          return deserializeDevicePinnersOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (
+            itm: SerializedData,
+          ): DevicePinnersOrderField {
+            return deserializeDevicePinnersOrderField(itm);
+          }) as readonly any[])
+        : [];
   return {
     entries: entries,
     limit: limit,

@@ -31,7 +31,7 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testSessionTerminationUser', async function testSessionTerminationUser(): Promise<any> {
   const adminClient: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const user: UserFull = await adminClient.users.getUserMe();
   const result: SessionTerminationMessage =

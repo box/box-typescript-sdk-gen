@@ -50,7 +50,7 @@ test('testTransferUserContent', async function testTransferUserContent(): Promis
       } satisfies TransferOwnedFolderRequestBody,
       {
         queryParams: { notify: false } satisfies TransferOwnedFolderQueryParams,
-      } satisfies TransferOwnedFolderOptionalsInput
+      } satisfies TransferOwnedFolderOptionalsInput,
     );
   if (!(transferedFolder.ownedBy!.id == currentUser.id)) {
     throw new Error('Assertion failed');

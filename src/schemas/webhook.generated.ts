@@ -77,12 +77,12 @@ export type Webhook = WebhookMini & {
   readonly triggers?: readonly WebhookTriggersField[];
 };
 export function serializeWebhookTriggersField(
-  val: WebhookTriggersField
+  val: WebhookTriggersField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebhookTriggersField(
-  val: SerializedData
+  val: SerializedData,
 ): WebhookTriggersField {
   if (val == 'FILE.UPLOADED') {
     return val;
@@ -223,7 +223,7 @@ export function serializeWebhook(val: Webhook): SerializedData {
         val.triggers == void 0
           ? void 0
           : (val.triggers.map(function (
-              item: WebhookTriggersField
+              item: WebhookTriggersField,
             ): SerializedData {
               return serializeWebhookTriggersField(item);
             }) as readonly any[]),
@@ -259,10 +259,12 @@ export function deserializeWebhook(val: SerializedData): Webhook {
     val.triggers == void 0
       ? void 0
       : sdIsList(val.triggers)
-      ? (val.triggers.map(function (itm: SerializedData): WebhookTriggersField {
-          return deserializeWebhookTriggersField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.triggers.map(function (
+            itm: SerializedData,
+          ): WebhookTriggersField {
+            return deserializeWebhookTriggersField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "id" of type "Webhook"',

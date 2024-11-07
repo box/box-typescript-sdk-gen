@@ -146,12 +146,12 @@ export interface SkillInvocation {
   readonly rawData?: SerializedData;
 }
 export function serializeSkillInvocationTypeField(
-  val: SkillInvocationTypeField
+  val: SkillInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTypeField {
   if (val == 'skill_invocation') {
     return val;
@@ -161,12 +161,12 @@ export function deserializeSkillInvocationTypeField(
   });
 }
 export function serializeSkillInvocationSkillTypeField(
-  val: SkillInvocationSkillTypeField
+  val: SkillInvocationSkillTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationSkillTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationSkillTypeField {
   if (val == 'skill') {
     return val;
@@ -176,7 +176,7 @@ export function deserializeSkillInvocationSkillTypeField(
   });
 }
 export function serializeSkillInvocationSkillField(
-  val: SkillInvocationSkillField
+  val: SkillInvocationSkillField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -189,7 +189,7 @@ export function serializeSkillInvocationSkillField(
   };
 }
 export function deserializeSkillInvocationSkillField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationSkillField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -229,12 +229,12 @@ export function deserializeSkillInvocationSkillField(
   } satisfies SkillInvocationSkillField;
 }
 export function serializeSkillInvocationTokenReadTokenTypeField(
-  val: SkillInvocationTokenReadTokenTypeField
+  val: SkillInvocationTokenReadTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationTokenReadTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTokenReadTokenTypeField {
   if (val == 'bearer') {
     return val;
@@ -244,7 +244,7 @@ export function deserializeSkillInvocationTokenReadTokenTypeField(
   });
 }
 export function serializeSkillInvocationTokenReadField(
-  val: SkillInvocationTokenReadField
+  val: SkillInvocationTokenReadField,
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -257,7 +257,7 @@ export function serializeSkillInvocationTokenReadField(
   };
 }
 export function deserializeSkillInvocationTokenReadField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTokenReadField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -300,12 +300,12 @@ export function deserializeSkillInvocationTokenReadField(
   } satisfies SkillInvocationTokenReadField;
 }
 export function serializeSkillInvocationTokenWriteTokenTypeField(
-  val: SkillInvocationTokenWriteTokenTypeField
+  val: SkillInvocationTokenWriteTokenTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationTokenWriteTokenTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTokenWriteTokenTypeField {
   if (val == 'bearer') {
     return val;
@@ -315,7 +315,7 @@ export function deserializeSkillInvocationTokenWriteTokenTypeField(
   });
 }
 export function serializeSkillInvocationTokenWriteField(
-  val: SkillInvocationTokenWriteField
+  val: SkillInvocationTokenWriteField,
 ): SerializedData {
   return {
     ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
@@ -328,7 +328,7 @@ export function serializeSkillInvocationTokenWriteField(
   };
 }
 export function deserializeSkillInvocationTokenWriteField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTokenWriteField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -371,7 +371,7 @@ export function deserializeSkillInvocationTokenWriteField(
   } satisfies SkillInvocationTokenWriteField;
 }
 export function serializeSkillInvocationTokenField(
-  val: SkillInvocationTokenField
+  val: SkillInvocationTokenField,
 ): SerializedData {
   return {
     ['read']:
@@ -385,7 +385,7 @@ export function serializeSkillInvocationTokenField(
   };
 }
 export function deserializeSkillInvocationTokenField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationTokenField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -403,12 +403,12 @@ export function deserializeSkillInvocationTokenField(
   return { read: read, write: write } satisfies SkillInvocationTokenField;
 }
 export function serializeSkillInvocationStatusStateField(
-  val: SkillInvocationStatusStateField
+  val: SkillInvocationStatusStateField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationStatusStateField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationStatusStateField {
   if (val == 'invoked') {
     return val;
@@ -430,7 +430,7 @@ export function deserializeSkillInvocationStatusStateField(
   });
 }
 export function serializeSkillInvocationStatusField(
-  val: SkillInvocationStatusField
+  val: SkillInvocationStatusField,
 ): SerializedData {
   return {
     ['state']:
@@ -444,7 +444,7 @@ export function serializeSkillInvocationStatusField(
   };
 }
 export function deserializeSkillInvocationStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationStatusField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -487,12 +487,12 @@ export function deserializeSkillInvocationStatusField(
   } satisfies SkillInvocationStatusField;
 }
 export function serializeSkillInvocationEnterpriseTypeField(
-  val: SkillInvocationEnterpriseTypeField
+  val: SkillInvocationEnterpriseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSkillInvocationEnterpriseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationEnterpriseTypeField {
   if (val == 'enterprise') {
     return val;
@@ -502,7 +502,7 @@ export function deserializeSkillInvocationEnterpriseTypeField(
   });
 }
 export function serializeSkillInvocationEnterpriseField(
-  val: SkillInvocationEnterpriseField
+  val: SkillInvocationEnterpriseField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -514,7 +514,7 @@ export function serializeSkillInvocationEnterpriseField(
   };
 }
 export function deserializeSkillInvocationEnterpriseField(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocationEnterpriseField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -575,7 +575,7 @@ export function serializeSkillInvocation(val: SkillInvocation): SerializedData {
   };
 }
 export function deserializeSkillInvocation(
-  val: SerializedData
+  val: SerializedData,
 ): SkillInvocation {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "SkillInvocation"' });

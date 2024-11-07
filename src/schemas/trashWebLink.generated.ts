@@ -98,12 +98,12 @@ export interface TrashWebLink {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashWebLinkTypeField(
-  val: TrashWebLinkTypeField
+  val: TrashWebLinkTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkTypeField {
   if (val == 'web_link') {
     return val;
@@ -111,12 +111,12 @@ export function deserializeTrashWebLinkTypeField(
   throw new BoxSdkError({ message: "Can't deserialize TrashWebLinkTypeField" });
 }
 export function serializeTrashWebLinkPathCollectionEntriesTypeField(
-  val: TrashWebLinkPathCollectionEntriesTypeField
+  val: TrashWebLinkPathCollectionEntriesTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkPathCollectionEntriesTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkPathCollectionEntriesTypeField {
   if (val == 'folder') {
     return val;
@@ -126,7 +126,7 @@ export function deserializeTrashWebLinkPathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashWebLinkPathCollectionEntriesField(
-  val: TrashWebLinkPathCollectionEntriesField
+  val: TrashWebLinkPathCollectionEntriesField,
 ): SerializedData {
   return {
     ['type']:
@@ -140,7 +140,7 @@ export function serializeTrashWebLinkPathCollectionEntriesField(
   };
 }
 export function deserializeTrashWebLinkPathCollectionEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkPathCollectionEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -189,19 +189,19 @@ export function deserializeTrashWebLinkPathCollectionEntriesField(
   } satisfies TrashWebLinkPathCollectionEntriesField;
 }
 export function serializeTrashWebLinkPathCollectionField(
-  val: TrashWebLinkPathCollectionField
+  val: TrashWebLinkPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
-      item: TrashWebLinkPathCollectionEntriesField
+      item: TrashWebLinkPathCollectionEntriesField,
     ): SerializedData {
       return serializeTrashWebLinkPathCollectionEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTrashWebLinkPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -234,10 +234,10 @@ export function deserializeTrashWebLinkPathCollectionField(
     });
   }
   const entries: readonly TrashWebLinkPathCollectionEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TrashWebLinkPathCollectionEntriesField {
         return deserializeTrashWebLinkPathCollectionEntriesField(itm);
       }) as readonly any[])
@@ -248,12 +248,12 @@ export function deserializeTrashWebLinkPathCollectionField(
   } satisfies TrashWebLinkPathCollectionField;
 }
 export function serializeTrashWebLinkItemStatusField(
-  val: TrashWebLinkItemStatusField
+  val: TrashWebLinkItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashWebLinkItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashWebLinkItemStatusField {
   if (val == 'active') {
     return val;

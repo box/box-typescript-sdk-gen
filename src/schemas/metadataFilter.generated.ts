@@ -50,12 +50,12 @@ export interface MetadataFilter {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataFilterScopeField(
-  val: MetadataFilterScopeField
+  val: MetadataFilterScopeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataFilterScopeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataFilterScopeField {
   if (val == 'global') {
     return val;
@@ -84,9 +84,9 @@ export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
             Object.entries(val.filters).map(([k, v]: [string, any]) => [
               k,
               serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
-                v
+                v,
               ),
-            ])
+            ]),
           ) as {
             readonly [key: string]: any;
           }),
@@ -122,17 +122,17 @@ export function deserializeMetadataFilter(val: SerializedData): MetadataFilter {
     val.filters == void 0
       ? void 0
       : sdIsMap(val.filters)
-      ? (Object.fromEntries(
-          Object.entries(val.filters).map(([k, v]: [string, any]) => [
-            k,
-            deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
-              v
-            ),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.filters).map(([k, v]: [string, any]) => [
+              k,
+              deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString(
+                v,
+              ),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   return {
     scope: scope,
     templateKey: templateKey,

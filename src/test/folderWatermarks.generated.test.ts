@@ -44,7 +44,7 @@ test('testCreateGetDeleteFolderWatermark', async function testCreateGetDeleteFol
       }),
     } satisfies UpdateFolderWatermarkRequestBody);
   const watermark: Watermark = await client.folderWatermarks.getFolderWatermark(
-    folder.id
+    folder.id,
   );
   await client.folderWatermarks.deleteFolderWatermark(folder.id);
   await expect(async () => {

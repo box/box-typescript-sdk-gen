@@ -26,12 +26,12 @@ export interface WorkflowMini {
   readonly rawData?: SerializedData;
 }
 export function serializeWorkflowMiniTypeField(
-  val: WorkflowMiniTypeField
+  val: WorkflowMiniTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowMiniTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowMiniTypeField {
   if (val == 'workflow') {
     return val;

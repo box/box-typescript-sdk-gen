@@ -53,7 +53,7 @@ See the endpoint docs at
 ```ts
 await client.storagePolicyAssignments.createStoragePolicyAssignment({
   storagePolicy: new CreateStoragePolicyAssignmentRequestBodyStoragePolicyField(
-    { id: policyId }
+    { id: policyId },
   ),
   assignedTo: {
     id: userId,
@@ -88,7 +88,7 @@ See the endpoint docs at
 
 ```ts
 await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
-  storagePolicyAssignment.id
+  storagePolicyAssignment.id,
 );
 ```
 
@@ -124,7 +124,7 @@ await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
       new UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField({
         id: storagePolicy2.id,
       }),
-  } satisfies UpdateStoragePolicyAssignmentByIdRequestBody
+  } satisfies UpdateStoragePolicyAssignmentByIdRequestBody,
 );
 ```
 
@@ -163,7 +163,7 @@ See the endpoint docs at
 
 ```ts
 await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(
-  storagePolicyAssignment.id
+  storagePolicyAssignment.id,
 );
 ```
 

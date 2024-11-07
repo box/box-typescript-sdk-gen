@@ -44,7 +44,7 @@ export class GetRetentionPolicyAssignmentsOptionals {
           GetRetentionPolicyAssignmentsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -76,7 +76,7 @@ export class CreateRetentionPolicyAssignmentOptionals {
           CreateRetentionPolicyAssignmentOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -106,7 +106,7 @@ export class GetRetentionPolicyAssignmentByIdOptionals {
           GetRetentionPolicyAssignmentByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -138,7 +138,7 @@ export class DeleteRetentionPolicyAssignmentByIdOptionals {
           DeleteRetentionPolicyAssignmentByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -168,7 +168,7 @@ export class GetFilesUnderRetentionPolicyAssignmentOptionals {
           GetFilesUnderRetentionPolicyAssignmentOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -221,7 +221,7 @@ export class GetRetentionPolicyAssignmentsHeaders {
   } = {};
   constructor(
     fields: Omit<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetRetentionPolicyAssignmentsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -291,7 +291,7 @@ export class CreateRetentionPolicyAssignmentHeaders {
   } = {};
   constructor(
     fields: Omit<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateRetentionPolicyAssignmentHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -328,7 +328,7 @@ export class GetRetentionPolicyAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -352,7 +352,7 @@ export class DeleteRetentionPolicyAssignmentByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteRetentionPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -392,7 +392,7 @@ export class GetFilesUnderRetentionPolicyAssignmentHeaders {
     > &
       Partial<
         Pick<GetFilesUnderRetentionPolicyAssignmentHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -421,7 +421,7 @@ export class RetentionPolicyAssignmentsManager {
       | 'deleteRetentionPolicyAssignmentById'
       | 'getFilesUnderRetentionPolicyAssignment'
     > &
-      Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>
+      Partial<Pick<RetentionPolicyAssignmentsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -440,7 +440,7 @@ export class RetentionPolicyAssignmentsManager {
      */
   async getRetentionPolicyAssignments(
     retentionPolicyId: string,
-    optionalsInput: GetRetentionPolicyAssignmentsOptionalsInput = {}
+    optionalsInput: GetRetentionPolicyAssignmentsOptionalsInput = {},
   ): Promise<RetentionPolicyAssignments> {
     const optionals: GetRetentionPolicyAssignmentsOptionals =
       new GetRetentionPolicyAssignmentsOptionals({
@@ -469,7 +469,7 @@ export class RetentionPolicyAssignmentsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policies/',
         toString(retentionPolicyId) as string,
-        '/assignments'
+        '/assignments',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -492,7 +492,7 @@ export class RetentionPolicyAssignmentsManager {
    */
   async createRetentionPolicyAssignment(
     requestBody: CreateRetentionPolicyAssignmentRequestBody,
-    optionalsInput: CreateRetentionPolicyAssignmentOptionalsInput = {}
+    optionalsInput: CreateRetentionPolicyAssignmentOptionalsInput = {},
   ): Promise<RetentionPolicyAssignment> {
     const optionals: CreateRetentionPolicyAssignmentOptionals =
       new CreateRetentionPolicyAssignmentOptionals({
@@ -507,7 +507,7 @@ export class RetentionPolicyAssignmentsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policy_assignments'
+        '/2.0/retention_policy_assignments',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -532,7 +532,7 @@ export class RetentionPolicyAssignmentsManager {
      */
   async getRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    optionalsInput: GetRetentionPolicyAssignmentByIdOptionalsInput = {}
+    optionalsInput: GetRetentionPolicyAssignmentByIdOptionalsInput = {},
   ): Promise<RetentionPolicyAssignment> {
     const optionals: GetRetentionPolicyAssignmentByIdOptionals =
       new GetRetentionPolicyAssignmentByIdOptionals({
@@ -557,7 +557,7 @@ export class RetentionPolicyAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string
+        toString(retentionPolicyAssignmentId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -582,7 +582,7 @@ export class RetentionPolicyAssignmentsManager {
      */
   async deleteRetentionPolicyAssignmentById(
     retentionPolicyAssignmentId: string,
-    optionalsInput: DeleteRetentionPolicyAssignmentByIdOptionalsInput = {}
+    optionalsInput: DeleteRetentionPolicyAssignmentByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteRetentionPolicyAssignmentByIdOptionals =
       new DeleteRetentionPolicyAssignmentByIdOptionals({
@@ -598,7 +598,7 @@ export class RetentionPolicyAssignmentsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string
+        toString(retentionPolicyAssignmentId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -618,7 +618,7 @@ export class RetentionPolicyAssignmentsManager {
      */
   async getFilesUnderRetentionPolicyAssignment(
     retentionPolicyAssignmentId: string,
-    optionalsInput: GetFilesUnderRetentionPolicyAssignmentOptionalsInput = {}
+    optionalsInput: GetFilesUnderRetentionPolicyAssignmentOptionalsInput = {},
   ): Promise<FilesUnderRetention> {
     const optionals: GetFilesUnderRetentionPolicyAssignmentOptionals =
       new GetFilesUnderRetentionPolicyAssignmentOptionals({
@@ -643,7 +643,7 @@ export class RetentionPolicyAssignmentsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policy_assignments/',
         toString(retentionPolicyAssignmentId) as string,
-        '/files_under_retention'
+        '/files_under_retention',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -664,12 +664,12 @@ export interface RetentionPolicyAssignmentsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
-  val: GetRetentionPolicyAssignmentsQueryParamsTypeField
+  val: GetRetentionPolicyAssignmentsQueryParamsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetRetentionPolicyAssignmentsQueryParamsTypeField {
   if (val == 'folder') {
     return val;
@@ -686,12 +686,12 @@ export function deserializeGetRetentionPolicyAssignmentsQueryParamsTypeField(
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-  val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField {
   if (val == 'enterprise') {
     return val;
@@ -708,18 +708,18 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTyp
   });
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-  val: CreateRetentionPolicyAssignmentRequestBodyAssignToField
+  val: CreateRetentionPolicyAssignmentRequestBodyAssignToField,
 ): SerializedData {
   return {
     ['type']:
       serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-        val.type
+        val.type,
       ),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyAssignmentRequestBodyAssignToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -735,7 +735,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToFie
   }
   const type: CreateRetentionPolicyAssignmentRequestBodyAssignToTypeField =
     deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
-      val.type
+      val.type,
     );
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
@@ -750,7 +750,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToFie
   } satisfies CreateRetentionPolicyAssignmentRequestBodyAssignToField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-  val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
+  val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField,
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
@@ -758,7 +758,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsF
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -786,22 +786,22 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterField
   } satisfies CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField;
 }
 export function serializeCreateRetentionPolicyAssignmentRequestBody(
-  val: CreateRetentionPolicyAssignmentRequestBody
+  val: CreateRetentionPolicyAssignmentRequestBody,
 ): SerializedData {
   return {
     ['policy_id']: val.policyId,
     ['assign_to']:
       serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-        val.assignTo
+        val.assignTo,
       ),
     ['filter_fields']:
       val.filterFields == void 0
         ? void 0
         : (val.filterFields.map(function (
-            item: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField
+            item: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField,
           ): SerializedData {
             return serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-              item
+              item,
             );
           }) as readonly any[]),
     ['start_date_field']:
@@ -809,7 +809,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBody(
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyAssignmentRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -838,7 +838,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBody(
   }
   const assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField =
     deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
-      val.assign_to
+      val.assign_to,
     );
   if (!(val.filter_fields == void 0) && !sdIsList(val.filter_fields)) {
     throw new BoxSdkError({
@@ -852,14 +852,14 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBody(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (
-          itm: SerializedData
-        ): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
-          return deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
-            itm
-          );
-        }) as readonly any[])
-      : [];
+        ? (val.filter_fields.map(function (
+            itm: SerializedData,
+          ): CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
+            return deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
+              itm,
+            );
+          }) as readonly any[])
+        : [];
   if (!(val.start_date_field == void 0) && !sdIsString(val.start_date_field)) {
     throw new BoxSdkError({
       message:

@@ -21,7 +21,7 @@ export class UserCollaborations extends UserBase {
   }
 }
 export function serializeUserCollaborations(
-  val: UserCollaborations
+  val: UserCollaborations,
 ): SerializedData {
   const base: any = serializeUserBase(val);
   if (!sdIsMap(base)) {
@@ -39,7 +39,7 @@ export function serializeUserCollaborations(
   };
 }
 export function deserializeUserCollaborations(
-  val: SerializedData
+  val: SerializedData,
 ): UserCollaborations {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

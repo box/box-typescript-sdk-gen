@@ -151,7 +151,7 @@ export class WebLink extends WebLinkMini {
   }
 }
 export function serializeWebLinkPathCollectionField(
-  val: WebLinkPathCollectionField
+  val: WebLinkPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
@@ -161,7 +161,7 @@ export function serializeWebLinkPathCollectionField(
   };
 }
 export function deserializeWebLinkPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -204,12 +204,12 @@ export function deserializeWebLinkPathCollectionField(
   } satisfies WebLinkPathCollectionField;
 }
 export function serializeWebLinkSharedLinkAccessField(
-  val: WebLinkSharedLinkAccessField
+  val: WebLinkSharedLinkAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebLinkSharedLinkAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkSharedLinkAccessField {
   if (val == 'open') {
     return val;
@@ -225,12 +225,12 @@ export function deserializeWebLinkSharedLinkAccessField(
   });
 }
 export function serializeWebLinkSharedLinkEffectiveAccessField(
-  val: WebLinkSharedLinkEffectiveAccessField
+  val: WebLinkSharedLinkEffectiveAccessField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebLinkSharedLinkEffectiveAccessField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkSharedLinkEffectiveAccessField {
   if (val == 'open') {
     return val;
@@ -246,12 +246,12 @@ export function deserializeWebLinkSharedLinkEffectiveAccessField(
   });
 }
 export function serializeWebLinkSharedLinkEffectivePermissionField(
-  val: WebLinkSharedLinkEffectivePermissionField
+  val: WebLinkSharedLinkEffectivePermissionField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebLinkSharedLinkEffectivePermissionField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkSharedLinkEffectivePermissionField {
   if (val == 'can_edit') {
     return val;
@@ -270,7 +270,7 @@ export function deserializeWebLinkSharedLinkEffectivePermissionField(
   });
 }
 export function serializeWebLinkSharedLinkPermissionsField(
-  val: WebLinkSharedLinkPermissionsField
+  val: WebLinkSharedLinkPermissionsField,
 ): SerializedData {
   return {
     ['can_download']: val.canDownload,
@@ -279,7 +279,7 @@ export function serializeWebLinkSharedLinkPermissionsField(
   };
 }
 export function deserializeWebLinkSharedLinkPermissionsField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkSharedLinkPermissionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -332,7 +332,7 @@ export function deserializeWebLinkSharedLinkPermissionsField(
   } satisfies WebLinkSharedLinkPermissionsField;
 }
 export function serializeWebLinkSharedLinkField(
-  val: WebLinkSharedLinkField
+  val: WebLinkSharedLinkField,
 ): SerializedData {
   return {
     ['url']: val.url,
@@ -344,11 +344,11 @@ export function serializeWebLinkSharedLinkField(
         ? void 0
         : serializeWebLinkSharedLinkAccessField(val.access),
     ['effective_access']: serializeWebLinkSharedLinkEffectiveAccessField(
-      val.effectiveAccess
+      val.effectiveAccess,
     ),
     ['effective_permission']:
       serializeWebLinkSharedLinkEffectivePermissionField(
-        val.effectivePermission
+        val.effectivePermission,
       ),
     ['unshared_at']:
       val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
@@ -362,7 +362,7 @@ export function serializeWebLinkSharedLinkField(
   };
 }
 export function deserializeWebLinkSharedLinkField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkSharedLinkField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -424,7 +424,7 @@ export function deserializeWebLinkSharedLinkField(
   }
   const effectivePermission: WebLinkSharedLinkEffectivePermissionField =
     deserializeWebLinkSharedLinkEffectivePermissionField(
-      val.effective_permission
+      val.effective_permission,
     );
   if (!(val.unshared_at == void 0) && !sdIsString(val.unshared_at)) {
     throw new BoxSdkError({
@@ -493,12 +493,12 @@ export function deserializeWebLinkSharedLinkField(
   } satisfies WebLinkSharedLinkField;
 }
 export function serializeWebLinkItemStatusField(
-  val: WebLinkItemStatusField
+  val: WebLinkItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebLinkItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkItemStatusField {
   if (val == 'active') {
     return val;

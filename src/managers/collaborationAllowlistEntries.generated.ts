@@ -39,7 +39,7 @@ export class CreateCollaborationWhitelistEntryOptionals {
           CreateCollaborationWhitelistEntryOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -67,7 +67,7 @@ export class GetCollaborationWhitelistEntryByIdOptionals {
           GetCollaborationWhitelistEntryByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -95,7 +95,7 @@ export class DeleteCollaborationWhitelistEntryByIdOptionals {
           DeleteCollaborationWhitelistEntryByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -128,7 +128,7 @@ export class GetCollaborationWhitelistEntriesHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -165,7 +165,7 @@ export class CreateCollaborationWhitelistEntryHeaders {
   } = {};
   constructor(
     fields: Omit<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -189,7 +189,7 @@ export class GetCollaborationWhitelistEntryByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -215,7 +215,7 @@ export class DeleteCollaborationWhitelistEntryByIdHeaders {
     fields: Omit<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'> &
       Partial<
         Pick<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -243,7 +243,7 @@ export class CollaborationAllowlistEntriesManager {
       | 'getCollaborationWhitelistEntryById'
       | 'deleteCollaborationWhitelistEntryById'
     > &
-      Partial<Pick<CollaborationAllowlistEntriesManager, 'networkSession'>>
+      Partial<Pick<CollaborationAllowlistEntriesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -263,9 +263,9 @@ export class CollaborationAllowlistEntriesManager {
   async getCollaborationWhitelistEntries(
     queryParams: GetCollaborationWhitelistEntriesQueryParams = {} satisfies GetCollaborationWhitelistEntriesQueryParams,
     headersInput: GetCollaborationWhitelistEntriesHeadersInput = new GetCollaborationWhitelistEntriesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<CollaborationAllowlistEntries> {
     const headers: GetCollaborationWhitelistEntriesHeaders =
       new GetCollaborationWhitelistEntriesHeaders({
@@ -283,7 +283,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaboration_whitelist_entries'
+        '/2.0/collaboration_whitelist_entries',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -307,7 +307,7 @@ export class CollaborationAllowlistEntriesManager {
    */
   async createCollaborationWhitelistEntry(
     requestBody: CreateCollaborationWhitelistEntryRequestBody,
-    optionalsInput: CreateCollaborationWhitelistEntryOptionalsInput = {}
+    optionalsInput: CreateCollaborationWhitelistEntryOptionalsInput = {},
   ): Promise<CollaborationAllowlistEntry> {
     const optionals: CreateCollaborationWhitelistEntryOptionals =
       new CreateCollaborationWhitelistEntryOptionals({
@@ -322,7 +322,7 @@ export class CollaborationAllowlistEntriesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaboration_whitelist_entries'
+        '/2.0/collaboration_whitelist_entries',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -348,7 +348,7 @@ export class CollaborationAllowlistEntriesManager {
      */
   async getCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    optionalsInput: GetCollaborationWhitelistEntryByIdOptionalsInput = {}
+    optionalsInput: GetCollaborationWhitelistEntryByIdOptionalsInput = {},
   ): Promise<CollaborationAllowlistEntry> {
     const optionals: GetCollaborationWhitelistEntryByIdOptionals =
       new GetCollaborationWhitelistEntryByIdOptionals({
@@ -364,7 +364,7 @@ export class CollaborationAllowlistEntriesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries/',
-        toString(collaborationWhitelistEntryId) as string
+        toString(collaborationWhitelistEntryId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -388,7 +388,7 @@ export class CollaborationAllowlistEntriesManager {
      */
   async deleteCollaborationWhitelistEntryById(
     collaborationWhitelistEntryId: string,
-    optionalsInput: DeleteCollaborationWhitelistEntryByIdOptionalsInput = {}
+    optionalsInput: DeleteCollaborationWhitelistEntryByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteCollaborationWhitelistEntryByIdOptionals =
       new DeleteCollaborationWhitelistEntryByIdOptionals({
@@ -404,7 +404,7 @@ export class CollaborationAllowlistEntriesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_entries/',
-        toString(collaborationWhitelistEntryId) as string
+        toString(collaborationWhitelistEntryId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -421,12 +421,12 @@ export interface CollaborationAllowlistEntriesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-  val: CreateCollaborationWhitelistEntryRequestBodyDirectionField
+  val: CreateCollaborationWhitelistEntryRequestBodyDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationWhitelistEntryRequestBodyDirectionField {
   if (val == 'inbound') {
     return val;
@@ -443,18 +443,18 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
   });
 }
 export function serializeCreateCollaborationWhitelistEntryRequestBody(
-  val: CreateCollaborationWhitelistEntryRequestBody
+  val: CreateCollaborationWhitelistEntryRequestBody,
 ): SerializedData {
   return {
     ['domain']: val.domain,
     ['direction']:
       serializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-        val.direction
+        val.direction,
       ),
   };
 }
 export function deserializeCreateCollaborationWhitelistEntryRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationWhitelistEntryRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -483,7 +483,7 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBody(
   }
   const direction: CreateCollaborationWhitelistEntryRequestBodyDirectionField =
     deserializeCreateCollaborationWhitelistEntryRequestBodyDirectionField(
-      val.direction
+      val.direction,
     );
   return {
     domain: domain,

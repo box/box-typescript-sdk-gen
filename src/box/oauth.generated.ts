@@ -18,7 +18,7 @@ export class OAuthConfig {
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
   constructor(
     fields: Omit<OAuthConfig, 'tokenStorage'> &
-      Partial<Pick<OAuthConfig, 'tokenStorage'>>
+      Partial<Pick<OAuthConfig, 'tokenStorage'>>,
   ) {
     if (fields.clientId) {
       this.clientId = fields.clientId;
@@ -71,7 +71,7 @@ export class BoxOAuth implements Authentication {
       | 'retrieveAuthorizationHeader'
       | 'revokeToken'
       | 'downscopeToken'
-    >
+    >,
   ) {
     if (fields.config) {
       this.config = fields.config;
@@ -84,7 +84,7 @@ export class BoxOAuth implements Authentication {
    * @returns {string}
    */
   getAuthorizeUrl(
-    options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions
+    options: GetAuthorizeUrlOptions = {} satisfies GetAuthorizeUrlOptions,
   ): string {
     const paramsMap: {
       readonly [key: string]: string;
@@ -101,7 +101,7 @@ export class BoxOAuth implements Authentication {
     });
     return ''.concat(
       'https://account.box.com/api/oauth2/authorize?',
-      sdToUrlParams(JSON.stringify(paramsMap) as SerializedData)
+      sdToUrlParams(JSON.stringify(paramsMap) as SerializedData),
     ) as string;
   }
   /**
@@ -112,7 +112,7 @@ export class BoxOAuth implements Authentication {
    */
   async getTokensAuthorizationCodeGrant(
     authorizationCode: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken> {
     const authManager: AuthorizationManager = new AuthorizationManager({
       networkSession: !(networkSession == void 0)
@@ -172,7 +172,7 @@ export class BoxOAuth implements Authentication {
    * @returns {Promise<string>}
    */
   async retrieveAuthorizationHeader(
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<string> {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
@@ -211,7 +211,7 @@ export class BoxOAuth implements Authentication {
     scopes: readonly string[],
     resource?: string,
     sharedLink?: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0 || token!.accessToken == void 0) {

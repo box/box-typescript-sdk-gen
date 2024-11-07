@@ -52,12 +52,12 @@ export interface GroupMemberships {
   readonly rawData?: SerializedData;
 }
 export function serializeGroupMembershipsOrderDirectionField(
-  val: GroupMembershipsOrderDirectionField
+  val: GroupMembershipsOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupMembershipsOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMembershipsOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -70,7 +70,7 @@ export function deserializeGroupMembershipsOrderDirectionField(
   });
 }
 export function serializeGroupMembershipsOrderField(
-  val: GroupMembershipsOrderField
+  val: GroupMembershipsOrderField,
 ): SerializedData {
   return {
     ['by']: val.by == void 0 ? void 0 : val.by,
@@ -81,7 +81,7 @@ export function serializeGroupMembershipsOrderField(
   };
 }
 export function deserializeGroupMembershipsOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMembershipsOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -101,7 +101,7 @@ export function deserializeGroupMembershipsOrderField(
   return { by: by, direction: direction } satisfies GroupMembershipsOrderField;
 }
 export function serializeGroupMemberships(
-  val: GroupMemberships
+  val: GroupMemberships,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -111,7 +111,7 @@ export function serializeGroupMemberships(
       val.order == void 0
         ? void 0
         : (val.order.map(function (
-            item: GroupMembershipsOrderField
+            item: GroupMembershipsOrderField,
           ): SerializedData {
             return serializeGroupMembershipsOrderField(item);
           }) as readonly any[]),
@@ -124,7 +124,7 @@ export function serializeGroupMemberships(
   };
 }
 export function deserializeGroupMemberships(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMemberships {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -159,12 +159,12 @@ export function deserializeGroupMemberships(
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (
-          itm: SerializedData
-        ): GroupMembershipsOrderField {
-          return deserializeGroupMembershipsOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (
+            itm: SerializedData,
+          ): GroupMembershipsOrderField {
+            return deserializeGroupMembershipsOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "GroupMemberships"',
@@ -174,10 +174,10 @@ export function deserializeGroupMemberships(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): GroupMembership {
-          return deserializeGroupMembership(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): GroupMembership {
+            return deserializeGroupMembership(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

@@ -41,7 +41,7 @@ export class GetCollaborationByIdOptionals {
           GetCollaborationByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -70,7 +70,7 @@ export class UpdateCollaborationByIdOptionals {
     > &
       Partial<
         Pick<UpdateCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -95,7 +95,7 @@ export class DeleteCollaborationByIdOptionals {
     > &
       Partial<
         Pick<DeleteCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -113,7 +113,7 @@ export class CreateCollaborationOptionals {
   readonly queryParams: CreateCollaborationQueryParams =
     {} satisfies CreateCollaborationQueryParams;
   readonly headers: CreateCollaborationHeaders = new CreateCollaborationHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -126,7 +126,7 @@ export class CreateCollaborationOptionals {
           CreateCollaborationOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -165,7 +165,7 @@ export class GetCollaborationByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollaborationByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -243,7 +243,7 @@ export class UpdateCollaborationByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateCollaborationByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -267,7 +267,7 @@ export class DeleteCollaborationByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteCollaborationByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -392,7 +392,7 @@ export class CreateCollaborationHeaders {
   } = {};
   constructor(
     fields: Omit<CreateCollaborationHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -420,7 +420,7 @@ export class UserCollaborationsManager {
       | 'deleteCollaborationById'
       | 'createCollaboration'
     > &
-      Partial<Pick<UserCollaborationsManager, 'networkSession'>>
+      Partial<Pick<UserCollaborationsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -438,7 +438,7 @@ export class UserCollaborationsManager {
      */
   async getCollaborationById(
     collaborationId: string,
-    optionalsInput: GetCollaborationByIdOptionalsInput = {}
+    optionalsInput: GetCollaborationByIdOptionalsInput = {},
   ): Promise<Collaboration> {
     const optionals: GetCollaborationByIdOptionals =
       new GetCollaborationByIdOptionals({
@@ -463,7 +463,7 @@ export class UserCollaborationsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaborations/',
-        toString(collaborationId) as string
+        toString(collaborationId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -491,7 +491,7 @@ export class UserCollaborationsManager {
   async updateCollaborationById(
     collaborationId: string,
     requestBody: UpdateCollaborationByIdRequestBody,
-    optionalsInput: UpdateCollaborationByIdOptionalsInput = {}
+    optionalsInput: UpdateCollaborationByIdOptionalsInput = {},
   ): Promise<Collaboration> {
     const optionals: UpdateCollaborationByIdOptionals =
       new UpdateCollaborationByIdOptionals({
@@ -507,7 +507,7 @@ export class UserCollaborationsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaborations/',
-        toString(collaborationId) as string
+        toString(collaborationId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -532,7 +532,7 @@ export class UserCollaborationsManager {
      */
   async deleteCollaborationById(
     collaborationId: string,
-    optionalsInput: DeleteCollaborationByIdOptionalsInput = {}
+    optionalsInput: DeleteCollaborationByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteCollaborationByIdOptionals =
       new DeleteCollaborationByIdOptionals({
@@ -548,7 +548,7 @@ export class UserCollaborationsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaborations/',
-        toString(collaborationId) as string
+        toString(collaborationId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -580,7 +580,7 @@ export class UserCollaborationsManager {
    */
   async createCollaboration(
     requestBody: CreateCollaborationRequestBody,
-    optionalsInput: CreateCollaborationOptionalsInput = {}
+    optionalsInput: CreateCollaborationOptionalsInput = {},
   ): Promise<Collaboration> {
     const optionals: CreateCollaborationOptionals =
       new CreateCollaborationOptionals({
@@ -605,7 +605,7 @@ export class UserCollaborationsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaborations'
+        '/2.0/collaborations',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -628,12 +628,12 @@ export interface UserCollaborationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateCollaborationByIdRequestBodyRoleField(
-  val: UpdateCollaborationByIdRequestBodyRoleField
+  val: UpdateCollaborationByIdRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateCollaborationByIdRequestBodyRoleField {
   if (val == 'editor') {
     return val;
@@ -664,12 +664,12 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBodyStatusField(
-  val: UpdateCollaborationByIdRequestBodyStatusField
+  val: UpdateCollaborationByIdRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateCollaborationByIdRequestBodyStatusField {
   if (val == 'pending') {
     return val;
@@ -685,7 +685,7 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateCollaborationByIdRequestBody(
-  val: UpdateCollaborationByIdRequestBody
+  val: UpdateCollaborationByIdRequestBody,
 ): SerializedData {
   return {
     ['role']: serializeUpdateCollaborationByIdRequestBodyRoleField(val.role),
@@ -699,7 +699,7 @@ export function serializeUpdateCollaborationByIdRequestBody(
   };
 }
 export function deserializeUpdateCollaborationByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateCollaborationByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -742,12 +742,12 @@ export function deserializeUpdateCollaborationByIdRequestBody(
   } satisfies UpdateCollaborationByIdRequestBody;
 }
 export function serializeCreateCollaborationRequestBodyItemTypeField(
-  val: CreateCollaborationRequestBodyItemTypeField
+  val: CreateCollaborationRequestBodyItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBodyItemTypeField {
   if (val == 'file') {
     return val;
@@ -760,7 +760,7 @@ export function deserializeCreateCollaborationRequestBodyItemTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyItemField(
-  val: CreateCollaborationRequestBodyItemField
+  val: CreateCollaborationRequestBodyItemField,
 ): SerializedData {
   return {
     ['type']:
@@ -771,7 +771,7 @@ export function serializeCreateCollaborationRequestBodyItemField(
   };
 }
 export function deserializeCreateCollaborationRequestBodyItemField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBodyItemField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -795,12 +795,12 @@ export function deserializeCreateCollaborationRequestBodyItemField(
   } satisfies CreateCollaborationRequestBodyItemField;
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByTypeField(
-  val: CreateCollaborationRequestBodyAccessibleByTypeField
+  val: CreateCollaborationRequestBodyAccessibleByTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBodyAccessibleByTypeField {
   if (val == 'user') {
     return val;
@@ -814,18 +814,18 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByTypeField(
   });
 }
 export function serializeCreateCollaborationRequestBodyAccessibleByField(
-  val: CreateCollaborationRequestBodyAccessibleByField
+  val: CreateCollaborationRequestBodyAccessibleByField,
 ): SerializedData {
   return {
     ['type']: serializeCreateCollaborationRequestBodyAccessibleByTypeField(
-      val.type
+      val.type,
     ),
     ['id']: val.id == void 0 ? void 0 : val.id,
     ['login']: val.login == void 0 ? void 0 : val.login,
   };
 }
 export function deserializeCreateCollaborationRequestBodyAccessibleByField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBodyAccessibleByField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -862,12 +862,12 @@ export function deserializeCreateCollaborationRequestBodyAccessibleByField(
   } satisfies CreateCollaborationRequestBodyAccessibleByField;
 }
 export function serializeCreateCollaborationRequestBodyRoleField(
-  val: CreateCollaborationRequestBodyRoleField
+  val: CreateCollaborationRequestBodyRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateCollaborationRequestBodyRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBodyRoleField {
   if (val == 'editor') {
     return val;
@@ -895,12 +895,12 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
   });
 }
 export function serializeCreateCollaborationRequestBody(
-  val: CreateCollaborationRequestBody
+  val: CreateCollaborationRequestBody,
 ): SerializedData {
   return {
     ['item']: serializeCreateCollaborationRequestBodyItemField(val.item),
     ['accessible_by']: serializeCreateCollaborationRequestBodyAccessibleByField(
-      val.accessibleBy
+      val.accessibleBy,
     ),
     ['role']: serializeCreateCollaborationRequestBodyRoleField(val.role),
     ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
@@ -910,7 +910,7 @@ export function serializeCreateCollaborationRequestBody(
   };
 }
 export function deserializeCreateCollaborationRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -933,7 +933,7 @@ export function deserializeCreateCollaborationRequestBody(
   }
   const accessibleBy: CreateCollaborationRequestBodyAccessibleByField =
     deserializeCreateCollaborationRequestBodyAccessibleByField(
-      val.accessible_by
+      val.accessible_by,
     );
   if (val.role == void 0) {
     throw new BoxSdkError({

@@ -32,12 +32,12 @@ export type FileRequestCopyRequest = FileRequestUpdateRequest & {
   readonly folder: FileRequestCopyRequestFolderField;
 };
 export function serializeFileRequestCopyRequestFolderTypeField(
-  val: FileRequestCopyRequestFolderTypeField
+  val: FileRequestCopyRequestFolderTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileRequestCopyRequestFolderTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestCopyRequestFolderTypeField {
   if (val == 'folder') {
     return val;
@@ -47,7 +47,7 @@ export function deserializeFileRequestCopyRequestFolderTypeField(
   });
 }
 export function serializeFileRequestCopyRequestFolderField(
-  val: FileRequestCopyRequestFolderField
+  val: FileRequestCopyRequestFolderField,
 ): SerializedData {
   return {
     ['type']:
@@ -58,7 +58,7 @@ export function serializeFileRequestCopyRequestFolderField(
   };
 }
 export function deserializeFileRequestCopyRequestFolderField(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestCopyRequestFolderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -85,7 +85,7 @@ export function deserializeFileRequestCopyRequestFolderField(
   return { type: type, id: id } satisfies FileRequestCopyRequestFolderField;
 }
 export function serializeFileRequestCopyRequest(
-  val: FileRequestCopyRequest
+  val: FileRequestCopyRequest,
 ): SerializedData {
   const base: any = serializeFileRequestUpdateRequest(val);
   if (!sdIsMap(base)) {
@@ -99,7 +99,7 @@ export function serializeFileRequestCopyRequest(
   };
 }
 export function deserializeFileRequestCopyRequest(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestCopyRequest {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

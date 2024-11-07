@@ -24,7 +24,7 @@ export class PostOAuth2TokenRefreshAccessToken {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'> &
-      Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>
+      Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>,
   ) {
     if (fields.grantType) {
       this.grantType = fields.grantType;
@@ -59,12 +59,12 @@ export interface PostOAuth2TokenRefreshAccessTokenInput {
   readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-  val: PostOAuth2TokenRefreshAccessTokenGrantTypeField
+  val: PostOAuth2TokenRefreshAccessTokenGrantTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
   if (val == 'refresh_token') {
     return val;
@@ -75,11 +75,11 @@ export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   });
 }
 export function serializePostOAuth2TokenRefreshAccessToken(
-  val: PostOAuth2TokenRefreshAccessToken
+  val: PostOAuth2TokenRefreshAccessToken,
 ): SerializedData {
   return {
     ['grant_type']: serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-      val.grantType
+      val.grantType,
     ),
     ['client_id']: val.clientId,
     ['client_secret']: val.clientSecret,
@@ -87,7 +87,7 @@ export function serializePostOAuth2TokenRefreshAccessToken(
   };
 }
 export function deserializePostOAuth2TokenRefreshAccessToken(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenRefreshAccessToken {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -149,14 +149,14 @@ export function deserializePostOAuth2TokenRefreshAccessToken(
   } satisfies PostOAuth2TokenRefreshAccessToken;
 }
 export function serializePostOAuth2TokenRefreshAccessTokenInput(
-  val: PostOAuth2TokenRefreshAccessTokenInput
+  val: PostOAuth2TokenRefreshAccessTokenInput,
 ): SerializedData {
   return {
     ['grantType']:
       val.grantType == void 0
         ? void 0
         : serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-            val.grantType
+            val.grantType,
           ),
     ['client_id']: val.clientId,
     ['client_secret']: val.clientSecret,
@@ -164,7 +164,7 @@ export function serializePostOAuth2TokenRefreshAccessTokenInput(
   };
 }
 export function deserializePostOAuth2TokenRefreshAccessTokenInput(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2TokenRefreshAccessTokenInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -175,7 +175,7 @@ export function deserializePostOAuth2TokenRefreshAccessTokenInput(
     val.grantType == void 0
       ? void 0
       : deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
-          val.grantType
+          val.grantType,
         );
   if (val.client_id == void 0) {
     throw new BoxSdkError({

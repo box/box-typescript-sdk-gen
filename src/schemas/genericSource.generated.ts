@@ -15,7 +15,7 @@ export function serializeGenericSource(val: GenericSource): SerializedData {
       (function (v: any): any {
         return v;
       })(v),
-    ])
+    ]),
   ) as {
     readonly [key: string]: any;
   };
@@ -28,7 +28,7 @@ export function deserializeGenericSource(val: SerializedData): GenericSource {
           (function (v: any): any {
             return v;
           })(v),
-        ])
+        ]),
       ) as {
         readonly [key: string]: any;
       })

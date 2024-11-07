@@ -27,7 +27,7 @@ export interface FileVersionLegalHolds {
   readonly rawData?: SerializedData;
 }
 export function serializeFileVersionLegalHolds(
-  val: FileVersionLegalHolds
+  val: FileVersionLegalHolds,
 ): SerializedData {
   return {
     ['limit']: val.limit == void 0 ? void 0 : val.limit,
@@ -37,14 +37,14 @@ export function serializeFileVersionLegalHolds(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileVersionLegalHold
+            item: FileVersionLegalHold,
           ): SerializedData {
             return serializeFileVersionLegalHold(item);
           }) as readonly any[]),
   };
 }
 export function deserializeFileVersionLegalHolds(
-  val: SerializedData
+  val: SerializedData,
 ): FileVersionLegalHolds {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -82,10 +82,12 @@ export function deserializeFileVersionLegalHolds(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): FileVersionLegalHold {
-          return deserializeFileVersionLegalHold(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileVersionLegalHold {
+            return deserializeFileVersionLegalHold(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

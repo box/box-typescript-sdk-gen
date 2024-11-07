@@ -17,7 +17,7 @@ export interface IntegrationMappingSlackOptions {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingSlackOptions(
-  val: IntegrationMappingSlackOptions
+  val: IntegrationMappingSlackOptions,
 ): SerializedData {
   return {
     ['is_access_management_disabled']:
@@ -27,7 +27,7 @@ export function serializeIntegrationMappingSlackOptions(
   };
 }
 export function deserializeIntegrationMappingSlackOptions(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingSlackOptions {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -67,7 +67,7 @@ export class TestPartAccumulator {
   readonly fileHash!: Hash;
   constructor(
     fields: Omit<TestPartAccumulator, 'uploadPartUrl' | 'uploadSessionId'> &
-      Partial<Pick<TestPartAccumulator, 'uploadPartUrl' | 'uploadSessionId'>>
+      Partial<Pick<TestPartAccumulator, 'uploadPartUrl' | 'uploadSessionId'>>,
   ) {
     if (fields.lastIndex) {
       this.lastIndex = fields.lastIndex;
@@ -99,7 +99,7 @@ export interface TestPartAccumulatorInput {
 }
 async function reducerById(
   accInput: TestPartAccumulatorInput,
-  chunk: ByteStream
+  chunk: ByteStream,
 ): Promise<TestPartAccumulator> {
   const acc: TestPartAccumulator = new TestPartAccumulator({
     lastIndex: accInput.lastIndex,
@@ -125,7 +125,7 @@ async function reducerById(
     '-',
     (toString(bytesEnd) as string)!,
     '/',
-    (toString(acc.fileSize) as string)!
+    (toString(acc.fileSize) as string)!,
   ) as string;
   const uploadedPart: UploadedPart = await client.chunkedUploads.uploadFilePart(
     acc.uploadSessionId,
@@ -133,7 +133,7 @@ async function reducerById(
     {
       digest: digest,
       contentRange: contentRange,
-    } satisfies UploadFilePartHeadersInput
+    } satisfies UploadFilePartHeadersInput,
   );
   const part: UploadPart = uploadedPart.part!;
   const partSha1: string = hexToBase64(part.sha1!);
@@ -157,7 +157,7 @@ async function reducerById(
 }
 async function reducerByUrl(
   accInput: TestPartAccumulatorInput,
-  chunk: ByteStream
+  chunk: ByteStream,
 ): Promise<TestPartAccumulator> {
   const acc: TestPartAccumulator = new TestPartAccumulator({
     lastIndex: accInput.lastIndex,
@@ -183,7 +183,7 @@ async function reducerByUrl(
     '-',
     (toString(bytesEnd) as string)!,
     '/',
-    (toString(acc.fileSize) as string)!
+    (toString(acc.fileSize) as string)!,
   ) as string;
   const uploadedPart: UploadedPart =
     await client.chunkedUploads.uploadFilePartByUrl(
@@ -192,7 +192,7 @@ async function reducerByUrl(
       {
         digest: digest,
         contentRange: contentRange,
-      } satisfies UploadFilePartByUrlHeadersInput
+      } satisfies UploadFilePartByUrlHeadersInput,
     );
   const part: UploadPart = uploadedPart.part!;
   const partSha1: string = hexToBase64(part.sha1!);
@@ -238,7 +238,7 @@ test('testChunkedManualProcessById', async function testChunkedManualProcessById
   const chunksIterator: Iterator = iterateChunks(
     fileByteStream,
     partSize,
-    fileSize
+    fileSize,
   );
   const results: TestPartAccumulator = await reduceIterator(
     chunksIterator,
@@ -249,7 +249,7 @@ test('testChunkedManualProcessById', async function testChunkedManualProcessById
       fileSize: fileSize,
       uploadSessionId: uploadSessionId,
       fileHash: fileHash,
-    })
+    }),
   );
   const parts: readonly UploadPart[] = results.parts;
   const processedSessionParts: UploadParts =
@@ -268,7 +268,7 @@ test('testChunkedManualProcessById', async function testChunkedManualProcessById
     await client.chunkedUploads.createFileUploadSessionCommit(
       uploadSessionId,
       { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
-      { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput
+      { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
     );
   if (!(committedSession.entries![0].name! == fileName)) {
     throw new Error('Assertion failed');
@@ -304,7 +304,7 @@ test('testChunkedManualProcessByUrl', async function testChunkedManualProcessByU
   const chunksIterator: Iterator = iterateChunks(
     fileByteStream,
     partSize,
-    fileSize
+    fileSize,
   );
   const results: TestPartAccumulator = await reduceIterator(
     chunksIterator,
@@ -315,7 +315,7 @@ test('testChunkedManualProcessByUrl', async function testChunkedManualProcessByU
       fileSize: fileSize,
       uploadPartUrl: uploadPartUrl,
       fileHash: fileHash,
-    })
+    }),
   );
   const parts: readonly UploadPart[] = results.parts;
   const processedSessionParts: UploadParts =
@@ -336,7 +336,7 @@ test('testChunkedManualProcessByUrl', async function testChunkedManualProcessByU
       { parts: parts } satisfies CreateFileUploadSessionCommitByUrlRequestBody,
       {
         digest: digest,
-      } satisfies CreateFileUploadSessionCommitByUrlHeadersInput
+      } satisfies CreateFileUploadSessionCommitByUrlHeadersInput,
     );
   if (!(committedSession.entries![0].name! == fileName)) {
     throw new Error('Assertion failed');
@@ -352,7 +352,7 @@ test('testChunkedUploadConvenienceMethod', async function testChunkedUploadConve
     fileByteStream,
     fileName,
     fileSize,
-    parentFolderId
+    parentFolderId,
   );
   if (!(uploadedFile.name! == fileName)) {
     throw new Error('Assertion failed');

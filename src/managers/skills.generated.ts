@@ -36,7 +36,7 @@ export class GetBoxSkillCardsOnFileOptionals {
     > &
       Partial<
         Pick<GetBoxSkillCardsOnFileOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -64,7 +64,7 @@ export class CreateBoxSkillCardsOnFileOptionals {
           CreateBoxSkillCardsOnFileOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -92,7 +92,7 @@ export class UpdateBoxSkillCardsOnFileOptionals {
           UpdateBoxSkillCardsOnFileOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -120,7 +120,7 @@ export class DeleteBoxSkillCardsFromFileOptionals {
           DeleteBoxSkillCardsFromFileOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -148,7 +148,7 @@ export class UpdateAllSkillCardsOnFileOptionals {
           UpdateAllSkillCardsOnFileOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -170,7 +170,7 @@ export class GetBoxSkillCardsOnFileHeaders {
   } = {};
   constructor(
     fields: Omit<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
-      Partial<Pick<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+      Partial<Pick<GetBoxSkillCardsOnFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -200,7 +200,7 @@ export class CreateBoxSkillCardsOnFileHeaders {
   } = {};
   constructor(
     fields: Omit<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -237,7 +237,7 @@ export class UpdateBoxSkillCardsOnFileHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateBoxSkillCardsOnFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -261,7 +261,7 @@ export class DeleteBoxSkillCardsFromFileHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteBoxSkillCardsFromFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -350,7 +350,7 @@ export class UpdateAllSkillCardsOnFileHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateAllSkillCardsOnFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -379,7 +379,7 @@ export class SkillsManager {
       | 'deleteBoxSkillCardsFromFile'
       | 'updateAllSkillCardsOnFile'
     > &
-      Partial<Pick<SkillsManager, 'networkSession'>>
+      Partial<Pick<SkillsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -403,7 +403,7 @@ export class SkillsManager {
      */
   async getBoxSkillCardsOnFile(
     fileId: string,
-    optionalsInput: GetBoxSkillCardsOnFileOptionalsInput = {}
+    optionalsInput: GetBoxSkillCardsOnFileOptionalsInput = {},
   ): Promise<SkillCardsMetadata> {
     const optionals: GetBoxSkillCardsOnFileOptionals =
       new GetBoxSkillCardsOnFileOptionals({
@@ -420,7 +420,7 @@ export class SkillsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/metadata/global/boxSkillsCards'
+        '/metadata/global/boxSkillsCards',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -451,7 +451,7 @@ export class SkillsManager {
   async createBoxSkillCardsOnFile(
     fileId: string,
     requestBody: CreateBoxSkillCardsOnFileRequestBody,
-    optionalsInput: CreateBoxSkillCardsOnFileOptionalsInput = {}
+    optionalsInput: CreateBoxSkillCardsOnFileOptionalsInput = {},
   ): Promise<SkillCardsMetadata> {
     const optionals: CreateBoxSkillCardsOnFileOptionals =
       new CreateBoxSkillCardsOnFileOptionals({
@@ -468,7 +468,7 @@ export class SkillsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/metadata/global/boxSkillsCards'
+        '/metadata/global/boxSkillsCards',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -501,7 +501,7 @@ export class SkillsManager {
   async updateBoxSkillCardsOnFile(
     fileId: string,
     requestBody: readonly UpdateBoxSkillCardsOnFileRequestBody[],
-    optionalsInput: UpdateBoxSkillCardsOnFileOptionalsInput = {}
+    optionalsInput: UpdateBoxSkillCardsOnFileOptionalsInput = {},
   ): Promise<SkillCardsMetadata> {
     const optionals: UpdateBoxSkillCardsOnFileOptionals =
       new UpdateBoxSkillCardsOnFileOptionals({
@@ -518,12 +518,12 @@ export class SkillsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/metadata/global/boxSkillsCards'
+        '/metadata/global/boxSkillsCards',
       ) as string,
       method: 'PUT',
       headers: headersMap,
       data: requestBody.map(
-        serializeUpdateBoxSkillCardsOnFileRequestBody
+        serializeUpdateBoxSkillCardsOnFileRequestBody,
       ) as readonly any[],
       contentType: 'application/json-patch+json',
       responseFormat: 'json',
@@ -551,7 +551,7 @@ export class SkillsManager {
      */
   async deleteBoxSkillCardsFromFile(
     fileId: string,
-    optionalsInput: DeleteBoxSkillCardsFromFileOptionalsInput = {}
+    optionalsInput: DeleteBoxSkillCardsFromFileOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteBoxSkillCardsFromFileOptionals =
       new DeleteBoxSkillCardsFromFileOptionals({
@@ -568,7 +568,7 @@ export class SkillsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/metadata/global/boxSkillsCards'
+        '/metadata/global/boxSkillsCards',
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -591,7 +591,7 @@ export class SkillsManager {
   async updateAllSkillCardsOnFile(
     skillId: string,
     requestBody: UpdateAllSkillCardsOnFileRequestBody,
-    optionalsInput: UpdateAllSkillCardsOnFileOptionalsInput = {}
+    optionalsInput: UpdateAllSkillCardsOnFileOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: UpdateAllSkillCardsOnFileOptionals =
       new UpdateAllSkillCardsOnFileOptionals({
@@ -607,7 +607,7 @@ export class SkillsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/skill_invocations/',
-        toString(skillId) as string
+        toString(skillId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -626,20 +626,20 @@ export interface SkillsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateBoxSkillCardsOnFileRequestBody(
-  val: CreateBoxSkillCardsOnFileRequestBody
+  val: CreateBoxSkillCardsOnFileRequestBody,
 ): SerializedData {
   return {
     ['cards']: val.cards.map(function (
-      item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+      item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
     ): SerializedData {
       return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-        item
+        item,
       );
     }) as readonly any[],
   };
 }
 export function deserializeCreateBoxSkillCardsOnFileRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateBoxSkillCardsOnFileRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -661,22 +661,22 @@ export function deserializeCreateBoxSkillCardsOnFileRequestBody(
   const cards: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
     sdIsList(val.cards)
       ? (val.cards.map(function (
-          itm: SerializedData
+          itm: SerializedData,
         ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
           return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-            itm
+            itm,
           );
         }) as readonly any[])
       : [];
   return { cards: cards } satisfies CreateBoxSkillCardsOnFileRequestBody;
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
-  val: UpdateBoxSkillCardsOnFileRequestBodyOpField
+  val: UpdateBoxSkillCardsOnFileRequestBodyOpField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateBoxSkillCardsOnFileRequestBodyOpField {
   if (val == 'replace') {
     return val;
@@ -686,7 +686,7 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   });
 }
 export function serializeUpdateBoxSkillCardsOnFileRequestBody(
-  val: UpdateBoxSkillCardsOnFileRequestBody
+  val: UpdateBoxSkillCardsOnFileRequestBody,
 ): SerializedData {
   return {
     ['op']:
@@ -698,12 +698,12 @@ export function serializeUpdateBoxSkillCardsOnFileRequestBody(
       val.value == void 0
         ? void 0
         : serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-            val.value
+            val.value,
           ),
   };
 }
 export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateBoxSkillCardsOnFileRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -727,7 +727,7 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
     val.value == void 0
       ? void 0
       : deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-          val.value
+          val.value,
         );
   return {
     op: op,
@@ -736,12 +736,12 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBody(
   } satisfies UpdateBoxSkillCardsOnFileRequestBody;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
-  val: UpdateAllSkillCardsOnFileRequestBodyStatusField
+  val: UpdateAllSkillCardsOnFileRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyStatusField {
   if (val == 'invoked') {
     return val;
@@ -764,23 +764,23 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
-  val: UpdateAllSkillCardsOnFileRequestBodyMetadataField
+  val: UpdateAllSkillCardsOnFileRequestBodyMetadataField,
 ): SerializedData {
   return {
     ['cards']:
       val.cards == void 0
         ? void 0
         : (val.cards.map(function (
-            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard
+            item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
           ): SerializedData {
             return serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-              item
+              item,
             );
           }) as readonly any[]),
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -800,25 +800,25 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
     val.cards == void 0
       ? void 0
       : sdIsList(val.cards)
-      ? (val.cards.map(function (
-          itm: SerializedData
-        ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
-          return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
-            itm
-          );
-        }) as readonly any[])
-      : [];
+        ? (val.cards.map(function (
+            itm: SerializedData,
+          ): KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard {
+            return deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
+              itm,
+            );
+          }) as readonly any[])
+        : [];
   return {
     cards: cards,
   } satisfies UpdateAllSkillCardsOnFileRequestBodyMetadataField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileTypeField
+  val: UpdateAllSkillCardsOnFileRequestBodyFileTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyFileTypeField {
   if (val == 'file') {
     return val;
@@ -829,7 +829,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileField
+  val: UpdateAllSkillCardsOnFileRequestBodyFileField,
 ): SerializedData {
   return {
     ['type']:
@@ -840,7 +840,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyFileField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -865,12 +865,12 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyFileField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField
+  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField {
   if (val == 'file_version') {
     return val;
@@ -881,20 +881,20 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeFi
   });
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField
+  val: UpdateAllSkillCardsOnFileRequestBodyFileVersionField,
 ): SerializedData {
   return {
     ['type']:
       val.type == void 0
         ? void 0
         : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-            val.type
+            val.type,
           ),
     ['id']: val.id == void 0 ? void 0 : val.id,
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -908,7 +908,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
     val.type == void 0
       ? void 0
       : deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
-          val.type
+          val.type,
         );
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
@@ -923,7 +923,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyFileVersionField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
-  val: UpdateAllSkillCardsOnFileRequestBodyUsageField
+  val: UpdateAllSkillCardsOnFileRequestBodyUsageField,
 ): SerializedData {
   return {
     ['unit']: val.unit == void 0 ? void 0 : val.unit,
@@ -931,7 +931,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBodyUsageField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -959,21 +959,21 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   } satisfies UpdateAllSkillCardsOnFileRequestBodyUsageField;
 }
 export function serializeUpdateAllSkillCardsOnFileRequestBody(
-  val: UpdateAllSkillCardsOnFileRequestBody
+  val: UpdateAllSkillCardsOnFileRequestBody,
 ): SerializedData {
   return {
     ['status']: serializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
-      val.status
+      val.status,
     ),
     ['metadata']: serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
-      val.metadata
+      val.metadata,
     ),
     ['file']: serializeUpdateAllSkillCardsOnFileRequestBodyFileField(val.file),
     ['file_version']:
       val.fileVersion == void 0
         ? void 0
         : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-            val.fileVersion
+            val.fileVersion,
           ),
     ['usage']:
       val.usage == void 0
@@ -982,7 +982,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBody(
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateAllSkillCardsOnFileRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1019,7 +1019,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBody(
     val.file_version == void 0
       ? void 0
       : deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
-          val.file_version
+          val.file_version,
         );
   const usage: undefined | UpdateAllSkillCardsOnFileRequestBodyUsageField =
     val.usage == void 0

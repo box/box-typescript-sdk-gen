@@ -99,7 +99,7 @@ export class FileRequest {
   readonly updatedAt!: DateTime;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<FileRequest, 'type'> & Partial<Pick<FileRequest, 'type'>>
+    fields: Omit<FileRequest, 'type'> & Partial<Pick<FileRequest, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -234,12 +234,12 @@ export interface FileRequestInput {
   readonly rawData?: SerializedData;
 }
 export function serializeFileRequestTypeField(
-  val: FileRequestTypeField
+  val: FileRequestTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileRequestTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestTypeField {
   if (val == 'file_request') {
     return val;
@@ -247,12 +247,12 @@ export function deserializeFileRequestTypeField(
   throw new BoxSdkError({ message: "Can't deserialize FileRequestTypeField" });
 }
 export function serializeFileRequestStatusField(
-  val: FileRequestStatusField
+  val: FileRequestStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeFileRequestStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestStatusField {
   if (val == 'active') {
     return val;
@@ -423,7 +423,7 @@ export function deserializeFileRequest(val: SerializedData): FileRequest {
   } satisfies FileRequest;
 }
 export function serializeFileRequestInput(
-  val: FileRequestInput
+  val: FileRequestInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -453,7 +453,7 @@ export function serializeFileRequestInput(
   };
 }
 export function deserializeFileRequestInput(
-  val: SerializedData
+  val: SerializedData,
 ): FileRequestInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

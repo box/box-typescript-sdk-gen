@@ -52,7 +52,7 @@ export class StatusSkillCardSkillField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCardSkillField, 'type'> &
-      Partial<Pick<StatusSkillCardSkillField, 'type'>>
+      Partial<Pick<StatusSkillCardSkillField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -91,7 +91,7 @@ export class StatusSkillCardInvocationField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCardInvocationField, 'type'> &
-      Partial<Pick<StatusSkillCardInvocationField, 'type'>>
+      Partial<Pick<StatusSkillCardInvocationField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -145,7 +145,7 @@ export class StatusSkillCard {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<StatusSkillCard, 'type' | 'skillCardType'> &
-      Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>
+      Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>,
   ) {
     if (fields.createdAt) {
       this.createdAt = fields.createdAt;
@@ -199,12 +199,12 @@ export interface StatusSkillCardInput {
   readonly rawData?: SerializedData;
 }
 export function serializeStatusSkillCardTypeField(
-  val: StatusSkillCardTypeField
+  val: StatusSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardTypeField {
   if (val == 'skill_card') {
     return val;
@@ -214,12 +214,12 @@ export function deserializeStatusSkillCardTypeField(
   });
 }
 export function serializeStatusSkillCardSkillCardTypeField(
-  val: StatusSkillCardSkillCardTypeField
+  val: StatusSkillCardSkillCardTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardSkillCardTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardSkillCardTypeField {
   if (val == 'status') {
     return val;
@@ -229,7 +229,7 @@ export function deserializeStatusSkillCardSkillCardTypeField(
   });
 }
 export function serializeStatusSkillCardSkillCardTitleField(
-  val: StatusSkillCardSkillCardTitleField
+  val: StatusSkillCardSkillCardTitleField,
 ): SerializedData {
   return {
     ['code']: val.code == void 0 ? void 0 : val.code,
@@ -237,7 +237,7 @@ export function serializeStatusSkillCardSkillCardTitleField(
   };
 }
 export function deserializeStatusSkillCardSkillCardTitleField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardSkillCardTitleField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -270,12 +270,12 @@ export function deserializeStatusSkillCardSkillCardTitleField(
   } satisfies StatusSkillCardSkillCardTitleField;
 }
 export function serializeStatusSkillCardStatusCodeField(
-  val: StatusSkillCardStatusCodeField
+  val: StatusSkillCardStatusCodeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardStatusCodeField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardStatusCodeField {
   if (val == 'invoked') {
     return val;
@@ -297,7 +297,7 @@ export function deserializeStatusSkillCardStatusCodeField(
   });
 }
 export function serializeStatusSkillCardStatusField(
-  val: StatusSkillCardStatusField
+  val: StatusSkillCardStatusField,
 ): SerializedData {
   return {
     ['code']: serializeStatusSkillCardStatusCodeField(val.code),
@@ -305,7 +305,7 @@ export function serializeStatusSkillCardStatusField(
   };
 }
 export function deserializeStatusSkillCardStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardStatusField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -331,12 +331,12 @@ export function deserializeStatusSkillCardStatusField(
   return { code: code, message: message } satisfies StatusSkillCardStatusField;
 }
 export function serializeStatusSkillCardSkillTypeField(
-  val: StatusSkillCardSkillTypeField
+  val: StatusSkillCardSkillTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardSkillTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardSkillTypeField {
   if (val == 'service') {
     return val;
@@ -346,7 +346,7 @@ export function deserializeStatusSkillCardSkillTypeField(
   });
 }
 export function serializeStatusSkillCardSkillField(
-  val: StatusSkillCardSkillField
+  val: StatusSkillCardSkillField,
 ): SerializedData {
   return {
     ['type']: serializeStatusSkillCardSkillTypeField(val.type),
@@ -354,7 +354,7 @@ export function serializeStatusSkillCardSkillField(
   };
 }
 export function deserializeStatusSkillCardSkillField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardSkillField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -384,7 +384,7 @@ export function deserializeStatusSkillCardSkillField(
   return { type: type, id: id } satisfies StatusSkillCardSkillField;
 }
 export function serializeStatusSkillCardSkillFieldInput(
-  val: StatusSkillCardSkillFieldInput
+  val: StatusSkillCardSkillFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -395,7 +395,7 @@ export function serializeStatusSkillCardSkillFieldInput(
   };
 }
 export function deserializeStatusSkillCardSkillFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardSkillFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -422,12 +422,12 @@ export function deserializeStatusSkillCardSkillFieldInput(
   return { type: type, id: id } satisfies StatusSkillCardSkillFieldInput;
 }
 export function serializeStatusSkillCardInvocationTypeField(
-  val: StatusSkillCardInvocationTypeField
+  val: StatusSkillCardInvocationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeStatusSkillCardInvocationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardInvocationTypeField {
   if (val == 'skill_invocation') {
     return val;
@@ -437,7 +437,7 @@ export function deserializeStatusSkillCardInvocationTypeField(
   });
 }
 export function serializeStatusSkillCardInvocationField(
-  val: StatusSkillCardInvocationField
+  val: StatusSkillCardInvocationField,
 ): SerializedData {
   return {
     ['type']: serializeStatusSkillCardInvocationTypeField(val.type),
@@ -445,7 +445,7 @@ export function serializeStatusSkillCardInvocationField(
   };
 }
 export function deserializeStatusSkillCardInvocationField(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardInvocationField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -476,7 +476,7 @@ export function deserializeStatusSkillCardInvocationField(
   return { type: type, id: id } satisfies StatusSkillCardInvocationField;
 }
 export function serializeStatusSkillCardInvocationFieldInput(
-  val: StatusSkillCardInvocationFieldInput
+  val: StatusSkillCardInvocationFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -487,7 +487,7 @@ export function serializeStatusSkillCardInvocationFieldInput(
   };
 }
 export function deserializeStatusSkillCardInvocationFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardInvocationFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -519,7 +519,7 @@ export function serializeStatusSkillCard(val: StatusSkillCard): SerializedData {
       val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
     ['type']: serializeStatusSkillCardTypeField(val.type),
     ['skill_card_type']: serializeStatusSkillCardSkillCardTypeField(
-      val.skillCardType
+      val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
@@ -531,7 +531,7 @@ export function serializeStatusSkillCard(val: StatusSkillCard): SerializedData {
   };
 }
 export function deserializeStatusSkillCard(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCard {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "StatusSkillCard"' });
@@ -549,7 +549,7 @@ export function deserializeStatusSkillCard(
     });
   }
   const type: StatusSkillCardTypeField = deserializeStatusSkillCardTypeField(
-    val.type
+    val.type,
   );
   if (val.skill_card_type == void 0) {
     throw new BoxSdkError({
@@ -576,7 +576,7 @@ export function deserializeStatusSkillCard(
     });
   }
   const skill: StatusSkillCardSkillField = deserializeStatusSkillCardSkillField(
-    val.skill
+    val.skill,
   );
   if (val.invocation == void 0) {
     throw new BoxSdkError({
@@ -596,7 +596,7 @@ export function deserializeStatusSkillCard(
   } satisfies StatusSkillCard;
 }
 export function serializeStatusSkillCardInput(
-  val: StatusSkillCardInput
+  val: StatusSkillCardInput,
 ): SerializedData {
   return {
     ['created_at']:
@@ -617,7 +617,7 @@ export function serializeStatusSkillCardInput(
   };
 }
 export function deserializeStatusSkillCardInput(
-  val: SerializedData
+  val: SerializedData,
 ): StatusSkillCardInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -656,7 +656,7 @@ export function deserializeStatusSkillCardInput(
     });
   }
   const skill: StatusSkillCardSkillField = deserializeStatusSkillCardSkillField(
-    val.skill
+    val.skill,
   );
   if (val.invocation == void 0) {
     throw new BoxSdkError({

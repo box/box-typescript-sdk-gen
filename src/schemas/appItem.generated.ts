@@ -46,12 +46,12 @@ export interface AppItemInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAppItemTypeField(
-  val: AppItemTypeField
+  val: AppItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAppItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemTypeField {
   if (val == 'app_item') {
     return val;

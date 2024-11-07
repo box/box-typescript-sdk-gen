@@ -102,7 +102,7 @@ test('testComments', async function testComments(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const receivedComment: CommentFull = await client.comments.getCommentById(
-    newComment.id!
+    newComment.id!,
   );
   if (!(receivedComment.message! == newComment.message!)) {
     throw new Error('Assertion failed');

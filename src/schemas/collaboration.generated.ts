@@ -121,7 +121,7 @@ export class Collaboration {
   readonly acceptanceRequirementsStatus?: CollaborationAcceptanceRequirementsStatusField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<Collaboration, 'type'> & Partial<Pick<Collaboration, 'type'>>
+    fields: Omit<Collaboration, 'type'> & Partial<Pick<Collaboration, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -220,12 +220,12 @@ export interface CollaborationInput {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaborationTypeField(
-  val: CollaborationTypeField
+  val: CollaborationTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationTypeField {
   if (val == 'collaboration') {
     return val;
@@ -235,12 +235,12 @@ export function deserializeCollaborationTypeField(
   });
 }
 export function serializeCollaborationRoleField(
-  val: CollaborationRoleField
+  val: CollaborationRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationRoleField {
   if (val == 'editor') {
     return val;
@@ -271,12 +271,12 @@ export function deserializeCollaborationRoleField(
   });
 }
 export function serializeCollaborationStatusField(
-  val: CollaborationStatusField
+  val: CollaborationStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaborationStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationStatusField {
   if (val == 'accepted') {
     return val;
@@ -292,7 +292,7 @@ export function deserializeCollaborationStatusField(
   });
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-  val: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField
+  val: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField,
 ): SerializedData {
   return {
     ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
@@ -303,7 +303,7 @@ export function serializeCollaborationAcceptanceRequirementsStatusTermsOfService
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -329,7 +329,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusTermsOfServi
   } satisfies CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-  val: CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField
+  val: CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField,
 ): SerializedData {
   return {
     ['enterprise_has_strong_password_required_for_external_users']:
@@ -341,7 +341,7 @@ export function serializeCollaborationAcceptanceRequirementsStatusStrongPassword
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -386,7 +386,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusStrongPasswo
   } satisfies CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-  val: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField
+  val: CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField,
 ): SerializedData {
   return {
     ['enterprise_has_two_factor_auth_enabled']:
@@ -400,7 +400,7 @@ export function serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthe
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -441,31 +441,31 @@ export function deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAut
   } satisfies CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField;
 }
 export function serializeCollaborationAcceptanceRequirementsStatusField(
-  val: CollaborationAcceptanceRequirementsStatusField
+  val: CollaborationAcceptanceRequirementsStatusField,
 ): SerializedData {
   return {
     ['terms_of_service_requirement']:
       val.termsOfServiceRequirement == void 0
         ? void 0
         : serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-            val.termsOfServiceRequirement
+            val.termsOfServiceRequirement,
           ),
     ['strong_password_requirement']:
       val.strongPasswordRequirement == void 0
         ? void 0
         : serializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-            val.strongPasswordRequirement
+            val.strongPasswordRequirement,
           ),
     ['two_factor_authentication_requirement']:
       val.twoFactorAuthenticationRequirement == void 0
         ? void 0
         : serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-            val.twoFactorAuthenticationRequirement
+            val.twoFactorAuthenticationRequirement,
           ),
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationAcceptanceRequirementsStatusField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -479,7 +479,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(
     val.terms_of_service_requirement == void 0
       ? void 0
       : deserializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
-          val.terms_of_service_requirement
+          val.terms_of_service_requirement,
         );
   const strongPasswordRequirement:
     | undefined
@@ -487,7 +487,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(
     val.strong_password_requirement == void 0
       ? void 0
       : deserializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
-          val.strong_password_requirement
+          val.strong_password_requirement,
         );
   const twoFactorAuthenticationRequirement:
     | undefined
@@ -495,7 +495,7 @@ export function deserializeCollaborationAcceptanceRequirementsStatusField(
     val.two_factor_authentication_requirement == void 0
       ? void 0
       : deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
-          val.two_factor_authentication_requirement
+          val.two_factor_authentication_requirement,
         );
   return {
     termsOfServiceRequirement: termsOfServiceRequirement,
@@ -541,7 +541,7 @@ export function serializeCollaboration(val: Collaboration): SerializedData {
       val.acceptanceRequirementsStatus == void 0
         ? void 0
         : serializeCollaborationAcceptanceRequirementsStatusField(
-            val.acceptanceRequirementsStatus
+            val.acceptanceRequirementsStatus,
           ),
   };
 }
@@ -566,7 +566,7 @@ export function deserializeCollaboration(val: SerializedData): Collaboration {
     });
   }
   const type: CollaborationTypeField = deserializeCollaborationTypeField(
-    val.type
+    val.type,
   );
   const item: undefined | FileOrFolderOrWebLink =
     val.item == void 0 ? void 0 : deserializeFileOrFolderOrWebLink(val.item);
@@ -636,7 +636,7 @@ export function deserializeCollaboration(val: SerializedData): Collaboration {
     val.acceptance_requirements_status == void 0
       ? void 0
       : deserializeCollaborationAcceptanceRequirementsStatusField(
-          val.acceptance_requirements_status
+          val.acceptance_requirements_status,
         );
   return {
     id: id,
@@ -657,7 +657,7 @@ export function deserializeCollaboration(val: SerializedData): Collaboration {
   } satisfies Collaboration;
 }
 export function serializeCollaborationInput(
-  val: CollaborationInput
+  val: CollaborationInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -697,12 +697,12 @@ export function serializeCollaborationInput(
       val.acceptanceRequirementsStatus == void 0
         ? void 0
         : serializeCollaborationAcceptanceRequirementsStatusField(
-            val.acceptanceRequirementsStatus
+            val.acceptanceRequirementsStatus,
           ),
   };
 }
 export function deserializeCollaborationInput(
-  val: SerializedData
+  val: SerializedData,
 ): CollaborationInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -794,7 +794,7 @@ export function deserializeCollaborationInput(
     val.acceptance_requirements_status == void 0
       ? void 0
       : deserializeCollaborationAcceptanceRequirementsStatusField(
-          val.acceptance_requirements_status
+          val.acceptance_requirements_status,
         );
   return {
     id: id,

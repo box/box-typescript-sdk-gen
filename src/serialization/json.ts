@@ -21,7 +21,7 @@ export function sdToJson(data: SerializedData): string {
 export function sdToUrlParams(data: SerializedData): string {
   if (!sdIsMap(data) && !sdIsString(data)) {
     throw new Error(
-      'Expecting an object or string as an argument for sdToUrlParams'
+      'Expecting an object or string as an argument for sdToUrlParams',
     );
   }
   const dataAsMap: SerializedDataMap = sdIsString(data)
@@ -29,8 +29,8 @@ export function sdToUrlParams(data: SerializedData): string {
     : data;
   return new URLSearchParams(
     Object.fromEntries(
-      Object.entries(dataAsMap).filter(([key, value]) => value != null)
-    ) as Record<string, string>
+      Object.entries(dataAsMap).filter(([key, value]) => value != null),
+    ) as Record<string, string>,
   ).toString();
 }
 

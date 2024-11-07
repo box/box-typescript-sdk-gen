@@ -58,12 +58,12 @@ export interface Users {
   readonly rawData?: SerializedData;
 }
 export function serializeUsersOrderDirectionField(
-  val: UsersOrderDirectionField
+  val: UsersOrderDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeUsersOrderDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): UsersOrderDirectionField {
   if (val == 'ASC') {
     return val;
@@ -85,7 +85,7 @@ export function serializeUsersOrderField(val: UsersOrderField): SerializedData {
   };
 }
 export function deserializeUsersOrderField(
-  val: SerializedData
+  val: SerializedData,
 ): UsersOrderField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UsersOrderField"' });
@@ -169,10 +169,10 @@ export function deserializeUsers(val: SerializedData): Users {
     val.order == void 0
       ? void 0
       : sdIsList(val.order)
-      ? (val.order.map(function (itm: SerializedData): UsersOrderField {
-          return deserializeUsersOrderField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order.map(function (itm: SerializedData): UsersOrderField {
+            return deserializeUsersOrderField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
       message: 'Expecting array for "entries" of type "Users"',
@@ -182,10 +182,10 @@ export function deserializeUsers(val: SerializedData): Users {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): UserFull {
-          return deserializeUserFull(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): UserFull {
+            return deserializeUserFull(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

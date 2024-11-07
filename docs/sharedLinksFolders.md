@@ -30,9 +30,9 @@ await userClient.sharedLinksFolders.findFolderForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       folderFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword'
+      '&shared_link_password=incorrectPassword',
     ) as string,
-  } satisfies FindFolderForSharedLinkHeadersInput
+  } satisfies FindFolderForSharedLinkHeadersInput,
 );
 ```
 
@@ -105,7 +105,7 @@ await client.sharedLinksFolders.addShareLinkToFolder(
       password: 'Secret123@',
     } satisfies AddShareLinkToFolderRequestBodySharedLinkField,
   } satisfies AddShareLinkToFolderRequestBody,
-  { fields: 'shared_link' } satisfies AddShareLinkToFolderQueryParams
+  { fields: 'shared_link' } satisfies AddShareLinkToFolderQueryParams,
 );
 ```
 
@@ -147,7 +147,7 @@ await client.sharedLinksFolders.updateSharedLinkOnFolder(
         'collaborators' as UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField,
     } satisfies UpdateSharedLinkOnFolderRequestBodySharedLinkField,
   } satisfies UpdateSharedLinkOnFolderRequestBody,
-  { fields: 'shared_link' } satisfies UpdateSharedLinkOnFolderQueryParams
+  { fields: 'shared_link' } satisfies UpdateSharedLinkOnFolderQueryParams,
 );
 ```
 

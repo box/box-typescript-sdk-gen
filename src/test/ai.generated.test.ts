@@ -300,7 +300,7 @@ test('testAIExtract', async function testAIExtract(): Promise<any> {
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: stringToByteStream(
-      'My name is John Doe. I live in San Francisco. I was born in 1990. I work at Box.'
+      'My name is John Doe. I live in San Francisco. I was born in 1990. I work at Box.',
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
@@ -326,7 +326,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: stringToByteStream(
-      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.'
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.',
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
@@ -371,7 +371,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
         } satisfies AiExtractStructuredFieldsField,
       ],
       items: [new AiItemBase({ id: file.id })],
-    } satisfies AiExtractStructured
+    } satisfies AiExtractStructured,
   );
   if (
     !(
@@ -392,7 +392,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth')
+        getValueFromObjectRawData(response, 'dateOfBirth'),
       ) as string) == '1990-07-04'
     )
   ) {
@@ -420,7 +420,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: stringToByteStream(
-      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.'
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.',
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
@@ -471,7 +471,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
         scope: 'enterprise',
       } satisfies AiExtractStructuredMetadataTemplateField,
       items: [new AiItemBase({ id: file.id })],
-    } satisfies AiExtractStructured
+    } satisfies AiExtractStructured,
   );
   if (
     !(
@@ -492,7 +492,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth')
+        getValueFromObjectRawData(response, 'dateOfBirth'),
       ) as string) == '1990-07-04'
     )
   ) {
@@ -513,7 +513,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey!
+    template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
 });

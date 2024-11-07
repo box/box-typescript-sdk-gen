@@ -54,7 +54,7 @@ export function serializeUserStatusField(val: UserStatusField): SerializedData {
   return val;
 }
 export function deserializeUserStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UserStatusField {
   if (val == 'active') {
     return val;
@@ -71,7 +71,7 @@ export function deserializeUserStatusField(
   throw new BoxSdkError({ message: "Can't deserialize UserStatusField" });
 }
 export function serializeUserNotificationEmailField(
-  val: UserNotificationEmailField
+  val: UserNotificationEmailField,
 ): SerializedData {
   return {
     ['email']: val.email == void 0 ? void 0 : val.email,
@@ -79,7 +79,7 @@ export function serializeUserNotificationEmailField(
   };
 }
 export function deserializeUserNotificationEmailField(
-  val: SerializedData
+  val: SerializedData,
 ): UserNotificationEmailField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

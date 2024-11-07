@@ -17,12 +17,12 @@ export interface ShieldInformationBarrierReportDetails {
   readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierReportDetailsDetailsField(
-  val: ShieldInformationBarrierReportDetailsDetailsField
+  val: ShieldInformationBarrierReportDetailsDetailsField,
 ): SerializedData {
   return { ['folder_id']: val.folderId == void 0 ? void 0 : val.folderId };
 }
 export function deserializeShieldInformationBarrierReportDetailsDetailsField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierReportDetailsDetailsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -43,19 +43,19 @@ export function deserializeShieldInformationBarrierReportDetailsDetailsField(
   } satisfies ShieldInformationBarrierReportDetailsDetailsField;
 }
 export function serializeShieldInformationBarrierReportDetails(
-  val: ShieldInformationBarrierReportDetails
+  val: ShieldInformationBarrierReportDetails,
 ): SerializedData {
   return {
     ['details']:
       val.details == void 0
         ? void 0
         : serializeShieldInformationBarrierReportDetailsDetailsField(
-            val.details
+            val.details,
           ),
   };
 }
 export function deserializeShieldInformationBarrierReportDetails(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierReportDetails {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -66,7 +66,7 @@ export function deserializeShieldInformationBarrierReportDetails(
     val.details == void 0
       ? void 0
       : deserializeShieldInformationBarrierReportDetailsDetailsField(
-          val.details
+          val.details,
         );
   return { details: details } satisfies ShieldInformationBarrierReportDetails;
 }

@@ -20,7 +20,7 @@ export class WebLinkBase {
   readonly etag?: string;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>
+    fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -50,12 +50,12 @@ export interface WebLinkBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeWebLinkBaseTypeField(
-  val: WebLinkBaseTypeField
+  val: WebLinkBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWebLinkBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkBaseTypeField {
   if (val == 'web_link') {
     return val;
@@ -99,7 +99,7 @@ export function deserializeWebLinkBase(val: SerializedData): WebLinkBase {
   return { id: id, type: type, etag: etag } satisfies WebLinkBase;
 }
 export function serializeWebLinkBaseInput(
-  val: WebLinkBaseInput
+  val: WebLinkBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -109,7 +109,7 @@ export function serializeWebLinkBaseInput(
   };
 }
 export function deserializeWebLinkBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): WebLinkBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

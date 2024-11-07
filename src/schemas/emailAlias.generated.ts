@@ -23,12 +23,12 @@ export interface EmailAlias {
   readonly rawData?: SerializedData;
 }
 export function serializeEmailAliasTypeField(
-  val: EmailAliasTypeField
+  val: EmailAliasTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeEmailAliasTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): EmailAliasTypeField {
   if (val == 'email_alias') {
     return val;

@@ -30,7 +30,7 @@ export class CreateWebhookOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateWebhookOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateWebhookOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateWebhookOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -49,7 +49,7 @@ export class GetWebhookByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -78,7 +78,7 @@ export class UpdateWebhookByIdOptionals {
           UpdateWebhookByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -101,7 +101,9 @@ export class DeleteWebhookByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -134,7 +136,7 @@ export class GetWebhooksHeaders {
   } = {};
   constructor(
     fields: Omit<GetWebhooksHeaders, 'extraHeaders'> &
-      Partial<Pick<GetWebhooksHeaders, 'extraHeaders'>>
+      Partial<Pick<GetWebhooksHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -222,7 +224,7 @@ export class CreateWebhookHeaders {
   } = {};
   constructor(
     fields: Omit<CreateWebhookHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateWebhookHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateWebhookHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -246,7 +248,7 @@ export class GetWebhookByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetWebhookByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetWebhookByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -334,7 +336,7 @@ export class UpdateWebhookByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateWebhookByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateWebhookByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -358,7 +360,7 @@ export class DeleteWebhookByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteWebhookByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteWebhookByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -387,7 +389,7 @@ export class WebhooksManager {
       | 'updateWebhookById'
       | 'deleteWebhookById'
     > &
-      Partial<Pick<WebhooksManager, 'networkSession'>>
+      Partial<Pick<WebhooksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -411,7 +413,7 @@ export class WebhooksManager {
   async getWebhooks(
     queryParams: GetWebhooksQueryParams = {} satisfies GetWebhooksQueryParams,
     headersInput: GetWebhooksHeadersInput = new GetWebhooksHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Webhooks> {
     const headers: GetWebhooksHeaders = new GetWebhooksHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -428,7 +430,7 @@ export class WebhooksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/webhooks'
+        '/2.0/webhooks',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -451,7 +453,7 @@ export class WebhooksManager {
    */
   async createWebhook(
     requestBody: CreateWebhookRequestBody,
-    optionalsInput: CreateWebhookOptionalsInput = {}
+    optionalsInput: CreateWebhookOptionalsInput = {},
   ): Promise<Webhook> {
     const optionals: CreateWebhookOptionals = new CreateWebhookOptionals({
       headers: optionalsInput.headers,
@@ -465,7 +467,7 @@ export class WebhooksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/webhooks'
+        '/2.0/webhooks',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -490,7 +492,7 @@ export class WebhooksManager {
      */
   async getWebhookById(
     webhookId: string,
-    optionalsInput: GetWebhookByIdOptionalsInput = {}
+    optionalsInput: GetWebhookByIdOptionalsInput = {},
   ): Promise<Webhook> {
     const optionals: GetWebhookByIdOptionals = new GetWebhookByIdOptionals({
       headers: optionalsInput.headers,
@@ -505,7 +507,7 @@ export class WebhooksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/webhooks/',
-        toString(webhookId) as string
+        toString(webhookId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -528,7 +530,7 @@ export class WebhooksManager {
      */
   async updateWebhookById(
     webhookId: string,
-    optionalsInput: UpdateWebhookByIdOptionalsInput = {}
+    optionalsInput: UpdateWebhookByIdOptionalsInput = {},
   ): Promise<Webhook> {
     const optionals: UpdateWebhookByIdOptionals =
       new UpdateWebhookByIdOptionals({
@@ -546,7 +548,7 @@ export class WebhooksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/webhooks/',
-        toString(webhookId) as string
+        toString(webhookId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -571,7 +573,7 @@ export class WebhooksManager {
      */
   async deleteWebhookById(
     webhookId: string,
-    optionalsInput: DeleteWebhookByIdOptionalsInput = {}
+    optionalsInput: DeleteWebhookByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteWebhookByIdOptionals =
       new DeleteWebhookByIdOptionals({
@@ -587,7 +589,7 @@ export class WebhooksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/webhooks/',
-        toString(webhookId) as string
+        toString(webhookId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -604,12 +606,12 @@ export interface WebhooksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateWebhookRequestBodyTargetTypeField(
-  val: CreateWebhookRequestBodyTargetTypeField
+  val: CreateWebhookRequestBodyTargetTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateWebhookRequestBodyTargetTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebhookRequestBodyTargetTypeField {
   if (val == 'file') {
     return val;
@@ -622,7 +624,7 @@ export function deserializeCreateWebhookRequestBodyTargetTypeField(
   });
 }
 export function serializeCreateWebhookRequestBodyTargetField(
-  val: CreateWebhookRequestBodyTargetField
+  val: CreateWebhookRequestBodyTargetField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -633,7 +635,7 @@ export function serializeCreateWebhookRequestBodyTargetField(
   };
 }
 export function deserializeCreateWebhookRequestBodyTargetField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebhookRequestBodyTargetField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -654,12 +656,12 @@ export function deserializeCreateWebhookRequestBodyTargetField(
   return { id: id, type: type } satisfies CreateWebhookRequestBodyTargetField;
 }
 export function serializeCreateWebhookRequestBodyTriggersField(
-  val: CreateWebhookRequestBodyTriggersField
+  val: CreateWebhookRequestBodyTriggersField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateWebhookRequestBodyTriggersField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebhookRequestBodyTriggersField {
   if (val == 'FILE.UPLOADED') {
     return val;
@@ -786,20 +788,20 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
   });
 }
 export function serializeCreateWebhookRequestBody(
-  val: CreateWebhookRequestBody
+  val: CreateWebhookRequestBody,
 ): SerializedData {
   return {
     ['target']: serializeCreateWebhookRequestBodyTargetField(val.target),
     ['address']: val.address,
     ['triggers']: val.triggers.map(function (
-      item: CreateWebhookRequestBodyTriggersField
+      item: CreateWebhookRequestBodyTriggersField,
     ): SerializedData {
       return serializeCreateWebhookRequestBodyTriggersField(item);
     }) as readonly any[],
   };
 }
 export function deserializeCreateWebhookRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateWebhookRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -840,10 +842,10 @@ export function deserializeCreateWebhookRequestBody(
     });
   }
   const triggers: readonly CreateWebhookRequestBodyTriggersField[] = sdIsList(
-    val.triggers
+    val.triggers,
   )
     ? (val.triggers.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): CreateWebhookRequestBodyTriggersField {
         return deserializeCreateWebhookRequestBodyTriggersField(itm);
       }) as readonly any[])
@@ -855,12 +857,12 @@ export function deserializeCreateWebhookRequestBody(
   } satisfies CreateWebhookRequestBody;
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetTypeField(
-  val: UpdateWebhookByIdRequestBodyTargetTypeField
+  val: UpdateWebhookByIdRequestBodyTargetTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebhookByIdRequestBodyTargetTypeField {
   if (val == 'file') {
     return val;
@@ -873,7 +875,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetTypeField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBodyTargetField(
-  val: UpdateWebhookByIdRequestBodyTargetField
+  val: UpdateWebhookByIdRequestBodyTargetField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -884,7 +886,7 @@ export function serializeUpdateWebhookByIdRequestBodyTargetField(
   };
 }
 export function deserializeUpdateWebhookByIdRequestBodyTargetField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebhookByIdRequestBodyTargetField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -908,12 +910,12 @@ export function deserializeUpdateWebhookByIdRequestBodyTargetField(
   } satisfies UpdateWebhookByIdRequestBodyTargetField;
 }
 export function serializeUpdateWebhookByIdRequestBodyTriggersField(
-  val: UpdateWebhookByIdRequestBodyTriggersField
+  val: UpdateWebhookByIdRequestBodyTriggersField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebhookByIdRequestBodyTriggersField {
   if (val == 'FILE.UPLOADED') {
     return val;
@@ -1040,7 +1042,7 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
   });
 }
 export function serializeUpdateWebhookByIdRequestBody(
-  val: UpdateWebhookByIdRequestBody
+  val: UpdateWebhookByIdRequestBody,
 ): SerializedData {
   return {
     ['target']:
@@ -1052,14 +1054,14 @@ export function serializeUpdateWebhookByIdRequestBody(
       val.triggers == void 0
         ? void 0
         : (val.triggers.map(function (
-            item: UpdateWebhookByIdRequestBodyTriggersField
+            item: UpdateWebhookByIdRequestBodyTriggersField,
           ): SerializedData {
             return serializeUpdateWebhookByIdRequestBodyTriggersField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeUpdateWebhookByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateWebhookByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1090,12 +1092,12 @@ export function deserializeUpdateWebhookByIdRequestBody(
     val.triggers == void 0
       ? void 0
       : sdIsList(val.triggers)
-      ? (val.triggers.map(function (
-          itm: SerializedData
-        ): UpdateWebhookByIdRequestBodyTriggersField {
-          return deserializeUpdateWebhookByIdRequestBodyTriggersField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.triggers.map(function (
+            itm: SerializedData,
+          ): UpdateWebhookByIdRequestBodyTriggersField {
+            return deserializeUpdateWebhookByIdRequestBodyTriggersField(itm);
+          }) as readonly any[])
+        : [];
   return {
     target: target,
     address: address,

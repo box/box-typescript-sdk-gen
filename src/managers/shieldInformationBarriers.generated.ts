@@ -42,7 +42,7 @@ export class GetShieldInformationBarrierByIdOptionals {
           GetShieldInformationBarrierByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -70,7 +70,7 @@ export class UpdateShieldInformationBarrierStatusOptionals {
           UpdateShieldInformationBarrierStatusOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -98,7 +98,7 @@ export class CreateShieldInformationBarrierOptionals {
           CreateShieldInformationBarrierOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -120,7 +120,7 @@ export class GetShieldInformationBarrierByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetShieldInformationBarrierByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -156,7 +156,9 @@ export class UpdateShieldInformationBarrierStatusHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>>
+      Partial<
+        Pick<UpdateShieldInformationBarrierStatusHeaders, 'extraHeaders'>
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -189,7 +191,7 @@ export class GetShieldInformationBarriersHeaders {
   } = {};
   constructor(
     fields: Omit<GetShieldInformationBarriersHeaders, 'extraHeaders'> &
-      Partial<Pick<GetShieldInformationBarriersHeaders, 'extraHeaders'>>
+      Partial<Pick<GetShieldInformationBarriersHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -219,7 +221,7 @@ export class CreateShieldInformationBarrierHeaders {
   } = {};
   constructor(
     fields: Omit<CreateShieldInformationBarrierHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateShieldInformationBarrierHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateShieldInformationBarrierHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -247,7 +249,7 @@ export class ShieldInformationBarriersManager {
       | 'getShieldInformationBarriers'
       | 'createShieldInformationBarrier'
     > &
-      Partial<Pick<ShieldInformationBarriersManager, 'networkSession'>>
+      Partial<Pick<ShieldInformationBarriersManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -265,7 +267,7 @@ export class ShieldInformationBarriersManager {
      */
   async getShieldInformationBarrierById(
     shieldInformationBarrierId: string,
-    optionalsInput: GetShieldInformationBarrierByIdOptionalsInput = {}
+    optionalsInput: GetShieldInformationBarrierByIdOptionalsInput = {},
   ): Promise<ShieldInformationBarrier> {
     const optionals: GetShieldInformationBarrierByIdOptionals =
       new GetShieldInformationBarrierByIdOptionals({
@@ -281,7 +283,7 @@ export class ShieldInformationBarriersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/shield_information_barriers/',
-        toString(shieldInformationBarrierId) as string
+        toString(shieldInformationBarrierId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -303,7 +305,7 @@ export class ShieldInformationBarriersManager {
    */
   async updateShieldInformationBarrierStatus(
     requestBody: UpdateShieldInformationBarrierStatusRequestBody,
-    optionalsInput: UpdateShieldInformationBarrierStatusOptionalsInput = {}
+    optionalsInput: UpdateShieldInformationBarrierStatusOptionalsInput = {},
   ): Promise<ShieldInformationBarrier> {
     const optionals: UpdateShieldInformationBarrierStatusOptionals =
       new UpdateShieldInformationBarrierStatusOptionals({
@@ -318,12 +320,12 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers/change_status'
+        '/2.0/shield_information_barriers/change_status',
       ) as string,
       method: 'POST',
       headers: headersMap,
       data: serializeUpdateShieldInformationBarrierStatusRequestBody(
-        requestBody
+        requestBody,
       ),
       contentType: 'application/json',
       responseFormat: 'json',
@@ -347,9 +349,9 @@ export class ShieldInformationBarriersManager {
   async getShieldInformationBarriers(
     queryParams: GetShieldInformationBarriersQueryParams = {} satisfies GetShieldInformationBarriersQueryParams,
     headersInput: GetShieldInformationBarriersHeadersInput = new GetShieldInformationBarriersHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<ShieldInformationBarriers> {
     const headers: GetShieldInformationBarriersHeaders =
       new GetShieldInformationBarriersHeaders({
@@ -367,7 +369,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers'
+        '/2.0/shield_information_barriers',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -392,7 +394,7 @@ export class ShieldInformationBarriersManager {
    */
   async createShieldInformationBarrier(
     requestBody: CreateShieldInformationBarrierRequestBody,
-    optionalsInput: CreateShieldInformationBarrierOptionalsInput = {}
+    optionalsInput: CreateShieldInformationBarrierOptionalsInput = {},
   ): Promise<ShieldInformationBarrier> {
     const optionals: CreateShieldInformationBarrierOptionals =
       new CreateShieldInformationBarrierOptionals({
@@ -407,7 +409,7 @@ export class ShieldInformationBarriersManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers'
+        '/2.0/shield_information_barriers',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -429,12 +431,12 @@ export interface ShieldInformationBarriersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField
+  val: UpdateShieldInformationBarrierStatusRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateShieldInformationBarrierStatusRequestBodyStatusField {
   if (val == 'pending') {
     return val;
@@ -448,18 +450,18 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
   });
 }
 export function serializeUpdateShieldInformationBarrierStatusRequestBody(
-  val: UpdateShieldInformationBarrierStatusRequestBody
+  val: UpdateShieldInformationBarrierStatusRequestBody,
 ): SerializedData {
   return {
     ['id']: val.id,
     ['status']:
       serializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-        val.status
+        val.status,
       ),
   };
 }
 export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateShieldInformationBarrierStatusRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -488,7 +490,7 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   }
   const status: UpdateShieldInformationBarrierStatusRequestBodyStatusField =
     deserializeUpdateShieldInformationBarrierStatusRequestBodyStatusField(
-      val.status
+      val.status,
     );
   return {
     id: id,
@@ -496,12 +498,12 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBody(
   } satisfies UpdateShieldInformationBarrierStatusRequestBody;
 }
 export function serializeCreateShieldInformationBarrierRequestBody(
-  val: CreateShieldInformationBarrierRequestBody
+  val: CreateShieldInformationBarrierRequestBody,
 ): SerializedData {
   return { ['enterprise']: serializeEnterpriseBase(val.enterprise) };
 }
 export function deserializeCreateShieldInformationBarrierRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateShieldInformationBarrierRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

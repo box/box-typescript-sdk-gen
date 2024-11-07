@@ -93,7 +93,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export function getJwtAuth(): BoxJwtAuth {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
-    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64'))
+    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
   );
   const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
   return auth;
@@ -151,7 +151,7 @@ export async function getOrCreateTermsOfServices(): Promise<TermsOfService> {
   } satisfies CreateTermsOfServiceRequestBody);
 }
 export async function getOrCreateClassification(
-  classificationTemplateInput: ClassificationTemplateInput
+  classificationTemplateInput: ClassificationTemplateInput,
 ): Promise<ClassificationTemplateFieldsOptionsField> {
   const classificationTemplate: ClassificationTemplate =
     new ClassificationTemplate({
@@ -203,7 +203,7 @@ export async function getOrCreateClassificationTemplate(): Promise<Classificatio
 }
 export async function getOrCreateShieldInformationBarrier(
   clientInput: BoxClientInput,
-  enterpriseId: string
+  enterpriseId: string,
 ): Promise<ShieldInformationBarrier> {
   const client: BoxClient = new BoxClient({
     auth: clientInput.auth,
@@ -216,7 +216,7 @@ export async function getOrCreateShieldInformationBarrier(
     return await client.shieldInformationBarriers.createShieldInformationBarrier(
       {
         enterprise: { id: enterpriseId } satisfies EnterpriseBase,
-      } satisfies CreateShieldInformationBarrierRequestBody
+      } satisfies CreateShieldInformationBarrierRequestBody,
     );
   }
   return barriers.entries![numberOfBarriers - 1];

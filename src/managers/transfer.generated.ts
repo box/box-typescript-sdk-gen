@@ -26,7 +26,7 @@ export class TransferOwnedFolderOptionals {
   readonly queryParams: TransferOwnedFolderQueryParams =
     {} satisfies TransferOwnedFolderQueryParams;
   readonly headers: TransferOwnedFolderHeaders = new TransferOwnedFolderHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -39,7 +39,7 @@ export class TransferOwnedFolderOptionals {
           TransferOwnedFolderOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -95,7 +95,7 @@ export class TransferOwnedFolderHeaders {
   } = {};
   constructor(
     fields: Omit<TransferOwnedFolderHeaders, 'extraHeaders'> &
-      Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>
+      Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -116,7 +116,7 @@ export class TransferManager {
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
     fields: Omit<TransferManager, 'networkSession' | 'transferOwnedFolder'> &
-      Partial<Pick<TransferManager, 'networkSession'>>
+      Partial<Pick<TransferManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -168,7 +168,7 @@ export class TransferManager {
   async transferOwnedFolder(
     userId: string,
     requestBody: TransferOwnedFolderRequestBody,
-    optionalsInput: TransferOwnedFolderOptionalsInput = {}
+    optionalsInput: TransferOwnedFolderOptionalsInput = {},
   ): Promise<FolderFull> {
     const optionals: TransferOwnedFolderOptionals =
       new TransferOwnedFolderOptionals({
@@ -195,7 +195,7 @@ export class TransferManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/users/',
         toString(userId) as string,
-        '/folders/0'
+        '/folders/0',
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -218,12 +218,12 @@ export interface TransferManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeTransferOwnedFolderRequestBodyOwnedByField(
-  val: TransferOwnedFolderRequestBodyOwnedByField
+  val: TransferOwnedFolderRequestBodyOwnedByField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
-  val: SerializedData
+  val: SerializedData,
 ): TransferOwnedFolderRequestBodyOwnedByField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -247,16 +247,16 @@ export function deserializeTransferOwnedFolderRequestBodyOwnedByField(
   return { id: id } satisfies TransferOwnedFolderRequestBodyOwnedByField;
 }
 export function serializeTransferOwnedFolderRequestBody(
-  val: TransferOwnedFolderRequestBody
+  val: TransferOwnedFolderRequestBody,
 ): SerializedData {
   return {
     ['owned_by']: serializeTransferOwnedFolderRequestBodyOwnedByField(
-      val.ownedBy
+      val.ownedBy,
     ),
   };
 }
 export function deserializeTransferOwnedFolderRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): TransferOwnedFolderRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

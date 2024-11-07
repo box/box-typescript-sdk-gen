@@ -25,7 +25,7 @@ export interface SignRequestPrefillTag {
   readonly rawData?: SerializedData;
 }
 export function serializeSignRequestPrefillTag(
-  val: SignRequestPrefillTag
+  val: SignRequestPrefillTag,
 ): SerializedData {
   return {
     ['document_tag_id']:
@@ -38,7 +38,7 @@ export function serializeSignRequestPrefillTag(
   };
 }
 export function deserializeSignRequestPrefillTag(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestPrefillTag {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

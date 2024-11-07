@@ -33,9 +33,9 @@ await userClient.sharedLinksFiles.findFileForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       fileFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword'
+      '&shared_link_password=incorrectPassword',
     ) as string,
-  } satisfies FindFileForSharedLinkHeadersInput
+  } satisfies FindFileForSharedLinkHeadersInput,
 );
 ```
 
@@ -108,7 +108,7 @@ await client.sharedLinksFiles.addShareLinkToFile(
       password: 'Secret123@',
     } satisfies AddShareLinkToFileRequestBodySharedLinkField,
   } satisfies AddShareLinkToFileRequestBody,
-  { fields: 'shared_link' } satisfies AddShareLinkToFileQueryParams
+  { fields: 'shared_link' } satisfies AddShareLinkToFileQueryParams,
 );
 ```
 
@@ -150,7 +150,7 @@ await client.sharedLinksFiles.updateSharedLinkOnFile(
         'collaborators' as UpdateSharedLinkOnFileRequestBodySharedLinkAccessField,
     } satisfies UpdateSharedLinkOnFileRequestBodySharedLinkField,
   } satisfies UpdateSharedLinkOnFileRequestBody,
-  { fields: 'shared_link' } satisfies UpdateSharedLinkOnFileQueryParams
+  { fields: 'shared_link' } satisfies UpdateSharedLinkOnFileQueryParams,
 );
 ```
 

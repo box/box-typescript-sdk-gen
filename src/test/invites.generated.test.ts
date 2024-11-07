@@ -52,7 +52,7 @@ test('testInvites', async function testInvites(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const getInvitation: Invite = await client.invites.getInviteById(
-    invitation.id
+    invitation.id,
   );
   if (!(getInvitation.id == invitation.id)) {
     throw new Error('Assertion failed');

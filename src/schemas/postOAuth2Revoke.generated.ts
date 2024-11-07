@@ -21,7 +21,7 @@ export interface PostOAuth2Revoke {
   readonly rawData?: SerializedData;
 }
 export function serializePostOAuth2Revoke(
-  val: PostOAuth2Revoke
+  val: PostOAuth2Revoke,
 ): SerializedData {
   return {
     ['client_id']: val.clientId == void 0 ? void 0 : val.clientId,
@@ -30,7 +30,7 @@ export function serializePostOAuth2Revoke(
   };
 }
 export function deserializePostOAuth2Revoke(
-  val: SerializedData
+  val: SerializedData,
 ): PostOAuth2Revoke {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

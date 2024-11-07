@@ -34,7 +34,7 @@ export class SearchResults {
   readonly entries?: readonly FileFullOrFolderFullOrWebLink[];
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<SearchResults, 'type'> & Partial<Pick<SearchResults, 'type'>>
+    fields: Omit<SearchResults, 'type'> & Partial<Pick<SearchResults, 'type'>>,
   ) {
     if (fields.totalCount) {
       this.totalCount = fields.totalCount;
@@ -80,12 +80,12 @@ export interface SearchResultsInput {
   readonly rawData?: SerializedData;
 }
 export function serializeSearchResultsTypeField(
-  val: SearchResultsTypeField
+  val: SearchResultsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchResultsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsTypeField {
   if (val == 'search_results_items') {
     return val;
@@ -104,7 +104,7 @@ export function serializeSearchResults(val: SearchResults): SerializedData {
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileFullOrFolderFullOrWebLink
+            item: FileFullOrFolderFullOrWebLink,
           ): SerializedData {
             return serializeFileFullOrFolderFullOrWebLink(item);
           }) as readonly any[]),
@@ -139,7 +139,7 @@ export function deserializeSearchResults(val: SerializedData): SearchResults {
     });
   }
   const type: SearchResultsTypeField = deserializeSearchResultsTypeField(
-    val.type
+    val.type,
   );
   if (!(val.entries == void 0) && !sdIsList(val.entries)) {
     throw new BoxSdkError({
@@ -150,12 +150,12 @@ export function deserializeSearchResults(val: SerializedData): SearchResults {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): FileFullOrFolderFullOrWebLink {
-          return deserializeFileFullOrFolderFullOrWebLink(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileFullOrFolderFullOrWebLink {
+            return deserializeFileFullOrFolderFullOrWebLink(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,
@@ -165,7 +165,7 @@ export function deserializeSearchResults(val: SerializedData): SearchResults {
   } satisfies SearchResults;
 }
 export function serializeSearchResultsInput(
-  val: SearchResultsInput
+  val: SearchResultsInput,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -177,14 +177,14 @@ export function serializeSearchResultsInput(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: FileFullOrFolderFullOrWebLink
+            item: FileFullOrFolderFullOrWebLink,
           ): SerializedData {
             return serializeFileFullOrFolderFullOrWebLink(item);
           }) as readonly any[]),
   };
 }
 export function deserializeSearchResultsInput(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -222,12 +222,12 @@ export function deserializeSearchResultsInput(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): FileFullOrFolderFullOrWebLink {
-          return deserializeFileFullOrFolderFullOrWebLink(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): FileFullOrFolderFullOrWebLink {
+            return deserializeFileFullOrFolderFullOrWebLink(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

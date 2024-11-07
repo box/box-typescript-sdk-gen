@@ -88,12 +88,12 @@ export interface MetadataQuery {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataQueryOrderByDirectionField(
-  val: MetadataQueryOrderByDirectionField
+  val: MetadataQueryOrderByDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataQueryOrderByDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryOrderByDirectionField {
   if (val == 'ASC') {
     return val;
@@ -106,7 +106,7 @@ export function deserializeMetadataQueryOrderByDirectionField(
   });
 }
 export function serializeMetadataQueryOrderByField(
-  val: MetadataQueryOrderByField
+  val: MetadataQueryOrderByField,
 ): SerializedData {
   return {
     ['field_key']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
@@ -117,7 +117,7 @@ export function serializeMetadataQueryOrderByField(
   };
 }
 export function deserializeMetadataQueryOrderByField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataQueryOrderByField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -154,7 +154,7 @@ export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
               (function (v: any): any {
                 return v;
               })(v),
-            ])
+            ]),
           ) as {
             readonly [key: string]: any;
           }),
@@ -163,7 +163,7 @@ export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
       val.orderBy == void 0
         ? void 0
         : (val.orderBy.map(function (
-            item: MetadataQueryOrderByField
+            item: MetadataQueryOrderByField,
           ): SerializedData {
             return serializeMetadataQueryOrderByField(item);
           }) as readonly any[]),
@@ -211,17 +211,17 @@ export function deserializeMetadataQuery(val: SerializedData): MetadataQuery {
     val.query_params == void 0
       ? void 0
       : sdIsMap(val.query_params)
-      ? (Object.fromEntries(
-          Object.entries(val.query_params).map(([k, v]: [string, any]) => [
-            k,
-            (function (v: any): any {
-              return v;
-            })(v),
-          ])
-        ) as {
-          readonly [key: string]: any;
-        })
-      : {};
+        ? (Object.fromEntries(
+            Object.entries(val.query_params).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (val.ancestor_folder_id == void 0) {
     throw new BoxSdkError({
       message:
@@ -244,12 +244,12 @@ export function deserializeMetadataQuery(val: SerializedData): MetadataQuery {
     val.order_by == void 0
       ? void 0
       : sdIsList(val.order_by)
-      ? (val.order_by.map(function (
-          itm: SerializedData
-        ): MetadataQueryOrderByField {
-          return deserializeMetadataQueryOrderByField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.order_by.map(function (
+            itm: SerializedData,
+          ): MetadataQueryOrderByField {
+            return deserializeMetadataQueryOrderByField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
     throw new BoxSdkError({
       message: 'Expecting number for "limit" of type "MetadataQuery"',
@@ -271,15 +271,15 @@ export function deserializeMetadataQuery(val: SerializedData): MetadataQuery {
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (itm: SerializedData): string {
-          if (!sdIsString(itm)) {
-            throw new BoxSdkError({
-              message: 'Expecting string for "MetadataQuery"',
-            });
-          }
-          return itm;
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "MetadataQuery"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   return {
     from: from,
     query: query,

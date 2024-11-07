@@ -155,7 +155,7 @@ await client.chunkedUploads.uploadFilePartByUrl(
   {
     digest: digest,
     contentRange: contentRange,
-  } satisfies UploadFilePartByUrlHeadersInput
+  } satisfies UploadFilePartByUrlHeadersInput,
 );
 ```
 
@@ -197,7 +197,7 @@ await client.chunkedUploads.uploadFilePart(
   {
     digest: digest,
     contentRange: contentRange,
-  } satisfies UploadFilePartHeadersInput
+  } satisfies UploadFilePartHeadersInput,
 );
 ```
 
@@ -366,7 +366,7 @@ See the endpoint docs at
 await client.chunkedUploads.createFileUploadSessionCommitByUrl(
   commitUrl,
   { parts: parts } satisfies CreateFileUploadSessionCommitByUrlRequestBody,
-  { digest: digest } satisfies CreateFileUploadSessionCommitByUrlHeadersInput
+  { digest: digest } satisfies CreateFileUploadSessionCommitByUrlHeadersInput,
 );
 ```
 
@@ -409,7 +409,7 @@ See the endpoint docs at
 await client.chunkedUploads.createFileUploadSessionCommit(
   uploadSessionId,
   { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
-  { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput
+  { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
 );
 ```
 
@@ -445,7 +445,7 @@ await client.chunkedUploads.uploadBigFile(
   fileByteStream,
   fileName,
   fileSize,
-  parentFolderId
+  parentFolderId,
 );
 ```
 

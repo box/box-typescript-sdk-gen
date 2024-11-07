@@ -56,7 +56,7 @@ export const adminUserId: string = getEnvVar('USER_ID');
 export async function getOrCreateStoragePolicyAssignment(
   clientInput: BoxClientInput,
   policyId: string,
-  userId: string
+  userId: string,
 ): Promise<StoragePolicyAssignment> {
   const client: BoxClient = new BoxClient({
     auth: clientInput.auth,
@@ -71,7 +71,7 @@ export async function getOrCreateStoragePolicyAssignment(
   if (storagePolicyAssignments.entries!.length > 0) {
     if (
       (toString(
-        storagePolicyAssignments.entries![0].assignedTo!.type
+        storagePolicyAssignments.entries![0].assignedTo!.type,
       ) as string) == 'user'
     ) {
       return storagePolicyAssignments.entries![0];
@@ -105,7 +105,7 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
     await getOrCreateStoragePolicyAssignment(
       client,
       storagePolicy1.id,
-      newUser.id
+      newUser.id,
     );
   if (
     !(
@@ -125,7 +125,7 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
   }
   const getStoragePolicyAssignment: StoragePolicyAssignment =
     await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
-      storagePolicyAssignment.id
+      storagePolicyAssignment.id,
     );
   if (!(getStoragePolicyAssignment.id == storagePolicyAssignment.id)) {
     throw new Error('Assertion failed');
@@ -138,7 +138,7 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
           new UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField({
             id: storagePolicy2.id,
           }),
-      } satisfies UpdateStoragePolicyAssignmentByIdRequestBody
+      } satisfies UpdateStoragePolicyAssignmentByIdRequestBody,
     );
   if (
     !(updatedStoragePolicyAssignment.storagePolicy!.id == storagePolicy2.id)
@@ -146,7 +146,7 @@ test('testGetStoragePolicyAssignments', async function testGetStoragePolicyAssig
     throw new Error('Assertion failed');
   }
   await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(
-    storagePolicyAssignment.id
+    storagePolicyAssignment.id,
   );
   await client.users.deleteUserById(newUser.id);
 });

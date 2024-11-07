@@ -72,7 +72,7 @@ export class RetentionPolicyAssignment {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RetentionPolicyAssignment, 'type'> &
-      Partial<Pick<RetentionPolicyAssignment, 'type'>>
+      Partial<Pick<RetentionPolicyAssignment, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -133,12 +133,12 @@ export interface RetentionPolicyAssignmentInput {
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyAssignmentTypeField(
-  val: RetentionPolicyAssignmentTypeField
+  val: RetentionPolicyAssignmentTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyAssignmentTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentTypeField {
   if (val == 'retention_policy_assignment') {
     return val;
@@ -148,12 +148,12 @@ export function deserializeRetentionPolicyAssignmentTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToTypeField(
-  val: RetentionPolicyAssignmentAssignedToTypeField
+  val: RetentionPolicyAssignmentAssignedToTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentAssignedToTypeField {
   if (val == 'folder') {
     return val;
@@ -169,7 +169,7 @@ export function deserializeRetentionPolicyAssignmentAssignedToTypeField(
   });
 }
 export function serializeRetentionPolicyAssignmentAssignedToField(
-  val: RetentionPolicyAssignmentAssignedToField
+  val: RetentionPolicyAssignmentAssignedToField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -180,7 +180,7 @@ export function serializeRetentionPolicyAssignmentAssignedToField(
   };
 }
 export function deserializeRetentionPolicyAssignmentAssignedToField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentAssignedToField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -204,7 +204,7 @@ export function deserializeRetentionPolicyAssignmentAssignedToField(
   } satisfies RetentionPolicyAssignmentAssignedToField;
 }
 export function serializeRetentionPolicyAssignmentFilterFieldsField(
-  val: RetentionPolicyAssignmentFilterFieldsField
+  val: RetentionPolicyAssignmentFilterFieldsField,
 ): SerializedData {
   return {
     ['field']: val.field == void 0 ? void 0 : val.field,
@@ -212,7 +212,7 @@ export function serializeRetentionPolicyAssignmentFilterFieldsField(
   };
 }
 export function deserializeRetentionPolicyAssignmentFilterFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentFilterFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -240,7 +240,7 @@ export function deserializeRetentionPolicyAssignmentFilterFieldsField(
   } satisfies RetentionPolicyAssignmentFilterFieldsField;
 }
 export function serializeRetentionPolicyAssignment(
-  val: RetentionPolicyAssignment
+  val: RetentionPolicyAssignment,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -257,7 +257,7 @@ export function serializeRetentionPolicyAssignment(
       val.filterFields == void 0
         ? void 0
         : (val.filterFields.map(function (
-            item: RetentionPolicyAssignmentFilterFieldsField
+            item: RetentionPolicyAssignmentFilterFieldsField,
           ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
@@ -270,7 +270,7 @@ export function serializeRetentionPolicyAssignment(
   };
 }
 export function deserializeRetentionPolicyAssignment(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignment {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -317,12 +317,12 @@ export function deserializeRetentionPolicyAssignment(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (
-          itm: SerializedData
-        ): RetentionPolicyAssignmentFilterFieldsField {
-          return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.filter_fields.map(function (
+            itm: SerializedData,
+          ): RetentionPolicyAssignmentFilterFieldsField {
+            return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
+          }) as readonly any[])
+        : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
   if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {
@@ -353,7 +353,7 @@ export function deserializeRetentionPolicyAssignment(
   } satisfies RetentionPolicyAssignment;
 }
 export function serializeRetentionPolicyAssignmentInput(
-  val: RetentionPolicyAssignmentInput
+  val: RetentionPolicyAssignmentInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -373,7 +373,7 @@ export function serializeRetentionPolicyAssignmentInput(
       val.filterFields == void 0
         ? void 0
         : (val.filterFields.map(function (
-            item: RetentionPolicyAssignmentFilterFieldsField
+            item: RetentionPolicyAssignmentFilterFieldsField,
           ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
@@ -386,7 +386,7 @@ export function serializeRetentionPolicyAssignmentInput(
   };
 }
 export function deserializeRetentionPolicyAssignmentInput(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignmentInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -430,12 +430,12 @@ export function deserializeRetentionPolicyAssignmentInput(
     val.filter_fields == void 0
       ? void 0
       : sdIsList(val.filter_fields)
-      ? (val.filter_fields.map(function (
-          itm: SerializedData
-        ): RetentionPolicyAssignmentFilterFieldsField {
-          return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.filter_fields.map(function (
+            itm: SerializedData,
+          ): RetentionPolicyAssignmentFilterFieldsField {
+            return deserializeRetentionPolicyAssignmentFilterFieldsField(itm);
+          }) as readonly any[])
+        : [];
   const assignedBy: undefined | UserMini =
     val.assigned_by == void 0 ? void 0 : deserializeUserMini(val.assigned_by);
   if (!(val.assigned_at == void 0) && !sdIsString(val.assigned_at)) {

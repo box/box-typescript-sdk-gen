@@ -30,7 +30,7 @@ export function serializeTermsOfServices(val: TermsOfServices): SerializedData {
   };
 }
 export function deserializeTermsOfServices(
-  val: SerializedData
+  val: SerializedData,
 ): TermsOfServices {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "TermsOfServices"' });
@@ -51,9 +51,9 @@ export function deserializeTermsOfServices(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): TermsOfService {
-          return deserializeTermsOfService(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): TermsOfService {
+            return deserializeTermsOfService(itm);
+          }) as readonly any[])
+        : [];
   return { totalCount: totalCount, entries: entries } satisfies TermsOfServices;
 }

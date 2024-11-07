@@ -28,7 +28,7 @@ export type AiAgentBasicGenTool = AiAgentLongTextToolTextGen & {
   readonly contentTemplate?: string;
 };
 export function serializeAiAgentBasicGenTool(
-  val: AiAgentBasicGenTool
+  val: AiAgentBasicGenTool,
 ): SerializedData {
   const base: any = serializeAiAgentLongTextToolTextGen(val);
   if (!sdIsMap(base)) {
@@ -45,7 +45,7 @@ export function serializeAiAgentBasicGenTool(
   };
 }
 export function deserializeAiAgentBasicGenTool(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentBasicGenTool {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -105,7 +105,7 @@ export function deserializeAiAgentBasicGenTool(
     val.llm_endpoint_params == void 0
       ? void 0
       : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params
+          val.llm_endpoint_params,
         );
   return {
     contentTemplate: contentTemplate,

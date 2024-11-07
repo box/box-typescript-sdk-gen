@@ -50,7 +50,7 @@ test('testTrashedWebLinks', async function testTrashedWebLinks(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const fromApiAfterTrashed: WebLink = await client.webLinks.getWebLinkById(
-    weblink.id
+    weblink.id,
   );
   if (!((toString(fromApiAfterTrashed.itemStatus) as string) == 'trashed')) {
     throw new Error('Assertion failed');

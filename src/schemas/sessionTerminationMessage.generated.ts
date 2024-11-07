@@ -13,12 +13,12 @@ export interface SessionTerminationMessage {
   readonly rawData?: SerializedData;
 }
 export function serializeSessionTerminationMessage(
-  val: SessionTerminationMessage
+  val: SessionTerminationMessage,
 ): SerializedData {
   return { ['message']: val.message == void 0 ? void 0 : val.message };
 }
 export function deserializeSessionTerminationMessage(
-  val: SerializedData
+  val: SerializedData,
 ): SessionTerminationMessage {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -25,7 +25,7 @@ export interface MetadataFieldFilterDateRange {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataFieldFilterDateRange(
-  val: MetadataFieldFilterDateRange
+  val: MetadataFieldFilterDateRange,
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : serializeDateTime(val.lt),
@@ -33,7 +33,7 @@ export function serializeMetadataFieldFilterDateRange(
   };
 }
 export function deserializeMetadataFieldFilterDateRange(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataFieldFilterDateRange {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -72,7 +72,7 @@ test('testCreateListGetPromoteFileVersion', async function testCreateListGetProm
     throw new Error('Assertion failed');
   }
   const fileVersions: FileVersions = await client.fileVersions.getFileVersions(
-    file.id
+    file.id,
   );
   if (!(fileVersions.totalCount == 1)) {
     throw new Error('Assertion failed');
@@ -80,7 +80,7 @@ test('testCreateListGetPromoteFileVersion', async function testCreateListGetProm
   const fileVersion: FileVersionFull =
     await client.fileVersions.getFileVersionById(
       file.id,
-      fileVersions.entries![0].id
+      fileVersions.entries![0].id,
     );
   if (!(fileVersion.id == fileVersions.entries![0].id)) {
     throw new Error('Assertion failed');
@@ -92,7 +92,7 @@ test('testCreateListGetPromoteFileVersion', async function testCreateListGetProm
     } satisfies PromoteFileVersionRequestBody,
   } satisfies PromoteFileVersionOptionalsInput);
   const fileWithPromotedVersion: FileFull = await client.files.getFileById(
-    file.id
+    file.id,
   );
   if (!(fileWithPromotedVersion.name == oldName)) {
     throw new Error('Assertion failed');

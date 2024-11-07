@@ -18,12 +18,12 @@ export interface ShieldInformationBarrierBase {
   readonly rawData?: SerializedData;
 }
 export function serializeShieldInformationBarrierBaseTypeField(
-  val: ShieldInformationBarrierBaseTypeField
+  val: ShieldInformationBarrierBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeShieldInformationBarrierBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierBaseTypeField {
   if (val == 'shield_information_barrier') {
     return val;
@@ -33,7 +33,7 @@ export function deserializeShieldInformationBarrierBaseTypeField(
   });
 }
 export function serializeShieldInformationBarrierBase(
-  val: ShieldInformationBarrierBase
+  val: ShieldInformationBarrierBase,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -44,7 +44,7 @@ export function serializeShieldInformationBarrierBase(
   };
 }
 export function deserializeShieldInformationBarrierBase(
-  val: SerializedData
+  val: SerializedData,
 ): ShieldInformationBarrierBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

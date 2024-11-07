@@ -124,31 +124,31 @@ test('testCreateUpdateGetDeleteRetentionPolicyAssignment', async function testCr
   }
   const retentionPolicyAssignmentById: RetentionPolicyAssignment =
     await client.retentionPolicyAssignments.getRetentionPolicyAssignmentById(
-      retentionPolicyAssignment.id
+      retentionPolicyAssignment.id,
     );
   if (!(retentionPolicyAssignmentById.id == retentionPolicyAssignment.id)) {
     throw new Error('Assertion failed');
   }
   const retentionPolicyAssignments: RetentionPolicyAssignments =
     await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
-      retentionPolicy.id
+      retentionPolicy.id,
     );
   if (!(retentionPolicyAssignments.entries!.length == 1)) {
     throw new Error('Assertion failed');
   }
   const filesUnderRetention: FilesUnderRetention =
     await client.retentionPolicyAssignments.getFilesUnderRetentionPolicyAssignment(
-      retentionPolicyAssignment.id
+      retentionPolicyAssignment.id,
     );
   if (!(filesUnderRetention.entries!.length == 1)) {
     throw new Error('Assertion failed');
   }
   await client.retentionPolicyAssignments.deleteRetentionPolicyAssignmentById(
-    retentionPolicyAssignment.id
+    retentionPolicyAssignment.id,
   );
   const retentionPolicyAssignmentsAfterDelete: RetentionPolicyAssignments =
     await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
-      retentionPolicy.id
+      retentionPolicy.id,
     );
   if (!(retentionPolicyAssignmentsAfterDelete.entries!.length == 0)) {
     throw new Error('Assertion failed');

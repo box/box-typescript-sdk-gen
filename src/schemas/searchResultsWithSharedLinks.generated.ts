@@ -38,7 +38,7 @@ export class SearchResultsWithSharedLinks {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<SearchResultsWithSharedLinks, 'type'> &
-      Partial<Pick<SearchResultsWithSharedLinks, 'type'>>
+      Partial<Pick<SearchResultsWithSharedLinks, 'type'>>,
   ) {
     if (fields.totalCount) {
       this.totalCount = fields.totalCount;
@@ -86,12 +86,12 @@ export interface SearchResultsWithSharedLinksInput {
   readonly rawData?: SerializedData;
 }
 export function serializeSearchResultsWithSharedLinksTypeField(
-  val: SearchResultsWithSharedLinksTypeField
+  val: SearchResultsWithSharedLinksTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeSearchResultsWithSharedLinksTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsWithSharedLinksTypeField {
   if (val == 'search_results_with_shared_links') {
     return val;
@@ -101,7 +101,7 @@ export function deserializeSearchResultsWithSharedLinksTypeField(
   });
 }
 export function serializeSearchResultsWithSharedLinks(
-  val: SearchResultsWithSharedLinks
+  val: SearchResultsWithSharedLinks,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -112,14 +112,14 @@ export function serializeSearchResultsWithSharedLinks(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: SearchResultWithSharedLink
+            item: SearchResultWithSharedLink,
           ): SerializedData {
             return serializeSearchResultWithSharedLink(item);
           }) as readonly any[]),
   };
 }
 export function deserializeSearchResultsWithSharedLinks(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsWithSharedLinks {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -166,12 +166,12 @@ export function deserializeSearchResultsWithSharedLinks(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): SearchResultWithSharedLink {
-          return deserializeSearchResultWithSharedLink(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): SearchResultWithSharedLink {
+            return deserializeSearchResultWithSharedLink(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,
@@ -181,7 +181,7 @@ export function deserializeSearchResultsWithSharedLinks(
   } satisfies SearchResultsWithSharedLinks;
 }
 export function serializeSearchResultsWithSharedLinksInput(
-  val: SearchResultsWithSharedLinksInput
+  val: SearchResultsWithSharedLinksInput,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
@@ -195,14 +195,14 @@ export function serializeSearchResultsWithSharedLinksInput(
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: SearchResultWithSharedLink
+            item: SearchResultWithSharedLink,
           ): SerializedData {
             return serializeSearchResultWithSharedLink(item);
           }) as readonly any[]),
   };
 }
 export function deserializeSearchResultsWithSharedLinksInput(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultsWithSharedLinksInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -245,12 +245,12 @@ export function deserializeSearchResultsWithSharedLinksInput(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): SearchResultWithSharedLink {
-          return deserializeSearchResultWithSharedLink(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): SearchResultWithSharedLink {
+            return deserializeSearchResultWithSharedLink(itm);
+          }) as readonly any[])
+        : [];
   return {
     totalCount: totalCount,
     limit: limit,

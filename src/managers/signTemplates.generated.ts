@@ -26,7 +26,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetSignTemplateByIdOptionals {
   readonly headers: GetSignTemplateByIdHeaders = new GetSignTemplateByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -36,7 +36,7 @@ export class GetSignTemplateByIdOptionals {
     > &
       Partial<
         Pick<GetSignTemplateByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -69,7 +69,7 @@ export class GetSignTemplatesHeaders {
   } = {};
   constructor(
     fields: Omit<GetSignTemplatesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -93,7 +93,7 @@ export class GetSignTemplateByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetSignTemplateByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -117,7 +117,7 @@ export class SignTemplatesManager {
       SignTemplatesManager,
       'networkSession' | 'getSignTemplates' | 'getSignTemplateById'
     > &
-      Partial<Pick<SignTemplatesManager, 'networkSession'>>
+      Partial<Pick<SignTemplatesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -136,9 +136,9 @@ export class SignTemplatesManager {
   async getSignTemplates(
     queryParams: GetSignTemplatesQueryParams = {} satisfies GetSignTemplatesQueryParams,
     headersInput: GetSignTemplatesHeadersInput = new GetSignTemplatesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<SignTemplates> {
     const headers: GetSignTemplatesHeaders = new GetSignTemplatesHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -155,7 +155,7 @@ export class SignTemplatesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/sign_templates'
+        '/2.0/sign_templates',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -179,7 +179,7 @@ export class SignTemplatesManager {
      */
   async getSignTemplateById(
     templateId: string,
-    optionalsInput: GetSignTemplateByIdOptionalsInput = {}
+    optionalsInput: GetSignTemplateByIdOptionalsInput = {},
   ): Promise<SignTemplate> {
     const optionals: GetSignTemplateByIdOptionals =
       new GetSignTemplateByIdOptionals({
@@ -195,7 +195,7 @@ export class SignTemplatesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/sign_templates/',
-        toString(templateId) as string
+        toString(templateId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,

@@ -27,7 +27,7 @@ import { sdIsMap } from '../serialization/json.js';
 export type AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser =
   AppItemEventSource | EventSource | File | Folder | GenericSource | User;
 export function serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
-  val: any
+  val: any,
 ): SerializedData {
   if (val.type == 'app_item') {
     return serializeAppItemEventSource(val);
@@ -50,7 +50,7 @@ export function serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericS
   return serializeGenericSource(val);
 }
 export function deserializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
-  val: SerializedData
+  val: SerializedData,
 ): AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

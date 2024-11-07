@@ -117,7 +117,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
-      { ['testColor']: ['red', 'blue'] }
+      { ['testColor']: ['red', 'blue'] },
     );
   if (!(metadata.template == templateKey)) {
     throw new Error('Assertion failed');
@@ -128,7 +128,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   const searchFrom: string = ''.concat(
     template.scope!,
     '.',
-    template.templateKey
+    template.templateKey,
   ) as string;
   const query: MetadataQueryResults = await client.search.searchByMetadataQuery(
     {
@@ -136,14 +136,14 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       from: searchFrom,
       query: 'testColor = :value',
       queryParams: { ['value']: ['red', 'blue'] },
-    } satisfies MetadataQuery
+    } satisfies MetadataQuery,
   );
   if (!(query.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey
+    template.templateKey,
   );
   await client.files.deleteFileById(file.id);
 });
@@ -252,7 +252,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
         ['dateField']: '2035-01-02T00:00:00Z',
         ['enumField']: 'enumValue2',
         ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-      }
+      },
     );
   const query: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
@@ -282,7 +282,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey!
+    template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
 });

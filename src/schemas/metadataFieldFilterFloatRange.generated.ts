@@ -22,7 +22,7 @@ export interface MetadataFieldFilterFloatRange {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataFieldFilterFloatRange(
-  val: MetadataFieldFilterFloatRange
+  val: MetadataFieldFilterFloatRange,
 ): SerializedData {
   return {
     ['lt']: val.lt == void 0 ? void 0 : val.lt,
@@ -30,7 +30,7 @@ export function serializeMetadataFieldFilterFloatRange(
   };
 }
 export function deserializeMetadataFieldFilterFloatRange(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataFieldFilterFloatRange {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

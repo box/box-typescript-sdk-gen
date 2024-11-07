@@ -22,11 +22,11 @@ export interface IntegrationMappingSlackCreateRequest {
   readonly rawData?: SerializedData;
 }
 export function serializeIntegrationMappingSlackCreateRequest(
-  val: IntegrationMappingSlackCreateRequest
+  val: IntegrationMappingSlackCreateRequest,
 ): SerializedData {
   return {
     ['partner_item']: serializeIntegrationMappingPartnerItemSlack(
-      val.partnerItem
+      val.partnerItem,
     ),
     ['box_item']: serializeIntegrationMappingBoxItemSlack(val.boxItem),
     ['options']:
@@ -36,7 +36,7 @@ export function serializeIntegrationMappingSlackCreateRequest(
   };
 }
 export function deserializeIntegrationMappingSlackCreateRequest(
-  val: SerializedData
+  val: SerializedData,
 ): IntegrationMappingSlackCreateRequest {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

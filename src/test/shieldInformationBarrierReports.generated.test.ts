@@ -32,7 +32,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierReports', async function testShieldInformationBarrierReports(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
@@ -54,7 +54,7 @@ test('testShieldInformationBarrierReports', async function testShieldInformation
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierReportsQueryParams
+      } satisfies GetShieldInformationBarrierReportsQueryParams,
     );
   if (existingReports.entries!.length > 0) {
     return void 0;
@@ -66,7 +66,7 @@ test('testShieldInformationBarrierReports', async function testShieldInformation
           id: barrierId,
           type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
         } satisfies ShieldInformationBarrierBase,
-      } satisfies ShieldInformationBarrierReference
+      } satisfies ShieldInformationBarrierReference,
     );
   if (
     !(
@@ -78,7 +78,7 @@ test('testShieldInformationBarrierReports', async function testShieldInformation
   }
   const retrievedReport: ShieldInformationBarrierReport =
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReportById(
-      createdReport.id!
+      createdReport.id!,
     );
   if (!(retrievedReport.id == createdReport.id)) {
     throw new Error('Assertion failed');
@@ -87,7 +87,7 @@ test('testShieldInformationBarrierReports', async function testShieldInformation
     await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierReportsQueryParams
+      } satisfies GetShieldInformationBarrierReportsQueryParams,
     );
   if (!(retrievedReports.entries!.length > 0)) {
     throw new Error('Assertion failed');

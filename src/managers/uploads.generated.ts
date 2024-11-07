@@ -47,7 +47,7 @@ export class UploadFileVersionOptionals {
           UploadFileVersionOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -80,7 +80,7 @@ export class UploadFileOptionals {
           UploadFileOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -174,7 +174,7 @@ export class UploadFileVersionHeaders {
   } = {};
   constructor(
     fields: Omit<UploadFileVersionHeaders, 'extraHeaders'> &
-      Partial<Pick<UploadFileVersionHeaders, 'extraHeaders'>>
+      Partial<Pick<UploadFileVersionHeaders, 'extraHeaders'>>,
   ) {
     if (fields.ifMatch) {
       this.ifMatch = fields.ifMatch;
@@ -233,7 +233,7 @@ export class PreflightFileUploadCheckHeaders {
   } = {};
   constructor(
     fields: Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'> &
-      Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>
+      Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -330,7 +330,7 @@ export class UploadFileHeaders {
   } = {};
   constructor(
     fields: Omit<UploadFileHeaders, 'extraHeaders'> &
-      Partial<Pick<UploadFileHeaders, 'extraHeaders'>>
+      Partial<Pick<UploadFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.contentMd5) {
       this.contentMd5 = fields.contentMd5;
@@ -364,7 +364,7 @@ export class UploadsManager {
       | 'preflightFileUploadCheck'
       | 'uploadFile'
     > &
-      Partial<Pick<UploadsManager, 'networkSession'>>
+      Partial<Pick<UploadsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -396,7 +396,7 @@ export class UploadsManager {
   async uploadFileVersion(
     fileId: string,
     requestBody: UploadFileVersionRequestBody,
-    optionalsInput: UploadFileVersionOptionalsInput = {}
+    optionalsInput: UploadFileVersionOptionalsInput = {},
   ): Promise<Files> {
     const optionals: UploadFileVersionOptionals =
       new UploadFileVersionOptionals({
@@ -428,7 +428,7 @@ export class UploadsManager {
         this.networkSession.baseUrls.uploadUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/content'
+        '/content',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -437,7 +437,7 @@ export class UploadsManager {
         {
           partName: 'attributes',
           data: serializeUploadFileVersionRequestBodyAttributesField(
-            requestBody.attributes
+            requestBody.attributes,
           ),
         } satisfies MultipartItem,
         {
@@ -469,9 +469,9 @@ export class UploadsManager {
   async preflightFileUploadCheck(
     requestBody: PreflightFileUploadCheckRequestBody = {} satisfies PreflightFileUploadCheckRequestBody,
     headersInput: PreflightFileUploadCheckHeadersInput = new PreflightFileUploadCheckHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<UploadUrl> {
     const headers: PreflightFileUploadCheckHeaders =
       new PreflightFileUploadCheckHeaders({
@@ -483,7 +483,7 @@ export class UploadsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/content'
+        '/2.0/files/content',
       ) as string,
       method: 'OPTIONS',
       headers: headersMap,
@@ -513,7 +513,7 @@ export class UploadsManager {
    */
   async uploadFile(
     requestBody: UploadFileRequestBody,
-    optionalsInput: UploadFileOptionalsInput = {}
+    optionalsInput: UploadFileOptionalsInput = {},
   ): Promise<Files> {
     const optionals: UploadFileOptionals = new UploadFileOptionals({
       queryParams: optionalsInput.queryParams,
@@ -539,7 +539,7 @@ export class UploadsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.uploadUrl,
-        '/2.0/files/content'
+        '/2.0/files/content',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -548,7 +548,7 @@ export class UploadsManager {
         {
           partName: 'attributes',
           data: serializeUploadFileRequestBodyAttributesField(
-            requestBody.attributes
+            requestBody.attributes,
           ),
         } satisfies MultipartItem,
         {
@@ -575,7 +575,7 @@ export interface UploadsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeUploadFileVersionRequestBodyAttributesField(
-  val: UploadFileVersionRequestBodyAttributesField
+  val: UploadFileVersionRequestBodyAttributesField,
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -586,7 +586,7 @@ export function serializeUploadFileVersionRequestBodyAttributesField(
   };
 }
 export function deserializeUploadFileVersionRequestBodyAttributesField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadFileVersionRequestBodyAttributesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -626,12 +626,12 @@ export function deserializeUploadFileVersionRequestBodyAttributesField(
   } satisfies UploadFileVersionRequestBodyAttributesField;
 }
 export function serializePreflightFileUploadCheckRequestBodyParentField(
-  val: PreflightFileUploadCheckRequestBodyParentField
+  val: PreflightFileUploadCheckRequestBodyParentField,
 ): SerializedData {
   return { ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializePreflightFileUploadCheckRequestBodyParentField(
-  val: SerializedData
+  val: SerializedData,
 ): PreflightFileUploadCheckRequestBodyParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -649,7 +649,7 @@ export function deserializePreflightFileUploadCheckRequestBodyParentField(
   return { id: id } satisfies PreflightFileUploadCheckRequestBodyParentField;
 }
 export function serializePreflightFileUploadCheckRequestBody(
-  val: PreflightFileUploadCheckRequestBody
+  val: PreflightFileUploadCheckRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -661,7 +661,7 @@ export function serializePreflightFileUploadCheckRequestBody(
   };
 }
 export function deserializePreflightFileUploadCheckRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): PreflightFileUploadCheckRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -693,12 +693,12 @@ export function deserializePreflightFileUploadCheckRequestBody(
   } satisfies PreflightFileUploadCheckRequestBody;
 }
 export function serializeUploadFileRequestBodyAttributesParentField(
-  val: UploadFileRequestBodyAttributesParentField
+  val: UploadFileRequestBodyAttributesParentField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeUploadFileRequestBodyAttributesParentField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadFileRequestBodyAttributesParentField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -722,7 +722,7 @@ export function deserializeUploadFileRequestBodyAttributesParentField(
   return { id: id } satisfies UploadFileRequestBodyAttributesParentField;
 }
 export function serializeUploadFileRequestBodyAttributesField(
-  val: UploadFileRequestBodyAttributesField
+  val: UploadFileRequestBodyAttributesField,
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -738,7 +738,7 @@ export function serializeUploadFileRequestBodyAttributesField(
   };
 }
 export function deserializeUploadFileRequestBodyAttributesField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadFileRequestBodyAttributesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

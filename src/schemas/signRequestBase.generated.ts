@@ -76,7 +76,7 @@ export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
       val.prefillTags == void 0
         ? void 0
         : (val.prefillTags.map(function (
-            item: SignRequestPrefillTag
+            item: SignRequestPrefillTag,
           ): SerializedData {
             return serializeSignRequestPrefillTag(item);
           }) as readonly any[]),
@@ -92,7 +92,7 @@ export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
   };
 }
 export function deserializeSignRequestBase(
-  val: SerializedData
+  val: SerializedData,
 ): SignRequestBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "SignRequestBase"' });
@@ -181,12 +181,12 @@ export function deserializeSignRequestBase(
     val.prefill_tags == void 0
       ? void 0
       : sdIsList(val.prefill_tags)
-      ? (val.prefill_tags.map(function (
-          itm: SerializedData
-        ): SignRequestPrefillTag {
-          return deserializeSignRequestPrefillTag(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.prefill_tags.map(function (
+            itm: SerializedData,
+          ): SignRequestPrefillTag {
+            return deserializeSignRequestPrefillTag(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.days_valid == void 0) && !sdIsNumber(val.days_valid)) {
     throw new BoxSdkError({
       message: 'Expecting number for "days_valid" of type "SignRequestBase"',

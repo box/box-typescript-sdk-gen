@@ -72,10 +72,10 @@ export function deserializeWebhooks(val: SerializedData): Webhooks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): WebhookMini {
-          return deserializeWebhookMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): WebhookMini {
+            return deserializeWebhookMini(itm);
+          }) as readonly any[])
+        : [];
   return {
     limit: limit,
     nextMarker: nextMarker,

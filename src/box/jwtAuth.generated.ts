@@ -90,7 +90,7 @@ export class JwtConfig {
       JwtConfig,
       'algorithm' | 'tokenStorage' | 'fromConfigJsonString' | 'fromConfigFile'
     > &
-      Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>
+      Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>,
   ) {
     if (fields.clientId) {
       this.clientId = fields.clientId;
@@ -129,7 +129,7 @@ export class JwtConfig {
    */
   static fromConfigJsonString(
     configJsonString: string,
-    tokenStorage?: TokenStorage
+    tokenStorage?: TokenStorage,
   ): JwtConfig {
     const configJson: JwtConfigFile = {
       ...deserializeJwtConfigFile(jsonToSerializedData(configJsonString)),
@@ -166,7 +166,7 @@ export class JwtConfig {
    */
   static fromConfigFile(
     configFilePath: string,
-    tokenStorage?: TokenStorage
+    tokenStorage?: TokenStorage,
   ): JwtConfig {
     const configJsonString: string = readTextFromFile(configFilePath);
     return JwtConfig.fromConfigJsonString(configJsonString, tokenStorage);
@@ -223,7 +223,7 @@ export class BoxJwtAuth implements Authentication {
       | 'withEnterpriseSubject'
       | 'downscopeToken'
       | 'revokeToken'
-    >
+    >,
   ) {
     if (fields.config) {
       this.config = fields.config;
@@ -271,7 +271,7 @@ export class BoxJwtAuth implements Authentication {
     const assertion: string = await createJwtAssertion(
       claims,
       jwtKey,
-      jwtOptions
+      jwtOptions,
     );
     const authManager: AuthorizationManager = new AuthorizationManager({
       networkSession: !(networkSession == void 0)
@@ -306,7 +306,7 @@ export class BoxJwtAuth implements Authentication {
    * @returns {Promise<string>}
    */
   async retrieveAuthorizationHeader(
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<string> {
     const token: AccessToken = await this.retrieveToken(networkSession);
     return ''.concat('Bearer ', token.accessToken!) as string;
@@ -322,7 +322,7 @@ export class BoxJwtAuth implements Authentication {
    */
   withUserSubject(
     userId: string,
-    tokenStorage: TokenStorage = new InMemoryTokenStorage({})
+    tokenStorage: TokenStorage = new InMemoryTokenStorage({}),
   ): BoxJwtAuth {
     const newConfig: JwtConfig = new JwtConfig({
       clientId: this.config.clientId,
@@ -345,7 +345,7 @@ export class BoxJwtAuth implements Authentication {
    */
   withEnterpriseSubject(
     enterpriseId: string,
-    tokenStorage: TokenStorage = new InMemoryTokenStorage({})
+    tokenStorage: TokenStorage = new InMemoryTokenStorage({}),
   ): BoxJwtAuth {
     const newConfig: JwtConfig = new JwtConfig({
       clientId: this.config.clientId,
@@ -372,7 +372,7 @@ export class BoxJwtAuth implements Authentication {
     scopes: readonly string[],
     resource?: string,
     sharedLink?: string,
-    networkSession?: NetworkSession
+    networkSession?: NetworkSession,
   ): Promise<AccessToken> {
     const token: undefined | AccessToken = await this.tokenStorage.get();
     if (token == void 0) {
@@ -423,7 +423,7 @@ export class BoxJwtAuth implements Authentication {
   }
 }
 export function serializeJwtConfigAppSettingsAppAuth(
-  val: JwtConfigAppSettingsAppAuth
+  val: JwtConfigAppSettingsAppAuth,
 ): SerializedData {
   return {
     ['publicKeyID']: val.publicKeyId,
@@ -432,7 +432,7 @@ export function serializeJwtConfigAppSettingsAppAuth(
   };
 }
 export function deserializeJwtConfigAppSettingsAppAuth(
-  val: SerializedData
+  val: SerializedData,
 ): JwtConfigAppSettingsAppAuth {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -485,7 +485,7 @@ export function deserializeJwtConfigAppSettingsAppAuth(
   } satisfies JwtConfigAppSettingsAppAuth;
 }
 export function serializeJwtConfigAppSettings(
-  val: JwtConfigAppSettings
+  val: JwtConfigAppSettings,
 ): SerializedData {
   return {
     ['clientID']: val.clientId,
@@ -494,7 +494,7 @@ export function serializeJwtConfigAppSettings(
   };
 }
 export function deserializeJwtConfigAppSettings(
-  val: SerializedData
+  val: SerializedData,
 ): JwtConfigAppSettings {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -571,7 +571,7 @@ export function deserializeJwtConfigFile(val: SerializedData): JwtConfigFile {
     });
   }
   const boxAppSettings: JwtConfigAppSettings = deserializeJwtConfigAppSettings(
-    val.boxAppSettings
+    val.boxAppSettings,
   );
   return {
     enterpriseId: enterpriseId,

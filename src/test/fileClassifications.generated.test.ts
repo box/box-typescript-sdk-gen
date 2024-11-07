@@ -46,7 +46,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 export async function getOrCreateSecondClassification(
-  classificationTemplateInput: ClassificationTemplateInput
+  classificationTemplateInput: ClassificationTemplateInput,
 ): Promise<ClassificationTemplateFieldsOptionsField> {
   const classificationTemplate: ClassificationTemplate =
     new ClassificationTemplate({

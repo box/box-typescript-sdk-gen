@@ -38,7 +38,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarrierSegments', async function testShieldInformationBarrierSegments(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
@@ -55,7 +55,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
         } satisfies ShieldInformationBarrierBase,
         name: segmentName,
         description: segmentDescription,
-      } satisfies CreateShieldInformationBarrierSegmentRequestBody
+      } satisfies CreateShieldInformationBarrierSegmentRequestBody,
     );
   if (!(segment.name! == segmentName)) {
     throw new Error('Assertion failed');
@@ -64,7 +64,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegments(
       {
         shieldInformationBarrierId: barrierId,
-      } satisfies GetShieldInformationBarrierSegmentsQueryParams
+      } satisfies GetShieldInformationBarrierSegmentsQueryParams,
     );
   if (!(segments.entries!.length > 0)) {
     throw new Error('Assertion failed');
@@ -72,7 +72,7 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
   const segmentId: string = segment.id!;
   const segmentFromApi: ShieldInformationBarrierSegment =
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegmentById(
-      segmentId
+      segmentId,
     );
   if (
     !(
@@ -103,17 +103,17 @@ test('testShieldInformationBarrierSegments', async function testShieldInformatio
         requestBody: {
           description: updatedSegmentDescription,
         } satisfies UpdateShieldInformationBarrierSegmentByIdRequestBody,
-      } satisfies UpdateShieldInformationBarrierSegmentByIdOptionalsInput
+      } satisfies UpdateShieldInformationBarrierSegmentByIdOptionalsInput,
     );
   if (!(updatedSegment.description! == updatedSegmentDescription)) {
     throw new Error('Assertion failed');
   }
   await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
-    segmentId
+    segmentId,
   );
   await expect(async () => {
     await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegmentById(
-      segmentId
+      segmentId,
     );
   }).rejects.toThrow();
 });

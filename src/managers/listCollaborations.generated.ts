@@ -38,7 +38,7 @@ export class GetFileCollaborationsOptionals {
           GetFileCollaborationsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -72,7 +72,7 @@ export class GetFolderCollaborationsOptionals {
           GetFolderCollaborationsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -95,7 +95,9 @@ export class GetCollaborationsOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetCollaborationsOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetCollaborationsOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<GetCollaborationsOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -125,7 +127,7 @@ export class GetGroupCollaborationsOptionals {
           GetGroupCollaborationsOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -173,7 +175,7 @@ export class GetFileCollaborationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileCollaborationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileCollaborationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileCollaborationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -210,7 +212,7 @@ export class GetFolderCollaborationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetFolderCollaborationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFolderCollaborationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFolderCollaborationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -261,7 +263,7 @@ export class GetCollaborationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetCollaborationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetCollaborationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetCollaborationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -297,7 +299,7 @@ export class GetGroupCollaborationsHeaders {
   } = {};
   constructor(
     fields: Omit<GetGroupCollaborationsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGroupCollaborationsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGroupCollaborationsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -325,7 +327,7 @@ export class ListCollaborationsManager {
       | 'getCollaborations'
       | 'getGroupCollaborations'
     > &
-      Partial<Pick<ListCollaborationsManager, 'networkSession'>>
+      Partial<Pick<ListCollaborationsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -351,7 +353,7 @@ export class ListCollaborationsManager {
      */
   async getFileCollaborations(
     fileId: string,
-    optionalsInput: GetFileCollaborationsOptionalsInput = {}
+    optionalsInput: GetFileCollaborationsOptionalsInput = {},
   ): Promise<Collaborations> {
     const optionals: GetFileCollaborationsOptionals =
       new GetFileCollaborationsOptionals({
@@ -379,7 +381,7 @@ export class ListCollaborationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/collaborations'
+        '/collaborations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -411,7 +413,7 @@ export class ListCollaborationsManager {
      */
   async getFolderCollaborations(
     folderId: string,
-    optionalsInput: GetFolderCollaborationsOptionalsInput = {}
+    optionalsInput: GetFolderCollaborationsOptionalsInput = {},
   ): Promise<Collaborations> {
     const optionals: GetFolderCollaborationsOptionals =
       new GetFolderCollaborationsOptionals({
@@ -437,7 +439,7 @@ export class ListCollaborationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/folders/',
         toString(folderId) as string,
-        '/collaborations'
+        '/collaborations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -460,7 +462,7 @@ export class ListCollaborationsManager {
    */
   async getCollaborations(
     queryParams: GetCollaborationsQueryParams,
-    optionalsInput: GetCollaborationsOptionalsInput = {}
+    optionalsInput: GetCollaborationsOptionalsInput = {},
   ): Promise<Collaborations> {
     const optionals: GetCollaborationsOptionals =
       new GetCollaborationsOptionals({
@@ -485,7 +487,7 @@ export class ListCollaborationsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaborations'
+        '/2.0/collaborations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -513,7 +515,7 @@ export class ListCollaborationsManager {
      */
   async getGroupCollaborations(
     groupId: string,
-    optionalsInput: GetGroupCollaborationsOptionalsInput = {}
+    optionalsInput: GetGroupCollaborationsOptionalsInput = {},
   ): Promise<Collaborations> {
     const optionals: GetGroupCollaborationsOptionals =
       new GetGroupCollaborationsOptionals({
@@ -538,7 +540,7 @@ export class ListCollaborationsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/groups/',
         toString(groupId) as string,
-        '/collaborations'
+        '/collaborations',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -559,12 +561,12 @@ export interface ListCollaborationsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetCollaborationsQueryParamsStatusField(
-  val: GetCollaborationsQueryParamsStatusField
+  val: GetCollaborationsQueryParamsStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetCollaborationsQueryParamsStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): GetCollaborationsQueryParamsStatusField {
   if (val == 'pending') {
     return val;

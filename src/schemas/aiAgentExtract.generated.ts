@@ -22,7 +22,8 @@ export class AiAgentExtract {
   readonly basicText?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<AiAgentExtract, 'type'> & Partial<Pick<AiAgentExtract, 'type'>>
+    fields: Omit<AiAgentExtract, 'type'> &
+      Partial<Pick<AiAgentExtract, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -47,12 +48,12 @@ export interface AiAgentExtractInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractTypeField(
-  val: AiAgentExtractTypeField
+  val: AiAgentExtractTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiAgentExtractTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentExtractTypeField {
   if (val == 'ai_agent_extract') {
     return val;
@@ -84,7 +85,7 @@ export function deserializeAiAgentExtract(val: SerializedData): AiAgentExtract {
     });
   }
   const type: AiAgentExtractTypeField = deserializeAiAgentExtractTypeField(
-    val.type
+    val.type,
   );
   const longText: undefined | AiAgentLongTextTool =
     val.long_text == void 0
@@ -101,7 +102,7 @@ export function deserializeAiAgentExtract(val: SerializedData): AiAgentExtract {
   } satisfies AiAgentExtract;
 }
 export function serializeAiAgentExtractInput(
-  val: AiAgentExtractInput
+  val: AiAgentExtractInput,
 ): SerializedData {
   return {
     ['type']:
@@ -117,7 +118,7 @@ export function serializeAiAgentExtractInput(
   };
 }
 export function deserializeAiAgentExtractInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentExtractInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

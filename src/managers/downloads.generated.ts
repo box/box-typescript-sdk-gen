@@ -33,7 +33,7 @@ export class DownloadFileOptionals {
           DownloadFileOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -86,7 +86,7 @@ export class DownloadFileHeaders {
   } = {};
   constructor(
     fields: Omit<DownloadFileHeaders, 'extraHeaders'> &
-      Partial<Pick<DownloadFileHeaders, 'extraHeaders'>>
+      Partial<Pick<DownloadFileHeaders, 'extraHeaders'>>,
   ) {
     if (fields.range) {
       this.range = fields.range;
@@ -131,7 +131,7 @@ export class DownloadsManager {
   readonly networkSession: NetworkSession = new NetworkSession({});
   constructor(
     fields: Omit<DownloadsManager, 'networkSession' | 'downloadFile'> &
-      Partial<Pick<DownloadsManager, 'networkSession'>>
+      Partial<Pick<DownloadsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -155,7 +155,7 @@ export class DownloadsManager {
      */
   async downloadFile(
     fileId: string,
-    optionalsInput: DownloadFileOptionalsInput = {}
+    optionalsInput: DownloadFileOptionalsInput = {},
   ): Promise<ByteStream> {
     const optionals: DownloadFileOptionals = new DownloadFileOptionals({
       queryParams: optionalsInput.queryParams,
@@ -185,7 +185,7 @@ export class DownloadsManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/content'
+        '/content',
       ) as string,
       method: 'GET',
       params: queryParamsMap,

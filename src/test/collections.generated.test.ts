@@ -50,7 +50,7 @@ test('testCollections', async function testCollections(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const collectionItems: Items = await client.collections.getCollectionItems(
-    favouriteCollection.id!
+    favouriteCollection.id!,
   );
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),

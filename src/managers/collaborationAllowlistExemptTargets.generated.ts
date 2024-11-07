@@ -39,7 +39,7 @@ export class CreateCollaborationWhitelistExemptTargetOptionals {
           CreateCollaborationWhitelistExemptTargetOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -67,7 +67,7 @@ export class GetCollaborationWhitelistExemptTargetByIdOptionals {
           GetCollaborationWhitelistExemptTargetByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -95,7 +95,7 @@ export class DeleteCollaborationWhitelistExemptTargetByIdOptionals {
           DeleteCollaborationWhitelistExemptTargetByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -133,7 +133,7 @@ export class GetCollaborationWhitelistExemptTargetsHeaders {
     > &
       Partial<
         Pick<GetCollaborationWhitelistExemptTargetsHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -174,7 +174,7 @@ export class CreateCollaborationWhitelistExemptTargetHeaders {
     > &
       Partial<
         Pick<CreateCollaborationWhitelistExemptTargetHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -203,7 +203,7 @@ export class GetCollaborationWhitelistExemptTargetByIdHeaders {
     > &
       Partial<
         Pick<GetCollaborationWhitelistExemptTargetByIdHeaders, 'extraHeaders'>
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -235,7 +235,7 @@ export class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
           DeleteCollaborationWhitelistExemptTargetByIdHeaders,
           'extraHeaders'
         >
-      >
+      >,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -265,7 +265,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     > &
       Partial<
         Pick<CollaborationAllowlistExemptTargetsManager, 'networkSession'>
-      >
+      >,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -285,9 +285,9 @@ export class CollaborationAllowlistExemptTargetsManager {
   async getCollaborationWhitelistExemptTargets(
     queryParams: GetCollaborationWhitelistExemptTargetsQueryParams = {} satisfies GetCollaborationWhitelistExemptTargetsQueryParams,
     headersInput: GetCollaborationWhitelistExemptTargetsHeadersInput = new GetCollaborationWhitelistExemptTargetsHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<CollaborationAllowlistExemptTargets> {
     const headers: GetCollaborationWhitelistExemptTargetsHeaders =
       new GetCollaborationWhitelistExemptTargetsHeaders({
@@ -305,7 +305,7 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaboration_whitelist_exempt_targets'
+        '/2.0/collaboration_whitelist_exempt_targets',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -329,7 +329,7 @@ export class CollaborationAllowlistExemptTargetsManager {
    */
   async createCollaborationWhitelistExemptTarget(
     requestBody: CreateCollaborationWhitelistExemptTargetRequestBody,
-    optionalsInput: CreateCollaborationWhitelistExemptTargetOptionalsInput = {}
+    optionalsInput: CreateCollaborationWhitelistExemptTargetOptionalsInput = {},
   ): Promise<CollaborationAllowlistExemptTarget> {
     const optionals: CreateCollaborationWhitelistExemptTargetOptionals =
       new CreateCollaborationWhitelistExemptTargetOptionals({
@@ -344,12 +344,12 @@ export class CollaborationAllowlistExemptTargetsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/collaboration_whitelist_exempt_targets'
+        '/2.0/collaboration_whitelist_exempt_targets',
       ) as string,
       method: 'POST',
       headers: headersMap,
       data: serializeCreateCollaborationWhitelistExemptTargetRequestBody(
-        requestBody
+        requestBody,
       ),
       contentType: 'application/json',
       responseFormat: 'json',
@@ -372,7 +372,7 @@ export class CollaborationAllowlistExemptTargetsManager {
      */
   async getCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
-    optionalsInput: GetCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
+    optionalsInput: GetCollaborationWhitelistExemptTargetByIdOptionalsInput = {},
   ): Promise<CollaborationAllowlistExemptTarget> {
     const optionals: GetCollaborationWhitelistExemptTargetByIdOptionals =
       new GetCollaborationWhitelistExemptTargetByIdOptionals({
@@ -388,7 +388,7 @@ export class CollaborationAllowlistExemptTargetsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_exempt_targets/',
-        toString(collaborationWhitelistExemptTargetId) as string
+        toString(collaborationWhitelistExemptTargetId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -412,7 +412,7 @@ export class CollaborationAllowlistExemptTargetsManager {
      */
   async deleteCollaborationWhitelistExemptTargetById(
     collaborationWhitelistExemptTargetId: string,
-    optionalsInput: DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput = {}
+    optionalsInput: DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteCollaborationWhitelistExemptTargetByIdOptionals =
       new DeleteCollaborationWhitelistExemptTargetByIdOptionals({
@@ -428,7 +428,7 @@ export class CollaborationAllowlistExemptTargetsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/collaboration_whitelist_exempt_targets/',
-        toString(collaborationWhitelistExemptTargetId) as string
+        toString(collaborationWhitelistExemptTargetId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -445,12 +445,12 @@ export interface CollaborationAllowlistExemptTargetsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-  val: CreateCollaborationWhitelistExemptTargetRequestBodyUserField
+  val: CreateCollaborationWhitelistExemptTargetRequestBodyUserField,
 ): SerializedData {
   return { ['id']: val.id };
 }
 export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationWhitelistExemptTargetRequestBodyUserField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -476,17 +476,17 @@ export function deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUs
   } satisfies CreateCollaborationWhitelistExemptTargetRequestBodyUserField;
 }
 export function serializeCreateCollaborationWhitelistExemptTargetRequestBody(
-  val: CreateCollaborationWhitelistExemptTargetRequestBody
+  val: CreateCollaborationWhitelistExemptTargetRequestBody,
 ): SerializedData {
   return {
     ['user']:
       serializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-        val.user
+        val.user,
       ),
   };
 }
 export function deserializeCreateCollaborationWhitelistExemptTargetRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateCollaborationWhitelistExemptTargetRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -502,7 +502,7 @@ export function deserializeCreateCollaborationWhitelistExemptTargetRequestBody(
   }
   const user: CreateCollaborationWhitelistExemptTargetRequestBodyUserField =
     deserializeCreateCollaborationWhitelistExemptTargetRequestBodyUserField(
-      val.user
+      val.user,
     );
   return {
     user: user,

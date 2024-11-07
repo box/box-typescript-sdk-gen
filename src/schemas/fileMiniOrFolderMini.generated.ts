@@ -23,7 +23,7 @@ export function serializeFileMiniOrFolderMini(val: any): SerializedData {
   throw new BoxSdkError({ message: 'unknown type' });
 }
 export function deserializeFileMiniOrFolderMini(
-  val: SerializedData
+  val: SerializedData,
 ): FileMiniOrFolderMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -157,12 +157,12 @@ export type Workflow = WorkflowMini & {
   readonly flows?: readonly WorkflowFlowsField[];
 };
 export function serializeWorkflowFlowsTypeField(
-  val: WorkflowFlowsTypeField
+  val: WorkflowFlowsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTypeField {
   if (val == 'flow') {
     return val;
@@ -172,12 +172,12 @@ export function deserializeWorkflowFlowsTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerTypeField(
-  val: WorkflowFlowsTriggerTypeField
+  val: WorkflowFlowsTriggerTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTriggerTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerTypeField {
   if (val == 'trigger') {
     return val;
@@ -187,12 +187,12 @@ export function deserializeWorkflowFlowsTriggerTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerTriggerTypeField(
-  val: WorkflowFlowsTriggerTriggerTypeField
+  val: WorkflowFlowsTriggerTriggerTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTriggerTriggerTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerTriggerTypeField {
   if (val == 'WORKFLOW_MANUAL_START') {
     return val;
@@ -202,12 +202,12 @@ export function deserializeWorkflowFlowsTriggerTriggerTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeTypeField(
-  val: WorkflowFlowsTriggerScopeTypeField
+  val: WorkflowFlowsTriggerScopeTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTriggerScopeTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerScopeTypeField {
   if (val == 'trigger_scope') {
     return val;
@@ -217,12 +217,12 @@ export function deserializeWorkflowFlowsTriggerScopeTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectTypeField(
-  val: WorkflowFlowsTriggerScopeObjectTypeField
+  val: WorkflowFlowsTriggerScopeObjectTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsTriggerScopeObjectTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerScopeObjectTypeField {
   if (val == 'folder') {
     return val;
@@ -232,7 +232,7 @@ export function deserializeWorkflowFlowsTriggerScopeObjectTypeField(
   });
 }
 export function serializeWorkflowFlowsTriggerScopeObjectField(
-  val: WorkflowFlowsTriggerScopeObjectField
+  val: WorkflowFlowsTriggerScopeObjectField,
 ): SerializedData {
   return {
     ['type']:
@@ -243,7 +243,7 @@ export function serializeWorkflowFlowsTriggerScopeObjectField(
   };
 }
 export function deserializeWorkflowFlowsTriggerScopeObjectField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerScopeObjectField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -264,7 +264,7 @@ export function deserializeWorkflowFlowsTriggerScopeObjectField(
   return { type: type, id: id } satisfies WorkflowFlowsTriggerScopeObjectField;
 }
 export function serializeWorkflowFlowsTriggerScopeField(
-  val: WorkflowFlowsTriggerScopeField
+  val: WorkflowFlowsTriggerScopeField,
 ): SerializedData {
   return {
     ['type']:
@@ -279,7 +279,7 @@ export function serializeWorkflowFlowsTriggerScopeField(
   };
 }
 export function deserializeWorkflowFlowsTriggerScopeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerScopeField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -308,7 +308,7 @@ export function deserializeWorkflowFlowsTriggerScopeField(
   } satisfies WorkflowFlowsTriggerScopeField;
 }
 export function serializeWorkflowFlowsTriggerField(
-  val: WorkflowFlowsTriggerField
+  val: WorkflowFlowsTriggerField,
 ): SerializedData {
   return {
     ['type']:
@@ -323,14 +323,14 @@ export function serializeWorkflowFlowsTriggerField(
       val.scope == void 0
         ? void 0
         : (val.scope.map(function (
-            item: WorkflowFlowsTriggerScopeField
+            item: WorkflowFlowsTriggerScopeField,
           ): SerializedData {
             return serializeWorkflowFlowsTriggerScopeField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeWorkflowFlowsTriggerField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsTriggerField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -355,12 +355,12 @@ export function deserializeWorkflowFlowsTriggerField(
     val.scope == void 0
       ? void 0
       : sdIsList(val.scope)
-      ? (val.scope.map(function (
-          itm: SerializedData
-        ): WorkflowFlowsTriggerScopeField {
-          return deserializeWorkflowFlowsTriggerScopeField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.scope.map(function (
+            itm: SerializedData,
+          ): WorkflowFlowsTriggerScopeField {
+            return deserializeWorkflowFlowsTriggerScopeField(itm);
+          }) as readonly any[])
+        : [];
   return {
     type: type,
     triggerType: triggerType,
@@ -368,12 +368,12 @@ export function deserializeWorkflowFlowsTriggerField(
   } satisfies WorkflowFlowsTriggerField;
 }
 export function serializeWorkflowFlowsOutcomesTypeField(
-  val: WorkflowFlowsOutcomesTypeField
+  val: WorkflowFlowsOutcomesTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsOutcomesTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesTypeField {
   if (val == 'outcome') {
     return val;
@@ -383,12 +383,12 @@ export function deserializeWorkflowFlowsOutcomesTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesActionTypeField(
-  val: WorkflowFlowsOutcomesActionTypeField
+  val: WorkflowFlowsOutcomesActionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsOutcomesActionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesActionTypeField {
   if (val == 'add_metadata') {
     return val;
@@ -464,12 +464,12 @@ export function deserializeWorkflowFlowsOutcomesActionTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedTypeField(
-  val: WorkflowFlowsOutcomesIfRejectedTypeField
+  val: WorkflowFlowsOutcomesIfRejectedTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsOutcomesIfRejectedTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesIfRejectedTypeField {
   if (val == 'outcome') {
     return val;
@@ -479,12 +479,12 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
-  val: WorkflowFlowsOutcomesIfRejectedActionTypeField
+  val: WorkflowFlowsOutcomesIfRejectedActionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesIfRejectedActionTypeField {
   if (val == 'add_metadata') {
     return val;
@@ -560,7 +560,7 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
   });
 }
 export function serializeWorkflowFlowsOutcomesIfRejectedField(
-  val: WorkflowFlowsOutcomesIfRejectedField
+  val: WorkflowFlowsOutcomesIfRejectedField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -573,12 +573,12 @@ export function serializeWorkflowFlowsOutcomesIfRejectedField(
       val.actionType == void 0
         ? void 0
         : serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
-            val.actionType
+            val.actionType,
           ),
   };
 }
 export function deserializeWorkflowFlowsOutcomesIfRejectedField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesIfRejectedField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -607,7 +607,7 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedField(
     val.action_type == void 0
       ? void 0
       : deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
-          val.action_type
+          val.action_type,
         );
   return {
     id: id,
@@ -617,7 +617,7 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedField(
   } satisfies WorkflowFlowsOutcomesIfRejectedField;
 }
 export function serializeWorkflowFlowsOutcomesField(
-  val: WorkflowFlowsOutcomesField
+  val: WorkflowFlowsOutcomesField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -634,14 +634,14 @@ export function serializeWorkflowFlowsOutcomesField(
       val.ifRejected == void 0
         ? void 0
         : (val.ifRejected.map(function (
-            item: WorkflowFlowsOutcomesIfRejectedField
+            item: WorkflowFlowsOutcomesIfRejectedField,
           ): SerializedData {
             return serializeWorkflowFlowsOutcomesIfRejectedField(item);
           }) as readonly any[]),
   };
 }
 export function deserializeWorkflowFlowsOutcomesField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsOutcomesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -681,12 +681,12 @@ export function deserializeWorkflowFlowsOutcomesField(
     val.if_rejected == void 0
       ? void 0
       : sdIsList(val.if_rejected)
-      ? (val.if_rejected.map(function (
-          itm: SerializedData
-        ): WorkflowFlowsOutcomesIfRejectedField {
-          return deserializeWorkflowFlowsOutcomesIfRejectedField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.if_rejected.map(function (
+            itm: SerializedData,
+          ): WorkflowFlowsOutcomesIfRejectedField {
+            return deserializeWorkflowFlowsOutcomesIfRejectedField(itm);
+          }) as readonly any[])
+        : [];
   return {
     id: id,
     type: type,
@@ -696,7 +696,7 @@ export function deserializeWorkflowFlowsOutcomesField(
   } satisfies WorkflowFlowsOutcomesField;
 }
 export function serializeWorkflowFlowsField(
-  val: WorkflowFlowsField
+  val: WorkflowFlowsField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -710,7 +710,7 @@ export function serializeWorkflowFlowsField(
       val.outcomes == void 0
         ? void 0
         : (val.outcomes.map(function (
-            item: WorkflowFlowsOutcomesField
+            item: WorkflowFlowsOutcomesField,
           ): SerializedData {
             return serializeWorkflowFlowsOutcomesField(item);
           }) as readonly any[]),
@@ -721,7 +721,7 @@ export function serializeWorkflowFlowsField(
   };
 }
 export function deserializeWorkflowFlowsField(
-  val: SerializedData
+  val: SerializedData,
 ): WorkflowFlowsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -749,12 +749,12 @@ export function deserializeWorkflowFlowsField(
     val.outcomes == void 0
       ? void 0
       : sdIsList(val.outcomes)
-      ? (val.outcomes.map(function (
-          itm: SerializedData
-        ): WorkflowFlowsOutcomesField {
-          return deserializeWorkflowFlowsOutcomesField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.outcomes.map(function (
+            itm: SerializedData,
+          ): WorkflowFlowsOutcomesField {
+            return deserializeWorkflowFlowsOutcomesField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
     throw new BoxSdkError({
       message: 'Expecting string for "created_at" of type "WorkflowFlowsField"',
@@ -803,10 +803,10 @@ export function deserializeWorkflow(val: SerializedData): Workflow {
     val.flows == void 0
       ? void 0
       : sdIsList(val.flows)
-      ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
-          return deserializeWorkflowFlowsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.flows.map(function (itm: SerializedData): WorkflowFlowsField {
+            return deserializeWorkflowFlowsField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "id" of type "Workflow"',

@@ -24,12 +24,12 @@ export class RetentionPolicyMini extends RetentionPolicyBase {
   }
 }
 export function serializeRetentionPolicyMiniDispositionActionField(
-  val: RetentionPolicyMiniDispositionActionField
+  val: RetentionPolicyMiniDispositionActionField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyMiniDispositionActionField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyMiniDispositionActionField {
   if (val == 'permanently_delete') {
     return val;
@@ -42,7 +42,7 @@ export function deserializeRetentionPolicyMiniDispositionActionField(
   });
 }
 export function serializeRetentionPolicyMini(
-  val: RetentionPolicyMini
+  val: RetentionPolicyMini,
 ): SerializedData {
   const base: any = serializeRetentionPolicyBase(val);
   if (!sdIsMap(base)) {
@@ -60,13 +60,13 @@ export function serializeRetentionPolicyMini(
         val.dispositionAction == void 0
           ? void 0
           : serializeRetentionPolicyMiniDispositionActionField(
-              val.dispositionAction
+              val.dispositionAction,
             ),
     },
   };
 }
 export function deserializeRetentionPolicyMini(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyMini {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -95,7 +95,7 @@ export function deserializeRetentionPolicyMini(
     val.disposition_action == void 0
       ? void 0
       : deserializeRetentionPolicyMiniDispositionActionField(
-          val.disposition_action
+          val.disposition_action,
         );
   if (val.id == void 0) {
     throw new BoxSdkError({

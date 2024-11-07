@@ -24,14 +24,14 @@ export interface RetentionPolicyAssignments {
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyAssignments(
-  val: RetentionPolicyAssignments
+  val: RetentionPolicyAssignments,
 ): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
         ? void 0
         : (val.entries.map(function (
-            item: RetentionPolicyAssignment
+            item: RetentionPolicyAssignment,
           ): SerializedData {
             return serializeRetentionPolicyAssignment(item);
           }) as readonly any[]),
@@ -40,7 +40,7 @@ export function serializeRetentionPolicyAssignments(
   };
 }
 export function deserializeRetentionPolicyAssignments(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyAssignments {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -57,12 +57,12 @@ export function deserializeRetentionPolicyAssignments(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (
-          itm: SerializedData
-        ): RetentionPolicyAssignment {
-          return deserializeRetentionPolicyAssignment(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (
+            itm: SerializedData,
+          ): RetentionPolicyAssignment {
+            return deserializeRetentionPolicyAssignment(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
     throw new BoxSdkError({
       message:

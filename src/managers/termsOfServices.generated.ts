@@ -36,7 +36,7 @@ export class CreateTermsOfServiceOptionals {
     > &
       Partial<
         Pick<CreateTermsOfServiceOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -61,7 +61,7 @@ export class GetTermsOfServiceByIdOptionals {
     > &
       Partial<
         Pick<GetTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -86,7 +86,7 @@ export class UpdateTermsOfServiceByIdOptionals {
     > &
       Partial<
         Pick<UpdateTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -114,7 +114,7 @@ export class GetTermsOfServiceHeaders {
   } = {};
   constructor(
     fields: Omit<GetTermsOfServiceHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTermsOfServiceHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTermsOfServiceHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -157,7 +157,7 @@ export class CreateTermsOfServiceHeaders {
   } = {};
   constructor(
     fields: Omit<CreateTermsOfServiceHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateTermsOfServiceHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateTermsOfServiceHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -181,7 +181,7 @@ export class GetTermsOfServiceByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTermsOfServiceByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTermsOfServiceByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTermsOfServiceByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -219,7 +219,7 @@ export class UpdateTermsOfServiceByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -247,7 +247,7 @@ export class TermsOfServicesManager {
       | 'getTermsOfServiceById'
       | 'updateTermsOfServiceById'
     > &
-      Partial<Pick<TermsOfServicesManager, 'networkSession'>>
+      Partial<Pick<TermsOfServicesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -267,9 +267,9 @@ export class TermsOfServicesManager {
   async getTermsOfService(
     queryParams: GetTermsOfServiceQueryParams = {} satisfies GetTermsOfServiceQueryParams,
     headersInput: GetTermsOfServiceHeadersInput = new GetTermsOfServiceHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<TermsOfServices> {
     const headers: GetTermsOfServiceHeaders = new GetTermsOfServiceHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -285,7 +285,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services'
+        '/2.0/terms_of_services',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -309,7 +309,7 @@ export class TermsOfServicesManager {
    */
   async createTermsOfService(
     requestBody: CreateTermsOfServiceRequestBody,
-    optionalsInput: CreateTermsOfServiceOptionalsInput = {}
+    optionalsInput: CreateTermsOfServiceOptionalsInput = {},
   ): Promise<TermsOfService> {
     const optionals: CreateTermsOfServiceOptionals =
       new CreateTermsOfServiceOptionals({
@@ -324,7 +324,7 @@ export class TermsOfServicesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services'
+        '/2.0/terms_of_services',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -349,7 +349,7 @@ export class TermsOfServicesManager {
      */
   async getTermsOfServiceById(
     termsOfServiceId: string,
-    optionalsInput: GetTermsOfServiceByIdOptionalsInput = {}
+    optionalsInput: GetTermsOfServiceByIdOptionalsInput = {},
   ): Promise<TermsOfService> {
     const optionals: GetTermsOfServiceByIdOptionals =
       new GetTermsOfServiceByIdOptionals({
@@ -365,7 +365,7 @@ export class TermsOfServicesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/terms_of_services/',
-        toString(termsOfServiceId) as string
+        toString(termsOfServiceId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -390,7 +390,7 @@ export class TermsOfServicesManager {
   async updateTermsOfServiceById(
     termsOfServiceId: string,
     requestBody: UpdateTermsOfServiceByIdRequestBody,
-    optionalsInput: UpdateTermsOfServiceByIdOptionalsInput = {}
+    optionalsInput: UpdateTermsOfServiceByIdOptionalsInput = {},
   ): Promise<TermsOfService> {
     const optionals: UpdateTermsOfServiceByIdOptionals =
       new UpdateTermsOfServiceByIdOptionals({
@@ -406,7 +406,7 @@ export class TermsOfServicesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/terms_of_services/',
-        toString(termsOfServiceId) as string
+        toString(termsOfServiceId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -428,12 +428,12 @@ export interface TermsOfServicesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetTermsOfServiceQueryParamsTosTypeField(
-  val: GetTermsOfServiceQueryParamsTosTypeField
+  val: GetTermsOfServiceQueryParamsTosTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetTermsOfServiceQueryParamsTosTypeField {
   if (val == 'external') {
     return val;
@@ -446,12 +446,12 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyStatusField(
-  val: CreateTermsOfServiceRequestBodyStatusField
+  val: CreateTermsOfServiceRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTermsOfServiceRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceRequestBodyStatusField {
   if (val == 'enabled') {
     return val;
@@ -464,12 +464,12 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBodyTosTypeField(
-  val: CreateTermsOfServiceRequestBodyTosTypeField
+  val: CreateTermsOfServiceRequestBodyTosTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceRequestBodyTosTypeField {
   if (val == 'external') {
     return val;
@@ -482,7 +482,7 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
   });
 }
 export function serializeCreateTermsOfServiceRequestBody(
-  val: CreateTermsOfServiceRequestBody
+  val: CreateTermsOfServiceRequestBody,
 ): SerializedData {
   return {
     ['status']: serializeCreateTermsOfServiceRequestBodyStatusField(val.status),
@@ -494,7 +494,7 @@ export function serializeCreateTermsOfServiceRequestBody(
   };
 }
 export function deserializeCreateTermsOfServiceRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTermsOfServiceRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -533,12 +533,12 @@ export function deserializeCreateTermsOfServiceRequestBody(
   } satisfies CreateTermsOfServiceRequestBody;
 }
 export function serializeUpdateTermsOfServiceByIdRequestBodyStatusField(
-  val: UpdateTermsOfServiceByIdRequestBodyStatusField
+  val: UpdateTermsOfServiceByIdRequestBodyStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTermsOfServiceByIdRequestBodyStatusField {
   if (val == 'enabled') {
     return val;
@@ -551,17 +551,17 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
   });
 }
 export function serializeUpdateTermsOfServiceByIdRequestBody(
-  val: UpdateTermsOfServiceByIdRequestBody
+  val: UpdateTermsOfServiceByIdRequestBody,
 ): SerializedData {
   return {
     ['status']: serializeUpdateTermsOfServiceByIdRequestBodyStatusField(
-      val.status
+      val.status,
     ),
     ['text']: val.text,
   };
 }
 export function deserializeUpdateTermsOfServiceByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTermsOfServiceByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

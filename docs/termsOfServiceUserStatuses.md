@@ -87,7 +87,7 @@ await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(
   createdTosUserStatus.id,
   {
     isAccepted: true,
-  } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody
+  } satisfies UpdateTermsOfServiceStatusForUserByIdRequestBody,
 );
 ```
 

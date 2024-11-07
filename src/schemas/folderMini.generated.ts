@@ -16,7 +16,7 @@ export class FolderMini extends FolderBase {
   readonly sequenceId?: string;
   readonly name?: string;
   constructor(
-    fields: Omit<FolderMini, 'type'> & Partial<Pick<FolderMini, 'type'>>
+    fields: Omit<FolderMini, 'type'> & Partial<Pick<FolderMini, 'type'>>,
   ) {
     super(fields);
   }

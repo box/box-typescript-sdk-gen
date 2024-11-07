@@ -20,7 +20,7 @@ export class CollaboratorVariableVariableValueField {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CollaboratorVariableVariableValueField, 'type'> &
-      Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>
+      Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -62,7 +62,7 @@ export class CollaboratorVariable {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<CollaboratorVariable, 'type' | 'variableType'> &
-      Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>
+      Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -96,12 +96,12 @@ export interface CollaboratorVariableInput {
   readonly rawData?: SerializedData;
 }
 export function serializeCollaboratorVariableTypeField(
-  val: CollaboratorVariableTypeField
+  val: CollaboratorVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaboratorVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableTypeField {
   if (val == 'variable') {
     return val;
@@ -111,12 +111,12 @@ export function deserializeCollaboratorVariableTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableTypeField(
-  val: CollaboratorVariableVariableTypeField
+  val: CollaboratorVariableVariableTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaboratorVariableVariableTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableVariableTypeField {
   if (val == 'user_list') {
     return val;
@@ -126,12 +126,12 @@ export function deserializeCollaboratorVariableVariableTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableValueTypeField(
-  val: CollaboratorVariableVariableValueTypeField
+  val: CollaboratorVariableVariableValueTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollaboratorVariableVariableValueTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableVariableValueTypeField {
   if (val == 'user') {
     return val;
@@ -141,7 +141,7 @@ export function deserializeCollaboratorVariableVariableValueTypeField(
   });
 }
 export function serializeCollaboratorVariableVariableValueField(
-  val: CollaboratorVariableVariableValueField
+  val: CollaboratorVariableVariableValueField,
 ): SerializedData {
   return {
     ['type']: serializeCollaboratorVariableVariableValueTypeField(val.type),
@@ -149,7 +149,7 @@ export function serializeCollaboratorVariableVariableValueField(
   };
 }
 export function deserializeCollaboratorVariableVariableValueField(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableVariableValueField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -183,7 +183,7 @@ export function deserializeCollaboratorVariableVariableValueField(
   } satisfies CollaboratorVariableVariableValueField;
 }
 export function serializeCollaboratorVariableVariableValueFieldInput(
-  val: CollaboratorVariableVariableValueFieldInput
+  val: CollaboratorVariableVariableValueFieldInput,
 ): SerializedData {
   return {
     ['type']:
@@ -194,7 +194,7 @@ export function serializeCollaboratorVariableVariableValueFieldInput(
   };
 }
 export function deserializeCollaboratorVariableVariableValueFieldInput(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableVariableValueFieldInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -225,22 +225,22 @@ export function deserializeCollaboratorVariableVariableValueFieldInput(
   } satisfies CollaboratorVariableVariableValueFieldInput;
 }
 export function serializeCollaboratorVariable(
-  val: CollaboratorVariable
+  val: CollaboratorVariable,
 ): SerializedData {
   return {
     ['type']: serializeCollaboratorVariableTypeField(val.type),
     ['variable_type']: serializeCollaboratorVariableVariableTypeField(
-      val.variableType
+      val.variableType,
     ),
     ['variable_value']: val.variableValue.map(function (
-      item: CollaboratorVariableVariableValueField
+      item: CollaboratorVariableVariableValueField,
     ): SerializedData {
       return serializeCollaboratorVariableVariableValueField(item);
     }) as readonly any[],
   };
 }
 export function deserializeCollaboratorVariable(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariable {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -277,7 +277,7 @@ export function deserializeCollaboratorVariable(
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
       ? (val.variable_value.map(function (
-          itm: SerializedData
+          itm: SerializedData,
         ): CollaboratorVariableVariableValueField {
           return deserializeCollaboratorVariableVariableValueField(itm);
         }) as readonly any[])
@@ -289,7 +289,7 @@ export function deserializeCollaboratorVariable(
   } satisfies CollaboratorVariable;
 }
 export function serializeCollaboratorVariableInput(
-  val: CollaboratorVariableInput
+  val: CollaboratorVariableInput,
 ): SerializedData {
   return {
     ['type']:
@@ -301,14 +301,14 @@ export function serializeCollaboratorVariableInput(
         ? void 0
         : serializeCollaboratorVariableVariableTypeField(val.variableType),
     ['variable_value']: val.variableValue.map(function (
-      item: CollaboratorVariableVariableValueField
+      item: CollaboratorVariableVariableValueField,
     ): SerializedData {
       return serializeCollaboratorVariableVariableValueField(item);
     }) as readonly any[],
   };
 }
 export function deserializeCollaboratorVariableInput(
-  val: SerializedData
+  val: SerializedData,
 ): CollaboratorVariableInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -338,7 +338,7 @@ export function deserializeCollaboratorVariableInput(
   const variableValue: readonly CollaboratorVariableVariableValueField[] =
     sdIsList(val.variable_value)
       ? (val.variable_value.map(function (
-          itm: SerializedData
+          itm: SerializedData,
         ): CollaboratorVariableVariableValueField {
           return deserializeCollaboratorVariableVariableValueField(itm);
         }) as readonly any[])

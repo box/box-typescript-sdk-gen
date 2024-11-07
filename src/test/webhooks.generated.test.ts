@@ -73,7 +73,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     throw new Error('Assertion failed');
   }
   const webhookFromApi: Webhook = await client.webhooks.getWebhookById(
-    webhook.id!
+    webhook.id!,
   );
   if (!(webhook.id == webhookFromApi.id)) {
     throw new Error('Assertion failed');
@@ -90,7 +90,7 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
       requestBody: {
         address: 'https://example.com/updated-webhook',
       } satisfies UpdateWebhookByIdRequestBody,
-    } satisfies UpdateWebhookByIdOptionalsInput
+    } satisfies UpdateWebhookByIdOptionalsInput,
   );
   if (!(updatedWebhook.id == webhook.id)) {
     throw new Error('Assertion failed');

@@ -39,7 +39,7 @@ export class CreateLegalHoldPolicyOptionals {
     > &
       Partial<
         Pick<CreateLegalHoldPolicyOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -64,7 +64,7 @@ export class GetLegalHoldPolicyByIdOptionals {
     > &
       Partial<
         Pick<GetLegalHoldPolicyByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -94,7 +94,7 @@ export class UpdateLegalHoldPolicyByIdOptionals {
           UpdateLegalHoldPolicyByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -126,7 +126,7 @@ export class DeleteLegalHoldPolicyByIdOptionals {
           DeleteLegalHoldPolicyByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -174,7 +174,7 @@ export class GetLegalHoldPoliciesHeaders {
   } = {};
   constructor(
     fields: Omit<GetLegalHoldPoliciesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -243,7 +243,7 @@ export class CreateLegalHoldPolicyHeaders {
   } = {};
   constructor(
     fields: Omit<CreateLegalHoldPolicyHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -267,7 +267,7 @@ export class GetLegalHoldPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -303,7 +303,7 @@ export class UpdateLegalHoldPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -327,7 +327,7 @@ export class DeleteLegalHoldPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -356,7 +356,7 @@ export class LegalHoldPoliciesManager {
       | 'updateLegalHoldPolicyById'
       | 'deleteLegalHoldPolicyById'
     > &
-      Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>
+      Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -376,9 +376,9 @@ export class LegalHoldPoliciesManager {
   async getLegalHoldPolicies(
     queryParams: GetLegalHoldPoliciesQueryParams = {} satisfies GetLegalHoldPoliciesQueryParams,
     headersInput: GetLegalHoldPoliciesHeadersInput = new GetLegalHoldPoliciesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<LegalHoldPolicies> {
     const headers: GetLegalHoldPoliciesHeaders =
       new GetLegalHoldPoliciesHeaders({
@@ -400,7 +400,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/legal_hold_policies'
+        '/2.0/legal_hold_policies',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -423,7 +423,7 @@ export class LegalHoldPoliciesManager {
    */
   async createLegalHoldPolicy(
     requestBody: CreateLegalHoldPolicyRequestBody,
-    optionalsInput: CreateLegalHoldPolicyOptionalsInput = {}
+    optionalsInput: CreateLegalHoldPolicyOptionalsInput = {},
   ): Promise<LegalHoldPolicy> {
     const optionals: CreateLegalHoldPolicyOptionals =
       new CreateLegalHoldPolicyOptionals({
@@ -438,7 +438,7 @@ export class LegalHoldPoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/legal_hold_policies'
+        '/2.0/legal_hold_policies',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -463,7 +463,7 @@ export class LegalHoldPoliciesManager {
      */
   async getLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    optionalsInput: GetLegalHoldPolicyByIdOptionalsInput = {}
+    optionalsInput: GetLegalHoldPolicyByIdOptionalsInput = {},
   ): Promise<LegalHoldPolicy> {
     const optionals: GetLegalHoldPolicyByIdOptionals =
       new GetLegalHoldPolicyByIdOptionals({
@@ -479,7 +479,7 @@ export class LegalHoldPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policies/',
-        toString(legalHoldPolicyId) as string
+        toString(legalHoldPolicyId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -502,7 +502,7 @@ export class LegalHoldPoliciesManager {
      */
   async updateLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    optionalsInput: UpdateLegalHoldPolicyByIdOptionalsInput = {}
+    optionalsInput: UpdateLegalHoldPolicyByIdOptionalsInput = {},
   ): Promise<LegalHoldPolicy> {
     const optionals: UpdateLegalHoldPolicyByIdOptionals =
       new UpdateLegalHoldPolicyByIdOptionals({
@@ -520,7 +520,7 @@ export class LegalHoldPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policies/',
-        toString(legalHoldPolicyId) as string
+        toString(legalHoldPolicyId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -548,7 +548,7 @@ export class LegalHoldPoliciesManager {
      */
   async deleteLegalHoldPolicyById(
     legalHoldPolicyId: string,
-    optionalsInput: DeleteLegalHoldPolicyByIdOptionalsInput = {}
+    optionalsInput: DeleteLegalHoldPolicyByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteLegalHoldPolicyByIdOptionals =
       new DeleteLegalHoldPolicyByIdOptionals({
@@ -564,7 +564,7 @@ export class LegalHoldPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/legal_hold_policies/',
-        toString(legalHoldPolicyId) as string
+        toString(legalHoldPolicyId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -581,7 +581,7 @@ export interface LegalHoldPoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateLegalHoldPolicyRequestBody(
-  val: CreateLegalHoldPolicyRequestBody
+  val: CreateLegalHoldPolicyRequestBody,
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
@@ -598,7 +598,7 @@ export function serializeCreateLegalHoldPolicyRequestBody(
   };
 }
 export function deserializeCreateLegalHoldPolicyRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateLegalHoldPolicyRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -666,7 +666,7 @@ export function deserializeCreateLegalHoldPolicyRequestBody(
   } satisfies CreateLegalHoldPolicyRequestBody;
 }
 export function serializeUpdateLegalHoldPolicyByIdRequestBody(
-  val: UpdateLegalHoldPolicyByIdRequestBody
+  val: UpdateLegalHoldPolicyByIdRequestBody,
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
@@ -675,7 +675,7 @@ export function serializeUpdateLegalHoldPolicyByIdRequestBody(
   };
 }
 export function deserializeUpdateLegalHoldPolicyByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateLegalHoldPolicyByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

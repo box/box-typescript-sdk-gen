@@ -51,9 +51,9 @@ export function deserializeTasks(val: SerializedData): Tasks {
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): Task {
-          return deserializeTask(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): Task {
+            return deserializeTask(itm);
+          }) as readonly any[])
+        : [];
   return { totalCount: totalCount, entries: entries } satisfies Tasks;
 }

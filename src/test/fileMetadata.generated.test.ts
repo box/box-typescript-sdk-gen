@@ -58,7 +58,7 @@ export const client: BoxClient = getDefaultClient();
 test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<any> {
   const file: FileFull = await uploadNewFile();
   const fileMetadata: Metadatas = await client.fileMetadata.getFileMetadata(
-    file.id
+    file.id,
   );
   if (!(fileMetadata.entries!.length == 0)) {
     throw new Error('Assertion failed');
@@ -68,7 +68,7 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
       file.id,
       'global' as CreateFileMetadataByIdScope,
       'properties',
-      { ['abc']: 'xyz' }
+      { ['abc']: 'xyz' },
     );
   if (!((toString(createdMetadata.template) as string) == 'properties')) {
     throw new Error('Assertion failed');
@@ -83,7 +83,7 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
     await client.fileMetadata.getFileMetadataById(
       file.id,
       'global' as GetFileMetadataByIdScope,
-      'properties'
+      'properties',
     );
   if (!((toString(receivedMetadata.extraData!.abc) as string) == 'xyz')) {
     throw new Error('Assertion failed');
@@ -99,13 +99,13 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
         path: '/abc',
         value: newValue,
       } satisfies UpdateFileMetadataByIdRequestBody,
-    ]
+    ],
   );
   const receivedUpdatedMetadata: MetadataFull =
     await client.fileMetadata.getFileMetadataById(
       file.id,
       'global' as GetFileMetadataByIdScope,
-      'properties'
+      'properties',
     );
   if (
     !((toString(receivedUpdatedMetadata.extraData!.abc) as string) == newValue)
@@ -115,13 +115,13 @@ test('testGlobalFileMetadata', async function testGlobalFileMetadata(): Promise<
   await client.fileMetadata.deleteFileMetadataById(
     file.id,
     'global' as DeleteFileMetadataByIdScope,
-    'properties'
+    'properties',
   );
   await expect(async () => {
     await client.fileMetadata.getFileMetadataById(
       file.id,
       'global' as GetFileMetadataByIdScope,
-      'properties'
+      'properties',
     );
   }).rejects.toThrow();
   await client.files.deleteFileById(file.id);
@@ -191,7 +191,7 @@ test('testEnterpriseFileMetadata', async function testEnterpriseFileMetadata(): 
         ['birthDate']: '2001-01-03T02:20:50.520Z',
         ['countryCode']: 'US',
         ['sports']: ['basketball', 'tennis'],
-      }
+      },
     );
   if (!((toString(createdMetadata.template) as string) == templateKey)) {
     throw new Error('Assertion failed');
@@ -223,11 +223,11 @@ test('testEnterpriseFileMetadata', async function testEnterpriseFileMetadata(): 
   await client.fileMetadata.deleteFileMetadataById(
     file.id,
     'enterprise' as DeleteFileMetadataByIdScope,
-    templateKey
+    templateKey,
   );
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    templateKey
+    templateKey,
   );
   await client.files.deleteFileById(file.id);
 });

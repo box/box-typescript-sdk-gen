@@ -40,7 +40,7 @@ export class CreateGroupOptionals {
           CreateGroupOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -73,7 +73,7 @@ export class GetGroupByIdOptionals {
           GetGroupByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -108,7 +108,7 @@ export class UpdateGroupByIdOptionals {
           UpdateGroupByIdOptionals,
           'requestBody' | 'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -135,7 +135,7 @@ export class DeleteGroupByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -184,7 +184,7 @@ export class GetGroupsHeaders {
   } = {};
   constructor(
     fields: Omit<GetGroupsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -284,7 +284,7 @@ export class CreateGroupHeaders {
   } = {};
   constructor(
     fields: Omit<CreateGroupHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -321,7 +321,7 @@ export class GetGroupByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetGroupByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -421,7 +421,7 @@ export class UpdateGroupByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateGroupByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -445,7 +445,7 @@ export class DeleteGroupByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteGroupByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -474,7 +474,7 @@ export class GroupsManager {
       | 'updateGroupById'
       | 'deleteGroupById'
     > &
-      Partial<Pick<GroupsManager, 'networkSession'>>
+      Partial<Pick<GroupsManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -494,7 +494,7 @@ export class GroupsManager {
   async getGroups(
     queryParams: GetGroupsQueryParams = {} satisfies GetGroupsQueryParams,
     headersInput: GetGroupsHeadersInput = new GetGroupsHeaders({}),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<Groups> {
     const headers: GetGroupsHeaders = new GetGroupsHeaders({
       extraHeaders: headersInput.extraHeaders,
@@ -515,7 +515,7 @@ export class GroupsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/groups'
+        '/2.0/groups',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -539,7 +539,7 @@ export class GroupsManager {
    */
   async createGroup(
     requestBody: CreateGroupRequestBody,
-    optionalsInput: CreateGroupOptionalsInput = {}
+    optionalsInput: CreateGroupOptionalsInput = {},
   ): Promise<GroupFull> {
     const optionals: CreateGroupOptionals = new CreateGroupOptionals({
       queryParams: optionalsInput.queryParams,
@@ -562,7 +562,7 @@ export class GroupsManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/groups'
+        '/2.0/groups',
       ) as string,
       method: 'POST',
       params: queryParamsMap,
@@ -590,7 +590,7 @@ export class GroupsManager {
      */
   async getGroupById(
     groupId: string,
-    optionalsInput: GetGroupByIdOptionalsInput = {}
+    optionalsInput: GetGroupByIdOptionalsInput = {},
   ): Promise<GroupFull> {
     const optionals: GetGroupByIdOptionals = new GetGroupByIdOptionals({
       queryParams: optionalsInput.queryParams,
@@ -614,7 +614,7 @@ export class GroupsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/groups/',
-        toString(groupId) as string
+        toString(groupId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -640,7 +640,7 @@ export class GroupsManager {
      */
   async updateGroupById(
     groupId: string,
-    optionalsInput: UpdateGroupByIdOptionalsInput = {}
+    optionalsInput: UpdateGroupByIdOptionalsInput = {},
   ): Promise<GroupFull> {
     const optionals: UpdateGroupByIdOptionals = new UpdateGroupByIdOptionals({
       requestBody: optionalsInput.requestBody,
@@ -666,7 +666,7 @@ export class GroupsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/groups/',
-        toString(groupId) as string
+        toString(groupId) as string,
       ) as string,
       method: 'PUT',
       params: queryParamsMap,
@@ -693,7 +693,7 @@ export class GroupsManager {
      */
   async deleteGroupById(
     groupId: string,
-    optionalsInput: DeleteGroupByIdOptionalsInput = {}
+    optionalsInput: DeleteGroupByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteGroupByIdOptionals = new DeleteGroupByIdOptionals({
       headers: optionalsInput.headers,
@@ -708,7 +708,7 @@ export class GroupsManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/groups/',
-        toString(groupId) as string
+        toString(groupId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -725,12 +725,12 @@ export interface GroupsManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateGroupRequestBodyInvitabilityLevelField(
-  val: CreateGroupRequestBodyInvitabilityLevelField
+  val: CreateGroupRequestBodyInvitabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupRequestBodyInvitabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -746,12 +746,12 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeCreateGroupRequestBodyMemberViewabilityLevelField(
-  val: CreateGroupRequestBodyMemberViewabilityLevelField
+  val: CreateGroupRequestBodyMemberViewabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupRequestBodyMemberViewabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -768,7 +768,7 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
   });
 }
 export function serializeCreateGroupRequestBody(
-  val: CreateGroupRequestBody
+  val: CreateGroupRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name,
@@ -782,18 +782,18 @@ export function serializeCreateGroupRequestBody(
       val.invitabilityLevel == void 0
         ? void 0
         : serializeCreateGroupRequestBodyInvitabilityLevelField(
-            val.invitabilityLevel
+            val.invitabilityLevel,
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
         ? void 0
         : serializeCreateGroupRequestBodyMemberViewabilityLevelField(
-            val.memberViewabilityLevel
+            val.memberViewabilityLevel,
           ),
   };
 }
 export function deserializeCreateGroupRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateGroupRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -847,7 +847,7 @@ export function deserializeCreateGroupRequestBody(
     val.invitability_level == void 0
       ? void 0
       : deserializeCreateGroupRequestBodyInvitabilityLevelField(
-          val.invitability_level
+          val.invitability_level,
         );
   const memberViewabilityLevel:
     | undefined
@@ -855,7 +855,7 @@ export function deserializeCreateGroupRequestBody(
     val.member_viewability_level == void 0
       ? void 0
       : deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
-          val.member_viewability_level
+          val.member_viewability_level,
         );
   return {
     name: name,
@@ -867,12 +867,12 @@ export function deserializeCreateGroupRequestBody(
   } satisfies CreateGroupRequestBody;
 }
 export function serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-  val: UpdateGroupByIdRequestBodyInvitabilityLevelField
+  val: UpdateGroupByIdRequestBodyInvitabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateGroupByIdRequestBodyInvitabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -889,12 +889,12 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   });
 }
 export function serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-  val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField
+  val: UpdateGroupByIdRequestBodyMemberViewabilityLevelField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateGroupByIdRequestBodyMemberViewabilityLevelField {
   if (val == 'admins_only') {
     return val;
@@ -911,7 +911,7 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
   });
 }
 export function serializeUpdateGroupByIdRequestBody(
-  val: UpdateGroupByIdRequestBody
+  val: UpdateGroupByIdRequestBody,
 ): SerializedData {
   return {
     ['name']: val.name == void 0 ? void 0 : val.name,
@@ -925,18 +925,18 @@ export function serializeUpdateGroupByIdRequestBody(
       val.invitabilityLevel == void 0
         ? void 0
         : serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-            val.invitabilityLevel
+            val.invitabilityLevel,
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
         ? void 0
         : serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-            val.memberViewabilityLevel
+            val.memberViewabilityLevel,
           ),
   };
 }
 export function deserializeUpdateGroupByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateGroupByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -985,7 +985,7 @@ export function deserializeUpdateGroupByIdRequestBody(
     val.invitability_level == void 0
       ? void 0
       : deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
-          val.invitability_level
+          val.invitability_level,
         );
   const memberViewabilityLevel:
     | undefined
@@ -993,7 +993,7 @@ export function deserializeUpdateGroupByIdRequestBody(
     val.member_viewability_level == void 0
       ? void 0
       : deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
-          val.member_viewability_level
+          val.member_viewability_level,
         );
   return {
     name: name,

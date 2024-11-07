@@ -36,7 +36,7 @@ test('testCollaborationAllowlistEntries', async function testCollaborationAllowl
         direction:
           'inbound' as CreateCollaborationWhitelistEntryRequestBodyDirectionField,
         domain: domain,
-      } satisfies CreateCollaborationWhitelistEntryRequestBody
+      } satisfies CreateCollaborationWhitelistEntryRequestBody,
     );
   if (
     !((toString(newEntry.type) as string) == 'collaboration_whitelist_entry')
@@ -51,7 +51,7 @@ test('testCollaborationAllowlistEntries', async function testCollaborationAllowl
   }
   const entry: CollaborationAllowlistEntry =
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-      newEntry.id!
+      newEntry.id!,
     );
   if (!(entry.id == newEntry.id)) {
     throw new Error('Assertion failed');
@@ -68,11 +68,11 @@ test('testCollaborationAllowlistEntries', async function testCollaborationAllowl
     throw new Error('Assertion failed');
   }
   await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById(
-    entry.id!
+    entry.id!,
   );
   await expect(async () => {
     await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-      entry.id!
+      entry.id!,
     );
   }).rejects.toThrow();
 });

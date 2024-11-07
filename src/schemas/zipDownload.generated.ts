@@ -72,12 +72,12 @@ export interface ZipDownload {
   readonly rawData?: SerializedData;
 }
 export function serializeZipDownloadNameConflictsTypeField(
-  val: ZipDownloadNameConflictsTypeField
+  val: ZipDownloadNameConflictsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeZipDownloadNameConflictsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadNameConflictsTypeField {
   if (val == 'file') {
     return val;
@@ -90,7 +90,7 @@ export function deserializeZipDownloadNameConflictsTypeField(
   });
 }
 export function serializeZipDownloadNameConflictsField(
-  val: ZipDownloadNameConflictsField
+  val: ZipDownloadNameConflictsField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -103,7 +103,7 @@ export function serializeZipDownloadNameConflictsField(
   };
 }
 export function deserializeZipDownloadNameConflictsField(
-  val: SerializedData
+  val: SerializedData,
 ): ZipDownloadNameConflictsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -154,10 +154,10 @@ export function serializeZipDownload(val: ZipDownload): SerializedData {
       val.nameConflicts == void 0
         ? void 0
         : (val.nameConflicts.map(function (
-            item: readonly ZipDownloadNameConflictsField[]
+            item: readonly ZipDownloadNameConflictsField[],
           ): SerializedData {
             return item.map(function (
-              item: ZipDownloadNameConflictsField
+              item: ZipDownloadNameConflictsField,
             ): SerializedData {
               return serializeZipDownloadNameConflictsField(item);
             }) as readonly any[];
@@ -200,18 +200,18 @@ export function deserializeZipDownload(val: SerializedData): ZipDownload {
     val.name_conflicts == void 0
       ? void 0
       : sdIsList(val.name_conflicts)
-      ? (val.name_conflicts.map(function (
-          itm: SerializedData
-        ): readonly ZipDownloadNameConflictsField[] {
-          return sdIsList(itm)
-            ? (itm.map(function (
-                itm: SerializedData
-              ): ZipDownloadNameConflictsField {
-                return deserializeZipDownloadNameConflictsField(itm);
-              }) as readonly any[])
-            : [];
-        }) as readonly any[])
-      : [];
+        ? (val.name_conflicts.map(function (
+            itm: SerializedData,
+          ): readonly ZipDownloadNameConflictsField[] {
+            return sdIsList(itm)
+              ? (itm.map(function (
+                  itm: SerializedData,
+                ): ZipDownloadNameConflictsField {
+                  return deserializeZipDownloadNameConflictsField(itm);
+                }) as readonly any[])
+              : [];
+          }) as readonly any[])
+        : [];
   return {
     downloadUrl: downloadUrl,
     statusUrl: statusUrl,

@@ -24,7 +24,7 @@ export interface RetentionPolicies {
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicies(
-  val: RetentionPolicies
+  val: RetentionPolicies,
 ): SerializedData {
   return {
     ['entries']:
@@ -38,7 +38,7 @@ export function serializeRetentionPolicies(
   };
 }
 export function deserializeRetentionPolicies(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicies {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -54,10 +54,10 @@ export function deserializeRetentionPolicies(
     val.entries == void 0
       ? void 0
       : sdIsList(val.entries)
-      ? (val.entries.map(function (itm: SerializedData): RetentionPolicy {
-          return deserializeRetentionPolicy(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.entries.map(function (itm: SerializedData): RetentionPolicy {
+            return deserializeRetentionPolicy(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.limit == void 0) && !sdIsNumber(val.limit)) {
     throw new BoxSdkError({
       message: 'Expecting number for "limit" of type "RetentionPolicies"',

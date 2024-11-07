@@ -25,7 +25,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testShieldInformationBarriers', async function testShieldInformationBarriers(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const enterpriseId: string = getEnvVar('ENTERPRISE_ID');
   const barrier: ShieldInformationBarrier =
@@ -45,7 +45,7 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
   const barrierId: string = barrier.id!;
   const barrierFromApi: ShieldInformationBarrier =
     await client.shieldInformationBarriers.getShieldInformationBarrierById(
-      barrierId
+      barrierId,
     );
   if (!(barrierFromApi.id! == barrierId)) {
     throw new Error('Assertion failed');
@@ -61,7 +61,7 @@ test('testShieldInformationBarriers', async function testShieldInformationBarrie
         id: barrierId,
         status:
           'disabled' as UpdateShieldInformationBarrierStatusRequestBodyStatusField,
-      } satisfies UpdateShieldInformationBarrierStatusRequestBody
+      } satisfies UpdateShieldInformationBarrierStatusRequestBody,
     );
   }).rejects.toThrow();
 });

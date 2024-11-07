@@ -33,7 +33,7 @@ export class GetFileTasksOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetFileTasksOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetFileTasksOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetFileTasksOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -52,7 +52,7 @@ export class CreateTaskOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<CreateTaskOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<CreateTaskOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<CreateTaskOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -71,7 +71,7 @@ export class GetTaskByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<GetTaskByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<GetTaskByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<GetTaskByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -100,7 +100,7 @@ export class UpdateTaskByIdOptionals {
           UpdateTaskByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -123,7 +123,7 @@ export class DeleteTaskByIdOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<DeleteTaskByIdOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<DeleteTaskByIdOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<DeleteTaskByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -145,7 +145,7 @@ export class GetFileTasksHeaders {
   } = {};
   constructor(
     fields: Omit<GetFileTasksHeaders, 'extraHeaders'> &
-      Partial<Pick<GetFileTasksHeaders, 'extraHeaders'>>
+      Partial<Pick<GetFileTasksHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -212,7 +212,7 @@ export class CreateTaskHeaders {
   } = {};
   constructor(
     fields: Omit<CreateTaskHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateTaskHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateTaskHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -236,7 +236,7 @@ export class GetTaskByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetTaskByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetTaskByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetTaskByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -289,7 +289,7 @@ export class UpdateTaskByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateTaskByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateTaskByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateTaskByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -313,7 +313,7 @@ export class DeleteTaskByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteTaskByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteTaskByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteTaskByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -342,7 +342,7 @@ export class TasksManager {
       | 'updateTaskById'
       | 'deleteTaskById'
     > &
-      Partial<Pick<TasksManager, 'networkSession'>>
+      Partial<Pick<TasksManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -367,7 +367,7 @@ export class TasksManager {
      */
   async getFileTasks(
     fileId: string,
-    optionalsInput: GetFileTasksOptionalsInput = {}
+    optionalsInput: GetFileTasksOptionalsInput = {},
   ): Promise<Tasks> {
     const optionals: GetFileTasksOptionals = new GetFileTasksOptionals({
       headers: optionalsInput.headers,
@@ -383,7 +383,7 @@ export class TasksManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/files/',
         toString(fileId) as string,
-        '/tasks'
+        '/tasks',
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -406,7 +406,7 @@ export class TasksManager {
    */
   async createTask(
     requestBody: CreateTaskRequestBody,
-    optionalsInput: CreateTaskOptionalsInput = {}
+    optionalsInput: CreateTaskOptionalsInput = {},
   ): Promise<Task> {
     const optionals: CreateTaskOptionals = new CreateTaskOptionals({
       headers: optionalsInput.headers,
@@ -420,7 +420,7 @@ export class TasksManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/tasks'
+        '/2.0/tasks',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -445,7 +445,7 @@ export class TasksManager {
      */
   async getTaskById(
     taskId: string,
-    optionalsInput: GetTaskByIdOptionalsInput = {}
+    optionalsInput: GetTaskByIdOptionalsInput = {},
   ): Promise<Task> {
     const optionals: GetTaskByIdOptionals = new GetTaskByIdOptionals({
       headers: optionalsInput.headers,
@@ -460,7 +460,7 @@ export class TasksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/tasks/',
-        toString(taskId) as string
+        toString(taskId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -484,7 +484,7 @@ export class TasksManager {
      */
   async updateTaskById(
     taskId: string,
-    optionalsInput: UpdateTaskByIdOptionalsInput = {}
+    optionalsInput: UpdateTaskByIdOptionalsInput = {},
   ): Promise<Task> {
     const optionals: UpdateTaskByIdOptionals = new UpdateTaskByIdOptionals({
       requestBody: optionalsInput.requestBody,
@@ -501,7 +501,7 @@ export class TasksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/tasks/',
-        toString(taskId) as string
+        toString(taskId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -526,7 +526,7 @@ export class TasksManager {
      */
   async deleteTaskById(
     taskId: string,
-    optionalsInput: DeleteTaskByIdOptionalsInput = {}
+    optionalsInput: DeleteTaskByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteTaskByIdOptionals = new DeleteTaskByIdOptionals({
       headers: optionalsInput.headers,
@@ -541,7 +541,7 @@ export class TasksManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/tasks/',
-        toString(taskId) as string
+        toString(taskId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -558,12 +558,12 @@ export interface TasksManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeCreateTaskRequestBodyItemTypeField(
-  val: CreateTaskRequestBodyItemTypeField
+  val: CreateTaskRequestBodyItemTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyItemTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskRequestBodyItemTypeField {
   if (val == 'file') {
     return val;
@@ -573,7 +573,7 @@ export function deserializeCreateTaskRequestBodyItemTypeField(
   });
 }
 export function serializeCreateTaskRequestBodyItemField(
-  val: CreateTaskRequestBodyItemField
+  val: CreateTaskRequestBodyItemField,
 ): SerializedData {
   return {
     ['id']: val.id == void 0 ? void 0 : val.id,
@@ -584,7 +584,7 @@ export function serializeCreateTaskRequestBodyItemField(
   };
 }
 export function deserializeCreateTaskRequestBodyItemField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskRequestBodyItemField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -605,12 +605,12 @@ export function deserializeCreateTaskRequestBodyItemField(
   return { id: id, type: type } satisfies CreateTaskRequestBodyItemField;
 }
 export function serializeCreateTaskRequestBodyActionField(
-  val: CreateTaskRequestBodyActionField
+  val: CreateTaskRequestBodyActionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyActionField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskRequestBodyActionField {
   if (val == 'review') {
     return val;
@@ -623,12 +623,12 @@ export function deserializeCreateTaskRequestBodyActionField(
   });
 }
 export function serializeCreateTaskRequestBodyCompletionRuleField(
-  val: CreateTaskRequestBodyCompletionRuleField
+  val: CreateTaskRequestBodyCompletionRuleField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateTaskRequestBodyCompletionRuleField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskRequestBodyCompletionRuleField {
   if (val == 'all_assignees') {
     return val;
@@ -641,7 +641,7 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
   });
 }
 export function serializeCreateTaskRequestBody(
-  val: CreateTaskRequestBody
+  val: CreateTaskRequestBody,
 ): SerializedData {
   return {
     ['item']: serializeCreateTaskRequestBodyItemField(val.item),
@@ -658,7 +658,7 @@ export function serializeCreateTaskRequestBody(
   };
 }
 export function deserializeCreateTaskRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateTaskRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -694,7 +694,7 @@ export function deserializeCreateTaskRequestBody(
     val.completion_rule == void 0
       ? void 0
       : deserializeCreateTaskRequestBodyCompletionRuleField(
-          val.completion_rule
+          val.completion_rule,
         );
   return {
     item: item,
@@ -705,12 +705,12 @@ export function deserializeCreateTaskRequestBody(
   } satisfies CreateTaskRequestBody;
 }
 export function serializeUpdateTaskByIdRequestBodyActionField(
-  val: UpdateTaskByIdRequestBodyActionField
+  val: UpdateTaskByIdRequestBodyActionField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyActionField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTaskByIdRequestBodyActionField {
   if (val == 'review') {
     return val;
@@ -723,12 +723,12 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   });
 }
 export function serializeUpdateTaskByIdRequestBodyCompletionRuleField(
-  val: UpdateTaskByIdRequestBodyCompletionRuleField
+  val: UpdateTaskByIdRequestBodyCompletionRuleField,
 ): SerializedData {
   return val;
 }
 export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTaskByIdRequestBodyCompletionRuleField {
   if (val == 'all_assignees') {
     return val;
@@ -741,7 +741,7 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
   });
 }
 export function serializeUpdateTaskByIdRequestBody(
-  val: UpdateTaskByIdRequestBody
+  val: UpdateTaskByIdRequestBody,
 ): SerializedData {
   return {
     ['action']:
@@ -754,12 +754,12 @@ export function serializeUpdateTaskByIdRequestBody(
       val.completionRule == void 0
         ? void 0
         : serializeUpdateTaskByIdRequestBodyCompletionRuleField(
-            val.completionRule
+            val.completionRule,
           ),
   };
 }
 export function deserializeUpdateTaskByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateTaskByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -792,7 +792,7 @@ export function deserializeUpdateTaskByIdRequestBody(
     val.completion_rule == void 0
       ? void 0
       : deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
-          val.completion_rule
+          val.completion_rule,
         );
   return {
     action: action,

@@ -42,7 +42,7 @@ export class CreateRetentionPolicyOptionals {
     > &
       Partial<
         Pick<CreateRetentionPolicyOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -72,7 +72,7 @@ export class GetRetentionPolicyByIdOptionals {
           GetRetentionPolicyByIdOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -106,7 +106,7 @@ export class UpdateRetentionPolicyByIdOptionals {
           UpdateRetentionPolicyByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.requestBody) {
       this.requestBody = fields.requestBody;
@@ -138,7 +138,7 @@ export class DeleteRetentionPolicyByIdOptionals {
           DeleteRetentionPolicyByIdOptionals,
           'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -193,7 +193,7 @@ export class GetRetentionPoliciesHeaders {
   } = {};
   constructor(
     fields: Omit<GetRetentionPoliciesHeaders, 'extraHeaders'> &
-      Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>
+      Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -287,7 +287,7 @@ export class CreateRetentionPolicyHeaders {
   } = {};
   constructor(
     fields: Omit<CreateRetentionPolicyHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>
+      Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -324,7 +324,7 @@ export class GetRetentionPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetRetentionPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -415,7 +415,7 @@ export class UpdateRetentionPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -439,7 +439,7 @@ export class DeleteRetentionPolicyByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -468,7 +468,7 @@ export class RetentionPoliciesManager {
       | 'updateRetentionPolicyById'
       | 'deleteRetentionPolicyById'
     > &
-      Partial<Pick<RetentionPoliciesManager, 'networkSession'>>
+      Partial<Pick<RetentionPoliciesManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -487,9 +487,9 @@ export class RetentionPoliciesManager {
   async getRetentionPolicies(
     queryParams: GetRetentionPoliciesQueryParams = {} satisfies GetRetentionPoliciesQueryParams,
     headersInput: GetRetentionPoliciesHeadersInput = new GetRetentionPoliciesHeaders(
-      {}
+      {},
     ),
-    cancellationToken?: CancellationToken
+    cancellationToken?: CancellationToken,
   ): Promise<RetentionPolicies> {
     const headers: GetRetentionPoliciesHeaders =
       new GetRetentionPoliciesHeaders({
@@ -513,7 +513,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policies'
+        '/2.0/retention_policies',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -536,7 +536,7 @@ export class RetentionPoliciesManager {
    */
   async createRetentionPolicy(
     requestBody: CreateRetentionPolicyRequestBody,
-    optionalsInput: CreateRetentionPolicyOptionalsInput = {}
+    optionalsInput: CreateRetentionPolicyOptionalsInput = {},
   ): Promise<RetentionPolicy> {
     const optionals: CreateRetentionPolicyOptionals =
       new CreateRetentionPolicyOptionals({
@@ -551,7 +551,7 @@ export class RetentionPoliciesManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policies'
+        '/2.0/retention_policies',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -576,7 +576,7 @@ export class RetentionPoliciesManager {
      */
   async getRetentionPolicyById(
     retentionPolicyId: string,
-    optionalsInput: GetRetentionPolicyByIdOptionalsInput = {}
+    optionalsInput: GetRetentionPolicyByIdOptionalsInput = {},
   ): Promise<RetentionPolicy> {
     const optionals: GetRetentionPolicyByIdOptionals =
       new GetRetentionPolicyByIdOptionals({
@@ -601,7 +601,7 @@ export class RetentionPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policies/',
-        toString(retentionPolicyId) as string
+        toString(retentionPolicyId) as string,
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -625,7 +625,7 @@ export class RetentionPoliciesManager {
      */
   async updateRetentionPolicyById(
     retentionPolicyId: string,
-    optionalsInput: UpdateRetentionPolicyByIdOptionalsInput = {}
+    optionalsInput: UpdateRetentionPolicyByIdOptionalsInput = {},
   ): Promise<RetentionPolicy> {
     const optionals: UpdateRetentionPolicyByIdOptionals =
       new UpdateRetentionPolicyByIdOptionals({
@@ -643,7 +643,7 @@ export class RetentionPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policies/',
-        toString(retentionPolicyId) as string
+        toString(retentionPolicyId) as string,
       ) as string,
       method: 'PUT',
       headers: headersMap,
@@ -668,7 +668,7 @@ export class RetentionPoliciesManager {
      */
   async deleteRetentionPolicyById(
     retentionPolicyId: string,
-    optionalsInput: DeleteRetentionPolicyByIdOptionalsInput = {}
+    optionalsInput: DeleteRetentionPolicyByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteRetentionPolicyByIdOptionals =
       new DeleteRetentionPolicyByIdOptionals({
@@ -684,7 +684,7 @@ export class RetentionPoliciesManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/retention_policies/',
-        toString(retentionPolicyId) as string
+        toString(retentionPolicyId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -701,12 +701,12 @@ export interface RetentionPoliciesManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetRetentionPoliciesQueryParamsPolicyTypeField(
-  val: GetRetentionPoliciesQueryParamsPolicyTypeField
+  val: GetRetentionPoliciesQueryParamsPolicyTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GetRetentionPoliciesQueryParamsPolicyTypeField {
   if (val == 'finite') {
     return val;
@@ -719,12 +719,12 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-  val: CreateRetentionPolicyRequestBodyPolicyTypeField
+  val: CreateRetentionPolicyRequestBodyPolicyTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyRequestBodyPolicyTypeField {
   if (val == 'finite') {
     return val;
@@ -738,12 +738,12 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyDispositionActionField(
-  val: CreateRetentionPolicyRequestBodyDispositionActionField
+  val: CreateRetentionPolicyRequestBodyDispositionActionField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyRequestBodyDispositionActionField {
   if (val == 'permanently_delete') {
     return val;
@@ -757,12 +757,12 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   });
 }
 export function serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-  val: CreateRetentionPolicyRequestBodyRetentionTypeField
+  val: CreateRetentionPolicyRequestBodyRetentionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyRequestBodyRetentionTypeField {
   if (val == 'modifiable') {
     return val;
@@ -776,17 +776,17 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
   });
 }
 export function serializeCreateRetentionPolicyRequestBody(
-  val: CreateRetentionPolicyRequestBody
+  val: CreateRetentionPolicyRequestBody,
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
     ['description']: val.description == void 0 ? void 0 : val.description,
     ['policy_type']: serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
-      val.policyType
+      val.policyType,
     ),
     ['disposition_action']:
       serializeCreateRetentionPolicyRequestBodyDispositionActionField(
-        val.dispositionAction
+        val.dispositionAction,
       ),
     ['retention_length']:
       val.retentionLength == void 0 ? void 0 : val.retentionLength,
@@ -794,7 +794,7 @@ export function serializeCreateRetentionPolicyRequestBody(
       val.retentionType == void 0
         ? void 0
         : serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-            val.retentionType
+            val.retentionType,
           ),
     ['can_owner_extend_retention']:
       val.canOwnerExtendRetention == void 0
@@ -806,14 +806,14 @@ export function serializeCreateRetentionPolicyRequestBody(
       val.customNotificationRecipients == void 0
         ? void 0
         : (val.customNotificationRecipients.map(function (
-            item: UserMini
+            item: UserMini,
           ): SerializedData {
             return serializeUserMini(item);
           }) as readonly any[]),
   };
 }
 export function deserializeCreateRetentionPolicyRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): CreateRetentionPolicyRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -857,7 +857,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
   }
   const dispositionAction: CreateRetentionPolicyRequestBodyDispositionActionField =
     deserializeCreateRetentionPolicyRequestBodyDispositionActionField(
-      val.disposition_action
+      val.disposition_action,
     );
   if (!(val.retention_length == void 0) && !sdIsString(val.retention_length)) {
     throw new BoxSdkError({
@@ -873,7 +873,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
     val.retention_type == void 0
       ? void 0
       : deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
-          val.retention_type
+          val.retention_type,
         );
   if (
     !(val.can_owner_extend_retention == void 0) &&
@@ -912,12 +912,12 @@ export function deserializeCreateRetentionPolicyRequestBody(
     val.custom_notification_recipients == void 0
       ? void 0
       : sdIsList(val.custom_notification_recipients)
-      ? (val.custom_notification_recipients.map(function (
-          itm: SerializedData
-        ): UserMini {
-          return deserializeUserMini(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.custom_notification_recipients.map(function (
+            itm: SerializedData,
+          ): UserMini {
+            return deserializeUserMini(itm);
+          }) as readonly any[])
+        : [];
   return {
     policyName: policyName,
     description: description,
@@ -931,7 +931,7 @@ export function deserializeCreateRetentionPolicyRequestBody(
   } satisfies CreateRetentionPolicyRequestBody;
 }
 export function serializeUpdateRetentionPolicyByIdRequestBody(
-  val: UpdateRetentionPolicyByIdRequestBody
+  val: UpdateRetentionPolicyByIdRequestBody,
 ): SerializedData {
   return {
     ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
@@ -953,14 +953,14 @@ export function serializeUpdateRetentionPolicyByIdRequestBody(
       val.customNotificationRecipients == void 0
         ? void 0
         : (val.customNotificationRecipients.map(function (
-            item: UserBase
+            item: UserBase,
           ): SerializedData {
             return serializeUserBase(item);
           }) as readonly any[]),
   };
 }
 export function deserializeUpdateRetentionPolicyByIdRequestBody(
-  val: SerializedData
+  val: SerializedData,
 ): UpdateRetentionPolicyByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -1054,12 +1054,12 @@ export function deserializeUpdateRetentionPolicyByIdRequestBody(
     val.custom_notification_recipients == void 0
       ? void 0
       : sdIsList(val.custom_notification_recipients)
-      ? (val.custom_notification_recipients.map(function (
-          itm: SerializedData
-        ): UserBase {
-          return deserializeUserBase(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.custom_notification_recipients.map(function (
+            itm: SerializedData,
+          ): UserBase {
+            return deserializeUserBase(itm);
+          }) as readonly any[])
+        : [];
   return {
     policyName: policyName,
     description: description,

@@ -27,7 +27,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export class GetDevicePinnerByIdOptionals {
   readonly headers: GetDevicePinnerByIdHeaders = new GetDevicePinnerByIdHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
@@ -37,7 +37,7 @@ export class GetDevicePinnerByIdOptionals {
     > &
       Partial<
         Pick<GetDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -62,7 +62,7 @@ export class DeleteDevicePinnerByIdOptionals {
     > &
       Partial<
         Pick<DeleteDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -92,7 +92,7 @@ export class GetEnterpriseDevicePinnersOptionals {
           GetEnterpriseDevicePinnersOptionals,
           'queryParams' | 'headers' | 'cancellationToken'
         >
-      >
+      >,
   ) {
     if (fields.queryParams) {
       this.queryParams = fields.queryParams;
@@ -118,7 +118,7 @@ export class GetDevicePinnerByIdHeaders {
   } = {};
   constructor(
     fields: Omit<GetDevicePinnerByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -142,7 +142,7 @@ export class DeleteDevicePinnerByIdHeaders {
   } = {};
   constructor(
     fields: Omit<DeleteDevicePinnerByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>
+      Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -184,7 +184,7 @@ export class GetEnterpriseDevicePinnersHeaders {
   } = {};
   constructor(
     fields: Omit<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'> &
-      Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>
+      Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -211,7 +211,7 @@ export class DevicePinnersManager {
       | 'deleteDevicePinnerById'
       | 'getEnterpriseDevicePinners'
     > &
-      Partial<Pick<DevicePinnersManager, 'networkSession'>>
+      Partial<Pick<DevicePinnersManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -229,7 +229,7 @@ export class DevicePinnersManager {
      */
   async getDevicePinnerById(
     devicePinnerId: string,
-    optionalsInput: GetDevicePinnerByIdOptionalsInput = {}
+    optionalsInput: GetDevicePinnerByIdOptionalsInput = {},
   ): Promise<DevicePinner> {
     const optionals: GetDevicePinnerByIdOptionals =
       new GetDevicePinnerByIdOptionals({
@@ -245,7 +245,7 @@ export class DevicePinnersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/device_pinners/',
-        toString(devicePinnerId) as string
+        toString(devicePinnerId) as string,
       ) as string,
       method: 'GET',
       headers: headersMap,
@@ -268,7 +268,7 @@ export class DevicePinnersManager {
      */
   async deleteDevicePinnerById(
     devicePinnerId: string,
-    optionalsInput: DeleteDevicePinnerByIdOptionalsInput = {}
+    optionalsInput: DeleteDevicePinnerByIdOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: DeleteDevicePinnerByIdOptionals =
       new DeleteDevicePinnerByIdOptionals({
@@ -284,7 +284,7 @@ export class DevicePinnersManager {
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
         '/2.0/device_pinners/',
-        toString(devicePinnerId) as string
+        toString(devicePinnerId) as string,
       ) as string,
       method: 'DELETE',
       headers: headersMap,
@@ -307,7 +307,7 @@ export class DevicePinnersManager {
      */
   async getEnterpriseDevicePinners(
     enterpriseId: string,
-    optionalsInput: GetEnterpriseDevicePinnersOptionalsInput = {}
+    optionalsInput: GetEnterpriseDevicePinnersOptionalsInput = {},
   ): Promise<DevicePinners> {
     const optionals: GetEnterpriseDevicePinnersOptionals =
       new GetEnterpriseDevicePinnersOptionals({
@@ -333,7 +333,7 @@ export class DevicePinnersManager {
         this.networkSession.baseUrls.baseUrl,
         '/2.0/enterprises/',
         toString(enterpriseId) as string,
-        '/device_pinners'
+        '/device_pinners',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -354,12 +354,12 @@ export interface DevicePinnersManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
-  val: GetEnterpriseDevicePinnersQueryParamsDirectionField
+  val: GetEnterpriseDevicePinnersQueryParamsDirectionField,
 ): SerializedData {
   return val;
 }
 export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
-  val: SerializedData
+  val: SerializedData,
 ): GetEnterpriseDevicePinnersQueryParamsDirectionField {
   if (val == 'ASC') {
     return val;

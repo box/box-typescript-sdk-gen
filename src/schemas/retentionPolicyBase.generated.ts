@@ -18,7 +18,7 @@ export class RetentionPolicyBase {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<RetentionPolicyBase, 'type'> &
-      Partial<Pick<RetentionPolicyBase, 'type'>>
+      Partial<Pick<RetentionPolicyBase, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -41,12 +41,12 @@ export interface RetentionPolicyBaseInput {
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicyBaseTypeField(
-  val: RetentionPolicyBaseTypeField
+  val: RetentionPolicyBaseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeRetentionPolicyBaseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyBaseTypeField {
   if (val == 'retention_policy') {
     return val;
@@ -56,7 +56,7 @@ export function deserializeRetentionPolicyBaseTypeField(
   });
 }
 export function serializeRetentionPolicyBase(
-  val: RetentionPolicyBase
+  val: RetentionPolicyBase,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -64,7 +64,7 @@ export function serializeRetentionPolicyBase(
   };
 }
 export function deserializeRetentionPolicyBase(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyBase {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -92,7 +92,7 @@ export function deserializeRetentionPolicyBase(
   return { id: id, type: type } satisfies RetentionPolicyBase;
 }
 export function serializeRetentionPolicyBaseInput(
-  val: RetentionPolicyBaseInput
+  val: RetentionPolicyBaseInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -103,7 +103,7 @@ export function serializeRetentionPolicyBaseInput(
   };
 }
 export function deserializeRetentionPolicyBaseInput(
-  val: SerializedData
+  val: SerializedData,
 ): RetentionPolicyBaseInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

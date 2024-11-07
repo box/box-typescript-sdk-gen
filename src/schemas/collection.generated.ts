@@ -27,12 +27,12 @@ export interface Collection {
   readonly rawData?: SerializedData;
 }
 export function serializeCollectionTypeField(
-  val: CollectionTypeField
+  val: CollectionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollectionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollectionTypeField {
   if (val == 'collection') {
     return val;
@@ -40,12 +40,12 @@ export function deserializeCollectionTypeField(
   throw new BoxSdkError({ message: "Can't deserialize CollectionTypeField" });
 }
 export function serializeCollectionNameField(
-  val: CollectionNameField
+  val: CollectionNameField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollectionNameField(
-  val: SerializedData
+  val: SerializedData,
 ): CollectionNameField {
   if (val == 'Favorites') {
     return val;
@@ -53,12 +53,12 @@ export function deserializeCollectionNameField(
   throw new BoxSdkError({ message: "Can't deserialize CollectionNameField" });
 }
 export function serializeCollectionCollectionTypeField(
-  val: CollectionCollectionTypeField
+  val: CollectionCollectionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeCollectionCollectionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): CollectionCollectionTypeField {
   if (val == 'favorites') {
     return val;

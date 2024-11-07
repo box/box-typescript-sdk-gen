@@ -38,12 +38,12 @@ export interface GroupMembership {
   readonly rawData?: SerializedData;
 }
 export function serializeGroupMembershipTypeField(
-  val: GroupMembershipTypeField
+  val: GroupMembershipTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupMembershipTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMembershipTypeField {
   if (val == 'group_membership') {
     return val;
@@ -53,12 +53,12 @@ export function deserializeGroupMembershipTypeField(
   });
 }
 export function serializeGroupMembershipRoleField(
-  val: GroupMembershipRoleField
+  val: GroupMembershipRoleField,
 ): SerializedData {
   return val;
 }
 export function deserializeGroupMembershipRoleField(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMembershipRoleField {
   if (val == 'member') {
     return val;
@@ -86,7 +86,7 @@ export function serializeGroupMembership(val: GroupMembership): SerializedData {
   };
 }
 export function deserializeGroupMembership(
-  val: SerializedData
+  val: SerializedData,
 ): GroupMembership {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({ message: 'Expecting a map for "GroupMembership"' });

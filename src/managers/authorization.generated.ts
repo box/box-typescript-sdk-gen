@@ -37,7 +37,7 @@ export class AuthorizeUserOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<AuthorizeUserOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<AuthorizeUserOptionals, 'headers' | 'cancellationToken'>>
+      Partial<Pick<AuthorizeUserOptionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -53,14 +53,14 @@ export interface AuthorizeUserOptionalsInput {
 }
 export class RequestAccessTokenOptionals {
   readonly headers: RequestAccessTokenHeaders = new RequestAccessTokenHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<RequestAccessTokenOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<RequestAccessTokenOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -76,14 +76,14 @@ export interface RequestAccessTokenOptionalsInput {
 }
 export class RefreshAccessTokenOptionals {
   readonly headers: RefreshAccessTokenHeaders = new RefreshAccessTokenHeaders(
-    {}
+    {},
   );
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<RefreshAccessTokenOptionals, 'headers' | 'cancellationToken'> &
       Partial<
         Pick<RefreshAccessTokenOptionals, 'headers' | 'cancellationToken'>
-      >
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -102,7 +102,9 @@ export class RevokeAccessTokenOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'> &
-      Partial<Pick<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'>>
+      Partial<
+        Pick<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'>
+      >,
   ) {
     if (fields.headers) {
       this.headers = fields.headers;
@@ -160,7 +162,7 @@ export class AuthorizeUserHeaders {
   } = {};
   constructor(
     fields: Omit<AuthorizeUserHeaders, 'extraHeaders'> &
-      Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>
+      Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -184,7 +186,7 @@ export class RequestAccessTokenHeaders {
   } = {};
   constructor(
     fields: Omit<RequestAccessTokenHeaders, 'extraHeaders'> &
-      Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>
+      Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -208,7 +210,7 @@ export class RefreshAccessTokenHeaders {
   } = {};
   constructor(
     fields: Omit<RefreshAccessTokenHeaders, 'extraHeaders'> &
-      Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>
+      Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -232,7 +234,7 @@ export class RevokeAccessTokenHeaders {
   } = {};
   constructor(
     fields: Omit<RevokeAccessTokenHeaders, 'extraHeaders'> &
-      Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>
+      Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders) {
       this.extraHeaders = fields.extraHeaders;
@@ -260,7 +262,7 @@ export class AuthorizationManager {
       | 'refreshAccessToken'
       | 'revokeAccessToken'
     > &
-      Partial<Pick<AuthorizationManager, 'networkSession'>>
+      Partial<Pick<AuthorizationManager, 'networkSession'>>,
   ) {
     if (fields.auth) {
       this.auth = fields.auth;
@@ -283,7 +285,7 @@ export class AuthorizationManager {
    */
   async authorizeUser(
     queryParams: AuthorizeUserQueryParams,
-    optionalsInput: AuthorizeUserOptionalsInput = {}
+    optionalsInput: AuthorizeUserOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: AuthorizeUserOptionals = new AuthorizeUserOptionals({
       headers: optionalsInput.headers,
@@ -306,7 +308,7 @@ export class AuthorizationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.oauth2Url,
-        '/authorize'
+        '/authorize',
       ) as string,
       method: 'GET',
       params: queryParamsMap,
@@ -337,7 +339,7 @@ export class AuthorizationManager {
    */
   async requestAccessToken(
     requestBody: PostOAuth2Token,
-    optionalsInput: RequestAccessTokenOptionalsInput = {}
+    optionalsInput: RequestAccessTokenOptionalsInput = {},
   ): Promise<AccessToken> {
     const optionals: RequestAccessTokenOptionals =
       new RequestAccessTokenOptionals({
@@ -352,7 +354,7 @@ export class AuthorizationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/oauth2/token'
+        '/oauth2/token',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -376,7 +378,7 @@ export class AuthorizationManager {
    */
   async refreshAccessToken(
     requestBodyInput: PostOAuth2TokenRefreshAccessTokenInput,
-    optionalsInput: RefreshAccessTokenOptionalsInput = {}
+    optionalsInput: RefreshAccessTokenOptionalsInput = {},
   ): Promise<AccessToken> {
     const requestBody: PostOAuth2TokenRefreshAccessToken =
       new PostOAuth2TokenRefreshAccessToken({
@@ -398,7 +400,7 @@ export class AuthorizationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/oauth2/token#refresh'
+        '/oauth2/token#refresh',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -423,7 +425,7 @@ export class AuthorizationManager {
    */
   async revokeAccessToken(
     requestBody: PostOAuth2Revoke,
-    optionalsInput: RevokeAccessTokenOptionalsInput = {}
+    optionalsInput: RevokeAccessTokenOptionalsInput = {},
   ): Promise<undefined> {
     const optionals: RevokeAccessTokenOptionals =
       new RevokeAccessTokenOptionals({
@@ -438,7 +440,7 @@ export class AuthorizationManager {
     const response: FetchResponse = (await fetch({
       url: ''.concat(
         this.networkSession.baseUrls.baseUrl,
-        '/oauth2/revoke'
+        '/oauth2/revoke',
       ) as string,
       method: 'POST',
       headers: headersMap,
@@ -457,12 +459,12 @@ export interface AuthorizationManagerInput {
   readonly networkSession?: NetworkSession;
 }
 export function serializeAuthorizeUserQueryParamsResponseTypeField(
-  val: AuthorizeUserQueryParamsResponseTypeField
+  val: AuthorizeUserQueryParamsResponseTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAuthorizeUserQueryParamsResponseTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AuthorizeUserQueryParamsResponseTypeField {
   if (val == 'code') {
     return val;

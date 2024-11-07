@@ -23,7 +23,7 @@ export class AiAgentExtractStructured {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentExtractStructured, 'type'> &
-      Partial<Pick<AiAgentExtractStructured, 'type'>>
+      Partial<Pick<AiAgentExtractStructured, 'type'>>,
   ) {
     if (fields.type) {
       this.type = fields.type;
@@ -48,12 +48,12 @@ export interface AiAgentExtractStructuredInput {
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractStructuredTypeField(
-  val: AiAgentExtractStructuredTypeField
+  val: AiAgentExtractStructuredTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeAiAgentExtractStructuredTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentExtractStructuredTypeField {
   if (val == 'ai_agent_extract_structured') {
     return val;
@@ -63,7 +63,7 @@ export function deserializeAiAgentExtractStructuredTypeField(
   });
 }
 export function serializeAiAgentExtractStructured(
-  val: AiAgentExtractStructured
+  val: AiAgentExtractStructured,
 ): SerializedData {
   return {
     ['type']: serializeAiAgentExtractStructuredTypeField(val.type),
@@ -78,7 +78,7 @@ export function serializeAiAgentExtractStructured(
   };
 }
 export function deserializeAiAgentExtractStructured(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentExtractStructured {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -108,7 +108,7 @@ export function deserializeAiAgentExtractStructured(
   } satisfies AiAgentExtractStructured;
 }
 export function serializeAiAgentExtractStructuredInput(
-  val: AiAgentExtractStructuredInput
+  val: AiAgentExtractStructuredInput,
 ): SerializedData {
   return {
     ['type']:
@@ -126,7 +126,7 @@ export function serializeAiAgentExtractStructuredInput(
   };
 }
 export function deserializeAiAgentExtractStructuredInput(
-  val: SerializedData
+  val: SerializedData,
 ): AiAgentExtractStructuredInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

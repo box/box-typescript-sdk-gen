@@ -23,7 +23,7 @@ export interface SearchResultWithSharedLink {
   readonly rawData?: SerializedData;
 }
 export function serializeSearchResultWithSharedLink(
-  val: SearchResultWithSharedLink
+  val: SearchResultWithSharedLink,
 ): SerializedData {
   return {
     ['accessible_via_shared_link']:
@@ -38,7 +38,7 @@ export function serializeSearchResultWithSharedLink(
   };
 }
 export function deserializeSearchResultWithSharedLink(
-  val: SerializedData
+  val: SerializedData,
 ): SearchResultWithSharedLink {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

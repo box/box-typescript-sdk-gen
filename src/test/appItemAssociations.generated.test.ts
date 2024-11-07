@@ -31,7 +31,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 test('testListFileAppItemAssocations', async function testListFileAppItemAssocations(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const fileId: string = getEnvVar('APP_ITEM_ASSOCIATION_FILE_ID');
   const fileAppItemAssociations: AppItemAssociations =
@@ -66,7 +66,7 @@ test('testListFileAppItemAssocations', async function testListFileAppItemAssocat
 });
 test('testListFolderAppItemAssocations', async function testListFolderAppItemAssocations(): Promise<any> {
   const client: BoxClient = getDefaultClientWithUserSubject(
-    getEnvVar('USER_ID')
+    getEnvVar('USER_ID'),
   );
   const folderId: string = getEnvVar('APP_ITEM_ASSOCIATION_FOLDER_ID');
   const folderAppItemAssociations: AppItemAssociations =

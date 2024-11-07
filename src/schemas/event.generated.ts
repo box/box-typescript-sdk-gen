@@ -186,12 +186,12 @@ export interface Event {
   readonly rawData?: SerializedData;
 }
 export function serializeEventEventTypeField(
-  val: EventEventTypeField
+  val: EventEventTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeEventEventTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): EventEventTypeField {
   if (val == 'ACCESS_GRANTED') {
     return val;
@@ -604,12 +604,12 @@ export function deserializeEventEventTypeField(
   throw new BoxSdkError({ message: "Can't deserialize EventEventTypeField" });
 }
 export function serializeEventAdditionalDetailsField(
-  val: EventAdditionalDetailsField
+  val: EventAdditionalDetailsField,
 ): SerializedData {
   return {};
 }
 export function deserializeEventAdditionalDetailsField(
-  val: SerializedData
+  val: SerializedData,
 ): EventAdditionalDetailsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -637,7 +637,7 @@ export function serializeEvent(val: Event): SerializedData {
       val.source == void 0
         ? void 0
         : serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
-            val.source
+            val.source,
           ),
     ['additional_details']:
       val.additionalDetails == void 0
@@ -695,7 +695,7 @@ export function deserializeEvent(val: SerializedData): Event {
     val.source == void 0
       ? void 0
       : deserializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
-          val.source
+          val.source,
         );
   const additionalDetails: undefined | EventAdditionalDetailsField =
     val.additional_details == void 0

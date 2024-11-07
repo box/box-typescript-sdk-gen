@@ -62,12 +62,12 @@ export interface UploadSession {
   readonly rawData?: SerializedData;
 }
 export function serializeUploadSessionTypeField(
-  val: UploadSessionTypeField
+  val: UploadSessionTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeUploadSessionTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadSessionTypeField {
   if (val == 'upload_session') {
     return val;
@@ -77,7 +77,7 @@ export function deserializeUploadSessionTypeField(
   });
 }
 export function serializeUploadSessionSessionEndpointsField(
-  val: UploadSessionSessionEndpointsField
+  val: UploadSessionSessionEndpointsField,
 ): SerializedData {
   return {
     ['upload_part']: val.uploadPart == void 0 ? void 0 : val.uploadPart,
@@ -89,7 +89,7 @@ export function serializeUploadSessionSessionEndpointsField(
   };
 }
 export function deserializeUploadSessionSessionEndpointsField(
-  val: SerializedData
+  val: SerializedData,
 ): UploadSessionSessionEndpointsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

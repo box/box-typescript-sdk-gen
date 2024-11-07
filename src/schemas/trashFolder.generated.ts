@@ -122,7 +122,7 @@ export class TrashFolder {
   readonly itemStatus!: TrashFolderItemStatusField;
   readonly rawData?: SerializedData;
   constructor(
-    fields: Omit<TrashFolder, 'type'> & Partial<Pick<TrashFolder, 'type'>>
+    fields: Omit<TrashFolder, 'type'> & Partial<Pick<TrashFolder, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -270,12 +270,12 @@ export interface TrashFolderInput {
   readonly rawData?: SerializedData;
 }
 export function serializeTrashFolderTypeField(
-  val: TrashFolderTypeField
+  val: TrashFolderTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFolderTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderTypeField {
   if (val == 'folder') {
     return val;
@@ -283,12 +283,12 @@ export function deserializeTrashFolderTypeField(
   throw new BoxSdkError({ message: "Can't deserialize TrashFolderTypeField" });
 }
 export function serializeTrashFolderPathCollectionEntriesTypeField(
-  val: TrashFolderPathCollectionEntriesTypeField
+  val: TrashFolderPathCollectionEntriesTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFolderPathCollectionEntriesTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderPathCollectionEntriesTypeField {
   if (val == 'folder') {
     return val;
@@ -298,7 +298,7 @@ export function deserializeTrashFolderPathCollectionEntriesTypeField(
   });
 }
 export function serializeTrashFolderPathCollectionEntriesField(
-  val: TrashFolderPathCollectionEntriesField
+  val: TrashFolderPathCollectionEntriesField,
 ): SerializedData {
   return {
     ['type']:
@@ -312,7 +312,7 @@ export function serializeTrashFolderPathCollectionEntriesField(
   };
 }
 export function deserializeTrashFolderPathCollectionEntriesField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderPathCollectionEntriesField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -361,19 +361,19 @@ export function deserializeTrashFolderPathCollectionEntriesField(
   } satisfies TrashFolderPathCollectionEntriesField;
 }
 export function serializeTrashFolderPathCollectionField(
-  val: TrashFolderPathCollectionField
+  val: TrashFolderPathCollectionField,
 ): SerializedData {
   return {
     ['total_count']: val.totalCount,
     ['entries']: val.entries.map(function (
-      item: TrashFolderPathCollectionEntriesField
+      item: TrashFolderPathCollectionEntriesField,
     ): SerializedData {
       return serializeTrashFolderPathCollectionEntriesField(item);
     }) as readonly any[],
   };
 }
 export function deserializeTrashFolderPathCollectionField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderPathCollectionField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -406,10 +406,10 @@ export function deserializeTrashFolderPathCollectionField(
     });
   }
   const entries: readonly TrashFolderPathCollectionEntriesField[] = sdIsList(
-    val.entries
+    val.entries,
   )
     ? (val.entries.map(function (
-        itm: SerializedData
+        itm: SerializedData,
       ): TrashFolderPathCollectionEntriesField {
         return deserializeTrashFolderPathCollectionEntriesField(itm);
       }) as readonly any[])
@@ -420,12 +420,12 @@ export function deserializeTrashFolderPathCollectionField(
   } satisfies TrashFolderPathCollectionField;
 }
 export function serializeTrashFolderItemStatusField(
-  val: TrashFolderItemStatusField
+  val: TrashFolderItemStatusField,
 ): SerializedData {
   return val;
 }
 export function deserializeTrashFolderItemStatusField(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderItemStatusField {
   if (val == 'active') {
     return val;
@@ -454,7 +454,7 @@ export function serializeTrashFolder(val: TrashFolder): SerializedData {
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFolderPathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_by']: serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -677,7 +677,7 @@ export function deserializeTrashFolder(val: SerializedData): TrashFolder {
   } satisfies TrashFolder;
 }
 export function serializeTrashFolderInput(
-  val: TrashFolderInput
+  val: TrashFolderInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -693,7 +693,7 @@ export function serializeTrashFolderInput(
     ['description']: val.description,
     ['size']: val.size,
     ['path_collection']: serializeTrashFolderPathCollectionField(
-      val.pathCollection
+      val.pathCollection,
     ),
     ['created_by']: serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
@@ -718,7 +718,7 @@ export function serializeTrashFolderInput(
   };
 }
 export function deserializeTrashFolderInput(
-  val: SerializedData
+  val: SerializedData,
 ): TrashFolderInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({

@@ -101,7 +101,7 @@ export class MetadataTemplate {
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<MetadataTemplate, 'type'> &
-      Partial<Pick<MetadataTemplate, 'type'>>
+      Partial<Pick<MetadataTemplate, 'type'>>,
   ) {
     if (fields.id) {
       this.id = fields.id;
@@ -170,12 +170,12 @@ export interface MetadataTemplateInput {
   readonly rawData?: SerializedData;
 }
 export function serializeMetadataTemplateTypeField(
-  val: MetadataTemplateTypeField
+  val: MetadataTemplateTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataTemplateTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplateTypeField {
   if (val == 'metadata_template') {
     return val;
@@ -185,12 +185,12 @@ export function deserializeMetadataTemplateTypeField(
   });
 }
 export function serializeMetadataTemplateFieldsTypeField(
-  val: MetadataTemplateFieldsTypeField
+  val: MetadataTemplateFieldsTypeField,
 ): SerializedData {
   return val;
 }
 export function deserializeMetadataTemplateFieldsTypeField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplateFieldsTypeField {
   if (val == 'string') {
     return val;
@@ -215,12 +215,12 @@ export function deserializeMetadataTemplateFieldsTypeField(
   });
 }
 export function serializeMetadataTemplateFieldsOptionsField(
-  val: MetadataTemplateFieldsOptionsField
+  val: MetadataTemplateFieldsOptionsField,
 ): SerializedData {
   return { ['key']: val.key, ['id']: val.id == void 0 ? void 0 : val.id };
 }
 export function deserializeMetadataTemplateFieldsOptionsField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplateFieldsOptionsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -250,7 +250,7 @@ export function deserializeMetadataTemplateFieldsOptionsField(
   return { key: key, id: id } satisfies MetadataTemplateFieldsOptionsField;
 }
 export function serializeMetadataTemplateFieldsField(
-  val: MetadataTemplateFieldsField
+  val: MetadataTemplateFieldsField,
 ): SerializedData {
   return {
     ['type']: serializeMetadataTemplateFieldsTypeField(val.type),
@@ -262,7 +262,7 @@ export function serializeMetadataTemplateFieldsField(
       val.options == void 0
         ? void 0
         : (val.options.map(function (
-            item: MetadataTemplateFieldsOptionsField
+            item: MetadataTemplateFieldsOptionsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsOptionsField(item);
           }) as readonly any[]),
@@ -270,7 +270,7 @@ export function serializeMetadataTemplateFieldsField(
   };
 }
 export function deserializeMetadataTemplateFieldsField(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplateFieldsField {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -337,12 +337,12 @@ export function deserializeMetadataTemplateFieldsField(
     val.options == void 0
       ? void 0
       : sdIsList(val.options)
-      ? (val.options.map(function (
-          itm: SerializedData
-        ): MetadataTemplateFieldsOptionsField {
-          return deserializeMetadataTemplateFieldsOptionsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.options.map(function (
+            itm: SerializedData,
+          ): MetadataTemplateFieldsOptionsField {
+            return deserializeMetadataTemplateFieldsOptionsField(itm);
+          }) as readonly any[])
+        : [];
   if (!(val.id == void 0) && !sdIsString(val.id)) {
     throw new BoxSdkError({
       message:
@@ -361,7 +361,7 @@ export function deserializeMetadataTemplateFieldsField(
   } satisfies MetadataTemplateFieldsField;
 }
 export function serializeMetadataTemplate(
-  val: MetadataTemplate
+  val: MetadataTemplate,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -374,7 +374,7 @@ export function serializeMetadataTemplate(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: MetadataTemplateFieldsField
+            item: MetadataTemplateFieldsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
@@ -385,7 +385,7 @@ export function serializeMetadataTemplate(
   };
 }
 export function deserializeMetadataTemplate(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplate {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -409,7 +409,7 @@ export function deserializeMetadataTemplate(
     });
   }
   const type: MetadataTemplateTypeField = deserializeMetadataTemplateTypeField(
-    val.type
+    val.type,
   );
   if (!(val.scope == void 0) && !sdIsString(val.scope)) {
     throw new BoxSdkError({
@@ -447,12 +447,12 @@ export function deserializeMetadataTemplate(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (
-          itm: SerializedData
-        ): MetadataTemplateFieldsField {
-          return deserializeMetadataTemplateFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (
+            itm: SerializedData,
+          ): MetadataTemplateFieldsField {
+            return deserializeMetadataTemplateFieldsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.copyInstanceOnItemCopy == void 0) &&
     !sdIsBoolean(val.copyInstanceOnItemCopy)
@@ -476,7 +476,7 @@ export function deserializeMetadataTemplate(
   } satisfies MetadataTemplate;
 }
 export function serializeMetadataTemplateInput(
-  val: MetadataTemplateInput
+  val: MetadataTemplateInput,
 ): SerializedData {
   return {
     ['id']: val.id,
@@ -492,7 +492,7 @@ export function serializeMetadataTemplateInput(
       val.fields == void 0
         ? void 0
         : (val.fields.map(function (
-            item: MetadataTemplateFieldsField
+            item: MetadataTemplateFieldsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
@@ -503,7 +503,7 @@ export function serializeMetadataTemplateInput(
   };
 }
 export function deserializeMetadataTemplateInput(
-  val: SerializedData
+  val: SerializedData,
 ): MetadataTemplateInput {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
@@ -563,12 +563,12 @@ export function deserializeMetadataTemplateInput(
     val.fields == void 0
       ? void 0
       : sdIsList(val.fields)
-      ? (val.fields.map(function (
-          itm: SerializedData
-        ): MetadataTemplateFieldsField {
-          return deserializeMetadataTemplateFieldsField(itm);
-        }) as readonly any[])
-      : [];
+        ? (val.fields.map(function (
+            itm: SerializedData,
+          ): MetadataTemplateFieldsField {
+            return deserializeMetadataTemplateFieldsField(itm);
+          }) as readonly any[])
+        : [];
   if (
     !(val.copyInstanceOnItemCopy == void 0) &&
     !sdIsBoolean(val.copyInstanceOnItemCopy)
