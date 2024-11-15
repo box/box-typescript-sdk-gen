@@ -935,13 +935,13 @@ export class FilesManager {
      * @param {GetFileThumbnailByIdExtension} extension The file format for the thumbnail
     Example: "png"
      * @param {GetFileThumbnailByIdOptionalsInput} optionalsInput
-     * @returns {Promise<ByteStream>}
+     * @returns {Promise<undefined | ByteStream>}
      */
   async getFileThumbnailById(
     fileId: string,
     extension: GetFileThumbnailByIdExtension,
     optionalsInput: GetFileThumbnailByIdOptionalsInput = {},
-  ): Promise<ByteStream> {
+  ): Promise<undefined | ByteStream> {
     const optionals: GetFileThumbnailByIdOptionals =
       new GetFileThumbnailByIdOptionals({
         queryParams: optionalsInput.queryParams,
@@ -978,6 +978,9 @@ export class FilesManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
+    if ((toString(response.status) as string) == '202') {
+      return void 0;
+    }
     return response.content;
   }
 }

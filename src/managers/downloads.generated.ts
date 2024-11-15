@@ -151,12 +151,12 @@ export class DownloadsManager {
     the `file_id` is `123`.
     Example: "12345"
      * @param {DownloadFileOptionalsInput} optionalsInput
-     * @returns {Promise<ByteStream>}
+     * @returns {Promise<undefined | ByteStream>}
      */
   async downloadFile(
     fileId: string,
     optionalsInput: DownloadFileOptionalsInput = {},
-  ): Promise<ByteStream> {
+  ): Promise<undefined | ByteStream> {
     const optionals: DownloadFileOptionals = new DownloadFileOptionals({
       queryParams: optionalsInput.queryParams,
       headers: optionalsInput.headers,
@@ -195,6 +195,9 @@ export class DownloadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
+    if ((toString(response.status) as string) == '202') {
+      return void 0;
+    }
     return response.content;
   }
 }
