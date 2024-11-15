@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* adjust `fastlane` 8 ([#29](https://github.com/arjankowski/github-actions-release-test/issues/29)) ([a2400ca](https://github.com/arjankowski/github-actions-release-test/commit/a2400ca559042d5b9344cde61e733af6405856e3))
+* adjust fastlane 8 ([#29](https://github.com/arjankowski/github-actions-release-test/issues/29)) ([a2400ca](https://github.com/arjankowski/github-actions-release-test/commit/a2400ca559042d5b9344cde61e733af6405856e3))
 * `fastlane` 9 ([#32](https://github.com/arjankowski/github-actions-release-test/issues/32)) ([e97e4a6](https://github.com/arjankowski/github-actions-release-test/commit/e97e4a6a561daf2993b8a139d9222318ec7422f0))
 
 ## [1.6.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.5.1...v1.6.0) (2024-09-11)
