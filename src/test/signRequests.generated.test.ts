@@ -217,6 +217,9 @@ test('testCreateSignRequestWithSignerGroupId', async function testCreateSignRequ
   if (!(createdSignRequest.signers!.length == 3)) {
     throw new Error('Assertion failed');
   }
+  if (!!(createdSignRequest.signers![1].signerGroupId == void 0)) {
+    throw new Error('Assertion failed');
+  }
   if (
     !(
       createdSignRequest.signers![1].signerGroupId ==

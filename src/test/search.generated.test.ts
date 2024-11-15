@@ -84,18 +84,46 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       templateKey: templateKey,
       fields: [
         {
-          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-          key: 'testColor',
-          displayName: 'testColor',
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'name',
+          displayName: 'name',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'age',
+          displayName: 'age',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'birthDate',
+          displayName: 'birthDate',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'countryCode',
+          displayName: 'countryCode',
           options: [
             {
-              key: 'red',
+              key: 'US',
             } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
             {
-              key: 'green',
+              key: 'CA',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'sports',
+          displayName: 'sports',
+          options: [
+            {
+              key: 'basketball',
             } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
             {
-              key: 'blue',
+              key: 'football',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'tennis',
             } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
           ],
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
@@ -117,7 +145,13 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       file.id,
       'enterprise' as CreateFileMetadataByIdScope,
       templateKey,
-      { ['testColor']: ['red', 'blue'] },
+      {
+        ['name']: 'John',
+        ['age']: 23,
+        ['birthDate']: '2001-01-03T02:20:50.520Z',
+        ['countryCode']: 'US',
+        ['sports']: ['basketball', 'tennis'],
+      },
     );
   if (!(metadata.template == templateKey)) {
     throw new Error('Assertion failed');
@@ -134,11 +168,18 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
     {
       ancestorFolderId: '0',
       from: searchFrom,
-      query: 'testColor = :value',
-      queryParams: { ['value']: ['red', 'blue'] },
+      query:
+        'name = :name AND age < :age AND birthDate >= :birthDate AND countryCode = :countryCode AND sports = :sports',
+      queryParams: {
+        ['name']: 'John',
+        ['age']: 50,
+        ['birthDate']: '2001-01-01T02:20:10.120Z',
+        ['countryCode']: 'US',
+        ['sports']: ['basketball', 'tennis'],
+      },
     } satisfies MetadataQuery,
   );
-  if (!(query.entries!.length >= 0)) {
+  if (!(query.entries!.length >= 1)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
