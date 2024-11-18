@@ -183,6 +183,15 @@ export interface GetMetadataTemplatesByInstanceIdQueryParams {
   /**
    * The ID of an instance of the metadata template to find. */
   readonly metadataInstanceId: string;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
+  readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
+  readonly limit?: number;
 }
 export class GetMetadataTemplatesByInstanceIdHeaders {
   /**
@@ -581,6 +590,8 @@ export class MetadataTemplatesManager {
       ['metadata_instance_id']: toString(
         queryParams.metadataInstanceId,
       ) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;

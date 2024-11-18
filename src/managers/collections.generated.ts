@@ -2,13 +2,13 @@ import { serializeCollections } from '../schemas/collections.generated.js';
 import { deserializeCollections } from '../schemas/collections.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
-import { serializeItems } from '../schemas/items.generated.js';
-import { deserializeItems } from '../schemas/items.generated.js';
+import { serializeItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
+import { deserializeItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { serializeCollection } from '../schemas/collection.generated.js';
 import { deserializeCollection } from '../schemas/collection.generated.js';
 import { Collections } from '../schemas/collections.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { Items } from '../schemas/items.generated.js';
+import { ItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { Collection } from '../schemas/collection.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
@@ -275,12 +275,12 @@ export class CollectionsManager {
      * @param {string} collectionId The ID of the collection.
     Example: "926489"
      * @param {GetCollectionItemsOptionalsInput} optionalsInput
-     * @returns {Promise<Items>}
+     * @returns {Promise<ItemsOffsetPaginated>}
      */
   async getCollectionItems(
     collectionId: string,
     optionalsInput: GetCollectionItemsOptionalsInput = {},
-  ): Promise<Items> {
+  ): Promise<ItemsOffsetPaginated> {
     const optionals: GetCollectionItemsOptionals =
       new GetCollectionItemsOptionals({
         queryParams: optionalsInput.queryParams,
@@ -318,7 +318,7 @@ export class CollectionsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return {
-      ...deserializeItems(response.data),
+      ...deserializeItemsOffsetPaginated(response.data),
       rawData: response.data,
     };
   }

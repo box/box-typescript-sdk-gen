@@ -22,6 +22,8 @@ import { serializeCreateCollaborationRequestBodyRoleField } from '../managers/us
 import { deserializeCreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
 import { serializeCollaborations } from '../schemas/collaborations.generated.js';
 import { deserializeCollaborations } from '../schemas/collaborations.generated.js';
+import { serializeCollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
+import { deserializeCollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
 import { serializeGetCollaborationsQueryParamsStatusField } from '../managers/listCollaborations.generated.js';
 import { deserializeGetCollaborationsQueryParamsStatusField } from '../managers/listCollaborations.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -37,6 +39,7 @@ import { CreateCollaborationRequestBodyAccessibleByField } from '../managers/use
 import { CreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
 import { CreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
 import { Collaborations } from '../schemas/collaborations.generated.js';
+import { CollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
 import { GetCollaborationsQueryParams } from '../managers/listCollaborations.generated.js';
 import { GetCollaborationsQueryParamsStatusField } from '../managers/listCollaborations.generated.js';
 import { getUuid } from '../internal/utils.js';
@@ -100,14 +103,14 @@ test('testListCollaborations', async function testListCollaborations(): Promise<
   if (!(folderCollaborations.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const pendingCollaborations: Collaborations =
+  const pendingCollaborations: CollaborationsOffsetPaginated =
     await client.listCollaborations.getCollaborations({
       status: 'pending' as GetCollaborationsQueryParamsStatusField,
     } satisfies GetCollaborationsQueryParams);
   if (!(pendingCollaborations.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
-  const groupCollaborations: Collaborations =
+  const groupCollaborations: CollaborationsOffsetPaginated =
     await client.listCollaborations.getGroupCollaborations(group.id);
   if (!(groupCollaborations.entries!.length > 0)) {
     throw new Error('Assertion failed');

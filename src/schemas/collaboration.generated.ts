@@ -46,12 +46,13 @@ export interface CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirem
 export interface CollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField {
   /**
    * Whether or not the enterprise that owns the content requires
-   * a strong password to collaborate on the content. */
+   * a strong password to collaborate on the content, or enforces
+   * an exposed password detection for the external collaborators. */
   readonly enterpriseHasStrongPasswordRequiredForExternalUsers?: boolean;
   /**
-   * Whether or not the user has a strong password set for their
-   * account. The field is `null` when a strong password is not
-   * required. */
+   * Whether or not the user has a strong and not exposed password set
+   * for their account. The field is `null` when a strong password is
+   * not required. */
   readonly userHasStrongPassword?: boolean;
   readonly rawData?: SerializedData;
 }
