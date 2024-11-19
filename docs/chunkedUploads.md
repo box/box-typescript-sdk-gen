@@ -383,7 +383,7 @@ await client.chunkedUploads.createFileUploadSessionCommitByUrl(
 
 ### Returns
 
-This function returns a value of type `Files`.
+This function returns a value of type `undefined | Files`.
 
 Returns the file object in a list.Returns when all chunks have been uploaded but not yet processed.
 
@@ -426,7 +426,7 @@ await client.chunkedUploads.createFileUploadSessionCommit(
 
 ### Returns
 
-This function returns a value of type `Files`.
+This function returns a value of type `undefined | Files`.
 
 Returns the file object in a list.Returns when all chunks have been uploaded but not yet processed.
 

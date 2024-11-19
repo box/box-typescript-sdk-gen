@@ -44,10 +44,9 @@ test('test_download_file', async function test_download_file(): Promise<any> {
     file: fileContentStream,
   } satisfies UploadFileRequestBody);
   const uploadedFile: FileFull = uploadedFiles.entries![0];
-  const downloadedFileContent: ByteStream = await client.downloads.downloadFile(
-    uploadedFile.id,
-  );
-  if (!bufferEquals(await readByteStream(downloadedFileContent), fileBuffer)) {
+  const downloadedFileContent: undefined | ByteStream =
+    await client.downloads.downloadFile(uploadedFile.id);
+  if (!bufferEquals(await readByteStream(downloadedFileContent!), fileBuffer)) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(uploadedFile.id);
@@ -65,10 +64,9 @@ test('test_change_download_url_with_interceptor', async function test_change_dow
     file: fileContentStream,
   } satisfies UploadFileRequestBody);
   const uploadedFile: FileFull = uploadedFiles.entries![0];
-  const downloadedFileContent: ByteStream = await client.downloads.downloadFile(
-    uploadedFile.id,
-  );
-  if (!bufferEquals(await readByteStream(downloadedFileContent), fileBuffer)) {
+  const downloadedFileContent: undefined | ByteStream =
+    await client.downloads.downloadFile(uploadedFile.id);
+  if (!bufferEquals(await readByteStream(downloadedFileContent!), fileBuffer)) {
     throw new Error('Assertion failed');
   }
   function emptyBeforeRequest(options: FetchOptions): FetchOptions {

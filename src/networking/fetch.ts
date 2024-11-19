@@ -292,9 +292,11 @@ export async function fetch(
   const acceptedWithRetryAfter =
     fetchResponse.status === STATUS_CODE_ACCEPTED &&
     fetchResponse.headers['retry-after'];
-  if (fetchResponse.status >= 400 || acceptedWithRetryAfter) {
-    const { numRetries = 0 } = fetchOptions;
-
+  const { numRetries = 0 } = fetchOptions;
+  if (
+    fetchResponse.status >= 400 ||
+    (acceptedWithRetryAfter && numRetries < DEFAULT_MAX_ATTEMPTS)
+  ) {
     const reauthenticationNeeded =
       fetchResponse.status == STATUS_CODE_UNAUTHORIZED;
     if (reauthenticationNeeded && fetchOptions.auth) {

@@ -264,13 +264,13 @@ test('testChunkedManualProcessById', async function testChunkedManualProcessById
   }
   const sha1: string = await fileHash.digestHash('base64');
   const digest: string = ''.concat('sha=', sha1) as string;
-  const committedSession: Files =
+  const committedSession: undefined | Files =
     await client.chunkedUploads.createFileUploadSessionCommit(
       uploadSessionId,
       { parts: parts } satisfies CreateFileUploadSessionCommitRequestBody,
       { digest: digest } satisfies CreateFileUploadSessionCommitHeadersInput,
     );
-  if (!(committedSession.entries![0].name! == fileName)) {
+  if (!(committedSession!.entries![0].name! == fileName)) {
     throw new Error('Assertion failed');
   }
   await client.chunkedUploads.deleteFileUploadSessionById(uploadSessionId);
@@ -330,7 +330,7 @@ test('testChunkedManualProcessByUrl', async function testChunkedManualProcessByU
   }
   const sha1: string = await fileHash.digestHash('base64');
   const digest: string = ''.concat('sha=', sha1) as string;
-  const committedSession: Files =
+  const committedSession: undefined | Files =
     await client.chunkedUploads.createFileUploadSessionCommitByUrl(
       commitUrl,
       { parts: parts } satisfies CreateFileUploadSessionCommitByUrlRequestBody,
@@ -338,7 +338,7 @@ test('testChunkedManualProcessByUrl', async function testChunkedManualProcessByU
         digest: digest,
       } satisfies CreateFileUploadSessionCommitByUrlHeadersInput,
     );
-  if (!(committedSession.entries![0].name! == fileName)) {
+  if (!(committedSession!.entries![0].name! == fileName)) {
     throw new Error('Assertion failed');
   }
   await client.chunkedUploads.deleteFileUploadSessionByUrl(abortUrl);

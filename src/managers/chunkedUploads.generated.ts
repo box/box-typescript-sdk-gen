@@ -1444,14 +1444,14 @@ export class ChunkedUploadsManager {
    * @param {CreateFileUploadSessionCommitByUrlRequestBody} requestBody Request body of createFileUploadSessionCommit method
    * @param {CreateFileUploadSessionCommitByUrlHeadersInput} headersInput Headers of createFileUploadSessionCommit method
    * @param {CreateFileUploadSessionCommitByUrlOptionalsInput} optionalsInput
-   * @returns {Promise<Files>}
+   * @returns {Promise<undefined | Files>}
    */
   async createFileUploadSessionCommitByUrl(
     url: string,
     requestBody: CreateFileUploadSessionCommitByUrlRequestBody,
     headersInput: CreateFileUploadSessionCommitByUrlHeadersInput,
     optionalsInput: CreateFileUploadSessionCommitByUrlOptionalsInput = {},
-  ): Promise<Files> {
+  ): Promise<undefined | Files> {
     const headers: CreateFileUploadSessionCommitByUrlHeaders =
       new CreateFileUploadSessionCommitByUrlHeaders({
         digest: headersInput.digest,
@@ -1485,6 +1485,9 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
+    if ((toString(response.status) as string) == '202') {
+      return void 0;
+    }
     return {
       ...deserializeFiles(response.data),
       rawData: response.data,
@@ -1500,14 +1503,14 @@ export class ChunkedUploadsManager {
      * @param {CreateFileUploadSessionCommitRequestBody} requestBody Request body of createFileUploadSessionCommit method
      * @param {CreateFileUploadSessionCommitHeadersInput} headersInput Headers of createFileUploadSessionCommit method
      * @param {CreateFileUploadSessionCommitOptionalsInput} optionalsInput
-     * @returns {Promise<Files>}
+     * @returns {Promise<undefined | Files>}
      */
   async createFileUploadSessionCommit(
     uploadSessionId: string,
     requestBody: CreateFileUploadSessionCommitRequestBody,
     headersInput: CreateFileUploadSessionCommitHeadersInput,
     optionalsInput: CreateFileUploadSessionCommitOptionalsInput = {},
-  ): Promise<Files> {
+  ): Promise<undefined | Files> {
     const headers: CreateFileUploadSessionCommitHeaders =
       new CreateFileUploadSessionCommitHeaders({
         digest: headersInput.digest,
@@ -1546,6 +1549,9 @@ export class ChunkedUploadsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
+    if ((toString(response.status) as string) == '202') {
+      return void 0;
+    }
     return {
       ...deserializeFiles(response.data),
       rawData: response.data,
@@ -1669,7 +1675,7 @@ export class ChunkedUploadsManager {
     }
     const sha1: string = await fileHash.digestHash('base64');
     const digest: string = ''.concat('sha=', sha1) as string;
-    const committedSession: Files =
+    const committedSession: undefined | Files =
       await this.createFileUploadSessionCommitByUrl(
         commitUrl,
         {
@@ -1682,7 +1688,7 @@ export class ChunkedUploadsManager {
           cancellationToken: cancellationToken,
         } satisfies CreateFileUploadSessionCommitByUrlOptionalsInput,
       );
-    return committedSession.entries![0];
+    return committedSession!.entries![0];
   }
 }
 export interface ChunkedUploadsManagerInput {

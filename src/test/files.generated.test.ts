@@ -68,15 +68,15 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
     thumbnailFileName,
     thumbnailContentStream,
   );
+  const thumbnail: undefined | ByteStream =
+    await client.files.getFileThumbnailById(
+      thumbnailFile.id,
+      'png' as GetFileThumbnailByIdExtension,
+    );
   if (
     !!(
       bufferEquals(
-        await readByteStream(
-          await client.files.getFileThumbnailById(
-            thumbnailFile.id,
-            'png' as GetFileThumbnailByIdExtension,
-          ),
-        ),
+        await readByteStream(thumbnail!),
         await readByteStream(thumbnailContentStream),
       ) == true
     )

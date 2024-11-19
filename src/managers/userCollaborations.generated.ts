@@ -486,13 +486,13 @@ export class UserCollaborationsManager {
     Example: "1234"
      * @param {UpdateCollaborationByIdRequestBody} requestBody Request body of updateCollaborationById method
      * @param {UpdateCollaborationByIdOptionalsInput} optionalsInput
-     * @returns {Promise<Collaboration>}
+     * @returns {Promise<undefined | Collaboration>}
      */
   async updateCollaborationById(
     collaborationId: string,
     requestBody: UpdateCollaborationByIdRequestBody,
     optionalsInput: UpdateCollaborationByIdOptionalsInput = {},
-  ): Promise<Collaboration> {
+  ): Promise<undefined | Collaboration> {
     const optionals: UpdateCollaborationByIdOptionals =
       new UpdateCollaborationByIdOptionals({
         headers: optionalsInput.headers,
@@ -518,6 +518,9 @@ export class UserCollaborationsManager {
       networkSession: this.networkSession,
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
+    if ((toString(response.status) as string) == '204') {
+      return void 0;
+    }
     return {
       ...deserializeCollaboration(response.data),
       rawData: response.data,
