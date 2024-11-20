@@ -62,7 +62,7 @@ await client.collections.getCollectionItems(favouriteCollection.id!);
 
 ### Returns
 
-This function returns a value of type `Items`.
+This function returns a value of type `ItemsOffsetPaginated`.
 
 Returns an array of items in the collection.
 
