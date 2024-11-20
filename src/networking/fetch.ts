@@ -205,6 +205,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
     body,
     signal: options.cancellationToken as RequestInit['signal'],
     agent: options.networkSession?.agent,
+    ...(fileStream && isBrowser() && { duplex: 'half' }),
   };
 }
 
