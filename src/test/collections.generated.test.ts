@@ -67,10 +67,7 @@ test('testCollections', async function testCollections(): Promise<any> {
   const collectionItemsAfterUpdate: ItemsOffsetPaginated =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
-    !(
-      collectionItemsAfterUpdate.entries!.length ==
-      collectionItems.entries!.length + 1
-    )
+    !(collectionItemsAfterUpdate.totalCount! == collectionItems.totalCount! + 1)
   ) {
     throw new Error('Assertion failed');
   }
@@ -80,10 +77,7 @@ test('testCollections', async function testCollections(): Promise<any> {
   const collectionItemsAfterRemove: ItemsOffsetPaginated =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
-    !(
-      collectionItemsAfterRemove.entries!.length ==
-      collectionItems.entries!.length
-    )
+    !(collectionItemsAfterRemove.totalCount! == collectionItems.totalCount!)
   ) {
     throw new Error('Assertion failed');
   }
