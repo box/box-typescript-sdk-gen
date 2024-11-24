@@ -26,15 +26,12 @@ export function serializeSearchResultWithSharedLink(
   val: SearchResultWithSharedLink,
 ): SerializedData {
   return {
-    ['accessible_via_shared_link']:
-      val.accessibleViaSharedLink == void 0
-        ? void 0
-        : val.accessibleViaSharedLink,
+    ['accessible_via_shared_link']: val.accessibleViaSharedLink,
     ['item']:
       val.item == void 0
-        ? void 0
+        ? val.item
         : serializeFileFullOrFolderFullOrWebLink(val.item),
-    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['type']: val.type,
   };
 }
 export function deserializeSearchResultWithSharedLink(

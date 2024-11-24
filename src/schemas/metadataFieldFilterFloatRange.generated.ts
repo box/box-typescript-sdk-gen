@@ -24,10 +24,7 @@ export interface MetadataFieldFilterFloatRange {
 export function serializeMetadataFieldFilterFloatRange(
   val: MetadataFieldFilterFloatRange,
 ): SerializedData {
-  return {
-    ['lt']: val.lt == void 0 ? void 0 : val.lt,
-    ['gt']: val.gt == void 0 ? void 0 : val.gt,
-  };
+  return { ['lt']: val.lt, ['gt']: val.gt };
 }
 export function deserializeMetadataFieldFilterFloatRange(
   val: SerializedData,

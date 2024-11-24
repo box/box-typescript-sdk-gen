@@ -15,7 +15,7 @@ export interface UploadedPart {
 }
 export function serializeUploadedPart(val: UploadedPart): SerializedData {
   return {
-    ['part']: val.part == void 0 ? void 0 : serializeUploadPart(val.part),
+    ['part']: val.part == void 0 ? val.part : serializeUploadPart(val.part),
   };
 }
 export function deserializeUploadedPart(val: SerializedData): UploadedPart {

@@ -28,7 +28,7 @@ export interface SignRequestSignerSignerDecisionField {
   readonly finalizedAt?: DateTime;
   /**
    * Additional info about the decision, such as the decline reason from the signer. */
-  readonly additionalInfo?: string;
+  readonly additionalInfo?: string | null;
   readonly rawData?: SerializedData;
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
@@ -37,11 +37,11 @@ export type SignRequestSigner = SignRequestCreateSigner & {
   readonly hasViewedDocument?: boolean;
   /**
    * Final decision made by the signer. */
-  readonly signerDecision?: SignRequestSignerSignerDecisionField;
+  readonly signerDecision?: SignRequestSignerSignerDecisionField | null;
   readonly inputs?: readonly SignRequestSignerInput[];
   /**
    * URL to direct a signer to for signing */
-  readonly embedUrl?: string;
+  readonly embedUrl?: string | null;
   /**
    * This URL is specifically designed for
    * signing documents within an HTML `iframe` tag.
@@ -49,7 +49,7 @@ export type SignRequestSigner = SignRequestCreateSigner & {
    * only if the `embed_url_external_user_id`
    * parameter was passed in the
    * `create Box Sign request` call. */
-  readonly iframeableEmbedUrl?: string;
+  readonly iframeableEmbedUrl?: string | null;
 };
 export function serializeSignRequestSignerSignerDecisionTypeField(
   val: SignRequestSignerSignerDecisionTypeField,
@@ -75,12 +75,13 @@ export function serializeSignRequestSignerSignerDecisionField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeSignRequestSignerSignerDecisionTypeField(val.type),
     ['finalized_at']:
-      val.finalizedAt == void 0 ? void 0 : serializeDateTime(val.finalizedAt),
-    ['additional_info']:
-      val.additionalInfo == void 0 ? void 0 : val.additionalInfo,
+      val.finalizedAt == void 0
+        ? val.finalizedAt
+        : serializeDateTime(val.finalizedAt),
+    ['additional_info']: val.additionalInfo,
   };
 }
 export function deserializeSignRequestSignerSignerDecisionField(
@@ -129,23 +130,21 @@ export function serializeSignRequestSigner(
   return {
     ...base,
     ...{
-      ['has_viewed_document']:
-        val.hasViewedDocument == void 0 ? void 0 : val.hasViewedDocument,
+      ['has_viewed_document']: val.hasViewedDocument,
       ['signer_decision']:
         val.signerDecision == void 0
-          ? void 0
+          ? val.signerDecision
           : serializeSignRequestSignerSignerDecisionField(val.signerDecision),
       ['inputs']:
         val.inputs == void 0
-          ? void 0
+          ? val.inputs
           : (val.inputs.map(function (
               item: SignRequestSignerInput,
             ): SerializedData {
               return serializeSignRequestSignerInput(item);
             }) as readonly any[]),
-      ['embed_url']: val.embedUrl == void 0 ? void 0 : val.embedUrl,
-      ['iframeable_embed_url']:
-        val.iframeableEmbedUrl == void 0 ? void 0 : val.iframeableEmbedUrl,
+      ['embed_url']: val.embedUrl,
+      ['iframeable_embed_url']: val.iframeableEmbedUrl,
     },
   };
 }

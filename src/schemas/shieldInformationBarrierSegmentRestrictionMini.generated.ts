@@ -67,10 +67,10 @@ export function serializeShieldInformationBarrierSegmentRestrictionMiniShieldInf
   val: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField(
             val.type,
           ),
@@ -125,10 +125,10 @@ export function serializeShieldInformationBarrierSegmentRestrictionMiniRestricte
   val: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField(
             val.type,
           ),

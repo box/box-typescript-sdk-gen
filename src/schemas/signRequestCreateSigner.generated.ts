@@ -14,7 +14,7 @@ export interface SignRequestCreateSigner {
   /**
    * Email address of the signer.
    * The email address of the signer is required when making signature requests, except when using templates that are configured to include emails. */
-  readonly email?: string;
+  readonly email?: string | null;
   /**
    * Defines the role of the signer in the signature request. A `signer`
    * must sign the document and an `approver` must approve the document. A
@@ -31,7 +31,7 @@ export interface SignRequestCreateSigner {
   /**
    * User ID for the signer in an external application responsible
    * for authentication when accessing the embed URL. */
-  readonly embedUrlExternalUserId?: string;
+  readonly embedUrlExternalUserId?: string | null;
   /**
    * The URL that a signer will be redirected
    * to after signing a document. Defining this URL
@@ -39,29 +39,29 @@ export interface SignRequestCreateSigner {
    * settings for a specific signer.
    * If no declined redirect URL is specified,
    * this URL will be used for decline actions as well. */
-  readonly redirectUrl?: string;
+  readonly redirectUrl?: string | null;
   /**
    * The URL that a signer will be redirect
    * to after declining to sign a document.
    * Defining this URL overrides default or global
    * declined redirect URL settings for a specific signer. */
-  readonly declinedRedirectUrl?: string;
+  readonly declinedRedirectUrl?: string | null;
   /**
    * If set to true, the signer will need to log in to a Box account
    * before signing the request. If the signer does not have
    * an existing account, they will have the option to create
    * a free Box account. Cannot be selected in combination with
    * `verification_phone_number`. */
-  readonly loginRequired?: boolean;
+  readonly loginRequired?: boolean | null;
   /**
    * If set, this phone number will be used to verify the signer
    * via two-factor authentication before they are able to sign the document.
    * Cannot be selected in combination with `login_required`. */
-  readonly verificationPhoneNumber?: string;
+  readonly verificationPhoneNumber?: string | null;
   /**
    * If set, the signer is required to enter the password before they are able
    * to sign a document. This field is write only. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * If set, signers who have the same value will be assigned to the same input and to the same signer group.
    * A signer group is not a Box Group. It is an entity that belongs to a Sign Request and can only be
@@ -70,10 +70,10 @@ export interface SignRequestCreateSigner {
    * as it was intended for an individual signer. The value provided can be any string and only used to
    * determine which signers belongs to same group. A successful response will provide a generated UUID value
    * instead for signers in the same signer group. */
-  readonly signerGroupId?: string;
+  readonly signerGroupId?: string | null;
   /**
    * If true, no emails about the sign request will be sent */
-  readonly suppressNotifications?: boolean;
+  readonly suppressNotifications?: boolean | null;
   readonly rawData?: SerializedData;
 }
 export function serializeSignRequestCreateSignerRoleField(
@@ -101,31 +101,21 @@ export function serializeSignRequestCreateSigner(
   val: SignRequestCreateSigner,
 ): SerializedData {
   return {
-    ['email']: val.email == void 0 ? void 0 : val.email,
+    ['email']: val.email,
     ['role']:
       val.role == void 0
-        ? void 0
+        ? val.role
         : serializeSignRequestCreateSignerRoleField(val.role),
-    ['is_in_person']: val.isInPerson == void 0 ? void 0 : val.isInPerson,
-    ['order']: val.order == void 0 ? void 0 : val.order,
-    ['embed_url_external_user_id']:
-      val.embedUrlExternalUserId == void 0
-        ? void 0
-        : val.embedUrlExternalUserId,
-    ['redirect_url']: val.redirectUrl == void 0 ? void 0 : val.redirectUrl,
-    ['declined_redirect_url']:
-      val.declinedRedirectUrl == void 0 ? void 0 : val.declinedRedirectUrl,
-    ['login_required']:
-      val.loginRequired == void 0 ? void 0 : val.loginRequired,
-    ['verification_phone_number']:
-      val.verificationPhoneNumber == void 0
-        ? void 0
-        : val.verificationPhoneNumber,
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['signer_group_id']:
-      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
-    ['suppress_notifications']:
-      val.suppressNotifications == void 0 ? void 0 : val.suppressNotifications,
+    ['is_in_person']: val.isInPerson,
+    ['order']: val.order,
+    ['embed_url_external_user_id']: val.embedUrlExternalUserId,
+    ['redirect_url']: val.redirectUrl,
+    ['declined_redirect_url']: val.declinedRedirectUrl,
+    ['login_required']: val.loginRequired,
+    ['verification_phone_number']: val.verificationPhoneNumber,
+    ['password']: val.password,
+    ['signer_group_id']: val.signerGroupId,
+    ['suppress_notifications']: val.suppressNotifications,
   };
 }
 export function deserializeSignRequestCreateSigner(

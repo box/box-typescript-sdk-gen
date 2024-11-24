@@ -20,10 +20,10 @@ export interface TaskAssignments {
 }
 export function serializeTaskAssignments(val: TaskAssignments): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['total_count']: val.totalCount,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: TaskAssignment): SerializedData {
             return serializeTaskAssignment(item);
           }) as readonly any[]),

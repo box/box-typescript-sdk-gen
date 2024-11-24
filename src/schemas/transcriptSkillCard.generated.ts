@@ -247,10 +247,7 @@ export function deserializeTranscriptSkillCardSkillCardTypeField(
 export function serializeTranscriptSkillCardSkillCardTitleField(
   val: TranscriptSkillCardSkillCardTitleField,
 ): SerializedData {
-  return {
-    ['code']: val.code == void 0 ? void 0 : val.code,
-    ['message']: val.message,
-  };
+  return { ['code']: val.code, ['message']: val.message };
 }
 export function deserializeTranscriptSkillCardSkillCardTitleField(
   val: SerializedData,
@@ -345,7 +342,7 @@ export function serializeTranscriptSkillCardSkillFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTranscriptSkillCardSkillTypeField(val.type),
     ['id']: val.id,
   };
@@ -437,7 +434,7 @@ export function serializeTranscriptSkillCardInvocationFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTranscriptSkillCardInvocationTypeField(val.type),
     ['id']: val.id,
   };
@@ -475,7 +472,7 @@ export function deserializeTranscriptSkillCardInvocationFieldInput(
 export function serializeTranscriptSkillCardEntriesAppearsField(
   val: TranscriptSkillCardEntriesAppearsField,
 ): SerializedData {
-  return { ['start']: val.start == void 0 ? void 0 : val.start };
+  return { ['start']: val.start };
 }
 export function deserializeTranscriptSkillCardEntriesAppearsField(
   val: SerializedData,
@@ -498,10 +495,10 @@ export function serializeTranscriptSkillCardEntriesField(
   val: TranscriptSkillCardEntriesField,
 ): SerializedData {
   return {
-    ['text']: val.text == void 0 ? void 0 : val.text,
+    ['text']: val.text,
     ['appears']:
       val.appears == void 0
-        ? void 0
+        ? val.appears
         : (val.appears.map(function (
             item: TranscriptSkillCardEntriesAppearsField,
           ): SerializedData {
@@ -550,18 +547,20 @@ export function serializeTranscriptSkillCard(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']: serializeTranscriptSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTranscriptSkillCardSkillCardTypeField(
       val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeTranscriptSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeTranscriptSkillCardSkillField(val.skill),
     ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
-    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['duration']: val.duration,
     ['entries']: val.entries.map(function (
       item: TranscriptSkillCardEntriesField,
     ): SerializedData {
@@ -662,22 +661,24 @@ export function serializeTranscriptSkillCardInput(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTranscriptSkillCardTypeField(val.type),
     ['skillCardType']:
       val.skillCardType == void 0
-        ? void 0
+        ? val.skillCardType
         : serializeTranscriptSkillCardSkillCardTypeField(val.skillCardType),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeTranscriptSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeTranscriptSkillCardSkillField(val.skill),
     ['invocation']: serializeTranscriptSkillCardInvocationField(val.invocation),
-    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['duration']: val.duration,
     ['entries']: val.entries.map(function (
       item: TranscriptSkillCardEntriesField,
     ): SerializedData {

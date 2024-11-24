@@ -30,7 +30,7 @@ export function serializeAiResponseFull(val: AiResponseFull): SerializedData {
     ...{
       ['citations']:
         val.citations == void 0
-          ? void 0
+          ? val.citations
           : (val.citations.map(function (item: AiCitation): SerializedData {
               return serializeAiCitation(item);
             }) as readonly any[]),

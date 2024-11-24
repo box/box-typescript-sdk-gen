@@ -488,7 +488,7 @@ export function serializeCreateTermsOfServiceRequestBody(
     ['status']: serializeCreateTermsOfServiceRequestBodyStatusField(val.status),
     ['tos_type']:
       val.tosType == void 0
-        ? void 0
+        ? val.tosType
         : serializeCreateTermsOfServiceRequestBodyTosTypeField(val.tosType),
     ['text']: val.text,
   };

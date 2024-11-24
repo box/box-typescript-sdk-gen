@@ -23,7 +23,7 @@ export function serializeStoragePolicy(val: StoragePolicy): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "StoragePolicy"' });
   }
-  return { ...base, ...{ ['name']: val.name == void 0 ? void 0 : val.name } };
+  return { ...base, ...{ ['name']: val.name } };
 }
 export function deserializeStoragePolicy(val: SerializedData): StoragePolicy {
   if (!sdIsMap(val)) {

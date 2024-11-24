@@ -246,7 +246,7 @@ export interface UpdateWebLinkByIdRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -546,8 +546,8 @@ export function serializeCreateWebLinkRequestBody(
   return {
     ['url']: val.url,
     ['parent']: serializeCreateWebLinkRequestBodyParentField(val.parent),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['description']: val.description,
   };
 }
 export function deserializeCreateWebLinkRequestBody(
@@ -602,7 +602,7 @@ export function deserializeCreateWebLinkRequestBody(
 export function serializeUpdateWebLinkByIdRequestBodyParentField(
   val: UpdateWebLinkByIdRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['id']: val.id };
 }
 export function deserializeUpdateWebLinkByIdRequestBodyParentField(
   val: SerializedData,
@@ -649,14 +649,16 @@ export function serializeUpdateWebLinkByIdRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
   };
 }
 export function deserializeUpdateWebLinkByIdRequestBodySharedLinkField(
@@ -709,16 +711,16 @@ export function serializeUpdateWebLinkByIdRequestBody(
   val: UpdateWebLinkByIdRequestBody,
 ): SerializedData {
   return {
-    ['url']: val.url == void 0 ? void 0 : val.url,
+    ['url']: val.url,
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeUpdateWebLinkByIdRequestBodyParentField(val.parent),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['description']: val.description,
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateWebLinkByIdRequestBodySharedLinkField(val.sharedLink),
   };
 }

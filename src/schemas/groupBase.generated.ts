@@ -81,7 +81,7 @@ export function serializeGroupBaseInput(val: GroupBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeGroupBaseTypeField(val.type),
+      val.type == void 0 ? val.type : serializeGroupBaseTypeField(val.type),
   };
 }
 export function deserializeGroupBaseInput(val: SerializedData): GroupBaseInput {

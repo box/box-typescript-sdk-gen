@@ -17,10 +17,10 @@ export interface Collaborations {
   readonly limit?: number;
   /**
    * The marker for the start of the next page of results. */
-  readonly nextMarker?: string;
+  readonly nextMarker?: string | null;
   /**
    * The marker for the start of the previous page of results. */
-  readonly prevMarker?: string;
+  readonly prevMarker?: string | null;
   /**
    * A list of collaborations */
   readonly entries?: readonly Collaboration[];
@@ -28,12 +28,12 @@ export interface Collaborations {
 }
 export function serializeCollaborations(val: Collaborations): SerializedData {
   return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
+    ['prev_marker']: val.prevMarker,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: Collaboration): SerializedData {
             return serializeCollaboration(item);
           }) as readonly any[]),

@@ -107,13 +107,17 @@ export function serializeTermsOfServiceUserStatus(
   return {
     ['id']: val.id,
     ['type']: serializeTermsOfServiceUserStatusTypeField(val.type),
-    ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
+    ['tos']: val.tos == void 0 ? val.tos : serializeTermsOfServiceBase(val.tos),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
+    ['is_accepted']: val.isAccepted,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeTermsOfServiceUserStatus(
@@ -189,15 +193,19 @@ export function serializeTermsOfServiceUserStatusInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTermsOfServiceUserStatusTypeField(val.type),
-    ['tos']: val.tos == void 0 ? void 0 : serializeTermsOfServiceBase(val.tos),
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
+    ['tos']: val.tos == void 0 ? val.tos : serializeTermsOfServiceBase(val.tos),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
+    ['is_accepted']: val.isAccepted,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeTermsOfServiceUserStatusInput(

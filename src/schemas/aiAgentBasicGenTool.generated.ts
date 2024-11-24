@@ -36,13 +36,7 @@ export function serializeAiAgentBasicGenTool(
       message: 'Expecting a map for "AiAgentBasicGenTool"',
     });
   }
-  return {
-    ...base,
-    ...{
-      ['content_template']:
-        val.contentTemplate == void 0 ? void 0 : val.contentTemplate,
-    },
-  };
+  return { ...base, ...{ ['content_template']: val.contentTemplate } };
 }
 export function deserializeAiAgentBasicGenTool(
   val: SerializedData,

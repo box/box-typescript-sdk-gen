@@ -29,10 +29,10 @@ export interface TrashFilePathCollectionEntriesField {
   readonly id?: string;
   /**
    * This field is null for the Trash folder */
-  readonly sequenceId?: string;
+  readonly sequenceId?: string | null;
   /**
    * This field is null for the Trash folder */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * The name of the Trash folder. */
   readonly name?: string;
@@ -62,7 +62,7 @@ export class TrashFile {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type: TrashFileTypeField = 'file' as TrashFileTypeField;
@@ -91,19 +91,19 @@ export class TrashFile {
   readonly modifiedAt!: DateTime;
   /**
    * The time at which this file was put in the trash. */
-  readonly trashedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
   /**
    * The time at which this file is expected to be purged
    * from the trash. */
-  readonly purgedAt?: DateTime;
+  readonly purgedAt?: DateTime | null;
   /**
    * The date and time at which this file was originally
    * created, which might be before it was uploaded to Box. */
-  readonly contentCreatedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime | null;
   /**
    * The date and time at which this file was last updated,
    * which might be before it was uploaded to Box. */
-  readonly contentModifiedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy!: UserMini;
   readonly ownedBy!: UserMini;
@@ -111,7 +111,7 @@ export class TrashFile {
    * The shared link for this file. This will
    * be `null` if a file has been trashed, since the link will no longer
    * be active. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   readonly parent?: FolderMini;
   /**
    * Defines if this item has been deleted or not.
@@ -209,7 +209,7 @@ export interface TrashFileInput {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type?: TrashFileTypeField;
@@ -238,19 +238,19 @@ export interface TrashFileInput {
   readonly modifiedAt: DateTime;
   /**
    * The time at which this file was put in the trash. */
-  readonly trashedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
   /**
    * The time at which this file is expected to be purged
    * from the trash. */
-  readonly purgedAt?: DateTime;
+  readonly purgedAt?: DateTime | null;
   /**
    * The date and time at which this file was originally
    * created, which might be before it was uploaded to Box. */
-  readonly contentCreatedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime | null;
   /**
    * The date and time at which this file was last updated,
    * which might be before it was uploaded to Box. */
-  readonly contentModifiedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy: UserMini;
   readonly ownedBy: UserMini;
@@ -258,7 +258,7 @@ export interface TrashFileInput {
    * The shared link for this file. This will
    * be `null` if a file has been trashed, since the link will no longer
    * be active. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   readonly parent?: FolderMini;
   /**
    * Defines if this item has been deleted or not.
@@ -303,12 +303,12 @@ export function serializeTrashFilePathCollectionEntriesField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTrashFilePathCollectionEntriesTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['id']: val.id,
+    ['sequence_id']: val.sequenceId,
+    ['etag']: val.etag,
+    ['name']: val.name,
   };
 }
 export function deserializeTrashFilePathCollectionEntriesField(
@@ -443,14 +443,14 @@ export function deserializeTrashFileItemStatusField(
 export function serializeTrashFile(val: TrashFile): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']: serializeTrashFileTypeField(val.type),
     ['sequence_id']: val.sequenceId,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['sha1']: val.sha1,
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
     ['description']: val.description,
     ['size']: val.size,
@@ -460,23 +460,28 @@ export function serializeTrashFile(val: TrashFile): SerializedData {
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
     ['trashed_at']:
-      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      val.trashedAt == void 0
+        ? val.trashedAt
+        : serializeDateTime(val.trashedAt),
     ['purged_at']:
-      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
+      val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
     ['owned_by']: serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['shared_link']: val.sharedLink,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['item_status']: serializeTrashFileItemStatusField(val.itemStatus),
   };
 }
@@ -686,15 +691,15 @@ export function deserializeTrashFile(val: SerializedData): TrashFile {
 export function serializeTrashFileInput(val: TrashFileInput): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']:
-      val.type == void 0 ? void 0 : serializeTrashFileTypeField(val.type),
+      val.type == void 0 ? val.type : serializeTrashFileTypeField(val.type),
     ['sequence_id']: val.sequenceId,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['sha1']: val.sha1,
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
     ['description']: val.description,
     ['size']: val.size,
@@ -704,23 +709,28 @@ export function serializeTrashFileInput(val: TrashFileInput): SerializedData {
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
     ['trashed_at']:
-      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      val.trashedAt == void 0
+        ? val.trashedAt
+        : serializeDateTime(val.trashedAt),
     ['purged_at']:
-      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
+      val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
     ['owned_by']: serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['shared_link']: val.sharedLink,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['item_status']: serializeTrashFileItemStatusField(val.itemStatus),
   };
 }

@@ -385,10 +385,7 @@ export function deserializeFolderFullAllowedInviteeRolesField(
 export function serializeFolderFullWatermarkInfoField(
   val: FolderFullWatermarkInfoField,
 ): SerializedData {
-  return {
-    ['is_watermarked']:
-      val.isWatermarked == void 0 ? void 0 : val.isWatermarked,
-  };
+  return { ['is_watermarked']: val.isWatermarked };
 }
 export function deserializeFolderFullWatermarkInfoField(
   val: SerializedData,
@@ -414,9 +411,9 @@ export function serializeFolderFullClassificationField(
   val: FolderFullClassificationField,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['definition']: val.definition == void 0 ? void 0 : val.definition,
-    ['color']: val.color == void 0 ? void 0 : val.color,
+    ['name']: val.name,
+    ['definition']: val.definition,
+    ['color']: val.color,
   };
 }
 export function deserializeFolderFullClassificationField(
@@ -465,35 +462,30 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
     ...{
       ['sync_state']:
         val.syncState == void 0
-          ? void 0
+          ? val.syncState
           : serializeFolderFullSyncStateField(val.syncState),
-      ['has_collaborations']:
-        val.hasCollaborations == void 0 ? void 0 : val.hasCollaborations,
+      ['has_collaborations']: val.hasCollaborations,
       ['permissions']:
         val.permissions == void 0
-          ? void 0
+          ? val.permissions
           : serializeFolderFullPermissionsField(val.permissions),
       ['tags']:
         val.tags == void 0
-          ? void 0
+          ? val.tags
           : (val.tags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
-      ['can_non_owners_invite']:
-        val.canNonOwnersInvite == void 0 ? void 0 : val.canNonOwnersInvite,
-      ['is_externally_owned']:
-        val.isExternallyOwned == void 0 ? void 0 : val.isExternallyOwned,
+      ['can_non_owners_invite']: val.canNonOwnersInvite,
+      ['is_externally_owned']: val.isExternallyOwned,
       ['metadata']:
         val.metadata == void 0
-          ? void 0
+          ? val.metadata
           : serializeFolderFullMetadataField(val.metadata),
       ['is_collaboration_restricted_to_enterprise']:
-        val.isCollaborationRestrictedToEnterprise == void 0
-          ? void 0
-          : val.isCollaborationRestrictedToEnterprise,
+        val.isCollaborationRestrictedToEnterprise,
       ['allowed_shared_link_access_levels']:
         val.allowedSharedLinkAccessLevels == void 0
-          ? void 0
+          ? val.allowedSharedLinkAccessLevels
           : (val.allowedSharedLinkAccessLevels.map(function (
               item: FolderFullAllowedSharedLinkAccessLevelsField,
             ): SerializedData {
@@ -503,7 +495,7 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
             }) as readonly any[]),
       ['allowed_invitee_roles']:
         val.allowedInviteeRoles == void 0
-          ? void 0
+          ? val.allowedInviteeRoles
           : (val.allowedInviteeRoles.map(function (
               item: FolderFullAllowedInviteeRolesField,
             ): SerializedData {
@@ -511,24 +503,15 @@ export function serializeFolderFull(val: FolderFull): SerializedData {
             }) as readonly any[]),
       ['watermark_info']:
         val.watermarkInfo == void 0
-          ? void 0
+          ? val.watermarkInfo
           : serializeFolderFullWatermarkInfoField(val.watermarkInfo),
-      ['is_accessible_via_shared_link']:
-        val.isAccessibleViaSharedLink == void 0
-          ? void 0
-          : val.isAccessibleViaSharedLink,
-      ['can_non_owners_view_collaborators']:
-        val.canNonOwnersViewCollaborators == void 0
-          ? void 0
-          : val.canNonOwnersViewCollaborators,
+      ['is_accessible_via_shared_link']: val.isAccessibleViaSharedLink,
+      ['can_non_owners_view_collaborators']: val.canNonOwnersViewCollaborators,
       ['classification']:
         val.classification == void 0
-          ? void 0
+          ? val.classification
           : serializeFolderFullClassificationField(val.classification),
-      ['is_associated_with_app_item']:
-        val.isAssociatedWithAppItem == void 0
-          ? void 0
-          : val.isAssociatedWithAppItem,
+      ['is_associated_with_app_item']: val.isAssociatedWithAppItem,
     },
   };
 }

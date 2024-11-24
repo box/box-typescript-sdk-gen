@@ -410,7 +410,7 @@ export interface UpdateFolderByIdRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -477,7 +477,7 @@ export interface UpdateFolderByIdRequestBody {
    * the folder or to restore it out of the trash. */
   readonly parent?: UpdateFolderByIdRequestBodyParentField;
   readonly sharedLink?: UpdateFolderByIdRequestBodySharedLinkField;
-  readonly folderUploadEmail?: UpdateFolderByIdRequestBodyFolderUploadEmailField;
+  readonly folderUploadEmail?: UpdateFolderByIdRequestBodyFolderUploadEmailField | null;
   /**
    * The tags for this item. These tags are shown in
    * the Box web app and mobile apps next to an item.
@@ -505,7 +505,9 @@ export interface UpdateFolderByIdRequestBody {
    * the folder from all collections.
    *
    * [1]: e://get-collections */
-  readonly collections?: readonly UpdateFolderByIdRequestBodyCollectionsField[];
+  readonly collections?:
+    | readonly UpdateFolderByIdRequestBodyCollectionsField[]
+    | null;
   /**
    * Restricts collaborators who are not the owner of
    * this folder from viewing other collaborations on
@@ -1387,7 +1389,7 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
 export function serializeUpdateFolderByIdRequestBodyParentField(
   val: UpdateFolderByIdRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['id']: val.id };
 }
 export function deserializeUpdateFolderByIdRequestBodyParentField(
   val: SerializedData,
@@ -1431,9 +1433,7 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
 export function serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
   val: UpdateFolderByIdRequestBodySharedLinkPermissionsField,
 ): SerializedData {
-  return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-  };
+  return { ['can_download']: val.canDownload };
 }
 export function deserializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
   val: SerializedData,
@@ -1462,15 +1462,17 @@ export function serializeUpdateFolderByIdRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateFolderByIdRequestBodySharedLinkAccessField(val.access),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateFolderByIdRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -1554,7 +1556,7 @@ export function serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessField(
             val.access,
           ),
@@ -1584,10 +1586,7 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
 export function serializeUpdateFolderByIdRequestBodyCollectionsField(
   val: UpdateFolderByIdRequestBodyCollectionsField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : val.type,
-  };
+  return { ['id']: val.id, ['type']: val.type };
 }
 export function deserializeUpdateFolderByIdRequestBodyCollectionsField(
   val: SerializedData,
@@ -1621,50 +1620,44 @@ export function serializeUpdateFolderByIdRequestBody(
   val: UpdateFolderByIdRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['description']: val.description,
     ['sync_state']:
       val.syncState == void 0
-        ? void 0
+        ? val.syncState
         : serializeUpdateFolderByIdRequestBodySyncStateField(val.syncState),
-    ['can_non_owners_invite']:
-      val.canNonOwnersInvite == void 0 ? void 0 : val.canNonOwnersInvite,
+    ['can_non_owners_invite']: val.canNonOwnersInvite,
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeUpdateFolderByIdRequestBodyParentField(val.parent),
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateFolderByIdRequestBodySharedLinkField(val.sharedLink),
     ['folder_upload_email']:
       val.folderUploadEmail == void 0
-        ? void 0
+        ? val.folderUploadEmail
         : serializeUpdateFolderByIdRequestBodyFolderUploadEmailField(
             val.folderUploadEmail,
           ),
     ['tags']:
       val.tags == void 0
-        ? void 0
+        ? val.tags
         : (val.tags.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
     ['is_collaboration_restricted_to_enterprise']:
-      val.isCollaborationRestrictedToEnterprise == void 0
-        ? void 0
-        : val.isCollaborationRestrictedToEnterprise,
+      val.isCollaborationRestrictedToEnterprise,
     ['collections']:
       val.collections == void 0
-        ? void 0
+        ? val.collections
         : (val.collections.map(function (
             item: UpdateFolderByIdRequestBodyCollectionsField,
           ): SerializedData {
             return serializeUpdateFolderByIdRequestBodyCollectionsField(item);
           }) as readonly any[]),
-    ['can_non_owners_view_collaborators']:
-      val.canNonOwnersViewCollaborators == void 0
-        ? void 0
-        : val.canNonOwnersViewCollaborators,
+    ['can_non_owners_view_collaborators']: val.canNonOwnersViewCollaborators,
   };
 }
 export function deserializeUpdateFolderByIdRequestBody(
@@ -1894,7 +1887,7 @@ export function serializeCreateFolderRequestBodyFolderUploadEmailField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeCreateFolderRequestBodyFolderUploadEmailAccessField(
             val.access,
           ),
@@ -1950,13 +1943,13 @@ export function serializeCreateFolderRequestBody(
     ['parent']: serializeCreateFolderRequestBodyParentField(val.parent),
     ['folder_upload_email']:
       val.folderUploadEmail == void 0
-        ? void 0
+        ? val.folderUploadEmail
         : serializeCreateFolderRequestBodyFolderUploadEmailField(
             val.folderUploadEmail,
           ),
     ['sync_state']:
       val.syncState == void 0
-        ? void 0
+        ? val.syncState
         : serializeCreateFolderRequestBodySyncStateField(val.syncState),
   };
 }
@@ -2039,7 +2032,7 @@ export function serializeCopyFolderRequestBody(
   val: CopyFolderRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['parent']: serializeCopyFolderRequestBodyParentField(val.parent),
   };
 }

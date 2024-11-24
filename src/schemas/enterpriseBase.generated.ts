@@ -33,9 +33,11 @@ export function deserializeEnterpriseBaseTypeField(
 }
 export function serializeEnterpriseBase(val: EnterpriseBase): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeEnterpriseBaseTypeField(val.type),
+      val.type == void 0
+        ? val.type
+        : serializeEnterpriseBaseTypeField(val.type),
   };
 }
 export function deserializeEnterpriseBase(val: SerializedData): EnterpriseBase {

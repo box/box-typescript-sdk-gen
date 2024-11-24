@@ -31,7 +31,7 @@ export function serializeIntegrationMappingSlackCreateRequest(
     ['box_item']: serializeIntegrationMappingBoxItemSlack(val.boxItem),
     ['options']:
       val.options == void 0
-        ? void 0
+        ? val.options
         : serializeIntegrationMappingSlackOptions(val.options),
   };
 }

@@ -60,16 +60,15 @@ export function serializeAiAsk(val: AiAsk): SerializedData {
     }) as readonly any[],
     ['dialogue_history']:
       val.dialogueHistory == void 0
-        ? void 0
+        ? val.dialogueHistory
         : (val.dialogueHistory.map(function (
             item: AiDialogueHistory,
           ): SerializedData {
             return serializeAiDialogueHistory(item);
           }) as readonly any[]),
-    ['include_citations']:
-      val.includeCitations == void 0 ? void 0 : val.includeCitations,
+    ['include_citations']: val.includeCitations,
     ['ai_agent']:
-      val.aiAgent == void 0 ? void 0 : serializeAiAgentAsk(val.aiAgent),
+      val.aiAgent == void 0 ? val.aiAgent : serializeAiAgentAsk(val.aiAgent),
   };
 }
 export function deserializeAiAsk(val: SerializedData): AiAsk {

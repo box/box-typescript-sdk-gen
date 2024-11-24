@@ -339,7 +339,7 @@ export interface CreateGroupMembershipRequestBody {
    * them accordingly, omitted permissions will be enabled by default. */
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
-  };
+  } | null;
   readonly rawData?: SerializedData;
 }
 export interface CreateGroupMembershipQueryParams {
@@ -434,7 +434,7 @@ export interface UpdateGroupMembershipByIdRequestBody {
    * them accordingly, omitted permissions will be enabled by default. */
   readonly configurablePermissions?: {
     readonly [key: string]: boolean;
-  };
+  } | null;
   readonly rawData?: SerializedData;
 }
 export interface UpdateGroupMembershipByIdQueryParams {
@@ -906,11 +906,11 @@ export function serializeCreateGroupMembershipRequestBody(
     ['group']: serializeCreateGroupMembershipRequestBodyGroupField(val.group),
     ['role']:
       val.role == void 0
-        ? void 0
+        ? val.role
         : serializeCreateGroupMembershipRequestBodyRoleField(val.role),
     ['configurable_permissions']:
       val.configurablePermissions == void 0
-        ? void 0
+        ? val.configurablePermissions
         : val.configurablePermissions,
   };
 }
@@ -1009,11 +1009,11 @@ export function serializeUpdateGroupMembershipByIdRequestBody(
   return {
     ['role']:
       val.role == void 0
-        ? void 0
+        ? val.role
         : serializeUpdateGroupMembershipByIdRequestBodyRoleField(val.role),
     ['configurable_permissions']:
       val.configurablePermissions == void 0
-        ? void 0
+        ? val.configurablePermissions
         : val.configurablePermissions,
   };
 }

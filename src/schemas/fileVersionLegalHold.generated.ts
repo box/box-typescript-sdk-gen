@@ -56,26 +56,28 @@ export function serializeFileVersionLegalHold(
   val: FileVersionLegalHold,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeFileVersionLegalHoldTypeField(val.type),
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
-    ['file']: val.file == void 0 ? void 0 : serializeFileMini(val.file),
+    ['file']: val.file == void 0 ? val.file : serializeFileMini(val.file),
     ['legal_hold_policy_assignments']:
       val.legalHoldPolicyAssignments == void 0
-        ? void 0
+        ? val.legalHoldPolicyAssignments
         : (val.legalHoldPolicyAssignments.map(function (
             item: LegalHoldPolicyAssignment,
           ): SerializedData {
             return serializeLegalHoldPolicyAssignment(item);
           }) as readonly any[]),
     ['deleted_at']:
-      val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
+      val.deletedAt == void 0
+        ? val.deletedAt
+        : serializeDateTime(val.deletedAt),
   };
 }
 export function deserializeFileVersionLegalHold(

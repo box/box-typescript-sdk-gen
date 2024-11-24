@@ -856,11 +856,8 @@ export function serializeAddClassificationRequestBodyDataStaticConfigClassificat
   val: AddClassificationRequestBodyDataStaticConfigClassificationField,
 ): SerializedData {
   return {
-    ['classificationDefinition']:
-      val.classificationDefinition == void 0
-        ? void 0
-        : val.classificationDefinition,
-    ['colorID']: val.colorId == void 0 ? void 0 : val.colorId,
+    ['classificationDefinition']: val.classificationDefinition,
+    ['colorID']: val.colorId,
   };
 }
 export function deserializeAddClassificationRequestBodyDataStaticConfigClassificationField(
@@ -904,7 +901,7 @@ export function serializeAddClassificationRequestBodyDataStaticConfigField(
   return {
     ['classification']:
       val.classification == void 0
-        ? void 0
+        ? val.classification
         : serializeAddClassificationRequestBodyDataStaticConfigClassificationField(
             val.classification,
           ),
@@ -938,7 +935,7 @@ export function serializeAddClassificationRequestBodyDataField(
     ['key']: val.key,
     ['staticConfig']:
       val.staticConfig == void 0
-        ? void 0
+        ? val.staticConfig
         : serializeAddClassificationRequestBodyDataStaticConfigField(
             val.staticConfig,
           ),
@@ -1033,11 +1030,11 @@ export function serializeAddClassificationRequestBodyInput(
   return {
     ['op']:
       val.op == void 0
-        ? void 0
+        ? val.op
         : serializeAddClassificationRequestBodyOpField(val.op),
     ['fieldKey']:
       val.fieldKey == void 0
-        ? void 0
+        ? val.fieldKey
         : serializeAddClassificationRequestBodyFieldKeyField(val.fieldKey),
     ['data']: serializeAddClassificationRequestBodyDataField(val.data),
   };
@@ -1106,11 +1103,8 @@ export function serializeUpdateClassificationRequestBodyDataStaticConfigClassifi
   val: UpdateClassificationRequestBodyDataStaticConfigClassificationField,
 ): SerializedData {
   return {
-    ['classificationDefinition']:
-      val.classificationDefinition == void 0
-        ? void 0
-        : val.classificationDefinition,
-    ['colorID']: val.colorId == void 0 ? void 0 : val.colorId,
+    ['classificationDefinition']: val.classificationDefinition,
+    ['colorID']: val.colorId,
   };
 }
 export function deserializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
@@ -1154,7 +1148,7 @@ export function serializeUpdateClassificationRequestBodyDataStaticConfigField(
   return {
     ['classification']:
       val.classification == void 0
-        ? void 0
+        ? val.classification
         : serializeUpdateClassificationRequestBodyDataStaticConfigClassificationField(
             val.classification,
           ),
@@ -1188,7 +1182,7 @@ export function serializeUpdateClassificationRequestBodyDataField(
     ['key']: val.key,
     ['staticConfig']:
       val.staticConfig == void 0
-        ? void 0
+        ? val.staticConfig
         : serializeUpdateClassificationRequestBodyDataStaticConfigField(
             val.staticConfig,
           ),
@@ -1298,11 +1292,11 @@ export function serializeUpdateClassificationRequestBodyInput(
   return {
     ['op']:
       val.op == void 0
-        ? void 0
+        ? val.op
         : serializeUpdateClassificationRequestBodyOpField(val.op),
     ['fieldKey']:
       val.fieldKey == void 0
-        ? void 0
+        ? val.fieldKey
         : serializeUpdateClassificationRequestBodyFieldKeyField(val.fieldKey),
     ['enumOptionKey']: val.enumOptionKey,
     ['data']: serializeUpdateClassificationRequestBodyDataField(val.data),
@@ -1452,11 +1446,8 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsSta
   val: CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField,
 ): SerializedData {
   return {
-    ['classificationDefinition']:
-      val.classificationDefinition == void 0
-        ? void 0
-        : val.classificationDefinition,
-    ['colorID']: val.colorId == void 0 ? void 0 : val.colorId,
+    ['classificationDefinition']: val.classificationDefinition,
+    ['colorID']: val.colorId,
   };
 }
 export function deserializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
@@ -1500,7 +1491,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsSta
   return {
     ['classification']:
       val.classification == void 0
-        ? void 0
+        ? val.classification
         : serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField(
             val.classification,
           ),
@@ -1534,7 +1525,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsOptionsFie
     ['key']: val.key,
     ['staticConfig']:
       val.staticConfig == void 0
-        ? void 0
+        ? val.staticConfig
         : serializeCreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigField(
             val.staticConfig,
           ),
@@ -1589,7 +1580,7 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsField(
       serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
         val.displayName,
       ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['hidden']: val.hidden,
     ['options']: val.options.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsOptionsField,
     ): SerializedData {
@@ -1678,23 +1669,23 @@ export function serializeCreateClassificationTemplateRequestBodyFieldsFieldInput
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateClassificationTemplateRequestBodyFieldsTypeField(
             val.type,
           ),
     ['key']:
       val.key == void 0
-        ? void 0
+        ? val.key
         : serializeCreateClassificationTemplateRequestBodyFieldsKeyField(
             val.key,
           ),
     ['displayName']:
       val.displayName == void 0
-        ? void 0
+        ? val.displayName
         : serializeCreateClassificationTemplateRequestBodyFieldsDisplayNameField(
             val.displayName,
           ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['hidden']: val.hidden,
     ['options']: val.options.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsOptionsField,
     ): SerializedData {
@@ -1788,11 +1779,8 @@ export function serializeCreateClassificationTemplateRequestBody(
       serializeCreateClassificationTemplateRequestBodyDisplayNameField(
         val.displayName,
       ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['hidden']: val.hidden,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsField,
     ): SerializedData {
@@ -1892,25 +1880,22 @@ export function serializeCreateClassificationTemplateRequestBodyInput(
   return {
     ['scope']:
       val.scope == void 0
-        ? void 0
+        ? val.scope
         : serializeCreateClassificationTemplateRequestBodyScopeField(val.scope),
     ['templateKey']:
       val.templateKey == void 0
-        ? void 0
+        ? val.templateKey
         : serializeCreateClassificationTemplateRequestBodyTemplateKeyField(
             val.templateKey,
           ),
     ['displayName']:
       val.displayName == void 0
-        ? void 0
+        ? val.displayName
         : serializeCreateClassificationTemplateRequestBodyDisplayNameField(
             val.displayName,
           ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['hidden']: val.hidden,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: CreateClassificationTemplateRequestBodyFieldsField,
     ): SerializedData {

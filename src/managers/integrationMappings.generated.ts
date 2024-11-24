@@ -503,11 +503,11 @@ export function serializeUpdateSlackIntegrationMappingByIdRequestBody(
   return {
     ['box_item']:
       val.boxItem == void 0
-        ? void 0
+        ? val.boxItem
         : serializeIntegrationMappingBoxItemSlack(val.boxItem),
     ['options']:
       val.options == void 0
-        ? void 0
+        ? val.options
         : serializeIntegrationMappingSlackOptions(val.options),
   };
 }

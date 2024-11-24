@@ -620,28 +620,34 @@ export function deserializeEventAdditionalDetailsField(
 }
 export function serializeEvent(val: Event): SerializedData {
   return {
-    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['type']: val.type,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['recorded_at']:
-      val.recordedAt == void 0 ? void 0 : serializeDateTime(val.recordedAt),
-    ['event_id']: val.eventId == void 0 ? void 0 : val.eventId,
+      val.recordedAt == void 0
+        ? val.recordedAt
+        : serializeDateTime(val.recordedAt),
+    ['event_id']: val.eventId,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['event_type']:
       val.eventType == void 0
-        ? void 0
+        ? val.eventType
         : serializeEventEventTypeField(val.eventType),
-    ['session_id']: val.sessionId == void 0 ? void 0 : val.sessionId,
+    ['session_id']: val.sessionId,
     ['source']:
       val.source == void 0
-        ? void 0
+        ? val.source
         : serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
             val.source,
           ),
     ['additional_details']:
       val.additionalDetails == void 0
-        ? void 0
+        ? val.additionalDetails
         : serializeEventAdditionalDetailsField(val.additionalDetails),
   };
 }

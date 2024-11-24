@@ -39,7 +39,7 @@ export interface EventSource {
    * triggered the event. This field will not appear if the item does not
    * have a classification set. */
   readonly classification?: EventSourceClassificationField;
-  readonly parent?: FolderMini;
+  readonly parent?: FolderMini | null;
   readonly ownedBy?: UserMini;
   readonly rawData?: SerializedData;
 }
@@ -64,7 +64,7 @@ export function deserializeEventSourceItemTypeField(
 export function serializeEventSourceClassificationField(
   val: EventSourceClassificationField,
 ): SerializedData {
-  return { ['name']: val.name == void 0 ? void 0 : val.name };
+  return { ['name']: val.name };
 }
 export function deserializeEventSourceClassificationField(
   val: SerializedData,
@@ -90,11 +90,12 @@ export function serializeEventSource(val: EventSource): SerializedData {
     ['item_name']: val.itemName,
     ['classification']:
       val.classification == void 0
-        ? void 0
+        ? val.classification
         : serializeEventSourceClassificationField(val.classification),
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['owned_by']:
-      val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
+      val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
   };
 }
 export function deserializeEventSource(val: SerializedData): EventSource {

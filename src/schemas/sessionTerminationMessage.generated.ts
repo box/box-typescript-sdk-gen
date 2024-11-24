@@ -15,7 +15,7 @@ export interface SessionTerminationMessage {
 export function serializeSessionTerminationMessage(
   val: SessionTerminationMessage,
 ): SerializedData {
-  return { ['message']: val.message == void 0 ? void 0 : val.message };
+  return { ['message']: val.message };
 }
 export function deserializeSessionTerminationMessage(
   val: SerializedData,

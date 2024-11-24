@@ -27,9 +27,13 @@ export function serializeWatermarkWatermarkField(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeWatermarkWatermarkField(
@@ -65,7 +69,7 @@ export function serializeWatermark(val: Watermark): SerializedData {
   return {
     ['watermark']:
       val.watermark == void 0
-        ? void 0
+        ? val.watermark
         : serializeWatermarkWatermarkField(val.watermark),
   };
 }

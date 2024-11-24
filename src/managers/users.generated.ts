@@ -462,7 +462,7 @@ export interface UpdateUserByIdRequestBody {
   /**
    * Set this to `null` to roll the user out of the enterprise
    * and make them a free user */
-  readonly enterprise?: string;
+  readonly enterprise?: string | null;
   /**
    * Whether the user should receive an email when they
    * are rolled out of an enterprise */
@@ -535,7 +535,7 @@ export interface UpdateUserByIdRequestBody {
    * to the primary email address.
    *
    * Set this value to `null` to remove the notification email. */
-  readonly notificationEmail?: UpdateUserByIdRequestBodyNotificationEmailField;
+  readonly notificationEmail?: UpdateUserByIdRequestBodyNotificationEmailField | null;
   /**
    * An external identifier for an app user, which can be used to look
    * up the user. This can be used to tie user IDs from external
@@ -1031,47 +1031,34 @@ export function serializeCreateUserRequestBody(
 ): SerializedData {
   return {
     ['name']: val.name,
-    ['login']: val.login == void 0 ? void 0 : val.login,
-    ['is_platform_access_only']:
-      val.isPlatformAccessOnly == void 0 ? void 0 : val.isPlatformAccessOnly,
+    ['login']: val.login,
+    ['is_platform_access_only']: val.isPlatformAccessOnly,
     ['role']:
       val.role == void 0
-        ? void 0
+        ? val.role
         : serializeCreateUserRequestBodyRoleField(val.role),
-    ['language']: val.language == void 0 ? void 0 : val.language,
-    ['is_sync_enabled']:
-      val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled,
-    ['job_title']: val.jobTitle == void 0 ? void 0 : val.jobTitle,
-    ['phone']: val.phone == void 0 ? void 0 : val.phone,
-    ['address']: val.address == void 0 ? void 0 : val.address,
-    ['space_amount']: val.spaceAmount == void 0 ? void 0 : val.spaceAmount,
+    ['language']: val.language,
+    ['is_sync_enabled']: val.isSyncEnabled,
+    ['job_title']: val.jobTitle,
+    ['phone']: val.phone,
+    ['address']: val.address,
+    ['space_amount']: val.spaceAmount,
     ['tracking_codes']:
       val.trackingCodes == void 0
-        ? void 0
+        ? val.trackingCodes
         : (val.trackingCodes.map(function (item: TrackingCode): SerializedData {
             return serializeTrackingCode(item);
           }) as readonly any[]),
-    ['can_see_managed_users']:
-      val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers,
-    ['timezone']: val.timezone == void 0 ? void 0 : val.timezone,
-    ['is_external_collab_restricted']:
-      val.isExternalCollabRestricted == void 0
-        ? void 0
-        : val.isExternalCollabRestricted,
-    ['is_exempt_from_device_limits']:
-      val.isExemptFromDeviceLimits == void 0
-        ? void 0
-        : val.isExemptFromDeviceLimits,
-    ['is_exempt_from_login_verification']:
-      val.isExemptFromLoginVerification == void 0
-        ? void 0
-        : val.isExemptFromLoginVerification,
+    ['can_see_managed_users']: val.canSeeManagedUsers,
+    ['timezone']: val.timezone,
+    ['is_external_collab_restricted']: val.isExternalCollabRestricted,
+    ['is_exempt_from_device_limits']: val.isExemptFromDeviceLimits,
+    ['is_exempt_from_login_verification']: val.isExemptFromLoginVerification,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeCreateUserRequestBodyStatusField(val.status),
-    ['external_app_user_id']:
-      val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
+    ['external_app_user_id']: val.externalAppUserId,
   };
 }
 export function deserializeCreateUserRequestBody(
@@ -1314,7 +1301,7 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
 export function serializeUpdateUserByIdRequestBodyNotificationEmailField(
   val: UpdateUserByIdRequestBodyNotificationEmailField,
 ): SerializedData {
-  return { ['email']: val.email == void 0 ? void 0 : val.email };
+  return { ['email']: val.email };
 }
 export function deserializeUpdateUserByIdRequestBodyNotificationEmailField(
   val: SerializedData,
@@ -1340,58 +1327,43 @@ export function serializeUpdateUserByIdRequestBody(
   val: UpdateUserByIdRequestBody,
 ): SerializedData {
   return {
-    ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
-    ['notify']: val.notify == void 0 ? void 0 : val.notify,
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['login']: val.login == void 0 ? void 0 : val.login,
+    ['enterprise']: val.enterprise,
+    ['notify']: val.notify,
+    ['name']: val.name,
+    ['login']: val.login,
     ['role']:
       val.role == void 0
-        ? void 0
+        ? val.role
         : serializeUpdateUserByIdRequestBodyRoleField(val.role),
-    ['language']: val.language == void 0 ? void 0 : val.language,
-    ['is_sync_enabled']:
-      val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled,
-    ['job_title']: val.jobTitle == void 0 ? void 0 : val.jobTitle,
-    ['phone']: val.phone == void 0 ? void 0 : val.phone,
-    ['address']: val.address == void 0 ? void 0 : val.address,
+    ['language']: val.language,
+    ['is_sync_enabled']: val.isSyncEnabled,
+    ['job_title']: val.jobTitle,
+    ['phone']: val.phone,
+    ['address']: val.address,
     ['tracking_codes']:
       val.trackingCodes == void 0
-        ? void 0
+        ? val.trackingCodes
         : (val.trackingCodes.map(function (item: TrackingCode): SerializedData {
             return serializeTrackingCode(item);
           }) as readonly any[]),
-    ['can_see_managed_users']:
-      val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers,
-    ['timezone']: val.timezone == void 0 ? void 0 : val.timezone,
-    ['is_external_collab_restricted']:
-      val.isExternalCollabRestricted == void 0
-        ? void 0
-        : val.isExternalCollabRestricted,
-    ['is_exempt_from_device_limits']:
-      val.isExemptFromDeviceLimits == void 0
-        ? void 0
-        : val.isExemptFromDeviceLimits,
-    ['is_exempt_from_login_verification']:
-      val.isExemptFromLoginVerification == void 0
-        ? void 0
-        : val.isExemptFromLoginVerification,
-    ['is_password_reset_required']:
-      val.isPasswordResetRequired == void 0
-        ? void 0
-        : val.isPasswordResetRequired,
+    ['can_see_managed_users']: val.canSeeManagedUsers,
+    ['timezone']: val.timezone,
+    ['is_external_collab_restricted']: val.isExternalCollabRestricted,
+    ['is_exempt_from_device_limits']: val.isExemptFromDeviceLimits,
+    ['is_exempt_from_login_verification']: val.isExemptFromLoginVerification,
+    ['is_password_reset_required']: val.isPasswordResetRequired,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeUpdateUserByIdRequestBodyStatusField(val.status),
-    ['space_amount']: val.spaceAmount == void 0 ? void 0 : val.spaceAmount,
+    ['space_amount']: val.spaceAmount,
     ['notification_email']:
       val.notificationEmail == void 0
-        ? void 0
+        ? val.notificationEmail
         : serializeUpdateUserByIdRequestBodyNotificationEmailField(
             val.notificationEmail,
           ),
-    ['external_app_user_id']:
-      val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
+    ['external_app_user_id']: val.externalAppUserId,
   };
 }
 export function deserializeUpdateUserByIdRequestBody(

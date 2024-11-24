@@ -341,11 +341,8 @@ export function serializeClassificationTemplateFieldsOptionsStaticConfigClassifi
   val: ClassificationTemplateFieldsOptionsStaticConfigClassificationField,
 ): SerializedData {
   return {
-    ['classificationDefinition']:
-      val.classificationDefinition == void 0
-        ? void 0
-        : val.classificationDefinition,
-    ['colorID']: val.colorId == void 0 ? void 0 : val.colorId,
+    ['classificationDefinition']: val.classificationDefinition,
+    ['colorID']: val.colorId,
   };
 }
 export function deserializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
@@ -389,7 +386,7 @@ export function serializeClassificationTemplateFieldsOptionsStaticConfigField(
   return {
     ['classification']:
       val.classification == void 0
-        ? void 0
+        ? val.classification
         : serializeClassificationTemplateFieldsOptionsStaticConfigClassificationField(
             val.classification,
           ),
@@ -424,7 +421,7 @@ export function serializeClassificationTemplateFieldsOptionsField(
     ['key']: val.key,
     ['staticConfig']:
       val.staticConfig == void 0
-        ? void 0
+        ? val.staticConfig
         : serializeClassificationTemplateFieldsOptionsStaticConfigField(
             val.staticConfig,
           ),
@@ -488,7 +485,7 @@ export function serializeClassificationTemplateFieldsField(
     ['displayName']: serializeClassificationTemplateFieldsDisplayNameField(
       val.displayName,
     ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['hidden']: val.hidden,
     ['options']: val.options.map(function (
       item: ClassificationTemplateFieldsOptionsField,
     ): SerializedData {
@@ -586,19 +583,19 @@ export function serializeClassificationTemplateFieldsFieldInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeClassificationTemplateFieldsTypeField(val.type),
     ['key']:
       val.key == void 0
-        ? void 0
+        ? val.key
         : serializeClassificationTemplateFieldsKeyField(val.key),
     ['displayName']:
       val.displayName == void 0
-        ? void 0
+        ? val.displayName
         : serializeClassificationTemplateFieldsDisplayNameField(
             val.displayName,
           ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['hidden']: val.hidden,
     ['options']: val.options.map(function (
       item: ClassificationTemplateFieldsOptionsField,
     ): SerializedData {
@@ -692,11 +689,8 @@ export function serializeClassificationTemplate(
     ['displayName']: serializeClassificationTemplateDisplayNameField(
       val.displayName,
     ),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['hidden']: val.hidden,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: ClassificationTemplateFieldsField,
     ): SerializedData {
@@ -816,22 +810,19 @@ export function serializeClassificationTemplateInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeClassificationTemplateTypeField(val.type),
     ['scope']: val.scope,
     ['templateKey']:
       val.templateKey == void 0
-        ? void 0
+        ? val.templateKey
         : serializeClassificationTemplateTemplateKeyField(val.templateKey),
     ['displayName']:
       val.displayName == void 0
-        ? void 0
+        ? val.displayName
         : serializeClassificationTemplateDisplayNameField(val.displayName),
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['hidden']: val.hidden,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
     ['fields']: val.fields.map(function (
       item: ClassificationTemplateFieldsField,
     ): SerializedData {

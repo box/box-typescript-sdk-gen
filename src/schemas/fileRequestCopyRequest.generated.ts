@@ -52,7 +52,7 @@ export function serializeFileRequestCopyRequestFolderField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeFileRequestCopyRequestFolderTypeField(val.type),
     ['id']: val.id,
   };

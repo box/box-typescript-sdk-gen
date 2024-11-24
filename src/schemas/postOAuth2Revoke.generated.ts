@@ -24,9 +24,9 @@ export function serializePostOAuth2Revoke(
   val: PostOAuth2Revoke,
 ): SerializedData {
   return {
-    ['client_id']: val.clientId == void 0 ? void 0 : val.clientId,
-    ['client_secret']: val.clientSecret == void 0 ? void 0 : val.clientSecret,
-    ['token']: val.token == void 0 ? void 0 : val.token,
+    ['client_id']: val.clientId,
+    ['client_secret']: val.clientSecret,
+    ['token']: val.token,
   };
 }
 export function deserializePostOAuth2Revoke(

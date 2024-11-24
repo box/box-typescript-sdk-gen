@@ -28,10 +28,10 @@ export type SignRequestCreateRequestSignatureColorField =
 export type SignRequestCreateRequest = SignRequestBase & {
   /**
    * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
-  readonly sourceFiles?: readonly FileBase[];
+  readonly sourceFiles?: readonly FileBase[] | null;
   /**
    * Force a specific color for the signature (blue, black, or red) */
-  readonly signatureColor?: SignRequestCreateRequestSignatureColorField;
+  readonly signatureColor?: SignRequestCreateRequestSignatureColorField | null;
   /**
    * Array of signers for the signature request. 35 is the
    * max number of signers permitted.
@@ -79,13 +79,13 @@ export function serializeSignRequestCreateRequest(
     ...{
       ['source_files']:
         val.sourceFiles == void 0
-          ? void 0
+          ? val.sourceFiles
           : (val.sourceFiles.map(function (item: FileBase): SerializedData {
               return serializeFileBase(item);
             }) as readonly any[]),
       ['signature_color']:
         val.signatureColor == void 0
-          ? void 0
+          ? val.signatureColor
           : serializeSignRequestCreateRequestSignatureColorField(
               val.signatureColor,
             ),
@@ -96,7 +96,7 @@ export function serializeSignRequestCreateRequest(
       }) as readonly any[],
       ['parent_folder']:
         val.parentFolder == void 0
-          ? void 0
+          ? val.parentFolder
           : serializeFolderMini(val.parentFolder),
     },
   };

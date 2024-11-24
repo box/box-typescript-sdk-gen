@@ -28,8 +28,8 @@ export function serializeMetadataFieldFilterDateRange(
   val: MetadataFieldFilterDateRange,
 ): SerializedData {
   return {
-    ['lt']: val.lt == void 0 ? void 0 : serializeDateTime(val.lt),
-    ['gt']: val.gt == void 0 ? void 0 : serializeDateTime(val.gt),
+    ['lt']: val.lt == void 0 ? val.lt : serializeDateTime(val.lt),
+    ['gt']: val.gt == void 0 ? val.gt : serializeDateTime(val.gt),
   };
 }
 export function deserializeMetadataFieldFilterDateRange(

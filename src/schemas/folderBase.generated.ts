@@ -21,7 +21,7 @@ export class FolderBase {
    * The HTTP `etag` of this folder. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the folder if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `folder` */
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
@@ -57,7 +57,7 @@ export interface FolderBaseInput {
    * The HTTP `etag` of this folder. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the folder if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `folder` */
   readonly type?: FolderBaseTypeField;
@@ -79,7 +79,7 @@ export function deserializeFolderBaseTypeField(
 export function serializeFolderBase(val: FolderBase): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']: serializeFolderBaseTypeField(val.type),
   };
 }
@@ -115,9 +115,9 @@ export function deserializeFolderBase(val: SerializedData): FolderBase {
 export function serializeFolderBaseInput(val: FolderBaseInput): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']:
-      val.type == void 0 ? void 0 : serializeFolderBaseTypeField(val.type),
+      val.type == void 0 ? val.type : serializeFolderBaseTypeField(val.type),
   };
 }
 export function deserializeFolderBaseInput(

@@ -681,7 +681,7 @@ export interface CommentsManagerInput {
 export function serializeUpdateCommentByIdRequestBody(
   val: UpdateCommentByIdRequestBody,
 ): SerializedData {
-  return { ['message']: val.message == void 0 ? void 0 : val.message };
+  return { ['message']: val.message };
 }
 export function deserializeUpdateCommentByIdRequestBody(
   val: SerializedData,
@@ -763,8 +763,7 @@ export function serializeCreateCommentRequestBody(
 ): SerializedData {
   return {
     ['message']: val.message,
-    ['tagged_message']:
-      val.taggedMessage == void 0 ? void 0 : val.taggedMessage,
+    ['tagged_message']: val.taggedMessage,
     ['item']: serializeCreateCommentRequestBodyItemField(val.item),
   };
 }

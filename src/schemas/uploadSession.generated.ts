@@ -80,12 +80,12 @@ export function serializeUploadSessionSessionEndpointsField(
   val: UploadSessionSessionEndpointsField,
 ): SerializedData {
   return {
-    ['upload_part']: val.uploadPart == void 0 ? void 0 : val.uploadPart,
-    ['commit']: val.commit == void 0 ? void 0 : val.commit,
-    ['abort']: val.abort == void 0 ? void 0 : val.abort,
-    ['list_parts']: val.listParts == void 0 ? void 0 : val.listParts,
-    ['status']: val.status == void 0 ? void 0 : val.status,
-    ['log_event']: val.logEvent == void 0 ? void 0 : val.logEvent,
+    ['upload_part']: val.uploadPart,
+    ['commit']: val.commit,
+    ['abort']: val.abort,
+    ['list_parts']: val.listParts,
+    ['status']: val.status,
+    ['log_event']: val.logEvent,
   };
 }
 export function deserializeUploadSessionSessionEndpointsField(
@@ -152,20 +152,19 @@ export function deserializeUploadSessionSessionEndpointsField(
 }
 export function serializeUploadSession(val: UploadSession): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeUploadSessionTypeField(val.type),
+      val.type == void 0 ? val.type : serializeUploadSessionTypeField(val.type),
     ['session_expires_at']:
       val.sessionExpiresAt == void 0
-        ? void 0
+        ? val.sessionExpiresAt
         : serializeDateTime(val.sessionExpiresAt),
-    ['part_size']: val.partSize == void 0 ? void 0 : val.partSize,
-    ['total_parts']: val.totalParts == void 0 ? void 0 : val.totalParts,
-    ['num_parts_processed']:
-      val.numPartsProcessed == void 0 ? void 0 : val.numPartsProcessed,
+    ['part_size']: val.partSize,
+    ['total_parts']: val.totalParts,
+    ['num_parts_processed']: val.numPartsProcessed,
     ['session_endpoints']:
       val.sessionEndpoints == void 0
-        ? void 0
+        ? val.sessionEndpoints
         : serializeUploadSessionSessionEndpointsField(val.sessionEndpoints),
   };
 }

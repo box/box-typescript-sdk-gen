@@ -53,12 +53,11 @@ export function serializeRetentionPolicyMini(
   return {
     ...base,
     ...{
-      ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
-      ['retention_length']:
-        val.retentionLength == void 0 ? void 0 : val.retentionLength,
+      ['policy_name']: val.policyName,
+      ['retention_length']: val.retentionLength,
       ['disposition_action']:
         val.dispositionAction == void 0
-          ? void 0
+          ? val.dispositionAction
           : serializeRetentionPolicyMiniDispositionActionField(
               val.dispositionAction,
             ),

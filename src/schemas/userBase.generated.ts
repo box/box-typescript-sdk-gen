@@ -81,7 +81,7 @@ export function serializeUserBaseInput(val: UserBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeUserBaseTypeField(val.type),
+      val.type == void 0 ? val.type : serializeUserBaseTypeField(val.type),
   };
 }
 export function deserializeUserBaseInput(val: SerializedData): UserBaseInput {

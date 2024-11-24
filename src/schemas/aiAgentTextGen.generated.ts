@@ -59,7 +59,7 @@ export function serializeAiAgentTextGen(val: AiAgentTextGen): SerializedData {
     ['type']: serializeAiAgentTextGenTypeField(val.type),
     ['basic_gen']:
       val.basicGen == void 0
-        ? void 0
+        ? val.basicGen
         : serializeAiAgentBasicGenTool(val.basicGen),
   };
 }
@@ -86,10 +86,12 @@ export function serializeAiAgentTextGenInput(
 ): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeAiAgentTextGenTypeField(val.type),
+      val.type == void 0
+        ? val.type
+        : serializeAiAgentTextGenTypeField(val.type),
     ['basic_gen']:
       val.basicGen == void 0
-        ? void 0
+        ? val.basicGen
         : serializeAiAgentBasicGenTool(val.basicGen),
   };
 }

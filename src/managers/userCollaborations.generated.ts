@@ -694,11 +694,13 @@ export function serializeUpdateCollaborationByIdRequestBody(
     ['role']: serializeUpdateCollaborationByIdRequestBodyRoleField(val.role),
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeUpdateCollaborationByIdRequestBodyStatusField(val.status),
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
-    ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
+    ['can_view_path']: val.canViewPath,
   };
 }
 export function deserializeUpdateCollaborationByIdRequestBody(
@@ -768,9 +770,9 @@ export function serializeCreateCollaborationRequestBodyItemField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateCollaborationRequestBodyItemTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeCreateCollaborationRequestBodyItemField(
@@ -823,8 +825,8 @@ export function serializeCreateCollaborationRequestBodyAccessibleByField(
     ['type']: serializeCreateCollaborationRequestBodyAccessibleByTypeField(
       val.type,
     ),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['login']: val.login == void 0 ? void 0 : val.login,
+    ['id']: val.id,
+    ['login']: val.login,
   };
 }
 export function deserializeCreateCollaborationRequestBodyAccessibleByField(
@@ -906,10 +908,12 @@ export function serializeCreateCollaborationRequestBody(
       val.accessibleBy,
     ),
     ['role']: serializeCreateCollaborationRequestBodyRoleField(val.role),
-    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
-    ['can_view_path']: val.canViewPath == void 0 ? void 0 : val.canViewPath,
+    ['is_access_only']: val.isAccessOnly,
+    ['can_view_path']: val.canViewPath,
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
   };
 }
 export function deserializeCreateCollaborationRequestBody(

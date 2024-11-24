@@ -39,12 +39,12 @@ export function serializeCollaborationsOffsetPaginated(
   val: CollaborationsOffsetPaginated,
 ): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: Collaboration): SerializedData {
             return serializeCollaboration(item);
           }) as readonly any[]),

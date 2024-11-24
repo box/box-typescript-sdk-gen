@@ -179,13 +179,13 @@ export function serializeSkillInvocationSkillField(
   val: SkillInvocationSkillField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeSkillInvocationSkillTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['api_key']: val.apiKey == void 0 ? void 0 : val.apiKey,
+    ['name']: val.name,
+    ['api_key']: val.apiKey,
   };
 }
 export function deserializeSkillInvocationSkillField(
@@ -247,13 +247,13 @@ export function serializeSkillInvocationTokenReadField(
   val: SkillInvocationTokenReadField,
 ): SerializedData {
   return {
-    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
-    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
+    ['access_token']: val.accessToken,
+    ['expires_in']: val.expiresIn,
     ['token_type']:
       val.tokenType == void 0
-        ? void 0
+        ? val.tokenType
         : serializeSkillInvocationTokenReadTokenTypeField(val.tokenType),
-    ['restricted_to']: val.restrictedTo == void 0 ? void 0 : val.restrictedTo,
+    ['restricted_to']: val.restrictedTo,
   };
 }
 export function deserializeSkillInvocationTokenReadField(
@@ -318,13 +318,13 @@ export function serializeSkillInvocationTokenWriteField(
   val: SkillInvocationTokenWriteField,
 ): SerializedData {
   return {
-    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
-    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
+    ['access_token']: val.accessToken,
+    ['expires_in']: val.expiresIn,
     ['token_type']:
       val.tokenType == void 0
-        ? void 0
+        ? val.tokenType
         : serializeSkillInvocationTokenWriteTokenTypeField(val.tokenType),
-    ['restricted_to']: val.restrictedTo == void 0 ? void 0 : val.restrictedTo,
+    ['restricted_to']: val.restrictedTo,
   };
 }
 export function deserializeSkillInvocationTokenWriteField(
@@ -376,11 +376,11 @@ export function serializeSkillInvocationTokenField(
   return {
     ['read']:
       val.read == void 0
-        ? void 0
+        ? val.read
         : serializeSkillInvocationTokenReadField(val.read),
     ['write']:
       val.write == void 0
-        ? void 0
+        ? val.write
         : serializeSkillInvocationTokenWriteField(val.write),
   };
 }
@@ -435,12 +435,11 @@ export function serializeSkillInvocationStatusField(
   return {
     ['state']:
       val.state == void 0
-        ? void 0
+        ? val.state
         : serializeSkillInvocationStatusStateField(val.state),
-    ['message']: val.message == void 0 ? void 0 : val.message,
-    ['error_code']: val.errorCode == void 0 ? void 0 : val.errorCode,
-    ['additional_info']:
-      val.additionalInfo == void 0 ? void 0 : val.additionalInfo,
+    ['message']: val.message,
+    ['error_code']: val.errorCode,
+    ['additional_info']: val.additionalInfo,
   };
 }
 export function deserializeSkillInvocationStatusField(
@@ -505,12 +504,12 @@ export function serializeSkillInvocationEnterpriseField(
   val: SkillInvocationEnterpriseField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeSkillInvocationEnterpriseTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
   };
 }
 export function deserializeSkillInvocationEnterpriseField(
@@ -548,30 +547,34 @@ export function deserializeSkillInvocationEnterpriseField(
 export function serializeSkillInvocation(val: SkillInvocation): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeSkillInvocationTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+      val.type == void 0
+        ? val.type
+        : serializeSkillInvocationTypeField(val.type),
+    ['id']: val.id,
     ['skill']:
       val.skill == void 0
-        ? void 0
+        ? val.skill
         : serializeSkillInvocationSkillField(val.skill),
     ['token']:
       val.token == void 0
-        ? void 0
+        ? val.token
         : serializeSkillInvocationTokenField(val.token),
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeSkillInvocationStatusField(val.status),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
-    ['trigger']: val.trigger == void 0 ? void 0 : val.trigger,
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
+    ['trigger']: val.trigger,
     ['enterprise']:
       val.enterprise == void 0
-        ? void 0
+        ? val.enterprise
         : serializeSkillInvocationEnterpriseField(val.enterprise),
     ['source']:
-      val.source == void 0 ? void 0 : serializeFileOrFolder(val.source),
-    ['event']: val.event == void 0 ? void 0 : serializeEvent(val.event),
+      val.source == void 0 ? val.source : serializeFileOrFolder(val.source),
+    ['event']: val.event == void 0 ? val.event : serializeEvent(val.event),
   };
 }
 export function deserializeSkillInvocation(

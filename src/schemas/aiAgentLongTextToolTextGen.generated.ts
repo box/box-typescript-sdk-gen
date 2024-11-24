@@ -37,11 +37,7 @@ export type AiAgentLongTextToolTextGen = AiAgentBasicTextToolTextGen & {
 export function serializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
   val: AiAgentLongTextToolTextGenEmbeddingsStrategyField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['num_tokens_per_chunk']:
-      val.numTokensPerChunk == void 0 ? void 0 : val.numTokensPerChunk,
-  };
+  return { ['id']: val.id, ['num_tokens_per_chunk']: val.numTokensPerChunk };
 }
 export function deserializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
   val: SerializedData,
@@ -79,10 +75,10 @@ export function serializeAiAgentLongTextToolTextGenEmbeddingsField(
   val: AiAgentLongTextToolTextGenEmbeddingsField,
 ): SerializedData {
   return {
-    ['model']: val.model == void 0 ? void 0 : val.model,
+    ['model']: val.model,
     ['strategy']:
       val.strategy == void 0
-        ? void 0
+        ? val.strategy
         : serializeAiAgentLongTextToolTextGenEmbeddingsStrategyField(
             val.strategy,
           ),
@@ -131,7 +127,7 @@ export function serializeAiAgentLongTextToolTextGen(
     ...{
       ['embeddings']:
         val.embeddings == void 0
-          ? void 0
+          ? val.embeddings
           : serializeAiAgentLongTextToolTextGenEmbeddingsField(val.embeddings),
     },
   };

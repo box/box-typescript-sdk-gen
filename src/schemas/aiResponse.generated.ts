@@ -25,8 +25,7 @@ export function serializeAiResponse(val: AiResponse): SerializedData {
   return {
     ['answer']: val.answer,
     ['created_at']: serializeDateTime(val.createdAt),
-    ['completion_reason']:
-      val.completionReason == void 0 ? void 0 : val.completionReason,
+    ['completion_reason']: val.completionReason,
   };
 }
 export function deserializeAiResponse(val: SerializedData): AiResponse {

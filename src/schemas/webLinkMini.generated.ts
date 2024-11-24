@@ -28,9 +28,9 @@ export function serializeWebLinkMini(val: WebLinkMini): SerializedData {
   return {
     ...base,
     ...{
-      ['url']: val.url == void 0 ? void 0 : val.url,
-      ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-      ['name']: val.name == void 0 ? void 0 : val.name,
+      ['url']: val.url,
+      ['sequence_id']: val.sequenceId,
+      ['name']: val.name,
     },
   };
 }

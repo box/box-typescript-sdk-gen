@@ -407,7 +407,7 @@ export interface TrashedWebLinksManagerInput {
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: RestoreWeblinkFromTrashRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['id']: val.id };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: SerializedData,
@@ -431,10 +431,10 @@ export function serializeRestoreWeblinkFromTrashRequestBody(
   val: RestoreWeblinkFromTrashRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeRestoreWeblinkFromTrashRequestBodyParentField(val.parent),
   };
 }

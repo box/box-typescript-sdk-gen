@@ -66,7 +66,7 @@ export function serializeWebLinkBase(val: WebLinkBase): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeWebLinkBaseTypeField(val.type),
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
   };
 }
 export function deserializeWebLinkBase(val: SerializedData): WebLinkBase {
@@ -104,8 +104,8 @@ export function serializeWebLinkBaseInput(
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeWebLinkBaseTypeField(val.type),
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+      val.type == void 0 ? val.type : serializeWebLinkBaseTypeField(val.type),
+    ['etag']: val.etag,
   };
 }
 export function deserializeWebLinkBaseInput(

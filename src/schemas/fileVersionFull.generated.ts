@@ -35,13 +35,7 @@ export function serializeFileVersionFull(val: FileVersionFull): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionFull"' });
   }
-  return {
-    ...base,
-    ...{
-      ['version_number']:
-        val.versionNumber == void 0 ? void 0 : val.versionNumber,
-    },
-  };
+  return { ...base, ...{ ['version_number']: val.versionNumber } };
 }
 export function deserializeFileVersionFull(
   val: SerializedData,

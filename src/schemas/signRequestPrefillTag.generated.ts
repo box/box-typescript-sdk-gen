@@ -12,29 +12,27 @@ import { sdIsMap } from '../serialization/json.js';
 export interface SignRequestPrefillTag {
   /**
    * This references the ID of a specific tag contained in a file of the signature request. */
-  readonly documentTagId?: string;
+  readonly documentTagId?: string | null;
   /**
    * Text prefill value */
-  readonly textValue?: string;
+  readonly textValue?: string | null;
   /**
    * Checkbox prefill value */
-  readonly checkboxValue?: boolean;
+  readonly checkboxValue?: boolean | null;
   /**
    * Date prefill value */
-  readonly dateValue?: Date;
+  readonly dateValue?: Date | null;
   readonly rawData?: SerializedData;
 }
 export function serializeSignRequestPrefillTag(
   val: SignRequestPrefillTag,
 ): SerializedData {
   return {
-    ['document_tag_id']:
-      val.documentTagId == void 0 ? void 0 : val.documentTagId,
-    ['text_value']: val.textValue == void 0 ? void 0 : val.textValue,
-    ['checkbox_value']:
-      val.checkboxValue == void 0 ? void 0 : val.checkboxValue,
+    ['document_tag_id']: val.documentTagId,
+    ['text_value']: val.textValue,
+    ['checkbox_value']: val.checkboxValue,
     ['date_value']:
-      val.dateValue == void 0 ? void 0 : serializeDate(val.dateValue),
+      val.dateValue == void 0 ? val.dateValue : serializeDate(val.dateValue),
   };
 }
 export function deserializeSignRequestPrefillTag(

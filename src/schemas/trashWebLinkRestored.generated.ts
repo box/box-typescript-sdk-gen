@@ -63,11 +63,11 @@ export interface TrashWebLinkRestored {
   /**
    * The time at which this bookmark was put in the
    * trash - becomes `null` after restore. */
-  readonly trashedAt?: string;
+  readonly trashedAt?: string | null;
   /**
    * The time at which this bookmark will be permanently
    * deleted - becomes `null` after restore. */
-  readonly purgedAt?: string;
+  readonly purgedAt?: string | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
@@ -75,7 +75,7 @@ export interface TrashWebLinkRestored {
    * The shared link for this bookmark. This will
    * be `null` if a bookmark had been trashed, even though the original shared
    * link does become active again. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   /**
    * Whether this item is deleted or not. Values include `active`,
    * `trashed` if the file has been moved to the trash, and `deleted` if
@@ -178,34 +178,43 @@ export function serializeTrashWebLinkRestored(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTrashWebLinkRestoredTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['sequence_id']: val.sequenceId,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['etag']: val.etag,
+    ['name']: val.name,
+    ['url']: val.url,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
+    ['description']: val.description,
     ['path_collection']: serializeTrashWebLinkRestoredPathCollectionField(
       val.pathCollection,
     ),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
+    ['trashed_at']: val.trashedAt,
+    ['purged_at']: val.purgedAt,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']:
-      val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
+      val.modifiedBy == void 0
+        ? val.modifiedBy
+        : serializeUserMini(val.modifiedBy),
     ['owned_by']:
-      val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
+      val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink,
     ['item_status']:
       val.itemStatus == void 0
-        ? void 0
+        ? val.itemStatus
         : serializeTrashWebLinkRestoredItemStatusField(val.itemStatus),
   };
 }

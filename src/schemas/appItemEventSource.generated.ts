@@ -89,8 +89,8 @@ export function serializeAppItemEventSource(
     ['id']: val.id,
     ['type']: serializeAppItemEventSourceTypeField(val.type),
     ['app_item_type']: val.appItemType,
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['group']: val.group == void 0 ? void 0 : serializeGroupMini(val.group),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
+    ['group']: val.group == void 0 ? val.group : serializeGroupMini(val.group),
   };
 }
 export function deserializeAppItemEventSource(
@@ -151,11 +151,11 @@ export function serializeAppItemEventSourceInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeAppItemEventSourceTypeField(val.type),
     ['app_item_type']: val.appItemType,
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['group']: val.group == void 0 ? void 0 : serializeGroupMini(val.group),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
+    ['group']: val.group == void 0 ? val.group : serializeGroupMini(val.group),
   };
 }
 export function deserializeAppItemEventSourceInput(

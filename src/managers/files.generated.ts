@@ -352,7 +352,7 @@ export interface UpdateFileByIdRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -418,14 +418,14 @@ export interface UpdateFileByIdRequestBody {
    * in the description. */
   readonly description?: string;
   readonly parent?: UpdateFileByIdRequestBodyParentField;
-  readonly sharedLink?: UpdateFileByIdRequestBodySharedLinkField;
+  readonly sharedLink?: UpdateFileByIdRequestBodySharedLinkField | null;
   /**
    * Defines a lock on an item. This prevents the item from being
    * moved, renamed, or otherwise changed by anyone other than the user
    * who created the lock.
    *
    * Set this to `null` to remove the lock. */
-  readonly lock?: UpdateFileByIdRequestBodyLockField;
+  readonly lock?: UpdateFileByIdRequestBodyLockField | null;
   /**
    * The retention expiration timestamp for the given file. This
    * date cannot be shortened once set on a file. */
@@ -445,7 +445,9 @@ export interface UpdateFileByIdRequestBody {
    * the file from all collections.
    *
    * [1]: e://get-collections */
-  readonly collections?: readonly UpdateFileByIdRequestBodyCollectionsField[];
+  readonly collections?:
+    | readonly UpdateFileByIdRequestBodyCollectionsField[]
+    | null;
   /**
    * The tags for this item. These tags are shown in
    * the Box web app and mobile apps next to an item.
@@ -991,7 +993,7 @@ export interface FilesManagerInput {
 export function serializeUpdateFileByIdRequestBodyParentField(
   val: UpdateFileByIdRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['id']: val.id };
 }
 export function deserializeUpdateFileByIdRequestBodyParentField(
   val: SerializedData,
@@ -1034,9 +1036,7 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
 export function serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   val: UpdateFileByIdRequestBodySharedLinkPermissionsField,
 ): SerializedData {
-  return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-  };
+  return { ['can_download']: val.canDownload };
 }
 export function deserializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
   val: SerializedData,
@@ -1065,15 +1065,17 @@ export function serializeUpdateFileByIdRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateFileByIdRequestBodySharedLinkAccessField(val.access),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateFileByIdRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -1152,12 +1154,13 @@ export function serializeUpdateFileByIdRequestBodyLockField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateFileByIdRequestBodyLockAccessField(val.access),
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
-    ['is_download_prevented']:
-      val.isDownloadPrevented == void 0 ? void 0 : val.isDownloadPrevented,
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
+    ['is_download_prevented']: val.isDownloadPrevented,
   };
 }
 export function deserializeUpdateFileByIdRequestBodyLockField(
@@ -1222,7 +1225,7 @@ export function serializeUpdateFileByIdRequestBodyPermissionsField(
   return {
     ['can_download']:
       val.canDownload == void 0
-        ? void 0
+        ? val.canDownload
         : serializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
             val.canDownload,
           ),
@@ -1252,10 +1255,7 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsField(
 export function serializeUpdateFileByIdRequestBodyCollectionsField(
   val: UpdateFileByIdRequestBodyCollectionsField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : val.type,
-  };
+  return { ['id']: val.id, ['type']: val.type };
 }
 export function deserializeUpdateFileByIdRequestBodyCollectionsField(
   val: SerializedData,
@@ -1289,31 +1289,31 @@ export function serializeUpdateFileByIdRequestBody(
   val: UpdateFileByIdRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['description']: val.description,
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeUpdateFileByIdRequestBodyParentField(val.parent),
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateFileByIdRequestBodySharedLinkField(val.sharedLink),
     ['lock']:
       val.lock == void 0
-        ? void 0
+        ? val.lock
         : serializeUpdateFileByIdRequestBodyLockField(val.lock),
     ['disposition_at']:
       val.dispositionAt == void 0
-        ? void 0
+        ? val.dispositionAt
         : serializeDateTime(val.dispositionAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateFileByIdRequestBodyPermissionsField(val.permissions),
     ['collections']:
       val.collections == void 0
-        ? void 0
+        ? val.collections
         : (val.collections.map(function (
             item: UpdateFileByIdRequestBodyCollectionsField,
           ): SerializedData {
@@ -1321,7 +1321,7 @@ export function serializeUpdateFileByIdRequestBody(
           }) as readonly any[]),
     ['tags']:
       val.tags == void 0
-        ? void 0
+        ? val.tags
         : (val.tags.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
@@ -1456,8 +1456,8 @@ export function serializeCopyFileRequestBody(
   val: CopyFileRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['version']: val.version == void 0 ? void 0 : val.version,
+    ['name']: val.name,
+    ['version']: val.version,
     ['parent']: serializeCopyFileRequestBodyParentField(val.parent),
   };
 }

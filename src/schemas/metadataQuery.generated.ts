@@ -109,10 +109,10 @@ export function serializeMetadataQueryOrderByField(
   val: MetadataQueryOrderByField,
 ): SerializedData {
   return {
-    ['field_key']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
+    ['field_key']: val.fieldKey,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeMetadataQueryOrderByDirectionField(val.direction),
   };
 }
@@ -144,10 +144,10 @@ export function deserializeMetadataQueryOrderByField(
 export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
   return {
     ['from']: val.from,
-    ['query']: val.query == void 0 ? void 0 : val.query,
+    ['query']: val.query,
     ['query_params']:
       val.queryParams == void 0
-        ? void 0
+        ? val.queryParams
         : (Object.fromEntries(
             Object.entries(val.queryParams).map(([k, v]: [string, any]) => [
               k,
@@ -161,17 +161,17 @@ export function serializeMetadataQuery(val: MetadataQuery): SerializedData {
     ['ancestor_folder_id']: val.ancestorFolderId,
     ['order_by']:
       val.orderBy == void 0
-        ? void 0
+        ? val.orderBy
         : (val.orderBy.map(function (
             item: MetadataQueryOrderByField,
           ): SerializedData {
             return serializeMetadataQueryOrderByField(item);
           }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['marker']: val.marker == void 0 ? void 0 : val.marker,
+    ['limit']: val.limit,
+    ['marker']: val.marker,
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),

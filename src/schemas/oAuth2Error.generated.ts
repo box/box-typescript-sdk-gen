@@ -16,11 +16,7 @@ export interface OAuth2Error {
   readonly rawData?: SerializedData;
 }
 export function serializeOAuth2Error(val: OAuth2Error): SerializedData {
-  return {
-    ['error']: val.error == void 0 ? void 0 : val.error,
-    ['error_description']:
-      val.errorDescription == void 0 ? void 0 : val.errorDescription,
-  };
+  return { ['error']: val.error, ['error_description']: val.errorDescription };
 }
 export function deserializeOAuth2Error(val: SerializedData): OAuth2Error {
   if (!sdIsMap(val)) {

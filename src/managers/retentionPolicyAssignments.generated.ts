@@ -249,7 +249,7 @@ export interface CreateRetentionPolicyAssignmentRequestBodyAssignToField {
    * The ID of item to assign the policy to.
    * Set to `null` or omit when `type` is set to
    * `enterprise`. */
-  readonly id?: string;
+  readonly id?: string | null;
   readonly rawData?: SerializedData;
 }
 export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
@@ -715,7 +715,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBodyAssignToField
       serializeCreateRetentionPolicyAssignmentRequestBodyAssignToTypeField(
         val.type,
       ),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToField(
@@ -752,10 +752,7 @@ export function deserializeCreateRetentionPolicyAssignmentRequestBodyAssignToFie
 export function serializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
   val: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField,
 ): SerializedData {
-  return {
-    ['field']: val.field == void 0 ? void 0 : val.field,
-    ['value']: val.value == void 0 ? void 0 : val.value,
-  };
+  return { ['field']: val.field, ['value']: val.value };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBodyFilterFieldsField(
   val: SerializedData,
@@ -796,7 +793,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBody(
       ),
     ['filter_fields']:
       val.filterFields == void 0
-        ? void 0
+        ? val.filterFields
         : (val.filterFields.map(function (
             item: CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField,
           ): SerializedData {
@@ -804,8 +801,7 @@ export function serializeCreateRetentionPolicyAssignmentRequestBody(
               item,
             );
           }) as readonly any[]),
-    ['start_date_field']:
-      val.startDateField == void 0 ? void 0 : val.startDateField,
+    ['start_date_field']: val.startDateField,
   };
 }
 export function deserializeCreateRetentionPolicyAssignmentRequestBody(

@@ -1760,10 +1760,7 @@ export function deserializeCreateFileUploadSessionRequestBody(
 export function serializeCreateFileUploadSessionForExistingFileRequestBody(
   val: CreateFileUploadSessionForExistingFileRequestBody,
 ): SerializedData {
-  return {
-    ['file_size']: val.fileSize,
-    ['file_name']: val.fileName == void 0 ? void 0 : val.fileName,
-  };
+  return { ['file_size']: val.fileSize, ['file_name']: val.fileName };
 }
 export function deserializeCreateFileUploadSessionForExistingFileRequestBody(
   val: SerializedData,

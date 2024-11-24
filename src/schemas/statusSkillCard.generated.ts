@@ -231,10 +231,7 @@ export function deserializeStatusSkillCardSkillCardTypeField(
 export function serializeStatusSkillCardSkillCardTitleField(
   val: StatusSkillCardSkillCardTitleField,
 ): SerializedData {
-  return {
-    ['code']: val.code == void 0 ? void 0 : val.code,
-    ['message']: val.message,
-  };
+  return { ['code']: val.code, ['message']: val.message };
 }
 export function deserializeStatusSkillCardSkillCardTitleField(
   val: SerializedData,
@@ -301,7 +298,7 @@ export function serializeStatusSkillCardStatusField(
 ): SerializedData {
   return {
     ['code']: serializeStatusSkillCardStatusCodeField(val.code),
-    ['message']: val.message == void 0 ? void 0 : val.message,
+    ['message']: val.message,
   };
 }
 export function deserializeStatusSkillCardStatusField(
@@ -389,7 +386,7 @@ export function serializeStatusSkillCardSkillFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStatusSkillCardSkillTypeField(val.type),
     ['id']: val.id,
   };
@@ -481,7 +478,7 @@ export function serializeStatusSkillCardInvocationFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStatusSkillCardInvocationTypeField(val.type),
     ['id']: val.id,
   };
@@ -516,14 +513,16 @@ export function deserializeStatusSkillCardInvocationFieldInput(
 export function serializeStatusSkillCard(val: StatusSkillCard): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']: serializeStatusSkillCardTypeField(val.type),
     ['skill_card_type']: serializeStatusSkillCardSkillCardTypeField(
       val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeStatusSkillCardSkillCardTitleField(val.skillCardTitle),
     ['status']: serializeStatusSkillCardStatusField(val.status),
     ['skill']: serializeStatusSkillCardSkillField(val.skill),
@@ -600,16 +599,20 @@ export function serializeStatusSkillCardInput(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']:
-      val.type == void 0 ? void 0 : serializeStatusSkillCardTypeField(val.type),
+      val.type == void 0
+        ? val.type
+        : serializeStatusSkillCardTypeField(val.type),
     ['skillCardType']:
       val.skillCardType == void 0
-        ? void 0
+        ? val.skillCardType
         : serializeStatusSkillCardSkillCardTypeField(val.skillCardType),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeStatusSkillCardSkillCardTitleField(val.skillCardTitle),
     ['status']: serializeStatusSkillCardStatusField(val.status),
     ['skill']: serializeStatusSkillCardSkillField(val.skill),

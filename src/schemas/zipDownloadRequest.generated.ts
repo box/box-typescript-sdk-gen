@@ -94,8 +94,7 @@ export function serializeZipDownloadRequest(
     ): SerializedData {
       return serializeZipDownloadRequestItemsField(item);
     }) as readonly any[],
-    ['download_file_name']:
-      val.downloadFileName == void 0 ? void 0 : val.downloadFileName,
+    ['download_file_name']: val.downloadFileName,
   };
 }
 export function deserializeZipDownloadRequest(

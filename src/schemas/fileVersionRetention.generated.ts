@@ -58,25 +58,27 @@ export function serializeFileVersionRetention(
   val: FileVersionRetention,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeFileVersionRetentionTypeField(val.type),
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
-    ['file']: val.file == void 0 ? void 0 : serializeFileMini(val.file),
+    ['file']: val.file == void 0 ? val.file : serializeFileMini(val.file),
     ['applied_at']:
-      val.appliedAt == void 0 ? void 0 : serializeDateTime(val.appliedAt),
+      val.appliedAt == void 0
+        ? val.appliedAt
+        : serializeDateTime(val.appliedAt),
     ['disposition_at']:
       val.dispositionAt == void 0
-        ? void 0
+        ? val.dispositionAt
         : serializeDateTime(val.dispositionAt),
     ['winning_retention_policy']:
       val.winningRetentionPolicy == void 0
-        ? void 0
+        ? val.winningRetentionPolicy
         : serializeRetentionPolicyMini(val.winningRetentionPolicy),
   };
 }

@@ -39,7 +39,7 @@ export interface CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirem
   /**
    * Whether or not the terms of service have been accepted.  The
    * field is `null` when there is no terms of service required. */
-  readonly isAccepted?: boolean;
+  readonly isAccepted?: boolean | null;
   readonly termsOfService?: TermsOfServiceBase;
   readonly rawData?: SerializedData;
 }
@@ -53,7 +53,7 @@ export interface CollaborationAcceptanceRequirementsStatusStrongPasswordRequirem
    * Whether or not the user has a strong and not exposed password set
    * for their account. The field is `null` when a strong password is
    * not required. */
-  readonly userHasStrongPassword?: boolean;
+  readonly userHasStrongPassword?: boolean | null;
   readonly rawData?: SerializedData;
 }
 export interface CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField {
@@ -66,7 +66,7 @@ export interface CollaborationAcceptanceRequirementsStatusTwoFactorAuthenticatio
    * Whether or not the user has two-factor authentication
    * enabled. The field is `null` when two-factor
    * authentication is not required. */
-  readonly userHasTwoFactorAuthenticationEnabled?: boolean;
+  readonly userHasTwoFactorAuthenticationEnabled?: boolean | null;
   readonly rawData?: SerializedData;
 }
 export interface CollaborationAcceptanceRequirementsStatusField {
@@ -83,20 +83,20 @@ export class Collaboration {
    * `collaboration` */
   readonly type: CollaborationTypeField =
     'collaboration' as CollaborationTypeField;
-  readonly item?: FileOrFolderOrWebLink;
-  readonly appItem?: AppItem;
+  readonly item?: FileOrFolderOrWebLink | null;
+  readonly appItem?: AppItem | null;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   /**
    * The email address used to invite an unregistered collaborator, if
    * they are not a registered user. */
-  readonly inviteEmail?: string;
+  readonly inviteEmail?: string | null;
   /**
    * The level of access granted. */
   readonly role?: CollaborationRoleField;
   /**
    * When the collaboration will expire, or `null` if no expiration
    * date is set. */
-  readonly expiresAt?: DateTime;
+  readonly expiresAt?: DateTime | null;
   /**
    * If set to `true`, collaborators have access to
    * shared items, but such items won't be visible in the
@@ -181,20 +181,20 @@ export interface CollaborationInput {
   /**
    * `collaboration` */
   readonly type?: CollaborationTypeField;
-  readonly item?: FileOrFolderOrWebLink;
-  readonly appItem?: AppItem;
+  readonly item?: FileOrFolderOrWebLink | null;
+  readonly appItem?: AppItem | null;
   readonly accessibleBy?: GroupMiniOrUserCollaborations;
   /**
    * The email address used to invite an unregistered collaborator, if
    * they are not a registered user. */
-  readonly inviteEmail?: string;
+  readonly inviteEmail?: string | null;
   /**
    * The level of access granted. */
   readonly role?: CollaborationRoleField;
   /**
    * When the collaboration will expire, or `null` if no expiration
    * date is set. */
-  readonly expiresAt?: DateTime;
+  readonly expiresAt?: DateTime | null;
   /**
    * If set to `true`, collaborators have access to
    * shared items, but such items won't be visible in the
@@ -296,10 +296,10 @@ export function serializeCollaborationAcceptanceRequirementsStatusTermsOfService
   val: CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField,
 ): SerializedData {
   return {
-    ['is_accepted']: val.isAccepted == void 0 ? void 0 : val.isAccepted,
+    ['is_accepted']: val.isAccepted,
     ['terms_of_service']:
       val.termsOfService == void 0
-        ? void 0
+        ? val.termsOfService
         : serializeTermsOfServiceBase(val.termsOfService),
   };
 }
@@ -334,11 +334,8 @@ export function serializeCollaborationAcceptanceRequirementsStatusStrongPassword
 ): SerializedData {
   return {
     ['enterprise_has_strong_password_required_for_external_users']:
-      val.enterpriseHasStrongPasswordRequiredForExternalUsers == void 0
-        ? void 0
-        : val.enterpriseHasStrongPasswordRequiredForExternalUsers,
-    ['user_has_strong_password']:
-      val.userHasStrongPassword == void 0 ? void 0 : val.userHasStrongPassword,
+      val.enterpriseHasStrongPasswordRequiredForExternalUsers,
+    ['user_has_strong_password']: val.userHasStrongPassword,
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
@@ -391,13 +388,9 @@ export function serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthe
 ): SerializedData {
   return {
     ['enterprise_has_two_factor_auth_enabled']:
-      val.enterpriseHasTwoFactorAuthEnabled == void 0
-        ? void 0
-        : val.enterpriseHasTwoFactorAuthEnabled,
+      val.enterpriseHasTwoFactorAuthEnabled,
     ['user_has_two_factor_authentication_enabled']:
-      val.userHasTwoFactorAuthenticationEnabled == void 0
-        ? void 0
-        : val.userHasTwoFactorAuthenticationEnabled,
+      val.userHasTwoFactorAuthenticationEnabled,
   };
 }
 export function deserializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
@@ -447,19 +440,19 @@ export function serializeCollaborationAcceptanceRequirementsStatusField(
   return {
     ['terms_of_service_requirement']:
       val.termsOfServiceRequirement == void 0
-        ? void 0
+        ? val.termsOfServiceRequirement
         : serializeCollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField(
             val.termsOfServiceRequirement,
           ),
     ['strong_password_requirement']:
       val.strongPasswordRequirement == void 0
-        ? void 0
+        ? val.strongPasswordRequirement
         : serializeCollaborationAcceptanceRequirementsStatusStrongPasswordRequirementField(
             val.strongPasswordRequirement,
           ),
     ['two_factor_authentication_requirement']:
       val.twoFactorAuthenticationRequirement == void 0
-        ? void 0
+        ? val.twoFactorAuthenticationRequirement
         : serializeCollaborationAcceptanceRequirementsStatusTwoFactorAuthenticationRequirementField(
             val.twoFactorAuthenticationRequirement,
           ),
@@ -509,38 +502,44 @@ export function serializeCollaboration(val: Collaboration): SerializedData {
     ['id']: val.id,
     ['type']: serializeCollaborationTypeField(val.type),
     ['item']:
-      val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
+      val.item == void 0 ? val.item : serializeFileOrFolderOrWebLink(val.item),
     ['app_item']:
-      val.appItem == void 0 ? void 0 : serializeAppItem(val.appItem),
+      val.appItem == void 0 ? val.appItem : serializeAppItem(val.appItem),
     ['accessible_by']:
       val.accessibleBy == void 0
-        ? void 0
+        ? val.accessibleBy
         : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
-    ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
+    ['invite_email']: val.inviteEmail,
     ['role']:
-      val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
+      val.role == void 0 ? val.role : serializeCollaborationRoleField(val.role),
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
-    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
+    ['is_access_only']: val.isAccessOnly,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeCollaborationStatusField(val.status),
     ['acknowledged_at']:
       val.acknowledgedAt == void 0
-        ? void 0
+        ? val.acknowledgedAt
         : serializeDateTime(val.acknowledgedAt),
     ['created_by']:
       val.createdBy == void 0
-        ? void 0
+        ? val.createdBy
         : serializeUserCollaborations(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
-        ? void 0
+        ? val.acceptanceRequirementsStatus
         : serializeCollaborationAcceptanceRequirementsStatusField(
             val.acceptanceRequirementsStatus,
           ),
@@ -663,40 +662,46 @@ export function serializeCollaborationInput(
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeCollaborationTypeField(val.type),
+      val.type == void 0 ? val.type : serializeCollaborationTypeField(val.type),
     ['item']:
-      val.item == void 0 ? void 0 : serializeFileOrFolderOrWebLink(val.item),
+      val.item == void 0 ? val.item : serializeFileOrFolderOrWebLink(val.item),
     ['app_item']:
-      val.appItem == void 0 ? void 0 : serializeAppItem(val.appItem),
+      val.appItem == void 0 ? val.appItem : serializeAppItem(val.appItem),
     ['accessible_by']:
       val.accessibleBy == void 0
-        ? void 0
+        ? val.accessibleBy
         : serializeGroupMiniOrUserCollaborations(val.accessibleBy),
-    ['invite_email']: val.inviteEmail == void 0 ? void 0 : val.inviteEmail,
+    ['invite_email']: val.inviteEmail,
     ['role']:
-      val.role == void 0 ? void 0 : serializeCollaborationRoleField(val.role),
+      val.role == void 0 ? val.role : serializeCollaborationRoleField(val.role),
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
-    ['is_access_only']: val.isAccessOnly == void 0 ? void 0 : val.isAccessOnly,
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
+    ['is_access_only']: val.isAccessOnly,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeCollaborationStatusField(val.status),
     ['acknowledged_at']:
       val.acknowledgedAt == void 0
-        ? void 0
+        ? val.acknowledgedAt
         : serializeDateTime(val.acknowledgedAt),
     ['created_by']:
       val.createdBy == void 0
-        ? void 0
+        ? val.createdBy
         : serializeUserCollaborations(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
     ['acceptance_requirements_status']:
       val.acceptanceRequirementsStatus == void 0
-        ? void 0
+        ? val.acceptanceRequirementsStatus
         : serializeCollaborationAcceptanceRequirementsStatusField(
             val.acceptanceRequirementsStatus,
           ),

@@ -87,10 +87,12 @@ export function serializeFileOrFolderScope(
   return {
     ['scope']:
       val.scope == void 0
-        ? void 0
+        ? val.scope
         : serializeFileOrFolderScopeScopeField(val.scope),
     ['object']:
-      val.object == void 0 ? void 0 : serializeFileMiniOrFolderMini(val.object),
+      val.object == void 0
+        ? val.object
+        : serializeFileMiniOrFolderMini(val.object),
   };
 }
 export function deserializeFileOrFolderScope(

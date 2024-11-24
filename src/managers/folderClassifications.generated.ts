@@ -556,10 +556,7 @@ export function serializeAddClassificationToFolderRequestBody(
   val: AddClassificationToFolderRequestBody,
 ): SerializedData {
   return {
-    ['Box__Security__Classification__Key']:
-      val.boxSecurityClassificationKey == void 0
-        ? void 0
-        : val.boxSecurityClassificationKey,
+    ['Box__Security__Classification__Key']: val.boxSecurityClassificationKey,
   };
 }
 export function deserializeAddClassificationToFolderRequestBody(
@@ -678,11 +675,11 @@ export function serializeUpdateClassificationOnFolderRequestBodyInput(
   return {
     ['op']:
       val.op == void 0
-        ? void 0
+        ? val.op
         : serializeUpdateClassificationOnFolderRequestBodyOpField(val.op),
     ['path']:
       val.path == void 0
-        ? void 0
+        ? val.path
         : serializeUpdateClassificationOnFolderRequestBodyPathField(val.path),
     ['value']: val.value,
   };

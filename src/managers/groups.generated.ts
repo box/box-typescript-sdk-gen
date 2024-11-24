@@ -772,21 +772,18 @@ export function serializeCreateGroupRequestBody(
 ): SerializedData {
   return {
     ['name']: val.name,
-    ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
-    ['external_sync_identifier']:
-      val.externalSyncIdentifier == void 0
-        ? void 0
-        : val.externalSyncIdentifier,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['provenance']: val.provenance,
+    ['external_sync_identifier']: val.externalSyncIdentifier,
+    ['description']: val.description,
     ['invitability_level']:
       val.invitabilityLevel == void 0
-        ? void 0
+        ? val.invitabilityLevel
         : serializeCreateGroupRequestBodyInvitabilityLevelField(
             val.invitabilityLevel,
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
-        ? void 0
+        ? val.memberViewabilityLevel
         : serializeCreateGroupRequestBodyMemberViewabilityLevelField(
             val.memberViewabilityLevel,
           ),
@@ -914,22 +911,19 @@ export function serializeUpdateGroupByIdRequestBody(
   val: UpdateGroupByIdRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
-    ['external_sync_identifier']:
-      val.externalSyncIdentifier == void 0
-        ? void 0
-        : val.externalSyncIdentifier,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['provenance']: val.provenance,
+    ['external_sync_identifier']: val.externalSyncIdentifier,
+    ['description']: val.description,
     ['invitability_level']:
       val.invitabilityLevel == void 0
-        ? void 0
+        ? val.invitabilityLevel
         : serializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
             val.invitabilityLevel,
           ),
     ['member_viewability_level']:
       val.memberViewabilityLevel == void 0
-        ? void 0
+        ? val.memberViewabilityLevel
         : serializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField(
             val.memberViewabilityLevel,
           ),

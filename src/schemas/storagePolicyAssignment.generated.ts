@@ -80,10 +80,7 @@ export function deserializeStoragePolicyAssignmentTypeField(
 export function serializeStoragePolicyAssignmentAssignedToField(
   val: StoragePolicyAssignmentAssignedToField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : val.type,
-  };
+  return { ['id']: val.id, ['type']: val.type };
 }
 export function deserializeStoragePolicyAssignmentAssignedToField(
   val: SerializedData,
@@ -120,11 +117,11 @@ export function serializeStoragePolicyAssignment(
     ['type']: serializeStoragePolicyAssignmentTypeField(val.type),
     ['storage_policy']:
       val.storagePolicy == void 0
-        ? void 0
+        ? val.storagePolicy
         : serializeStoragePolicyMini(val.storagePolicy),
     ['assigned_to']:
       val.assignedTo == void 0
-        ? void 0
+        ? val.assignedTo
         : serializeStoragePolicyAssignmentAssignedToField(val.assignedTo),
   };
 }
@@ -177,15 +174,15 @@ export function serializeStoragePolicyAssignmentInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStoragePolicyAssignmentTypeField(val.type),
     ['storage_policy']:
       val.storagePolicy == void 0
-        ? void 0
+        ? val.storagePolicy
         : serializeStoragePolicyMini(val.storagePolicy),
     ['assigned_to']:
       val.assignedTo == void 0
-        ? void 0
+        ? val.assignedTo
         : serializeStoragePolicyAssignmentAssignedToField(val.assignedTo),
   };
 }

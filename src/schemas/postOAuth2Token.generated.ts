@@ -182,30 +182,29 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(
 export function serializePostOAuth2Token(val: PostOAuth2Token): SerializedData {
   return {
     ['grant_type']: serializePostOAuth2TokenGrantTypeField(val.grantType),
-    ['client_id']: val.clientId == void 0 ? void 0 : val.clientId,
-    ['client_secret']: val.clientSecret == void 0 ? void 0 : val.clientSecret,
-    ['code']: val.code == void 0 ? void 0 : val.code,
-    ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
-    ['assertion']: val.assertion == void 0 ? void 0 : val.assertion,
-    ['subject_token']: val.subjectToken == void 0 ? void 0 : val.subjectToken,
+    ['client_id']: val.clientId,
+    ['client_secret']: val.clientSecret,
+    ['code']: val.code,
+    ['refresh_token']: val.refreshToken,
+    ['assertion']: val.assertion,
+    ['subject_token']: val.subjectToken,
     ['subject_token_type']:
       val.subjectTokenType == void 0
-        ? void 0
+        ? val.subjectTokenType
         : serializePostOAuth2TokenSubjectTokenTypeField(val.subjectTokenType),
-    ['actor_token']: val.actorToken == void 0 ? void 0 : val.actorToken,
+    ['actor_token']: val.actorToken,
     ['actor_token_type']:
       val.actorTokenType == void 0
-        ? void 0
+        ? val.actorTokenType
         : serializePostOAuth2TokenActorTokenTypeField(val.actorTokenType),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['resource']: val.resource == void 0 ? void 0 : val.resource,
+    ['scope']: val.scope,
+    ['resource']: val.resource,
     ['box_subject_type']:
       val.boxSubjectType == void 0
-        ? void 0
+        ? val.boxSubjectType
         : serializePostOAuth2TokenBoxSubjectTypeField(val.boxSubjectType),
-    ['box_subject_id']: val.boxSubjectId == void 0 ? void 0 : val.boxSubjectId,
-    ['box_shared_link']:
-      val.boxSharedLink == void 0 ? void 0 : val.boxSharedLink,
+    ['box_subject_id']: val.boxSubjectId,
+    ['box_shared_link']: val.boxSharedLink,
   };
 }
 export function deserializePostOAuth2Token(

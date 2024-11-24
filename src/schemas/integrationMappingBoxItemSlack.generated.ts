@@ -100,7 +100,7 @@ export function serializeIntegrationMappingBoxItemSlackInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeIntegrationMappingBoxItemSlackTypeField(val.type),
     ['id']: val.id,
   };

@@ -28,10 +28,7 @@ export function serializeFolderMini(val: FolderMini): SerializedData {
   }
   return {
     ...base,
-    ...{
-      ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-      ['name']: val.name == void 0 ? void 0 : val.name,
-    },
+    ...{ ['sequence_id']: val.sequenceId, ['name']: val.name },
   };
 }
 export function deserializeFolderMini(val: SerializedData): FolderMini {

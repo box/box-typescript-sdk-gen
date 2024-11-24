@@ -25,10 +25,12 @@ export function serializeAiDialogueHistory(
   val: AiDialogueHistory,
 ): SerializedData {
   return {
-    ['prompt']: val.prompt == void 0 ? void 0 : val.prompt,
-    ['answer']: val.answer == void 0 ? void 0 : val.answer,
+    ['prompt']: val.prompt,
+    ['answer']: val.answer,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
   };
 }
 export function deserializeAiDialogueHistory(

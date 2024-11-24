@@ -613,10 +613,10 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentTypeField(
             val.type,
           ),
@@ -671,10 +671,10 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   val: CreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyRestrictedSegmentTypeField(
             val.type,
           ),
@@ -719,7 +719,7 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
       ),
     ['shield_information_barrier']:
       val.shieldInformationBarrier == void 0
-        ? void 0
+        ? val.shieldInformationBarrier
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
     ['shield_information_barrier_segment']:
       serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(
@@ -787,13 +787,13 @@ export function serializeCreateShieldInformationBarrierSegmentRestrictionRequest
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyTypeField(
             val.type,
           ),
     ['shield_information_barrier']:
       val.shieldInformationBarrier == void 0
-        ? void 0
+        ? val.shieldInformationBarrier
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
     ['shield_information_barrier_segment']:
       serializeCreateShieldInformationBarrierSegmentRestrictionRequestBodyShieldInformationBarrierSegmentField(

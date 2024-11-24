@@ -581,7 +581,7 @@ export function serializeUploadFileVersionRequestBodyAttributesField(
     ['name']: val.name,
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
   };
 }
@@ -628,7 +628,7 @@ export function deserializeUploadFileVersionRequestBodyAttributesField(
 export function serializePreflightFileUploadCheckRequestBodyParentField(
   val: PreflightFileUploadCheckRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['id']: val.id };
 }
 export function deserializePreflightFileUploadCheckRequestBodyParentField(
   val: SerializedData,
@@ -652,11 +652,11 @@ export function serializePreflightFileUploadCheckRequestBody(
   val: PreflightFileUploadCheckRequestBody,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['size']: val.size == void 0 ? void 0 : val.size,
+    ['name']: val.name,
+    ['size']: val.size,
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializePreflightFileUploadCheckRequestBodyParentField(val.parent),
   };
 }
@@ -729,11 +729,11 @@ export function serializeUploadFileRequestBodyAttributesField(
     ['parent']: serializeUploadFileRequestBodyAttributesParentField(val.parent),
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
   };
 }

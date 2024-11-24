@@ -101,25 +101,29 @@ export function deserializeTaskCompletionRuleField(
 }
 export function serializeTask(val: Task): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : serializeTaskTypeField(val.type),
-    ['item']: val.item == void 0 ? void 0 : serializeFileMini(val.item),
-    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
+    ['id']: val.id,
+    ['type']: val.type == void 0 ? val.type : serializeTaskTypeField(val.type),
+    ['item']: val.item == void 0 ? val.item : serializeFileMini(val.item),
+    ['due_at']: val.dueAt == void 0 ? val.dueAt : serializeDateTime(val.dueAt),
     ['action']:
-      val.action == void 0 ? void 0 : serializeTaskActionField(val.action),
-    ['message']: val.message == void 0 ? void 0 : val.message,
+      val.action == void 0 ? val.action : serializeTaskActionField(val.action),
+    ['message']: val.message,
     ['task_assignment_collection']:
       val.taskAssignmentCollection == void 0
-        ? void 0
+        ? val.taskAssignmentCollection
         : serializeTaskAssignments(val.taskAssignmentCollection),
-    ['is_completed']: val.isCompleted == void 0 ? void 0 : val.isCompleted,
+    ['is_completed']: val.isCompleted,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['completion_rule']:
       val.completionRule == void 0
-        ? void 0
+        ? val.completionRule
         : serializeTaskCompletionRuleField(val.completionRule),
   };
 }

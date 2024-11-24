@@ -292,7 +292,7 @@ export interface AddShareLinkToWebLinkRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -391,7 +391,7 @@ export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -452,7 +452,7 @@ export interface RemoveSharedLinkFromWebLinkRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the web link. */
-  readonly sharedLink?: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField;
+  readonly sharedLink?: RemoveSharedLinkFromWebLinkRequestBodySharedLinkField | null;
   readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromWebLinkQueryParams {
@@ -797,9 +797,9 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsFi
   val: AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
@@ -847,17 +847,19 @@ export function serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -926,7 +928,7 @@ export function serializeAddShareLinkToWebLinkRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeAddShareLinkToWebLinkRequestBodySharedLinkField(
             val.sharedLink,
           ),
@@ -976,9 +978,9 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissio
   val: UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
@@ -1026,17 +1028,19 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -1105,7 +1109,7 @@ export function serializeUpdateSharedLinkOnWebLinkRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField(
             val.sharedLink,
           ),
@@ -1153,7 +1157,7 @@ export function serializeRemoveSharedLinkFromWebLinkRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeRemoveSharedLinkFromWebLinkRequestBodySharedLinkField(
             val.sharedLink,
           ),

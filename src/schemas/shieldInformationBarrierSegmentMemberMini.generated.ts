@@ -31,7 +31,9 @@ export function serializeShieldInformationBarrierSegmentMemberMini(
   }
   return {
     ...base,
-    ...{ ['user']: val.user == void 0 ? void 0 : serializeUserBase(val.user) },
+    ...{
+      ['user']: val.user == void 0 ? val.user : serializeUserBase(val.user),
+    },
   };
 }
 export function deserializeShieldInformationBarrierSegmentMemberMini(

@@ -73,19 +73,19 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
     ['type']: serializeAiAgentAskTypeField(val.type),
     ['long_text']:
       val.longText == void 0
-        ? void 0
+        ? val.longText
         : serializeAiAgentLongTextTool(val.longText),
     ['basic_text']:
       val.basicText == void 0
-        ? void 0
+        ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
     ['long_text_multi']:
       val.longTextMulti == void 0
-        ? void 0
+        ? val.longTextMulti
         : serializeAiAgentLongTextTool(val.longTextMulti),
     ['basic_text_multi']:
       val.basicTextMulti == void 0
-        ? void 0
+        ? val.basicTextMulti
         : serializeAiAgentBasicTextTool(val.basicTextMulti),
   };
 }
@@ -126,22 +126,22 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
 export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeAiAgentAskTypeField(val.type),
+      val.type == void 0 ? val.type : serializeAiAgentAskTypeField(val.type),
     ['long_text']:
       val.longText == void 0
-        ? void 0
+        ? val.longText
         : serializeAiAgentLongTextTool(val.longText),
     ['basic_text']:
       val.basicText == void 0
-        ? void 0
+        ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
     ['long_text_multi']:
       val.longTextMulti == void 0
-        ? void 0
+        ? val.longTextMulti
         : serializeAiAgentLongTextTool(val.longTextMulti),
     ['basic_text_multi']:
       val.basicTextMulti == void 0
-        ? void 0
+        ? val.basicTextMulti
         : serializeAiAgentBasicTextTool(val.basicTextMulti),
   };
 }

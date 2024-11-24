@@ -509,7 +509,7 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyTosFieldInp
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateTermsOfServiceStatusForUserRequestBodyTosTypeField(
             val.type,
           ),
@@ -621,7 +621,7 @@ export function serializeCreateTermsOfServiceStatusForUserRequestBodyUserFieldIn
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateTermsOfServiceStatusForUserRequestBodyUserTypeField(
             val.type,
           ),

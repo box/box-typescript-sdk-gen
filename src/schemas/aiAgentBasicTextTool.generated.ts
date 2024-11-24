@@ -34,10 +34,8 @@ export function serializeAiAgentBasicTextTool(
   return {
     ...base,
     ...{
-      ['system_message']:
-        val.systemMessage == void 0 ? void 0 : val.systemMessage,
-      ['prompt_template']:
-        val.promptTemplate == void 0 ? void 0 : val.promptTemplate,
+      ['system_message']: val.systemMessage,
+      ['prompt_template']: val.promptTemplate,
     },
   };
 }

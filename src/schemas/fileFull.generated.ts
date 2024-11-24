@@ -117,7 +117,7 @@ export interface FileFullLockField {
    * field identifies the type of the application that holds the lock.
    * This is an open enum and may be extended with additional values in
    * the future. */
-  readonly appType?: FileFullLockAppTypeField;
+  readonly appType?: FileFullLockAppTypeField | null;
   readonly rawData?: SerializedData;
 }
 export type FileFullExpiringEmbedLinkTokenTypeField = 'bearer';
@@ -284,7 +284,7 @@ export class FileFull extends File {
   readonly commentCount?: number;
   readonly permissions?: FileFullPermissionsField;
   readonly tags?: readonly string[];
-  readonly lock?: FileFullLockField;
+  readonly lock?: FileFullLockField | null;
   readonly extension?: string;
   readonly isPackage?: boolean;
   readonly expiringEmbedLink?: FileFullExpiringEmbedLinkField;
@@ -294,12 +294,14 @@ export class FileFull extends File {
   readonly isExternallyOwned?: boolean;
   readonly hasCollaborations?: boolean;
   readonly metadata?: FileFullMetadataField;
-  readonly expiresAt?: DateTime;
+  readonly expiresAt?: DateTime | null;
   readonly representations?: FileFullRepresentationsField;
   readonly classification?: FileFullClassificationField;
   readonly uploaderDisplayName?: string;
-  readonly dispositionAt?: DateTime;
-  readonly sharedLinkPermissionOptions?: readonly FileFullSharedLinkPermissionOptionsField[];
+  readonly dispositionAt?: DateTime | null;
+  readonly sharedLinkPermissionOptions?:
+    | readonly FileFullSharedLinkPermissionOptionsField[]
+    | null;
   readonly isAssociatedWithAppItem?: boolean;
   constructor(fields: FileFull) {
     super(fields);
@@ -543,20 +545,25 @@ export function serializeFileFullLockField(
   val: FileFullLockField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeFileFullLockTypeField(val.type),
+      val.type == void 0 ? val.type : serializeFileFullLockTypeField(val.type),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['expired_at']:
-      val.expiredAt == void 0 ? void 0 : serializeDateTime(val.expiredAt),
-    ['is_download_prevented']:
-      val.isDownloadPrevented == void 0 ? void 0 : val.isDownloadPrevented,
+      val.expiredAt == void 0
+        ? val.expiredAt
+        : serializeDateTime(val.expiredAt),
+    ['is_download_prevented']: val.isDownloadPrevented,
     ['app_type']:
       val.appType == void 0
-        ? void 0
+        ? val.appType
         : serializeFileFullLockAppTypeField(val.appType),
   };
 }
@@ -636,21 +643,21 @@ export function serializeFileFullExpiringEmbedLinkField(
   val: FileFullExpiringEmbedLinkField,
 ): SerializedData {
   return {
-    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
-    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
+    ['access_token']: val.accessToken,
+    ['expires_in']: val.expiresIn,
     ['token_type']:
       val.tokenType == void 0
-        ? void 0
+        ? val.tokenType
         : serializeFileFullExpiringEmbedLinkTokenTypeField(val.tokenType),
     ['restricted_to']:
       val.restrictedTo == void 0
-        ? void 0
+        ? val.restrictedTo
         : (val.restrictedTo.map(function (
             item: FileOrFolderScope,
           ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
-    ['url']: val.url == void 0 ? void 0 : val.url,
+    ['url']: val.url,
   };
 }
 export function deserializeFileFullExpiringEmbedLinkField(
@@ -715,10 +722,7 @@ export function deserializeFileFullExpiringEmbedLinkField(
 export function serializeFileFullWatermarkInfoField(
   val: FileFullWatermarkInfoField,
 ): SerializedData {
-  return {
-    ['is_watermarked']:
-      val.isWatermarked == void 0 ? void 0 : val.isWatermarked,
-  };
+  return { ['is_watermarked']: val.isWatermarked };
 }
 export function deserializeFileFullWatermarkInfoField(
   val: SerializedData,
@@ -825,9 +829,7 @@ export function deserializeFileFullMetadataField(
 export function serializeFileFullRepresentationsEntriesContentField(
   val: FileFullRepresentationsEntriesContentField,
 ): SerializedData {
-  return {
-    ['url_template']: val.urlTemplate == void 0 ? void 0 : val.urlTemplate,
-  };
+  return { ['url_template']: val.urlTemplate };
 }
 export function deserializeFileFullRepresentationsEntriesContentField(
   val: SerializedData,
@@ -853,7 +855,7 @@ export function deserializeFileFullRepresentationsEntriesContentField(
 export function serializeFileFullRepresentationsEntriesInfoField(
   val: FileFullRepresentationsEntriesInfoField,
 ): SerializedData {
-  return { ['url']: val.url == void 0 ? void 0 : val.url };
+  return { ['url']: val.url };
 }
 export function deserializeFileFullRepresentationsEntriesInfoField(
   val: SerializedData,
@@ -876,9 +878,9 @@ export function serializeFileFullRepresentationsEntriesPropertiesField(
   val: FileFullRepresentationsEntriesPropertiesField,
 ): SerializedData {
   return {
-    ['dimensions']: val.dimensions == void 0 ? void 0 : val.dimensions,
-    ['paged']: val.paged == void 0 ? void 0 : val.paged,
-    ['thumb']: val.thumb == void 0 ? void 0 : val.thumb,
+    ['dimensions']: val.dimensions,
+    ['paged']: val.paged,
+    ['thumb']: val.thumb,
   };
 }
 export function deserializeFileFullRepresentationsEntriesPropertiesField(
@@ -948,7 +950,7 @@ export function serializeFileFullRepresentationsEntriesStatusField(
   return {
     ['state']:
       val.state == void 0
-        ? void 0
+        ? val.state
         : serializeFileFullRepresentationsEntriesStatusStateField(val.state),
   };
 }
@@ -973,23 +975,22 @@ export function serializeFileFullRepresentationsEntriesField(
   return {
     ['content']:
       val.content == void 0
-        ? void 0
+        ? val.content
         : serializeFileFullRepresentationsEntriesContentField(val.content),
     ['info']:
       val.info == void 0
-        ? void 0
+        ? val.info
         : serializeFileFullRepresentationsEntriesInfoField(val.info),
     ['properties']:
       val.properties == void 0
-        ? void 0
+        ? val.properties
         : serializeFileFullRepresentationsEntriesPropertiesField(
             val.properties,
           ),
-    ['representation']:
-      val.representation == void 0 ? void 0 : val.representation,
+    ['representation']: val.representation,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeFileFullRepresentationsEntriesStatusField(val.status),
   };
 }
@@ -1041,7 +1042,7 @@ export function serializeFileFullRepresentationsField(
   return {
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: FileFullRepresentationsEntriesField,
           ): SerializedData {
@@ -1079,9 +1080,9 @@ export function serializeFileFullClassificationField(
   val: FileFullClassificationField,
 ): SerializedData {
   return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['definition']: val.definition == void 0 ? void 0 : val.definition,
-    ['color']: val.color == void 0 ? void 0 : val.color,
+    ['name']: val.name,
+    ['definition']: val.definition,
+    ['color']: val.color,
   };
 }
 export function deserializeFileFullClassificationField(
@@ -1149,79 +1150,71 @@ export function serializeFileFull(val: FileFull): SerializedData {
   return {
     ...base,
     ...{
-      ['version_number']:
-        val.versionNumber == void 0 ? void 0 : val.versionNumber,
-      ['comment_count']: val.commentCount == void 0 ? void 0 : val.commentCount,
+      ['version_number']: val.versionNumber,
+      ['comment_count']: val.commentCount,
       ['permissions']:
         val.permissions == void 0
-          ? void 0
+          ? val.permissions
           : serializeFileFullPermissionsField(val.permissions),
       ['tags']:
         val.tags == void 0
-          ? void 0
+          ? val.tags
           : (val.tags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
       ['lock']:
-        val.lock == void 0 ? void 0 : serializeFileFullLockField(val.lock),
-      ['extension']: val.extension == void 0 ? void 0 : val.extension,
-      ['is_package']: val.isPackage == void 0 ? void 0 : val.isPackage,
+        val.lock == void 0 ? val.lock : serializeFileFullLockField(val.lock),
+      ['extension']: val.extension,
+      ['is_package']: val.isPackage,
       ['expiring_embed_link']:
         val.expiringEmbedLink == void 0
-          ? void 0
+          ? val.expiringEmbedLink
           : serializeFileFullExpiringEmbedLinkField(val.expiringEmbedLink),
       ['watermark_info']:
         val.watermarkInfo == void 0
-          ? void 0
+          ? val.watermarkInfo
           : serializeFileFullWatermarkInfoField(val.watermarkInfo),
-      ['is_accessible_via_shared_link']:
-        val.isAccessibleViaSharedLink == void 0
-          ? void 0
-          : val.isAccessibleViaSharedLink,
+      ['is_accessible_via_shared_link']: val.isAccessibleViaSharedLink,
       ['allowed_invitee_roles']:
         val.allowedInviteeRoles == void 0
-          ? void 0
+          ? val.allowedInviteeRoles
           : (val.allowedInviteeRoles.map(function (
               item: FileFullAllowedInviteeRolesField,
             ): SerializedData {
               return serializeFileFullAllowedInviteeRolesField(item);
             }) as readonly any[]),
-      ['is_externally_owned']:
-        val.isExternallyOwned == void 0 ? void 0 : val.isExternallyOwned,
-      ['has_collaborations']:
-        val.hasCollaborations == void 0 ? void 0 : val.hasCollaborations,
+      ['is_externally_owned']: val.isExternallyOwned,
+      ['has_collaborations']: val.hasCollaborations,
       ['metadata']:
         val.metadata == void 0
-          ? void 0
+          ? val.metadata
           : serializeFileFullMetadataField(val.metadata),
       ['expires_at']:
-        val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+        val.expiresAt == void 0
+          ? val.expiresAt
+          : serializeDateTime(val.expiresAt),
       ['representations']:
         val.representations == void 0
-          ? void 0
+          ? val.representations
           : serializeFileFullRepresentationsField(val.representations),
       ['classification']:
         val.classification == void 0
-          ? void 0
+          ? val.classification
           : serializeFileFullClassificationField(val.classification),
-      ['uploader_display_name']:
-        val.uploaderDisplayName == void 0 ? void 0 : val.uploaderDisplayName,
+      ['uploader_display_name']: val.uploaderDisplayName,
       ['disposition_at']:
         val.dispositionAt == void 0
-          ? void 0
+          ? val.dispositionAt
           : serializeDateTime(val.dispositionAt),
       ['shared_link_permission_options']:
         val.sharedLinkPermissionOptions == void 0
-          ? void 0
+          ? val.sharedLinkPermissionOptions
           : (val.sharedLinkPermissionOptions.map(function (
               item: FileFullSharedLinkPermissionOptionsField,
             ): SerializedData {
               return serializeFileFullSharedLinkPermissionOptionsField(item);
             }) as readonly any[]),
-      ['is_associated_with_app_item']:
-        val.isAssociatedWithAppItem == void 0
-          ? void 0
-          : val.isAssociatedWithAppItem,
+      ['is_associated_with_app_item']: val.isAssociatedWithAppItem,
     },
   };
 }

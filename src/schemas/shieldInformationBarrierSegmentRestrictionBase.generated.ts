@@ -40,11 +40,11 @@ export function serializeShieldInformationBarrierSegmentRestrictionBase(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentRestrictionBaseTypeField(
             val.type,
           ),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeShieldInformationBarrierSegmentRestrictionBase(

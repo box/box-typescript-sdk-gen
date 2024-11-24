@@ -74,12 +74,12 @@ export function serializeMetadataFilter(val: MetadataFilter): SerializedData {
   return {
     ['scope']:
       val.scope == void 0
-        ? void 0
+        ? val.scope
         : serializeMetadataFilterScopeField(val.scope),
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['templateKey']: val.templateKey,
     ['filters']:
       val.filters == void 0
-        ? void 0
+        ? val.filters
         : (Object.fromEntries(
             Object.entries(val.filters).map(([k, v]: [string, any]) => [
               k,

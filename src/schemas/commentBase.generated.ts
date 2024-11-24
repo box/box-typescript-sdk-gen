@@ -31,9 +31,9 @@ export function deserializeCommentBaseTypeField(
 }
 export function serializeCommentBase(val: CommentBase): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeCommentBaseTypeField(val.type),
+      val.type == void 0 ? val.type : serializeCommentBaseTypeField(val.type),
   };
 }
 export function deserializeCommentBase(val: SerializedData): CommentBase {

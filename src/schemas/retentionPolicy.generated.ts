@@ -113,10 +113,9 @@ export function serializeRetentionPolicyAssignmentCountsField(
   val: RetentionPolicyAssignmentCountsField,
 ): SerializedData {
   return {
-    ['enterprise']: val.enterprise == void 0 ? void 0 : val.enterprise,
-    ['folder']: val.folder == void 0 ? void 0 : val.folder,
-    ['metadata_template']:
-      val.metadataTemplate == void 0 ? void 0 : val.metadataTemplate,
+    ['enterprise']: val.enterprise,
+    ['folder']: val.folder,
+    ['metadata_template']: val.metadataTemplate,
   };
 }
 export function deserializeRetentionPolicyAssignmentCountsField(
@@ -167,34 +166,36 @@ export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
   return {
     ...base,
     ...{
-      ['description']: val.description == void 0 ? void 0 : val.description,
+      ['description']: val.description,
       ['policy_type']:
         val.policyType == void 0
-          ? void 0
+          ? val.policyType
           : serializeRetentionPolicyPolicyTypeField(val.policyType),
       ['retention_type']:
         val.retentionType == void 0
-          ? void 0
+          ? val.retentionType
           : serializeRetentionPolicyRetentionTypeField(val.retentionType),
       ['status']:
         val.status == void 0
-          ? void 0
+          ? val.status
           : serializeRetentionPolicyStatusField(val.status),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
-      ['can_owner_extend_retention']:
-        val.canOwnerExtendRetention == void 0
-          ? void 0
-          : val.canOwnerExtendRetention,
-      ['are_owners_notified']:
-        val.areOwnersNotified == void 0 ? void 0 : val.areOwnersNotified,
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
+      ['can_owner_extend_retention']: val.canOwnerExtendRetention,
+      ['are_owners_notified']: val.areOwnersNotified,
       ['custom_notification_recipients']:
         val.customNotificationRecipients == void 0
-          ? void 0
+          ? val.customNotificationRecipients
           : (val.customNotificationRecipients.map(function (
               item: UserMini,
             ): SerializedData {
@@ -202,7 +203,7 @@ export function serializeRetentionPolicy(val: RetentionPolicy): SerializedData {
             }) as readonly any[]),
       ['assignment_counts']:
         val.assignmentCounts == void 0
-          ? void 0
+          ? val.assignmentCounts
           : serializeRetentionPolicyAssignmentCountsField(val.assignmentCounts),
     },
   };

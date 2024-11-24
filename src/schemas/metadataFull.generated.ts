@@ -42,10 +42,10 @@ export function serializeMetadataFull(val: MetadataFull): SerializedData {
     ...base,
     ...{
       ...{
-        ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
-        ['$id']: val.id == void 0 ? void 0 : val.id,
-        ['$type']: val.type == void 0 ? void 0 : val.type,
-        ['$typeVersion']: val.typeVersion == void 0 ? void 0 : val.typeVersion,
+        ['$canEdit']: val.canEdit,
+        ['$id']: val.id,
+        ['$type']: val.type,
+        ['$typeVersion']: val.typeVersion,
       },
       ...val.extraData,
     },

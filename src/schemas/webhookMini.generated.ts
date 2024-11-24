@@ -64,10 +64,10 @@ export function serializeWebhookMiniTargetField(
   val: WebhookMiniTargetField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWebhookMiniTargetTypeField(val.type),
   };
 }
@@ -93,12 +93,12 @@ export function deserializeWebhookMiniTargetField(
 }
 export function serializeWebhookMini(val: WebhookMini): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeWebhookMiniTypeField(val.type),
+      val.type == void 0 ? val.type : serializeWebhookMiniTypeField(val.type),
     ['target']:
       val.target == void 0
-        ? void 0
+        ? val.target
         : serializeWebhookMiniTargetField(val.target),
   };
 }

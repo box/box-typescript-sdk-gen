@@ -168,9 +168,9 @@ export function serializeMetadataCascadePolicyOwnerEnterpriseField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeMetadataCascadePolicyOwnerEnterpriseTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeMetadataCascadePolicyOwnerEnterpriseField(
@@ -219,9 +219,9 @@ export function serializeMetadataCascadePolicyParentField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeMetadataCascadePolicyParentTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeMetadataCascadePolicyParentField(
@@ -253,16 +253,16 @@ export function serializeMetadataCascadePolicy(
     ['type']: serializeMetadataCascadePolicyTypeField(val.type),
     ['owner_enterprise']:
       val.ownerEnterprise == void 0
-        ? void 0
+        ? val.ownerEnterprise
         : serializeMetadataCascadePolicyOwnerEnterpriseField(
             val.ownerEnterprise,
           ),
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeMetadataCascadePolicyParentField(val.parent),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['scope']: val.scope,
+    ['templateKey']: val.templateKey,
   };
 }
 export function deserializeMetadataCascadePolicy(
@@ -331,20 +331,20 @@ export function serializeMetadataCascadePolicyInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeMetadataCascadePolicyTypeField(val.type),
     ['owner_enterprise']:
       val.ownerEnterprise == void 0
-        ? void 0
+        ? val.ownerEnterprise
         : serializeMetadataCascadePolicyOwnerEnterpriseField(
             val.ownerEnterprise,
           ),
     ['parent']:
       val.parent == void 0
-        ? void 0
+        ? val.parent
         : serializeMetadataCascadePolicyParentField(val.parent),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['scope']: val.scope,
+    ['templateKey']: val.templateKey,
   };
 }
 export function deserializeMetadataCascadePolicyInput(

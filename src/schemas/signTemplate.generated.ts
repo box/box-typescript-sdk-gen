@@ -45,17 +45,17 @@ export interface SignTemplateReadySignLinkField {
   readonly url?: string;
   /**
    * Request name. */
-  readonly name?: string;
+  readonly name?: string | null;
   /**
    * Extra instructions for all signers. */
-  readonly instructions?: string;
+  readonly instructions?: string | null;
   /**
    * The destination folder to place final,
    * signed document and signing
    * log. Only `ID` and `type` fields are required.
    * The root folder,
    * folder ID `0`, cannot be used. */
-  readonly folderId?: string;
+  readonly folderId?: string | null;
   /**
    * Whether to disable notifications when
    * a signer has signed. */
@@ -68,16 +68,16 @@ export interface SignTemplateReadySignLinkField {
 export interface SignTemplateCustomBrandingField {
   /**
    * Name of the company */
-  readonly companyName?: string;
+  readonly companyName?: string | null;
   /**
    * Custom branding logo URI in the form of a base64 image. */
-  readonly logoUri?: string;
+  readonly logoUri?: string | null;
   /**
    * Custom branding color in hex. */
-  readonly brandingColor?: string;
+  readonly brandingColor?: string | null;
   /**
    * Content of the email footer. */
-  readonly emailFooterText?: string;
+  readonly emailFooterText?: string | null;
   readonly rawData?: SerializedData;
 }
 export interface SignTemplate {
@@ -89,16 +89,16 @@ export interface SignTemplate {
   readonly id?: string;
   /**
    * The name of the template. */
-  readonly name?: string;
+  readonly name?: string | null;
   /**
    * Subject of signature request email. This is cleaned by sign request. If this field is not passed, a default subject will be used. */
-  readonly emailSubject?: string;
+  readonly emailSubject?: string | null;
   /**
    * Message to include in signature request email. The field is cleaned through sanitization of specific characters. However, some html tags are allowed. Links included in the message are also converted to hyperlinks in the email. The message may contain the following html tags including `a`, `abbr`, `acronym`, `b`, `blockquote`, `code`, `em`, `i`, `ul`, `li`, `ol`, and `strong`. Be aware that when the text to html ratio is too high, the email may end up in spam filters. Custom styles on these tags are not allowed. If this field is not passed, a default message will be used. */
-  readonly emailMessage?: string;
+  readonly emailMessage?: string | null;
   /**
    * Set the number of days after which the created signature request will automatically expire if not completed. By default, we do not apply any expiration date on signature requests, and the signature request does not expire. */
-  readonly daysValid?: number;
+  readonly daysValid?: number | null;
   readonly parentFolder?: FolderMini;
   /**
    * List of files to create a signing document from. Only the ID and type fields are required for each file. */
@@ -132,11 +132,11 @@ export interface SignTemplate {
   readonly additionalInfo?: SignTemplateAdditionalInfoField;
   /**
    * Box's ready-sign link feature enables you to create a link to a signature request that you've created from a template. Use this link when you want to post a signature request on a public form — such as an email, social media post, or web page — without knowing who the signers will be. Note: The ready-sign link feature is limited to Enterprise Plus customers and not available to Box Verified Enterprises. */
-  readonly readySignLink?: SignTemplateReadySignLinkField;
+  readonly readySignLink?: SignTemplateReadySignLinkField | null;
   /**
    * Custom branding applied to notifications
    * and signature requests. */
-  readonly customBranding?: SignTemplateCustomBrandingField;
+  readonly customBranding?: SignTemplateCustomBrandingField | null;
   readonly rawData?: SerializedData;
 }
 export function serializeSignTemplateTypeField(
@@ -203,7 +203,7 @@ export function serializeSignTemplateAdditionalInfoRequiredField(
   return {
     ['signers']:
       val.signers == void 0
-        ? void 0
+        ? val.signers
         : (val.signers.map(function (
             item: readonly SignTemplateAdditionalInfoRequiredSignersField[],
           ): SerializedData {
@@ -259,7 +259,7 @@ export function serializeSignTemplateAdditionalInfoField(
   return {
     ['non_editable']:
       val.nonEditable == void 0
-        ? void 0
+        ? val.nonEditable
         : (val.nonEditable.map(function (
             item: SignTemplateAdditionalInfoNonEditableField,
           ): SerializedData {
@@ -267,7 +267,7 @@ export function serializeSignTemplateAdditionalInfoField(
           }) as readonly any[]),
     ['required']:
       val.required == void 0
-        ? void 0
+        ? val.required
         : serializeSignTemplateAdditionalInfoRequiredField(val.required),
   };
 }
@@ -310,15 +310,12 @@ export function serializeSignTemplateReadySignLinkField(
   val: SignTemplateReadySignLinkField,
 ): SerializedData {
   return {
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['instructions']: val.instructions == void 0 ? void 0 : val.instructions,
-    ['folder_id']: val.folderId == void 0 ? void 0 : val.folderId,
-    ['is_notification_disabled']:
-      val.isNotificationDisabled == void 0
-        ? void 0
-        : val.isNotificationDisabled,
-    ['is_active']: val.isActive == void 0 ? void 0 : val.isActive,
+    ['url']: val.url,
+    ['name']: val.name,
+    ['instructions']: val.instructions,
+    ['folder_id']: val.folderId,
+    ['is_notification_disabled']: val.isNotificationDisabled,
+    ['is_active']: val.isActive,
   };
 }
 export function deserializeSignTemplateReadySignLinkField(
@@ -393,12 +390,10 @@ export function serializeSignTemplateCustomBrandingField(
   val: SignTemplateCustomBrandingField,
 ): SerializedData {
   return {
-    ['company_name']: val.companyName == void 0 ? void 0 : val.companyName,
-    ['logo_uri']: val.logoUri == void 0 ? void 0 : val.logoUri,
-    ['branding_color']:
-      val.brandingColor == void 0 ? void 0 : val.brandingColor,
-    ['email_footer_text']:
-      val.emailFooterText == void 0 ? void 0 : val.emailFooterText,
+    ['company_name']: val.companyName,
+    ['logo_uri']: val.logoUri,
+    ['branding_color']: val.brandingColor,
+    ['email_footer_text']: val.emailFooterText,
   };
 }
 export function deserializeSignTemplateCustomBrandingField(
@@ -454,51 +449,44 @@ export function deserializeSignTemplateCustomBrandingField(
 export function serializeSignTemplate(val: SignTemplate): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeSignTemplateTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['email_subject']: val.emailSubject == void 0 ? void 0 : val.emailSubject,
-    ['email_message']: val.emailMessage == void 0 ? void 0 : val.emailMessage,
-    ['days_valid']: val.daysValid == void 0 ? void 0 : val.daysValid,
+      val.type == void 0 ? val.type : serializeSignTemplateTypeField(val.type),
+    ['id']: val.id,
+    ['name']: val.name,
+    ['email_subject']: val.emailSubject,
+    ['email_message']: val.emailMessage,
+    ['days_valid']: val.daysValid,
     ['parent_folder']:
       val.parentFolder == void 0
-        ? void 0
+        ? val.parentFolder
         : serializeFolderMini(val.parentFolder),
     ['source_files']:
       val.sourceFiles == void 0
-        ? void 0
+        ? val.sourceFiles
         : (val.sourceFiles.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),
-    ['are_fields_locked']:
-      val.areFieldsLocked == void 0 ? void 0 : val.areFieldsLocked,
-    ['are_options_locked']:
-      val.areOptionsLocked == void 0 ? void 0 : val.areOptionsLocked,
-    ['are_recipients_locked']:
-      val.areRecipientsLocked == void 0 ? void 0 : val.areRecipientsLocked,
-    ['are_email_settings_locked']:
-      val.areEmailSettingsLocked == void 0
-        ? void 0
-        : val.areEmailSettingsLocked,
-    ['are_files_locked']:
-      val.areFilesLocked == void 0 ? void 0 : val.areFilesLocked,
+    ['are_fields_locked']: val.areFieldsLocked,
+    ['are_options_locked']: val.areOptionsLocked,
+    ['are_recipients_locked']: val.areRecipientsLocked,
+    ['are_email_settings_locked']: val.areEmailSettingsLocked,
+    ['are_files_locked']: val.areFilesLocked,
     ['signers']:
       val.signers == void 0
-        ? void 0
+        ? val.signers
         : (val.signers.map(function (item: TemplateSigner): SerializedData {
             return serializeTemplateSigner(item);
           }) as readonly any[]),
     ['additional_info']:
       val.additionalInfo == void 0
-        ? void 0
+        ? val.additionalInfo
         : serializeSignTemplateAdditionalInfoField(val.additionalInfo),
     ['ready_sign_link']:
       val.readySignLink == void 0
-        ? void 0
+        ? val.readySignLink
         : serializeSignTemplateReadySignLinkField(val.readySignLink),
     ['custom_branding']:
       val.customBranding == void 0
-        ? void 0
+        ? val.customBranding
         : serializeSignTemplateCustomBrandingField(val.customBranding),
   };
 }

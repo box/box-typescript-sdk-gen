@@ -326,7 +326,7 @@ export interface UpdateFileVersionByIdRequestBody {
   /**
    * Set this to `null` to clear
    * the date and restore the file. */
-  readonly trashedAt?: string;
+  readonly trashedAt?: string | null;
   readonly rawData?: SerializedData;
 }
 export class UpdateFileVersionByIdHeaders {
@@ -736,7 +736,7 @@ export interface FileVersionsManagerInput {
 export function serializeUpdateFileVersionByIdRequestBody(
   val: UpdateFileVersionByIdRequestBody,
 ): SerializedData {
-  return { ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt };
+  return { ['trashed_at']: val.trashedAt };
 }
 export function deserializeUpdateFileVersionByIdRequestBody(
   val: SerializedData,
@@ -775,10 +775,10 @@ export function serializePromoteFileVersionRequestBody(
   val: PromoteFileVersionRequestBody,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializePromoteFileVersionRequestBodyTypeField(val.type),
   };
 }

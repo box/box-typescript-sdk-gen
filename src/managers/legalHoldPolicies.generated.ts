@@ -585,16 +585,16 @@ export function serializeCreateLegalHoldPolicyRequestBody(
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['description']: val.description,
     ['filter_started_at']:
       val.filterStartedAt == void 0
-        ? void 0
+        ? val.filterStartedAt
         : serializeDateTime(val.filterStartedAt),
     ['filter_ended_at']:
       val.filterEndedAt == void 0
-        ? void 0
+        ? val.filterEndedAt
         : serializeDateTime(val.filterEndedAt),
-    ['is_ongoing']: val.isOngoing == void 0 ? void 0 : val.isOngoing,
+    ['is_ongoing']: val.isOngoing,
   };
 }
 export function deserializeCreateLegalHoldPolicyRequestBody(
@@ -669,9 +669,9 @@ export function serializeUpdateLegalHoldPolicyByIdRequestBody(
   val: UpdateLegalHoldPolicyByIdRequestBody,
 ): SerializedData {
   return {
-    ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['release_notes']: val.releaseNotes == void 0 ? void 0 : val.releaseNotes,
+    ['policy_name']: val.policyName,
+    ['description']: val.description,
+    ['release_notes']: val.releaseNotes,
   };
 }
 export function deserializeUpdateLegalHoldPolicyByIdRequestBody(

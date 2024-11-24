@@ -450,7 +450,7 @@ export function serializeCreateFolderLockRequestBody(
   return {
     ['locked_operations']:
       val.lockedOperations == void 0
-        ? void 0
+        ? val.lockedOperations
         : serializeCreateFolderLockRequestBodyLockedOperationsField(
             val.lockedOperations,
           ),

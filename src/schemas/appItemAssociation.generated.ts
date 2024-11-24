@@ -135,7 +135,7 @@ export function serializeAppItemAssociationInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeAppItemAssociationTypeField(val.type),
     ['app_item']: serializeAppItem(val.appItem),
     ['item']: serializeFileBaseOrFolderBaseOrWebLinkBase(val.item),

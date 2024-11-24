@@ -71,32 +71,35 @@ export function serializeIntegrationMapping(
     ...{
       ['integration_type']:
         val.integrationType == void 0
-          ? void 0
+          ? val.integrationType
           : serializeIntegrationMappingIntegrationTypeField(
               val.integrationType,
             ),
-      ['is_manually_created']:
-        val.isManuallyCreated == void 0 ? void 0 : val.isManuallyCreated,
+      ['is_manually_created']: val.isManuallyCreated,
       ['options']:
         val.options == void 0
-          ? void 0
+          ? val.options
           : serializeIntegrationMappingSlackOptions(val.options),
       ['created_by']:
         val.createdBy == void 0
-          ? void 0
+          ? val.createdBy
           : serializeUserIntegrationMappings(val.createdBy),
       ['modified_by']:
         val.modifiedBy == void 0
-          ? void 0
+          ? val.modifiedBy
           : serializeUserIntegrationMappings(val.modifiedBy),
       ['partner_item']: serializeIntegrationMappingPartnerItemSlackUnion(
         val.partnerItem,
       ),
       ['box_item']: serializeFolderMini(val.boxItem),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
     },
   };
 }

@@ -44,7 +44,7 @@ export interface ClientError {
    * a per-endpoint basis. `message` is only one example. */
   readonly contextInfo?: {
     readonly [key: string]: any;
-  };
+  } | null;
   /**
    * A URL that links to more information about why this error occurred. */
   readonly helpUrl?: string;
@@ -131,14 +131,14 @@ export function deserializeClientErrorCodeField(
 export function serializeClientError(val: ClientError): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeClientErrorTypeField(val.type),
-    ['status']: val.status == void 0 ? void 0 : val.status,
+      val.type == void 0 ? val.type : serializeClientErrorTypeField(val.type),
+    ['status']: val.status,
     ['code']:
-      val.code == void 0 ? void 0 : serializeClientErrorCodeField(val.code),
-    ['message']: val.message == void 0 ? void 0 : val.message,
+      val.code == void 0 ? val.code : serializeClientErrorCodeField(val.code),
+    ['message']: val.message,
     ['context_info']:
       val.contextInfo == void 0
-        ? void 0
+        ? val.contextInfo
         : (Object.fromEntries(
             Object.entries(val.contextInfo).map(([k, v]: [string, any]) => [
               k,
@@ -149,8 +149,8 @@ export function serializeClientError(val: ClientError): SerializedData {
           ) as {
             readonly [key: string]: any;
           }),
-    ['help_url']: val.helpUrl == void 0 ? void 0 : val.helpUrl,
-    ['request_id']: val.requestId == void 0 ? void 0 : val.requestId,
+    ['help_url']: val.helpUrl,
+    ['request_id']: val.requestId,
   };
 }
 export function deserializeClientError(val: SerializedData): ClientError {

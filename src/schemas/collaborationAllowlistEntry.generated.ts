@@ -102,12 +102,12 @@ export function serializeCollaborationAllowlistEntryEnterpriseField(
   val: CollaborationAllowlistEntryEnterpriseField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaborationAllowlistEntryEnterpriseTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
   };
 }
 export function deserializeCollaborationAllowlistEntryEnterpriseField(
@@ -147,22 +147,24 @@ export function serializeCollaborationAllowlistEntry(
   val: CollaborationAllowlistEntry,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaborationAllowlistEntryTypeField(val.type),
-    ['domain']: val.domain == void 0 ? void 0 : val.domain,
+    ['domain']: val.domain,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeCollaborationAllowlistEntryDirectionField(val.direction),
     ['enterprise']:
       val.enterprise == void 0
-        ? void 0
+        ? val.enterprise
         : serializeCollaborationAllowlistEntryEnterpriseField(val.enterprise),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
   };
 }
 export function deserializeCollaborationAllowlistEntry(

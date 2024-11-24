@@ -54,6 +54,16 @@ See the endpoint docs at
 await client.fileVersions.getFileVersionById(
   file.id,
   fileVersions.entries![0].id,
+  {
+    queryParams: {
+      fields: [
+        'trashed_at' as string,
+        'trashed_by' as string,
+        'restored_at' as string,
+        'restored_by' as string,
+      ],
+    } satisfies GetFileVersionByIdQueryParams,
+  } satisfies GetFileVersionByIdOptionalsInput,
 );
 ```
 
@@ -121,7 +131,15 @@ This operation is performed by calling function `updateFileVersionById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id-versions-id/).
 
-_Currently we don't have an example for calling `updateFileVersionById` in integration tests_
+<!-- sample put_files_id_versions_id -->
+
+```ts
+await client.fileVersions.updateFileVersionById(file.id, fileVersion.id, {
+  requestBody: {
+    trashedAt: createNull(),
+  } satisfies UpdateFileVersionByIdRequestBody,
+} satisfies UpdateFileVersionByIdOptionalsInput);
+```
 
 ### Arguments
 

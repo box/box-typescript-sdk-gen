@@ -19,7 +19,7 @@ export function serializeUploadPart(val: UploadPart): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UploadPart"' });
   }
-  return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
+  return { ...base, ...{ ['sha1']: val.sha1 } };
 }
 export function deserializeUploadPart(val: SerializedData): UploadPart {
   if (!sdIsMap(val)) {

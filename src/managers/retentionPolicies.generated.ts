@@ -343,10 +343,10 @@ export interface GetRetentionPolicyByIdHeadersInput {
 export interface UpdateRetentionPolicyByIdRequestBody {
   /**
    * The name for the retention policy */
-  readonly policyName?: string;
+  readonly policyName?: string | null;
   /**
    * The additional text description of the retention policy. */
-  readonly description?: string;
+  readonly description?: string | null;
   /**
    * The disposition action of the retention policy.
    * This action can be `permanently_delete`, which
@@ -377,7 +377,7 @@ export interface UpdateRetentionPolicyByIdRequestBody {
    * `non-modifiable` type only. You can convert a
    * `modifiable` policy to `non-modifiable`, but
    * not the other way around. */
-  readonly retentionType?: string;
+  readonly retentionType?: string | null;
   /**
    * The length of the retention policy. This value
    * specifies the duration in days that the retention
@@ -391,20 +391,20 @@ export interface UpdateRetentionPolicyByIdRequestBody {
    *
    * If not retiring a policy, do not include this parameter
    * or set it to `null`. */
-  readonly status?: string;
+  readonly status?: string | null;
   /**
    * Determines if the owner of items under the policy
    * can extend the retention when the original retention
    * duration is about to end. */
-  readonly canOwnerExtendRetention?: boolean;
+  readonly canOwnerExtendRetention?: boolean | null;
   /**
    * Determines if owners and co-owners of items
    * under the policy are notified when
    * the retention duration is about to end. */
-  readonly areOwnersNotified?: boolean;
+  readonly areOwnersNotified?: boolean | null;
   /**
    * A list of users notified when the retention duration is about to end. */
-  readonly customNotificationRecipients?: readonly UserBase[];
+  readonly customNotificationRecipients?: readonly UserBase[] | null;
   readonly rawData?: SerializedData;
 }
 export class UpdateRetentionPolicyByIdHeaders {
@@ -780,7 +780,7 @@ export function serializeCreateRetentionPolicyRequestBody(
 ): SerializedData {
   return {
     ['policy_name']: val.policyName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['description']: val.description,
     ['policy_type']: serializeCreateRetentionPolicyRequestBodyPolicyTypeField(
       val.policyType,
     ),
@@ -788,23 +788,18 @@ export function serializeCreateRetentionPolicyRequestBody(
       serializeCreateRetentionPolicyRequestBodyDispositionActionField(
         val.dispositionAction,
       ),
-    ['retention_length']:
-      val.retentionLength == void 0 ? void 0 : val.retentionLength,
+    ['retention_length']: val.retentionLength,
     ['retention_type']:
       val.retentionType == void 0
-        ? void 0
+        ? val.retentionType
         : serializeCreateRetentionPolicyRequestBodyRetentionTypeField(
             val.retentionType,
           ),
-    ['can_owner_extend_retention']:
-      val.canOwnerExtendRetention == void 0
-        ? void 0
-        : val.canOwnerExtendRetention,
-    ['are_owners_notified']:
-      val.areOwnersNotified == void 0 ? void 0 : val.areOwnersNotified,
+    ['can_owner_extend_retention']: val.canOwnerExtendRetention,
+    ['are_owners_notified']: val.areOwnersNotified,
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
-        ? void 0
+        ? val.customNotificationRecipients
         : (val.customNotificationRecipients.map(function (
             item: UserMini,
           ): SerializedData {
@@ -934,24 +929,17 @@ export function serializeUpdateRetentionPolicyByIdRequestBody(
   val: UpdateRetentionPolicyByIdRequestBody,
 ): SerializedData {
   return {
-    ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['disposition_action']:
-      val.dispositionAction == void 0 ? void 0 : val.dispositionAction,
-    ['retention_type']:
-      val.retentionType == void 0 ? void 0 : val.retentionType,
-    ['retention_length']:
-      val.retentionLength == void 0 ? void 0 : val.retentionLength,
-    ['status']: val.status == void 0 ? void 0 : val.status,
-    ['can_owner_extend_retention']:
-      val.canOwnerExtendRetention == void 0
-        ? void 0
-        : val.canOwnerExtendRetention,
-    ['are_owners_notified']:
-      val.areOwnersNotified == void 0 ? void 0 : val.areOwnersNotified,
+    ['policy_name']: val.policyName,
+    ['description']: val.description,
+    ['disposition_action']: val.dispositionAction,
+    ['retention_type']: val.retentionType,
+    ['retention_length']: val.retentionLength,
+    ['status']: val.status,
+    ['can_owner_extend_retention']: val.canOwnerExtendRetention,
+    ['are_owners_notified']: val.areOwnersNotified,
     ['custom_notification_recipients']:
       val.customNotificationRecipients == void 0
-        ? void 0
+        ? val.customNotificationRecipients
         : (val.customNotificationRecipients.map(function (
             item: UserBase,
           ): SerializedData {

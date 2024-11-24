@@ -253,10 +253,7 @@ export function deserializeTimelineSkillCardSkillCardTypeField(
 export function serializeTimelineSkillCardSkillCardTitleField(
   val: TimelineSkillCardSkillCardTitleField,
 ): SerializedData {
-  return {
-    ['code']: val.code == void 0 ? void 0 : val.code,
-    ['message']: val.message,
-  };
+  return { ['code']: val.code, ['message']: val.message };
 }
 export function deserializeTimelineSkillCardSkillCardTitleField(
   val: SerializedData,
@@ -351,7 +348,7 @@ export function serializeTimelineSkillCardSkillFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTimelineSkillCardSkillTypeField(val.type),
     ['id']: val.id,
   };
@@ -443,7 +440,7 @@ export function serializeTimelineSkillCardInvocationFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTimelineSkillCardInvocationTypeField(val.type),
     ['id']: val.id,
   };
@@ -478,10 +475,7 @@ export function deserializeTimelineSkillCardInvocationFieldInput(
 export function serializeTimelineSkillCardEntriesAppearsField(
   val: TimelineSkillCardEntriesAppearsField,
 ): SerializedData {
-  return {
-    ['start']: val.start == void 0 ? void 0 : val.start,
-    ['end']: val.end == void 0 ? void 0 : val.end,
-  };
+  return { ['start']: val.start, ['end']: val.end };
 }
 export function deserializeTimelineSkillCardEntriesAppearsField(
   val: SerializedData,
@@ -514,16 +508,16 @@ export function serializeTimelineSkillCardEntriesField(
   val: TimelineSkillCardEntriesField,
 ): SerializedData {
   return {
-    ['text']: val.text == void 0 ? void 0 : val.text,
+    ['text']: val.text,
     ['appears']:
       val.appears == void 0
-        ? void 0
+        ? val.appears
         : (val.appears.map(function (
             item: TimelineSkillCardEntriesAppearsField,
           ): SerializedData {
             return serializeTimelineSkillCardEntriesAppearsField(item);
           }) as readonly any[]),
-    ['image_url']: val.imageUrl == void 0 ? void 0 : val.imageUrl,
+    ['image_url']: val.imageUrl,
   };
 }
 export function deserializeTimelineSkillCardEntriesField(
@@ -576,18 +570,20 @@ export function serializeTimelineSkillCard(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']: serializeTimelineSkillCardTypeField(val.type),
     ['skill_card_type']: serializeTimelineSkillCardSkillCardTypeField(
       val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeTimelineSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeTimelineSkillCardSkillField(val.skill),
     ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
-    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['duration']: val.duration,
     ['entries']: val.entries.map(function (
       item: TimelineSkillCardEntriesField,
     ): SerializedData {
@@ -686,22 +682,24 @@ export function serializeTimelineSkillCardInput(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTimelineSkillCardTypeField(val.type),
     ['skillCardType']:
       val.skillCardType == void 0
-        ? void 0
+        ? val.skillCardType
         : serializeTimelineSkillCardSkillCardTypeField(val.skillCardType),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeTimelineSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeTimelineSkillCardSkillField(val.skill),
     ['invocation']: serializeTimelineSkillCardInvocationField(val.invocation),
-    ['duration']: val.duration == void 0 ? void 0 : val.duration,
+    ['duration']: val.duration,
     ['entries']: val.entries.map(function (
       item: TimelineSkillCardEntriesField,
     ): SerializedData {

@@ -17,7 +17,7 @@ export interface ShieldInformationBarriers {
   readonly limit?: number;
   /**
    * The marker for the start of the next page of results. */
-  readonly nextMarker?: string;
+  readonly nextMarker?: string | null;
   /**
    * A list of shield information barrier objects */
   readonly entries?: readonly ShieldInformationBarrier[];
@@ -27,11 +27,11 @@ export function serializeShieldInformationBarriers(
   val: ShieldInformationBarriers,
 ): SerializedData {
   return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: ShieldInformationBarrier,
           ): SerializedData {

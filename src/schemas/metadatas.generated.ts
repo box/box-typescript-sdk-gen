@@ -22,11 +22,11 @@ export function serializeMetadatas(val: Metadatas): SerializedData {
   return {
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: Metadata): SerializedData {
             return serializeMetadata(item);
           }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
+    ['limit']: val.limit,
   };
 }
 export function deserializeMetadatas(val: SerializedData): Metadatas {

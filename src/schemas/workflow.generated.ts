@@ -237,9 +237,9 @@ export function serializeWorkflowFlowsTriggerScopeObjectField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWorkflowFlowsTriggerScopeObjectTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeWorkflowFlowsTriggerScopeObjectField(
@@ -269,12 +269,12 @@ export function serializeWorkflowFlowsTriggerScopeField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWorkflowFlowsTriggerScopeTypeField(val.type),
-    ['ref']: val.ref == void 0 ? void 0 : val.ref,
+    ['ref']: val.ref,
     ['object']:
       val.object == void 0
-        ? void 0
+        ? val.object
         : serializeWorkflowFlowsTriggerScopeObjectField(val.object),
   };
 }
@@ -313,15 +313,15 @@ export function serializeWorkflowFlowsTriggerField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWorkflowFlowsTriggerTypeField(val.type),
     ['trigger_type']:
       val.triggerType == void 0
-        ? void 0
+        ? val.triggerType
         : serializeWorkflowFlowsTriggerTriggerTypeField(val.triggerType),
     ['scope']:
       val.scope == void 0
-        ? void 0
+        ? val.scope
         : (val.scope.map(function (
             item: WorkflowFlowsTriggerScopeField,
           ): SerializedData {
@@ -563,15 +563,15 @@ export function serializeWorkflowFlowsOutcomesIfRejectedField(
   val: WorkflowFlowsOutcomesIfRejectedField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWorkflowFlowsOutcomesIfRejectedTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['action_type']:
       val.actionType == void 0
-        ? void 0
+        ? val.actionType
         : serializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
             val.actionType,
           ),
@@ -620,19 +620,19 @@ export function serializeWorkflowFlowsOutcomesField(
   val: WorkflowFlowsOutcomesField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWorkflowFlowsOutcomesTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['action_type']:
       val.actionType == void 0
-        ? void 0
+        ? val.actionType
         : serializeWorkflowFlowsOutcomesActionTypeField(val.actionType),
     ['if_rejected']:
       val.ifRejected == void 0
-        ? void 0
+        ? val.ifRejected
         : (val.ifRejected.map(function (
             item: WorkflowFlowsOutcomesIfRejectedField,
           ): SerializedData {
@@ -699,25 +699,29 @@ export function serializeWorkflowFlowsField(
   val: WorkflowFlowsField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeWorkflowFlowsTypeField(val.type),
+      val.type == void 0 ? val.type : serializeWorkflowFlowsTypeField(val.type),
     ['trigger']:
       val.trigger == void 0
-        ? void 0
+        ? val.trigger
         : serializeWorkflowFlowsTriggerField(val.trigger),
     ['outcomes']:
       val.outcomes == void 0
-        ? void 0
+        ? val.outcomes
         : (val.outcomes.map(function (
             item: WorkflowFlowsOutcomesField,
           ): SerializedData {
             return serializeWorkflowFlowsOutcomesField(item);
           }) as readonly any[]),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserBase(val.createdBy),
   };
 }
 export function deserializeWorkflowFlowsField(
@@ -783,7 +787,7 @@ export function serializeWorkflow(val: Workflow): SerializedData {
     ...{
       ['flows']:
         val.flows == void 0
-          ? void 0
+          ? val.flows
           : (val.flows.map(function (item: WorkflowFlowsField): SerializedData {
               return serializeWorkflowFlowsField(item);
             }) as readonly any[]),

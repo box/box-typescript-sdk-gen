@@ -27,10 +27,10 @@ export interface Items {
   readonly limit?: number;
   /**
    * The marker for the start of the next page of results. */
-  readonly nextMarker?: string;
+  readonly nextMarker?: string | null;
   /**
    * The marker for the start of the previous page of results. */
-  readonly prevMarker?: string;
+  readonly prevMarker?: string | null;
   /**
    * One greater than the offset of the last entry in the entire collection.
    * The total number of entries in the collection may be less than
@@ -77,10 +77,10 @@ export function deserializeItemsOrderDirectionField(
 }
 export function serializeItemsOrderField(val: ItemsOrderField): SerializedData {
   return {
-    ['by']: val.by == void 0 ? void 0 : val.by,
+    ['by']: val.by,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeItemsOrderDirectionField(val.direction),
   };
 }
@@ -104,20 +104,20 @@ export function deserializeItemsOrderField(
 }
 export function serializeItems(val: Items): SerializedData {
   return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
+    ['prev_marker']: val.prevMarker,
+    ['total_count']: val.totalCount,
+    ['offset']: val.offset,
     ['order']:
       val.order == void 0
-        ? void 0
+        ? val.order
         : (val.order.map(function (item: ItemsOrderField): SerializedData {
             return serializeItemsOrderField(item);
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: FileFullOrFolderMiniOrWebLink,
           ): SerializedData {

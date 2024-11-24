@@ -73,10 +73,10 @@ export function serializeFileVersionsOrderField(
   val: FileVersionsOrderField,
 ): SerializedData {
   return {
-    ['by']: val.by == void 0 ? void 0 : val.by,
+    ['by']: val.by,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeFileVersionsOrderDirectionField(val.direction),
   };
 }
@@ -102,12 +102,12 @@ export function deserializeFileVersionsOrderField(
 }
 export function serializeFileVersions(val: FileVersions): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['order']:
       val.order == void 0
-        ? void 0
+        ? val.order
         : (val.order.map(function (
             item: FileVersionsOrderField,
           ): SerializedData {
@@ -115,7 +115,7 @@ export function serializeFileVersions(val: FileVersions): SerializedData {
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: FileVersionFull): SerializedData {
             return serializeFileVersionFull(item);
           }) as readonly any[]),

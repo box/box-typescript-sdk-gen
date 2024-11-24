@@ -37,9 +37,13 @@ export function serializeGroup(val: Group): SerializedData {
     ...base,
     ...{
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
     },
   };
 }

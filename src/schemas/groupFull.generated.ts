@@ -94,12 +94,7 @@ export function deserializeGroupFullMemberViewabilityLevelField(
 export function serializeGroupFullPermissionsField(
   val: GroupFullPermissionsField,
 ): SerializedData {
-  return {
-    ['can_invite_as_collaborator']:
-      val.canInviteAsCollaborator == void 0
-        ? void 0
-        : val.canInviteAsCollaborator,
-  };
+  return { ['can_invite_as_collaborator']: val.canInviteAsCollaborator };
 }
 export function deserializeGroupFullPermissionsField(
   val: SerializedData,
@@ -134,25 +129,22 @@ export function serializeGroupFull(val: GroupFull): SerializedData {
   return {
     ...base,
     ...{
-      ['provenance']: val.provenance == void 0 ? void 0 : val.provenance,
-      ['external_sync_identifier']:
-        val.externalSyncIdentifier == void 0
-          ? void 0
-          : val.externalSyncIdentifier,
-      ['description']: val.description == void 0 ? void 0 : val.description,
+      ['provenance']: val.provenance,
+      ['external_sync_identifier']: val.externalSyncIdentifier,
+      ['description']: val.description,
       ['invitability_level']:
         val.invitabilityLevel == void 0
-          ? void 0
+          ? val.invitabilityLevel
           : serializeGroupFullInvitabilityLevelField(val.invitabilityLevel),
       ['member_viewability_level']:
         val.memberViewabilityLevel == void 0
-          ? void 0
+          ? val.memberViewabilityLevel
           : serializeGroupFullMemberViewabilityLevelField(
               val.memberViewabilityLevel,
             ),
       ['permissions']:
         val.permissions == void 0
-          ? void 0
+          ? val.permissions
           : serializeGroupFullPermissionsField(val.permissions),
     },
   };

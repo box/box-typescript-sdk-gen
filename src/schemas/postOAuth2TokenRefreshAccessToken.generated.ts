@@ -154,7 +154,7 @@ export function serializePostOAuth2TokenRefreshAccessTokenInput(
   return {
     ['grantType']:
       val.grantType == void 0
-        ? void 0
+        ? val.grantType
         : serializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
             val.grantType,
           ),

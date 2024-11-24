@@ -429,7 +429,7 @@ export function serializeUpdateFolderWatermarkRequestBodyWatermarkFieldInput(
   return {
     ['imprint']:
       val.imprint == void 0
-        ? void 0
+        ? val.imprint
         : serializeUpdateFolderWatermarkRequestBodyWatermarkImprintField(
             val.imprint,
           ),

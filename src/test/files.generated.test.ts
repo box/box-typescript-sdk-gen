@@ -12,6 +12,10 @@ import { serializeTrashFile } from '../schemas/trashFile.generated.js';
 import { deserializeTrashFile } from '../schemas/trashFile.generated.js';
 import { serializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
 import { deserializeUpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { serializeUpdateFileByIdRequestBodyLockField } from '../managers/files.generated.js';
+import { deserializeUpdateFileByIdRequestBodyLockField } from '../managers/files.generated.js';
+import { serializeUpdateFileByIdRequestBodyLockAccessField } from '../managers/files.generated.js';
+import { deserializeUpdateFileByIdRequestBodyLockAccessField } from '../managers/files.generated.js';
 import { serializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { deserializeCopyFileRequestBody } from '../managers/files.generated.js';
 import { serializeCopyFileRequestBodyParentField } from '../managers/files.generated.js';
@@ -31,6 +35,9 @@ import { GetFileByIdQueryParams } from '../managers/files.generated.js';
 import { GetFileByIdHeaders } from '../managers/files.generated.js';
 import { TrashFile } from '../schemas/trashFile.generated.js';
 import { UpdateFileByIdRequestBody } from '../managers/files.generated.js';
+import { UpdateFileByIdRequestBodyLockField } from '../managers/files.generated.js';
+import { UpdateFileByIdRequestBodyLockAccessField } from '../managers/files.generated.js';
+import { UpdateFileByIdQueryParams } from '../managers/files.generated.js';
 import { CopyFileRequestBody } from '../managers/files.generated.js';
 import { CopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { getUuid } from '../internal/utils.js';
@@ -38,6 +45,7 @@ import { generateByteStream } from '../internal/utils.js';
 import { readByteStream } from '../internal/utils.js';
 import { bufferEquals } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
+import { createNull } from '../internal/utils.js';
 import { uploadNewFile } from './commons.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { SerializedData } from '../serialization/json.js';
@@ -116,7 +124,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
         fields: ['name' as string],
       } satisfies GetFileByIdQueryParams,
       headers: new GetFileByIdHeaders({
-        extraHeaders: { ['if-none-match']: file.etag },
+        extraHeaders: { ['if-none-match']: file.etag! },
       }),
     } satisfies GetFileByIdOptionalsInput);
   }).rejects.toThrow();
@@ -150,6 +158,32 @@ test('testUpdateFile', async function testUpdateFile(): Promise<any> {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(updatedFile.id);
+});
+test('testFileLock', async function testFileLock(): Promise<any> {
+  const file: FileFull = await uploadNewFile();
+  const fileWithLock: FileFull = await client.files.updateFileById(file.id, {
+    requestBody: {
+      lock: {
+        access: 'lock' as UpdateFileByIdRequestBodyLockAccessField,
+      } satisfies UpdateFileByIdRequestBodyLockField,
+    } satisfies UpdateFileByIdRequestBody,
+    queryParams: {
+      fields: ['lock' as string],
+    } satisfies UpdateFileByIdQueryParams,
+  } satisfies UpdateFileByIdOptionalsInput);
+  if (!!(fileWithLock.lock == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  const fileWithoutLock: FileFull = await client.files.updateFileById(file.id, {
+    requestBody: { lock: createNull() } satisfies UpdateFileByIdRequestBody,
+    queryParams: {
+      fields: ['lock' as string],
+    } satisfies UpdateFileByIdQueryParams,
+  } satisfies UpdateFileByIdOptionalsInput);
+  if (!(fileWithoutLock.lock == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  await client.files.deleteFileById(file.id);
 });
 test('testCopyFile', async function testCopyFile(): Promise<any> {
   const fileOrigin: FileFull = await uploadNewFile();

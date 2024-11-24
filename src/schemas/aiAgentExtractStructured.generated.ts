@@ -69,11 +69,11 @@ export function serializeAiAgentExtractStructured(
     ['type']: serializeAiAgentExtractStructuredTypeField(val.type),
     ['long_text']:
       val.longText == void 0
-        ? void 0
+        ? val.longText
         : serializeAiAgentLongTextTool(val.longText),
     ['basic_text']:
       val.basicText == void 0
-        ? void 0
+        ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
   };
 }
@@ -113,15 +113,15 @@ export function serializeAiAgentExtractStructuredInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeAiAgentExtractStructuredTypeField(val.type),
     ['long_text']:
       val.longText == void 0
-        ? void 0
+        ? val.longText
         : serializeAiAgentLongTextTool(val.longText),
     ['basic_text']:
       val.basicText == void 0
-        ? void 0
+        ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
   };
 }

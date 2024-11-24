@@ -175,11 +175,11 @@ export function serializeCompletionRuleVariableInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCompletionRuleVariableTypeField(val.type),
     ['variableType']:
       val.variableType == void 0
-        ? void 0
+        ? val.variableType
         : serializeCompletionRuleVariableVariableTypeField(val.variableType),
     ['variable_value']: serializeCompletionRuleVariableVariableValueField(
       val.variableValue,

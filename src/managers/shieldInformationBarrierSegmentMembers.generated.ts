@@ -537,10 +537,10 @@ export function serializeCreateShieldInformationBarrierSegmentMemberRequestBodyS
   val: CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentTypeField(
             val.type,
           ),
@@ -581,13 +581,13 @@ export function serializeCreateShieldInformationBarrierSegmentMemberRequestBody(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateShieldInformationBarrierSegmentMemberRequestBodyTypeField(
             val.type,
           ),
     ['shield_information_barrier']:
       val.shieldInformationBarrier == void 0
-        ? void 0
+        ? val.shieldInformationBarrier
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
     ['shield_information_barrier_segment']:
       serializeCreateShieldInformationBarrierSegmentMemberRequestBodyShieldInformationBarrierSegmentField(

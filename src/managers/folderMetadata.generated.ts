@@ -764,11 +764,11 @@ export function serializeUpdateFolderMetadataByIdRequestBody(
   return {
     ['op']:
       val.op == void 0
-        ? void 0
+        ? val.op
         : serializeUpdateFolderMetadataByIdRequestBodyOpField(val.op),
-    ['path']: val.path == void 0 ? void 0 : val.path,
-    ['value']: val.value == void 0 ? void 0 : val.value,
-    ['from']: val.from == void 0 ? void 0 : val.from,
+    ['path']: val.path,
+    ['value']: val.value,
+    ['from']: val.from,
   };
 }
 export function deserializeUpdateFolderMetadataByIdRequestBody(

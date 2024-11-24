@@ -37,13 +37,7 @@ export function serializeCommentFull(val: CommentFull): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "CommentFull"' });
   }
-  return {
-    ...base,
-    ...{
-      ['tagged_message']:
-        val.taggedMessage == void 0 ? void 0 : val.taggedMessage,
-    },
-  };
+  return { ...base, ...{ ['tagged_message']: val.taggedMessage } };
 }
 export function deserializeCommentFull(val: SerializedData): CommentFull {
   if (!sdIsMap(val)) {

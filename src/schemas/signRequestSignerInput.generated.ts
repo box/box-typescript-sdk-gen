@@ -150,14 +150,14 @@ export function serializeSignRequestSignerInput(
     ...{
       ['type']:
         val.type == void 0
-          ? void 0
+          ? val.type
           : serializeSignRequestSignerInputTypeField(val.type),
       ['content_type']:
         val.contentType == void 0
-          ? void 0
+          ? val.contentType
           : serializeSignRequestSignerInputContentTypeField(val.contentType),
       ['page_index']: val.pageIndex,
-      ['read_only']: val.readOnly == void 0 ? void 0 : val.readOnly,
+      ['read_only']: val.readOnly,
     },
   };
 }

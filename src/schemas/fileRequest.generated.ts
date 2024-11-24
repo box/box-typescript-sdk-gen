@@ -37,7 +37,7 @@ export class FileRequest {
    *
    * This defaults to description of the file request that was
    * copied to create this file request. */
-  readonly description?: string;
+  readonly description?: string | null;
   /**
    * The status of the file request. This defaults
    * to `active`.
@@ -88,7 +88,7 @@ export class FileRequest {
    * header, a change will only be performed on the  file request if the `etag`
    * on the file request still matches the `etag` provided in the `If-Match`
    * header. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   readonly createdBy?: UserMini;
   /**
    * The date and time when the file request was created. */
@@ -171,7 +171,7 @@ export interface FileRequestInput {
    *
    * This defaults to description of the file request that was
    * copied to create this file request. */
-  readonly description?: string;
+  readonly description?: string | null;
   /**
    * The status of the file request. This defaults
    * to `active`.
@@ -222,7 +222,7 @@ export interface FileRequestInput {
    * header, a change will only be performed on the  file request if the `etag`
    * on the file request still matches the `etag` provided in the `If-Match`
    * header. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   readonly createdBy?: UserMini;
   /**
    * The date and time when the file request was created. */
@@ -268,26 +268,30 @@ export function serializeFileRequest(val: FileRequest): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeFileRequestTypeField(val.type),
-    ['title']: val.title == void 0 ? void 0 : val.title,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['title']: val.title,
+    ['description']: val.description,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeFileRequestStatusField(val.status),
-    ['is_email_required']:
-      val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
-    ['is_description_required']:
-      val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
+    ['is_email_required']: val.isEmailRequired,
+    ['is_description_required']: val.isDescriptionRequired,
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
     ['folder']: serializeFolderMini(val.folder),
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['url']: val.url,
+    ['etag']: val.etag,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['created_at']: serializeDateTime(val.createdAt),
     ['updated_by']:
-      val.updatedBy == void 0 ? void 0 : serializeUserMini(val.updatedBy),
+      val.updatedBy == void 0
+        ? val.updatedBy
+        : serializeUserMini(val.updatedBy),
     ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }
@@ -428,27 +432,31 @@ export function serializeFileRequestInput(
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeFileRequestTypeField(val.type),
-    ['title']: val.title == void 0 ? void 0 : val.title,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+      val.type == void 0 ? val.type : serializeFileRequestTypeField(val.type),
+    ['title']: val.title,
+    ['description']: val.description,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeFileRequestStatusField(val.status),
-    ['is_email_required']:
-      val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
-    ['is_description_required']:
-      val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
+    ['is_email_required']: val.isEmailRequired,
+    ['is_description_required']: val.isDescriptionRequired,
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
     ['folder']: serializeFolderMini(val.folder),
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['url']: val.url,
+    ['etag']: val.etag,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['created_at']: serializeDateTime(val.createdAt),
     ['updated_by']:
-      val.updatedBy == void 0 ? void 0 : serializeUserMini(val.updatedBy),
+      val.updatedBy == void 0
+        ? val.updatedBy
+        : serializeUserMini(val.updatedBy),
     ['updated_at']: serializeDateTime(val.updatedAt),
   };
 }

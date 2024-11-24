@@ -28,9 +28,9 @@ export function serializeUserAvatarPicUrlsField(
   val: UserAvatarPicUrlsField,
 ): SerializedData {
   return {
-    ['small']: val.small == void 0 ? void 0 : val.small,
-    ['large']: val.large == void 0 ? void 0 : val.large,
-    ['preview']: val.preview == void 0 ? void 0 : val.preview,
+    ['small']: val.small,
+    ['large']: val.large,
+    ['preview']: val.preview,
   };
 }
 export function deserializeUserAvatarPicUrlsField(
@@ -71,7 +71,7 @@ export function serializeUserAvatar(val: UserAvatar): SerializedData {
   return {
     ['pic_urls']:
       val.picUrls == void 0
-        ? void 0
+        ? val.picUrls
         : serializeUserAvatarPicUrlsField(val.picUrls),
   };
 }

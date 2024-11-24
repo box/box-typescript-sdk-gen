@@ -25,7 +25,7 @@ export interface RetentionPolicyAssignmentAssignedToField {
    * The ID of the folder, enterprise, or metadata template
    * the policy is assigned to.
    * Set to null or omit when type is set to enterprise. */
-  readonly id?: string;
+  readonly id?: string | null;
   /**
    * The type of resource the policy is assigned to. */
   readonly type?: RetentionPolicyAssignmentAssignedToTypeField;
@@ -34,11 +34,11 @@ export interface RetentionPolicyAssignmentAssignedToField {
 export interface RetentionPolicyAssignmentFilterFieldsField {
   /**
    * The metadata attribute key id. */
-  readonly field?: string;
+  readonly field?: string | null;
   /**
    * The metadata attribute field id. For value, only
    * enum and multiselect types are supported. */
-  readonly value?: string;
+  readonly value?: string | null;
   readonly rawData?: SerializedData;
 }
 export class RetentionPolicyAssignment {
@@ -58,7 +58,9 @@ export class RetentionPolicyAssignment {
   /**
    * An array of field objects. Values are only returned if the `assigned_to`
    * type is `metadata_template`. Otherwise, the array is blank. */
-  readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
+  readonly filterFields?:
+    | readonly RetentionPolicyAssignmentFilterFieldsField[]
+    | null;
   readonly assignedBy?: UserMini;
   /**
    * When the retention policy assignment object was
@@ -119,7 +121,9 @@ export interface RetentionPolicyAssignmentInput {
   /**
    * An array of field objects. Values are only returned if the `assigned_to`
    * type is `metadata_template`. Otherwise, the array is blank. */
-  readonly filterFields?: readonly RetentionPolicyAssignmentFilterFieldsField[];
+  readonly filterFields?:
+    | readonly RetentionPolicyAssignmentFilterFieldsField[]
+    | null;
   readonly assignedBy?: UserMini;
   /**
    * When the retention policy assignment object was
@@ -172,10 +176,10 @@ export function serializeRetentionPolicyAssignmentAssignedToField(
   val: RetentionPolicyAssignmentAssignedToField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeRetentionPolicyAssignmentAssignedToTypeField(val.type),
   };
 }
@@ -206,10 +210,7 @@ export function deserializeRetentionPolicyAssignmentAssignedToField(
 export function serializeRetentionPolicyAssignmentFilterFieldsField(
   val: RetentionPolicyAssignmentFilterFieldsField,
 ): SerializedData {
-  return {
-    ['field']: val.field == void 0 ? void 0 : val.field,
-    ['value']: val.value == void 0 ? void 0 : val.value,
-  };
+  return { ['field']: val.field, ['value']: val.value };
 }
 export function deserializeRetentionPolicyAssignmentFilterFieldsField(
   val: SerializedData,
@@ -247,26 +248,29 @@ export function serializeRetentionPolicyAssignment(
     ['type']: serializeRetentionPolicyAssignmentTypeField(val.type),
     ['retention_policy']:
       val.retentionPolicy == void 0
-        ? void 0
+        ? val.retentionPolicy
         : serializeRetentionPolicyMini(val.retentionPolicy),
     ['assigned_to']:
       val.assignedTo == void 0
-        ? void 0
+        ? val.assignedTo
         : serializeRetentionPolicyAssignmentAssignedToField(val.assignedTo),
     ['filter_fields']:
       val.filterFields == void 0
-        ? void 0
+        ? val.filterFields
         : (val.filterFields.map(function (
             item: RetentionPolicyAssignmentFilterFieldsField,
           ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
     ['assigned_by']:
-      val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
+      val.assignedBy == void 0
+        ? val.assignedBy
+        : serializeUserMini(val.assignedBy),
     ['assigned_at']:
-      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
-    ['start_date_field']:
-      val.startDateField == void 0 ? void 0 : val.startDateField,
+      val.assignedAt == void 0
+        ? val.assignedAt
+        : serializeDateTime(val.assignedAt),
+    ['start_date_field']: val.startDateField,
   };
 }
 export function deserializeRetentionPolicyAssignment(
@@ -359,30 +363,33 @@ export function serializeRetentionPolicyAssignmentInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeRetentionPolicyAssignmentTypeField(val.type),
     ['retention_policy']:
       val.retentionPolicy == void 0
-        ? void 0
+        ? val.retentionPolicy
         : serializeRetentionPolicyMini(val.retentionPolicy),
     ['assigned_to']:
       val.assignedTo == void 0
-        ? void 0
+        ? val.assignedTo
         : serializeRetentionPolicyAssignmentAssignedToField(val.assignedTo),
     ['filter_fields']:
       val.filterFields == void 0
-        ? void 0
+        ? val.filterFields
         : (val.filterFields.map(function (
             item: RetentionPolicyAssignmentFilterFieldsField,
           ): SerializedData {
             return serializeRetentionPolicyAssignmentFilterFieldsField(item);
           }) as readonly any[]),
     ['assigned_by']:
-      val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
+      val.assignedBy == void 0
+        ? val.assignedBy
+        : serializeUserMini(val.assignedBy),
     ['assigned_at']:
-      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
-    ['start_date_field']:
-      val.startDateField == void 0 ? void 0 : val.startDateField,
+      val.assignedAt == void 0
+        ? val.assignedAt
+        : serializeDateTime(val.assignedAt),
+    ['start_date_field']: val.startDateField,
   };
 }
 export function deserializeRetentionPolicyAssignmentInput(

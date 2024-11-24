@@ -81,14 +81,14 @@ export interface FolderSharedLinkField {
    * extension so that the file will be saved with the right file type.
    *
    * This property will be `null` for folders. */
-  readonly downloadUrl?: string;
+  readonly downloadUrl?: string | null;
   /**
    * The "Custom URL" that can also be used to preview the item on Box.  Custom
    * URLs can only be created or modified in the Box Web application. */
-  readonly vanityUrl?: string;
+  readonly vanityUrl?: string | null;
   /**
    * The custom name of a shared link, as used in the `vanity_url` field. */
-  readonly vanityName?: string;
+  readonly vanityName?: string | null;
   /**
    * The access level for this shared link.
    *
@@ -115,7 +115,7 @@ export interface FolderSharedLinkField {
   /**
    * The date and time when this link will be unshared. This field can only be
    * set by users with paid accounts. */
-  readonly unsharedAt?: DateTime;
+  readonly unsharedAt?: DateTime | null;
   /**
    * Defines if the shared link requires a password to access the item. */
   readonly isPasswordEnabled: boolean;
@@ -156,21 +156,21 @@ export interface FolderFolderUploadEmailField {
 }
 export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
 export class Folder extends FolderMini {
-  readonly createdAt?: DateTime;
-  readonly modifiedAt?: DateTime;
+  readonly createdAt?: DateTime | null;
+  readonly modifiedAt?: DateTime | null;
   readonly description?: string;
   readonly size?: number;
   readonly pathCollection?: FolderPathCollectionField;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
-  readonly trashedAt?: DateTime;
-  readonly purgedAt?: DateTime;
-  readonly contentCreatedAt?: DateTime;
-  readonly contentModifiedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
+  readonly purgedAt?: DateTime | null;
+  readonly contentCreatedAt?: DateTime | null;
+  readonly contentModifiedAt?: DateTime | null;
   readonly ownedBy?: UserMini;
-  readonly sharedLink?: FolderSharedLinkField;
-  readonly folderUploadEmail?: FolderFolderUploadEmailField;
-  readonly parent?: FolderMini;
+  readonly sharedLink?: FolderSharedLinkField | null;
+  readonly folderUploadEmail?: FolderFolderUploadEmailField | null;
+  readonly parent?: FolderMini | null;
   readonly itemStatus?: FolderItemStatusField;
   readonly itemCollection?: Items;
   constructor(fields: Folder) {
@@ -363,12 +363,12 @@ export function serializeFolderSharedLinkField(
 ): SerializedData {
   return {
     ['url']: val.url,
-    ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
-    ['vanity_url']: val.vanityUrl == void 0 ? void 0 : val.vanityUrl,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['download_url']: val.downloadUrl,
+    ['vanity_url']: val.vanityUrl,
+    ['vanity_name']: val.vanityName,
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeFolderSharedLinkAccessField(val.access),
     ['effective_access']: serializeFolderSharedLinkEffectiveAccessField(
       val.effectiveAccess,
@@ -377,11 +377,13 @@ export function serializeFolderSharedLinkField(
       val.effectivePermission,
     ),
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['is_password_enabled']: val.isPasswordEnabled,
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeFolderSharedLinkPermissionsField(val.permissions),
     ['download_count']: val.downloadCount,
     ['preview_count']: val.previewCount,
@@ -542,9 +544,9 @@ export function serializeFolderFolderUploadEmailField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeFolderFolderUploadEmailAccessField(val.access),
-    ['email']: val.email == void 0 ? void 0 : val.email,
+    ['email']: val.email,
   };
 }
 export function deserializeFolderFolderUploadEmailField(
@@ -599,50 +601,60 @@ export function serializeFolder(val: Folder): SerializedData {
     ...base,
     ...{
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
-      ['description']: val.description == void 0 ? void 0 : val.description,
-      ['size']: val.size == void 0 ? void 0 : val.size,
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
+      ['description']: val.description,
+      ['size']: val.size,
       ['path_collection']:
         val.pathCollection == void 0
-          ? void 0
+          ? val.pathCollection
           : serializeFolderPathCollectionField(val.pathCollection),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['modified_by']:
-        val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
+        val.modifiedBy == void 0
+          ? val.modifiedBy
+          : serializeUserMini(val.modifiedBy),
       ['trashed_at']:
-        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+        val.trashedAt == void 0
+          ? val.trashedAt
+          : serializeDateTime(val.trashedAt),
       ['purged_at']:
-        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
+        val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
       ['content_created_at']:
         val.contentCreatedAt == void 0
-          ? void 0
+          ? val.contentCreatedAt
           : serializeDateTime(val.contentCreatedAt),
       ['content_modified_at']:
         val.contentModifiedAt == void 0
-          ? void 0
+          ? val.contentModifiedAt
           : serializeDateTime(val.contentModifiedAt),
       ['owned_by']:
-        val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
+        val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
       ['shared_link']:
         val.sharedLink == void 0
-          ? void 0
+          ? val.sharedLink
           : serializeFolderSharedLinkField(val.sharedLink),
       ['folder_upload_email']:
         val.folderUploadEmail == void 0
-          ? void 0
+          ? val.folderUploadEmail
           : serializeFolderFolderUploadEmailField(val.folderUploadEmail),
       ['parent']:
-        val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+        val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
       ['item_status']:
         val.itemStatus == void 0
-          ? void 0
+          ? val.itemStatus
           : serializeFolderItemStatusField(val.itemStatus),
       ['item_collection']:
         val.itemCollection == void 0
-          ? void 0
+          ? val.itemCollection
           : serializeItems(val.itemCollection),
     },
   };

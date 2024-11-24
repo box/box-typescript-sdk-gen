@@ -54,18 +54,24 @@ export function serializeLegalHoldPolicyAssignment(
     ...{
       ['legal_hold_policy']:
         val.legalHoldPolicy == void 0
-          ? void 0
+          ? val.legalHoldPolicy
           : serializeLegalHoldPolicyMini(val.legalHoldPolicy),
       ['assigned_to']:
         val.assignedTo == void 0
-          ? void 0
+          ? val.assignedTo
           : serializeFileOrFolderOrWebLink(val.assignedTo),
       ['assigned_by']:
-        val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
+        val.assignedBy == void 0
+          ? val.assignedBy
+          : serializeUserMini(val.assignedBy),
       ['assigned_at']:
-        val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
+        val.assignedAt == void 0
+          ? val.assignedAt
+          : serializeDateTime(val.assignedAt),
       ['deleted_at']:
-        val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
+        val.deletedAt == void 0
+          ? val.deletedAt
+          : serializeDateTime(val.deletedAt),
     },
   };
 }

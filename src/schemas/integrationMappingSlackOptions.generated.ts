@@ -19,12 +19,7 @@ export interface IntegrationMappingSlackOptions {
 export function serializeIntegrationMappingSlackOptions(
   val: IntegrationMappingSlackOptions,
 ): SerializedData {
-  return {
-    ['is_access_management_disabled']:
-      val.isAccessManagementDisabled == void 0
-        ? void 0
-        : val.isAccessManagementDisabled,
-  };
+  return { ['is_access_management_disabled']: val.isAccessManagementDisabled };
 }
 export function deserializeIntegrationMappingSlackOptions(
   val: SerializedData,

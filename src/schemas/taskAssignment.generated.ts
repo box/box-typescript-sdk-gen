@@ -94,25 +94,37 @@ export function deserializeTaskAssignmentResolutionStateField(
 }
 export function serializeTaskAssignment(val: TaskAssignment): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeTaskAssignmentTypeField(val.type),
-    ['item']: val.item == void 0 ? void 0 : serializeFileMini(val.item),
+      val.type == void 0
+        ? val.type
+        : serializeTaskAssignmentTypeField(val.type),
+    ['item']: val.item == void 0 ? val.item : serializeFileMini(val.item),
     ['assigned_to']:
-      val.assignedTo == void 0 ? void 0 : serializeUserMini(val.assignedTo),
-    ['message']: val.message == void 0 ? void 0 : val.message,
+      val.assignedTo == void 0
+        ? val.assignedTo
+        : serializeUserMini(val.assignedTo),
+    ['message']: val.message,
     ['completed_at']:
-      val.completedAt == void 0 ? void 0 : serializeDateTime(val.completedAt),
+      val.completedAt == void 0
+        ? val.completedAt
+        : serializeDateTime(val.completedAt),
     ['assigned_at']:
-      val.assignedAt == void 0 ? void 0 : serializeDateTime(val.assignedAt),
+      val.assignedAt == void 0
+        ? val.assignedAt
+        : serializeDateTime(val.assignedAt),
     ['reminded_at']:
-      val.remindedAt == void 0 ? void 0 : serializeDateTime(val.remindedAt),
+      val.remindedAt == void 0
+        ? val.remindedAt
+        : serializeDateTime(val.remindedAt),
     ['resolution_state']:
       val.resolutionState == void 0
-        ? void 0
+        ? val.resolutionState
         : serializeTaskAssignmentResolutionStateField(val.resolutionState),
     ['assigned_by']:
-      val.assignedBy == void 0 ? void 0 : serializeUserMini(val.assignedBy),
+      val.assignedBy == void 0
+        ? val.assignedBy
+        : serializeUserMini(val.assignedBy),
   };
 }
 export function deserializeTaskAssignment(val: SerializedData): TaskAssignment {
