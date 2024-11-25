@@ -20,7 +20,7 @@ export interface RetentionPolicies {
   readonly limit?: number;
   /**
    * The marker for the start of the next page of results. */
-  readonly nextMarker?: string;
+  readonly nextMarker?: string | null;
   readonly rawData?: SerializedData;
 }
 export function serializeRetentionPolicies(
@@ -29,12 +29,12 @@ export function serializeRetentionPolicies(
   return {
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: RetentionPolicy): SerializedData {
             return serializeRetentionPolicy(item);
           }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
   };
 }
 export function deserializeRetentionPolicies(

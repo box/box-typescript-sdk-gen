@@ -60,20 +60,17 @@ export function deserializeClassificationTemplateField(
 }
 export function serializeClassification(val: Classification): SerializedData {
   return {
-    ['Box__Security__Classification__Key']:
-      val.boxSecurityClassificationKey == void 0
-        ? void 0
-        : val.boxSecurityClassificationKey,
-    ['$parent']: val.parent == void 0 ? void 0 : val.parent,
+    ['Box__Security__Classification__Key']: val.boxSecurityClassificationKey,
+    ['$parent']: val.parent,
     ['$template']:
       val.template == void 0
-        ? void 0
+        ? val.template
         : serializeClassificationTemplateField(val.template),
-    ['$scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['$version']: val.version == void 0 ? void 0 : val.version,
-    ['$type']: val.type == void 0 ? void 0 : val.type,
-    ['$typeVersion']: val.typeVersion == void 0 ? void 0 : val.typeVersion,
-    ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['$scope']: val.scope,
+    ['$version']: val.version,
+    ['$type']: val.type,
+    ['$typeVersion']: val.typeVersion,
+    ['$canEdit']: val.canEdit,
   };
 }
 export function deserializeClassification(val: SerializedData): Classification {

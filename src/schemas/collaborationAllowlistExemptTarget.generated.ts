@@ -80,14 +80,14 @@ export function serializeCollaborationAllowlistExemptTargetEnterpriseField(
   val: CollaborationAllowlistExemptTargetEnterpriseField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaborationAllowlistExemptTargetEnterpriseTypeField(
             val.type,
           ),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
   };
 }
 export function deserializeCollaborationAllowlistExemptTargetEnterpriseField(
@@ -131,22 +131,26 @@ export function serializeCollaborationAllowlistExemptTarget(
   val: CollaborationAllowlistExemptTarget,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaborationAllowlistExemptTargetTypeField(val.type),
     ['enterprise']:
       val.enterprise == void 0
-        ? void 0
+        ? val.enterprise
         : serializeCollaborationAllowlistExemptTargetEnterpriseField(
             val.enterprise,
           ),
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeCollaborationAllowlistExemptTarget(

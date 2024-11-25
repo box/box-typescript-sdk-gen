@@ -183,6 +183,15 @@ export interface GetMetadataTemplatesByInstanceIdQueryParams {
   /**
    * The ID of an instance of the metadata template to find. */
   readonly metadataInstanceId: string;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
+  readonly marker?: string;
+  /**
+   * The maximum number of items to return per page. */
+  readonly limit?: number;
 }
 export class GetMetadataTemplatesByInstanceIdHeaders {
   /**
@@ -581,6 +590,8 @@ export class MetadataTemplatesManager {
       ['metadata_instance_id']: toString(
         queryParams.metadataInstanceId,
       ) as string,
+      ['marker']: toString(queryParams.marker) as string,
+      ['limit']: toString(queryParams.limit) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -1021,7 +1032,7 @@ export function serializeUpdateMetadataTemplateRequestBody(
     ['op']: serializeUpdateMetadataTemplateRequestBodyOpField(val.op),
     ['data']:
       val.data == void 0
-        ? void 0
+        ? val.data
         : (Object.fromEntries(
             Object.entries(val.data).map(([k, v]: [string, any]) => [
               k,
@@ -1032,25 +1043,24 @@ export function serializeUpdateMetadataTemplateRequestBody(
           ) as {
             readonly [key: string]: any;
           }),
-    ['fieldKey']: val.fieldKey == void 0 ? void 0 : val.fieldKey,
+    ['fieldKey']: val.fieldKey,
     ['fieldKeys']:
       val.fieldKeys == void 0
-        ? void 0
+        ? val.fieldKeys
         : (val.fieldKeys.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
-    ['enumOptionKey']: val.enumOptionKey == void 0 ? void 0 : val.enumOptionKey,
+    ['enumOptionKey']: val.enumOptionKey,
     ['enumOptionKeys']:
       val.enumOptionKeys == void 0
-        ? void 0
+        ? val.enumOptionKeys
         : (val.enumOptionKeys.map(function (item: string): SerializedData {
             return item;
           }) as readonly any[]),
-    ['multiSelectOptionKey']:
-      val.multiSelectOptionKey == void 0 ? void 0 : val.multiSelectOptionKey,
+    ['multiSelectOptionKey']: val.multiSelectOptionKey,
     ['multiSelectOptionKeys']:
       val.multiSelectOptionKeys == void 0
-        ? void 0
+        ? val.multiSelectOptionKeys
         : (val.multiSelectOptionKeys.map(function (
             item: string,
           ): SerializedData {
@@ -1288,11 +1298,11 @@ export function serializeCreateMetadataTemplateRequestBodyFieldsField(
     ),
     ['key']: val.key,
     ['displayName']: val.displayName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['description']: val.description,
+    ['hidden']: val.hidden,
     ['options']:
       val.options == void 0
-        ? void 0
+        ? val.options
         : (val.options.map(function (
             item: CreateMetadataTemplateRequestBodyFieldsOptionsField,
           ): SerializedData {
@@ -1395,21 +1405,18 @@ export function serializeCreateMetadataTemplateRequestBody(
 ): SerializedData {
   return {
     ['scope']: val.scope,
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['templateKey']: val.templateKey,
     ['displayName']: val.displayName,
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['hidden']: val.hidden,
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (
             item: CreateMetadataTemplateRequestBodyFieldsField,
           ): SerializedData {
             return serializeCreateMetadataTemplateRequestBodyFieldsField(item);
           }) as readonly any[]),
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
   };
 }
 export function deserializeCreateMetadataTemplateRequestBody(

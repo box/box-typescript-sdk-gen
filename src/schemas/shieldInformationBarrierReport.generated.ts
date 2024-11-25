@@ -84,24 +84,30 @@ export function serializeShieldInformationBarrierReport(
     ...{
       ['shield_information_barrier']:
         val.shieldInformationBarrier == void 0
-          ? void 0
+          ? val.shieldInformationBarrier
           : serializeShieldInformationBarrierReference(
               val.shieldInformationBarrier,
             ),
       ['status']:
         val.status == void 0
-          ? void 0
+          ? val.status
           : serializeShieldInformationBarrierReportStatusField(val.status),
       ['details']:
         val.details == void 0
-          ? void 0
+          ? val.details
           : serializeShieldInformationBarrierReportDetails(val.details),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserBase(val.createdBy),
       ['updated_at']:
-        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
+        val.updatedAt == void 0
+          ? val.updatedAt
+          : serializeDateTime(val.updatedAt),
     },
   };
 }

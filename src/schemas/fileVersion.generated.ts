@@ -27,11 +27,11 @@ export class FileVersion extends FileVersionMini {
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
   readonly modifiedBy?: UserMini;
-  readonly trashedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
   readonly trashedBy?: UserMini;
-  readonly restoredAt?: DateTime;
+  readonly restoredAt?: DateTime | null;
   readonly restoredBy?: UserMini;
-  readonly purgedAt?: DateTime;
+  readonly purgedAt?: DateTime | null;
   readonly uploaderDisplayName?: string;
   constructor(fields: FileVersion) {
     super(fields);
@@ -45,26 +45,39 @@ export function serializeFileVersion(val: FileVersion): SerializedData {
   return {
     ...base,
     ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
-      ['size']: val.size == void 0 ? void 0 : val.size,
+      ['name']: val.name,
+      ['size']: val.size,
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
       ['modified_by']:
-        val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
+        val.modifiedBy == void 0
+          ? val.modifiedBy
+          : serializeUserMini(val.modifiedBy),
       ['trashed_at']:
-        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+        val.trashedAt == void 0
+          ? val.trashedAt
+          : serializeDateTime(val.trashedAt),
       ['trashed_by']:
-        val.trashedBy == void 0 ? void 0 : serializeUserMini(val.trashedBy),
+        val.trashedBy == void 0
+          ? val.trashedBy
+          : serializeUserMini(val.trashedBy),
       ['restored_at']:
-        val.restoredAt == void 0 ? void 0 : serializeDateTime(val.restoredAt),
+        val.restoredAt == void 0
+          ? val.restoredAt
+          : serializeDateTime(val.restoredAt),
       ['restored_by']:
-        val.restoredBy == void 0 ? void 0 : serializeUserMini(val.restoredBy),
+        val.restoredBy == void 0
+          ? val.restoredBy
+          : serializeUserMini(val.restoredBy),
       ['purged_at']:
-        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
-      ['uploader_display_name']:
-        val.uploaderDisplayName == void 0 ? void 0 : val.uploaderDisplayName,
+        val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
+      ['uploader_display_name']: val.uploaderDisplayName,
     },
   };
 }

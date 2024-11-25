@@ -74,10 +74,10 @@ export function serializeUploadPartsOrderField(
   val: UploadPartsOrderField,
 ): SerializedData {
   return {
-    ['by']: val.by == void 0 ? void 0 : val.by,
+    ['by']: val.by,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeUploadPartsOrderDirectionField(val.direction),
   };
 }
@@ -103,12 +103,12 @@ export function deserializeUploadPartsOrderField(
 }
 export function serializeUploadParts(val: UploadParts): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['order']:
       val.order == void 0
-        ? void 0
+        ? val.order
         : (val.order.map(function (
             item: UploadPartsOrderField,
           ): SerializedData {
@@ -116,7 +116,7 @@ export function serializeUploadParts(val: UploadParts): SerializedData {
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: UploadPart): SerializedData {
             return serializeUploadPart(item);
           }) as readonly any[]),

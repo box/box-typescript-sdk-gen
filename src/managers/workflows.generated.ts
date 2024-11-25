@@ -318,10 +318,7 @@ export function deserializeStartWorkflowRequestBodyTypeField(
 export function serializeStartWorkflowRequestBodyFlowField(
   val: StartWorkflowRequestBodyFlowField,
 ): SerializedData {
-  return {
-    ['type']: val.type == void 0 ? void 0 : val.type,
-    ['id']: val.id == void 0 ? void 0 : val.id,
-  };
+  return { ['type']: val.type, ['id']: val.id };
 }
 export function deserializeStartWorkflowRequestBodyFlowField(
   val: SerializedData,
@@ -368,9 +365,9 @@ export function serializeStartWorkflowRequestBodyFilesField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStartWorkflowRequestBodyFilesTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeStartWorkflowRequestBodyFilesField(
@@ -415,9 +412,9 @@ export function serializeStartWorkflowRequestBodyFolderField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStartWorkflowRequestBodyFolderTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeStartWorkflowRequestBodyFolderField(
@@ -447,7 +444,7 @@ export function serializeStartWorkflowRequestBody(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeStartWorkflowRequestBodyTypeField(val.type),
     ['flow']: serializeStartWorkflowRequestBodyFlowField(val.flow),
     ['files']: val.files.map(function (
@@ -458,7 +455,7 @@ export function serializeStartWorkflowRequestBody(
     ['folder']: serializeStartWorkflowRequestBodyFolderField(val.folder),
     ['outcomes']:
       val.outcomes == void 0
-        ? void 0
+        ? val.outcomes
         : (val.outcomes.map(function (item: Outcome): SerializedData {
             return serializeOutcome(item);
           }) as readonly any[]),

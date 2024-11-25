@@ -288,7 +288,7 @@ export interface AddShareLinkToFileRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -390,7 +390,7 @@ export interface UpdateSharedLinkOnFileRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -451,7 +451,7 @@ export interface RemoveSharedLinkFromFileRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the file. */
-  readonly sharedLink?: RemoveSharedLinkFromFileRequestBodySharedLinkField;
+  readonly sharedLink?: RemoveSharedLinkFromFileRequestBodySharedLinkField | null;
   readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromFileQueryParams {
@@ -823,9 +823,9 @@ export function serializeAddShareLinkToFileRequestBodySharedLinkPermissionsField
   val: AddShareLinkToFileRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeAddShareLinkToFileRequestBodySharedLinkPermissionsField(
@@ -873,17 +873,19 @@ export function serializeAddShareLinkToFileRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeAddShareLinkToFileRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeAddShareLinkToFileRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -950,7 +952,7 @@ export function serializeAddShareLinkToFileRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeAddShareLinkToFileRequestBodySharedLinkField(val.sharedLink),
   };
 }
@@ -996,9 +998,9 @@ export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkPermissionsF
   val: UpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeUpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField(
@@ -1046,17 +1048,19 @@ export function serializeUpdateSharedLinkOnFileRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateSharedLinkOnFileRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -1125,7 +1129,7 @@ export function serializeUpdateSharedLinkOnFileRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateSharedLinkOnFileRequestBodySharedLinkField(
             val.sharedLink,
           ),
@@ -1171,7 +1175,7 @@ export function serializeRemoveSharedLinkFromFileRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeRemoveSharedLinkFromFileRequestBodySharedLinkField(
             val.sharedLink,
           ),

@@ -31,21 +31,21 @@ export function serializeOutcome(val: Outcome): SerializedData {
     ['id']: val.id,
     ['collaborators']:
       val.collaborators == void 0
-        ? void 0
+        ? val.collaborators
         : serializeCollaboratorVariable(val.collaborators),
     ['completion_rule']:
       val.completionRule == void 0
-        ? void 0
+        ? val.completionRule
         : serializeCompletionRuleVariable(val.completionRule),
     ['file_collaborator_role']:
       val.fileCollaboratorRole == void 0
-        ? void 0
+        ? val.fileCollaboratorRole
         : serializeRoleVariable(val.fileCollaboratorRole),
     ['task_collaborators']:
       val.taskCollaborators == void 0
-        ? void 0
+        ? val.taskCollaborators
         : serializeCollaboratorVariable(val.taskCollaborators),
-    ['role']: val.role == void 0 ? void 0 : serializeRoleVariable(val.role),
+    ['role']: val.role == void 0 ? val.role : serializeRoleVariable(val.role),
   };
 }
 export function deserializeOutcome(val: SerializedData): Outcome {

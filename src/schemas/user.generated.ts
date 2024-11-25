@@ -45,7 +45,7 @@ export class User extends UserMini {
   readonly phone?: string;
   readonly address?: string;
   readonly avatarUrl?: string;
-  readonly notificationEmail?: UserNotificationEmailField;
+  readonly notificationEmail?: UserNotificationEmailField | null;
   constructor(fields: User) {
     super(fields);
   }
@@ -73,10 +73,7 @@ export function deserializeUserStatusField(
 export function serializeUserNotificationEmailField(
   val: UserNotificationEmailField,
 ): SerializedData {
-  return {
-    ['email']: val.email == void 0 ? void 0 : val.email,
-    ['is_confirmed']: val.isConfirmed == void 0 ? void 0 : val.isConfirmed,
-  };
+  return { ['email']: val.email, ['is_confirmed']: val.isConfirmed };
 }
 export function deserializeUserNotificationEmailField(
   val: SerializedData,
@@ -115,24 +112,29 @@ export function serializeUser(val: User): SerializedData {
     ...base,
     ...{
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
-      ['language']: val.language == void 0 ? void 0 : val.language,
-      ['timezone']: val.timezone == void 0 ? void 0 : val.timezone,
-      ['space_amount']: val.spaceAmount == void 0 ? void 0 : val.spaceAmount,
-      ['space_used']: val.spaceUsed == void 0 ? void 0 : val.spaceUsed,
-      ['max_upload_size']:
-        val.maxUploadSize == void 0 ? void 0 : val.maxUploadSize,
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
+      ['language']: val.language,
+      ['timezone']: val.timezone,
+      ['space_amount']: val.spaceAmount,
+      ['space_used']: val.spaceUsed,
+      ['max_upload_size']: val.maxUploadSize,
       ['status']:
-        val.status == void 0 ? void 0 : serializeUserStatusField(val.status),
-      ['job_title']: val.jobTitle == void 0 ? void 0 : val.jobTitle,
-      ['phone']: val.phone == void 0 ? void 0 : val.phone,
-      ['address']: val.address == void 0 ? void 0 : val.address,
-      ['avatar_url']: val.avatarUrl == void 0 ? void 0 : val.avatarUrl,
+        val.status == void 0
+          ? val.status
+          : serializeUserStatusField(val.status),
+      ['job_title']: val.jobTitle,
+      ['phone']: val.phone,
+      ['address']: val.address,
+      ['avatar_url']: val.avatarUrl,
       ['notification_email']:
         val.notificationEmail == void 0
-          ? void 0
+          ? val.notificationEmail
           : serializeUserNotificationEmailField(val.notificationEmail),
     },
   };

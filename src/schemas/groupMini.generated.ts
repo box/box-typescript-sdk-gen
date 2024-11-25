@@ -46,10 +46,10 @@ export function serializeGroupMini(val: GroupMini): SerializedData {
   return {
     ...base,
     ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
+      ['name']: val.name,
       ['group_type']:
         val.groupType == void 0
-          ? void 0
+          ? val.groupType
           : serializeGroupMiniGroupTypeField(val.groupType),
     },
   };

@@ -691,12 +691,12 @@ export function serializeUpdateBoxSkillCardsOnFileRequestBody(
   return {
     ['op']:
       val.op == void 0
-        ? void 0
+        ? val.op
         : serializeUpdateBoxSkillCardsOnFileRequestBodyOpField(val.op),
-    ['path']: val.path == void 0 ? void 0 : val.path,
+    ['path']: val.path,
     ['value']:
       val.value == void 0
-        ? void 0
+        ? val.value
         : serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard(
             val.value,
           ),
@@ -769,7 +769,7 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyMetadataField(
   return {
     ['cards']:
       val.cards == void 0
-        ? void 0
+        ? val.cards
         : (val.cards.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
           ): SerializedData {
@@ -834,9 +834,9 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeUpdateAllSkillCardsOnFileRequestBodyFileTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileField(
@@ -886,11 +886,11 @@ export function serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField(
             val.type,
           ),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
@@ -925,10 +925,7 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
 export function serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   val: UpdateAllSkillCardsOnFileRequestBodyUsageField,
 ): SerializedData {
-  return {
-    ['unit']: val.unit == void 0 ? void 0 : val.unit,
-    ['value']: val.value == void 0 ? void 0 : val.value,
-  };
+  return { ['unit']: val.unit, ['value']: val.value };
 }
 export function deserializeUpdateAllSkillCardsOnFileRequestBodyUsageField(
   val: SerializedData,
@@ -971,13 +968,13 @@ export function serializeUpdateAllSkillCardsOnFileRequestBody(
     ['file']: serializeUpdateAllSkillCardsOnFileRequestBodyFileField(val.file),
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeUpdateAllSkillCardsOnFileRequestBodyFileVersionField(
             val.fileVersion,
           ),
     ['usage']:
       val.usage == void 0
-        ? void 0
+        ? val.usage
         : serializeUpdateAllSkillCardsOnFileRequestBodyUsageField(val.usage),
   };
 }

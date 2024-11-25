@@ -228,22 +228,27 @@ export function serializeWebhookInvocation(
   val: WebhookInvocation,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeWebhookInvocationTypeField(val.type),
-    ['webhook']: val.webhook == void 0 ? void 0 : serializeWebhook(val.webhook),
+    ['webhook']:
+      val.webhook == void 0 ? val.webhook : serializeWebhook(val.webhook),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['trigger']:
       val.trigger == void 0
-        ? void 0
+        ? val.trigger
         : serializeWebhookInvocationTriggerField(val.trigger),
     ['source']:
-      val.source == void 0 ? void 0 : serializeFileOrFolder(val.source),
+      val.source == void 0 ? val.source : serializeFileOrFolder(val.source),
   };
 }
 export function deserializeWebhookInvocation(

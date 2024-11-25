@@ -47,10 +47,7 @@ export type Comment = CommentBase & {
 export function serializeCommentItemField(
   val: CommentItemField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : val.type,
-  };
+  return { ['id']: val.id, ['type']: val.type };
 }
 export function deserializeCommentItemField(
   val: SerializedData,
@@ -82,17 +79,22 @@ export function serializeComment(val: Comment): SerializedData {
   return {
     ...base,
     ...{
-      ['is_reply_comment']:
-        val.isReplyComment == void 0 ? void 0 : val.isReplyComment,
-      ['message']: val.message == void 0 ? void 0 : val.message,
+      ['is_reply_comment']: val.isReplyComment,
+      ['message']: val.message,
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
       ['item']:
-        val.item == void 0 ? void 0 : serializeCommentItemField(val.item),
+        val.item == void 0 ? val.item : serializeCommentItemField(val.item),
     },
   };
 }

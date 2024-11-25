@@ -2,8 +2,8 @@ import { serializeCollections } from '../schemas/collections.generated.js';
 import { deserializeCollections } from '../schemas/collections.generated.js';
 import { serializeCollection } from '../schemas/collection.generated.js';
 import { deserializeCollection } from '../schemas/collection.generated.js';
-import { serializeItems } from '../schemas/items.generated.js';
-import { deserializeItems } from '../schemas/items.generated.js';
+import { serializeItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
+import { deserializeItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { serializeFolderFull } from '../schemas/folderFull.generated.js';
 import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
 import { serializeCreateFolderRequestBody } from '../managers/folders.generated.js';
@@ -19,7 +19,7 @@ import { UpdateFolderByIdOptionals } from '../managers/folders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Collections } from '../schemas/collections.generated.js';
 import { Collection } from '../schemas/collection.generated.js';
-import { Items } from '../schemas/items.generated.js';
+import { ItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
@@ -49,9 +49,8 @@ test('testCollections', async function testCollections(): Promise<any> {
   ) {
     throw new Error('Assertion failed');
   }
-  const collectionItems: Items = await client.collections.getCollectionItems(
-    favouriteCollection.id!,
-  );
+  const collectionItems: ItemsOffsetPaginated =
+    await client.collections.getCollectionItems(favouriteCollection.id!);
   const folder: FolderFull = await client.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
@@ -65,26 +64,20 @@ test('testCollections', async function testCollections(): Promise<any> {
       ],
     } satisfies UpdateFolderByIdRequestBody,
   } satisfies UpdateFolderByIdOptionalsInput);
-  const collectionItemsAfterUpdate: Items =
+  const collectionItemsAfterUpdate: ItemsOffsetPaginated =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
-    !(
-      collectionItemsAfterUpdate.entries!.length ==
-      collectionItems.entries!.length + 1
-    )
+    !(collectionItemsAfterUpdate.totalCount! == collectionItems.totalCount! + 1)
   ) {
     throw new Error('Assertion failed');
   }
   await client.folders.updateFolderById(folder.id, {
     requestBody: { collections: [] } satisfies UpdateFolderByIdRequestBody,
   } satisfies UpdateFolderByIdOptionalsInput);
-  const collectionItemsAfterRemove: Items =
+  const collectionItemsAfterRemove: ItemsOffsetPaginated =
     await client.collections.getCollectionItems(favouriteCollection.id!);
   if (
-    !(
-      collectionItemsAfterRemove.entries!.length ==
-      collectionItems.entries!.length
-    )
+    !(collectionItemsAfterRemove.totalCount! == collectionItems.totalCount!)
   ) {
     throw new Error('Assertion failed');
   }

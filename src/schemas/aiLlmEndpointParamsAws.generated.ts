@@ -17,12 +17,12 @@ export class AiLlmEndpointParamsAws {
    * What sampling temperature to use, between 0 and 1. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
    * We generally recommend altering this or `top_p` but not both. */
-  readonly temperature?: number;
+  readonly temperature?: number | null;
   /**
    * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results
    * of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability
    * mass are considered. We generally recommend altering this or temperature but not both. */
-  readonly topP?: number;
+  readonly topP?: number | null;
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiLlmEndpointParamsAws, 'type'> &
@@ -51,12 +51,12 @@ export interface AiLlmEndpointParamsAwsInput {
    * What sampling temperature to use, between 0 and 1. Higher values like 0.8 will make the output more random,
    * while lower values like 0.2 will make it more focused and deterministic.
    * We generally recommend altering this or `top_p` but not both. */
-  readonly temperature?: number;
+  readonly temperature?: number | null;
   /**
    * An alternative to sampling with temperature, called nucleus sampling, where the model considers the results
    * of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability
    * mass are considered. We generally recommend altering this or temperature but not both. */
-  readonly topP?: number;
+  readonly topP?: number | null;
   readonly rawData?: SerializedData;
 }
 export function serializeAiLlmEndpointParamsAwsTypeField(
@@ -79,8 +79,8 @@ export function serializeAiLlmEndpointParamsAws(
 ): SerializedData {
   return {
     ['type']: serializeAiLlmEndpointParamsAwsTypeField(val.type),
-    ['temperature']: val.temperature == void 0 ? void 0 : val.temperature,
-    ['top_p']: val.topP == void 0 ? void 0 : val.topP,
+    ['temperature']: val.temperature,
+    ['top_p']: val.topP,
   };
 }
 export function deserializeAiLlmEndpointParamsAws(
@@ -125,10 +125,10 @@ export function serializeAiLlmEndpointParamsAwsInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeAiLlmEndpointParamsAwsTypeField(val.type),
-    ['temperature']: val.temperature == void 0 ? void 0 : val.temperature,
-    ['top_p']: val.topP == void 0 ? void 0 : val.topP,
+    ['temperature']: val.temperature,
+    ['top_p']: val.topP,
   };
 }
 export function deserializeAiLlmEndpointParamsAwsInput(

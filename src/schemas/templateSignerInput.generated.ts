@@ -69,13 +69,13 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
   readonly pageIndex: number;
   /**
    * Document identifier. */
-  readonly documentId?: string;
+  readonly documentId?: string | null;
   /**
    * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
-  readonly dropdownChoices?: readonly string[];
+  readonly dropdownChoices?: readonly string[] | null;
   /**
    * When the input is of type `radio` they can be grouped to gather with this identifier. */
-  readonly groupId?: string;
+  readonly groupId?: string | null;
   /**
    * Where the input is located on a page. */
   readonly coordinates?: TemplateSignerInputCoordinatesField;
@@ -84,7 +84,7 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
   readonly dimensions?: TemplateSignerInputDimensionsField;
   /**
    * The label field is used especially for text, attachment, radio, and checkbox type inputs. */
-  readonly label?: string;
+  readonly label?: string | null;
   /**
    * Whether this input was defined as read-only(immutable by signers) or not */
   readonly readOnly?: boolean;
@@ -182,10 +182,7 @@ export function deserializeTemplateSignerInputContentTypeField(
 export function serializeTemplateSignerInputCoordinatesField(
   val: TemplateSignerInputCoordinatesField,
 ): SerializedData {
-  return {
-    ['x']: val.x == void 0 ? void 0 : val.x,
-    ['y']: val.y == void 0 ? void 0 : val.y,
-  };
+  return { ['x']: val.x, ['y']: val.y };
 }
 export function deserializeTemplateSignerInputCoordinatesField(
   val: SerializedData,
@@ -214,10 +211,7 @@ export function deserializeTemplateSignerInputCoordinatesField(
 export function serializeTemplateSignerInputDimensionsField(
   val: TemplateSignerInputDimensionsField,
 ): SerializedData {
-  return {
-    ['width']: val.width == void 0 ? void 0 : val.width,
-    ['height']: val.height == void 0 ? void 0 : val.height,
-  };
+  return { ['width']: val.width, ['height']: val.height };
 }
 export function deserializeTemplateSignerInputDimensionsField(
   val: SerializedData,
@@ -260,32 +254,32 @@ export function serializeTemplateSignerInput(
     ...{
       ['type']:
         val.type == void 0
-          ? void 0
+          ? val.type
           : serializeTemplateSignerInputTypeField(val.type),
       ['content_type']:
         val.contentType == void 0
-          ? void 0
+          ? val.contentType
           : serializeTemplateSignerInputContentTypeField(val.contentType),
-      ['is_required']: val.isRequired == void 0 ? void 0 : val.isRequired,
+      ['is_required']: val.isRequired,
       ['page_index']: val.pageIndex,
-      ['document_id']: val.documentId == void 0 ? void 0 : val.documentId,
+      ['document_id']: val.documentId,
       ['dropdown_choices']:
         val.dropdownChoices == void 0
-          ? void 0
+          ? val.dropdownChoices
           : (val.dropdownChoices.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
-      ['group_id']: val.groupId == void 0 ? void 0 : val.groupId,
+      ['group_id']: val.groupId,
       ['coordinates']:
         val.coordinates == void 0
-          ? void 0
+          ? val.coordinates
           : serializeTemplateSignerInputCoordinatesField(val.coordinates),
       ['dimensions']:
         val.dimensions == void 0
-          ? void 0
+          ? val.dimensions
           : serializeTemplateSignerInputDimensionsField(val.dimensions),
-      ['label']: val.label == void 0 ? void 0 : val.label,
-      ['read_only']: val.readOnly == void 0 ? void 0 : val.readOnly,
+      ['label']: val.label,
+      ['read_only']: val.readOnly,
     },
   };
 }

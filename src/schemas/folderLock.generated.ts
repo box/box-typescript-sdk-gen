@@ -93,18 +93,23 @@ export function deserializeFolderLockLockedOperationsField(
 }
 export function serializeFolderLock(val: FolderLock): SerializedData {
   return {
-    ['folder']: val.folder == void 0 ? void 0 : serializeFolderMini(val.folder),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['folder']:
+      val.folder == void 0 ? val.folder : serializeFolderMini(val.folder),
+    ['id']: val.id,
+    ['type']: val.type,
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserBase(val.createdBy),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['locked_operations']:
       val.lockedOperations == void 0
-        ? void 0
+        ? val.lockedOperations
         : serializeFolderLockLockedOperationsField(val.lockedOperations),
-    ['lock_type']: val.lockType == void 0 ? void 0 : val.lockType,
+    ['lock_type']: val.lockType,
   };
 }
 export function deserializeFolderLock(val: SerializedData): FolderLock {

@@ -218,10 +218,7 @@ export function deserializeKeywordSkillCardSkillCardTypeField(
 export function serializeKeywordSkillCardSkillCardTitleField(
   val: KeywordSkillCardSkillCardTitleField,
 ): SerializedData {
-  return {
-    ['code']: val.code == void 0 ? void 0 : val.code,
-    ['message']: val.message,
-  };
+  return { ['code']: val.code, ['message']: val.message };
 }
 export function deserializeKeywordSkillCardSkillCardTitleField(
   val: SerializedData,
@@ -315,7 +312,7 @@ export function serializeKeywordSkillCardSkillFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeKeywordSkillCardSkillTypeField(val.type),
     ['id']: val.id,
   };
@@ -407,7 +404,7 @@ export function serializeKeywordSkillCardInvocationFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeKeywordSkillCardInvocationTypeField(val.type),
     ['id']: val.id,
   };
@@ -442,7 +439,7 @@ export function deserializeKeywordSkillCardInvocationFieldInput(
 export function serializeKeywordSkillCardEntriesField(
   val: KeywordSkillCardEntriesField,
 ): SerializedData {
-  return { ['text']: val.text == void 0 ? void 0 : val.text };
+  return { ['text']: val.text };
 }
 export function deserializeKeywordSkillCardEntriesField(
   val: SerializedData,
@@ -466,14 +463,16 @@ export function serializeKeywordSkillCard(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']: serializeKeywordSkillCardTypeField(val.type),
     ['skill_card_type']: serializeKeywordSkillCardSkillCardTypeField(
       val.skillCardType,
     ),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeKeywordSkillCardSkillField(val.skill),
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),
@@ -566,18 +565,20 @@ export function serializeKeywordSkillCardInput(
 ): SerializedData {
   return {
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeKeywordSkillCardTypeField(val.type),
     ['skillCardType']:
       val.skillCardType == void 0
-        ? void 0
+        ? val.skillCardType
         : serializeKeywordSkillCardSkillCardTypeField(val.skillCardType),
     ['skill_card_title']:
       val.skillCardTitle == void 0
-        ? void 0
+        ? val.skillCardTitle
         : serializeKeywordSkillCardSkillCardTitleField(val.skillCardTitle),
     ['skill']: serializeKeywordSkillCardSkillField(val.skill),
     ['invocation']: serializeKeywordSkillCardInvocationField(val.invocation),

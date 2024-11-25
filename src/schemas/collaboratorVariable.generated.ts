@@ -188,7 +188,7 @@ export function serializeCollaboratorVariableVariableValueFieldInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaboratorVariableVariableValueTypeField(val.type),
     ['id']: val.id,
   };
@@ -294,11 +294,11 @@ export function serializeCollaboratorVariableInput(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCollaboratorVariableTypeField(val.type),
     ['variableType']:
       val.variableType == void 0
-        ? void 0
+        ? val.variableType
         : serializeCollaboratorVariableVariableTypeField(val.variableType),
     ['variable_value']: val.variableValue.map(function (
       item: CollaboratorVariableVariableValueField,

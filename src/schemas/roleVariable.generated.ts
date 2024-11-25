@@ -168,10 +168,10 @@ export function serializeRoleVariableInput(
 ): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeRoleVariableTypeField(val.type),
+      val.type == void 0 ? val.type : serializeRoleVariableTypeField(val.type),
     ['variableType']:
       val.variableType == void 0
-        ? void 0
+        ? val.variableType
         : serializeRoleVariableVariableTypeField(val.variableType),
     ['variable_value']: serializeRoleVariableVariableValueField(
       val.variableValue,

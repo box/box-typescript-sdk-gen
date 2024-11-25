@@ -65,19 +65,20 @@ export function deserializeRecentItemInteractionTypeField(
 }
 export function serializeRecentItem(val: RecentItem): SerializedData {
   return {
-    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['type']: val.type,
     ['item']:
       val.item == void 0
-        ? void 0
+        ? val.item
         : serializeFileFullOrFolderFullOrWebLink(val.item),
     ['interaction_type']:
       val.interactionType == void 0
-        ? void 0
+        ? val.interactionType
         : serializeRecentItemInteractionTypeField(val.interactionType),
     ['interacted_at']:
-      val.interactedAt == void 0 ? void 0 : serializeDateTime(val.interactedAt),
-    ['interaction_shared_link']:
-      val.interactionSharedLink == void 0 ? void 0 : val.interactionSharedLink,
+      val.interactedAt == void 0
+        ? val.interactedAt
+        : serializeDateTime(val.interactedAt),
+    ['interaction_shared_link']: val.interactionSharedLink,
   };
 }
 export function deserializeRecentItem(val: SerializedData): RecentItem {

@@ -36,9 +36,9 @@ export function deserializeTrackingCodeTypeField(
 export function serializeTrackingCode(val: TrackingCode): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeTrackingCodeTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['value']: val.value == void 0 ? void 0 : val.value,
+      val.type == void 0 ? val.type : serializeTrackingCodeTypeField(val.type),
+    ['name']: val.name,
+    ['value']: val.value,
   };
 }
 export function deserializeTrackingCode(val: SerializedData): TrackingCode {

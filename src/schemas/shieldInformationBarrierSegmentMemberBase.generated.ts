@@ -38,10 +38,10 @@ export function serializeShieldInformationBarrierSegmentMemberBase(
   val: ShieldInformationBarrierSegmentMemberBase,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentMemberBaseTypeField(val.type),
   };
 }

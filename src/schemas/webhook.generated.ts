@@ -215,13 +215,17 @@ export function serializeWebhook(val: Webhook): SerializedData {
     ...base,
     ...{
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
-      ['address']: val.address == void 0 ? void 0 : val.address,
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
+      ['address']: val.address,
       ['triggers']:
         val.triggers == void 0
-          ? void 0
+          ? val.triggers
           : (val.triggers.map(function (
               item: WebhookTriggersField,
             ): SerializedData {

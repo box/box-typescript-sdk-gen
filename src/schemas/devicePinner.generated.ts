@@ -38,12 +38,12 @@ export function deserializeDevicePinnerTypeField(
 }
 export function serializeDevicePinner(val: DevicePinner): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeDevicePinnerTypeField(val.type),
+      val.type == void 0 ? val.type : serializeDevicePinnerTypeField(val.type),
     ['owned_by']:
-      val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
-    ['product_name']: val.productName == void 0 ? void 0 : val.productName,
+      val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
+    ['product_name']: val.productName,
   };
 }
 export function deserializeDevicePinner(val: SerializedData): DevicePinner {

@@ -87,9 +87,9 @@ export function deserializeBaseUrls(val: SerializedData): BaseUrls {
 }
 export function serializeBaseUrlsInput(val: BaseUrlsInput): SerializedData {
   return {
-    ['baseUrl']: val.baseUrl == void 0 ? void 0 : val.baseUrl,
-    ['uploadUrl']: val.uploadUrl == void 0 ? void 0 : val.uploadUrl,
-    ['oauth2Url']: val.oauth2Url == void 0 ? void 0 : val.oauth2Url,
+    ['baseUrl']: val.baseUrl,
+    ['uploadUrl']: val.uploadUrl,
+    ['oauth2Url']: val.oauth2Url,
   };
 }
 export function deserializeBaseUrlsInput(val: SerializedData): BaseUrlsInput {

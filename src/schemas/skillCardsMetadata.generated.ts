@@ -47,17 +47,17 @@ export function serializeSkillCardsMetadata(
   val: SkillCardsMetadata,
 ): SerializedData {
   return {
-    ['$canEdit']: val.canEdit == void 0 ? void 0 : val.canEdit,
-    ['$id']: val.id == void 0 ? void 0 : val.id,
-    ['$parent']: val.parent == void 0 ? void 0 : val.parent,
-    ['$scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['$template']: val.template == void 0 ? void 0 : val.template,
-    ['$type']: val.type == void 0 ? void 0 : val.type,
-    ['$typeVersion']: val.typeVersion == void 0 ? void 0 : val.typeVersion,
-    ['$version']: val.version == void 0 ? void 0 : val.version,
+    ['$canEdit']: val.canEdit,
+    ['$id']: val.id,
+    ['$parent']: val.parent,
+    ['$scope']: val.scope,
+    ['$template']: val.template,
+    ['$type']: val.type,
+    ['$typeVersion']: val.typeVersion,
+    ['$version']: val.version,
     ['cards']:
       val.cards == void 0
-        ? void 0
+        ? val.cards
         : (val.cards.map(function (
             item: KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
           ): SerializedData {

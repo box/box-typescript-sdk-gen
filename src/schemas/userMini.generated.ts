@@ -24,13 +24,7 @@ export function serializeUserMini(val: UserMini): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "UserMini"' });
   }
-  return {
-    ...base,
-    ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
-      ['login']: val.login == void 0 ? void 0 : val.login,
-    },
-  };
+  return { ...base, ...{ ['name']: val.name, ['login']: val.login } };
 }
 export function deserializeUserMini(val: SerializedData): UserMini {
   if (!sdIsMap(val)) {

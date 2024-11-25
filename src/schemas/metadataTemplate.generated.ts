@@ -217,7 +217,7 @@ export function deserializeMetadataTemplateFieldsTypeField(
 export function serializeMetadataTemplateFieldsOptionsField(
   val: MetadataTemplateFieldsOptionsField,
 ): SerializedData {
-  return { ['key']: val.key, ['id']: val.id == void 0 ? void 0 : val.id };
+  return { ['key']: val.key, ['id']: val.id };
 }
 export function deserializeMetadataTemplateFieldsOptionsField(
   val: SerializedData,
@@ -256,17 +256,17 @@ export function serializeMetadataTemplateFieldsField(
     ['type']: serializeMetadataTemplateFieldsTypeField(val.type),
     ['key']: val.key,
     ['displayName']: val.displayName,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['description']: val.description,
+    ['hidden']: val.hidden,
     ['options']:
       val.options == void 0
-        ? void 0
+        ? val.options
         : (val.options.map(function (
             item: MetadataTemplateFieldsOptionsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsOptionsField(item);
           }) as readonly any[]),
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
   };
 }
 export function deserializeMetadataTemplateFieldsField(
@@ -366,22 +366,19 @@ export function serializeMetadataTemplate(
   return {
     ['id']: val.id,
     ['type']: serializeMetadataTemplateTypeField(val.type),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
-    ['displayName']: val.displayName == void 0 ? void 0 : val.displayName,
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['scope']: val.scope,
+    ['templateKey']: val.templateKey,
+    ['displayName']: val.displayName,
+    ['hidden']: val.hidden,
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (
             item: MetadataTemplateFieldsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
   };
 }
 export function deserializeMetadataTemplate(
@@ -482,24 +479,21 @@ export function serializeMetadataTemplateInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeMetadataTemplateTypeField(val.type),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['templateKey']: val.templateKey == void 0 ? void 0 : val.templateKey,
-    ['displayName']: val.displayName == void 0 ? void 0 : val.displayName,
-    ['hidden']: val.hidden == void 0 ? void 0 : val.hidden,
+    ['scope']: val.scope,
+    ['templateKey']: val.templateKey,
+    ['displayName']: val.displayName,
+    ['hidden']: val.hidden,
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (
             item: MetadataTemplateFieldsField,
           ): SerializedData {
             return serializeMetadataTemplateFieldsField(item);
           }) as readonly any[]),
-    ['copyInstanceOnItemCopy']:
-      val.copyInstanceOnItemCopy == void 0
-        ? void 0
-        : val.copyInstanceOnItemCopy,
+    ['copyInstanceOnItemCopy']: val.copyInstanceOnItemCopy,
   };
 }
 export function deserializeMetadataTemplateInput(

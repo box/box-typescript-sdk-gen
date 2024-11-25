@@ -93,13 +93,13 @@ export function serializeZipDownloadNameConflictsField(
   val: ZipDownloadNameConflictsField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeZipDownloadNameConflictsTypeField(val.type),
-    ['original_name']: val.originalName == void 0 ? void 0 : val.originalName,
-    ['download_name']: val.downloadName == void 0 ? void 0 : val.downloadName,
+    ['original_name']: val.originalName,
+    ['download_name']: val.downloadName,
   };
 }
 export function deserializeZipDownloadNameConflictsField(
@@ -146,13 +146,15 @@ export function deserializeZipDownloadNameConflictsField(
 }
 export function serializeZipDownload(val: ZipDownload): SerializedData {
   return {
-    ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
-    ['status_url']: val.statusUrl == void 0 ? void 0 : val.statusUrl,
+    ['download_url']: val.downloadUrl,
+    ['status_url']: val.statusUrl,
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
     ['name_conflicts']:
       val.nameConflicts == void 0
-        ? void 0
+        ? val.nameConflicts
         : (val.nameConflicts.map(function (
             item: readonly ZipDownloadNameConflictsField[],
           ): SerializedData {

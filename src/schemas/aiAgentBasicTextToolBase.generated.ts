@@ -25,14 +25,11 @@ export function serializeAiAgentBasicTextToolBase(
   val: AiAgentBasicTextToolBase,
 ): SerializedData {
   return {
-    ['model']: val.model == void 0 ? void 0 : val.model,
-    ['num_tokens_for_completion']:
-      val.numTokensForCompletion == void 0
-        ? void 0
-        : val.numTokensForCompletion,
+    ['model']: val.model,
+    ['num_tokens_for_completion']: val.numTokensForCompletion,
     ['llm_endpoint_params']:
       val.llmEndpointParams == void 0
-        ? void 0
+        ? val.llmEndpointParams
         : serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
             val.llmEndpointParams,
           ),

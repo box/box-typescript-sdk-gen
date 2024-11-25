@@ -72,17 +72,25 @@ export function deserializeGroupMembershipRoleField(
 }
 export function serializeGroupMembership(val: GroupMembership): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeGroupMembershipTypeField(val.type),
-    ['user']: val.user == void 0 ? void 0 : serializeUserMini(val.user),
-    ['group']: val.group == void 0 ? void 0 : serializeGroupMini(val.group),
+      val.type == void 0
+        ? val.type
+        : serializeGroupMembershipTypeField(val.type),
+    ['user']: val.user == void 0 ? val.user : serializeUserMini(val.user),
+    ['group']: val.group == void 0 ? val.group : serializeGroupMini(val.group),
     ['role']:
-      val.role == void 0 ? void 0 : serializeGroupMembershipRoleField(val.role),
+      val.role == void 0
+        ? val.role
+        : serializeGroupMembershipRoleField(val.role),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeGroupMembership(

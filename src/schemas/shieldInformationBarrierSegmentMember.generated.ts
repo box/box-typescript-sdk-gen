@@ -74,10 +74,10 @@ export function serializeShieldInformationBarrierSegmentMemberShieldInformationB
   val: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField(
             val.type,
           ),
@@ -126,22 +126,30 @@ export function serializeShieldInformationBarrierSegmentMember(
     ...{
       ['shield_information_barrier']:
         val.shieldInformationBarrier == void 0
-          ? void 0
+          ? val.shieldInformationBarrier
           : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
       ['shield_information_barrier_segment']:
         val.shieldInformationBarrierSegment == void 0
-          ? void 0
+          ? val.shieldInformationBarrierSegment
           : serializeShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentField(
               val.shieldInformationBarrierSegment,
             ),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserBase(val.createdBy),
       ['updated_at']:
-        val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
+        val.updatedAt == void 0
+          ? val.updatedAt
+          : serializeDateTime(val.updatedAt),
       ['updated_by']:
-        val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
+        val.updatedBy == void 0
+          ? val.updatedBy
+          : serializeUserBase(val.updatedBy),
     },
   };
 }

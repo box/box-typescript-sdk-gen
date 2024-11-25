@@ -37,11 +37,11 @@ export function deserializeEmailAliasTypeField(
 }
 export function serializeEmailAlias(val: EmailAlias): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeEmailAliasTypeField(val.type),
-    ['email']: val.email == void 0 ? void 0 : val.email,
-    ['is_confirmed']: val.isConfirmed == void 0 ? void 0 : val.isConfirmed,
+      val.type == void 0 ? val.type : serializeEmailAliasTypeField(val.type),
+    ['email']: val.email,
+    ['is_confirmed']: val.isConfirmed,
   };
 }
 export function deserializeEmailAlias(val: SerializedData): EmailAlias {

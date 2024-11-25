@@ -2,8 +2,11 @@ import { serializeCollaborations } from '../schemas/collaborations.generated.js'
 import { deserializeCollaborations } from '../schemas/collaborations.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { serializeCollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
+import { deserializeCollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
 import { Collaborations } from '../schemas/collaborations.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { CollaborationsOffsetPaginated } from '../schemas/collaborationsOffsetPaginated.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';
@@ -203,6 +206,15 @@ export interface GetFolderCollaborationsQueryParams {
    * fields for the mini representation are returned, additional
    * to the fields requested. */
   readonly fields?: readonly string[];
+  /**
+   * The maximum number of items to return per page. */
+  readonly limit?: number;
+  /**
+   * Defines the position marker at which to begin returning results. This is
+   * used when paginating using marker-based pagination.
+   *
+   * This requires `usemarker` to be set to `true`. */
+  readonly marker?: string;
 }
 export class GetFolderCollaborationsHeaders {
   /**
@@ -430,6 +442,8 @@ export class ListCollaborationsManager {
       ['fields']: queryParams.fields
         ? queryParams.fields.map(toString).join(',')
         : undefined,
+      ['limit']: toString(queryParams.limit) as string,
+      ['marker']: toString(queryParams.marker) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
@@ -458,12 +472,12 @@ export class ListCollaborationsManager {
    * Retrieves all pending collaboration invites for this user.
    * @param {GetCollaborationsQueryParams} queryParams Query parameters of getCollaborations method
    * @param {GetCollaborationsOptionalsInput} optionalsInput
-   * @returns {Promise<Collaborations>}
+   * @returns {Promise<CollaborationsOffsetPaginated>}
    */
   async getCollaborations(
     queryParams: GetCollaborationsQueryParams,
     optionalsInput: GetCollaborationsOptionalsInput = {},
-  ): Promise<Collaborations> {
+  ): Promise<CollaborationsOffsetPaginated> {
     const optionals: GetCollaborationsOptionals =
       new GetCollaborationsOptionals({
         headers: optionalsInput.headers,
@@ -498,7 +512,7 @@ export class ListCollaborationsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return {
-      ...deserializeCollaborations(response.data),
+      ...deserializeCollaborationsOffsetPaginated(response.data),
       rawData: response.data,
     };
   }
@@ -511,12 +525,12 @@ export class ListCollaborationsManager {
      * @param {string} groupId The ID of the group.
     Example: "57645"
      * @param {GetGroupCollaborationsOptionalsInput} optionalsInput
-     * @returns {Promise<Collaborations>}
+     * @returns {Promise<CollaborationsOffsetPaginated>}
      */
   async getGroupCollaborations(
     groupId: string,
     optionalsInput: GetGroupCollaborationsOptionalsInput = {},
-  ): Promise<Collaborations> {
+  ): Promise<CollaborationsOffsetPaginated> {
     const optionals: GetGroupCollaborationsOptionals =
       new GetGroupCollaborationsOptionals({
         queryParams: optionalsInput.queryParams,
@@ -551,7 +565,7 @@ export class ListCollaborationsManager {
       cancellationToken: cancellationToken,
     } satisfies FetchOptions)) as FetchResponse;
     return {
-      ...deserializeCollaborations(response.data),
+      ...deserializeCollaborationsOffsetPaginated(response.data),
       rawData: response.data,
     };
   }

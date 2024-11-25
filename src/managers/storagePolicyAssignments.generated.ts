@@ -740,7 +740,7 @@ export function serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyFi
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateStoragePolicyAssignmentRequestBodyStoragePolicyTypeField(
             val.type,
           ),
@@ -966,7 +966,7 @@ export function serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePoli
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeUpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyTypeField(
             val.type,
           ),

@@ -33,11 +33,11 @@ export interface RealtimeServer {
 }
 export function serializeRealtimeServer(val: RealtimeServer): SerializedData {
   return {
-    ['type']: val.type == void 0 ? void 0 : val.type,
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['ttl']: val.ttl == void 0 ? void 0 : val.ttl,
-    ['max_retries']: val.maxRetries == void 0 ? void 0 : val.maxRetries,
-    ['retry_timeout']: val.retryTimeout == void 0 ? void 0 : val.retryTimeout,
+    ['type']: val.type,
+    ['url']: val.url,
+    ['ttl']: val.ttl,
+    ['max_retries']: val.maxRetries,
+    ['retry_timeout']: val.retryTimeout,
   };
 }
 export function deserializeRealtimeServer(val: SerializedData): RealtimeServer {

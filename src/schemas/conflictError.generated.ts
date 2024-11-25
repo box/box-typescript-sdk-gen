@@ -31,7 +31,7 @@ export function serializeConflictErrorContextInfoField(
   return {
     ['conflicts']:
       val.conflicts == void 0
-        ? void 0
+        ? val.conflicts
         : (val.conflicts.map(function (item: FileConflict): SerializedData {
             return serializeFileConflict(item);
           }) as readonly any[]),

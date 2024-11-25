@@ -576,10 +576,10 @@ export function serializeCreateTaskRequestBodyItemField(
   val: CreateTaskRequestBodyItemField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateTaskRequestBodyItemTypeField(val.type),
   };
 }
@@ -647,13 +647,13 @@ export function serializeCreateTaskRequestBody(
     ['item']: serializeCreateTaskRequestBodyItemField(val.item),
     ['action']:
       val.action == void 0
-        ? void 0
+        ? val.action
         : serializeCreateTaskRequestBodyActionField(val.action),
-    ['message']: val.message == void 0 ? void 0 : val.message,
-    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
+    ['message']: val.message,
+    ['due_at']: val.dueAt == void 0 ? val.dueAt : serializeDateTime(val.dueAt),
     ['completion_rule']:
       val.completionRule == void 0
-        ? void 0
+        ? val.completionRule
         : serializeCreateTaskRequestBodyCompletionRuleField(val.completionRule),
   };
 }
@@ -746,13 +746,13 @@ export function serializeUpdateTaskByIdRequestBody(
   return {
     ['action']:
       val.action == void 0
-        ? void 0
+        ? val.action
         : serializeUpdateTaskByIdRequestBodyActionField(val.action),
-    ['message']: val.message == void 0 ? void 0 : val.message,
-    ['due_at']: val.dueAt == void 0 ? void 0 : serializeDateTime(val.dueAt),
+    ['message']: val.message,
+    ['due_at']: val.dueAt == void 0 ? val.dueAt : serializeDateTime(val.dueAt),
     ['completion_rule']:
       val.completionRule == void 0
-        ? void 0
+        ? val.completionRule
         : serializeUpdateTaskByIdRequestBodyCompletionRuleField(
             val.completionRule,
           ),

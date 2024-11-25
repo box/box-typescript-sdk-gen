@@ -340,7 +340,7 @@ export function deserializeCreateInviteRequestBodyEnterpriseField(
 export function serializeCreateInviteRequestBodyActionableByField(
   val: CreateInviteRequestBodyActionableByField,
 ): SerializedData {
-  return { ['login']: val.login == void 0 ? void 0 : val.login };
+  return { ['login']: val.login };
 }
 export function deserializeCreateInviteRequestBodyActionableByField(
   val: SerializedData,

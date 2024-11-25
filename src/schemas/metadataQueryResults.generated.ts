@@ -34,14 +34,14 @@ export function serializeMetadataQueryResults(
   return {
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: FileFullOrFolderFull,
           ): SerializedData {
             return serializeFileFullOrFolderFull(item);
           }) as readonly any[]),
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
   };
 }
 export function deserializeMetadataQueryResults(

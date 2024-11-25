@@ -19,7 +19,7 @@ export function serializeShieldInformationBarrierReference(
   return {
     ['shield_information_barrier']:
       val.shieldInformationBarrier == void 0
-        ? void 0
+        ? val.shieldInformationBarrier
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
   };
 }

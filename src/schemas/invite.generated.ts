@@ -131,10 +131,12 @@ export function serializeInviteInvitedToField(
   val: InviteInvitedToField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeInviteInvitedToTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+      val.type == void 0
+        ? val.type
+        : serializeInviteInvitedToTypeField(val.type),
+    ['name']: val.name,
   };
 }
 export function deserializeInviteInvitedToField(
@@ -167,17 +169,25 @@ export function serializeInvite(val: Invite): SerializedData {
     ['type']: serializeInviteTypeField(val.type),
     ['invited_to']:
       val.invitedTo == void 0
-        ? void 0
+        ? val.invitedTo
         : serializeInviteInvitedToField(val.invitedTo),
     ['actionable_by']:
-      val.actionableBy == void 0 ? void 0 : serializeUserMini(val.actionableBy),
+      val.actionableBy == void 0
+        ? val.actionableBy
+        : serializeUserMini(val.actionableBy),
     ['invited_by']:
-      val.invitedBy == void 0 ? void 0 : serializeUserMini(val.invitedBy),
-    ['status']: val.status == void 0 ? void 0 : val.status,
+      val.invitedBy == void 0
+        ? val.invitedBy
+        : serializeUserMini(val.invitedBy),
+    ['status']: val.status,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeInvite(val: SerializedData): Invite {
@@ -245,20 +255,29 @@ export function deserializeInvite(val: SerializedData): Invite {
 export function serializeInviteInput(val: InviteInput): SerializedData {
   return {
     ['id']: val.id,
-    ['type']: val.type == void 0 ? void 0 : serializeInviteTypeField(val.type),
+    ['type']:
+      val.type == void 0 ? val.type : serializeInviteTypeField(val.type),
     ['invited_to']:
       val.invitedTo == void 0
-        ? void 0
+        ? val.invitedTo
         : serializeInviteInvitedToField(val.invitedTo),
     ['actionable_by']:
-      val.actionableBy == void 0 ? void 0 : serializeUserMini(val.actionableBy),
+      val.actionableBy == void 0
+        ? val.actionableBy
+        : serializeUserMini(val.actionableBy),
     ['invited_by']:
-      val.invitedBy == void 0 ? void 0 : serializeUserMini(val.invitedBy),
-    ['status']: val.status == void 0 ? void 0 : val.status,
+      val.invitedBy == void 0
+        ? val.invitedBy
+        : serializeUserMini(val.invitedBy),
+    ['status']: val.status,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
   };
 }
 export function deserializeInviteInput(val: SerializedData): InviteInput {

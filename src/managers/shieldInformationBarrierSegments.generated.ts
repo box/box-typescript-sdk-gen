@@ -239,7 +239,7 @@ export interface UpdateShieldInformationBarrierSegmentByIdRequestBody {
   /**
    * The updated description for
    * the shield information barrier segment. */
-  readonly description?: string;
+  readonly description?: string | null;
   readonly rawData?: SerializedData;
 }
 export class UpdateShieldInformationBarrierSegmentByIdHeaders {
@@ -585,10 +585,7 @@ export interface ShieldInformationBarrierSegmentsManagerInput {
 export function serializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   val: UpdateShieldInformationBarrierSegmentByIdRequestBody,
 ): SerializedData {
-  return {
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-  };
+  return { ['name']: val.name, ['description']: val.description };
 }
 export function deserializeUpdateShieldInformationBarrierSegmentByIdRequestBody(
   val: SerializedData,
@@ -627,7 +624,7 @@ export function serializeCreateShieldInformationBarrierSegmentRequestBody(
       val.shieldInformationBarrier,
     ),
     ['name']: val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['description']: val.description,
   };
 }
 export function deserializeCreateShieldInformationBarrierSegmentRequestBody(

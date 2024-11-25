@@ -84,18 +84,18 @@ export function serializeFileRequestUpdateRequest(
   val: FileRequestUpdateRequest,
 ): SerializedData {
   return {
-    ['title']: val.title == void 0 ? void 0 : val.title,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['title']: val.title,
+    ['description']: val.description,
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeFileRequestUpdateRequestStatusField(val.status),
-    ['is_email_required']:
-      val.isEmailRequired == void 0 ? void 0 : val.isEmailRequired,
-    ['is_description_required']:
-      val.isDescriptionRequired == void 0 ? void 0 : val.isDescriptionRequired,
+    ['is_email_required']: val.isEmailRequired,
+    ['is_description_required']: val.isDescriptionRequired,
     ['expires_at']:
-      val.expiresAt == void 0 ? void 0 : serializeDateTime(val.expiresAt),
+      val.expiresAt == void 0
+        ? val.expiresAt
+        : serializeDateTime(val.expiresAt),
   };
 }
 export function deserializeFileRequestUpdateRequest(

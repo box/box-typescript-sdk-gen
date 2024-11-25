@@ -28,13 +28,7 @@ export function serializeUserIntegrationMappings(
       message: 'Expecting a map for "UserIntegrationMappings"',
     });
   }
-  return {
-    ...base,
-    ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
-      ['login']: val.login == void 0 ? void 0 : val.login,
-    },
-  };
+  return { ...base, ...{ ['name']: val.name, ['login']: val.login } };
 }
 export function deserializeUserIntegrationMappings(
   val: SerializedData,

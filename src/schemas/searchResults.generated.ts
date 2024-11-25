@@ -96,13 +96,13 @@ export function deserializeSearchResultsTypeField(
 }
 export function serializeSearchResults(val: SearchResults): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['type']: serializeSearchResultsTypeField(val.type),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: FileFullOrFolderFullOrWebLink,
           ): SerializedData {
@@ -168,14 +168,14 @@ export function serializeSearchResultsInput(
   val: SearchResultsInput,
 ): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['type']:
-      val.type == void 0 ? void 0 : serializeSearchResultsTypeField(val.type),
+      val.type == void 0 ? val.type : serializeSearchResultsTypeField(val.type),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: FileFullOrFolderFullOrWebLink,
           ): SerializedData {

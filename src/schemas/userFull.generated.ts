@@ -99,12 +99,12 @@ export function serializeUserFullEnterpriseField(
   val: UserFullEnterpriseField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeUserFullEnterpriseTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
   };
 }
 export function deserializeUserFullEnterpriseField(
@@ -142,46 +142,33 @@ export function serializeUserFull(val: UserFull): SerializedData {
     ...base,
     ...{
       ['role']:
-        val.role == void 0 ? void 0 : serializeUserFullRoleField(val.role),
+        val.role == void 0 ? val.role : serializeUserFullRoleField(val.role),
       ['tracking_codes']:
         val.trackingCodes == void 0
-          ? void 0
+          ? val.trackingCodes
           : (val.trackingCodes.map(function (
               item: TrackingCode,
             ): SerializedData {
               return serializeTrackingCode(item);
             }) as readonly any[]),
-      ['can_see_managed_users']:
-        val.canSeeManagedUsers == void 0 ? void 0 : val.canSeeManagedUsers,
-      ['is_sync_enabled']:
-        val.isSyncEnabled == void 0 ? void 0 : val.isSyncEnabled,
-      ['is_external_collab_restricted']:
-        val.isExternalCollabRestricted == void 0
-          ? void 0
-          : val.isExternalCollabRestricted,
-      ['is_exempt_from_device_limits']:
-        val.isExemptFromDeviceLimits == void 0
-          ? void 0
-          : val.isExemptFromDeviceLimits,
-      ['is_exempt_from_login_verification']:
-        val.isExemptFromLoginVerification == void 0
-          ? void 0
-          : val.isExemptFromLoginVerification,
+      ['can_see_managed_users']: val.canSeeManagedUsers,
+      ['is_sync_enabled']: val.isSyncEnabled,
+      ['is_external_collab_restricted']: val.isExternalCollabRestricted,
+      ['is_exempt_from_device_limits']: val.isExemptFromDeviceLimits,
+      ['is_exempt_from_login_verification']: val.isExemptFromLoginVerification,
       ['enterprise']:
         val.enterprise == void 0
-          ? void 0
+          ? val.enterprise
           : serializeUserFullEnterpriseField(val.enterprise),
       ['my_tags']:
         val.myTags == void 0
-          ? void 0
+          ? val.myTags
           : (val.myTags.map(function (item: string): SerializedData {
               return item;
             }) as readonly any[]),
-      ['hostname']: val.hostname == void 0 ? void 0 : val.hostname,
-      ['is_platform_access_only']:
-        val.isPlatformAccessOnly == void 0 ? void 0 : val.isPlatformAccessOnly,
-      ['external_app_user_id']:
-        val.externalAppUserId == void 0 ? void 0 : val.externalAppUserId,
+      ['hostname']: val.hostname,
+      ['is_platform_access_only']: val.isPlatformAccessOnly,
+      ['external_app_user_id']: val.externalAppUserId,
     },
   };
 }

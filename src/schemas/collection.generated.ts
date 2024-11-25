@@ -69,14 +69,14 @@ export function deserializeCollectionCollectionTypeField(
 }
 export function serializeCollection(val: Collection): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeCollectionTypeField(val.type),
+      val.type == void 0 ? val.type : serializeCollectionTypeField(val.type),
     ['name']:
-      val.name == void 0 ? void 0 : serializeCollectionNameField(val.name),
+      val.name == void 0 ? val.name : serializeCollectionNameField(val.name),
     ['collection_type']:
       val.collectionType == void 0
-        ? void 0
+        ? val.collectionType
         : serializeCollectionCollectionTypeField(val.collectionType),
   };
 }

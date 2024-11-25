@@ -59,17 +59,13 @@ export function serializeZipDownloadStatus(
   val: ZipDownloadStatus,
 ): SerializedData {
   return {
-    ['total_file_count']:
-      val.totalFileCount == void 0 ? void 0 : val.totalFileCount,
-    ['downloaded_file_count']:
-      val.downloadedFileCount == void 0 ? void 0 : val.downloadedFileCount,
-    ['skipped_file_count']:
-      val.skippedFileCount == void 0 ? void 0 : val.skippedFileCount,
-    ['skipped_folder_count']:
-      val.skippedFolderCount == void 0 ? void 0 : val.skippedFolderCount,
+    ['total_file_count']: val.totalFileCount,
+    ['downloaded_file_count']: val.downloadedFileCount,
+    ['skipped_file_count']: val.skippedFileCount,
+    ['skipped_folder_count']: val.skippedFolderCount,
     ['state']:
       val.state == void 0
-        ? void 0
+        ? val.state
         : serializeZipDownloadStatusStateField(val.state),
   };
 }

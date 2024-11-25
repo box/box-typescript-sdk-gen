@@ -43,7 +43,7 @@ export interface TrashFolderRestored {
    * The HTTP `etag` of this folder. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the folder if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `folder` */
   readonly type?: TrashFolderRestoredTypeField;
@@ -55,12 +55,12 @@ export interface TrashFolderRestored {
    * The date and time when the folder was created. This value may
    * be `null` for some folders such as the root folder or the trash
    * folder. */
-  readonly createdAt?: DateTime;
+  readonly createdAt?: DateTime | null;
   /**
    * The date and time when the folder was last updated. This value may
    * be `null` for some folders such as the root folder or the trash
    * folder. */
-  readonly modifiedAt?: DateTime;
+  readonly modifiedAt?: DateTime | null;
   readonly description?: string;
   /**
    * The folder size in bytes.
@@ -74,29 +74,29 @@ export interface TrashFolderRestored {
   /**
    * The time at which this folder was put in the
    * trash - becomes `null` after restore. */
-  readonly trashedAt?: string;
+  readonly trashedAt?: string | null;
   /**
    * The time at which this folder is expected to be purged
    * from the trash  - becomes `null` after restore. */
-  readonly purgedAt?: string;
+  readonly purgedAt?: string | null;
   /**
    * The date and time at which this folder was originally
    * created. */
-  readonly contentCreatedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime | null;
   /**
    * The date and time at which this folder was last updated. */
-  readonly contentModifiedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime | null;
   readonly ownedBy?: UserMini;
   /**
    * The shared link for this file. This will
    * be `null` if a folder had been trashed, even though the original shared
    * link does become active again. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   /**
    * The folder upload email for this folder. This will
    * be `null` if a folder has been trashed, even though the original upload
    * email does become active again. */
-  readonly folderUploadEmail?: string;
+  readonly folderUploadEmail?: string | null;
   readonly parent?: FolderMini;
   /**
    * Defines if this item has been deleted or not.
@@ -200,47 +200,55 @@ export function serializeTrashFolderRestored(
   val: TrashFolderRestored,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['id']: val.id,
+    ['etag']: val.etag,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTrashFolderRestoredTypeField(val.type),
-    ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['sequence_id']: val.sequenceId,
+    ['name']: val.name,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['size']: val.size == void 0 ? void 0 : val.size,
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
+    ['description']: val.description,
+    ['size']: val.size,
     ['path_collection']:
       val.pathCollection == void 0
-        ? void 0
+        ? val.pathCollection
         : serializeTrashFolderRestoredPathCollectionField(val.pathCollection),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']:
-      val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+      val.modifiedBy == void 0
+        ? val.modifiedBy
+        : serializeUserMini(val.modifiedBy),
+    ['trashed_at']: val.trashedAt,
+    ['purged_at']: val.purgedAt,
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
     ['owned_by']:
-      val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
-    ['folder_upload_email']:
-      val.folderUploadEmail == void 0 ? void 0 : val.folderUploadEmail,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+      val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink,
+    ['folder_upload_email']: val.folderUploadEmail,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['item_status']:
       val.itemStatus == void 0
-        ? void 0
+        ? val.itemStatus
         : serializeTrashFolderRestoredItemStatusField(val.itemStatus),
   };
 }

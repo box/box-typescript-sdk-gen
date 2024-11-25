@@ -645,7 +645,7 @@ export function serializeCreateTaskAssignmentRequestBodyTaskFieldInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateTaskAssignmentRequestBodyTaskTypeField(val.type),
   };
 }
@@ -683,10 +683,7 @@ export function deserializeCreateTaskAssignmentRequestBodyTaskFieldInput(
 export function serializeCreateTaskAssignmentRequestBodyAssignToField(
   val: CreateTaskAssignmentRequestBodyAssignToField,
 ): SerializedData {
-  return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['login']: val.login == void 0 ? void 0 : val.login,
-  };
+  return { ['id']: val.id, ['login']: val.login };
 }
 export function deserializeCreateTaskAssignmentRequestBodyAssignToField(
   val: SerializedData,
@@ -784,10 +781,10 @@ export function serializeUpdateTaskAssignmentByIdRequestBody(
   val: UpdateTaskAssignmentByIdRequestBody,
 ): SerializedData {
   return {
-    ['message']: val.message == void 0 ? void 0 : val.message,
+    ['message']: val.message,
     ['resolution_state']:
       val.resolutionState == void 0
-        ? void 0
+        ? val.resolutionState
         : serializeUpdateTaskAssignmentByIdRequestBodyResolutionStateField(
             val.resolutionState,
           ),

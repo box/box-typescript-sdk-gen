@@ -69,24 +69,24 @@ export function deserializeAccessTokenIssuedTokenTypeField(
 }
 export function serializeAccessToken(val: AccessToken): SerializedData {
   return {
-    ['access_token']: val.accessToken == void 0 ? void 0 : val.accessToken,
-    ['expires_in']: val.expiresIn == void 0 ? void 0 : val.expiresIn,
+    ['access_token']: val.accessToken,
+    ['expires_in']: val.expiresIn,
     ['token_type']:
       val.tokenType == void 0
-        ? void 0
+        ? val.tokenType
         : serializeAccessTokenTokenTypeField(val.tokenType),
     ['restricted_to']:
       val.restrictedTo == void 0
-        ? void 0
+        ? val.restrictedTo
         : (val.restrictedTo.map(function (
             item: FileOrFolderScope,
           ): SerializedData {
             return serializeFileOrFolderScope(item);
           }) as readonly any[]),
-    ['refresh_token']: val.refreshToken == void 0 ? void 0 : val.refreshToken,
+    ['refresh_token']: val.refreshToken,
     ['issued_token_type']:
       val.issuedTokenType == void 0
-        ? void 0
+        ? val.issuedTokenType
         : serializeAccessTokenIssuedTokenTypeField(val.issuedTokenType),
   };
 }

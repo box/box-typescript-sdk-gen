@@ -19,7 +19,7 @@ export interface ShieldInformationBarrierReportDetails {
 export function serializeShieldInformationBarrierReportDetailsDetailsField(
   val: ShieldInformationBarrierReportDetailsDetailsField,
 ): SerializedData {
-  return { ['folder_id']: val.folderId == void 0 ? void 0 : val.folderId };
+  return { ['folder_id']: val.folderId };
 }
 export function deserializeShieldInformationBarrierReportDetailsDetailsField(
   val: SerializedData,
@@ -48,7 +48,7 @@ export function serializeShieldInformationBarrierReportDetails(
   return {
     ['details']:
       val.details == void 0
-        ? void 0
+        ? val.details
         : serializeShieldInformationBarrierReportDetailsDetailsField(
             val.details,
           ),

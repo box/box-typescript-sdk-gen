@@ -172,7 +172,9 @@ See the endpoint docs at
 
 ```ts
 await client.users.updateUserById(user.id, {
-  requestBody: { name: updatedUserName } satisfies UpdateUserByIdRequestBody,
+  requestBody: {
+    notificationEmail: createNull(),
+  } satisfies UpdateUserByIdRequestBody,
 } satisfies UpdateUserByIdOptionalsInput);
 ```
 

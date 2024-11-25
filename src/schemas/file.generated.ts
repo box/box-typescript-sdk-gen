@@ -84,14 +84,14 @@ export interface FileSharedLinkField {
    * extension so that the file will be saved with the right file type.
    *
    * This property will be `null` for folders. */
-  readonly downloadUrl?: string;
+  readonly downloadUrl?: string | null;
   /**
    * The "Custom URL" that can also be used to preview the item on Box.  Custom
    * URLs can only be created or modified in the Box Web application. */
-  readonly vanityUrl?: string;
+  readonly vanityUrl?: string | null;
   /**
    * The custom name of a shared link, as used in the `vanity_url` field. */
-  readonly vanityName?: string;
+  readonly vanityName?: string | null;
   /**
    * The access level for this shared link.
    *
@@ -118,7 +118,7 @@ export interface FileSharedLinkField {
   /**
    * The date and time when this link will be unshared. This field can only be
    * set by users with paid accounts. */
-  readonly unsharedAt?: DateTime;
+  readonly unsharedAt?: DateTime | null;
   /**
    * Defines if the shared link requires a password to access the item. */
   readonly isPasswordEnabled: boolean;
@@ -142,15 +142,15 @@ export class File extends FileMini {
   readonly pathCollection?: FilePathCollectionField;
   readonly createdAt?: DateTime;
   readonly modifiedAt?: DateTime;
-  readonly trashedAt?: DateTime;
-  readonly purgedAt?: DateTime;
-  readonly contentCreatedAt?: DateTime;
-  readonly contentModifiedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
+  readonly purgedAt?: DateTime | null;
+  readonly contentCreatedAt?: DateTime | null;
+  readonly contentModifiedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
   readonly sharedLink?: FileSharedLinkField;
-  readonly parent?: FolderMini;
+  readonly parent?: FolderMini | null;
   readonly itemStatus?: FileItemStatusField;
   constructor(fields: File) {
     super(fields);
@@ -342,12 +342,12 @@ export function serializeFileSharedLinkField(
 ): SerializedData {
   return {
     ['url']: val.url,
-    ['download_url']: val.downloadUrl == void 0 ? void 0 : val.downloadUrl,
-    ['vanity_url']: val.vanityUrl == void 0 ? void 0 : val.vanityUrl,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['download_url']: val.downloadUrl,
+    ['vanity_url']: val.vanityUrl,
+    ['vanity_name']: val.vanityName,
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeFileSharedLinkAccessField(val.access),
     ['effective_access']: serializeFileSharedLinkEffectiveAccessField(
       val.effectiveAccess,
@@ -356,11 +356,13 @@ export function serializeFileSharedLinkField(
       val.effectivePermission,
     ),
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['is_password_enabled']: val.isPasswordEnabled,
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeFileSharedLinkPermissionsField(val.permissions),
     ['download_count']: val.downloadCount,
     ['preview_count']: val.previewCount,
@@ -522,43 +524,53 @@ export function serializeFile(val: File): SerializedData {
   return {
     ...base,
     ...{
-      ['description']: val.description == void 0 ? void 0 : val.description,
-      ['size']: val.size == void 0 ? void 0 : val.size,
+      ['description']: val.description,
+      ['size']: val.size,
       ['path_collection']:
         val.pathCollection == void 0
-          ? void 0
+          ? val.pathCollection
           : serializeFilePathCollectionField(val.pathCollection),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
       ['trashed_at']:
-        val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+        val.trashedAt == void 0
+          ? val.trashedAt
+          : serializeDateTime(val.trashedAt),
       ['purged_at']:
-        val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
+        val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
       ['content_created_at']:
         val.contentCreatedAt == void 0
-          ? void 0
+          ? val.contentCreatedAt
           : serializeDateTime(val.contentCreatedAt),
       ['content_modified_at']:
         val.contentModifiedAt == void 0
-          ? void 0
+          ? val.contentModifiedAt
           : serializeDateTime(val.contentModifiedAt),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['modified_by']:
-        val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
+        val.modifiedBy == void 0
+          ? val.modifiedBy
+          : serializeUserMini(val.modifiedBy),
       ['owned_by']:
-        val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
+        val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
       ['shared_link']:
         val.sharedLink == void 0
-          ? void 0
+          ? val.sharedLink
           : serializeFileSharedLinkField(val.sharedLink),
       ['parent']:
-        val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+        val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
       ['item_status']:
         val.itemStatus == void 0
-          ? void 0
+          ? val.itemStatus
           : serializeFileItemStatusField(val.itemStatus),
     },
   };

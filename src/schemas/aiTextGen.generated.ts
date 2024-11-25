@@ -92,7 +92,7 @@ export function serializeAiTextGenItemsField(
   return {
     ['id']: val.id,
     ['type']: serializeAiTextGenItemsTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
+    ['content']: val.content,
   };
 }
 export function deserializeAiTextGenItemsField(
@@ -137,8 +137,10 @@ export function serializeAiTextGenItemsFieldInput(
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeAiTextGenItemsTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
+      val.type == void 0
+        ? val.type
+        : serializeAiTextGenItemsTypeField(val.type),
+    ['content']: val.content,
   };
 }
 export function deserializeAiTextGenItemsFieldInput(
@@ -187,14 +189,16 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
     }) as readonly any[],
     ['dialogue_history']:
       val.dialogueHistory == void 0
-        ? void 0
+        ? val.dialogueHistory
         : (val.dialogueHistory.map(function (
             item: AiDialogueHistory,
           ): SerializedData {
             return serializeAiDialogueHistory(item);
           }) as readonly any[]),
     ['ai_agent']:
-      val.aiAgent == void 0 ? void 0 : serializeAiAgentTextGen(val.aiAgent),
+      val.aiAgent == void 0
+        ? val.aiAgent
+        : serializeAiAgentTextGen(val.aiAgent),
   };
 }
 export function deserializeAiTextGen(val: SerializedData): AiTextGen {

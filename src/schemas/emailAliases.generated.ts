@@ -20,10 +20,10 @@ export interface EmailAliases {
 }
 export function serializeEmailAliases(val: EmailAliases): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
+    ['total_count']: val.totalCount,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: EmailAlias): SerializedData {
             return serializeEmailAlias(item);
           }) as readonly any[]),

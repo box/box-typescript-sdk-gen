@@ -82,10 +82,10 @@ export function serializeLegalHoldPolicyAssignmentCountsField(
   val: LegalHoldPolicyAssignmentCountsField,
 ): SerializedData {
   return {
-    ['user']: val.user == void 0 ? void 0 : val.user,
-    ['folder']: val.folder == void 0 ? void 0 : val.folder,
-    ['file']: val.file == void 0 ? void 0 : val.file,
-    ['file_version']: val.fileVersion == void 0 ? void 0 : val.fileVersion,
+    ['user']: val.user,
+    ['folder']: val.folder,
+    ['file']: val.file,
+    ['file_version']: val.fileVersion,
   };
 }
 export function deserializeLegalHoldPolicyAssignmentCountsField(
@@ -140,33 +140,41 @@ export function serializeLegalHoldPolicy(val: LegalHoldPolicy): SerializedData {
   return {
     ...base,
     ...{
-      ['policy_name']: val.policyName == void 0 ? void 0 : val.policyName,
-      ['description']: val.description == void 0 ? void 0 : val.description,
+      ['policy_name']: val.policyName,
+      ['description']: val.description,
       ['status']:
         val.status == void 0
-          ? void 0
+          ? val.status
           : serializeLegalHoldPolicyStatusField(val.status),
       ['assignment_counts']:
         val.assignmentCounts == void 0
-          ? void 0
+          ? val.assignmentCounts
           : serializeLegalHoldPolicyAssignmentCountsField(val.assignmentCounts),
       ['created_by']:
-        val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+        val.createdBy == void 0
+          ? val.createdBy
+          : serializeUserMini(val.createdBy),
       ['created_at']:
-        val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
       ['modified_at']:
-        val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
       ['deleted_at']:
-        val.deletedAt == void 0 ? void 0 : serializeDateTime(val.deletedAt),
+        val.deletedAt == void 0
+          ? val.deletedAt
+          : serializeDateTime(val.deletedAt),
       ['filter_started_at']:
         val.filterStartedAt == void 0
-          ? void 0
+          ? val.filterStartedAt
           : serializeDateTime(val.filterStartedAt),
       ['filter_ended_at']:
         val.filterEndedAt == void 0
-          ? void 0
+          ? val.filterEndedAt
           : serializeDateTime(val.filterEndedAt),
-      ['release_notes']: val.releaseNotes == void 0 ? void 0 : val.releaseNotes,
+      ['release_notes']: val.releaseNotes,
     },
   };
 }

@@ -32,12 +32,12 @@ export function serializeFileMini(val: FileMini): SerializedData {
   return {
     ...base,
     ...{
-      ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-      ['name']: val.name == void 0 ? void 0 : val.name,
-      ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1,
+      ['sequence_id']: val.sequenceId,
+      ['name']: val.name,
+      ['sha1']: val.sha1,
       ['file_version']:
         val.fileVersion == void 0
-          ? void 0
+          ? val.fileVersion
           : serializeFileVersionMini(val.fileVersion),
     },
   };

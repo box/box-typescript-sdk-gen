@@ -29,10 +29,10 @@ export interface MetadataBase {
 }
 export function serializeMetadataBase(val: MetadataBase): SerializedData {
   return {
-    ['$parent']: val.parent == void 0 ? void 0 : val.parent,
-    ['$template']: val.template == void 0 ? void 0 : val.template,
-    ['$scope']: val.scope == void 0 ? void 0 : val.scope,
-    ['$version']: val.version == void 0 ? void 0 : val.version,
+    ['$parent']: val.parent,
+    ['$template']: val.template,
+    ['$scope']: val.scope,
+    ['$version']: val.version,
   };
 }
 export function deserializeMetadataBase(val: SerializedData): MetadataBase {

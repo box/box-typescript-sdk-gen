@@ -17,7 +17,7 @@ export interface TemplateSigner {
   readonly inputs?: readonly TemplateSignerInput[];
   /**
    * Email address of the signer */
-  readonly email?: string;
+  readonly email?: string | null;
   /**
    * Defines the role of the signer in the signature request. A role of
    * `signer` needs to sign the document, a role `approver`
@@ -37,10 +37,10 @@ export interface TemplateSigner {
    * If provided, this value points signers that are assigned the same inputs and belongs to same signer group.
    * A signer group is not a Box Group. It is an entity that belongs to the template itself and can only be used
    * within Box Sign requests created from it. */
-  readonly signerGroupId?: string;
+  readonly signerGroupId?: string | null;
   /**
    * A placeholder label for the signer set by the template creator to differentiate between signers. */
-  readonly label?: string;
+  readonly label?: string | null;
   /**
    * An identifier for the signer. This can be used to identify a signer within the template. */
   readonly publicId?: string;
@@ -71,19 +71,20 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
   return {
     ['inputs']:
       val.inputs == void 0
-        ? void 0
+        ? val.inputs
         : (val.inputs.map(function (item: TemplateSignerInput): SerializedData {
             return serializeTemplateSignerInput(item);
           }) as readonly any[]),
-    ['email']: val.email == void 0 ? void 0 : val.email,
+    ['email']: val.email,
     ['role']:
-      val.role == void 0 ? void 0 : serializeTemplateSignerRoleField(val.role),
-    ['is_in_person']: val.isInPerson == void 0 ? void 0 : val.isInPerson,
-    ['order']: val.order == void 0 ? void 0 : val.order,
-    ['signer_group_id']:
-      val.signerGroupId == void 0 ? void 0 : val.signerGroupId,
-    ['label']: val.label == void 0 ? void 0 : val.label,
-    ['public_id']: val.publicId == void 0 ? void 0 : val.publicId,
+      val.role == void 0
+        ? val.role
+        : serializeTemplateSignerRoleField(val.role),
+    ['is_in_person']: val.isInPerson,
+    ['order']: val.order,
+    ['signer_group_id']: val.signerGroupId,
+    ['label']: val.label,
+    ['public_id']: val.publicId,
   };
 }
 export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {

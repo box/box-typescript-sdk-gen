@@ -20,10 +20,10 @@ export interface RealtimeServers {
 }
 export function serializeRealtimeServers(val: RealtimeServers): SerializedData {
   return {
-    ['chunk_size']: val.chunkSize == void 0 ? void 0 : val.chunkSize,
+    ['chunk_size']: val.chunkSize,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: RealtimeServer): SerializedData {
             return serializeRealtimeServer(item);
           }) as readonly any[]),

@@ -73,10 +73,10 @@ export function serializeCollectionsOrderField(
   val: CollectionsOrderField,
 ): SerializedData {
   return {
-    ['by']: val.by == void 0 ? void 0 : val.by,
+    ['by']: val.by,
     ['direction']:
       val.direction == void 0
-        ? void 0
+        ? val.direction
         : serializeCollectionsOrderDirectionField(val.direction),
   };
 }
@@ -102,12 +102,12 @@ export function deserializeCollectionsOrderField(
 }
 export function serializeCollections(val: Collections): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['order']:
       val.order == void 0
-        ? void 0
+        ? val.order
         : (val.order.map(function (
             item: CollectionsOrderField,
           ): SerializedData {
@@ -115,7 +115,7 @@ export function serializeCollections(val: Collections): SerializedData {
           }) as readonly any[]),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: Collection): SerializedData {
             return serializeCollection(item);
           }) as readonly any[]),

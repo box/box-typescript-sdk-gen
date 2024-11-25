@@ -6,6 +6,8 @@ import { serializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { deserializeCreateUserRequestBody } from '../managers/users.generated.js';
 import { serializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
 import { deserializeUpdateUserByIdRequestBody } from '../managers/users.generated.js';
+import { serializeUpdateUserByIdRequestBodyNotificationEmailField } from '../managers/users.generated.js';
+import { deserializeUpdateUserByIdRequestBodyNotificationEmailField } from '../managers/users.generated.js';
 import { UpdateUserByIdOptionalsInput } from '../managers/users.generated.js';
 import { UpdateUserByIdOptionals } from '../managers/users.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -13,7 +15,9 @@ import { Users } from '../schemas/users.generated.js';
 import { UserFull } from '../schemas/userFull.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
 import { UpdateUserByIdRequestBody } from '../managers/users.generated.js';
+import { UpdateUserByIdRequestBodyNotificationEmailField } from '../managers/users.generated.js';
 import { getUuid } from '../internal/utils.js';
+import { createNull } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
@@ -57,6 +61,36 @@ test('test_create_update_get_delete_user', async function test_create_update_get
     requestBody: { name: updatedUserName } satisfies UpdateUserByIdRequestBody,
   } satisfies UpdateUserByIdOptionalsInput);
   if (!(updatedUser.name == updatedUserName)) {
+    throw new Error('Assertion failed');
+  }
+  await client.users.deleteUserById(user.id);
+});
+test('test_user_notification_email', async function test_user_notification_email(): Promise<any> {
+  const userName: string = getUuid();
+  const userLogin: string = ''.concat(getUuid(), '@gmail.com') as string;
+  const user: UserFull = await client.users.createUser({
+    name: userName,
+    login: userLogin,
+    isPlatformAccessOnly: true,
+  } satisfies CreateUserRequestBody);
+  const updatedWithNotificationEmail: UserFull =
+    await client.users.updateUserById(user.id, {
+      requestBody: {
+        notificationEmail: {
+          email: userLogin,
+        } satisfies UpdateUserByIdRequestBodyNotificationEmailField,
+      } satisfies UpdateUserByIdRequestBody,
+    } satisfies UpdateUserByIdOptionalsInput);
+  if (!!(updatedWithNotificationEmail.notificationEmail == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  const updatedWithoutNotificationEmail: UserFull =
+    await client.users.updateUserById(user.id, {
+      requestBody: {
+        notificationEmail: createNull(),
+      } satisfies UpdateUserByIdRequestBody,
+    } satisfies UpdateUserByIdOptionalsInput);
+  if (!(updatedWithoutNotificationEmail.notificationEmail == void 0)) {
     throw new Error('Assertion failed');
   }
   await client.users.deleteUserById(user.id);

@@ -21,7 +21,7 @@ export class FileBase {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type: FileBaseTypeField = 'file' as FileBaseTypeField;
@@ -57,7 +57,7 @@ export interface FileBaseInput {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type?: FileBaseTypeField;
@@ -79,7 +79,7 @@ export function deserializeFileBaseTypeField(
 export function serializeFileBase(val: FileBase): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']: serializeFileBaseTypeField(val.type),
   };
 }
@@ -115,9 +115,9 @@ export function deserializeFileBase(val: SerializedData): FileBase {
 export function serializeFileBaseInput(val: FileBaseInput): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']:
-      val.type == void 0 ? void 0 : serializeFileBaseTypeField(val.type),
+      val.type == void 0 ? val.type : serializeFileBaseTypeField(val.type),
   };
 }
 export function deserializeFileBaseInput(val: SerializedData): FileBaseInput {

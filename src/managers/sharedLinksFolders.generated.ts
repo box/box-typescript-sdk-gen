@@ -290,7 +290,7 @@ export interface AddShareLinkToFolderRequestBodySharedLinkField {
    * long and include a number, upper case letter, or
    * a non-numeric or non-alphabetic character.
    * A password can only be set when `access` is set to `open`. */
-  readonly password?: string;
+  readonly password?: string | null;
   /**
    * Defines a custom vanity name to use in the shared link URL,
    * for example `https://app.box.com/v/my-shared-link`.
@@ -451,7 +451,7 @@ export interface RemoveSharedLinkFromFolderRequestBody {
   /**
    * By setting this value to `null`, the shared link
    * is removed from the folder. */
-  readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField;
+  readonly sharedLink?: RemoveSharedLinkFromFolderRequestBodySharedLinkField | null;
   readonly rawData?: SerializedData;
 }
 export interface RemoveSharedLinkFromFolderQueryParams {
@@ -832,9 +832,9 @@ export function serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsFie
   val: AddShareLinkToFolderRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
@@ -882,17 +882,19 @@ export function serializeAddShareLinkToFolderRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeAddShareLinkToFolderRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -961,7 +963,7 @@ export function serializeAddShareLinkToFolderRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeAddShareLinkToFolderRequestBodySharedLinkField(
             val.sharedLink,
           ),
@@ -1009,9 +1011,9 @@ export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermission
   val: UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField,
 ): SerializedData {
   return {
-    ['can_download']: val.canDownload == void 0 ? void 0 : val.canDownload,
-    ['can_preview']: val.canPreview == void 0 ? void 0 : val.canPreview,
-    ['can_edit']: val.canEdit == void 0 ? void 0 : val.canEdit,
+    ['can_download']: val.canDownload,
+    ['can_preview']: val.canPreview,
+    ['can_edit']: val.canEdit,
   };
 }
 export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
@@ -1059,17 +1061,19 @@ export function serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
   return {
     ['access']:
       val.access == void 0
-        ? void 0
+        ? val.access
         : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField(
             val.access,
           ),
-    ['password']: val.password == void 0 ? void 0 : val.password,
-    ['vanity_name']: val.vanityName == void 0 ? void 0 : val.vanityName,
+    ['password']: val.password,
+    ['vanity_name']: val.vanityName,
     ['unshared_at']:
-      val.unsharedAt == void 0 ? void 0 : serializeDateTime(val.unsharedAt),
+      val.unsharedAt == void 0
+        ? val.unsharedAt
+        : serializeDateTime(val.unsharedAt),
     ['permissions']:
       val.permissions == void 0
-        ? void 0
+        ? val.permissions
         : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField(
             val.permissions,
           ),
@@ -1138,7 +1142,7 @@ export function serializeUpdateSharedLinkOnFolderRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField(
             val.sharedLink,
           ),
@@ -1186,7 +1190,7 @@ export function serializeRemoveSharedLinkFromFolderRequestBody(
   return {
     ['shared_link']:
       val.sharedLink == void 0
-        ? void 0
+        ? val.sharedLink
         : serializeRemoveSharedLinkFromFolderRequestBodySharedLinkField(
             val.sharedLink,
           ),

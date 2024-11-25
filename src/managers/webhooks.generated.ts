@@ -627,10 +627,10 @@ export function serializeCreateWebhookRequestBodyTargetField(
   val: CreateWebhookRequestBodyTargetField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeCreateWebhookRequestBodyTargetTypeField(val.type),
   };
 }
@@ -878,10 +878,10 @@ export function serializeUpdateWebhookByIdRequestBodyTargetField(
   val: UpdateWebhookByIdRequestBodyTargetField,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeUpdateWebhookByIdRequestBodyTargetTypeField(val.type),
   };
 }
@@ -1047,12 +1047,12 @@ export function serializeUpdateWebhookByIdRequestBody(
   return {
     ['target']:
       val.target == void 0
-        ? void 0
+        ? val.target
         : serializeUpdateWebhookByIdRequestBodyTargetField(val.target),
-    ['address']: val.address == void 0 ? void 0 : val.address,
+    ['address']: val.address,
     ['triggers']:
       val.triggers == void 0
-        ? void 0
+        ? val.triggers
         : (val.triggers.map(function (
             item: UpdateWebhookByIdRequestBodyTriggersField,
           ): SerializedData {

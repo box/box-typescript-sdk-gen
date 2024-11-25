@@ -40,12 +40,12 @@ export function deserializeWorkflowMiniTypeField(
 }
 export function serializeWorkflowMini(val: WorkflowMini): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeWorkflowMiniTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['is_enabled']: val.isEnabled == void 0 ? void 0 : val.isEnabled,
+      val.type == void 0 ? val.type : serializeWorkflowMiniTypeField(val.type),
+    ['name']: val.name,
+    ['description']: val.description,
+    ['is_enabled']: val.isEnabled,
   };
 }
 export function deserializeWorkflowMini(val: SerializedData): WorkflowMini {

@@ -64,7 +64,7 @@ export type SignRequest = SignRequestBase & {
   readonly signers?: readonly SignRequestSigner[];
   /**
    * Force a specific color for the signature (blue, black, or red). */
-  readonly signatureColor?: string;
+  readonly signatureColor?: string | null;
   /**
    * Box Sign request ID. */
   readonly id?: string;
@@ -75,7 +75,7 @@ export type SignRequest = SignRequestBase & {
    * using the UI. The signature request is not
    * sent until the preparation
    * phase is complete. */
-  readonly prepareUrl?: string;
+  readonly prepareUrl?: string | null;
   readonly signingLog?: FileMini;
   /**
    * Describes the status of the signature request. */
@@ -87,7 +87,7 @@ export type SignRequest = SignRequestBase & {
   readonly signFiles?: SignRequestSignFilesField;
   /**
    * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
-  readonly autoExpireAt?: DateTime;
+  readonly autoExpireAt?: DateTime | null;
   readonly parentFolder?: FolderMini;
 };
 export function serializeSignRequestTypeField(
@@ -157,12 +157,11 @@ export function serializeSignRequestSignFilesField(
   return {
     ['files']:
       val.files == void 0
-        ? void 0
+        ? val.files
         : (val.files.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),
-    ['is_ready_for_download']:
-      val.isReadyForDownload == void 0 ? void 0 : val.isReadyForDownload,
+    ['is_ready_for_download']: val.isReadyForDownload,
   };
 }
 export function deserializeSignRequestSignFilesField(
@@ -212,42 +211,43 @@ export function serializeSignRequest(val: SignRequest): SerializedData {
     ...base,
     ...{
       ['type']:
-        val.type == void 0 ? void 0 : serializeSignRequestTypeField(val.type),
+        val.type == void 0 ? val.type : serializeSignRequestTypeField(val.type),
       ['source_files']:
         val.sourceFiles == void 0
-          ? void 0
+          ? val.sourceFiles
           : (val.sourceFiles.map(function (item: FileBase): SerializedData {
               return serializeFileBase(item);
             }) as readonly any[]),
       ['signers']:
         val.signers == void 0
-          ? void 0
+          ? val.signers
           : (val.signers.map(function (
               item: SignRequestSigner,
             ): SerializedData {
               return serializeSignRequestSigner(item);
             }) as readonly any[]),
-      ['signature_color']:
-        val.signatureColor == void 0 ? void 0 : val.signatureColor,
-      ['id']: val.id == void 0 ? void 0 : val.id,
-      ['prepare_url']: val.prepareUrl == void 0 ? void 0 : val.prepareUrl,
+      ['signature_color']: val.signatureColor,
+      ['id']: val.id,
+      ['prepare_url']: val.prepareUrl,
       ['signing_log']:
-        val.signingLog == void 0 ? void 0 : serializeFileMini(val.signingLog),
+        val.signingLog == void 0
+          ? val.signingLog
+          : serializeFileMini(val.signingLog),
       ['status']:
         val.status == void 0
-          ? void 0
+          ? val.status
           : serializeSignRequestStatusField(val.status),
       ['sign_files']:
         val.signFiles == void 0
-          ? void 0
+          ? val.signFiles
           : serializeSignRequestSignFilesField(val.signFiles),
       ['auto_expire_at']:
         val.autoExpireAt == void 0
-          ? void 0
+          ? val.autoExpireAt
           : serializeDateTime(val.autoExpireAt),
       ['parent_folder']:
         val.parentFolder == void 0
-          ? void 0
+          ? val.parentFolder
           : serializeFolderMini(val.parentFolder),
     },
   };

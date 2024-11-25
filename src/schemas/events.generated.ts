@@ -43,14 +43,14 @@ export function deserializeEventsNextStreamPositionField(
 }
 export function serializeEvents(val: Events): SerializedData {
   return {
-    ['chunk_size']: val.chunkSize == void 0 ? void 0 : val.chunkSize,
+    ['chunk_size']: val.chunkSize,
     ['next_stream_position']:
       val.nextStreamPosition == void 0
-        ? void 0
+        ? val.nextStreamPosition
         : serializeEventsNextStreamPositionField(val.nextStreamPosition),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: Event): SerializedData {
             return serializeEvent(item);
           }) as readonly any[]),

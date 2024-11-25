@@ -23,7 +23,7 @@ export function serializeFileVersionMini(val: FileVersionMini): SerializedData {
   if (!sdIsMap(base)) {
     throw new BoxSdkError({ message: 'Expecting a map for "FileVersionMini"' });
   }
-  return { ...base, ...{ ['sha1']: val.sha1 == void 0 ? void 0 : val.sha1 } };
+  return { ...base, ...{ ['sha1']: val.sha1 } };
 }
 export function deserializeFileVersionMini(
   val: SerializedData,

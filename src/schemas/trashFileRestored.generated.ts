@@ -43,7 +43,7 @@ export class TrashFileRestored {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type: TrashFileRestoredTypeField =
@@ -74,19 +74,19 @@ export class TrashFileRestored {
   /**
    * The time at which this file was put in the
    * trash - becomes `null` after restore. */
-  readonly trashedAt?: string;
+  readonly trashedAt?: string | null;
   /**
    * The time at which this file is expected to be purged
    * from the trash  - becomes `null` after restore. */
-  readonly purgedAt?: string;
+  readonly purgedAt?: string | null;
   /**
    * The date and time at which this file was originally
    * created, which might be before it was uploaded to Box. */
-  readonly contentCreatedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime | null;
   /**
    * The date and time at which this file was last updated,
    * which might be before it was uploaded to Box. */
-  readonly contentModifiedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy!: UserMini;
   readonly ownedBy!: UserMini;
@@ -94,7 +94,7 @@ export class TrashFileRestored {
    * The shared link for this file. This will
    * be `null` if a file had been trashed, even though the original shared
    * link does become active again. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   readonly parent?: FolderMini;
   /**
    * Defines if this item has been deleted or not.
@@ -193,7 +193,7 @@ export interface TrashFileRestoredInput {
    * The HTTP `etag` of this file. This can be used within some API
    * endpoints in the `If-Match` and `If-None-Match` headers to only
    * perform changes on the file if (no) changes have happened. */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * `file` */
   readonly type?: TrashFileRestoredTypeField;
@@ -223,19 +223,19 @@ export interface TrashFileRestoredInput {
   /**
    * The time at which this file was put in the
    * trash - becomes `null` after restore. */
-  readonly trashedAt?: string;
+  readonly trashedAt?: string | null;
   /**
    * The time at which this file is expected to be purged
    * from the trash  - becomes `null` after restore. */
-  readonly purgedAt?: string;
+  readonly purgedAt?: string | null;
   /**
    * The date and time at which this file was originally
    * created, which might be before it was uploaded to Box. */
-  readonly contentCreatedAt?: DateTime;
+  readonly contentCreatedAt?: DateTime | null;
   /**
    * The date and time at which this file was last updated,
    * which might be before it was uploaded to Box. */
-  readonly contentModifiedAt?: DateTime;
+  readonly contentModifiedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy: UserMini;
   readonly ownedBy: UserMini;
@@ -243,7 +243,7 @@ export interface TrashFileRestoredInput {
    * The shared link for this file. This will
    * be `null` if a file had been trashed, even though the original shared
    * link does become active again. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   readonly parent?: FolderMini;
   /**
    * Defines if this item has been deleted or not.
@@ -348,14 +348,14 @@ export function serializeTrashFileRestored(
 ): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']: serializeTrashFileRestoredTypeField(val.type),
     ['sequence_id']: val.sequenceId,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['sha1']: val.sha1,
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
     ['description']: val.description,
     ['size']: val.size,
@@ -364,22 +364,25 @@ export function serializeTrashFileRestored(
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['trashed_at']: val.trashedAt,
+    ['purged_at']: val.purgedAt,
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
     ['owned_by']: serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['shared_link']: val.sharedLink,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['item_status']: serializeTrashFileRestoredItemStatusField(val.itemStatus),
   };
 }
@@ -605,17 +608,17 @@ export function serializeTrashFileRestoredInput(
 ): SerializedData {
   return {
     ['id']: val.id,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
+    ['etag']: val.etag,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTrashFileRestoredTypeField(val.type),
     ['sequence_id']: val.sequenceId,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['name']: val.name,
     ['sha1']: val.sha1,
     ['file_version']:
       val.fileVersion == void 0
-        ? void 0
+        ? val.fileVersion
         : serializeFileVersionMini(val.fileVersion),
     ['description']: val.description,
     ['size']: val.size,
@@ -624,22 +627,25 @@ export function serializeTrashFileRestoredInput(
     ),
     ['created_at']: serializeDateTime(val.createdAt),
     ['modified_at']: serializeDateTime(val.modifiedAt),
-    ['trashed_at']: val.trashedAt == void 0 ? void 0 : val.trashedAt,
-    ['purged_at']: val.purgedAt == void 0 ? void 0 : val.purgedAt,
+    ['trashed_at']: val.trashedAt,
+    ['purged_at']: val.purgedAt,
     ['content_created_at']:
       val.contentCreatedAt == void 0
-        ? void 0
+        ? val.contentCreatedAt
         : serializeDateTime(val.contentCreatedAt),
     ['content_modified_at']:
       val.contentModifiedAt == void 0
-        ? void 0
+        ? val.contentModifiedAt
         : serializeDateTime(val.contentModifiedAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']: serializeUserMini(val.modifiedBy),
     ['owned_by']: serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
+    ['shared_link']: val.sharedLink,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
     ['item_status']: serializeTrashFileRestoredItemStatusField(val.itemStatus),
   };
 }

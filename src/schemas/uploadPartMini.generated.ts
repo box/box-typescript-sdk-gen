@@ -22,9 +22,9 @@ export interface UploadPartMini {
 }
 export function serializeUploadPartMini(val: UploadPartMini): SerializedData {
   return {
-    ['part_id']: val.partId == void 0 ? void 0 : val.partId,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
-    ['size']: val.size == void 0 ? void 0 : val.size,
+    ['part_id']: val.partId,
+    ['offset']: val.offset,
+    ['size']: val.size,
   };
 }
 export function deserializeUploadPartMini(val: SerializedData): UploadPartMini {

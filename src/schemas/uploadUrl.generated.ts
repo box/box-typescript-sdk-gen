@@ -17,10 +17,7 @@ export interface UploadUrl {
   readonly rawData?: SerializedData;
 }
 export function serializeUploadUrl(val: UploadUrl): SerializedData {
-  return {
-    ['upload_url']: val.uploadUrl == void 0 ? void 0 : val.uploadUrl,
-    ['upload_token']: val.uploadToken == void 0 ? void 0 : val.uploadToken,
-  };
+  return { ['upload_url']: val.uploadUrl, ['upload_token']: val.uploadToken };
 }
 export function deserializeUploadUrl(val: SerializedData): UploadUrl {
   if (!sdIsMap(val)) {

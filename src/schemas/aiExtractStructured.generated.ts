@@ -91,12 +91,12 @@ export function serializeAiExtractStructuredMetadataTemplateField(
   val: AiExtractStructuredMetadataTemplateField,
 ): SerializedData {
   return {
-    ['template_key']: val.templateKey == void 0 ? void 0 : val.templateKey,
+    ['template_key']: val.templateKey,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeAiExtractStructuredMetadataTemplateTypeField(val.type),
-    ['scope']: val.scope == void 0 ? void 0 : val.scope,
+    ['scope']: val.scope,
   };
 }
 export function deserializeAiExtractStructuredMetadataTemplateField(
@@ -165,13 +165,13 @@ export function serializeAiExtractStructuredFieldsField(
 ): SerializedData {
   return {
     ['key']: val.key,
-    ['description']: val.description == void 0 ? void 0 : val.description,
-    ['displayName']: val.displayName == void 0 ? void 0 : val.displayName,
-    ['prompt']: val.prompt == void 0 ? void 0 : val.prompt,
-    ['type']: val.type == void 0 ? void 0 : val.type,
+    ['description']: val.description,
+    ['displayName']: val.displayName,
+    ['prompt']: val.prompt,
+    ['type']: val.type,
     ['options']:
       val.options == void 0
-        ? void 0
+        ? val.options
         : (val.options.map(function (
             item: AiExtractStructuredFieldsOptionsField,
           ): SerializedData {
@@ -264,13 +264,13 @@ export function serializeAiExtractStructured(
     }) as readonly any[],
     ['metadata_template']:
       val.metadataTemplate == void 0
-        ? void 0
+        ? val.metadataTemplate
         : serializeAiExtractStructuredMetadataTemplateField(
             val.metadataTemplate,
           ),
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (
             item: AiExtractStructuredFieldsField,
           ): SerializedData {
@@ -278,7 +278,7 @@ export function serializeAiExtractStructured(
           }) as readonly any[]),
     ['ai_agent']:
       val.aiAgent == void 0
-        ? void 0
+        ? val.aiAgent
         : serializeAiAgentExtractStructured(val.aiAgent),
   };
 }

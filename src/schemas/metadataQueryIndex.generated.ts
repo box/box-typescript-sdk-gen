@@ -75,10 +75,10 @@ export function serializeMetadataQueryIndexFieldsField(
   val: MetadataQueryIndexFieldsField,
 ): SerializedData {
   return {
-    ['key']: val.key == void 0 ? void 0 : val.key,
+    ['key']: val.key,
     ['sort_direction']:
       val.sortDirection == void 0
-        ? void 0
+        ? val.sortDirection
         : serializeMetadataQueryIndexFieldsSortDirectionField(
             val.sortDirection,
           ),
@@ -114,12 +114,12 @@ export function serializeMetadataQueryIndex(
   val: MetadataQueryIndex,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']: val.type,
     ['status']: serializeMetadataQueryIndexStatusField(val.status),
     ['fields']:
       val.fields == void 0
-        ? void 0
+        ? val.fields
         : (val.fields.map(function (
             item: MetadataQueryIndexFieldsField,
           ): SerializedData {

@@ -17,10 +17,10 @@ export interface FilesUnderRetention {
   readonly limit?: number;
   /**
    * The marker for the start of the next page of results. */
-  readonly nextMarker?: string;
+  readonly nextMarker?: string | null;
   /**
    * The marker for the start of the previous page of results. */
-  readonly prevMarker?: string;
+  readonly prevMarker?: string | null;
   /**
    * A list of files */
   readonly entries?: readonly FileMini[];
@@ -30,12 +30,12 @@ export function serializeFilesUnderRetention(
   val: FilesUnderRetention,
 ): SerializedData {
   return {
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['next_marker']: val.nextMarker == void 0 ? void 0 : val.nextMarker,
-    ['prev_marker']: val.prevMarker == void 0 ? void 0 : val.prevMarker,
+    ['limit']: val.limit,
+    ['next_marker']: val.nextMarker,
+    ['prev_marker']: val.prevMarker,
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (item: FileMini): SerializedData {
             return serializeFileMini(item);
           }) as readonly any[]),

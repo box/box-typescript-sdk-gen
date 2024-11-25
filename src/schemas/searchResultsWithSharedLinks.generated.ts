@@ -104,13 +104,13 @@ export function serializeSearchResultsWithSharedLinks(
   val: SearchResultsWithSharedLinks,
 ): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['type']: serializeSearchResultsWithSharedLinksTypeField(val.type),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: SearchResultWithSharedLink,
           ): SerializedData {
@@ -184,16 +184,16 @@ export function serializeSearchResultsWithSharedLinksInput(
   val: SearchResultsWithSharedLinksInput,
 ): SerializedData {
   return {
-    ['total_count']: val.totalCount == void 0 ? void 0 : val.totalCount,
-    ['limit']: val.limit == void 0 ? void 0 : val.limit,
-    ['offset']: val.offset == void 0 ? void 0 : val.offset,
+    ['total_count']: val.totalCount,
+    ['limit']: val.limit,
+    ['offset']: val.offset,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeSearchResultsWithSharedLinksTypeField(val.type),
     ['entries']:
       val.entries == void 0
-        ? void 0
+        ? val.entries
         : (val.entries.map(function (
             item: SearchResultWithSharedLink,
           ): SerializedData {

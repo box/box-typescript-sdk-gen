@@ -64,7 +64,7 @@ export function serializeAiItemBase(val: AiItemBase): SerializedData {
   return {
     ['id']: val.id,
     ['type']: serializeAiItemBaseTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
+    ['content']: val.content,
   };
 }
 export function deserializeAiItemBase(val: SerializedData): AiItemBase {
@@ -101,8 +101,8 @@ export function serializeAiItemBaseInput(val: AiItemBaseInput): SerializedData {
   return {
     ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeAiItemBaseTypeField(val.type),
-    ['content']: val.content == void 0 ? void 0 : val.content,
+      val.type == void 0 ? val.type : serializeAiItemBaseTypeField(val.type),
+    ['content']: val.content,
   };
 }
 export function deserializeAiItemBaseInput(

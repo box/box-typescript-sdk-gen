@@ -29,7 +29,9 @@ export function serializeAiExtract(val: AiExtract): SerializedData {
       return serializeAiItemBase(item);
     }) as readonly any[],
     ['ai_agent']:
-      val.aiAgent == void 0 ? void 0 : serializeAiAgentExtract(val.aiAgent),
+      val.aiAgent == void 0
+        ? val.aiAgent
+        : serializeAiAgentExtract(val.aiAgent),
   };
 }
 export function deserializeAiExtract(val: SerializedData): AiExtract {

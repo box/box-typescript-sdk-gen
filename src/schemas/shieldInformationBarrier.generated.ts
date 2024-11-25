@@ -100,31 +100,43 @@ export function serializeShieldInformationBarrier(
   val: ShieldInformationBarrier,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierTypeField(val.type),
     ['enterprise']:
       val.enterprise == void 0
-        ? void 0
+        ? val.enterprise
         : serializeEnterpriseBase(val.enterprise),
     ['status']:
       val.status == void 0
-        ? void 0
+        ? val.status
         : serializeShieldInformationBarrierStatusField(val.status),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserBase(val.createdBy),
     ['updated_at']:
-      val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
+      val.updatedAt == void 0
+        ? val.updatedAt
+        : serializeDateTime(val.updatedAt),
     ['updated_by']:
-      val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
+      val.updatedBy == void 0
+        ? val.updatedBy
+        : serializeUserBase(val.updatedBy),
     ['enabled_at']:
-      val.enabledAt == void 0 ? void 0 : serializeDateTime(val.enabledAt),
+      val.enabledAt == void 0
+        ? val.enabledAt
+        : serializeDateTime(val.enabledAt),
     ['enabled_by']:
-      val.enabledBy == void 0 ? void 0 : serializeUserBase(val.enabledBy),
+      val.enabledBy == void 0
+        ? val.enabledBy
+        : serializeUserBase(val.enabledBy),
   };
 }
 export function deserializeShieldInformationBarrier(

@@ -542,8 +542,8 @@ export function deserializeJwtConfigAppSettings(
 }
 export function serializeJwtConfigFile(val: JwtConfigFile): SerializedData {
   return {
-    ['enterpriseID']: val.enterpriseId == void 0 ? void 0 : val.enterpriseId,
-    ['userID']: val.userId == void 0 ? void 0 : val.userId,
+    ['enterpriseID']: val.enterpriseId,
+    ['userID']: val.userId,
     ['boxAppSettings']: serializeJwtConfigAppSettings(val.boxAppSettings),
   };
 }

@@ -37,11 +37,11 @@ export function deserializeAiCitationTypeField(
 }
 export function serializeAiCitation(val: AiCitation): SerializedData {
   return {
-    ['content']: val.content == void 0 ? void 0 : val.content,
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['content']: val.content,
+    ['id']: val.id,
     ['type']:
-      val.type == void 0 ? void 0 : serializeAiCitationTypeField(val.type),
-    ['name']: val.name == void 0 ? void 0 : val.name,
+      val.type == void 0 ? val.type : serializeAiCitationTypeField(val.type),
+    ['name']: val.name,
   };
 }
 export function deserializeAiCitation(val: SerializedData): AiCitation {

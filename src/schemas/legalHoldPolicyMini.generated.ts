@@ -98,7 +98,7 @@ export function serializeLegalHoldPolicyMiniInput(
     ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeLegalHoldPolicyMiniTypeField(val.type),
   };
 }

@@ -436,3 +436,12 @@ export function getValueFromObjectRawData(obj: any, key: string): any {
   }
   return undefined;
 }
+
+/**
+ * Create a null value.
+ *
+ * @returns null
+ */
+export function createNull(): null {
+  return null;
+}

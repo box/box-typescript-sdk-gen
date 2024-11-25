@@ -62,25 +62,33 @@ export function serializeShieldInformationBarrierSegment(
   val: ShieldInformationBarrierSegment,
 ): SerializedData {
   return {
-    ['id']: val.id == void 0 ? void 0 : val.id,
+    ['id']: val.id,
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeShieldInformationBarrierSegmentTypeField(val.type),
     ['shield_information_barrier']:
       val.shieldInformationBarrier == void 0
-        ? void 0
+        ? val.shieldInformationBarrier
         : serializeShieldInformationBarrierBase(val.shieldInformationBarrier),
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['description']: val.description == void 0 ? void 0 : val.description,
+    ['name']: val.name,
+    ['description']: val.description,
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserBase(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserBase(val.createdBy),
     ['updated_at']:
-      val.updatedAt == void 0 ? void 0 : serializeDateTime(val.updatedAt),
+      val.updatedAt == void 0
+        ? val.updatedAt
+        : serializeDateTime(val.updatedAt),
     ['updated_by']:
-      val.updatedBy == void 0 ? void 0 : serializeUserBase(val.updatedBy),
+      val.updatedBy == void 0
+        ? val.updatedBy
+        : serializeUserBase(val.updatedBy),
   };
 }
 export function deserializeShieldInformationBarrierSegment(

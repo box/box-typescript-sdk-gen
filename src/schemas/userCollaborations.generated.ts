@@ -32,9 +32,9 @@ export function serializeUserCollaborations(
   return {
     ...base,
     ...{
-      ['name']: val.name == void 0 ? void 0 : val.name,
-      ['login']: val.login == void 0 ? void 0 : val.login,
-      ['is_active']: val.isActive == void 0 ? void 0 : val.isActive,
+      ['name']: val.name,
+      ['login']: val.login,
+      ['is_active']: val.isActive,
     },
   };
 }

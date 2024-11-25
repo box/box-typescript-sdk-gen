@@ -26,10 +26,10 @@ export interface TrashWebLinkPathCollectionEntriesField {
   readonly id?: string;
   /**
    * This field is null for the Trash folder */
-  readonly sequenceId?: string;
+  readonly sequenceId?: string | null;
   /**
    * This field is null for the Trash folder */
-  readonly etag?: string;
+  readonly etag?: string | null;
   /**
    * The name of the Trash folder. */
   readonly name?: string;
@@ -78,10 +78,10 @@ export interface TrashWebLink {
   readonly modifiedAt?: DateTime;
   /**
    * When this file was last moved to the trash. */
-  readonly trashedAt?: DateTime;
+  readonly trashedAt?: DateTime | null;
   /**
    * When this file will be permanently deleted. */
-  readonly purgedAt?: DateTime;
+  readonly purgedAt?: DateTime | null;
   readonly createdBy?: UserMini;
   readonly modifiedBy?: UserMini;
   readonly ownedBy?: UserMini;
@@ -89,7 +89,7 @@ export interface TrashWebLink {
    * The shared link for this bookmark. This will
    * be `null` if a bookmark has been trashed, since the link will no longer
    * be active. */
-  readonly sharedLink?: string;
+  readonly sharedLink?: string | null;
   /**
    * Whether this item is deleted or not. Values include `active`,
    * `trashed` if the file has been moved to the trash, and `deleted` if
@@ -131,12 +131,12 @@ export function serializeTrashWebLinkPathCollectionEntriesField(
   return {
     ['type']:
       val.type == void 0
-        ? void 0
+        ? val.type
         : serializeTrashWebLinkPathCollectionEntriesTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
-    ['name']: val.name == void 0 ? void 0 : val.name,
+    ['id']: val.id,
+    ['sequence_id']: val.sequenceId,
+    ['etag']: val.etag,
+    ['name']: val.name,
   };
 }
 export function deserializeTrashWebLinkPathCollectionEntriesField(
@@ -271,36 +271,47 @@ export function deserializeTrashWebLinkItemStatusField(
 export function serializeTrashWebLink(val: TrashWebLink): SerializedData {
   return {
     ['type']:
-      val.type == void 0 ? void 0 : serializeTrashWebLinkTypeField(val.type),
-    ['id']: val.id == void 0 ? void 0 : val.id,
-    ['sequence_id']: val.sequenceId == void 0 ? void 0 : val.sequenceId,
-    ['etag']: val.etag == void 0 ? void 0 : val.etag,
-    ['name']: val.name == void 0 ? void 0 : val.name,
-    ['url']: val.url == void 0 ? void 0 : val.url,
-    ['parent']: val.parent == void 0 ? void 0 : serializeFolderMini(val.parent),
-    ['description']: val.description == void 0 ? void 0 : val.description,
+      val.type == void 0 ? val.type : serializeTrashWebLinkTypeField(val.type),
+    ['id']: val.id,
+    ['sequence_id']: val.sequenceId,
+    ['etag']: val.etag,
+    ['name']: val.name,
+    ['url']: val.url,
+    ['parent']:
+      val.parent == void 0 ? val.parent : serializeFolderMini(val.parent),
+    ['description']: val.description,
     ['path_collection']:
       val.pathCollection == void 0
-        ? void 0
+        ? val.pathCollection
         : serializeTrashWebLinkPathCollectionField(val.pathCollection),
     ['created_at']:
-      val.createdAt == void 0 ? void 0 : serializeDateTime(val.createdAt),
+      val.createdAt == void 0
+        ? val.createdAt
+        : serializeDateTime(val.createdAt),
     ['modified_at']:
-      val.modifiedAt == void 0 ? void 0 : serializeDateTime(val.modifiedAt),
+      val.modifiedAt == void 0
+        ? val.modifiedAt
+        : serializeDateTime(val.modifiedAt),
     ['trashed_at']:
-      val.trashedAt == void 0 ? void 0 : serializeDateTime(val.trashedAt),
+      val.trashedAt == void 0
+        ? val.trashedAt
+        : serializeDateTime(val.trashedAt),
     ['purged_at']:
-      val.purgedAt == void 0 ? void 0 : serializeDateTime(val.purgedAt),
+      val.purgedAt == void 0 ? val.purgedAt : serializeDateTime(val.purgedAt),
     ['created_by']:
-      val.createdBy == void 0 ? void 0 : serializeUserMini(val.createdBy),
+      val.createdBy == void 0
+        ? val.createdBy
+        : serializeUserMini(val.createdBy),
     ['modified_by']:
-      val.modifiedBy == void 0 ? void 0 : serializeUserMini(val.modifiedBy),
+      val.modifiedBy == void 0
+        ? val.modifiedBy
+        : serializeUserMini(val.modifiedBy),
     ['owned_by']:
-      val.ownedBy == void 0 ? void 0 : serializeUserMini(val.ownedBy),
-    ['shared_link']: val.sharedLink == void 0 ? void 0 : val.sharedLink,
+      val.ownedBy == void 0 ? val.ownedBy : serializeUserMini(val.ownedBy),
+    ['shared_link']: val.sharedLink,
     ['item_status']:
       val.itemStatus == void 0
-        ? void 0
+        ? val.itemStatus
         : serializeTrashWebLinkItemStatusField(val.itemStatus),
   };
 }
