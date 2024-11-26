@@ -9,7 +9,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: ['/node_modules/'],
   transform: {
-    '^.+.tsx?$': [
+    '^.+\.tsx?$': [
       'ts-jest',
       {
         tsconfig: 'tsconfig.test.json',
@@ -17,7 +17,7 @@ module.exports = {
     ],
   },
   moduleNameMapper: {
-    '^(..?/.+)\\.jsx?$': '$1',
+    '^(\.\.?\/.+)\\.jsx?$': '$1',
   },
   clearMocks: true,
   setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
