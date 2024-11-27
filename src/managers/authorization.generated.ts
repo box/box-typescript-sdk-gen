@@ -9,6 +9,7 @@ import { deserializePostOAuth2TokenRefreshAccessToken } from '../schemas/postOAu
 import { serializePostOAuth2Revoke } from '../schemas/postOAuth2Revoke.generated.js';
 import { deserializePostOAuth2Revoke } from '../schemas/postOAuth2Revoke.generated.js';
 import { PostOAuth2TokenRefreshAccessTokenInput } from '../schemas/postOAuth2TokenRefreshAccessToken.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { AccessToken } from '../schemas/accessToken.generated.js';
 import { OAuth2Error } from '../schemas/oAuth2Error.generated.js';
 import { PostOAuth2Token } from '../schemas/postOAuth2Token.generated.js';
@@ -21,8 +22,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -305,19 +306,21 @@ export class AuthorizationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.oauth2Url,
-        '/authorize',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.oauth2Url,
+          '/authorize',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
   /**
@@ -351,23 +354,25 @@ export class AuthorizationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/oauth2/token',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializePostOAuth2Token(requestBody),
-      contentType: 'application/x-www-form-urlencoded',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/oauth2/token',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2Token(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAccessToken(response.data),
-      rawData: response.data,
+      ...deserializeAccessToken(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -397,23 +402,25 @@ export class AuthorizationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/oauth2/token#refresh',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializePostOAuth2TokenRefreshAccessToken(requestBody),
-      contentType: 'application/x-www-form-urlencoded',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/oauth2/token#refresh',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2TokenRefreshAccessToken(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAccessToken(response.data),
-      rawData: response.data,
+      ...deserializeAccessToken(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -437,20 +444,22 @@ export class AuthorizationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/oauth2/revoke',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializePostOAuth2Revoke(requestBody),
-      contentType: 'application/x-www-form-urlencoded',
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/oauth2/revoke',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializePostOAuth2Revoke(requestBody),
+        contentType: 'application/x-www-form-urlencoded',
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
 }

@@ -4,7 +4,6 @@ import type { Readable } from 'stream';
 import { BoxApiError, BoxSdkError } from '../box/errors';
 import {
   ByteStream,
-  CancellationToken,
   generateByteStreamFromBuffer,
   isBrowser,
   readByteStream,
@@ -17,9 +16,9 @@ import {
   sdToJson,
   sdToUrlParams,
 } from '../serialization/json';
-import { Authentication } from './auth.generated';
 import { Interceptor } from './interceptors.generated';
-import { NetworkSession } from './network.generated';
+import { FetchOptions } from './fetchOptions.generated';
+import { FetchResponse } from './fetchResponse.generated';
 
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
@@ -34,89 +33,9 @@ export interface MultipartItem {
   readonly contentType?: string;
 }
 
-export interface FetchOptions {
-  /**
-   * A string to set request's URL.
-   */
-  readonly url: string;
-  /**
-   * A string to set request's method (GET, POST, etc.). Defaults to GET.
-   */
-  readonly method?: string;
-  /**
-   * [key1, value1, key2, value2, ...]
-   */
-  readonly headers?: {
-    [key: string]: string;
-  };
-  /**
-   * query params
-   * [key1, value1, key2, value2, ...]
-   */
-  readonly params?: {
-    [key: string]: string;
-  };
-
-  /**
-   * Request body data
-   */
-  readonly data?: SerializedData;
-
-  /**
-   * Stream of a file
-   */
-  readonly fileStream?: ByteStream;
-
-  /**
-   * Parts of multipart data
-   */
-  readonly multipartData?: MultipartItem[];
-
-  /**
-   * Request body content type
-   */
-  readonly contentType?: string;
-
-  /**
-   * Expected format of the response: 'json', 'binary' or undefined
-   */
-  readonly responseFormat?: string;
-
-  /**
-   * Auth object
-   */
-  readonly auth?: Authentication;
-  /**
-   *
-   */
-  readonly networkSession?: NetworkSession;
-
-  /**
-   * Token used for request cancellation
-   */
-  readonly cancellationToken?: CancellationToken;
-}
-
-export interface FetchResponse {
-  /**
-   * The status code of the response. (This will be 200 for a success).
-   */
-  readonly status: number;
-
-  /**
-   * Response body data
-   */
-  readonly data: SerializedData;
-
-  /**
-   * Binary array buffer of response body
-   */
-  readonly content: ByteStream;
-
-  readonly headers: {
-    [key: string]: string;
-  };
-}
+type FetchOptionsExtended = FetchOptions & {
+  numRetries?: number;
+};
 
 async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   const {
@@ -127,10 +46,11 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
     fileStream,
   } = options;
 
-  const { contentType, body } = await (async (): Promise<{
-    contentType: string | undefined;
+  const { contentHeaders = {}, body } = await (async (): Promise<{
+    contentHeaders: { [key: string]: string };
     body: Readable | string;
   }> => {
+    const contentHeaders: { [key: string]: string } = {};
     if (options.multipartData) {
       const FormData = isBrowser()
         ? window.FormData
@@ -140,7 +60,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
         if (item.fileStream) {
           const buffer = await readByteStream(item.fileStream);
           const blob = isBrowser() ? new Blob([buffer]) : buffer;
-          headers['content-md5'] = await calculateMD5Hash(buffer);
+          contentHeaders['content-md5'] = await calculateMD5Hash(buffer);
           formData.append(item.partName, blob, {
             filename: item.fileName ?? 'file',
             contentType: item.contentType ?? 'application/octet-stream',
@@ -153,23 +73,25 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
           });
         }
       }
-
       return {
-        contentType: !isBrowser()
-          ? `multipart/form-data; boundary=${formData.getBoundary()}`
-          : undefined,
+        contentHeaders: {
+          ...(!isBrowser() && {
+            'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
+          }),
+          ...contentHeaders,
+        },
         body: formData,
       };
     }
 
-    const contentType = contentTypeInput;
-    switch (contentType) {
+    contentHeaders['Content-Type'] = contentTypeInput;
+    switch (contentTypeInput) {
       case 'application/json':
       case 'application/json-patch+json':
-        return { contentType, body: sdToJson(data) };
+        return { contentHeaders, body: sdToJson(data) };
 
       case 'application/x-www-form-urlencoded':
-        return { contentType, body: sdToUrlParams(data) };
+        return { contentHeaders, body: sdToUrlParams(data) };
 
       case 'application/octet-stream':
         if (!fileStream) {
@@ -178,11 +100,11 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
               'fileStream required for application/octet-stream content type',
           });
         }
-        return { contentType, body: fileStream };
+        return { contentHeaders, body: fileStream };
 
       default:
         throw new BoxSdkError({
-          message: `Unsupported content type : ${contentType}`,
+          message: `Unsupported content type : ${contentTypeInput}`,
         });
     }
   })();
@@ -190,7 +112,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   return {
     method,
     headers: {
-      ...(contentType && { 'Content-Type': contentType }),
+      ...contentHeaders,
       ...headers,
       ...(options.auth && {
         Authorization: await options.auth.retrieveAuthorizationHeader(
@@ -216,10 +138,7 @@ const STATUS_CODE_ACCEPTED = 202,
   STATUS_CODE_TOO_MANY_REQUESTS = 429;
 
 export async function fetch(
-  options: FetchOptions & {
-    /** @private */
-    numRetries?: number;
-  },
+  options: FetchOptionsExtended,
 ): Promise<FetchResponse> {
   const fetchOptions: typeof options = options.networkSession?.interceptors
     ?.length

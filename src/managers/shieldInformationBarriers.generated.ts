@@ -6,6 +6,7 @@ import { serializeShieldInformationBarriers } from '../schemas/shieldInformation
 import { deserializeShieldInformationBarriers } from '../schemas/shieldInformationBarriers.generated.js';
 import { serializeEnterpriseBase } from '../schemas/enterpriseBase.generated.js';
 import { deserializeEnterpriseBase } from '../schemas/enterpriseBase.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ShieldInformationBarrier } from '../schemas/shieldInformationBarrier.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { ShieldInformationBarriers } from '../schemas/shieldInformationBarriers.generated.js';
@@ -16,8 +17,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -279,22 +280,24 @@ export class ShieldInformationBarriersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers/',
-        toString(shieldInformationBarrierId) as string,
-      ) as string,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shield_information_barriers/',
+          toString(shieldInformationBarrierId) as string,
+        ) as string,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeShieldInformationBarrier(response.data),
-      rawData: response.data,
+      ...deserializeShieldInformationBarrier(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -317,25 +320,27 @@ export class ShieldInformationBarriersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers/change_status',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeUpdateShieldInformationBarrierStatusRequestBody(
-        requestBody,
-      ),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shield_information_barriers/change_status',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeUpdateShieldInformationBarrierStatusRequestBody(
+          requestBody,
+        ),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeShieldInformationBarrier(response.data),
-      rawData: response.data,
+      ...deserializeShieldInformationBarrier(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -366,22 +371,24 @@ export class ShieldInformationBarriersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shield_information_barriers',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeShieldInformationBarriers(response.data),
-      rawData: response.data,
+      ...deserializeShieldInformationBarriers(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -406,23 +413,25 @@ export class ShieldInformationBarriersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shield_information_barriers',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateShieldInformationBarrierRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shield_information_barriers',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateShieldInformationBarrierRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeShieldInformationBarrier(response.data),
-      rawData: response.data,
+      ...deserializeShieldInformationBarrier(response.data!),
+      rawData: response.data!,
     };
   }
 }

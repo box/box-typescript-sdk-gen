@@ -6,6 +6,7 @@ import { serializeUploadFileRequestBodyAttributesParentField } from '../managers
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
+import { FetchOptionsInput } from '../networking/fetchOptions.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Buffer } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
@@ -21,8 +22,8 @@ import { generateByteStreamFromBuffer } from '../internal/utils.js';
 import { bufferEquals } from '../internal/utils.js';
 import { readByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -69,7 +70,21 @@ test('test_change_download_url_with_interceptor', async function test_change_dow
   if (!bufferEquals(await readByteStream(downloadedFileContent!), fileBuffer)) {
     throw new Error('Assertion failed');
   }
-  function emptyBeforeRequest(options: FetchOptions): FetchOptions {
+  function emptyBeforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
+    const options: FetchOptions = new FetchOptions({
+      url: optionsInput.url,
+      method: optionsInput.method,
+      params: optionsInput.params,
+      headers: optionsInput.headers,
+      data: optionsInput.data,
+      fileStream: optionsInput.fileStream,
+      multipartData: optionsInput.multipartData,
+      contentType: optionsInput.contentType,
+      responseFormat: optionsInput.responseFormat,
+      auth: optionsInput.auth,
+      networkSession: optionsInput.networkSession,
+      cancellationToken: optionsInput.cancellationToken,
+    });
     return options;
   }
   function afterRequest(response: FetchResponse): FetchResponse {

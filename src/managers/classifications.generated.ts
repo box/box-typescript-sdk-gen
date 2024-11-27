@@ -2,6 +2,7 @@ import { serializeClassificationTemplate } from '../schemas/classificationTempla
 import { deserializeClassificationTemplate } from '../schemas/classificationTemplate.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ClassificationTemplate } from '../schemas/classificationTemplate.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -10,8 +11,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -654,21 +655,23 @@ export class ClassificationsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema',
-      ) as string,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema',
+        ) as string,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeClassificationTemplate(response.data),
-      rawData: response.data,
+      ...deserializeClassificationTemplate(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -696,25 +699,27 @@ export class ClassificationsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add',
-      ) as string,
-      method: 'PUT',
-      headers: headersMap,
-      data: requestBody.map(
-        serializeAddClassificationRequestBody,
-      ) as readonly any[],
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#add',
+        ) as string,
+        method: 'PUT',
+        headers: headersMap,
+        data: requestBody.map(
+          serializeAddClassificationRequestBody,
+        ) as readonly any[],
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeClassificationTemplate(response.data),
-      rawData: response.data,
+      ...deserializeClassificationTemplate(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -742,25 +747,27 @@ export class ClassificationsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update',
-      ) as string,
-      method: 'PUT',
-      headers: headersMap,
-      data: requestBody.map(
-        serializeUpdateClassificationRequestBody,
-      ) as readonly any[],
-      contentType: 'application/json-patch+json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_templates/enterprise/securityClassification-6VMVochwUWo/schema#update',
+        ) as string,
+        method: 'PUT',
+        headers: headersMap,
+        data: requestBody.map(
+          serializeUpdateClassificationRequestBody,
+        ) as readonly any[],
+        contentType: 'application/json-patch+json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeClassificationTemplate(response.data),
-      rawData: response.data,
+      ...deserializeClassificationTemplate(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -798,23 +805,25 @@ export class ClassificationsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_templates/schema#classifications',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateClassificationTemplateRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_templates/schema#classifications',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateClassificationTemplateRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeClassificationTemplate(response.data),
-      rawData: response.data,
+      ...deserializeClassificationTemplate(response.data!),
+      rawData: response.data!,
     };
   }
 }

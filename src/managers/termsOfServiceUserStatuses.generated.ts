@@ -4,6 +4,7 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeTermsOfServiceUserStatus } from '../schemas/termsOfServiceUserStatus.generated.js';
 import { deserializeTermsOfServiceUserStatus } from '../schemas/termsOfServiceUserStatus.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { TermsOfServiceUserStatuses } from '../schemas/termsOfServiceUserStatuses.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { TermsOfServiceUserStatus } from '../schemas/termsOfServiceUserStatus.generated.js';
@@ -14,8 +15,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -333,22 +334,24 @@ export class TermsOfServiceUserStatusesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_service_user_statuses',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_service_user_statuses',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfServiceUserStatuses(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfServiceUserStatuses(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -371,23 +374,27 @@ export class TermsOfServiceUserStatusesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_service_user_statuses',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateTermsOfServiceStatusForUserRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_service_user_statuses',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateTermsOfServiceStatusForUserRequestBody(
+          requestBody,
+        ),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfServiceUserStatus(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfServiceUserStatus(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -413,26 +420,28 @@ export class TermsOfServiceUserStatusesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_service_user_statuses/',
-        toString(termsOfServiceUserStatusId) as string,
-      ) as string,
-      method: 'PUT',
-      headers: headersMap,
-      data: serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
-        requestBody,
-      ),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_service_user_statuses/',
+          toString(termsOfServiceUserStatusId) as string,
+        ) as string,
+        method: 'PUT',
+        headers: headersMap,
+        data: serializeUpdateTermsOfServiceStatusForUserByIdRequestBody(
+          requestBody,
+        ),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfServiceUserStatus(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfServiceUserStatus(response.data!),
+      rawData: response.data!,
     };
   }
 }

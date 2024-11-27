@@ -6,6 +6,7 @@ import { serializeItems } from '../schemas/items.generated.js';
 import { deserializeItems } from '../schemas/items.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Items } from '../schemas/items.generated.js';
@@ -16,8 +17,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { DateTime } from '../internal/utils.js';
@@ -996,23 +997,25 @@ export class FoldersManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/',
-        toString(folderId) as string,
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/',
+          toString(folderId) as string,
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFolderFull(response.data),
-      rawData: response.data,
+      ...deserializeFolderFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -1059,25 +1062,27 @@ export class FoldersManager {
       ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/',
-        toString(folderId) as string,
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeUpdateFolderByIdRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/',
+          toString(folderId) as string,
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeUpdateFolderByIdRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFolderFull(response.data),
-      rawData: response.data,
+      ...deserializeFolderFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -1120,20 +1125,22 @@ export class FoldersManager {
       ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/',
-        toString(folderId) as string,
-      ) as string,
-      method: 'DELETE',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/',
+          toString(folderId) as string,
+        ) as string,
+        method: 'DELETE',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
   /**
@@ -1187,24 +1194,26 @@ export class FoldersManager {
       ...{ ['boxapi']: toString(headers.boxapi) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/',
-        toString(folderId) as string,
-        '/items',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/',
+          toString(folderId) as string,
+          '/items',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeItems(response.data),
-      rawData: response.data,
+      ...deserializeItems(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -1235,24 +1244,26 @@ export class FoldersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders',
-      ) as string,
-      method: 'POST',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeCreateFolderRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders',
+        ) as string,
+        method: 'POST',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeCreateFolderRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFolderFull(response.data),
-      rawData: response.data,
+      ...deserializeFolderFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -1296,26 +1307,28 @@ export class FoldersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/',
-        toString(folderId) as string,
-        '/copy',
-      ) as string,
-      method: 'POST',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeCopyFolderRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/',
+          toString(folderId) as string,
+          '/copy',
+        ) as string,
+        method: 'POST',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeCopyFolderRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFolderFull(response.data),
-      rawData: response.data,
+      ...deserializeFolderFull(response.data!),
+      rawData: response.data!,
     };
   }
 }

@@ -8,6 +8,7 @@ import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { serializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { MetadataQueryResults } from '../schemas/metadataQueryResults.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { MetadataQuery } from '../schemas/metadataQuery.generated.js';
@@ -19,8 +20,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdToJson } from '../serialization/json.js';
@@ -426,23 +427,25 @@ export class SearchManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_queries/execute_read',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeMetadataQuery(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_queries/execute_read',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeMetadataQuery(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeMetadataQueryResults(response.data),
-      rawData: response.data,
+      ...deserializeMetadataQueryResults(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -517,22 +520,24 @@ export class SearchManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/search',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/search',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeSearchResultsOrSearchResultsWithSharedLinks(response.data),
-      rawData: response.data,
+      ...deserializeSearchResultsOrSearchResultsWithSharedLinks(response.data!),
+      rawData: response.data!,
     };
   }
 }

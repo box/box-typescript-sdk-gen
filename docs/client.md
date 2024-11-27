@@ -6,7 +6,10 @@ divided across resource managers.
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Client](#client)
+- [Make custom HTTP request](#make-custom-http-request)
+  - [JSON request](#json-request)
+  - [Multi-part request](#multi-part-request)
+  - [Binary response](#binary-response)
 - [Additional headers](#additional-headers)
   - [As-User header](#as-user-header)
   - [Suppress notifications](#suppress-notifications)
@@ -17,6 +20,51 @@ divided across resource managers.
 - [Use Proxy for API calls](#use-proxy-for-api-calls)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# Make custom HTTP request
+
+You can make custom HTTP requests using the `client.makeRequest()` method.
+This method allows you to make any HTTP request to the Box API. It will automatically use authentication and
+network configuration settings from the client.
+The method accepts a `FetchOptions` object as an argument and returns a `FetchResponse` object.
+
+## JSON request
+
+The following example demonstrates how to make a custom POST request to create a new folder in the root folder.
+
+```js
+const response: FetchResponse = await client.makeRequest(
+    { method: "POST",
+      url: "https://api.box.com/2.0/folders",
+      data: {name: newFolderName, parent: {id: "0"}}
+    } satisfies FetchOptionsInput
+);
+console.log('Received status code: ', response.status)
+console.log('Created folder name: ', getSdValueByKey(response.content, "name"))
+```
+
+## Multi-part request
+
+The following example demonstrates how to make a custom multipart request that uploads a file to a folder.
+
+```js
+const multipartAttributes = {name: "newFileName", parent: { id: "0" }};
+const uploadFileResponse: FetchResponse = await client.makeRequest({ method: "POST", url: "https://upload.box.com/api/2.0/files/content", contentType: "multipart/form-data", multipartData: [{ partName: "attributes", data: multipartAttributes } satisfies MultipartItem, { partName: "file", fileStream: fileContentStream } satisfies MultipartItem] } satisfies FetchOptionsInput);
+
+console.log('Received status code: ', response.status)
+```
+
+## Binary response
+
+The following example demonstrates how to make a custom request that expects a binary response.
+It is required to specify the `responseFormat` parameter in the `FetchOptions` object to "binary".
+
+```js
+const response: FetchResponse = await client.makeRequest({ method: "GET", url: "".concat("https://api.box.com/2.0/files/", uploadedFile.id, "/content") as string, responseFormat: "binary" as ResponseFormat } satisfies FetchOptionsInput);
+console.log('Received status code: ', response.status)
+const fileWriteStream = fs.createWriteStream('file.pdf');
+response.content.pipe(fileWriteStream);
+```
 
 # Additional headers
 

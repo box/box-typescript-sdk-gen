@@ -16,6 +16,7 @@ import { serializeAiExtractResponse } from '../schemas/aiExtractResponse.generat
 import { deserializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
 import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
@@ -31,8 +32,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdToJson } from '../serialization/json.js';
@@ -331,23 +332,25 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/ask',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeAiAsk(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/ai/ask',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeAiAsk(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAiResponseFull(response.data),
-      rawData: response.data,
+      ...deserializeAiResponseFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -369,23 +372,25 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/text_gen',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeAiTextGen(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/ai/text_gen',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeAiTextGen(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAiResponse(response.data),
-      rawData: response.data,
+      ...deserializeAiResponse(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -415,24 +420,26 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai_agent_default',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/ai_agent_default',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
       ...deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen(
-        response.data,
+        response.data!,
       ),
-      rawData: response.data,
+      rawData: response.data!,
     };
   }
   /**
@@ -455,23 +462,25 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/extract',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeAiExtract(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/ai/extract',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeAiExtract(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAiResponse(response.data),
-      rawData: response.data,
+      ...deserializeAiResponse(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -497,23 +506,25 @@ export class AiManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/ai/extract_structured',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeAiExtractStructured(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/ai/extract_structured',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeAiExtractStructured(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeAiExtractResponse(response.data),
-      rawData: response.data,
+      ...deserializeAiExtractResponse(response.data!),
+      rawData: response.data!,
     };
   }
 }

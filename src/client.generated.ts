@@ -1,5 +1,6 @@
 import { serializeBaseUrls } from './networking/baseUrls.generated.js';
 import { deserializeBaseUrls } from './networking/baseUrls.generated.js';
+import { FetchOptionsInput } from './networking/fetchOptions.generated.js';
 import { BaseUrlsInput } from './networking/baseUrls.generated.js';
 import { AuthorizationManager } from './managers/authorization.generated.js';
 import { FilesManager } from './managers/files.generated.js';
@@ -77,6 +78,9 @@ import { BaseUrls } from './networking/baseUrls.generated.js';
 import { ProxyConfig } from './networking/proxyConfig.generated.js';
 import { AgentOptions } from './internal/utils.js';
 import { Interceptor } from './networking/interceptors.generated.js';
+import { FetchOptions } from './networking/fetchOptions.generated.js';
+import { FetchResponse } from './networking/fetchResponse.generated.js';
+import { fetch } from './networking/fetch.js';
 import { SerializedData } from './serialization/json.js';
 import { sdIsEmpty } from './serialization/json.js';
 import { sdIsBoolean } from './serialization/json.js';
@@ -233,6 +237,7 @@ export class BoxClient {
       | 'integrationMappings'
       | 'ai'
       | 'networkSession'
+      | 'makeRequest'
       | 'withAsUserHeader'
       | 'withSuppressedNotifications'
       | 'withExtraHeaders'
@@ -535,6 +540,49 @@ export class BoxClient {
       auth: this.auth,
       networkSession: this.networkSession,
     });
+  }
+  /**
+   * Make a custom http request using the client authentication and network session.
+   * @param {FetchOptionsInput} fetchOptionsInput Options to be passed to the fetch call
+   * @returns {Promise<FetchResponse>}
+   */
+  async makeRequest(
+    fetchOptionsInput: FetchOptionsInput,
+  ): Promise<FetchResponse> {
+    const fetchOptions: FetchOptions = new FetchOptions({
+      url: fetchOptionsInput.url,
+      method: fetchOptionsInput.method,
+      params: fetchOptionsInput.params,
+      headers: fetchOptionsInput.headers,
+      data: fetchOptionsInput.data,
+      fileStream: fetchOptionsInput.fileStream,
+      multipartData: fetchOptionsInput.multipartData,
+      contentType: fetchOptionsInput.contentType,
+      responseFormat: fetchOptionsInput.responseFormat,
+      auth: fetchOptionsInput.auth,
+      networkSession: fetchOptionsInput.networkSession,
+      cancellationToken: fetchOptionsInput.cancellationToken,
+    });
+    const auth: Authentication =
+      fetchOptions.auth == void 0 ? this.auth : fetchOptions.auth!;
+    const networkSession: NetworkSession =
+      fetchOptions.networkSession == void 0
+        ? this.networkSession
+        : fetchOptions.networkSession!;
+    const enrichedFetchOptions: FetchOptions = new FetchOptions({
+      auth: auth,
+      networkSession: networkSession,
+      url: fetchOptions.url,
+      method: fetchOptions.method,
+      params: fetchOptions.params,
+      headers: fetchOptions.headers,
+      data: fetchOptions.data,
+      fileStream: fetchOptions.fileStream,
+      multipartData: fetchOptions.multipartData,
+      contentType: fetchOptions.contentType,
+      responseFormat: fetchOptions.responseFormat,
+    });
+    return (await fetch(enrichedFetchOptions)) as FetchResponse;
   }
   /**
    * Create a new client to impersonate user with the provided ID. All calls made with the new client will be made in context of the impersonated user, leaving the original client unmodified.
