@@ -1,7 +1,7 @@
 import { serializeDate } from '../internal/utils.js';
 import { deserializeDate } from '../internal/utils.js';
-import { Date } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
+import { Date } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

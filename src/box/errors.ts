@@ -1,19 +1,13 @@
 import { SerializedData } from '../serialization/json.js';
+import { GeneratedCodeError } from '../internal/errors.js';
 
-export class BoxSdkError extends Error {
-  readonly message!: string;
+export class BoxSdkError extends GeneratedCodeError {
   readonly timestamp?: string;
   readonly error?: Error;
-  readonly name: string = 'BoxSDKError';
-  constructor(fields: {
-    message: string;
-    timestamp?: string;
-    error?: Error;
-    name?: string;
-  }) {
-    super(fields.message);
-    Object.assign(this, fields);
-    this.message = JSON.stringify(fields, undefined, 2);
+  constructor(fields: Pick<BoxSdkError, 'message' | 'timestamp' | 'error'>) {
+    super(fields);
+    this.name = 'BoxSdkError';
+    Object.setPrototypeOf(this, BoxSdkError.prototype);
   }
 }
 export interface RequestInfo {
@@ -44,7 +38,14 @@ export interface ResponseInfo {
 export class BoxApiError extends BoxSdkError {
   readonly requestInfo!: RequestInfo;
   readonly responseInfo!: ResponseInfo;
-  constructor(fields: BoxApiError) {
+  constructor(
+    fields: Pick<
+      BoxApiError,
+      'message' | 'timestamp' | 'error' | 'requestInfo' | 'responseInfo'
+    >,
+  ) {
     super(fields);
+    this.name = 'BoxApiError';
+    Object.setPrototypeOf(this, BoxApiError.prototype);
   }
 }

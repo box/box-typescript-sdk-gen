@@ -18,8 +18,8 @@ import { IntegrationMappingSlackOptions } from './integrationMappingSlackOptions
 import { UserIntegrationMappings } from './userIntegrationMappings.generated.js';
 import { IntegrationMappingPartnerItemSlackUnion } from './integrationMappingPartnerItemSlackUnion.generated.js';
 import { FolderMini } from './folderMini.generated.js';
-import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
+import { DateTime } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

@@ -13,6 +13,7 @@ import { deserializeIntegrationMappingSlackOptions } from '../schemas/integratio
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { IntegrationMappings } from '../schemas/integrationMappings.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { IntegrationMapping } from '../schemas/integrationMapping.generated.js';
 import { IntegrationMappingSlackCreateRequest } from '../schemas/integrationMappingSlackCreateRequest.generated.js';
 import { IntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
@@ -28,7 +29,6 @@ import { FetchOptions } from '../networking/fetchOptions.generated.js';
 import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';

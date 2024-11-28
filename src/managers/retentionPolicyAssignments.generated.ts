@@ -9,6 +9,7 @@ import { deserializeFilesUnderRetention } from '../schemas/filesUnderRetention.g
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { RetentionPolicyAssignments } from '../schemas/retentionPolicyAssignments.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { RetentionPolicyAssignment } from '../schemas/retentionPolicyAssignment.generated.js';
 import { FilesUnderRetention } from '../schemas/filesUnderRetention.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -22,7 +23,6 @@ import { FetchOptions } from '../networking/fetchOptions.generated.js';
 import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';

@@ -9,6 +9,7 @@ import { deserializeSignRequestCreateRequest } from '../schemas/signRequestCreat
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { SignRequest } from '../schemas/signRequest.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SignRequests } from '../schemas/signRequests.generated.js';
 import { SignRequestCreateRequest } from '../schemas/signRequestCreateRequest.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
