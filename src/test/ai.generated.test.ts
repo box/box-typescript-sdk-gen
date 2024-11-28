@@ -493,7 +493,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
     !(
       (toString(
         getValueFromObjectRawData(response, 'dateOfBirth'),
-      ) as string) == '1990-07-04'
+      ) as string) == '1990-07-04T00:00:00Z'
     )
   ) {
     throw new Error('Assertion failed');
