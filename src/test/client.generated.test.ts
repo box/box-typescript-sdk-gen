@@ -37,7 +37,6 @@ import { FileFull } from '../schemas/fileFull.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { UserFull } from '../schemas/userFull.generated.js';
 import { CreateUserRequestBody } from '../managers/users.generated.js';
-import { Interceptor } from '../networking/interceptors.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { bufferEquals } from '../internal/utils.js';
@@ -53,6 +52,7 @@ import { jsonToSerializedData } from '../serialization/json.js';
 import { getSdValueByKey } from '../serialization/json.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
+import { Interceptor } from '../networking/interceptors.generated.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -60,6 +60,131 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
+export class InterceptorAddingRoleToFields implements Interceptor {
+  constructor(
+    fields: Omit<
+      InterceptorAddingRoleToFields,
+      'beforeRequest' | 'afterRequest'
+    >,
+  ) {}
+  /**
+   * @param {FetchOptionsInput} optionsInput
+   * @returns {FetchOptions}
+   */
+  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
+    const options: FetchOptions = new FetchOptions({
+      url: optionsInput.url,
+      method: optionsInput.method,
+      params: optionsInput.params,
+      headers: optionsInput.headers,
+      data: optionsInput.data,
+      fileStream: optionsInput.fileStream,
+      multipartData: optionsInput.multipartData,
+      contentType: optionsInput.contentType,
+      responseFormat: optionsInput.responseFormat,
+      auth: optionsInput.auth,
+      networkSession: optionsInput.networkSession,
+      cancellationToken: optionsInput.cancellationToken,
+    });
+    return new FetchOptions({
+      url: options.url,
+      method: options.method,
+      headers: options.headers,
+      params: { ...options.params, ...{ ['fields']: 'role' } },
+      data: options.data,
+      fileStream: options.fileStream,
+      multipartData: options.multipartData,
+      contentType: options.contentType,
+      responseFormat: options.responseFormat,
+      auth: options.auth,
+      networkSession: options.networkSession,
+      cancellationToken: options.cancellationToken,
+    });
+  }
+  /**
+   * @param {FetchResponse} response
+   * @returns {FetchResponse}
+   */
+  afterRequest(response: FetchResponse): FetchResponse {
+    return response;
+  }
+}
+export class InterceptorThrowingError implements Interceptor {
+  constructor(
+    fields: Omit<InterceptorThrowingError, 'beforeRequest' | 'afterRequest'>,
+  ) {}
+  /**
+   * @param {FetchOptionsInput} optionsInput
+   * @returns {FetchOptions}
+   */
+  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
+    const options: FetchOptions = new FetchOptions({
+      url: optionsInput.url,
+      method: optionsInput.method,
+      params: optionsInput.params,
+      headers: optionsInput.headers,
+      data: optionsInput.data,
+      fileStream: optionsInput.fileStream,
+      multipartData: optionsInput.multipartData,
+      contentType: optionsInput.contentType,
+      responseFormat: optionsInput.responseFormat,
+      auth: optionsInput.auth,
+      networkSession: optionsInput.networkSession,
+      cancellationToken: optionsInput.cancellationToken,
+    });
+    return options;
+  }
+  /**
+   * @param {FetchResponse} response
+   * @returns {FetchResponse}
+   */
+  afterRequest(response: FetchResponse): FetchResponse {
+    return {
+      status: 400,
+      data: response.data,
+      content: response.content,
+      headers: response.headers,
+    } satisfies FetchResponse;
+  }
+}
+export class InterceptorChangingResponse implements Interceptor {
+  constructor(
+    fields: Omit<InterceptorChangingResponse, 'beforeRequest' | 'afterRequest'>,
+  ) {}
+  /**
+   * @param {FetchOptionsInput} optionsInput
+   * @returns {FetchOptions}
+   */
+  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
+    const options: FetchOptions = new FetchOptions({
+      url: optionsInput.url,
+      method: optionsInput.method,
+      params: optionsInput.params,
+      headers: optionsInput.headers,
+      data: optionsInput.data,
+      fileStream: optionsInput.fileStream,
+      multipartData: optionsInput.multipartData,
+      contentType: optionsInput.contentType,
+      responseFormat: optionsInput.responseFormat,
+      auth: optionsInput.auth,
+      networkSession: optionsInput.networkSession,
+      cancellationToken: optionsInput.cancellationToken,
+    });
+    return options;
+  }
+  /**
+   * @param {FetchResponse} response
+   * @returns {FetchResponse}
+   */
+  afterRequest(response: FetchResponse): FetchResponse {
+    return {
+      status: response.status,
+      data: jsonToSerializedData('{"id": "123", "type": "user"}'),
+      content: response.content,
+      headers: response.headers,
+    } satisfies FetchResponse;
+  }
+}
 test('testMakeRequestJsonCRUD', async function testMakeRequestJsonCRUD(): Promise<any> {
   const newFolderName: string = getUuid();
   const requestBodyPost: string = ''.concat(
@@ -273,80 +398,16 @@ test('testWithInterceptors', async function testWithInterceptors(): Promise<any>
   if (!(user.role == void 0)) {
     throw new Error('Assertion failed');
   }
-  function beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
-    const options: FetchOptions = new FetchOptions({
-      url: optionsInput.url,
-      method: optionsInput.method,
-      params: optionsInput.params,
-      headers: optionsInput.headers,
-      data: optionsInput.data,
-      fileStream: optionsInput.fileStream,
-      multipartData: optionsInput.multipartData,
-      contentType: optionsInput.contentType,
-      responseFormat: optionsInput.responseFormat,
-      auth: optionsInput.auth,
-      networkSession: optionsInput.networkSession,
-      cancellationToken: optionsInput.cancellationToken,
-    });
-    return new FetchOptions({
-      url: options.url,
-      method: options.method,
-      headers: options.headers,
-      params: { ...options.params, ...{ ['fields']: 'role' } },
-      data: options.data,
-      fileStream: options.fileStream,
-      multipartData: options.multipartData,
-      contentType: options.contentType,
-      responseFormat: options.responseFormat,
-      auth: options.auth,
-      networkSession: options.networkSession,
-      cancellationToken: options.cancellationToken,
-    });
-  }
-  function emptyAfterRequest(response: FetchResponse): FetchResponse {
-    return response;
-  }
   const clientWithInterceptor: BoxClient = client.withInterceptors([
-    {
-      beforeRequest: beforeRequest,
-      afterRequest: emptyAfterRequest,
-    } satisfies Interceptor,
+    new InterceptorAddingRoleToFields({}),
   ]);
   const newUser: UserFull = await clientWithInterceptor.users.getUserMe();
   if (!!(newUser.role == void 0)) {
     throw new Error('Assertion failed');
   }
-  function emptyBeforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
-    const options: FetchOptions = new FetchOptions({
-      url: optionsInput.url,
-      method: optionsInput.method,
-      params: optionsInput.params,
-      headers: optionsInput.headers,
-      data: optionsInput.data,
-      fileStream: optionsInput.fileStream,
-      multipartData: optionsInput.multipartData,
-      contentType: optionsInput.contentType,
-      responseFormat: optionsInput.responseFormat,
-      auth: optionsInput.auth,
-      networkSession: optionsInput.networkSession,
-      cancellationToken: optionsInput.cancellationToken,
-    });
-    return options;
-  }
-  function afterRequest(response: FetchResponse): FetchResponse {
-    return {
-      status: response.status,
-      data: jsonToSerializedData('{"id": "123", "type": "user"}'),
-      content: response.content,
-      headers: response.headers,
-    } satisfies FetchResponse;
-  }
   const clientWithTwoInterceptors: BoxClient =
     clientWithInterceptor.withInterceptors([
-      {
-        beforeRequest: emptyBeforeRequest,
-        afterRequest: afterRequest,
-      } satisfies Interceptor,
+      new InterceptorChangingResponse({}),
     ]);
   const superNewUser: UserFull =
     await clientWithTwoInterceptors.users.getUserMe();
@@ -359,36 +420,8 @@ test('testWithFailingInterceptors', async function testWithFailingInterceptors()
   if (!!(user.id == void 0)) {
     throw new Error('Assertion failed');
   }
-  function emptyBeforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
-    const options: FetchOptions = new FetchOptions({
-      url: optionsInput.url,
-      method: optionsInput.method,
-      params: optionsInput.params,
-      headers: optionsInput.headers,
-      data: optionsInput.data,
-      fileStream: optionsInput.fileStream,
-      multipartData: optionsInput.multipartData,
-      contentType: optionsInput.contentType,
-      responseFormat: optionsInput.responseFormat,
-      auth: optionsInput.auth,
-      networkSession: optionsInput.networkSession,
-      cancellationToken: optionsInput.cancellationToken,
-    });
-    return options;
-  }
-  function afterRequest(response: FetchResponse): FetchResponse {
-    return {
-      status: 400,
-      data: response.data,
-      content: response.content,
-      headers: response.headers,
-    } satisfies FetchResponse;
-  }
   const clientWithInterceptor: BoxClient = client.withInterceptors([
-    {
-      beforeRequest: emptyBeforeRequest,
-      afterRequest: afterRequest,
-    } satisfies Interceptor,
+    new InterceptorThrowingError({}),
   ]);
   await expect(async () => {
     await clientWithInterceptor.users.getUserMe();
