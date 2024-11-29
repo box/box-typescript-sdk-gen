@@ -2,6 +2,7 @@ import { serializeItems } from '../schemas/items.generated.js';
 import { deserializeItems } from '../schemas/items.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Items } from '../schemas/items.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -11,8 +12,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -153,22 +154,24 @@ export class TrashedItemsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/folders/trash/items',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/folders/trash/items',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeItems(response.data),
-      rawData: response.data,
+      ...deserializeItems(response.data!),
+      rawData: response.data!,
     };
   }
 }

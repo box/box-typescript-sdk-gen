@@ -4,6 +4,7 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeTermsOfService } from '../schemas/termsOfService.generated.js';
 import { deserializeTermsOfService } from '../schemas/termsOfService.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { TermsOfServices } from '../schemas/termsOfServices.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { TermsOfService } from '../schemas/termsOfService.generated.js';
@@ -14,8 +15,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -282,22 +283,24 @@ export class TermsOfServicesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_services',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfServices(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfServices(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -321,23 +324,25 @@ export class TermsOfServicesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateTermsOfServiceRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_services',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateTermsOfServiceRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfService(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfService(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -361,22 +366,24 @@ export class TermsOfServicesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services/',
-        toString(termsOfServiceId) as string,
-      ) as string,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_services/',
+          toString(termsOfServiceId) as string,
+        ) as string,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfService(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfService(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -402,24 +409,26 @@ export class TermsOfServicesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/terms_of_services/',
-        toString(termsOfServiceId) as string,
-      ) as string,
-      method: 'PUT',
-      headers: headersMap,
-      data: serializeUpdateTermsOfServiceByIdRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/terms_of_services/',
+          toString(termsOfServiceId) as string,
+        ) as string,
+        method: 'PUT',
+        headers: headersMap,
+        data: serializeUpdateTermsOfServiceByIdRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeTermsOfService(response.data),
-      rawData: response.data,
+      ...deserializeTermsOfService(response.data!),
+      rawData: response.data!,
     };
   }
 }

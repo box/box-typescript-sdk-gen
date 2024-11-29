@@ -2,6 +2,7 @@ import { serializeSessionTerminationMessage } from '../schemas/sessionTerminatio
 import { deserializeSessionTerminationMessage } from '../schemas/sessionTerminationMessage.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { SessionTerminationMessage } from '../schemas/sessionTerminationMessage.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -10,8 +11,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -174,23 +175,25 @@ export class SessionTerminationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/users/terminate_sessions',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeTerminateUsersSessionsRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/users/terminate_sessions',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeTerminateUsersSessionsRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeSessionTerminationMessage(response.data),
-      rawData: response.data,
+      ...deserializeSessionTerminationMessage(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -216,23 +219,25 @@ export class SessionTerminationManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/groups/terminate_sessions',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeTerminateGroupsSessionsRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/groups/terminate_sessions',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeTerminateGroupsSessionsRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeSessionTerminationMessage(response.data),
-      rawData: response.data,
+      ...deserializeSessionTerminationMessage(response.data!),
+      rawData: response.data!,
     };
   }
 }

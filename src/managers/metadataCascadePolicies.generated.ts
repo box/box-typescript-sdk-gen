@@ -6,6 +6,7 @@ import { serializeMetadataCascadePolicy } from '../schemas/metadataCascadePolicy
 import { deserializeMetadataCascadePolicy } from '../schemas/metadataCascadePolicy.generated.js';
 import { serializeConflictError } from '../schemas/conflictError.generated.js';
 import { deserializeConflictError } from '../schemas/conflictError.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { MetadataCascadePolicies } from '../schemas/metadataCascadePolicies.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { MetadataCascadePolicy } from '../schemas/metadataCascadePolicy.generated.js';
@@ -17,8 +18,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -413,22 +414,24 @@ export class MetadataCascadePoliciesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_cascade_policies',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeMetadataCascadePolicies(response.data),
-      rawData: response.data,
+      ...deserializeMetadataCascadePolicies(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -456,23 +459,25 @@ export class MetadataCascadePoliciesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateMetadataCascadePolicyRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_cascade_policies',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateMetadataCascadePolicyRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeMetadataCascadePolicy(response.data),
-      rawData: response.data,
+      ...deserializeMetadataCascadePolicy(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -496,22 +501,24 @@ export class MetadataCascadePoliciesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies/',
-        toString(metadataCascadePolicyId) as string,
-      ) as string,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_cascade_policies/',
+          toString(metadataCascadePolicyId) as string,
+        ) as string,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeMetadataCascadePolicy(response.data),
-      rawData: response.data,
+      ...deserializeMetadataCascadePolicy(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -535,19 +542,21 @@ export class MetadataCascadePoliciesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies/',
-        toString(metadataCascadePolicyId) as string,
-      ) as string,
-      method: 'DELETE',
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_cascade_policies/',
+          toString(metadataCascadePolicyId) as string,
+        ) as string,
+        method: 'DELETE',
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
   /**
@@ -576,22 +585,24 @@ export class MetadataCascadePoliciesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/metadata_cascade_policies/',
-        toString(metadataCascadePolicyId) as string,
-        '/apply',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeApplyMetadataCascadePolicyRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/metadata_cascade_policies/',
+          toString(metadataCascadePolicyId) as string,
+          '/apply',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeApplyMetadataCascadePolicyRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
 }

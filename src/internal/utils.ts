@@ -2,6 +2,7 @@ import { Buffer } from 'buffer';
 import type { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 import { SignJWT, importPKCS8 } from 'jose';
+import { sdIsMap, SerializedData } from '../serialization/json';
 
 export function isBrowser() {
   return (

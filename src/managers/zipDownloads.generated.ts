@@ -6,6 +6,7 @@ import { serializeZipDownloadRequest } from '../schemas/zipDownloadRequest.gener
 import { deserializeZipDownloadRequest } from '../schemas/zipDownloadRequest.generated.js';
 import { serializeZipDownloadStatus } from '../schemas/zipDownloadStatus.generated.js';
 import { deserializeZipDownloadStatus } from '../schemas/zipDownloadStatus.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ZipDownload } from '../schemas/zipDownload.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { ZipDownloadRequest } from '../schemas/zipDownloadRequest.generated.js';
@@ -16,8 +17,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdToJson } from '../serialization/json.js';
@@ -269,23 +270,25 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/zip_downloads',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeZipDownloadRequest(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/zip_downloads',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeZipDownloadRequest(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeZipDownload(response.data),
-      rawData: response.data,
+      ...deserializeZipDownload(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -321,16 +324,18 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: downloadUrl,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'binary',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
-    return response.content;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: downloadUrl,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'binary' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
+    return response.content!;
   }
   /**
      * Returns the download status of a `zip` archive, allowing an application to
@@ -364,18 +369,20 @@ export class ZipDownloadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: statusUrl,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: statusUrl,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeZipDownloadStatus(response.data),
-      rawData: response.data,
+      ...deserializeZipDownloadStatus(response.data!),
+      rawData: response.data!,
     };
   }
   /**

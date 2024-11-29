@@ -30,6 +30,8 @@ import { UpdateFolderByIdRequestBodyParentField } from '../managers/folders.gene
 import { Items } from '../schemas/items.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -44,6 +46,9 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
     throw new Error('Assertion failed');
   }
   if (!(rootFolder.name == 'All Files')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(rootFolder.type) as string) == 'folder')) {
     throw new Error('Assertion failed');
   }
 });

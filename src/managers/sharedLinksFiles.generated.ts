@@ -4,6 +4,7 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -13,8 +14,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { DateTime } from '../internal/utils.js';
@@ -554,22 +555,24 @@ export class SharedLinksFilesManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shared_items',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shared_items',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFileFull(response.data),
-      rawData: response.data,
+      ...deserializeFileFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -604,24 +607,26 @@ export class SharedLinksFilesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/',
-        toString(fileId) as string,
-        '#get_shared_link',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/files/',
+          toString(fileId) as string,
+          '#get_shared_link',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFileFull(response.data),
-      rawData: response.data,
+      ...deserializeFileFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -658,26 +663,28 @@ export class SharedLinksFilesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/',
-        toString(fileId) as string,
-        '#add_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeAddShareLinkToFileRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/files/',
+          toString(fileId) as string,
+          '#add_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeAddShareLinkToFileRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFileFull(response.data),
-      rawData: response.data,
+      ...deserializeFileFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -714,26 +721,28 @@ export class SharedLinksFilesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/',
-        toString(fileId) as string,
-        '#update_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeUpdateSharedLinkOnFileRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/files/',
+          toString(fileId) as string,
+          '#update_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeUpdateSharedLinkOnFileRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFileFull(response.data),
-      rawData: response.data,
+      ...deserializeFileFull(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -770,26 +779,28 @@ export class SharedLinksFilesManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/files/',
-        toString(fileId) as string,
-        '#remove_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeRemoveSharedLinkFromFileRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/files/',
+          toString(fileId) as string,
+          '#remove_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeRemoveSharedLinkFromFileRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFileFull(response.data),
-      rawData: response.data,
+      ...deserializeFileFull(response.data!),
+      rawData: response.data!,
     };
   }
 }

@@ -4,6 +4,7 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { WebLink } from '../schemas/webLink.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -13,8 +14,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { DateTime } from '../internal/utils.js';
@@ -552,22 +553,24 @@ export class SharedLinksWebLinksManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/shared_items#web_links',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/shared_items#web_links',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -596,24 +599,26 @@ export class SharedLinksWebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-        '#get_shared_link',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+          '#get_shared_link',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -644,26 +649,28 @@ export class SharedLinksWebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-        '#add_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeAddShareLinkToWebLinkRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+          '#add_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeAddShareLinkToWebLinkRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -694,26 +701,28 @@ export class SharedLinksWebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-        '#update_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeUpdateSharedLinkOnWebLinkRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+          '#update_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeUpdateSharedLinkOnWebLinkRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -744,26 +753,28 @@ export class SharedLinksWebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-        '#remove_shared_link',
-      ) as string,
-      method: 'PUT',
-      params: queryParamsMap,
-      headers: headersMap,
-      data: serializeRemoveSharedLinkFromWebLinkRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+          '#remove_shared_link',
+        ) as string,
+        method: 'PUT',
+        params: queryParamsMap,
+        headers: headersMap,
+        data: serializeRemoveSharedLinkFromWebLinkRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
 }

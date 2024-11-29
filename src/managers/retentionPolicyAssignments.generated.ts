@@ -6,6 +6,7 @@ import { serializeRetentionPolicyAssignment } from '../schemas/retentionPolicyAs
 import { deserializeRetentionPolicyAssignment } from '../schemas/retentionPolicyAssignment.generated.js';
 import { serializeFilesUnderRetention } from '../schemas/filesUnderRetention.generated.js';
 import { deserializeFilesUnderRetention } from '../schemas/filesUnderRetention.generated.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { RetentionPolicyAssignments } from '../schemas/retentionPolicyAssignments.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { RetentionPolicyAssignment } from '../schemas/retentionPolicyAssignment.generated.js';
@@ -17,8 +18,8 @@ import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -464,24 +465,26 @@ export class RetentionPolicyAssignmentsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policies/',
-        toString(retentionPolicyId) as string,
-        '/assignments',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/retention_policies/',
+          toString(retentionPolicyId) as string,
+          '/assignments',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeRetentionPolicyAssignments(response.data),
-      rawData: response.data,
+      ...deserializeRetentionPolicyAssignments(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -504,23 +507,25 @@ export class RetentionPolicyAssignmentsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policy_assignments',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateRetentionPolicyAssignmentRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/retention_policy_assignments',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateRetentionPolicyAssignmentRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeRetentionPolicyAssignment(response.data),
-      rawData: response.data,
+      ...deserializeRetentionPolicyAssignment(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -553,23 +558,25 @@ export class RetentionPolicyAssignmentsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string,
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/retention_policy_assignments/',
+          toString(retentionPolicyAssignmentId) as string,
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeRetentionPolicyAssignment(response.data),
-      rawData: response.data,
+      ...deserializeRetentionPolicyAssignment(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -594,19 +601,21 @@ export class RetentionPolicyAssignmentsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string,
-      ) as string,
-      method: 'DELETE',
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/retention_policy_assignments/',
+          toString(retentionPolicyAssignmentId) as string,
+        ) as string,
+        method: 'DELETE',
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
   /**
@@ -638,24 +647,26 @@ export class RetentionPolicyAssignmentsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/retention_policy_assignments/',
-        toString(retentionPolicyAssignmentId) as string,
-        '/files_under_retention',
-      ) as string,
-      method: 'GET',
-      params: queryParamsMap,
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/retention_policy_assignments/',
+          toString(retentionPolicyAssignmentId) as string,
+          '/files_under_retention',
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeFilesUnderRetention(response.data),
-      rawData: response.data,
+      ...deserializeFilesUnderRetention(response.data!),
+      rawData: response.data!,
     };
   }
 }

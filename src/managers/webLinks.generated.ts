@@ -4,6 +4,7 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { WebLink } from '../schemas/webLink.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -12,8 +13,8 @@ import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetch.js';
-import { FetchResponse } from '../networking/fetch.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdToJson } from '../serialization/json.js';
@@ -368,23 +369,25 @@ export class WebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links',
-      ) as string,
-      method: 'POST',
-      headers: headersMap,
-      data: serializeCreateWebLinkRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links',
+        ) as string,
+        method: 'POST',
+        headers: headersMap,
+        data: serializeCreateWebLinkRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -410,22 +413,24 @@ export class WebLinksManager {
       ...{ ['boxapi']: toString(headers.boxapi) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-      ) as string,
-      method: 'GET',
-      headers: headersMap,
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+        ) as string,
+        method: 'GET',
+        headers: headersMap,
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -451,24 +456,26 @@ export class WebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-      ) as string,
-      method: 'PUT',
-      headers: headersMap,
-      data: serializeUpdateWebLinkByIdRequestBody(requestBody),
-      contentType: 'application/json',
-      responseFormat: 'json',
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+        ) as string,
+        method: 'PUT',
+        headers: headersMap,
+        data: serializeUpdateWebLinkByIdRequestBody(requestBody),
+        contentType: 'application/json',
+        responseFormat: 'json' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return {
-      ...deserializeWebLink(response.data),
-      rawData: response.data,
+      ...deserializeWebLink(response.data!),
+      rawData: response.data!,
     };
   }
   /**
@@ -492,19 +499,21 @@ export class WebLinksManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch({
-      url: ''.concat(
-        this.networkSession.baseUrls.baseUrl,
-        '/2.0/web_links/',
-        toString(webLinkId) as string,
-      ) as string,
-      method: 'DELETE',
-      headers: headersMap,
-      responseFormat: void 0,
-      auth: this.auth,
-      networkSession: this.networkSession,
-      cancellationToken: cancellationToken,
-    } satisfies FetchOptions)) as FetchResponse;
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/web_links/',
+          toString(webLinkId) as string,
+        ) as string,
+        method: 'DELETE',
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken: cancellationToken,
+      }),
+    )) as FetchResponse;
     return void 0;
   }
 }

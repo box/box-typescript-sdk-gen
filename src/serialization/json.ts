@@ -34,6 +34,13 @@ export function sdToUrlParams(data: SerializedData): string {
   ).toString();
 }
 
+export function getSdValueByKey(obj: SerializedData, key: string): string {
+  if (sdIsMap(obj)) {
+    return obj[key]!.toString();
+  }
+  return '';
+}
+
 export function sdIsEmpty(data: SerializedData): data is undefined | null {
   return data == null;
 }
