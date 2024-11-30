@@ -101,52 +101,52 @@ export class FileRequest {
   constructor(
     fields: Omit<FileRequest, 'type'> & Partial<Pick<FileRequest, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.title) {
+    if (fields.title !== undefined) {
       this.title = fields.title;
     }
-    if (fields.description) {
+    if (fields.description !== undefined) {
       this.description = fields.description;
     }
-    if (fields.status) {
+    if (fields.status !== undefined) {
       this.status = fields.status;
     }
-    if (fields.isEmailRequired) {
+    if (fields.isEmailRequired !== undefined) {
       this.isEmailRequired = fields.isEmailRequired;
     }
-    if (fields.isDescriptionRequired) {
+    if (fields.isDescriptionRequired !== undefined) {
       this.isDescriptionRequired = fields.isDescriptionRequired;
     }
-    if (fields.expiresAt) {
+    if (fields.expiresAt !== undefined) {
       this.expiresAt = fields.expiresAt;
     }
-    if (fields.folder) {
+    if (fields.folder !== undefined) {
       this.folder = fields.folder;
     }
-    if (fields.url) {
+    if (fields.url !== undefined) {
       this.url = fields.url;
     }
-    if (fields.etag) {
+    if (fields.etag !== undefined) {
       this.etag = fields.etag;
     }
-    if (fields.createdBy) {
+    if (fields.createdBy !== undefined) {
       this.createdBy = fields.createdBy;
     }
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.updatedBy) {
+    if (fields.updatedBy !== undefined) {
       this.updatedBy = fields.updatedBy;
     }
-    if (fields.updatedAt) {
+    if (fields.updatedAt !== undefined) {
       this.updatedAt = fields.updatedAt;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

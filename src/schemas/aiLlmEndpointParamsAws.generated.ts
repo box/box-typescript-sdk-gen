@@ -28,16 +28,16 @@ export class AiLlmEndpointParamsAws {
     fields: Omit<AiLlmEndpointParamsAws, 'type'> &
       Partial<Pick<AiLlmEndpointParamsAws, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.temperature) {
+    if (fields.temperature !== undefined) {
       this.temperature = fields.temperature;
     }
-    if (fields.topP) {
+    if (fields.topP !== undefined) {
       this.topP = fields.topP;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

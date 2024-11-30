@@ -70,25 +70,25 @@ export class MetadataCascadePolicy {
     fields: Omit<MetadataCascadePolicy, 'type'> &
       Partial<Pick<MetadataCascadePolicy, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.ownerEnterprise) {
+    if (fields.ownerEnterprise !== undefined) {
       this.ownerEnterprise = fields.ownerEnterprise;
     }
-    if (fields.parent) {
+    if (fields.parent !== undefined) {
       this.parent = fields.parent;
     }
-    if (fields.scope) {
+    if (fields.scope !== undefined) {
       this.scope = fields.scope;
     }
-    if (fields.templateKey) {
+    if (fields.templateKey !== undefined) {
       this.templateKey = fields.templateKey;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

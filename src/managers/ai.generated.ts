@@ -51,10 +51,10 @@ export class CreateAiAskOptionals {
     fields: Omit<CreateAiAskOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateAiAskOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -70,10 +70,10 @@ export class CreateAiTextGenOptionals {
     fields: Omit<CreateAiTextGenOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateAiTextGenOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -95,10 +95,10 @@ export class GetAiAgentDefaultConfigOptionals {
         Pick<GetAiAgentDefaultConfigOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -114,10 +114,10 @@ export class CreateAiExtractOptionals {
     fields: Omit<CreateAiExtractOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateAiExtractOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -142,10 +142,10 @@ export class CreateAiExtractStructuredOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -164,7 +164,7 @@ export class CreateAiAskHeaders {
     fields: Omit<CreateAiAskHeaders, 'extraHeaders'> &
       Partial<Pick<CreateAiAskHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -188,7 +188,7 @@ export class CreateAiTextGenHeaders {
     fields: Omit<CreateAiTextGenHeaders, 'extraHeaders'> &
       Partial<Pick<CreateAiTextGenHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -229,7 +229,7 @@ export class GetAiAgentDefaultConfigHeaders {
     fields: Omit<GetAiAgentDefaultConfigHeaders, 'extraHeaders'> &
       Partial<Pick<GetAiAgentDefaultConfigHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -253,7 +253,7 @@ export class CreateAiExtractHeaders {
     fields: Omit<CreateAiExtractHeaders, 'extraHeaders'> &
       Partial<Pick<CreateAiExtractHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -277,7 +277,7 @@ export class CreateAiExtractStructuredHeaders {
     fields: Omit<CreateAiExtractStructuredHeaders, 'extraHeaders'> &
       Partial<Pick<CreateAiExtractStructuredHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -306,10 +306,10 @@ export class AiManager {
     > &
       Partial<Pick<AiManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

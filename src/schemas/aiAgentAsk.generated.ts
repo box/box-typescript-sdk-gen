@@ -25,22 +25,22 @@ export class AiAgentAsk {
   constructor(
     fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.longText) {
+    if (fields.longText !== undefined) {
       this.longText = fields.longText;
     }
-    if (fields.basicText) {
+    if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
     }
-    if (fields.longTextMulti) {
+    if (fields.longTextMulti !== undefined) {
       this.longTextMulti = fields.longTextMulti;
     }
-    if (fields.basicTextMulti) {
+    if (fields.basicTextMulti !== undefined) {
       this.basicTextMulti = fields.basicTextMulti;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

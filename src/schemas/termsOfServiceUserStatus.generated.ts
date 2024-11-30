@@ -40,28 +40,28 @@ export class TermsOfServiceUserStatus {
     fields: Omit<TermsOfServiceUserStatus, 'type'> &
       Partial<Pick<TermsOfServiceUserStatus, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.tos) {
+    if (fields.tos !== undefined) {
       this.tos = fields.tos;
     }
-    if (fields.user) {
+    if (fields.user !== undefined) {
       this.user = fields.user;
     }
-    if (fields.isAccepted) {
+    if (fields.isAccepted !== undefined) {
       this.isAccepted = fields.isAccepted;
     }
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.modifiedAt) {
+    if (fields.modifiedAt !== undefined) {
       this.modifiedAt = fields.modifiedAt;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

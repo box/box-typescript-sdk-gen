@@ -42,10 +42,10 @@ export class CreateCollaborationWhitelistExemptTargetOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -70,10 +70,10 @@ export class GetCollaborationWhitelistExemptTargetByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,10 +98,10 @@ export class DeleteCollaborationWhitelistExemptTargetByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -136,7 +136,7 @@ export class GetCollaborationWhitelistExemptTargetsHeaders {
         Pick<GetCollaborationWhitelistExemptTargetsHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -177,7 +177,7 @@ export class CreateCollaborationWhitelistExemptTargetHeaders {
         Pick<CreateCollaborationWhitelistExemptTargetHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -206,7 +206,7 @@ export class GetCollaborationWhitelistExemptTargetByIdHeaders {
         Pick<GetCollaborationWhitelistExemptTargetByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -238,7 +238,7 @@ export class DeleteCollaborationWhitelistExemptTargetByIdHeaders {
         >
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -268,10 +268,10 @@ export class CollaborationAllowlistExemptTargetsManager {
         Pick<CollaborationAllowlistExemptTargetsManager, 'networkSession'>
       >,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

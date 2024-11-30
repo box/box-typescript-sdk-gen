@@ -40,10 +40,10 @@ export class GetUserEmailAliasesOptionals {
         Pick<GetUserEmailAliasesOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -65,10 +65,10 @@ export class CreateUserEmailAliasOptionals {
         Pick<CreateUserEmailAliasOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -90,10 +90,10 @@ export class DeleteUserEmailAliasByIdOptionals {
         Pick<DeleteUserEmailAliasByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -112,7 +112,7 @@ export class GetUserEmailAliasesHeaders {
     fields: Omit<GetUserEmailAliasesHeaders, 'extraHeaders'> &
       Partial<Pick<GetUserEmailAliasesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -148,7 +148,7 @@ export class CreateUserEmailAliasHeaders {
     fields: Omit<CreateUserEmailAliasHeaders, 'extraHeaders'> &
       Partial<Pick<CreateUserEmailAliasHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -172,7 +172,7 @@ export class DeleteUserEmailAliasByIdHeaders {
     fields: Omit<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteUserEmailAliasByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -199,10 +199,10 @@ export class EmailAliasesManager {
     > &
       Partial<Pick<EmailAliasesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

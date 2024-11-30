@@ -34,19 +34,19 @@ export class StoragePolicyAssignment {
     fields: Omit<StoragePolicyAssignment, 'type'> &
       Partial<Pick<StoragePolicyAssignment, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.storagePolicy) {
+    if (fields.storagePolicy !== undefined) {
       this.storagePolicy = fields.storagePolicy;
     }
-    if (fields.assignedTo) {
+    if (fields.assignedTo !== undefined) {
       this.assignedTo = fields.assignedTo;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

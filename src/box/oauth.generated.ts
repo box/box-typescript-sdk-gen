@@ -20,13 +20,13 @@ export class OAuthConfig {
     fields: Omit<OAuthConfig, 'tokenStorage'> &
       Partial<Pick<OAuthConfig, 'tokenStorage'>>,
   ) {
-    if (fields.clientId) {
+    if (fields.clientId !== undefined) {
       this.clientId = fields.clientId;
     }
-    if (fields.clientSecret) {
+    if (fields.clientSecret !== undefined) {
       this.clientSecret = fields.clientSecret;
     }
-    if (fields.tokenStorage) {
+    if (fields.tokenStorage !== undefined) {
       this.tokenStorage = fields.tokenStorage;
     }
   }
@@ -73,7 +73,7 @@ export class BoxOAuth implements Authentication {
       | 'downscopeToken'
     >,
   ) {
-    if (fields.config) {
+    if (fields.config !== undefined) {
       this.config = fields.config;
     }
     this.tokenStorage = this.config.tokenStorage;

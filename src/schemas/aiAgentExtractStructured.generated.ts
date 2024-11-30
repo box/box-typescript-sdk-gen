@@ -25,16 +25,16 @@ export class AiAgentExtractStructured {
     fields: Omit<AiAgentExtractStructured, 'type'> &
       Partial<Pick<AiAgentExtractStructured, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.longText) {
+    if (fields.longText !== undefined) {
       this.longText = fields.longText;
     }
-    if (fields.basicText) {
+    if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

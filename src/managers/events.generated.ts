@@ -39,7 +39,7 @@ export class GetEventsWithLongPollingHeaders {
     fields: Omit<GetEventsWithLongPollingHeaders, 'extraHeaders'> &
       Partial<Pick<GetEventsWithLongPollingHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -239,7 +239,7 @@ export class GetEventsHeaders {
     fields: Omit<GetEventsHeaders, 'extraHeaders'> &
       Partial<Pick<GetEventsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -263,10 +263,10 @@ export class EventsManager {
     > &
       Partial<Pick<EventsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

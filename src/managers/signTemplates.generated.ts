@@ -40,10 +40,10 @@ export class GetSignTemplateByIdOptionals {
         Pick<GetSignTemplateByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,7 +73,7 @@ export class GetSignTemplatesHeaders {
     fields: Omit<GetSignTemplatesHeaders, 'extraHeaders'> &
       Partial<Pick<GetSignTemplatesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -97,7 +97,7 @@ export class GetSignTemplateByIdHeaders {
     fields: Omit<GetSignTemplateByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetSignTemplateByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -121,10 +121,10 @@ export class SignTemplatesManager {
     > &
       Partial<Pick<SignTemplatesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

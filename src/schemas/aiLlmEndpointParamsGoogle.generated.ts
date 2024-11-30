@@ -29,19 +29,19 @@ export class AiLlmEndpointParamsGoogle {
     fields: Omit<AiLlmEndpointParamsGoogle, 'type'> &
       Partial<Pick<AiLlmEndpointParamsGoogle, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.temperature) {
+    if (fields.temperature !== undefined) {
       this.temperature = fields.temperature;
     }
-    if (fields.topP) {
+    if (fields.topP !== undefined) {
       this.topP = fields.topP;
     }
-    if (fields.topK) {
+    if (fields.topK !== undefined) {
       this.topK = fields.topK;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

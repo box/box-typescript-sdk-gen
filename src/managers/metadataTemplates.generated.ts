@@ -42,10 +42,10 @@ export class GetMetadataTemplatesByInstanceIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -68,10 +68,10 @@ export class GetMetadataTemplateOptionals {
         Pick<GetMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -93,10 +93,10 @@ export class UpdateMetadataTemplateOptionals {
         Pick<UpdateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -118,10 +118,10 @@ export class DeleteMetadataTemplateOptionals {
         Pick<DeleteMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -143,10 +143,10 @@ export class GetMetadataTemplateByIdOptionals {
         Pick<GetMetadataTemplateByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -168,10 +168,10 @@ export class CreateMetadataTemplateOptionals {
         Pick<CreateMetadataTemplateOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -204,7 +204,7 @@ export class GetMetadataTemplatesByInstanceIdHeaders {
     fields: Omit<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetMetadataTemplatesByInstanceIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -229,7 +229,7 @@ export class GetMetadataTemplateHeaders {
     fields: Omit<GetMetadataTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<GetMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -305,7 +305,7 @@ export class UpdateMetadataTemplateHeaders {
     fields: Omit<UpdateMetadataTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -330,7 +330,7 @@ export class DeleteMetadataTemplateHeaders {
     fields: Omit<DeleteMetadataTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -354,7 +354,7 @@ export class GetMetadataTemplateByIdHeaders {
     fields: Omit<GetMetadataTemplateByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetMetadataTemplateByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -389,7 +389,7 @@ export class GetGlobalMetadataTemplatesHeaders {
     fields: Omit<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'> &
       Partial<Pick<GetGlobalMetadataTemplatesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -424,7 +424,7 @@ export class GetEnterpriseMetadataTemplatesHeaders {
     fields: Omit<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'> &
       Partial<Pick<GetEnterpriseMetadataTemplatesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -528,7 +528,7 @@ export class CreateMetadataTemplateHeaders {
     fields: Omit<CreateMetadataTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<CreateMetadataTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -560,10 +560,10 @@ export class MetadataTemplatesManager {
     > &
       Partial<Pick<MetadataTemplatesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

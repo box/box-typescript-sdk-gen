@@ -167,14 +167,17 @@ export async function fetch(
         : '?',
       new URLSearchParams(params).toString(),
     ),
-    { ...requestInit, redirect: 'manual' },
+    { ...requestInit, redirect: isBrowser() ? 'follow' : 'manual' },
   );
 
   const contentType = response.headers.get('content-type') ?? '';
-  const responseBytesBuffer = await response.arrayBuffer();
+  const ignoreResponseBody = fetchOptions.followRedirects === false;
+  const responseBytesBuffer = !ignoreResponseBody
+    ? await response.arrayBuffer()
+    : new Uint8Array();
 
   const data = ((): SerializedData => {
-    if (contentType.includes('application/json')) {
+    if (!ignoreResponseBody && contentType.includes('application/json')) {
       const text = new TextDecoder().decode(responseBytesBuffer);
       return jsonToSerializedData(text);
     }
@@ -184,6 +187,7 @@ export async function fetch(
   const content = generateByteStreamFromBuffer(responseBytesBuffer);
 
   let fetchResponse: FetchResponse = {
+    url: response.url,
     status: response.status,
     data,
     content,
@@ -197,7 +201,11 @@ export async function fetch(
     );
   }
 
-  if (fetchResponse.status >= 300 && fetchResponse.status < 400) {
+  if (
+    fetchResponse.status >= 300 &&
+    fetchResponse.status < 400 &&
+    fetchOptions.followRedirects !== false
+  ) {
     if (!fetchResponse.headers['location']) {
       throw new BoxSdkError({
         message: `Unable to follow redirect for ${fetchOptions.url}`,

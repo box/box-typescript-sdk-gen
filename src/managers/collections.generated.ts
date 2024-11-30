@@ -48,13 +48,13 @@ export class GetCollectionItemsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class GetCollectionByIdOptionals {
         Pick<GetCollectionByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -118,7 +118,7 @@ export class GetCollectionsHeaders {
     fields: Omit<GetCollectionsHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollectionsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -165,7 +165,7 @@ export class GetCollectionItemsHeaders {
     fields: Omit<GetCollectionItemsHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollectionItemsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -189,7 +189,7 @@ export class GetCollectionByIdHeaders {
     fields: Omit<GetCollectionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollectionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -216,10 +216,10 @@ export class CollectionsManager {
     > &
       Partial<Pick<CollectionsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

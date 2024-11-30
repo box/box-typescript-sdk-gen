@@ -40,10 +40,10 @@ export class GetFileRequestByIdOptionals {
         Pick<GetFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -65,10 +65,10 @@ export class UpdateFileRequestByIdOptionals {
         Pick<UpdateFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -90,10 +90,10 @@ export class DeleteFileRequestByIdOptionals {
         Pick<DeleteFileRequestByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -115,10 +115,10 @@ export class CreateFileRequestCopyOptionals {
         Pick<CreateFileRequestCopyOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -137,7 +137,7 @@ export class GetFileRequestByIdHeaders {
     fields: Omit<GetFileRequestByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -170,10 +170,10 @@ export class UpdateFileRequestByIdHeaders {
     fields: Omit<UpdateFileRequestByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -206,7 +206,7 @@ export class DeleteFileRequestByIdHeaders {
     fields: Omit<DeleteFileRequestByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileRequestByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -230,7 +230,7 @@ export class CreateFileRequestCopyHeaders {
     fields: Omit<CreateFileRequestCopyHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFileRequestCopyHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -258,10 +258,10 @@ export class FileRequestsManager {
     > &
       Partial<Pick<FileRequestsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

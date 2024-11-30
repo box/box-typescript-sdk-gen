@@ -33,10 +33,10 @@ export class CreateWebhookOptionals {
     fields: Omit<CreateWebhookOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateWebhookOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -52,10 +52,10 @@ export class GetWebhookByIdOptionals {
     fields: Omit<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetWebhookByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -81,13 +81,13 @@ export class UpdateWebhookByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -106,10 +106,10 @@ export class DeleteWebhookByIdOptionals {
         Pick<DeleteWebhookByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -139,7 +139,7 @@ export class GetWebhooksHeaders {
     fields: Omit<GetWebhooksHeaders, 'extraHeaders'> &
       Partial<Pick<GetWebhooksHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -227,7 +227,7 @@ export class CreateWebhookHeaders {
     fields: Omit<CreateWebhookHeaders, 'extraHeaders'> &
       Partial<Pick<CreateWebhookHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -251,7 +251,7 @@ export class GetWebhookByIdHeaders {
     fields: Omit<GetWebhookByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -339,7 +339,7 @@ export class UpdateWebhookByIdHeaders {
     fields: Omit<UpdateWebhookByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -363,7 +363,7 @@ export class DeleteWebhookByIdHeaders {
     fields: Omit<DeleteWebhookByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteWebhookByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -392,10 +392,10 @@ export class WebhooksManager {
     > &
       Partial<Pick<WebhooksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

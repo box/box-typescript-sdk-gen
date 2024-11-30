@@ -26,19 +26,19 @@ export class IntegrationMappingPartnerItemSlack {
     fields: Omit<IntegrationMappingPartnerItemSlack, 'type'> &
       Partial<Pick<IntegrationMappingPartnerItemSlack, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.slackWorkspaceId) {
+    if (fields.slackWorkspaceId !== undefined) {
       this.slackWorkspaceId = fields.slackWorkspaceId;
     }
-    if (fields.slackOrgId) {
+    if (fields.slackOrgId !== undefined) {
       this.slackOrgId = fields.slackOrgId;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

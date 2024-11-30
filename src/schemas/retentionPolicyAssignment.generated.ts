@@ -76,31 +76,31 @@ export class RetentionPolicyAssignment {
     fields: Omit<RetentionPolicyAssignment, 'type'> &
       Partial<Pick<RetentionPolicyAssignment, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.retentionPolicy) {
+    if (fields.retentionPolicy !== undefined) {
       this.retentionPolicy = fields.retentionPolicy;
     }
-    if (fields.assignedTo) {
+    if (fields.assignedTo !== undefined) {
       this.assignedTo = fields.assignedTo;
     }
-    if (fields.filterFields) {
+    if (fields.filterFields !== undefined) {
       this.filterFields = fields.filterFields;
     }
-    if (fields.assignedBy) {
+    if (fields.assignedBy !== undefined) {
       this.assignedBy = fields.assignedBy;
     }
-    if (fields.assignedAt) {
+    if (fields.assignedAt !== undefined) {
       this.assignedAt = fields.assignedAt;
     }
-    if (fields.startDateField) {
+    if (fields.startDateField !== undefined) {
       this.startDateField = fields.startDateField;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

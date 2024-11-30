@@ -69,22 +69,22 @@ export class TestPartAccumulator {
     fields: Omit<TestPartAccumulator, 'uploadPartUrl' | 'uploadSessionId'> &
       Partial<Pick<TestPartAccumulator, 'uploadPartUrl' | 'uploadSessionId'>>,
   ) {
-    if (fields.lastIndex) {
+    if (fields.lastIndex !== undefined) {
       this.lastIndex = fields.lastIndex;
     }
-    if (fields.parts) {
+    if (fields.parts !== undefined) {
       this.parts = fields.parts;
     }
-    if (fields.fileSize) {
+    if (fields.fileSize !== undefined) {
       this.fileSize = fields.fileSize;
     }
-    if (fields.uploadPartUrl) {
+    if (fields.uploadPartUrl !== undefined) {
       this.uploadPartUrl = fields.uploadPartUrl;
     }
-    if (fields.uploadSessionId) {
+    if (fields.uploadSessionId !== undefined) {
       this.uploadSessionId = fields.uploadSessionId;
     }
-    if (fields.fileHash) {
+    if (fields.fileHash !== undefined) {
       this.fileHash = fields.fileHash;
     }
   }

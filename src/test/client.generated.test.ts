@@ -85,6 +85,7 @@ export class InterceptorAddingRoleToFields implements Interceptor {
       auth: optionsInput.auth,
       networkSession: optionsInput.networkSession,
       cancellationToken: optionsInput.cancellationToken,
+      followRedirects: optionsInput.followRedirects,
     });
     return new FetchOptions({
       url: options.url,
@@ -131,6 +132,7 @@ export class InterceptorThrowingError implements Interceptor {
       auth: optionsInput.auth,
       networkSession: optionsInput.networkSession,
       cancellationToken: optionsInput.cancellationToken,
+      followRedirects: optionsInput.followRedirects,
     });
     return options;
   }
@@ -140,6 +142,7 @@ export class InterceptorThrowingError implements Interceptor {
    */
   afterRequest(response: FetchResponse): FetchResponse {
     return {
+      url: response.url,
       status: 400,
       data: response.data,
       content: response.content,
@@ -169,6 +172,7 @@ export class InterceptorChangingResponse implements Interceptor {
       auth: optionsInput.auth,
       networkSession: optionsInput.networkSession,
       cancellationToken: optionsInput.cancellationToken,
+      followRedirects: optionsInput.followRedirects,
     });
     return options;
   }
@@ -178,6 +182,7 @@ export class InterceptorChangingResponse implements Interceptor {
    */
   afterRequest(response: FetchResponse): FetchResponse {
     return {
+      url: response.url,
       status: response.status,
       data: jsonToSerializedData('{"id": "123", "type": "user"}'),
       content: response.content,

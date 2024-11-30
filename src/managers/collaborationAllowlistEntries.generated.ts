@@ -42,10 +42,10 @@ export class CreateCollaborationWhitelistEntryOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -70,10 +70,10 @@ export class GetCollaborationWhitelistEntryByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,10 +98,10 @@ export class DeleteCollaborationWhitelistEntryByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -131,7 +131,7 @@ export class GetCollaborationWhitelistEntriesHeaders {
     fields: Omit<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollaborationWhitelistEntriesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -168,7 +168,7 @@ export class CreateCollaborationWhitelistEntryHeaders {
     fields: Omit<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'> &
       Partial<Pick<CreateCollaborationWhitelistEntryHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -192,7 +192,7 @@ export class GetCollaborationWhitelistEntryByIdHeaders {
     fields: Omit<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -218,7 +218,7 @@ export class DeleteCollaborationWhitelistEntryByIdHeaders {
         Pick<DeleteCollaborationWhitelistEntryByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -246,10 +246,10 @@ export class CollaborationAllowlistEntriesManager {
     > &
       Partial<Pick<CollaborationAllowlistEntriesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

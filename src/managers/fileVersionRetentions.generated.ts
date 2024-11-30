@@ -42,10 +42,10 @@ export class GetFileVersionRetentionByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -99,7 +99,7 @@ export class GetFileVersionRetentionsHeaders {
     fields: Omit<GetFileVersionRetentionsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileVersionRetentionsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -123,7 +123,7 @@ export class GetFileVersionRetentionByIdHeaders {
     fields: Omit<GetFileVersionRetentionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileVersionRetentionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -149,10 +149,10 @@ export class FileVersionRetentionsManager {
     > &
       Partial<Pick<FileVersionRetentionsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

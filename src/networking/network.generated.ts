@@ -33,22 +33,22 @@ export class NetworkSession {
         >
       >,
   ) {
-    if (fields.additionalHeaders) {
+    if (fields.additionalHeaders !== undefined) {
       this.additionalHeaders = fields.additionalHeaders;
     }
-    if (fields.baseUrls) {
+    if (fields.baseUrls !== undefined) {
       this.baseUrls = fields.baseUrls;
     }
-    if (fields.interceptors) {
+    if (fields.interceptors !== undefined) {
       this.interceptors = fields.interceptors;
     }
-    if (fields.agent) {
+    if (fields.agent !== undefined) {
       this.agent = fields.agent;
     }
-    if (fields.agentOptions) {
+    if (fields.agentOptions !== undefined) {
       this.agentOptions = fields.agentOptions;
     }
-    if (fields.proxyConfig) {
+    if (fields.proxyConfig !== undefined) {
       this.proxyConfig = fields.proxyConfig;
     }
   }

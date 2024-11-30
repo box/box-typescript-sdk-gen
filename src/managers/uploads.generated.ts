@@ -50,13 +50,13 @@ export class UploadFileVersionOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -83,13 +83,13 @@ export class UploadFileOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -177,13 +177,13 @@ export class UploadFileVersionHeaders {
     fields: Omit<UploadFileVersionHeaders, 'extraHeaders'> &
       Partial<Pick<UploadFileVersionHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.contentMd5) {
+    if (fields.contentMd5 !== undefined) {
       this.contentMd5 = fields.contentMd5;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -236,7 +236,7 @@ export class PreflightFileUploadCheckHeaders {
     fields: Omit<PreflightFileUploadCheckHeaders, 'extraHeaders'> &
       Partial<Pick<PreflightFileUploadCheckHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -333,10 +333,10 @@ export class UploadFileHeaders {
     fields: Omit<UploadFileHeaders, 'extraHeaders'> &
       Partial<Pick<UploadFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.contentMd5) {
+    if (fields.contentMd5 !== undefined) {
       this.contentMd5 = fields.contentMd5;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -367,10 +367,10 @@ export class UploadsManager {
     > &
       Partial<Pick<UploadsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

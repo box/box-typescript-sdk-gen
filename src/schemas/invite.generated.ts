@@ -49,31 +49,31 @@ export class Invite {
   readonly modifiedAt?: DateTime;
   readonly rawData?: SerializedData;
   constructor(fields: Omit<Invite, 'type'> & Partial<Pick<Invite, 'type'>>) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.invitedTo) {
+    if (fields.invitedTo !== undefined) {
       this.invitedTo = fields.invitedTo;
     }
-    if (fields.actionableBy) {
+    if (fields.actionableBy !== undefined) {
       this.actionableBy = fields.actionableBy;
     }
-    if (fields.invitedBy) {
+    if (fields.invitedBy !== undefined) {
       this.invitedBy = fields.invitedBy;
     }
-    if (fields.status) {
+    if (fields.status !== undefined) {
       this.status = fields.status;
     }
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.modifiedAt) {
+    if (fields.modifiedAt !== undefined) {
       this.modifiedAt = fields.modifiedAt;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

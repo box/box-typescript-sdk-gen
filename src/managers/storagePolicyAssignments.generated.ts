@@ -42,10 +42,10 @@ export class GetStoragePolicyAssignmentsOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -70,10 +70,10 @@ export class CreateStoragePolicyAssignmentOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,10 +98,10 @@ export class GetStoragePolicyAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -126,10 +126,10 @@ export class UpdateStoragePolicyAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -154,10 +154,10 @@ export class DeleteStoragePolicyAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -193,7 +193,7 @@ export class GetStoragePolicyAssignmentsHeaders {
     fields: Omit<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'> &
       Partial<Pick<GetStoragePolicyAssignmentsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -227,13 +227,13 @@ export class CreateStoragePolicyAssignmentRequestBodyStoragePolicyField {
         Pick<CreateStoragePolicyAssignmentRequestBodyStoragePolicyField, 'type'>
       >,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -280,7 +280,7 @@ export class CreateStoragePolicyAssignmentHeaders {
     fields: Omit<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'> &
       Partial<Pick<CreateStoragePolicyAssignmentHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -304,7 +304,7 @@ export class GetStoragePolicyAssignmentByIdHeaders {
     fields: Omit<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -341,13 +341,13 @@ export class UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField {
         >
       >,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -378,7 +378,7 @@ export class UpdateStoragePolicyAssignmentByIdHeaders {
     fields: Omit<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -402,7 +402,7 @@ export class DeleteStoragePolicyAssignmentByIdHeaders {
     fields: Omit<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteStoragePolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -431,10 +431,10 @@ export class StoragePolicyAssignmentsManager {
     > &
       Partial<Pick<StoragePolicyAssignmentsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

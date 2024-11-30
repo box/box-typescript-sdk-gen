@@ -33,10 +33,10 @@ export class CreateWebLinkOptionals {
     fields: Omit<CreateWebLinkOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateWebLinkOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -52,10 +52,10 @@ export class GetWebLinkByIdOptionals {
     fields: Omit<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetWebLinkByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -81,13 +81,13 @@ export class UpdateWebLinkByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -106,10 +106,10 @@ export class DeleteWebLinkByIdOptionals {
         Pick<DeleteWebLinkByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -150,7 +150,7 @@ export class CreateWebLinkHeaders {
     fields: Omit<CreateWebLinkHeaders, 'extraHeaders'> &
       Partial<Pick<CreateWebLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -186,10 +186,10 @@ export class GetWebLinkByIdHeaders {
     fields: Omit<GetWebLinkByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -291,7 +291,7 @@ export class UpdateWebLinkByIdHeaders {
     fields: Omit<UpdateWebLinkByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -315,7 +315,7 @@ export class DeleteWebLinkByIdHeaders {
     fields: Omit<DeleteWebLinkByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteWebLinkByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -343,10 +343,10 @@ export class WebLinksManager {
     > &
       Partial<Pick<WebLinksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

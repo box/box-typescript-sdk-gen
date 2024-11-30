@@ -20,6 +20,9 @@ import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { DateTime } from '../internal/utils.js';
+import { isBrowser } from '../internal/utils.js';
+import { CancellationController } from '../internal/utils.js';
+import { createCancellationController } from '../internal/utils.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -43,13 +46,13 @@ export class GetFileByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -78,16 +81,16 @@ export class UpdateFileByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -105,10 +108,10 @@ export class DeleteFileByIdOptionals {
     fields: Omit<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<DeleteFileByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -130,13 +133,13 @@ export class CopyFileOptionals {
         Pick<CopyFileOptionals, 'queryParams' | 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -144,6 +147,41 @@ export class CopyFileOptionals {
 export interface CopyFileOptionalsInput {
   readonly queryParams?: CopyFileQueryParams;
   readonly headers?: CopyFileHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class GetFileThumbnailUrlOptionals {
+  readonly queryParams: GetFileThumbnailUrlQueryParams =
+    {} satisfies GetFileThumbnailUrlQueryParams;
+  readonly headers: GetFileThumbnailUrlHeaders = new GetFileThumbnailUrlHeaders(
+    {},
+  );
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      GetFileThumbnailUrlOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          GetFileThumbnailUrlOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >,
+  ) {
+    if (fields.queryParams !== undefined) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface GetFileThumbnailUrlOptionalsInput {
+  readonly queryParams?: GetFileThumbnailUrlQueryParams;
+  readonly headers?: GetFileThumbnailUrlHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class GetFileThumbnailByIdOptionals {
@@ -164,13 +202,13 @@ export class GetFileThumbnailByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -249,16 +287,16 @@ export class GetFileByIdHeaders {
     fields: Omit<GetFileByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.xRepHints) {
+    if (fields.xRepHints !== undefined) {
       this.xRepHints = fields.xRepHints;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -493,10 +531,10 @@ export class UpdateFileByIdHeaders {
     fields: Omit<UpdateFileByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFileByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -538,10 +576,10 @@ export class DeleteFileByIdHeaders {
     fields: Omit<DeleteFileByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -611,12 +649,51 @@ export class CopyFileHeaders {
     fields: Omit<CopyFileHeaders, 'extraHeaders'> &
       Partial<Pick<CopyFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
 export interface CopyFileHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export type GetFileThumbnailUrlExtension = 'png' | 'jpg';
+export interface GetFileThumbnailUrlQueryParams {
+  /**
+   * The minimum height of the thumbnail */
+  readonly minHeight?: number;
+  /**
+   * The minimum width of the thumbnail */
+  readonly minWidth?: number;
+  /**
+   * The maximum height of the thumbnail */
+  readonly maxHeight?: number;
+  /**
+   * The maximum width of the thumbnail */
+  readonly maxWidth?: number;
+}
+export class GetFileThumbnailUrlHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<GetFileThumbnailUrlHeaders, 'extraHeaders'> &
+      Partial<Pick<GetFileThumbnailUrlHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface GetFileThumbnailUrlHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -650,7 +727,7 @@ export class GetFileThumbnailByIdHeaders {
     fields: Omit<GetFileThumbnailByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileThumbnailByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -675,14 +752,15 @@ export class FilesManager {
       | 'updateFileById'
       | 'deleteFileById'
       | 'copyFile'
+      | 'getFileThumbnailUrl'
       | 'getFileThumbnailById'
     > &
       Partial<Pick<FilesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }
@@ -923,6 +1001,91 @@ export class FilesManager {
       ...deserializeFileFull(response.data!),
       rawData: response.data!,
     };
+  }
+  /**
+     * Retrieves a thumbnail, or smaller image representation, of a file.
+     *
+     * Sizes of `32x32`,`64x64`, `128x128`, and `256x256` can be returned in
+     * the `.png` format and sizes of `32x32`, `160x160`, and `320x320`
+     * can be returned in the `.jpg` format.
+     *
+     * Thumbnails can be generated for the image and video file formats listed
+     * [found on our community site][1].
+     *
+     * [1]: https://community.box.com/t5/Migrating-and-Previewing-Content/File-Types-and-Fonts-Supported-in-Box-Content-Preview/ta-p/327
+     * @param {string} fileId The unique identifier that represents a file.
+    
+    The ID for any file can be determined
+    by visiting a file in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/files/123`
+    the `file_id` is `123`.
+    Example: "12345"
+     * @param {GetFileThumbnailUrlExtension} extension The file format for the thumbnail
+    Example: "png"
+     * @param {GetFileThumbnailUrlOptionalsInput} optionalsInput
+     * @returns {Promise<string>}
+     */
+  async getFileThumbnailUrl(
+    fileId: string,
+    extension: GetFileThumbnailUrlExtension,
+    optionalsInput: GetFileThumbnailUrlOptionalsInput = {},
+  ): Promise<string> {
+    const optionals: GetFileThumbnailUrlOptionals =
+      new GetFileThumbnailUrlOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['min_height']: toString(queryParams.minHeight) as string,
+      ['min_width']: toString(queryParams.minWidth) as string,
+      ['max_height']: toString(queryParams.maxHeight) as string,
+      ['max_width']: toString(queryParams.maxWidth) as string,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const cancellationController: CancellationController =
+      createCancellationController();
+    const response: FetchResponse = (await fetch(
+      new FetchOptions({
+        url: ''.concat(
+          this.networkSession.baseUrls.baseUrl,
+          '/2.0/files/',
+          toString(fileId) as string,
+          '/thumbnail.',
+          toString(extension) as string,
+        ) as string,
+        method: 'GET',
+        params: queryParamsMap,
+        headers: headersMap,
+        responseFormat: 'no_content' as ResponseFormat,
+        auth: this.auth,
+        networkSession: this.networkSession,
+        cancellationToken:
+          cancellationToken == void 0
+            ? cancellationController.signal
+            : cancellationToken,
+        followRedirects: false,
+      }),
+    )) as FetchResponse;
+    if (isBrowser()) {
+      cancellationController.abort();
+      if (response.url == void 0) {
+        throw new BoxSdkError({ message: 'Unable to get response URL' });
+      }
+      return response.url;
+    }
+    if (response.headers.location == void 0) {
+      throw new BoxSdkError({ message: 'No location header in response' });
+    }
+    return response.headers.location;
   }
   /**
      * Retrieves a thumbnail, or smaller image representation, of a file.
@@ -1505,6 +1668,24 @@ export function deserializeCopyFileRequestBody(
     version: version,
     parent: parent,
   } satisfies CopyFileRequestBody;
+}
+export function serializeGetFileThumbnailUrlExtension(
+  val: GetFileThumbnailUrlExtension,
+): SerializedData {
+  return val;
+}
+export function deserializeGetFileThumbnailUrlExtension(
+  val: SerializedData,
+): GetFileThumbnailUrlExtension {
+  if (val == 'png') {
+    return val;
+  }
+  if (val == 'jpg') {
+    return val;
+  }
+  throw new BoxSdkError({
+    message: "Can't deserialize GetFileThumbnailUrlExtension",
+  });
 }
 export function serializeGetFileThumbnailByIdExtension(
   val: GetFileThumbnailByIdExtension,

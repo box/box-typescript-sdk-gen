@@ -32,7 +32,7 @@ export class FindFileForSharedLinkOptionals {
     fields: Omit<FindFileForSharedLinkOptionals, 'cancellationToken'> &
       Partial<Pick<FindFileForSharedLinkOptionals, 'cancellationToken'>>,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -53,10 +53,10 @@ export class GetSharedLinkForFileOptionals {
         Pick<GetSharedLinkForFileOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -76,10 +76,10 @@ export class AddShareLinkToFileOptionals {
         Pick<AddShareLinkToFileOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -101,10 +101,10 @@ export class UpdateSharedLinkOnFileOptionals {
         Pick<UpdateSharedLinkOnFileOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -126,10 +126,10 @@ export class RemoveSharedLinkFromFileOptionals {
         Pick<RemoveSharedLinkFromFileOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -177,13 +177,13 @@ export class FindFileForSharedLinkHeaders {
     fields: Omit<FindFileForSharedLinkHeaders, 'extraHeaders'> &
       Partial<Pick<FindFileForSharedLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -229,7 +229,7 @@ export class GetSharedLinkForFileHeaders {
     fields: Omit<GetSharedLinkForFileHeaders, 'extraHeaders'> &
       Partial<Pick<GetSharedLinkForFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -331,7 +331,7 @@ export class AddShareLinkToFileHeaders {
     fields: Omit<AddShareLinkToFileHeaders, 'extraHeaders'> &
       Partial<Pick<AddShareLinkToFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -431,7 +431,7 @@ export class UpdateSharedLinkOnFileHeaders {
     fields: Omit<UpdateSharedLinkOnFileHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateSharedLinkOnFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -471,7 +471,7 @@ export class RemoveSharedLinkFromFileHeaders {
     fields: Omit<RemoveSharedLinkFromFileHeaders, 'extraHeaders'> &
       Partial<Pick<RemoveSharedLinkFromFileHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -500,10 +500,10 @@ export class SharedLinksFilesManager {
     > &
       Partial<Pick<SharedLinksFilesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

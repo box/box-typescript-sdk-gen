@@ -21,13 +21,13 @@ export class AiAgentTextGen {
     fields: Omit<AiAgentTextGen, 'type'> &
       Partial<Pick<AiAgentTextGen, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.basicGen) {
+    if (fields.basicGen !== undefined) {
       this.basicGen = fields.basicGen;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

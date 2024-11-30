@@ -33,10 +33,10 @@ export class GetFolderLocksOptionals {
     fields: Omit<GetFolderLocksOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetFolderLocksOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -52,10 +52,10 @@ export class CreateFolderLockOptionals {
     fields: Omit<CreateFolderLockOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateFolderLockOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -77,10 +77,10 @@ export class DeleteFolderLockByIdOptionals {
         Pick<DeleteFolderLockByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -113,7 +113,7 @@ export class GetFolderLocksHeaders {
     fields: Omit<GetFolderLocksHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderLocksHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -167,7 +167,7 @@ export class CreateFolderLockHeaders {
     fields: Omit<CreateFolderLockHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFolderLockHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -191,7 +191,7 @@ export class DeleteFolderLockByIdHeaders {
     fields: Omit<DeleteFolderLockByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFolderLockByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -218,10 +218,10 @@ export class FolderLocksManager {
     > &
       Partial<Pick<FolderLocksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

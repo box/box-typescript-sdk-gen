@@ -35,10 +35,10 @@ export class TerminateUsersSessionsOptionals {
         Pick<TerminateUsersSessionsOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -60,10 +60,10 @@ export class TerminateGroupsSessionsOptionals {
         Pick<TerminateGroupsSessionsOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -91,7 +91,7 @@ export class TerminateUsersSessionsHeaders {
     fields: Omit<TerminateUsersSessionsHeaders, 'extraHeaders'> &
       Partial<Pick<TerminateUsersSessionsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -121,7 +121,7 @@ export class TerminateGroupsSessionsHeaders {
     fields: Omit<TerminateGroupsSessionsHeaders, 'extraHeaders'> &
       Partial<Pick<TerminateGroupsSessionsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -145,10 +145,10 @@ export class SessionTerminationManager {
     > &
       Partial<Pick<SessionTerminationManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

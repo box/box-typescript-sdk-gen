@@ -40,22 +40,22 @@ export class SearchResultsWithSharedLinks {
     fields: Omit<SearchResultsWithSharedLinks, 'type'> &
       Partial<Pick<SearchResultsWithSharedLinks, 'type'>>,
   ) {
-    if (fields.totalCount) {
+    if (fields.totalCount !== undefined) {
       this.totalCount = fields.totalCount;
     }
-    if (fields.limit) {
+    if (fields.limit !== undefined) {
       this.limit = fields.limit;
     }
-    if (fields.offset) {
+    if (fields.offset !== undefined) {
       this.offset = fields.offset;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.entries) {
+    if (fields.entries !== undefined) {
       this.entries = fields.entries;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

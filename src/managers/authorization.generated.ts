@@ -40,10 +40,10 @@ export class AuthorizeUserOptionals {
     fields: Omit<AuthorizeUserOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<AuthorizeUserOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -63,10 +63,10 @@ export class RequestAccessTokenOptionals {
         Pick<RequestAccessTokenOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -86,10 +86,10 @@ export class RefreshAccessTokenOptionals {
         Pick<RefreshAccessTokenOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -107,10 +107,10 @@ export class RevokeAccessTokenOptionals {
         Pick<RevokeAccessTokenOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -165,7 +165,7 @@ export class AuthorizeUserHeaders {
     fields: Omit<AuthorizeUserHeaders, 'extraHeaders'> &
       Partial<Pick<AuthorizeUserHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -189,7 +189,7 @@ export class RequestAccessTokenHeaders {
     fields: Omit<RequestAccessTokenHeaders, 'extraHeaders'> &
       Partial<Pick<RequestAccessTokenHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -213,7 +213,7 @@ export class RefreshAccessTokenHeaders {
     fields: Omit<RefreshAccessTokenHeaders, 'extraHeaders'> &
       Partial<Pick<RefreshAccessTokenHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -237,7 +237,7 @@ export class RevokeAccessTokenHeaders {
     fields: Omit<RevokeAccessTokenHeaders, 'extraHeaders'> &
       Partial<Pick<RevokeAccessTokenHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -265,10 +265,10 @@ export class AuthorizationManager {
     > &
       Partial<Pick<AuthorizationManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

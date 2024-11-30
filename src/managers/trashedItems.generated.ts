@@ -87,7 +87,7 @@ export class GetTrashedItemsHeaders {
     fields: Omit<GetTrashedItemsHeaders, 'extraHeaders'> &
       Partial<Pick<GetTrashedItemsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -108,10 +108,10 @@ export class TrashedItemsManager {
     fields: Omit<TrashedItemsManager, 'networkSession' | 'getTrashedItems'> &
       Partial<Pick<TrashedItemsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

@@ -22,13 +22,13 @@ export class CollaboratorVariableVariableValueField {
     fields: Omit<CollaboratorVariableVariableValueField, 'type'> &
       Partial<Pick<CollaboratorVariableVariableValueField, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -64,16 +64,16 @@ export class CollaboratorVariable {
     fields: Omit<CollaboratorVariable, 'type' | 'variableType'> &
       Partial<Pick<CollaboratorVariable, 'type' | 'variableType'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.variableType) {
+    if (fields.variableType !== undefined) {
       this.variableType = fields.variableType;
     }
-    if (fields.variableValue) {
+    if (fields.variableValue !== undefined) {
       this.variableValue = fields.variableValue;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

@@ -39,10 +39,10 @@ export class GetClassificationOnFolderOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -69,13 +69,13 @@ export class AddClassificationToFolderOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -101,10 +101,10 @@ export class UpdateClassificationOnFolderOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,10 +129,10 @@ export class DeleteClassificationFromFolderOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -151,7 +151,7 @@ export class GetClassificationOnFolderHeaders {
     fields: Omit<GetClassificationOnFolderHeaders, 'extraHeaders'> &
       Partial<Pick<GetClassificationOnFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -186,7 +186,7 @@ export class AddClassificationToFolderHeaders {
     fields: Omit<AddClassificationToFolderHeaders, 'extraHeaders'> &
       Partial<Pick<AddClassificationToFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -226,16 +226,16 @@ export class UpdateClassificationOnFolderRequestBody {
     fields: Omit<UpdateClassificationOnFolderRequestBody, 'op' | 'path'> &
       Partial<Pick<UpdateClassificationOnFolderRequestBody, 'op' | 'path'>>,
   ) {
-    if (fields.op) {
+    if (fields.op !== undefined) {
       this.op = fields.op;
     }
-    if (fields.path) {
+    if (fields.path !== undefined) {
       this.path = fields.path;
     }
-    if (fields.value) {
+    if (fields.value !== undefined) {
       this.value = fields.value;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -268,7 +268,7 @@ export class UpdateClassificationOnFolderHeaders {
     fields: Omit<UpdateClassificationOnFolderHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateClassificationOnFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -292,7 +292,7 @@ export class DeleteClassificationFromFolderHeaders {
     fields: Omit<DeleteClassificationFromFolderHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteClassificationFromFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -320,10 +320,10 @@ export class FolderClassificationsManager {
     > &
       Partial<Pick<FolderClassificationsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

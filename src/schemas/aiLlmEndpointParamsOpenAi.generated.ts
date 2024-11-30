@@ -38,25 +38,25 @@ export class AiLlmEndpointParamsOpenAi {
     fields: Omit<AiLlmEndpointParamsOpenAi, 'type'> &
       Partial<Pick<AiLlmEndpointParamsOpenAi, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.temperature) {
+    if (fields.temperature !== undefined) {
       this.temperature = fields.temperature;
     }
-    if (fields.topP) {
+    if (fields.topP !== undefined) {
       this.topP = fields.topP;
     }
-    if (fields.frequencyPenalty) {
+    if (fields.frequencyPenalty !== undefined) {
       this.frequencyPenalty = fields.frequencyPenalty;
     }
-    if (fields.presencePenalty) {
+    if (fields.presencePenalty !== undefined) {
       this.presencePenalty = fields.presencePenalty;
     }
-    if (fields.stop) {
+    if (fields.stop !== undefined) {
       this.stop = fields.stop;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

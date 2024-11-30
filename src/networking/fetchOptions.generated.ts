@@ -62,45 +62,56 @@ export class FetchOptions {
   /**
    * Cancellation token */
   readonly cancellationToken?: CancellationToken;
+  /**
+   * A boolean value indicate if the request should follow redirects. Defaults to True. Not supported in Browser environment. */
+  readonly followRedirects?: boolean = true;
   constructor(
-    fields: Omit<FetchOptions, 'contentType' | 'responseFormat'> &
-      Partial<Pick<FetchOptions, 'contentType' | 'responseFormat'>>,
+    fields: Omit<
+      FetchOptions,
+      'contentType' | 'responseFormat' | 'followRedirects'
+    > &
+      Partial<
+        Pick<FetchOptions, 'contentType' | 'responseFormat' | 'followRedirects'>
+      >,
   ) {
-    if (fields.url) {
+    if (fields.url !== undefined) {
       this.url = fields.url;
     }
-    if (fields.method) {
+    if (fields.method !== undefined) {
       this.method = fields.method;
     }
-    if (fields.params) {
+    if (fields.params !== undefined) {
       this.params = fields.params;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.data) {
+    if (fields.data !== undefined) {
       this.data = fields.data;
     }
-    if (fields.fileStream) {
+    if (fields.fileStream !== undefined) {
       this.fileStream = fields.fileStream;
     }
-    if (fields.multipartData) {
+    if (fields.multipartData !== undefined) {
       this.multipartData = fields.multipartData;
     }
-    if (fields.contentType) {
+    if (fields.contentType !== undefined) {
       this.contentType = fields.contentType;
     }
-    if (fields.responseFormat) {
+    if (fields.responseFormat !== undefined) {
       this.responseFormat = fields.responseFormat;
     }
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
+    }
+    if (fields.followRedirects !== undefined) {
+      this.followRedirects = fields.followRedirects;
     }
   }
 }
@@ -145,4 +156,7 @@ export interface FetchOptionsInput {
   /**
    * Cancellation token */
   readonly cancellationToken?: CancellationToken;
+  /**
+   * A boolean value indicate if the request should follow redirects. Defaults to True. Not supported in Browser environment. */
+  readonly followRedirects?: undefined | boolean;
 }
