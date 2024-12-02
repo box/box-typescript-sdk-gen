@@ -5,6 +5,7 @@ import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { RecentItems } from '../schemas/recentItems.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
 import { prepareParams } from '../internal/utils.js';

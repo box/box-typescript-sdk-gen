@@ -7,6 +7,7 @@ import { deserializeTaskAssignment } from '../schemas/taskAssignment.generated.j
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { TaskAssignments } from '../schemas/taskAssignments.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { TaskAssignment } from '../schemas/taskAssignment.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
@@ -19,7 +20,6 @@ import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';

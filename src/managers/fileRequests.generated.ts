@@ -9,6 +9,7 @@ import { deserializeFileRequestCopyRequest } from '../schemas/fileRequestCopyReq
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { FileRequest } from '../schemas/fileRequest.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { FileRequestUpdateRequest } from '../schemas/fileRequestUpdateRequest.generated.js';
 import { FileRequestCopyRequest } from '../schemas/fileRequestCopyRequest.generated.js';
 import { Authentication } from '../networking/auth.generated.js';

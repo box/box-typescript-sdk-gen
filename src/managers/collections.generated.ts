@@ -9,6 +9,7 @@ import { deserializeCollection } from '../schemas/collection.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Collections } from '../schemas/collections.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { ItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { Collection } from '../schemas/collection.generated.js';
 import { Authentication } from '../networking/auth.generated.js';

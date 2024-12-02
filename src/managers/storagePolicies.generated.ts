@@ -7,6 +7,7 @@ import { deserializeStoragePolicy } from '../schemas/storagePolicy.generated.js'
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { StoragePolicies } from '../schemas/storagePolicies.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { StoragePolicy } from '../schemas/storagePolicy.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';

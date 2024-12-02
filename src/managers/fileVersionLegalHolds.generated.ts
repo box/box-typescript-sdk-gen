@@ -7,6 +7,7 @@ import { deserializeFileVersionLegalHolds } from '../schemas/fileVersionLegalHol
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { FileVersionLegalHold } from '../schemas/fileVersionLegalHold.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { FileVersionLegalHolds } from '../schemas/fileVersionLegalHolds.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';

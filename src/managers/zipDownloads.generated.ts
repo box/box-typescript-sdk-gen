@@ -10,6 +10,7 @@ import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ZipDownload } from '../schemas/zipDownload.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { ZipDownloadRequest } from '../schemas/zipDownloadRequest.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { ZipDownloadStatus } from '../schemas/zipDownloadStatus.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';

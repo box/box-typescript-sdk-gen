@@ -279,7 +279,6 @@ export async function fetch(
         requestId: requestId,
         helpUrl: helpUrl,
       },
-      name: 'BoxApiError',
     });
   }
 

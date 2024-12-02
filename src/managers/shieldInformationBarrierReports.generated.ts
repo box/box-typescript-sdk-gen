@@ -9,6 +9,7 @@ import { deserializeShieldInformationBarrierReference } from '../schemas/shieldI
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ShieldInformationBarrierReports } from '../schemas/shieldInformationBarrierReports.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { ShieldInformationBarrierReport } from '../schemas/shieldInformationBarrierReport.generated.js';
 import { ShieldInformationBarrierReference } from '../schemas/shieldInformationBarrierReference.generated.js';
 import { Authentication } from '../networking/auth.generated.js';

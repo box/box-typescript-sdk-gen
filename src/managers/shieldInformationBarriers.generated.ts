@@ -9,6 +9,7 @@ import { deserializeEnterpriseBase } from '../schemas/enterpriseBase.generated.j
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ShieldInformationBarrier } from '../schemas/shieldInformationBarrier.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { ShieldInformationBarriers } from '../schemas/shieldInformationBarriers.generated.js';
 import { EnterpriseBase } from '../schemas/enterpriseBase.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -22,7 +23,6 @@ import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';

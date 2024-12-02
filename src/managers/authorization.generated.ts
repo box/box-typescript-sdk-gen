@@ -10,6 +10,7 @@ import { serializePostOAuth2Revoke } from '../schemas/postOAuth2Revoke.generated
 import { deserializePostOAuth2Revoke } from '../schemas/postOAuth2Revoke.generated.js';
 import { PostOAuth2TokenRefreshAccessTokenInput } from '../schemas/postOAuth2TokenRefreshAccessToken.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { AccessToken } from '../schemas/accessToken.generated.js';
 import { OAuth2Error } from '../schemas/oAuth2Error.generated.js';
 import { PostOAuth2Token } from '../schemas/postOAuth2Token.generated.js';
@@ -26,7 +27,6 @@ import { FetchOptions } from '../networking/fetchOptions.generated.js';
 import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';

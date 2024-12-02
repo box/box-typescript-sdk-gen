@@ -15,8 +15,8 @@ import { ShieldInformationBarrierReportBase } from './shieldInformationBarrierRe
 import { ShieldInformationBarrierReference } from './shieldInformationBarrierReference.generated.js';
 import { ShieldInformationBarrierReportDetails } from './shieldInformationBarrierReportDetails.generated.js';
 import { UserBase } from './userBase.generated.js';
-import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
+import { DateTime } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

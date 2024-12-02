@@ -15,8 +15,8 @@ import { LegalHoldPolicyAssignmentBase } from './legalHoldPolicyAssignmentBase.g
 import { LegalHoldPolicyMini } from './legalHoldPolicyMini.generated.js';
 import { FileOrFolderOrWebLink } from './fileOrFolderOrWebLink.generated.js';
 import { UserMini } from './userMini.generated.js';
-import { DateTime } from '../internal/utils.js';
 import { BoxSdkError } from '../box/errors.js';
+import { DateTime } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

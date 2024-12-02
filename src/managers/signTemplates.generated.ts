@@ -7,6 +7,7 @@ import { deserializeSignTemplate } from '../schemas/signTemplate.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { SignTemplates } from '../schemas/signTemplates.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SignTemplate } from '../schemas/signTemplate.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';

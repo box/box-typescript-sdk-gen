@@ -1,6 +1,7 @@
 import { serializeMetadataBase } from './metadataBase.generated.js';
 import { deserializeMetadataBase } from './metadataBase.generated.js';
 import { MetadataBase } from './metadataBase.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';

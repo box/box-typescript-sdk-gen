@@ -9,6 +9,7 @@ import { deserializeShieldInformationBarrierBase } from '../schemas/shieldInform
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ShieldInformationBarrierSegment } from '../schemas/shieldInformationBarrierSegment.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { ShieldInformationBarrierSegments } from '../schemas/shieldInformationBarrierSegments.generated.js';
 import { ShieldInformationBarrierBase } from '../schemas/shieldInformationBarrierBase.generated.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -22,7 +23,6 @@ import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
-import { BoxSdkError } from '../box/errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
