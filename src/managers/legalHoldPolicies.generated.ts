@@ -42,10 +42,10 @@ export class CreateLegalHoldPolicyOptionals {
         Pick<CreateLegalHoldPolicyOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -67,10 +67,10 @@ export class GetLegalHoldPolicyByIdOptionals {
         Pick<GetLegalHoldPolicyByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -97,13 +97,13 @@ export class UpdateLegalHoldPolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,10 +129,10 @@ export class DeleteLegalHoldPolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -177,7 +177,7 @@ export class GetLegalHoldPoliciesHeaders {
     fields: Omit<GetLegalHoldPoliciesHeaders, 'extraHeaders'> &
       Partial<Pick<GetLegalHoldPoliciesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -246,7 +246,7 @@ export class CreateLegalHoldPolicyHeaders {
     fields: Omit<CreateLegalHoldPolicyHeaders, 'extraHeaders'> &
       Partial<Pick<CreateLegalHoldPolicyHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -270,7 +270,7 @@ export class GetLegalHoldPolicyByIdHeaders {
     fields: Omit<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -306,7 +306,7 @@ export class UpdateLegalHoldPolicyByIdHeaders {
     fields: Omit<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -330,7 +330,7 @@ export class DeleteLegalHoldPolicyByIdHeaders {
     fields: Omit<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteLegalHoldPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -359,10 +359,10 @@ export class LegalHoldPoliciesManager {
     > &
       Partial<Pick<LegalHoldPoliciesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

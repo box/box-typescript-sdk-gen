@@ -35,13 +35,13 @@ export class TranscriptSkillCardSkillField {
     fields: Omit<TranscriptSkillCardSkillField, 'type'> &
       Partial<Pick<TranscriptSkillCardSkillField, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -74,13 +74,13 @@ export class TranscriptSkillCardInvocationField {
     fields: Omit<TranscriptSkillCardInvocationField, 'type'> &
       Partial<Pick<TranscriptSkillCardInvocationField, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -153,31 +153,31 @@ export class TranscriptSkillCard {
     fields: Omit<TranscriptSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<TranscriptSkillCard, 'type' | 'skillCardType'>>,
   ) {
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.skillCardType) {
+    if (fields.skillCardType !== undefined) {
       this.skillCardType = fields.skillCardType;
     }
-    if (fields.skillCardTitle) {
+    if (fields.skillCardTitle !== undefined) {
       this.skillCardTitle = fields.skillCardTitle;
     }
-    if (fields.skill) {
+    if (fields.skill !== undefined) {
       this.skill = fields.skill;
     }
-    if (fields.invocation) {
+    if (fields.invocation !== undefined) {
       this.invocation = fields.invocation;
     }
-    if (fields.duration) {
+    if (fields.duration !== undefined) {
       this.duration = fields.duration;
     }
-    if (fields.entries) {
+    if (fields.entries !== undefined) {
       this.entries = fields.entries;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

@@ -28,16 +28,16 @@ export class AiTextGenItemsField {
     fields: Omit<AiTextGenItemsField, 'type'> &
       Partial<Pick<AiTextGenItemsField, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.content) {
+    if (fields.content !== undefined) {
       this.content = fields.content;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

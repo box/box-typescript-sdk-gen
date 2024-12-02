@@ -46,13 +46,13 @@ export class CreateUserOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -79,13 +79,13 @@ export class GetUserByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -114,16 +114,16 @@ export class UpdateUserByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -151,13 +151,13 @@ export class DeleteUserByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -247,7 +247,7 @@ export class GetUsersHeaders {
     fields: Omit<GetUsersHeaders, 'extraHeaders'> &
       Partial<Pick<GetUsersHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -359,7 +359,7 @@ export class CreateUserHeaders {
     fields: Omit<CreateUserHeaders, 'extraHeaders'> &
       Partial<Pick<CreateUserHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -396,7 +396,7 @@ export class GetUserMeHeaders {
     fields: Omit<GetUserMeHeaders, 'extraHeaders'> &
       Partial<Pick<GetUserMeHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -433,7 +433,7 @@ export class GetUserByIdHeaders {
     fields: Omit<GetUserByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetUserByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -570,7 +570,7 @@ export class UpdateUserByIdHeaders {
     fields: Omit<UpdateUserByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateUserByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -604,7 +604,7 @@ export class DeleteUserByIdHeaders {
     fields: Omit<DeleteUserByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteUserByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -634,10 +634,10 @@ export class UsersManager {
     > &
       Partial<Pick<UsersManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

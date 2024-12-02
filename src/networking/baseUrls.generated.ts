@@ -15,16 +15,16 @@ export class BaseUrls {
     fields: Omit<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'> &
       Partial<Pick<BaseUrls, 'baseUrl' | 'uploadUrl' | 'oauth2Url'>>,
   ) {
-    if (fields.baseUrl) {
+    if (fields.baseUrl !== undefined) {
       this.baseUrl = fields.baseUrl;
     }
-    if (fields.uploadUrl) {
+    if (fields.uploadUrl !== undefined) {
       this.uploadUrl = fields.uploadUrl;
     }
-    if (fields.oauth2Url) {
+    if (fields.oauth2Url !== undefined) {
       this.oauth2Url = fields.oauth2Url;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

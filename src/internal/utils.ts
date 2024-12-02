@@ -2,7 +2,6 @@ import { Buffer } from 'buffer';
 import type { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 import { SignJWT, importPKCS8 } from 'jose';
-import { sdIsMap, SerializedData } from '../serialization/json';
 
 export function isBrowser() {
   return (
@@ -23,7 +22,7 @@ export function hexToBase64(data: string): string {
 }
 
 export { Buffer, Readable as ByteStream };
-export type { CancellationToken };
+export type { CancellationController, CancellationToken };
 export type Iterator<T = any> = AsyncIterator<T>;
 export type AgentOptions = any;
 export type Agent = any;
@@ -293,6 +292,7 @@ export function toString(value: any): string {
   return String(value);
 }
 
+type CancellationController = AbortController;
 type CancellationToken = AbortSignal;
 
 /**
@@ -445,4 +445,11 @@ export function getValueFromObjectRawData(obj: any, key: string): any {
  */
 export function createNull(): null {
   return null;
+}
+
+/**
+ * Create a cancellation controller.
+ */
+export function createCancellationController(): CancellationController {
+  return new AbortController();
 }

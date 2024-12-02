@@ -31,10 +31,10 @@ export class GetUserAvatarOptionals {
     fields: Omit<GetUserAvatarOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetUserAvatarOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -50,10 +50,10 @@ export class CreateUserAvatarOptionals {
     fields: Omit<CreateUserAvatarOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateUserAvatarOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -69,10 +69,10 @@ export class DeleteUserAvatarOptionals {
     fields: Omit<DeleteUserAvatarOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<DeleteUserAvatarOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -91,7 +91,7 @@ export class GetUserAvatarHeaders {
     fields: Omit<GetUserAvatarHeaders, 'extraHeaders'> &
       Partial<Pick<GetUserAvatarHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -124,7 +124,7 @@ export class CreateUserAvatarHeaders {
     fields: Omit<CreateUserAvatarHeaders, 'extraHeaders'> &
       Partial<Pick<CreateUserAvatarHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -148,7 +148,7 @@ export class DeleteUserAvatarHeaders {
     fields: Omit<DeleteUserAvatarHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteUserAvatarHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -175,10 +175,10 @@ export class AvatarsManager {
     > &
       Partial<Pick<AvatarsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

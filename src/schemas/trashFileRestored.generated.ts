@@ -108,73 +108,73 @@ export class TrashFileRestored {
     fields: Omit<TrashFileRestored, 'type'> &
       Partial<Pick<TrashFileRestored, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.etag) {
+    if (fields.etag !== undefined) {
       this.etag = fields.etag;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.sequenceId) {
+    if (fields.sequenceId !== undefined) {
       this.sequenceId = fields.sequenceId;
     }
-    if (fields.name) {
+    if (fields.name !== undefined) {
       this.name = fields.name;
     }
-    if (fields.sha1) {
+    if (fields.sha1 !== undefined) {
       this.sha1 = fields.sha1;
     }
-    if (fields.fileVersion) {
+    if (fields.fileVersion !== undefined) {
       this.fileVersion = fields.fileVersion;
     }
-    if (fields.description) {
+    if (fields.description !== undefined) {
       this.description = fields.description;
     }
-    if (fields.size) {
+    if (fields.size !== undefined) {
       this.size = fields.size;
     }
-    if (fields.pathCollection) {
+    if (fields.pathCollection !== undefined) {
       this.pathCollection = fields.pathCollection;
     }
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.modifiedAt) {
+    if (fields.modifiedAt !== undefined) {
       this.modifiedAt = fields.modifiedAt;
     }
-    if (fields.trashedAt) {
+    if (fields.trashedAt !== undefined) {
       this.trashedAt = fields.trashedAt;
     }
-    if (fields.purgedAt) {
+    if (fields.purgedAt !== undefined) {
       this.purgedAt = fields.purgedAt;
     }
-    if (fields.contentCreatedAt) {
+    if (fields.contentCreatedAt !== undefined) {
       this.contentCreatedAt = fields.contentCreatedAt;
     }
-    if (fields.contentModifiedAt) {
+    if (fields.contentModifiedAt !== undefined) {
       this.contentModifiedAt = fields.contentModifiedAt;
     }
-    if (fields.createdBy) {
+    if (fields.createdBy !== undefined) {
       this.createdBy = fields.createdBy;
     }
-    if (fields.modifiedBy) {
+    if (fields.modifiedBy !== undefined) {
       this.modifiedBy = fields.modifiedBy;
     }
-    if (fields.ownedBy) {
+    if (fields.ownedBy !== undefined) {
       this.ownedBy = fields.ownedBy;
     }
-    if (fields.sharedLink) {
+    if (fields.sharedLink !== undefined) {
       this.sharedLink = fields.sharedLink;
     }
-    if (fields.parent) {
+    if (fields.parent !== undefined) {
       this.parent = fields.parent;
     }
-    if (fields.itemStatus) {
+    if (fields.itemStatus !== undefined) {
       this.itemStatus = fields.itemStatus;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

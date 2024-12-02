@@ -37,10 +37,10 @@ export class GetTaskAssignmentsOptionals {
         Pick<GetTaskAssignmentsOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -62,10 +62,10 @@ export class CreateTaskAssignmentOptionals {
         Pick<CreateTaskAssignmentOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -87,10 +87,10 @@ export class GetTaskAssignmentByIdOptionals {
         Pick<GetTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -117,13 +117,13 @@ export class UpdateTaskAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -146,10 +146,10 @@ export class DeleteTaskAssignmentByIdOptionals {
         Pick<DeleteTaskAssignmentByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -168,7 +168,7 @@ export class GetTaskAssignmentsHeaders {
     fields: Omit<GetTaskAssignmentsHeaders, 'extraHeaders'> &
       Partial<Pick<GetTaskAssignmentsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -196,13 +196,13 @@ export class CreateTaskAssignmentRequestBodyTaskField {
     fields: Omit<CreateTaskAssignmentRequestBodyTaskField, 'type'> &
       Partial<Pick<CreateTaskAssignmentRequestBodyTaskField, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -249,7 +249,7 @@ export class CreateTaskAssignmentHeaders {
     fields: Omit<CreateTaskAssignmentHeaders, 'extraHeaders'> &
       Partial<Pick<CreateTaskAssignmentHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -273,7 +273,7 @@ export class GetTaskAssignmentByIdHeaders {
     fields: Omit<GetTaskAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -316,7 +316,7 @@ export class UpdateTaskAssignmentByIdHeaders {
     fields: Omit<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -340,7 +340,7 @@ export class DeleteTaskAssignmentByIdHeaders {
     fields: Omit<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteTaskAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -369,10 +369,10 @@ export class TaskAssignmentsManager {
     > &
       Partial<Pick<TaskAssignmentsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

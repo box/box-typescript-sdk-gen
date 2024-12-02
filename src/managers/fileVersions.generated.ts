@@ -43,13 +43,13 @@ export class GetFileVersionsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -78,13 +78,13 @@ export class GetFileVersionByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -107,10 +107,10 @@ export class DeleteFileVersionByIdOptionals {
         Pick<DeleteFileVersionByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -137,13 +137,13 @@ export class UpdateFileVersionByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -174,16 +174,16 @@ export class PromoteFileVersionOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -227,7 +227,7 @@ export class GetFileVersionsHeaders {
     fields: Omit<GetFileVersionsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileVersionsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -264,7 +264,7 @@ export class GetFileVersionByIdHeaders {
     fields: Omit<GetFileVersionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileVersionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -297,10 +297,10 @@ export class DeleteFileVersionByIdHeaders {
     fields: Omit<DeleteFileVersionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileVersionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -340,7 +340,7 @@ export class UpdateFileVersionByIdHeaders {
     fields: Omit<UpdateFileVersionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFileVersionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -387,7 +387,7 @@ export class PromoteFileVersionHeaders {
     fields: Omit<PromoteFileVersionHeaders, 'extraHeaders'> &
       Partial<Pick<PromoteFileVersionHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -416,10 +416,10 @@ export class FileVersionsManager {
     > &
       Partial<Pick<FileVersionsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

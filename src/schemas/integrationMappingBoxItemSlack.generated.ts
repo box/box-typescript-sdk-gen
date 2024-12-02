@@ -20,13 +20,13 @@ export class IntegrationMappingBoxItemSlack {
     fields: Omit<IntegrationMappingBoxItemSlack, 'type'> &
       Partial<Pick<IntegrationMappingBoxItemSlack, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

@@ -45,10 +45,10 @@ export class CreateRetentionPolicyOptionals {
         Pick<CreateRetentionPolicyOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -75,13 +75,13 @@ export class GetRetentionPolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -109,13 +109,13 @@ export class UpdateRetentionPolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -141,10 +141,10 @@ export class DeleteRetentionPolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -196,7 +196,7 @@ export class GetRetentionPoliciesHeaders {
     fields: Omit<GetRetentionPoliciesHeaders, 'extraHeaders'> &
       Partial<Pick<GetRetentionPoliciesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -290,7 +290,7 @@ export class CreateRetentionPolicyHeaders {
     fields: Omit<CreateRetentionPolicyHeaders, 'extraHeaders'> &
       Partial<Pick<CreateRetentionPolicyHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -327,7 +327,7 @@ export class GetRetentionPolicyByIdHeaders {
     fields: Omit<GetRetentionPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -418,7 +418,7 @@ export class UpdateRetentionPolicyByIdHeaders {
     fields: Omit<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -442,7 +442,7 @@ export class DeleteRetentionPolicyByIdHeaders {
     fields: Omit<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteRetentionPolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -471,10 +471,10 @@ export class RetentionPoliciesManager {
     > &
       Partial<Pick<RetentionPoliciesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

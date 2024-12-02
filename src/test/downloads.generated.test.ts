@@ -22,6 +22,7 @@ import { generateByteStreamFromBuffer } from '../internal/utils.js';
 import { bufferEquals } from '../internal/utils.js';
 import { readByteStream } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
+import { uploadNewFile } from './commons.generated.js';
 import { FetchOptions } from '../networking/fetchOptions.generated.js';
 import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { SerializedData } from '../serialization/json.js';
@@ -48,6 +49,19 @@ test('test_download_file', async function test_download_file(): Promise<any> {
   const downloadedFileContent: undefined | ByteStream =
     await client.downloads.downloadFile(uploadedFile.id);
   if (!bufferEquals(await readByteStream(downloadedFileContent!), fileBuffer)) {
+    throw new Error('Assertion failed');
+  }
+  await client.files.deleteFileById(uploadedFile.id);
+});
+test('test_get_download_url', async function test_get_download_url(): Promise<any> {
+  const uploadedFile: FileFull = await uploadNewFile();
+  const downloadUrl: string = await client.downloads.getDownloadFileUrl(
+    uploadedFile.id,
+  );
+  if (!!(downloadUrl == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(downloadUrl.includes('https://') as boolean)) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(uploadedFile.id);
@@ -84,11 +98,13 @@ test('test_change_download_url_with_interceptor', async function test_change_dow
       auth: optionsInput.auth,
       networkSession: optionsInput.networkSession,
       cancellationToken: optionsInput.cancellationToken,
+      followRedirects: optionsInput.followRedirects,
     });
     return options;
   }
   function afterRequest(response: FetchResponse): FetchResponse {
     return {
+      url: response.url,
       status: response.status,
       data: response.data,
       content: response.content,

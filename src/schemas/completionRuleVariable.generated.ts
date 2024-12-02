@@ -36,16 +36,16 @@ export class CompletionRuleVariable {
     fields: Omit<CompletionRuleVariable, 'type' | 'variableType'> &
       Partial<Pick<CompletionRuleVariable, 'type' | 'variableType'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.variableType) {
+    if (fields.variableType !== undefined) {
       this.variableType = fields.variableType;
     }
-    if (fields.variableValue) {
+    if (fields.variableValue !== undefined) {
       this.variableValue = fields.variableValue;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

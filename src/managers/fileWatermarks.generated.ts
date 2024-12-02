@@ -30,10 +30,10 @@ export class GetFileWatermarkOptionals {
     fields: Omit<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetFileWatermarkOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -56,10 +56,10 @@ export class UpdateFileWatermarkOptionals {
         Pick<UpdateFileWatermarkOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -82,10 +82,10 @@ export class DeleteFileWatermarkOptionals {
         Pick<DeleteFileWatermarkOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -104,7 +104,7 @@ export class GetFileWatermarkHeaders {
     fields: Omit<GetFileWatermarkHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -131,10 +131,10 @@ export class UpdateFileWatermarkRequestBodyWatermarkField {
     fields: Omit<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'> &
       Partial<Pick<UpdateFileWatermarkRequestBodyWatermarkField, 'imprint'>>,
   ) {
-    if (fields.imprint) {
+    if (fields.imprint !== undefined) {
       this.imprint = fields.imprint;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -163,7 +163,7 @@ export class UpdateFileWatermarkHeaders {
     fields: Omit<UpdateFileWatermarkHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -187,7 +187,7 @@ export class DeleteFileWatermarkHeaders {
     fields: Omit<DeleteFileWatermarkHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileWatermarkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -214,10 +214,10 @@ export class FileWatermarksManager {
     > &
       Partial<Pick<FileWatermarksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

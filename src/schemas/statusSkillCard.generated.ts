@@ -54,13 +54,13 @@ export class StatusSkillCardSkillField {
     fields: Omit<StatusSkillCardSkillField, 'type'> &
       Partial<Pick<StatusSkillCardSkillField, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -93,13 +93,13 @@ export class StatusSkillCardInvocationField {
     fields: Omit<StatusSkillCardInvocationField, 'type'> &
       Partial<Pick<StatusSkillCardInvocationField, 'type'>>,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -147,28 +147,28 @@ export class StatusSkillCard {
     fields: Omit<StatusSkillCard, 'type' | 'skillCardType'> &
       Partial<Pick<StatusSkillCard, 'type' | 'skillCardType'>>,
   ) {
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.skillCardType) {
+    if (fields.skillCardType !== undefined) {
       this.skillCardType = fields.skillCardType;
     }
-    if (fields.skillCardTitle) {
+    if (fields.skillCardTitle !== undefined) {
       this.skillCardTitle = fields.skillCardTitle;
     }
-    if (fields.status) {
+    if (fields.status !== undefined) {
       this.status = fields.status;
     }
-    if (fields.skill) {
+    if (fields.skill !== undefined) {
       this.skill = fields.skill;
     }
-    if (fields.invocation) {
+    if (fields.invocation !== undefined) {
       this.invocation = fields.invocation;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

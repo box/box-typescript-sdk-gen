@@ -39,10 +39,10 @@ export class CreateTermsOfServiceOptionals {
         Pick<CreateTermsOfServiceOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -64,10 +64,10 @@ export class GetTermsOfServiceByIdOptionals {
         Pick<GetTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -89,10 +89,10 @@ export class UpdateTermsOfServiceByIdOptionals {
         Pick<UpdateTermsOfServiceByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -117,7 +117,7 @@ export class GetTermsOfServiceHeaders {
     fields: Omit<GetTermsOfServiceHeaders, 'extraHeaders'> &
       Partial<Pick<GetTermsOfServiceHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -160,7 +160,7 @@ export class CreateTermsOfServiceHeaders {
     fields: Omit<CreateTermsOfServiceHeaders, 'extraHeaders'> &
       Partial<Pick<CreateTermsOfServiceHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -184,7 +184,7 @@ export class GetTermsOfServiceByIdHeaders {
     fields: Omit<GetTermsOfServiceByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetTermsOfServiceByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -222,7 +222,7 @@ export class UpdateTermsOfServiceByIdHeaders {
     fields: Omit<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateTermsOfServiceByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -250,10 +250,10 @@ export class TermsOfServicesManager {
     > &
       Partial<Pick<TermsOfServicesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

@@ -46,13 +46,13 @@ export class GetFolderByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -81,16 +81,16 @@ export class UpdateFolderByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -118,13 +118,13 @@ export class DeleteFolderByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -151,13 +151,13 @@ export class GetFolderItemsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -184,13 +184,13 @@ export class CreateFolderOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -217,13 +217,13 @@ export class CopyFolderOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -327,13 +327,13 @@ export class GetFolderByIdHeaders {
     fields: Omit<GetFolderByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -555,10 +555,10 @@ export class UpdateFolderByIdHeaders {
     fields: Omit<UpdateFolderByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFolderByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -606,10 +606,10 @@ export class DeleteFolderByIdHeaders {
     fields: Omit<DeleteFolderByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFolderByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -737,10 +737,10 @@ export class GetFolderItemsHeaders {
     fields: Omit<GetFolderItemsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderItemsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -843,7 +843,7 @@ export class CreateFolderHeaders {
     fields: Omit<CreateFolderHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -903,7 +903,7 @@ export class CopyFolderHeaders {
     fields: Omit<CopyFolderHeaders, 'extraHeaders'> &
       Partial<Pick<CopyFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -933,10 +933,10 @@ export class FoldersManager {
     > &
       Partial<Pick<FoldersManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

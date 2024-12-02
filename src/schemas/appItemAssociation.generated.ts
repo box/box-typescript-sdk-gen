@@ -28,19 +28,19 @@ export class AppItemAssociation {
     fields: Omit<AppItemAssociation, 'type'> &
       Partial<Pick<AppItemAssociation, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.appItem) {
+    if (fields.appItem !== undefined) {
       this.appItem = fields.appItem;
     }
-    if (fields.item) {
+    if (fields.item !== undefined) {
       this.item = fields.item;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

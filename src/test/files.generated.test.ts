@@ -6,6 +6,8 @@ import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploa
 import { deserializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { serializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { serializeGetFileThumbnailUrlExtension } from '../managers/files.generated.js';
+import { deserializeGetFileThumbnailUrlExtension } from '../managers/files.generated.js';
 import { serializeGetFileThumbnailByIdExtension } from '../managers/files.generated.js';
 import { deserializeGetFileThumbnailByIdExtension } from '../managers/files.generated.js';
 import { serializeTrashFile } from '../schemas/trashFile.generated.js';
@@ -30,6 +32,7 @@ import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { GetFileThumbnailUrlExtension } from '../managers/files.generated.js';
 import { GetFileThumbnailByIdExtension } from '../managers/files.generated.js';
 import { GetFileByIdQueryParams } from '../managers/files.generated.js';
 import { GetFileByIdHeaders } from '../managers/files.generated.js';
@@ -69,6 +72,25 @@ export async function uploadFile(
   } satisfies UploadFileRequestBody);
   return uploadedFiles.entries![0];
 }
+test('testGetFileThumbnailUrl', async function testGetFileThumbnailUrl(): Promise<any> {
+  const thumbnailFileName: string = getUuid();
+  const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);
+  const thumbnailFile: FileFull = await uploadFile(
+    thumbnailFileName,
+    thumbnailContentStream,
+  );
+  const downloadUrl: string = await client.files.getFileThumbnailUrl(
+    thumbnailFile.id,
+    'png' as GetFileThumbnailUrlExtension,
+  );
+  if (!!(downloadUrl == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(downloadUrl.includes('https://') as boolean)) {
+    throw new Error('Assertion failed');
+  }
+  await client.files.deleteFileById(thumbnailFile.id);
+});
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
   const thumbnailFileName: string = getUuid();
   const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);

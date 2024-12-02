@@ -33,10 +33,10 @@ export class GetWorkflowsOptionals {
     fields: Omit<GetWorkflowsOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetWorkflowsOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -52,10 +52,10 @@ export class StartWorkflowOptionals {
     fields: Omit<StartWorkflowOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<StartWorkflowOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -100,7 +100,7 @@ export class GetWorkflowsHeaders {
     fields: Omit<GetWorkflowsHeaders, 'extraHeaders'> &
       Partial<Pick<GetWorkflowsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -173,7 +173,7 @@ export class StartWorkflowHeaders {
     fields: Omit<StartWorkflowHeaders, 'extraHeaders'> &
       Partial<Pick<StartWorkflowHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -197,10 +197,10 @@ export class WorkflowsManager {
     > &
       Partial<Pick<WorkflowsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

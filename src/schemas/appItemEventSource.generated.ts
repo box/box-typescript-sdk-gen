@@ -32,22 +32,22 @@ export class AppItemEventSource {
     fields: Omit<AppItemEventSource, 'type'> &
       Partial<Pick<AppItemEventSource, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.appItemType) {
+    if (fields.appItemType !== undefined) {
       this.appItemType = fields.appItemType;
     }
-    if (fields.user) {
+    if (fields.user !== undefined) {
       this.user = fields.user;
     }
-    if (fields.group) {
+    if (fields.group !== undefined) {
       this.group = fields.group;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

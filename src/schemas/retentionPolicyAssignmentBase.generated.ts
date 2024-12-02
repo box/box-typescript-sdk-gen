@@ -21,13 +21,13 @@ export class RetentionPolicyAssignmentBase {
     fields: Omit<RetentionPolicyAssignmentBase, 'type'> &
       Partial<Pick<RetentionPolicyAssignmentBase, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

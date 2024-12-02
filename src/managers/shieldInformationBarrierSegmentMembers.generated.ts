@@ -48,10 +48,10 @@ export class GetShieldInformationBarrierSegmentMemberByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -76,10 +76,10 @@ export class DeleteShieldInformationBarrierSegmentMemberByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -104,10 +104,10 @@ export class GetShieldInformationBarrierSegmentMembersOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -132,10 +132,10 @@ export class CreateShieldInformationBarrierSegmentMemberOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -162,7 +162,7 @@ export class GetShieldInformationBarrierSegmentMemberByIdHeaders {
         >
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -194,7 +194,7 @@ export class DeleteShieldInformationBarrierSegmentMemberByIdHeaders {
         >
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -237,7 +237,7 @@ export class GetShieldInformationBarrierSegmentMembersHeaders {
         Pick<GetShieldInformationBarrierSegmentMembersHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -294,7 +294,7 @@ export class CreateShieldInformationBarrierSegmentMemberHeaders {
         Pick<CreateShieldInformationBarrierSegmentMemberHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -324,10 +324,10 @@ export class ShieldInformationBarrierSegmentMembersManager {
         Pick<ShieldInformationBarrierSegmentMembersManager, 'networkSession'>
       >,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

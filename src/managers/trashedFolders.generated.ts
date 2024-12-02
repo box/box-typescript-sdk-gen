@@ -46,16 +46,16 @@ export class RestoreFolderFromTrashOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -84,13 +84,13 @@ export class GetTrashedFolderByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -113,10 +113,10 @@ export class DeleteTrashedFolderByIdOptionals {
         Pick<DeleteTrashedFolderByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -161,7 +161,7 @@ export class RestoreFolderFromTrashHeaders {
     fields: Omit<RestoreFolderFromTrashHeaders, 'extraHeaders'> &
       Partial<Pick<RestoreFolderFromTrashHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -198,7 +198,7 @@ export class GetTrashedFolderByIdHeaders {
     fields: Omit<GetTrashedFolderByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetTrashedFolderByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -222,7 +222,7 @@ export class DeleteTrashedFolderByIdHeaders {
     fields: Omit<DeleteTrashedFolderByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteTrashedFolderByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -249,10 +249,10 @@ export class TrashedFoldersManager {
     > &
       Partial<Pick<TrashedFoldersManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

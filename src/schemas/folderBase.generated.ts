@@ -29,16 +29,16 @@ export class FolderBase {
   constructor(
     fields: Omit<FolderBase, 'type'> & Partial<Pick<FolderBase, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.etag) {
+    if (fields.etag !== undefined) {
       this.etag = fields.etag;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

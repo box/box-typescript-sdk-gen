@@ -34,10 +34,10 @@ export class BoxDeveloperTokenAuth implements Authentication {
     > &
       Partial<Pick<BoxDeveloperTokenAuth, 'config'>>,
   ) {
-    if (fields.token) {
+    if (fields.token !== undefined) {
       this.token = fields.token;
     }
-    if (fields.config) {
+    if (fields.config !== undefined) {
       this.config = fields.config;
     }
     this.tokenStorage = new InMemoryTokenStorage({

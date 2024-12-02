@@ -43,13 +43,13 @@ export class CreateGroupOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -76,13 +76,13 @@ export class GetGroupByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -111,16 +111,16 @@ export class UpdateGroupByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -138,10 +138,10 @@ export class DeleteGroupByIdOptionals {
     fields: Omit<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<DeleteGroupByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -187,7 +187,7 @@ export class GetGroupsHeaders {
     fields: Omit<GetGroupsHeaders, 'extraHeaders'> &
       Partial<Pick<GetGroupsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -287,7 +287,7 @@ export class CreateGroupHeaders {
     fields: Omit<CreateGroupHeaders, 'extraHeaders'> &
       Partial<Pick<CreateGroupHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -324,7 +324,7 @@ export class GetGroupByIdHeaders {
     fields: Omit<GetGroupByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetGroupByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -424,7 +424,7 @@ export class UpdateGroupByIdHeaders {
     fields: Omit<UpdateGroupByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateGroupByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -448,7 +448,7 @@ export class DeleteGroupByIdHeaders {
     fields: Omit<DeleteGroupByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteGroupByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -477,10 +477,10 @@ export class GroupsManager {
     > &
       Partial<Pick<GroupsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

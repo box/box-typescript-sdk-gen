@@ -20,7 +20,7 @@ export class InMemoryTokenStorage implements TokenStorage {
     fields: Omit<InMemoryTokenStorage, 'token' | 'store' | 'get' | 'clear'> &
       Partial<Pick<InMemoryTokenStorage, 'token'>>,
   ) {
-    if (fields.token) {
+    if (fields.token !== undefined) {
       this.token = fields.token;
     }
   }

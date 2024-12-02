@@ -45,10 +45,10 @@ export class SearchByMetadataQueryOptionals {
         Pick<SearchByMetadataQueryOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -67,7 +67,7 @@ export class SearchByMetadataQueryHeaders {
     fields: Omit<SearchByMetadataQueryHeaders, 'extraHeaders'> &
       Partial<Pick<SearchByMetadataQueryHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -371,7 +371,7 @@ export class SearchForContentHeaders {
     fields: Omit<SearchForContentHeaders, 'extraHeaders'> &
       Partial<Pick<SearchForContentHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -395,10 +395,10 @@ export class SearchManager {
     > &
       Partial<Pick<SearchManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

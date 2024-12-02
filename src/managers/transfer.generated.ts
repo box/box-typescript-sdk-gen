@@ -42,13 +42,13 @@ export class TransferOwnedFolderOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,7 +98,7 @@ export class TransferOwnedFolderHeaders {
     fields: Omit<TransferOwnedFolderHeaders, 'extraHeaders'> &
       Partial<Pick<TransferOwnedFolderHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -119,10 +119,10 @@ export class TransferManager {
     fields: Omit<TransferManager, 'networkSession' | 'transferOwnedFolder'> &
       Partial<Pick<TransferManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

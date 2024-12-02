@@ -38,10 +38,10 @@ export class CancelSignRequestOptionals {
         Pick<CancelSignRequestOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -59,10 +59,10 @@ export class ResendSignRequestOptionals {
         Pick<ResendSignRequestOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -82,10 +82,10 @@ export class GetSignRequestByIdOptionals {
         Pick<GetSignRequestByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -103,10 +103,10 @@ export class CreateSignRequestOptionals {
         Pick<CreateSignRequestOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -125,7 +125,7 @@ export class CancelSignRequestHeaders {
     fields: Omit<CancelSignRequestHeaders, 'extraHeaders'> &
       Partial<Pick<CancelSignRequestHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -149,7 +149,7 @@ export class ResendSignRequestHeaders {
     fields: Omit<ResendSignRequestHeaders, 'extraHeaders'> &
       Partial<Pick<ResendSignRequestHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -173,7 +173,7 @@ export class GetSignRequestByIdHeaders {
     fields: Omit<GetSignRequestByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetSignRequestByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -208,7 +208,7 @@ export class GetSignRequestsHeaders {
     fields: Omit<GetSignRequestsHeaders, 'extraHeaders'> &
       Partial<Pick<GetSignRequestsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -232,7 +232,7 @@ export class CreateSignRequestHeaders {
     fields: Omit<CreateSignRequestHeaders, 'extraHeaders'> &
       Partial<Pick<CreateSignRequestHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -261,10 +261,10 @@ export class SignRequestsManager {
     > &
       Partial<Pick<SignRequestsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

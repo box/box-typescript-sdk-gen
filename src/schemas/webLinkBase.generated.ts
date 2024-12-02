@@ -22,16 +22,16 @@ export class WebLinkBase {
   constructor(
     fields: Omit<WebLinkBase, 'type'> & Partial<Pick<WebLinkBase, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.etag) {
+    if (fields.etag !== undefined) {
       this.etag = fields.etag;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

@@ -61,10 +61,10 @@ export class CreateFileUploadSessionOptionals {
         Pick<CreateFileUploadSessionOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -89,10 +89,10 @@ export class CreateFileUploadSessionForExistingFileOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -117,10 +117,10 @@ export class GetFileUploadSessionByUrlOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -142,10 +142,10 @@ export class GetFileUploadSessionByIdOptionals {
         Pick<GetFileUploadSessionByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -160,7 +160,7 @@ export class UploadFilePartByUrlOptionals {
     fields: Omit<UploadFilePartByUrlOptionals, 'cancellationToken'> &
       Partial<Pick<UploadFilePartByUrlOptionals, 'cancellationToken'>>,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -174,7 +174,7 @@ export class UploadFilePartOptionals {
     fields: Omit<UploadFilePartOptionals, 'cancellationToken'> &
       Partial<Pick<UploadFilePartOptionals, 'cancellationToken'>>,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -198,10 +198,10 @@ export class DeleteFileUploadSessionByUrlOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -226,10 +226,10 @@ export class DeleteFileUploadSessionByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -256,13 +256,13 @@ export class GetFileUploadSessionPartsByUrlOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -290,13 +290,13 @@ export class GetFileUploadSessionPartsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -317,7 +317,7 @@ export class CreateFileUploadSessionCommitByUrlOptionals {
         Pick<CreateFileUploadSessionCommitByUrlOptionals, 'cancellationToken'>
       >,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -333,7 +333,7 @@ export class CreateFileUploadSessionCommitOptionals {
         Pick<CreateFileUploadSessionCommitOptionals, 'cancellationToken'>
       >,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -370,7 +370,7 @@ export class CreateFileUploadSessionHeaders {
     fields: Omit<CreateFileUploadSessionHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFileUploadSessionHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -408,7 +408,7 @@ export class CreateFileUploadSessionForExistingFileHeaders {
         Pick<CreateFileUploadSessionForExistingFileHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -432,7 +432,7 @@ export class GetFileUploadSessionByUrlHeaders {
     fields: Omit<GetFileUploadSessionByUrlHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileUploadSessionByUrlHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -456,7 +456,7 @@ export class GetFileUploadSessionByIdHeaders {
     fields: Omit<GetFileUploadSessionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileUploadSessionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -508,13 +508,13 @@ export class UploadFilePartByUrlHeaders {
     fields: Omit<UploadFilePartByUrlHeaders, 'extraHeaders'> &
       Partial<Pick<UploadFilePartByUrlHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.digest) {
+    if (fields.digest !== undefined) {
       this.digest = fields.digest;
     }
-    if (fields.contentRange) {
+    if (fields.contentRange !== undefined) {
       this.contentRange = fields.contentRange;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -594,13 +594,13 @@ export class UploadFilePartHeaders {
     fields: Omit<UploadFilePartHeaders, 'extraHeaders'> &
       Partial<Pick<UploadFilePartHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.digest) {
+    if (fields.digest !== undefined) {
       this.digest = fields.digest;
     }
-    if (fields.contentRange) {
+    if (fields.contentRange !== undefined) {
       this.contentRange = fields.contentRange;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -652,7 +652,7 @@ export class DeleteFileUploadSessionByUrlHeaders {
     fields: Omit<DeleteFileUploadSessionByUrlHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileUploadSessionByUrlHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -676,7 +676,7 @@ export class DeleteFileUploadSessionByIdHeaders {
     fields: Omit<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFileUploadSessionByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -712,7 +712,7 @@ export class GetFileUploadSessionPartsByUrlHeaders {
     fields: Omit<GetFileUploadSessionPartsByUrlHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileUploadSessionPartsByUrlHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -748,7 +748,7 @@ export class GetFileUploadSessionPartsHeaders {
     fields: Omit<GetFileUploadSessionPartsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileUploadSessionPartsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -804,16 +804,16 @@ export class CreateFileUploadSessionCommitByUrlHeaders {
     fields: Omit<CreateFileUploadSessionCommitByUrlHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFileUploadSessionCommitByUrlHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.digest) {
+    if (fields.digest !== undefined) {
       this.digest = fields.digest;
     }
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -895,16 +895,16 @@ export class CreateFileUploadSessionCommitHeaders {
     fields: Omit<CreateFileUploadSessionCommitHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFileUploadSessionCommitHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.digest) {
+    if (fields.digest !== undefined) {
       this.digest = fields.digest;
     }
-    if (fields.ifMatch) {
+    if (fields.ifMatch !== undefined) {
       this.ifMatch = fields.ifMatch;
     }
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -968,10 +968,10 @@ export class ChunkedUploadsManager {
     > &
       Partial<Pick<ChunkedUploadsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

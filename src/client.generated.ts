@@ -248,10 +248,10 @@ export class BoxClient {
     > &
       Partial<Pick<BoxClient, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
     this.authorization = new AuthorizationManager({
@@ -562,6 +562,7 @@ export class BoxClient {
       auth: fetchOptionsInput.auth,
       networkSession: fetchOptionsInput.networkSession,
       cancellationToken: fetchOptionsInput.cancellationToken,
+      followRedirects: fetchOptionsInput.followRedirects,
     });
     const auth: Authentication =
       fetchOptions.auth == void 0 ? this.auth : fetchOptions.auth!;
@@ -581,6 +582,7 @@ export class BoxClient {
       multipartData: fetchOptions.multipartData,
       contentType: fetchOptions.contentType,
       responseFormat: fetchOptions.responseFormat,
+      followRedirects: fetchOptions.followRedirects,
     });
     return (await fetch(enrichedFetchOptions)) as FetchResponse;
   }

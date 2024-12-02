@@ -40,10 +40,10 @@ export class GetDevicePinnerByIdOptionals {
         Pick<GetDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -65,10 +65,10 @@ export class DeleteDevicePinnerByIdOptionals {
         Pick<DeleteDevicePinnerByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -95,13 +95,13 @@ export class GetEnterpriseDevicePinnersOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -121,7 +121,7 @@ export class GetDevicePinnerByIdHeaders {
     fields: Omit<GetDevicePinnerByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetDevicePinnerByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -145,7 +145,7 @@ export class DeleteDevicePinnerByIdHeaders {
     fields: Omit<DeleteDevicePinnerByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteDevicePinnerByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -187,7 +187,7 @@ export class GetEnterpriseDevicePinnersHeaders {
     fields: Omit<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'> &
       Partial<Pick<GetEnterpriseDevicePinnersHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -214,10 +214,10 @@ export class DevicePinnersManager {
     > &
       Partial<Pick<DevicePinnersManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

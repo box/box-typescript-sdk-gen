@@ -51,10 +51,10 @@ export class CreateSlackIntegrationMappingOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -81,13 +81,13 @@ export class UpdateSlackIntegrationMappingByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -113,10 +113,10 @@ export class DeleteSlackIntegrationMappingByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -164,7 +164,7 @@ export class GetSlackIntegrationMappingHeaders {
     fields: Omit<GetSlackIntegrationMappingHeaders, 'extraHeaders'> &
       Partial<Pick<GetSlackIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -188,7 +188,7 @@ export class CreateSlackIntegrationMappingHeaders {
     fields: Omit<CreateSlackIntegrationMappingHeaders, 'extraHeaders'> &
       Partial<Pick<CreateSlackIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -217,7 +217,7 @@ export class UpdateSlackIntegrationMappingByIdHeaders {
     fields: Omit<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -241,7 +241,7 @@ export class DeleteSlackIntegrationMappingByIdHeaders {
     fields: Omit<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteSlackIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -269,10 +269,10 @@ export class IntegrationMappingsManager {
     > &
       Partial<Pick<IntegrationMappingsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

@@ -38,10 +38,10 @@ export class CreateZipDownloadOptionals {
         Pick<CreateZipDownloadOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -63,10 +63,10 @@ export class GetZipDownloadContentOptionals {
         Pick<GetZipDownloadContentOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -88,10 +88,10 @@ export class GetZipDownloadStatusOptionals {
         Pick<GetZipDownloadStatusOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -107,10 +107,10 @@ export class DownloadZipOptionals {
     fields: Omit<DownloadZipOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<DownloadZipOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,7 +129,7 @@ export class CreateZipDownloadHeaders {
     fields: Omit<CreateZipDownloadHeaders, 'extraHeaders'> &
       Partial<Pick<CreateZipDownloadHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -153,7 +153,7 @@ export class GetZipDownloadContentHeaders {
     fields: Omit<GetZipDownloadContentHeaders, 'extraHeaders'> &
       Partial<Pick<GetZipDownloadContentHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -177,7 +177,7 @@ export class GetZipDownloadStatusHeaders {
     fields: Omit<GetZipDownloadStatusHeaders, 'extraHeaders'> &
       Partial<Pick<GetZipDownloadStatusHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -201,7 +201,7 @@ export class DownloadZipHeaders {
     fields: Omit<DownloadZipHeaders, 'extraHeaders'> &
       Partial<Pick<DownloadZipHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -229,10 +229,10 @@ export class ZipDownloadsManager {
     > &
       Partial<Pick<ZipDownloadsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

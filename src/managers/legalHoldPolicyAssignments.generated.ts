@@ -45,10 +45,10 @@ export class GetLegalHoldPolicyAssignmentsOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class CreateLegalHoldPolicyAssignmentOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -101,10 +101,10 @@ export class GetLegalHoldPolicyAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,10 +129,10 @@ export class DeleteLegalHoldPolicyAssignmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -159,13 +159,13 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -223,7 +223,7 @@ export class GetLegalHoldPolicyAssignmentsHeaders {
     fields: Omit<GetLegalHoldPolicyAssignmentsHeaders, 'extraHeaders'> &
       Partial<Pick<GetLegalHoldPolicyAssignmentsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -270,7 +270,7 @@ export class CreateLegalHoldPolicyAssignmentHeaders {
     fields: Omit<CreateLegalHoldPolicyAssignmentHeaders, 'extraHeaders'> &
       Partial<Pick<CreateLegalHoldPolicyAssignmentHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -294,7 +294,7 @@ export class GetLegalHoldPolicyAssignmentByIdHeaders {
     fields: Omit<GetLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -318,7 +318,7 @@ export class DeleteLegalHoldPolicyAssignmentByIdHeaders {
     fields: Omit<DeleteLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteLegalHoldPolicyAssignmentByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -369,7 +369,7 @@ export class GetLegalHoldPolicyAssignmentFileOnHoldHeaders {
         Pick<GetLegalHoldPolicyAssignmentFileOnHoldHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -398,10 +398,10 @@ export class LegalHoldPolicyAssignmentsManager {
     > &
       Partial<Pick<LegalHoldPolicyAssignmentsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

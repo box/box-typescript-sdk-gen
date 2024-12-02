@@ -45,10 +45,10 @@ export class GetShieldInformationBarrierReportsOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class CreateShieldInformationBarrierReportOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -101,10 +101,10 @@ export class GetShieldInformationBarrierReportByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -137,7 +137,7 @@ export class GetShieldInformationBarrierReportsHeaders {
     fields: Omit<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'> &
       Partial<Pick<GetShieldInformationBarrierReportsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -163,7 +163,7 @@ export class CreateShieldInformationBarrierReportHeaders {
         Pick<CreateShieldInformationBarrierReportHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -189,7 +189,7 @@ export class GetShieldInformationBarrierReportByIdHeaders {
         Pick<GetShieldInformationBarrierReportByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -216,10 +216,10 @@ export class ShieldInformationBarrierReportsManager {
     > &
       Partial<Pick<ShieldInformationBarrierReportsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

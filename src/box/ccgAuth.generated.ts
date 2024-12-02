@@ -30,19 +30,19 @@ export class CcgConfig {
     fields: Omit<CcgConfig, 'tokenStorage'> &
       Partial<Pick<CcgConfig, 'tokenStorage'>>,
   ) {
-    if (fields.clientId) {
+    if (fields.clientId !== undefined) {
       this.clientId = fields.clientId;
     }
-    if (fields.clientSecret) {
+    if (fields.clientSecret !== undefined) {
       this.clientSecret = fields.clientSecret;
     }
-    if (fields.enterpriseId) {
+    if (fields.enterpriseId !== undefined) {
       this.enterpriseId = fields.enterpriseId;
     }
-    if (fields.userId) {
+    if (fields.userId !== undefined) {
       this.userId = fields.userId;
     }
-    if (fields.tokenStorage) {
+    if (fields.tokenStorage !== undefined) {
       this.tokenStorage = fields.tokenStorage;
     }
   }
@@ -92,7 +92,7 @@ export class BoxCcgAuth implements Authentication {
       | 'revokeToken'
     >,
   ) {
-    if (fields.config) {
+    if (fields.config !== undefined) {
       this.config = fields.config;
     }
     this.tokenStorage = this.config.tokenStorage;

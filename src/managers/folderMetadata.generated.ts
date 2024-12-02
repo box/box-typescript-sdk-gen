@@ -35,10 +35,10 @@ export class GetFolderMetadataOptionals {
         Pick<GetFolderMetadataOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -60,10 +60,10 @@ export class GetFolderMetadataByIdOptionals {
         Pick<GetFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -85,10 +85,10 @@ export class CreateFolderMetadataByIdOptionals {
         Pick<CreateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -110,10 +110,10 @@ export class UpdateFolderMetadataByIdOptionals {
         Pick<UpdateFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -135,10 +135,10 @@ export class DeleteFolderMetadataByIdOptionals {
         Pick<DeleteFolderMetadataByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -157,7 +157,7 @@ export class GetFolderMetadataHeaders {
     fields: Omit<GetFolderMetadataHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderMetadataHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -182,7 +182,7 @@ export class GetFolderMetadataByIdHeaders {
     fields: Omit<GetFolderMetadataByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -210,7 +210,7 @@ export class CreateFolderMetadataByIdHeaders {
     fields: Omit<CreateFolderMetadataByIdHeaders, 'extraHeaders'> &
       Partial<Pick<CreateFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -274,7 +274,7 @@ export class UpdateFolderMetadataByIdHeaders {
     fields: Omit<UpdateFolderMetadataByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -299,7 +299,7 @@ export class DeleteFolderMetadataByIdHeaders {
     fields: Omit<DeleteFolderMetadataByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteFolderMetadataByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -328,10 +328,10 @@ export class FolderMetadataManager {
     > &
       Partial<Pick<FolderMetadataManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

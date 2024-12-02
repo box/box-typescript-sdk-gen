@@ -32,7 +32,7 @@ export class FindWebLinkForSharedLinkOptionals {
     fields: Omit<FindWebLinkForSharedLinkOptionals, 'cancellationToken'> &
       Partial<Pick<FindWebLinkForSharedLinkOptionals, 'cancellationToken'>>,
   ) {
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -53,10 +53,10 @@ export class GetSharedLinkForWebLinkOptionals {
         Pick<GetSharedLinkForWebLinkOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -78,10 +78,10 @@ export class AddShareLinkToWebLinkOptionals {
         Pick<AddShareLinkToWebLinkOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -106,10 +106,10 @@ export class UpdateSharedLinkOnWebLinkOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -134,10 +134,10 @@ export class RemoveSharedLinkFromWebLinkOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -185,13 +185,13 @@ export class FindWebLinkForSharedLinkHeaders {
     fields: Omit<FindWebLinkForSharedLinkHeaders, 'extraHeaders'> &
       Partial<Pick<FindWebLinkForSharedLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.ifNoneMatch) {
+    if (fields.ifNoneMatch !== undefined) {
       this.ifNoneMatch = fields.ifNoneMatch;
     }
-    if (fields.boxapi) {
+    if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
     }
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -237,7 +237,7 @@ export class GetSharedLinkForWebLinkHeaders {
     fields: Omit<GetSharedLinkForWebLinkHeaders, 'extraHeaders'> &
       Partial<Pick<GetSharedLinkForWebLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -336,7 +336,7 @@ export class AddShareLinkToWebLinkHeaders {
     fields: Omit<AddShareLinkToWebLinkHeaders, 'extraHeaders'> &
       Partial<Pick<AddShareLinkToWebLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -432,7 +432,7 @@ export class UpdateSharedLinkOnWebLinkHeaders {
     fields: Omit<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateSharedLinkOnWebLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -472,7 +472,7 @@ export class RemoveSharedLinkFromWebLinkHeaders {
     fields: Omit<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'> &
       Partial<Pick<RemoveSharedLinkFromWebLinkHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -501,10 +501,10 @@ export class SharedLinksWebLinksManager {
     > &
       Partial<Pick<SharedLinksWebLinksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

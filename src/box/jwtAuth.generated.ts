@@ -92,31 +92,31 @@ export class JwtConfig {
     > &
       Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>,
   ) {
-    if (fields.clientId) {
+    if (fields.clientId !== undefined) {
       this.clientId = fields.clientId;
     }
-    if (fields.clientSecret) {
+    if (fields.clientSecret !== undefined) {
       this.clientSecret = fields.clientSecret;
     }
-    if (fields.jwtKeyId) {
+    if (fields.jwtKeyId !== undefined) {
       this.jwtKeyId = fields.jwtKeyId;
     }
-    if (fields.privateKey) {
+    if (fields.privateKey !== undefined) {
       this.privateKey = fields.privateKey;
     }
-    if (fields.privateKeyPassphrase) {
+    if (fields.privateKeyPassphrase !== undefined) {
       this.privateKeyPassphrase = fields.privateKeyPassphrase;
     }
-    if (fields.enterpriseId) {
+    if (fields.enterpriseId !== undefined) {
       this.enterpriseId = fields.enterpriseId;
     }
-    if (fields.userId) {
+    if (fields.userId !== undefined) {
       this.userId = fields.userId;
     }
-    if (fields.algorithm) {
+    if (fields.algorithm !== undefined) {
       this.algorithm = fields.algorithm;
     }
-    if (fields.tokenStorage) {
+    if (fields.tokenStorage !== undefined) {
       this.tokenStorage = fields.tokenStorage;
     }
   }
@@ -225,7 +225,7 @@ export class BoxJwtAuth implements Authentication {
       | 'revokeToken'
     >,
   ) {
-    if (fields.config) {
+    if (fields.config !== undefined) {
       this.config = fields.config;
     }
     this.tokenStorage = this.config.tokenStorage;

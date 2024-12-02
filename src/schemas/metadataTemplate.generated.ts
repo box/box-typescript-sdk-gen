@@ -103,31 +103,31 @@ export class MetadataTemplate {
     fields: Omit<MetadataTemplate, 'type'> &
       Partial<Pick<MetadataTemplate, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.scope) {
+    if (fields.scope !== undefined) {
       this.scope = fields.scope;
     }
-    if (fields.templateKey) {
+    if (fields.templateKey !== undefined) {
       this.templateKey = fields.templateKey;
     }
-    if (fields.displayName) {
+    if (fields.displayName !== undefined) {
       this.displayName = fields.displayName;
     }
-    if (fields.hidden) {
+    if (fields.hidden !== undefined) {
       this.hidden = fields.hidden;
     }
-    if (fields.fields) {
+    if (fields.fields !== undefined) {
       this.fields = fields.fields;
     }
-    if (fields.copyInstanceOnItemCopy) {
+    if (fields.copyInstanceOnItemCopy !== undefined) {
       this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

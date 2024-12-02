@@ -44,13 +44,13 @@ export class GetCollaborationByIdOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class UpdateCollaborationByIdOptionals {
         Pick<UpdateCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,10 +98,10 @@ export class DeleteCollaborationByIdOptionals {
         Pick<DeleteCollaborationByIdOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,13 +129,13 @@ export class CreateCollaborationOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -168,7 +168,7 @@ export class GetCollaborationByIdHeaders {
     fields: Omit<GetCollaborationByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -246,7 +246,7 @@ export class UpdateCollaborationByIdHeaders {
     fields: Omit<UpdateCollaborationByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -270,7 +270,7 @@ export class DeleteCollaborationByIdHeaders {
     fields: Omit<DeleteCollaborationByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteCollaborationByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -395,7 +395,7 @@ export class CreateCollaborationHeaders {
     fields: Omit<CreateCollaborationHeaders, 'extraHeaders'> &
       Partial<Pick<CreateCollaborationHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -423,10 +423,10 @@ export class UserCollaborationsManager {
     > &
       Partial<Pick<UserCollaborationsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

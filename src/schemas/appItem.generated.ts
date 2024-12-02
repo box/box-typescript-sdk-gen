@@ -19,16 +19,16 @@ export class AppItem {
   readonly applicationType!: string;
   readonly rawData?: SerializedData;
   constructor(fields: Omit<AppItem, 'type'> & Partial<Pick<AppItem, 'type'>>) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.applicationType) {
+    if (fields.applicationType !== undefined) {
       this.applicationType = fields.applicationType;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

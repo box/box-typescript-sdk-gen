@@ -45,10 +45,10 @@ export class GetMetadataCascadePoliciesOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class CreateMetadataCascadePolicyOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -101,10 +101,10 @@ export class GetMetadataCascadePolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -129,10 +129,10 @@ export class DeleteMetadataCascadePolicyByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -157,10 +157,10 @@ export class ApplyMetadataCascadePolicyOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -203,7 +203,7 @@ export class GetMetadataCascadePoliciesHeaders {
     fields: Omit<GetMetadataCascadePoliciesHeaders, 'extraHeaders'> &
       Partial<Pick<GetMetadataCascadePoliciesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -259,7 +259,7 @@ export class CreateMetadataCascadePolicyHeaders {
     fields: Omit<CreateMetadataCascadePolicyHeaders, 'extraHeaders'> &
       Partial<Pick<CreateMetadataCascadePolicyHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -283,7 +283,7 @@ export class GetMetadataCascadePolicyByIdHeaders {
     fields: Omit<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -307,7 +307,7 @@ export class DeleteMetadataCascadePolicyByIdHeaders {
     fields: Omit<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteMetadataCascadePolicyByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -346,7 +346,7 @@ export class ApplyMetadataCascadePolicyHeaders {
     fields: Omit<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'> &
       Partial<Pick<ApplyMetadataCascadePolicyHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -375,10 +375,10 @@ export class MetadataCascadePoliciesManager {
     > &
       Partial<Pick<MetadataCascadePoliciesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

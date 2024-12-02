@@ -124,52 +124,52 @@ export class Collaboration {
   constructor(
     fields: Omit<Collaboration, 'type'> & Partial<Pick<Collaboration, 'type'>>,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.item) {
+    if (fields.item !== undefined) {
       this.item = fields.item;
     }
-    if (fields.appItem) {
+    if (fields.appItem !== undefined) {
       this.appItem = fields.appItem;
     }
-    if (fields.accessibleBy) {
+    if (fields.accessibleBy !== undefined) {
       this.accessibleBy = fields.accessibleBy;
     }
-    if (fields.inviteEmail) {
+    if (fields.inviteEmail !== undefined) {
       this.inviteEmail = fields.inviteEmail;
     }
-    if (fields.role) {
+    if (fields.role !== undefined) {
       this.role = fields.role;
     }
-    if (fields.expiresAt) {
+    if (fields.expiresAt !== undefined) {
       this.expiresAt = fields.expiresAt;
     }
-    if (fields.isAccessOnly) {
+    if (fields.isAccessOnly !== undefined) {
       this.isAccessOnly = fields.isAccessOnly;
     }
-    if (fields.status) {
+    if (fields.status !== undefined) {
       this.status = fields.status;
     }
-    if (fields.acknowledgedAt) {
+    if (fields.acknowledgedAt !== undefined) {
       this.acknowledgedAt = fields.acknowledgedAt;
     }
-    if (fields.createdBy) {
+    if (fields.createdBy !== undefined) {
       this.createdBy = fields.createdBy;
     }
-    if (fields.createdAt) {
+    if (fields.createdAt !== undefined) {
       this.createdAt = fields.createdAt;
     }
-    if (fields.modifiedAt) {
+    if (fields.modifiedAt !== undefined) {
       this.modifiedAt = fields.modifiedAt;
     }
-    if (fields.acceptanceRequirementsStatus) {
+    if (fields.acceptanceRequirementsStatus !== undefined) {
       this.acceptanceRequirementsStatus = fields.acceptanceRequirementsStatus;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

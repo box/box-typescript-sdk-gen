@@ -42,10 +42,10 @@ export class GetTermsOfServiceUserStatusesOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -70,10 +70,10 @@ export class CreateTermsOfServiceStatusForUserOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -98,10 +98,10 @@ export class UpdateTermsOfServiceStatusForUserByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -128,7 +128,7 @@ export class GetTermsOfServiceUserStatusesHeaders {
     fields: Omit<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'> &
       Partial<Pick<GetTermsOfServiceUserStatusesHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -159,13 +159,13 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
         Pick<CreateTermsOfServiceStatusForUserRequestBodyTosField, 'type'>
       >,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -198,13 +198,13 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
         Pick<CreateTermsOfServiceStatusForUserRequestBodyUserField, 'type'>
       >,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -240,7 +240,7 @@ export class CreateTermsOfServiceStatusForUserHeaders {
     fields: Omit<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'> &
       Partial<Pick<CreateTermsOfServiceStatusForUserHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -272,7 +272,7 @@ export class UpdateTermsOfServiceStatusForUserByIdHeaders {
         Pick<UpdateTermsOfServiceStatusForUserByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -299,10 +299,10 @@ export class TermsOfServiceUserStatusesManager {
     > &
       Partial<Pick<TermsOfServiceUserStatusesManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

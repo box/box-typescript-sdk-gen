@@ -31,10 +31,10 @@ export class AddClassificationOptionals {
         Pick<AddClassificationOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -56,10 +56,10 @@ export class UpdateClassificationOptionals {
         Pick<UpdateClassificationOptionals, 'headers' | 'cancellationToken'>
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -84,10 +84,10 @@ export class CreateClassificationTemplateOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -106,7 +106,7 @@ export class GetClassificationTemplateHeaders {
     fields: Omit<GetClassificationTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<GetClassificationTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -182,16 +182,16 @@ export class AddClassificationRequestBody {
     fields: Omit<AddClassificationRequestBody, 'op' | 'fieldKey'> &
       Partial<Pick<AddClassificationRequestBody, 'op' | 'fieldKey'>>,
   ) {
-    if (fields.op) {
+    if (fields.op !== undefined) {
       this.op = fields.op;
     }
-    if (fields.fieldKey) {
+    if (fields.fieldKey !== undefined) {
       this.fieldKey = fields.fieldKey;
     }
-    if (fields.data) {
+    if (fields.data !== undefined) {
       this.data = fields.data;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -220,7 +220,7 @@ export class AddClassificationHeaders {
     fields: Omit<AddClassificationHeaders, 'extraHeaders'> &
       Partial<Pick<AddClassificationHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -298,19 +298,19 @@ export class UpdateClassificationRequestBody {
     fields: Omit<UpdateClassificationRequestBody, 'op' | 'fieldKey'> &
       Partial<Pick<UpdateClassificationRequestBody, 'op' | 'fieldKey'>>,
   ) {
-    if (fields.op) {
+    if (fields.op !== undefined) {
       this.op = fields.op;
     }
-    if (fields.fieldKey) {
+    if (fields.fieldKey !== undefined) {
       this.fieldKey = fields.fieldKey;
     }
-    if (fields.enumOptionKey) {
+    if (fields.enumOptionKey !== undefined) {
       this.enumOptionKey = fields.enumOptionKey;
     }
-    if (fields.data) {
+    if (fields.data !== undefined) {
       this.data = fields.data;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -342,7 +342,7 @@ export class UpdateClassificationHeaders {
     fields: Omit<UpdateClassificationHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateClassificationHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -444,22 +444,22 @@ export class CreateClassificationTemplateRequestBodyFieldsField {
         >
       >,
   ) {
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.key) {
+    if (fields.key !== undefined) {
       this.key = fields.key;
     }
-    if (fields.displayName) {
+    if (fields.displayName !== undefined) {
       this.displayName = fields.displayName;
     }
-    if (fields.hidden) {
+    if (fields.hidden !== undefined) {
       this.hidden = fields.hidden;
     }
-    if (fields.options) {
+    if (fields.options !== undefined) {
       this.options = fields.options;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -533,25 +533,25 @@ export class CreateClassificationTemplateRequestBody {
         >
       >,
   ) {
-    if (fields.scope) {
+    if (fields.scope !== undefined) {
       this.scope = fields.scope;
     }
-    if (fields.templateKey) {
+    if (fields.templateKey !== undefined) {
       this.templateKey = fields.templateKey;
     }
-    if (fields.displayName) {
+    if (fields.displayName !== undefined) {
       this.displayName = fields.displayName;
     }
-    if (fields.hidden) {
+    if (fields.hidden !== undefined) {
       this.hidden = fields.hidden;
     }
-    if (fields.copyInstanceOnItemCopy) {
+    if (fields.copyInstanceOnItemCopy !== undefined) {
       this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
     }
-    if (fields.fields) {
+    if (fields.fields !== undefined) {
       this.fields = fields.fields;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -596,7 +596,7 @@ export class CreateClassificationTemplateHeaders {
     fields: Omit<CreateClassificationTemplateHeaders, 'extraHeaders'> &
       Partial<Pick<CreateClassificationTemplateHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -624,10 +624,10 @@ export class ClassificationsManager {
     > &
       Partial<Pick<ClassificationsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

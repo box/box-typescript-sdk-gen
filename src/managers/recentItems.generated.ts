@@ -55,7 +55,7 @@ export class GetRecentItemsHeaders {
     fields: Omit<GetRecentItemsHeaders, 'extraHeaders'> &
       Partial<Pick<GetRecentItemsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -76,10 +76,10 @@ export class RecentItemsManager {
     fields: Omit<RecentItemsManager, 'networkSession' | 'getRecentItems'> &
       Partial<Pick<RecentItemsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

@@ -45,10 +45,10 @@ export class GetShieldInformationBarrierSegmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -73,10 +73,10 @@ export class DeleteShieldInformationBarrierSegmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -103,13 +103,13 @@ export class UpdateShieldInformationBarrierSegmentByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -135,10 +135,10 @@ export class GetShieldInformationBarrierSegmentsOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -163,10 +163,10 @@ export class CreateShieldInformationBarrierSegmentOptionals {
         >
       >,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -190,7 +190,7 @@ export class GetShieldInformationBarrierSegmentByIdHeaders {
         Pick<GetShieldInformationBarrierSegmentByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -219,7 +219,7 @@ export class DeleteShieldInformationBarrierSegmentByIdHeaders {
         Pick<DeleteShieldInformationBarrierSegmentByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -258,7 +258,7 @@ export class UpdateShieldInformationBarrierSegmentByIdHeaders {
         Pick<UpdateShieldInformationBarrierSegmentByIdHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -296,7 +296,7 @@ export class GetShieldInformationBarrierSegmentsHeaders {
     fields: Omit<GetShieldInformationBarrierSegmentsHeaders, 'extraHeaders'> &
       Partial<Pick<GetShieldInformationBarrierSegmentsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -332,7 +332,7 @@ export class CreateShieldInformationBarrierSegmentHeaders {
         Pick<CreateShieldInformationBarrierSegmentHeaders, 'extraHeaders'>
       >,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -361,10 +361,10 @@ export class ShieldInformationBarrierSegmentsManager {
     > &
       Partial<Pick<ShieldInformationBarrierSegmentsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

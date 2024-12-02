@@ -36,10 +36,10 @@ export class GetFileTasksOptionals {
     fields: Omit<GetFileTasksOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetFileTasksOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -55,10 +55,10 @@ export class CreateTaskOptionals {
     fields: Omit<CreateTaskOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<CreateTaskOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -74,10 +74,10 @@ export class GetTaskByIdOptionals {
     fields: Omit<GetTaskByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<GetTaskByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -103,13 +103,13 @@ export class UpdateTaskByIdOptionals {
         >
       >,
   ) {
-    if (fields.requestBody) {
+    if (fields.requestBody !== undefined) {
       this.requestBody = fields.requestBody;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -126,10 +126,10 @@ export class DeleteTaskByIdOptionals {
     fields: Omit<DeleteTaskByIdOptionals, 'headers' | 'cancellationToken'> &
       Partial<Pick<DeleteTaskByIdOptionals, 'headers' | 'cancellationToken'>>,
   ) {
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -148,7 +148,7 @@ export class GetFileTasksHeaders {
     fields: Omit<GetFileTasksHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileTasksHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -215,7 +215,7 @@ export class CreateTaskHeaders {
     fields: Omit<CreateTaskHeaders, 'extraHeaders'> &
       Partial<Pick<CreateTaskHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -239,7 +239,7 @@ export class GetTaskByIdHeaders {
     fields: Omit<GetTaskByIdHeaders, 'extraHeaders'> &
       Partial<Pick<GetTaskByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -292,7 +292,7 @@ export class UpdateTaskByIdHeaders {
     fields: Omit<UpdateTaskByIdHeaders, 'extraHeaders'> &
       Partial<Pick<UpdateTaskByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -316,7 +316,7 @@ export class DeleteTaskByIdHeaders {
     fields: Omit<DeleteTaskByIdHeaders, 'extraHeaders'> &
       Partial<Pick<DeleteTaskByIdHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -345,10 +345,10 @@ export class TasksManager {
     > &
       Partial<Pick<TasksManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

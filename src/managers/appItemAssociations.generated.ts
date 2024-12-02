@@ -41,13 +41,13 @@ export class GetFileAppItemAssociationsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -75,13 +75,13 @@ export class GetFolderAppItemAssociationsOptionals {
         >
       >,
   ) {
-    if (fields.queryParams) {
+    if (fields.queryParams !== undefined) {
       this.queryParams = fields.queryParams;
     }
-    if (fields.headers) {
+    if (fields.headers !== undefined) {
       this.headers = fields.headers;
     }
-    if (fields.cancellationToken) {
+    if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
@@ -115,7 +115,7 @@ export class GetFileAppItemAssociationsHeaders {
     fields: Omit<GetFileAppItemAssociationsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFileAppItemAssociationsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -153,7 +153,7 @@ export class GetFolderAppItemAssociationsHeaders {
     fields: Omit<GetFolderAppItemAssociationsHeaders, 'extraHeaders'> &
       Partial<Pick<GetFolderAppItemAssociationsHeaders, 'extraHeaders'>>,
   ) {
-    if (fields.extraHeaders) {
+    if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
@@ -179,10 +179,10 @@ export class AppItemAssociationsManager {
     > &
       Partial<Pick<AppItemAssociationsManager, 'networkSession'>>,
   ) {
-    if (fields.auth) {
+    if (fields.auth !== undefined) {
       this.auth = fields.auth;
     }
-    if (fields.networkSession) {
+    if (fields.networkSession !== undefined) {
       this.networkSession = fields.networkSession;
     }
   }

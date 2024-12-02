@@ -26,19 +26,19 @@ export class PostOAuth2TokenRefreshAccessToken {
     fields: Omit<PostOAuth2TokenRefreshAccessToken, 'grantType'> &
       Partial<Pick<PostOAuth2TokenRefreshAccessToken, 'grantType'>>,
   ) {
-    if (fields.grantType) {
+    if (fields.grantType !== undefined) {
       this.grantType = fields.grantType;
     }
-    if (fields.clientId) {
+    if (fields.clientId !== undefined) {
       this.clientId = fields.clientId;
     }
-    if (fields.clientSecret) {
+    if (fields.clientSecret !== undefined) {
       this.clientSecret = fields.clientSecret;
     }
-    if (fields.refreshToken) {
+    if (fields.refreshToken !== undefined) {
       this.refreshToken = fields.refreshToken;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }

@@ -94,25 +94,25 @@ export class ClassificationTemplateFieldsField {
         Pick<ClassificationTemplateFieldsField, 'type' | 'key' | 'displayName'>
       >,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.key) {
+    if (fields.key !== undefined) {
       this.key = fields.key;
     }
-    if (fields.displayName) {
+    if (fields.displayName !== undefined) {
       this.displayName = fields.displayName;
     }
-    if (fields.hidden) {
+    if (fields.hidden !== undefined) {
       this.hidden = fields.hidden;
     }
-    if (fields.options) {
+    if (fields.options !== undefined) {
       this.options = fields.options;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
@@ -184,31 +184,31 @@ export class ClassificationTemplate {
         Pick<ClassificationTemplate, 'type' | 'templateKey' | 'displayName'>
       >,
   ) {
-    if (fields.id) {
+    if (fields.id !== undefined) {
       this.id = fields.id;
     }
-    if (fields.type) {
+    if (fields.type !== undefined) {
       this.type = fields.type;
     }
-    if (fields.scope) {
+    if (fields.scope !== undefined) {
       this.scope = fields.scope;
     }
-    if (fields.templateKey) {
+    if (fields.templateKey !== undefined) {
       this.templateKey = fields.templateKey;
     }
-    if (fields.displayName) {
+    if (fields.displayName !== undefined) {
       this.displayName = fields.displayName;
     }
-    if (fields.hidden) {
+    if (fields.hidden !== undefined) {
       this.hidden = fields.hidden;
     }
-    if (fields.copyInstanceOnItemCopy) {
+    if (fields.copyInstanceOnItemCopy !== undefined) {
       this.copyInstanceOnItemCopy = fields.copyInstanceOnItemCopy;
     }
-    if (fields.fields) {
+    if (fields.fields !== undefined) {
       this.fields = fields.fields;
     }
-    if (fields.rawData) {
+    if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
   }
