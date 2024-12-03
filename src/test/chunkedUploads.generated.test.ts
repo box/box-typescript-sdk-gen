@@ -113,7 +113,7 @@ async function reducerById(
   const parts: readonly UploadPart[] = acc.parts;
   const chunkBuffer: Buffer = await readByteStream(chunk);
   const hash: Hash = new Hash({ algorithm: 'sha1' as HashName });
-  hash.updateHash(chunkBuffer);
+  await hash.updateHash(chunkBuffer);
   const sha1: string = await hash.digestHash('base64');
   const digest: string = ''.concat('sha=', sha1) as string;
   const chunkSize: number = bufferLength(chunkBuffer);
@@ -146,7 +146,7 @@ async function reducerById(
   if (!(part.offset! == bytesStart)) {
     throw new Error('Assertion failed');
   }
-  acc.fileHash.updateHash(chunkBuffer);
+  await acc.fileHash.updateHash(chunkBuffer);
   return new TestPartAccumulator({
     lastIndex: bytesEnd,
     parts: parts.concat([part]),
@@ -171,7 +171,7 @@ async function reducerByUrl(
   const parts: readonly UploadPart[] = acc.parts;
   const chunkBuffer: Buffer = await readByteStream(chunk);
   const hash: Hash = new Hash({ algorithm: 'sha1' as HashName });
-  hash.updateHash(chunkBuffer);
+  await hash.updateHash(chunkBuffer);
   const sha1: string = await hash.digestHash('base64');
   const digest: string = ''.concat('sha=', sha1) as string;
   const chunkSize: number = bufferLength(chunkBuffer);
@@ -205,7 +205,7 @@ async function reducerByUrl(
   if (!(part.offset! == bytesStart)) {
     throw new Error('Assertion failed');
   }
-  acc.fileHash.updateHash(chunkBuffer);
+  await acc.fileHash.updateHash(chunkBuffer);
   return new TestPartAccumulator({
     lastIndex: bytesEnd,
     parts: parts.concat([part]),
