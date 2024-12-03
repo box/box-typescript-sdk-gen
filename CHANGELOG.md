@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.7.0...v1.8.0) (2024-12-03)
+
+
+### Bug Fixes
+
+* fix `additionalProperties` in `ClientError` (box/box-openapi[#477](https://github.com/box/box-typescript-sdk-gen/issues/477)) ([#385](https://github.com/box/box-typescript-sdk-gen/issues/385)) ([4547148](https://github.com/box/box-typescript-sdk-gen/commit/454714861019998b1fc6b7c44696b0178ffa022b))
+* Fix chunked uploads in browser (box/box-codegen[#619](https://github.com/box/box-typescript-sdk-gen/issues/619)) ([#436](https://github.com/box/box-typescript-sdk-gen/issues/436)) ([0af2484](https://github.com/box/box-typescript-sdk-gen/commit/0af2484dd8387cce1a8c235068ac3f834f8ecf42))
+* Support status codes with no content (box/box-codegen[#604](https://github.com/box/box-typescript-sdk-gen/issues/604)) ([#415](https://github.com/box/box-typescript-sdk-gen/issues/415)) ([c3f14c6](https://github.com/box/box-typescript-sdk-gen/commit/c3f14c6af55ab78ed5dc981909c67397b0d7219e))
+* update client error schema to support schema errors (box/box-openapi[#467](https://github.com/box/box-typescript-sdk-gen/issues/467)) ([#381](https://github.com/box/box-typescript-sdk-gen/issues/381)) ([b845f12](https://github.com/box/box-typescript-sdk-gen/commit/b845f12d194d5f4e0cfd66db1db294e2f9a9bff8))
+* update integration mapping response description (box/box-openapi[#463](https://github.com/box/box-typescript-sdk-gen/issues/463)) ([#379](https://github.com/box/box-typescript-sdk-gen/issues/379)) ([e3d71e1](https://github.com/box/box-typescript-sdk-gen/commit/e3d71e100500c5fa9e478b5228fd395f68242cf2))
+
+
+### New Features and Enhancements
+
+* add AI LLM endpoint AWS `params` (box/box-openapi[#478](https://github.com/box/box-typescript-sdk-gen/issues/478)) ([#388](https://github.com/box/box-typescript-sdk-gen/issues/388)) ([d2fd1ec](https://github.com/box/box-typescript-sdk-gen/commit/d2fd1ec4bddb19b353e286908c99477e08b90457))
+* Expose method for making custom HTTP requests, convert `FetchOptions` into a class (box/box-codegen[#610](https://github.com/box/box-typescript-sdk-gen/issues/610)) ([#431](https://github.com/box/box-typescript-sdk-gen/issues/431)) ([9a9ea62](https://github.com/box/box-typescript-sdk-gen/commit/9a9ea628fd21001437d92b32f1760d5ba14cb46b))
+* Support get collection by ID endpoint (box/box-codegen[#595](https://github.com/box/box-typescript-sdk-gen/issues/595)) ([#396](https://github.com/box/box-typescript-sdk-gen/issues/396)) ([f1f47be](https://github.com/box/box-typescript-sdk-gen/commit/f1f47bebfc0981a5e67f301b6fc2e3a8568d5845))
+* Support getting file download URL and file thumbnail URL (box/box-codegen[#617](https://github.com/box/box-typescript-sdk-gen/issues/617)) ([#435](https://github.com/box/box-typescript-sdk-gen/issues/435)) ([1cb4d5d](https://github.com/box/box-typescript-sdk-gen/commit/1cb4d5d93fbd94b952b876457008973a92d5aa23))
+* Support nullable fields in TypeScript (box/box-codegen[#612](https://github.com/box/box-typescript-sdk-gen/issues/612)) ([#425](https://github.com/box/box-typescript-sdk-gen/issues/425)) ([991dc29](https://github.com/box/box-typescript-sdk-gen/commit/991dc29bc805bf0c5198277142efb9a85de1dd42))
+
 ## [1.7.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.6.0...v1.7.0) (2024-10-17)
 
 
