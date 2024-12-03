@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file. See [standa
 * Expose method for making custom HTTP requests, convert `FetchOptions` into a class (box/box-codegen[#610](https://github.com/box/box-typescript-sdk-gen/issues/610)) ([#431](https://github.com/box/box-typescript-sdk-gen/issues/431)) ([9a9ea62](https://github.com/box/box-typescript-sdk-gen/commit/9a9ea628fd21001437d92b32f1760d5ba14cb46b))
 * Support get collection by ID endpoint (box/box-codegen[#595](https://github.com/box/box-typescript-sdk-gen/issues/595)) ([#396](https://github.com/box/box-typescript-sdk-gen/issues/396)) ([f1f47be](https://github.com/box/box-typescript-sdk-gen/commit/f1f47bebfc0981a5e67f301b6fc2e3a8568d5845))
 * Support getting file download URL and file thumbnail URL (box/box-codegen[#617](https://github.com/box/box-typescript-sdk-gen/issues/617)) ([#435](https://github.com/box/box-typescript-sdk-gen/issues/435)) ([1cb4d5d](https://github.com/box/box-typescript-sdk-gen/commit/1cb4d5d93fbd94b952b876457008973a92d5aa23))
-* Support nullable fields in TypeScript (box/box-codegen[#612](https://github.com/box/box-typescript-sdk-gen/issues/612)) ([#425](https://github.com/box/box-typescript-sdk-gen/issues/425)) ([991dc29](https://github.com/box/box-typescript-sdk-gen/commit/991dc29bc805bf0c5198277142efb9a85de1dd42))
+* Support `nullable` fields in TypeScript (box/box-codegen[#612](https://github.com/box/box-typescript-sdk-gen/issues/612)) ([#425](https://github.com/box/box-typescript-sdk-gen/issues/425)) ([991dc29](https://github.com/box/box-typescript-sdk-gen/commit/991dc29bc805bf0c5198277142efb9a85de1dd42))
 
 ## [1.7.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.6.0...v1.7.0) (2024-10-17)
 
