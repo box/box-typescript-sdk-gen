@@ -1,5 +1,6 @@
 import nodeFetch, { RequestInit } from 'node-fetch';
 import type { Readable } from 'stream';
+import { sha1 } from 'hash-wasm'; // Use hash-wasm to calculate SHA1 hash in browser
 
 import { BoxApiError, BoxSdkError } from '../box/errors';
 import {
@@ -48,7 +49,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
 
   const { contentHeaders = {}, body } = await (async (): Promise<{
     contentHeaders: { [key: string]: string };
-    body: Readable | string;
+    body: Readable | string | ArrayBuffer;
   }> => {
     const contentHeaders: { [key: string]: string } = {};
     if (options.multipartData) {
@@ -100,7 +101,10 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
               'fileStream required for application/octet-stream content type',
           });
         }
-        return { contentHeaders, body: fileStream };
+        return {
+          contentHeaders,
+          body: isBrowser() ? await readByteStream(fileStream) : fileStream,
+        };
 
       default:
         throw new BoxSdkError({
@@ -300,14 +304,7 @@ async function calculateMD5Hash(data: string | Buffer): Promise<string> {
   let createHash: any;
   // Browser environment
   if (isBrowser()) {
-    let dataBuffer =
-      typeof data === 'string' ? new TextEncoder().encode(data) : data;
-    let hashBuffer = await window.crypto.subtle.digest('SHA-1', dataBuffer);
-    let hashArray = Array.from(new Uint8Array(hashBuffer));
-    let hashHex = hashArray
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('');
-    return hashHex;
+    return await sha1(data);
   }
 
   // Node environment

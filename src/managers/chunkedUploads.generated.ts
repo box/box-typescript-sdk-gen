@@ -1595,7 +1595,7 @@ export class ChunkedUploadsManager {
     const parts: readonly UploadPart[] = acc.parts;
     const chunkBuffer: Buffer = await readByteStream(chunk);
     const hash: Hash = new Hash({ algorithm: 'sha1' as HashName });
-    hash.updateHash(chunkBuffer);
+    await hash.updateHash(chunkBuffer);
     const sha1: string = await hash.digestHash('base64');
     const digest: string = ''.concat('sha=', sha1) as string;
     const chunkSize: number = bufferLength(chunkBuffer);
@@ -1628,7 +1628,7 @@ export class ChunkedUploadsManager {
     if (!(part.offset! == bytesStart)) {
       throw new Error('Assertion failed');
     }
-    acc.fileHash.updateHash(chunkBuffer);
+    await acc.fileHash.updateHash(chunkBuffer);
     return {
       lastIndex: bytesEnd,
       parts: parts.concat([part]),
