@@ -1,5 +1,8 @@
+import { serializeAiAgentInfo } from './aiAgentInfo.generated.js';
+import { deserializeAiAgentInfo } from './aiAgentInfo.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { AiAgentInfo } from './aiAgentInfo.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { DateTime } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
@@ -19,6 +22,7 @@ export interface AiResponse {
   /**
    * The reason the response finishes. */
   readonly completionReason?: string;
+  readonly aiAgentInfo?: AiAgentInfo;
   readonly rawData?: SerializedData;
 }
 export function serializeAiResponse(val: AiResponse): SerializedData {
@@ -26,6 +30,10 @@ export function serializeAiResponse(val: AiResponse): SerializedData {
     ['answer']: val.answer,
     ['created_at']: serializeDateTime(val.createdAt),
     ['completion_reason']: val.completionReason,
+    ['ai_agent_info']:
+      val.aiAgentInfo == void 0
+        ? val.aiAgentInfo
+        : serializeAiAgentInfo(val.aiAgentInfo),
   };
 }
 export function deserializeAiResponse(val: SerializedData): AiResponse {
@@ -64,9 +72,14 @@ export function deserializeAiResponse(val: SerializedData): AiResponse {
   }
   const completionReason: undefined | string =
     val.completion_reason == void 0 ? void 0 : val.completion_reason;
+  const aiAgentInfo: undefined | AiAgentInfo =
+    val.ai_agent_info == void 0
+      ? void 0
+      : deserializeAiAgentInfo(val.ai_agent_info);
   return {
     answer: answer,
     createdAt: createdAt,
     completionReason: completionReason,
+    aiAgentInfo: aiAgentInfo,
   } satisfies AiResponse;
 }
