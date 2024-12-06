@@ -301,6 +301,14 @@ await client.metadataTemplates.createMetadataTemplate({
       displayName: 'Hobby',
       description: 'Person hobby',
       type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      options: [
+        {
+          key: 'guitar',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'books',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+      ],
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
 } satisfies CreateMetadataTemplateRequestBody);

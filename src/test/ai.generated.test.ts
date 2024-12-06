@@ -38,6 +38,8 @@ import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.gen
 import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { serializeAiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
+import { serializeAiExtractStructuredFieldsOptionsField } from '../schemas/aiExtractStructured.generated.js';
+import { deserializeAiExtractStructuredFieldsOptionsField } from '../schemas/aiExtractStructured.generated.js';
 import { serializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { deserializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -46,6 +48,8 @@ import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../manage
 import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeAiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
 import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
@@ -81,10 +85,12 @@ import { AiExtract } from '../schemas/aiExtract.generated.js';
 import { AiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
 import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { AiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
+import { AiExtractStructuredFieldsOptionsField } from '../schemas/aiExtractStructured.generated.js';
 import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { AiExtractStructuredMetadataTemplateField } from '../schemas/aiExtractStructured.generated.js';
 import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { getDefaultClient } from './commons.generated.js';
@@ -326,7 +332,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: stringToByteStream(
-      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.',
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar.',
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
@@ -368,6 +374,10 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
           description: 'Person hobby',
           prompt: 'What is your hobby?',
           type: 'multiSelect',
+          options: [
+            { key: 'guitar' } satisfies AiExtractStructuredFieldsOptionsField,
+            { key: 'books' } satisfies AiExtractStructuredFieldsOptionsField,
+          ],
         } satisfies AiExtractStructuredFieldsField,
       ],
       items: [new AiItemBase({ id: file.id })],
@@ -406,7 +416,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
   if (
     !(
       (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar', 'books'].map(toString).join(',') as string)
+      (['guitar'].map(toString).join(',') as string)
     )
   ) {
     throw new Error('Assertion failed');
@@ -420,7 +430,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
       parent: { id: '0' } satisfies UploadFileRequestBodyAttributesParentField,
     } satisfies UploadFileRequestBodyAttributesField,
     file: stringToByteStream(
-      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar and books.',
+      'My name is John Doe. I was born in 4th July 1990. I am 34 years old. My hobby is guitar.',
     ),
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
@@ -461,6 +471,14 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
           displayName: 'Hobby',
           description: 'Person hobby',
           type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          options: [
+            {
+              key: 'guitar',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'books',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
       ],
     } satisfies CreateMetadataTemplateRequestBody);
@@ -506,7 +524,7 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
   if (
     !(
       (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar', 'books'].map(toString).join(',') as string)
+      (['guitar'].map(toString).join(',') as string)
     )
   ) {
     throw new Error('Assertion failed');
