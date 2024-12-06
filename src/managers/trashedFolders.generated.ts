@@ -129,6 +129,9 @@ export interface RestoreFolderFromTrashRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
+  /**
+   * The input for `{user_id}` is optional. Moving to non-root folder is not allowed when `{user_id}` is present. Parent folder id should be zero when `{user_id}` is provided. */
+  readonly userId?: string;
   readonly rawData?: SerializedData;
 }
 export interface RestoreFolderFromTrashRequestBody {
@@ -458,7 +461,7 @@ export interface TrashedFoldersManagerInput {
 export function serializeRestoreFolderFromTrashRequestBodyParentField(
   val: RestoreFolderFromTrashRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id };
+  return { ['id']: val.id, ['user_id']: val.userId };
 }
 export function deserializeRestoreFolderFromTrashRequestBodyParentField(
   val: SerializedData,
@@ -476,7 +479,18 @@ export function deserializeRestoreFolderFromTrashRequestBodyParentField(
     });
   }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  return { id: id } satisfies RestoreFolderFromTrashRequestBodyParentField;
+  if (!(val.user_id == void 0) && !sdIsString(val.user_id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "user_id" of type "RestoreFolderFromTrashRequestBodyParentField"',
+    });
+  }
+  const userId: undefined | string =
+    val.user_id == void 0 ? void 0 : val.user_id;
+  return {
+    id: id,
+    userId: userId,
+  } satisfies RestoreFolderFromTrashRequestBodyParentField;
 }
 export function serializeRestoreFolderFromTrashRequestBody(
   val: RestoreFolderFromTrashRequestBody,
