@@ -444,7 +444,8 @@ export class AiManager {
   }
   /**
    * Sends an AI request to supported Large Language Models (LLMs) and extracts metadata in form of key-value pairs.
-   * Freeform metadata extraction does not require any metadata template setup before sending the request.
+   * In this request, both the prompt and the output can be freeform.
+   * Metadata template setup before sending the request is not required.
    * @param {AiExtract} requestBody Request body of createAiExtract method
    * @param {CreateAiExtractOptionalsInput} optionalsInput
    * @returns {Promise<AiResponse>}
@@ -485,7 +486,8 @@ export class AiManager {
   }
   /**
    * Sends an AI request to supported Large Language Models (LLMs) and returns extracted metadata as a set of key-value pairs.
-   * For this request, you need to use an already defined metadata template or a define a schema yourself.
+   * For this request, you either need a metadata template or a list of fields you want to extract.
+   * Input is **either** a metadata template or a list of fields to ensure the structure.
    * To learn more about creating templates, see [Creating metadata templates in the Admin Console](https://support.box.com/hc/en-us/articles/360044194033-Customizing-Metadata-Templates)
    * or use the [metadata template API](g://metadata/templates/create).
    * @param {AiExtractStructured} requestBody Request body of createAiExtractStructured method

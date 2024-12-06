@@ -1,10 +1,13 @@
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { serializeAiAgentInfo } from './aiAgentInfo.generated.js';
+import { deserializeAiAgentInfo } from './aiAgentInfo.generated.js';
 import { serializeAiResponse } from './aiResponse.generated.js';
 import { deserializeAiResponse } from './aiResponse.generated.js';
 import { serializeAiCitation } from './aiCitation.generated.js';
 import { deserializeAiCitation } from './aiCitation.generated.js';
 import { DateTime } from '../internal/utils.js';
+import { AiAgentInfo } from './aiAgentInfo.generated.js';
 import { AiResponse } from './aiResponse.generated.js';
 import { AiCitation } from './aiCitation.generated.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -87,10 +90,15 @@ export function deserializeAiResponseFull(val: SerializedData): AiResponseFull {
   }
   const completionReason: undefined | string =
     val.completion_reason == void 0 ? void 0 : val.completion_reason;
+  const aiAgentInfo: undefined | AiAgentInfo =
+    val.ai_agent_info == void 0
+      ? void 0
+      : deserializeAiAgentInfo(val.ai_agent_info);
   return {
     citations: citations,
     answer: answer,
     createdAt: createdAt,
     completionReason: completionReason,
+    aiAgentInfo: aiAgentInfo,
   } satisfies AiResponseFull;
 }
