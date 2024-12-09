@@ -129,9 +129,6 @@ export interface RestoreWeblinkFromTrashRequestBodyParentField {
   /**
    * The ID of parent item */
   readonly id?: string;
-  /**
-   * The input for `{user_id}` is optional. Moving to non-root folder is not allowed when `{user_id}` is present. Parent folder id should be zero when `{user_id}` is provided. */
-  readonly userId?: string;
   readonly rawData?: SerializedData;
 }
 export interface RestoreWeblinkFromTrashRequestBody {
@@ -417,7 +414,7 @@ export interface TrashedWebLinksManagerInput {
 export function serializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: RestoreWeblinkFromTrashRequestBodyParentField,
 ): SerializedData {
-  return { ['id']: val.id, ['user_id']: val.userId };
+  return { ['id']: val.id };
 }
 export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
   val: SerializedData,
@@ -435,18 +432,7 @@ export function deserializeRestoreWeblinkFromTrashRequestBodyParentField(
     });
   }
   const id: undefined | string = val.id == void 0 ? void 0 : val.id;
-  if (!(val.user_id == void 0) && !sdIsString(val.user_id)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "user_id" of type "RestoreWeblinkFromTrashRequestBodyParentField"',
-    });
-  }
-  const userId: undefined | string =
-    val.user_id == void 0 ? void 0 : val.user_id;
-  return {
-    id: id,
-    userId: userId,
-  } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
+  return { id: id } satisfies RestoreWeblinkFromTrashRequestBodyParentField;
 }
 export function serializeRestoreWeblinkFromTrashRequestBody(
   val: RestoreWeblinkFromTrashRequestBody,
