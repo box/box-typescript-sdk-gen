@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.8.0...v1.9.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* Fix signature of `beforeRequest` method in `Interceptor` interface (box/box-codegen[#625](https://github.com/box/box-typescript-sdk-gen/issues/625)) ([#446](https://github.com/box/box-typescript-sdk-gen/issues/446)) ([ef2e765](https://github.com/box/box-typescript-sdk-gen/commit/ef2e7658cab705906325e40d6c7c6e96e5703201))
+
+
+### New Features and Enhancements
+
+* Add `aiAgent` info to `AIResponse` (box/box-codegen[#624](https://github.com/box/box-typescript-sdk-gen/issues/624)) ([#440](https://github.com/box/box-typescript-sdk-gen/issues/440)) ([24c2013](https://github.com/box/box-typescript-sdk-gen/commit/24c20131b8275d43ecb02f3c94ac8e6116de3ea9))
+* Support optional `userId` parameter for updating files, folders and web links (box/box-openapi[#488](https://github.com/box/box-typescript-sdk-gen/issues/488)) ([#445](https://github.com/box/box-typescript-sdk-gen/issues/445)) ([874f259](https://github.com/box/box-typescript-sdk-gen/commit/874f259ce12e8440301ffb1b2b65a6765b87803f))
+
 ## [1.8.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.7.0...v1.8.0) (2024-12-03)
 
 
