@@ -68,25 +68,10 @@ export class InterceptorAddingRoleToFields implements Interceptor {
     >,
   ) {}
   /**
-   * @param {FetchOptionsInput} optionsInput
+   * @param {FetchOptions} options
    * @returns {FetchOptions}
    */
-  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
-    const options: FetchOptions = new FetchOptions({
-      url: optionsInput.url,
-      method: optionsInput.method,
-      params: optionsInput.params,
-      headers: optionsInput.headers,
-      data: optionsInput.data,
-      fileStream: optionsInput.fileStream,
-      multipartData: optionsInput.multipartData,
-      contentType: optionsInput.contentType,
-      responseFormat: optionsInput.responseFormat,
-      auth: optionsInput.auth,
-      networkSession: optionsInput.networkSession,
-      cancellationToken: optionsInput.cancellationToken,
-      followRedirects: optionsInput.followRedirects,
-    });
+  beforeRequest(options: FetchOptions): FetchOptions {
     return new FetchOptions({
       url: options.url,
       method: options.method,
@@ -115,25 +100,10 @@ export class InterceptorThrowingError implements Interceptor {
     fields: Omit<InterceptorThrowingError, 'beforeRequest' | 'afterRequest'>,
   ) {}
   /**
-   * @param {FetchOptionsInput} optionsInput
+   * @param {FetchOptions} options
    * @returns {FetchOptions}
    */
-  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions {
-    const options: FetchOptions = new FetchOptions({
-      url: optionsInput.url,
-      method: optionsInput.method,
-      params: optionsInput.params,
-      headers: optionsInput.headers,
-      data: optionsInput.data,
-      fileStream: optionsInput.fileStream,
-      multipartData: optionsInput.multipartData,
-      contentType: optionsInput.contentType,
-      responseFormat: optionsInput.responseFormat,
-      auth: optionsInput.auth,
-      networkSession: optionsInput.networkSession,
-      cancellationToken: optionsInput.cancellationToken,
-      followRedirects: optionsInput.followRedirects,
-    });
+  beforeRequest(options: FetchOptions): FetchOptions {
     return options;
   }
   /**
