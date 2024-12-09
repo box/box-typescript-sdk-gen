@@ -373,10 +373,10 @@ export type UpdateFolderByIdRequestBodySyncStateField =
   | 'partially_synced';
 export interface UpdateFolderByIdRequestBodyParentField {
   /**
-   * The ID of the new parent folder */
+   * The ID of parent item */
   readonly id?: string;
   /**
-   * The input for `{user_id}` is optional. Moving to non-root folder is not allowed when `{user_id}` is present. Parent folder id should be zero when `{user_id}` is provided. */
+   * The input for `user_id` is optional. Moving to non-root folder is not allowed when `user_id` is present. Parent folder id should be zero when `user_id` is provided. */
   readonly userId?: string;
   readonly rawData?: SerializedData;
 }
@@ -476,9 +476,6 @@ export interface UpdateFolderByIdRequestBody {
    * Specifies if users who are not the owner
    * of the folder can invite new collaborators to the folder. */
   readonly canNonOwnersInvite?: boolean;
-  /**
-   * The parent folder for this folder. Use this to move
-   * the folder or to restore it out of the trash. */
   readonly parent?: UpdateFolderByIdRequestBodyParentField;
   readonly sharedLink?: UpdateFolderByIdRequestBodySharedLinkField;
   readonly folderUploadEmail?: UpdateFolderByIdRequestBodyFolderUploadEmailField | null;

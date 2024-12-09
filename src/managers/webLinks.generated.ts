@@ -220,7 +220,7 @@ export interface UpdateWebLinkByIdRequestBodyParentField {
    * The ID of parent item */
   readonly id?: string;
   /**
-   * The input for `{user_id}` is optional. Moving to non-root folder is not allowed when `{user_id}` is present. Parent folder id should be zero when `{user_id}` is provided. */
+   * The input for `user_id` is optional. Moving to non-root folder is not allowed when `user_id` is present. Parent folder id should be zero when `user_id` is provided. */
   readonly userId?: string;
   readonly rawData?: SerializedData;
 }
