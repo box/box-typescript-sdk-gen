@@ -1,12 +1,11 @@
-import { FetchOptionsInput } from './fetchOptions.generated.js';
 import { FetchOptions } from './fetchOptions.generated.js';
 import { FetchResponse } from './fetchResponse.generated.js';
 export interface Interceptor {
   /**
-   * @param {FetchOptionsInput} optionsInput
+   * @param {FetchOptions} options
    * @returns {FetchOptions}
    */
-  beforeRequest(optionsInput: FetchOptionsInput): FetchOptions;
+  beforeRequest(options: FetchOptions): FetchOptions;
   /**
    * @param {FetchResponse} response
    * @returns {FetchResponse}
