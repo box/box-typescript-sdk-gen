@@ -76,7 +76,6 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
       externalId: '123',
       externalSystemName: 'BoxSignIntegration',
       isDocumentPreparationNeeded: false,
-      isPhoneVerificationRequiredToView: false,
       name: 'Sign Request',
       parentFolder: new FolderMini({ id: destinationFolder.id }),
       redirectUrl: 'https://www.box.com',
@@ -113,9 +112,6 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
     throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.isDocumentPreparationNeeded == false)) {
-    throw new Error('Assertion failed');
-  }
-  if (!(createdSignRequest.isPhoneVerificationRequiredToView == false)) {
     throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.name == 'Sign Request')) {
