@@ -268,19 +268,6 @@ export function deserializeSignRequestSigner(
   }
   const loginRequired: undefined | boolean =
     val.login_required == void 0 ? void 0 : val.login_required;
-  if (
-    !(val.verification_phone_number == void 0) &&
-    !sdIsString(val.verification_phone_number)
-  ) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "verification_phone_number" of type "SignRequestSigner"',
-    });
-  }
-  const verificationPhoneNumber: undefined | string =
-    val.verification_phone_number == void 0
-      ? void 0
-      : val.verification_phone_number;
   if (!(val.password == void 0) && !sdIsString(val.password)) {
     throw new BoxSdkError({
       message: 'Expecting string for "password" of type "SignRequestSigner"',
@@ -321,7 +308,6 @@ export function deserializeSignRequestSigner(
     redirectUrl: redirectUrl,
     declinedRedirectUrl: declinedRedirectUrl,
     loginRequired: loginRequired,
-    verificationPhoneNumber: verificationPhoneNumber,
     password: password,
     signerGroupId: signerGroupId,
     suppressNotifications: suppressNotifications,

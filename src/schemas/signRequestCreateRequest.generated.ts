@@ -262,19 +262,6 @@ export function deserializeSignRequestCreateRequest(
   }
   const externalId: undefined | string =
     val.external_id == void 0 ? void 0 : val.external_id;
-  if (
-    !(val.is_phone_verification_required_to_view == void 0) &&
-    !sdIsBoolean(val.is_phone_verification_required_to_view)
-  ) {
-    throw new BoxSdkError({
-      message:
-        'Expecting boolean for "is_phone_verification_required_to_view" of type "SignRequestCreateRequest"',
-    });
-  }
-  const isPhoneVerificationRequiredToView: undefined | boolean =
-    val.is_phone_verification_required_to_view == void 0
-      ? void 0
-      : val.is_phone_verification_required_to_view;
   if (!(val.template_id == void 0) && !sdIsString(val.template_id)) {
     throw new BoxSdkError({
       message:
@@ -310,7 +297,6 @@ export function deserializeSignRequestCreateRequest(
     prefillTags: prefillTags,
     daysValid: daysValid,
     externalId: externalId,
-    isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView,
     templateId: templateId,
     externalSystemName: externalSystemName,
   } satisfies SignRequestCreateRequest;
