@@ -28,13 +28,15 @@ Embrace the new generation of Box SDKs and unlock the full potential of the Box 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Box TypeScript SDK GENERATED](#box-typescript-sdk-generated)
+- [Table of contents](#table-of-contents)
 - [Installing](#installing)
 - [Getting Started](#getting-started)
 - [Documentation](#documentation)
 - [Upgrades](#upgrades)
 - [Integration Tests](#integration-tests)
   - [Running integration tests locally](#running-integration-tests-locally)
-    - [Create Custom Application](#create-custom-application)
+    - [Create Platform Application](#create-platform-application)
     - [Export configuration](#export-configuration)
 - [Questions, Bugs, and Feature Requests?](#questions-bugs-and-feature-requests)
 - [Copyright and License](#copyright-and-license)
@@ -107,7 +109,7 @@ Upgrading from our legacy SDKs to the new generation SDKs is a straightforward p
 
 ## Running integration tests locally
 
-### Create Custom Application
+### Create Platform Application
 
 To run integration tests locally you will need a `Custom App` created in the [Box Developer
 Console](https://app.box.com/developers/console) with `Server Authentication (with JWT)` selected as authentication method.
