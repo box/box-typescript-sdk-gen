@@ -53,6 +53,12 @@ export type EventEventTypeField =
   | 'DOWNLOAD'
   | 'EDIT'
   | 'EDIT_USER'
+  | 'EDR_CROWDSTRIKE_DEVICE_DETECTED'
+  | 'EDR_CROWDSTRIKE_NO_BOX_TOOLS'
+  | 'EDR_CROWDSTRIKE_BOX_TOOLS_OUTDATED'
+  | 'EDR_CROWDSTRIKE_DRIVE_OUTDATED'
+  | 'EDR_CROWDSTRIKE_ACCESS_ALLOWED_NO_CROWDSTRIKE_DEVICE'
+  | 'EDR_CROWDSTRIKE_ACCESS_REVOKED'
   | 'EMAIL_ALIAS_CONFIRM'
   | 'EMAIL_ALIAS_REMOVE'
   | 'ENABLE_TWO_FACTOR_AUTH'
@@ -302,6 +308,24 @@ export function deserializeEventEventTypeField(
     return val;
   }
   if (val == 'EDIT_USER') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_DEVICE_DETECTED') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_NO_BOX_TOOLS') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_BOX_TOOLS_OUTDATED') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_DRIVE_OUTDATED') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_ACCESS_ALLOWED_NO_CROWDSTRIKE_DEVICE') {
+    return val;
+  }
+  if (val == 'EDR_CROWDSTRIKE_ACCESS_REVOKED') {
     return val;
   }
   if (val == 'EMAIL_ALIAS_CONFIRM') {

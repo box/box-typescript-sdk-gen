@@ -44,9 +44,6 @@ export interface SignRequestBase {
    * This can be used to reference an ID in an external system that the sign request is related to. */
   readonly externalId?: string | null;
   /**
-   * Forces signers to verify a text message prior to viewing the document. You must specify the phone number of signers to have this setting apply to them. */
-  readonly isPhoneVerificationRequiredToView?: boolean | null;
-  /**
    * When a signature request is created from a template this field will indicate the id of that template. */
   readonly templateId?: string | null;
   /**
@@ -74,8 +71,6 @@ export function serializeSignRequestBase(val: SignRequestBase): SerializedData {
           }) as readonly any[]),
     ['days_valid']: val.daysValid,
     ['external_id']: val.externalId,
-    ['is_phone_verification_required_to_view']:
-      val.isPhoneVerificationRequiredToView,
     ['template_id']: val.templateId,
     ['external_system_name']: val.externalSystemName,
   };
@@ -190,19 +185,6 @@ export function deserializeSignRequestBase(
   }
   const externalId: undefined | string =
     val.external_id == void 0 ? void 0 : val.external_id;
-  if (
-    !(val.is_phone_verification_required_to_view == void 0) &&
-    !sdIsBoolean(val.is_phone_verification_required_to_view)
-  ) {
-    throw new BoxSdkError({
-      message:
-        'Expecting boolean for "is_phone_verification_required_to_view" of type "SignRequestBase"',
-    });
-  }
-  const isPhoneVerificationRequiredToView: undefined | boolean =
-    val.is_phone_verification_required_to_view == void 0
-      ? void 0
-      : val.is_phone_verification_required_to_view;
   if (!(val.template_id == void 0) && !sdIsString(val.template_id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "template_id" of type "SignRequestBase"',
@@ -233,7 +215,6 @@ export function deserializeSignRequestBase(
     prefillTags: prefillTags,
     daysValid: daysValid,
     externalId: externalId,
-    isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView,
     templateId: templateId,
     externalSystemName: externalSystemName,
   } satisfies SignRequestBase;

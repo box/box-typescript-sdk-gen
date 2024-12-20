@@ -431,19 +431,6 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
   }
   const externalId: undefined | string =
     val.external_id == void 0 ? void 0 : val.external_id;
-  if (
-    !(val.is_phone_verification_required_to_view == void 0) &&
-    !sdIsBoolean(val.is_phone_verification_required_to_view)
-  ) {
-    throw new BoxSdkError({
-      message:
-        'Expecting boolean for "is_phone_verification_required_to_view" of type "SignRequest"',
-    });
-  }
-  const isPhoneVerificationRequiredToView: undefined | boolean =
-    val.is_phone_verification_required_to_view == void 0
-      ? void 0
-      : val.is_phone_verification_required_to_view;
   if (!(val.template_id == void 0) && !sdIsString(val.template_id)) {
     throw new BoxSdkError({
       message: 'Expecting string for "template_id" of type "SignRequest"',
@@ -485,7 +472,6 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     prefillTags: prefillTags,
     daysValid: daysValid,
     externalId: externalId,
-    isPhoneVerificationRequiredToView: isPhoneVerificationRequiredToView,
     templateId: templateId,
     externalSystemName: externalSystemName,
   } satisfies SignRequest;
