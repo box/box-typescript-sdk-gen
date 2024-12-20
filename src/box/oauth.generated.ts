@@ -144,7 +144,7 @@ export class BoxOAuth implements Authentication {
     return token!;
   }
   /**
-   * Get a new access token for the app user.
+   * Get a new access token for the platform app user.
    * @param {NetworkSession} networkSession An object to keep network session state
    * @returns {Promise<AccessToken>}
    */
