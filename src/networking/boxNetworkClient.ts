@@ -10,6 +10,7 @@ import {
   readByteStream,
 } from '../internal/utils';
 import { sdkVersion } from './version';
+import { NetworkClient } from './networkClient.generated';
 import {
   SerializedData,
   jsonToSerializedData,
@@ -141,160 +142,168 @@ const STATUS_CODE_ACCEPTED = 202,
   STATUS_CODE_UNAUTHORIZED = 401,
   STATUS_CODE_TOO_MANY_REQUESTS = 429;
 
-export async function fetch(
-  options: FetchOptionsExtended,
-): Promise<FetchResponse> {
-  const fetchOptions: typeof options = options.networkSession?.interceptors
-    ?.length
-    ? options.networkSession?.interceptors.reduce(
-        (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
-          interceptor.beforeRequest(modifiedOptions),
-        options,
-      )
-    : options;
-  const fileStreamBuffer = fetchOptions.fileStream
-    ? await readByteStream(fetchOptions.fileStream)
-    : void 0;
-  const requestInit = await createRequestInit({
-    ...fetchOptions,
-    fileStream: fileStreamBuffer
-      ? generateByteStreamFromBuffer(fileStreamBuffer)
-      : void 0,
-  });
+export class BoxNetworkClient implements NetworkClient {
+  constructor(
+    fields?: Omit<BoxNetworkClient, 'fetch'> &
+      Partial<Pick<BoxNetworkClient, 'fetch'>>,
+  ) {
+    Object.assign(this, fields);
+  }
+  async fetch(options: FetchOptionsExtended): Promise<FetchResponse> {
+    const fetchOptions: typeof options = options.networkSession?.interceptors
+      ?.length
+      ? options.networkSession?.interceptors.reduce(
+          (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
+            interceptor.beforeRequest(modifiedOptions),
+          options,
+        )
+      : options;
+    const fileStreamBuffer = fetchOptions.fileStream
+      ? await readByteStream(fetchOptions.fileStream)
+      : void 0;
+    const requestInit = await createRequestInit({
+      ...fetchOptions,
+      fileStream: fileStreamBuffer
+        ? generateByteStreamFromBuffer(fileStreamBuffer)
+        : void 0,
+    });
 
-  const { params = {} } = fetchOptions;
-  const response = await nodeFetch(
-    ''.concat(
-      fetchOptions.url,
-      Object.keys(params).length === 0 || fetchOptions.url.endsWith('?')
-        ? ''
-        : '?',
-      new URLSearchParams(params).toString(),
-    ),
-    { ...requestInit, redirect: isBrowser() ? 'follow' : 'manual' },
-  );
-
-  const contentType = response.headers.get('content-type') ?? '';
-  const ignoreResponseBody = fetchOptions.followRedirects === false;
-  const responseBytesBuffer = !ignoreResponseBody
-    ? await response.arrayBuffer()
-    : new Uint8Array();
-
-  const data = ((): SerializedData => {
-    if (!ignoreResponseBody && contentType.includes('application/json')) {
-      const text = new TextDecoder().decode(responseBytesBuffer);
-      return jsonToSerializedData(text);
-    }
-    return void 0;
-  })();
-
-  const content = generateByteStreamFromBuffer(responseBytesBuffer);
-
-  let fetchResponse: FetchResponse = {
-    url: response.url,
-    status: response.status,
-    data,
-    content,
-    headers: Object.fromEntries(Array.from(response.headers.entries())),
-  };
-  if (fetchOptions.networkSession?.interceptors?.length) {
-    fetchResponse = fetchOptions.networkSession?.interceptors.reduce(
-      (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
-        interceptor.afterRequest(modifiedResponse),
-      fetchResponse,
+    const { params = {} } = fetchOptions;
+    const response = await nodeFetch(
+      ''.concat(
+        fetchOptions.url,
+        Object.keys(params).length === 0 || fetchOptions.url.endsWith('?')
+          ? ''
+          : '?',
+        new URLSearchParams(params).toString(),
+      ),
+      { ...requestInit, redirect: isBrowser() ? 'follow' : 'manual' },
     );
-  }
 
-  if (
-    fetchResponse.status >= 300 &&
-    fetchResponse.status < 400 &&
-    fetchOptions.followRedirects !== false
-  ) {
-    if (!fetchResponse.headers['location']) {
-      throw new BoxSdkError({
-        message: `Unable to follow redirect for ${fetchOptions.url}`,
-      });
+    const contentType = response.headers.get('content-type') ?? '';
+    const ignoreResponseBody = fetchOptions.followRedirects === false;
+    const responseBytesBuffer = !ignoreResponseBody
+      ? await response.arrayBuffer()
+      : new Uint8Array();
+
+    const data = ((): SerializedData => {
+      if (!ignoreResponseBody && contentType.includes('application/json')) {
+        const text = new TextDecoder().decode(responseBytesBuffer);
+        return jsonToSerializedData(text);
+      }
+      return void 0;
+    })();
+
+    const content = generateByteStreamFromBuffer(responseBytesBuffer);
+
+    let fetchResponse: FetchResponse = {
+      url: response.url,
+      status: response.status,
+      data,
+      content,
+      headers: Object.fromEntries(Array.from(response.headers.entries())),
+    };
+    if (fetchOptions.networkSession?.interceptors?.length) {
+      fetchResponse = fetchOptions.networkSession?.interceptors.reduce(
+        (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
+          interceptor.afterRequest(modifiedResponse),
+        fetchResponse,
+      );
     }
-    return fetch({
-      ...options,
-      url: fetchResponse.headers['location'],
-    });
-  }
 
-  const acceptedWithRetryAfter =
-    fetchResponse.status === STATUS_CODE_ACCEPTED &&
-    fetchResponse.headers['retry-after'];
-  const { numRetries = 0 } = fetchOptions;
-  if (
-    fetchResponse.status >= 400 ||
-    (acceptedWithRetryAfter && numRetries < DEFAULT_MAX_ATTEMPTS)
-  ) {
-    const reauthenticationNeeded =
-      fetchResponse.status == STATUS_CODE_UNAUTHORIZED;
-    if (reauthenticationNeeded && fetchOptions.auth) {
-      await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
-
-      // retry the request right away
-      return fetch({
+    if (
+      fetchResponse.status >= 300 &&
+      fetchResponse.status < 400 &&
+      fetchOptions.followRedirects !== false
+    ) {
+      if (!fetchResponse.headers['location']) {
+        throw new BoxSdkError({
+          message: `Unable to follow redirect for ${fetchOptions.url}`,
+        });
+      }
+      return this.fetch({
         ...options,
-        numRetries: numRetries + 1,
-        fileStream: fileStreamBuffer
-          ? generateByteStreamFromBuffer(fileStreamBuffer)
-          : void 0,
+        url: fetchResponse.headers['location'],
       });
     }
 
-    const isRetryable =
-      fetchOptions.contentType !== 'application/x-www-form-urlencoded' &&
-      (fetchResponse.status === STATUS_CODE_TOO_MANY_REQUESTS ||
-        acceptedWithRetryAfter ||
-        fetchResponse.status >= 500);
+    const acceptedWithRetryAfter =
+      fetchResponse.status === STATUS_CODE_ACCEPTED &&
+      fetchResponse.headers['retry-after'];
+    const { numRetries = 0 } = fetchOptions;
+    if (
+      fetchResponse.status >= 400 ||
+      (acceptedWithRetryAfter && numRetries < DEFAULT_MAX_ATTEMPTS)
+    ) {
+      const reauthenticationNeeded =
+        fetchResponse.status == STATUS_CODE_UNAUTHORIZED;
+      if (reauthenticationNeeded && fetchOptions.auth) {
+        await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
 
-    if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
-      const retryTimeout = fetchResponse.headers['retry-after']
-        ? parseFloat(fetchResponse.headers['retry-after']!) * 1000
-        : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
+        // retry the request right away
+        return this.fetch({
+          ...options,
+          numRetries: numRetries + 1,
+          fileStream: fileStreamBuffer
+            ? generateByteStreamFromBuffer(fileStreamBuffer)
+            : void 0,
+        });
+      }
 
-      await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-      return fetch({ ...options, numRetries: numRetries + 1 });
+      const isRetryable =
+        fetchOptions.contentType !== 'application/x-www-form-urlencoded' &&
+        (fetchResponse.status === STATUS_CODE_TOO_MANY_REQUESTS ||
+          acceptedWithRetryAfter ||
+          fetchResponse.status >= 500);
+
+      if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
+        const retryTimeout = fetchResponse.headers['retry-after']
+          ? parseFloat(fetchResponse.headers['retry-after']!) * 1000
+          : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
+
+        await new Promise((resolve) => setTimeout(resolve, retryTimeout));
+        return this.fetch({ ...options, numRetries: numRetries + 1 });
+      }
+
+      const [code, contextInfo, requestId, helpUrl] = sdIsMap(
+        fetchResponse.data,
+      )
+        ? [
+            sdToJson(fetchResponse.data['code']),
+            sdIsMap(fetchResponse.data['context_info'])
+              ? fetchResponse.data['context_info']
+              : undefined,
+            sdToJson(fetchResponse.data['request_id']),
+            sdToJson(fetchResponse.data['help_url']),
+          ]
+        : [];
+
+      throw new BoxApiError({
+        message: `${fetchResponse.status}`,
+        timestamp: `${Date.now()}`,
+        requestInfo: {
+          method: requestInit.method!,
+          url: fetchOptions.url,
+          queryParams: params,
+          headers: (requestInit.headers as { [key: string]: string }) ?? {},
+          body:
+            typeof requestInit.body === 'string' ? requestInit.body : undefined,
+        },
+        responseInfo: {
+          statusCode: fetchResponse.status,
+          headers: fetchResponse.headers,
+          body: fetchResponse.data,
+          rawBody: new TextDecoder().decode(responseBytesBuffer),
+          code: code,
+          contextInfo: contextInfo,
+          requestId: requestId,
+          helpUrl: helpUrl,
+        },
+      });
     }
 
-    const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
-      ? [
-          sdToJson(fetchResponse.data['code']),
-          sdIsMap(fetchResponse.data['context_info'])
-            ? fetchResponse.data['context_info']
-            : undefined,
-          sdToJson(fetchResponse.data['request_id']),
-          sdToJson(fetchResponse.data['help_url']),
-        ]
-      : [];
-
-    throw new BoxApiError({
-      message: `${fetchResponse.status}`,
-      timestamp: `${Date.now()}`,
-      requestInfo: {
-        method: requestInit.method!,
-        url: fetchOptions.url,
-        queryParams: params,
-        headers: (requestInit.headers as { [key: string]: string }) ?? {},
-        body:
-          typeof requestInit.body === 'string' ? requestInit.body : undefined,
-      },
-      responseInfo: {
-        statusCode: fetchResponse.status,
-        headers: fetchResponse.headers,
-        body: fetchResponse.data,
-        rawBody: new TextDecoder().decode(responseBytesBuffer),
-        code: code,
-        contextInfo: contextInfo,
-        requestId: requestId,
-        helpUrl: helpUrl,
-      },
-    });
+    return fetchResponse;
   }
-
-  return fetchResponse;
 }
 
 async function calculateMD5Hash(data: string | Buffer): Promise<string> {

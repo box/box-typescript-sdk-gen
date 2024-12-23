@@ -9,19 +9,18 @@ import { deserializeCollection } from '../schemas/collection.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Collections } from '../schemas/collections.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { ItemsOffsetPaginated } from '../schemas/itemsOffsetPaginated.generated.js';
 import { Collection } from '../schemas/collection.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -253,21 +252,22 @@ export class CollectionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/collections',
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/collections',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeCollections(response.data!),
       rawData: response.data!,
@@ -306,23 +306,24 @@ export class CollectionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/collections/',
-          toString(collectionId) as string,
-          '/items',
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/collections/',
+            toString(collectionId) as string,
+            '/items',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeItemsOffsetPaginated(response.data!),
       rawData: response.data!,
@@ -349,21 +350,22 @@ export class CollectionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/collections/',
-          toString(collectionId) as string,
-        ) as string,
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/collections/',
+            toString(collectionId) as string,
+          ) as string,
+          method: 'GET',
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeCollection(response.data!),
       rawData: response.data!,

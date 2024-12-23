@@ -9,19 +9,18 @@ import { deserializeTrackingCode } from '../schemas/trackingCode.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Users } from '../schemas/users.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { UserFull } from '../schemas/userFull.generated.js';
 import { TrackingCode } from '../schemas/trackingCode.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -680,21 +679,22 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users',
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUsers(response.data!),
       rawData: response.data!,
@@ -730,23 +730,24 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users',
-        ) as string,
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        data: serializeCreateUserRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users',
+          ) as string,
+          method: 'POST',
+          params: queryParamsMap,
+          headers: headersMap,
+          data: serializeCreateUserRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUserFull(response.data!),
       rawData: response.data!,
@@ -786,21 +787,22 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/me',
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/me',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUserFull(response.data!),
       rawData: response.data!,
@@ -845,22 +847,23 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUserFull(response.data!),
       rawData: response.data!,
@@ -899,24 +902,25 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-        ) as string,
-        method: 'PUT',
-        params: queryParamsMap,
-        headers: headersMap,
-        data: serializeUpdateUserByIdRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+          ) as string,
+          method: 'PUT',
+          params: queryParamsMap,
+          headers: headersMap,
+          data: serializeUpdateUserByIdRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUserFull(response.data!),
       rawData: response.data!,
@@ -953,22 +957,23 @@ export class UsersManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-        ) as string,
-        method: 'DELETE',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'no_content' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+          ) as string,
+          method: 'DELETE',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'no_content' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return void 0;
   }
 }

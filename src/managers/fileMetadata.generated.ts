@@ -7,17 +7,16 @@ import { deserializeMetadataFull } from '../schemas/metadataFull.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Metadatas } from '../schemas/metadatas.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { MetadataFull } from '../schemas/metadataFull.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -360,22 +359,23 @@ export class FileMetadataManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/metadata',
-        ) as string,
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/metadata',
+          ) as string,
+          method: 'GET',
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeMetadatas(response.data!),
       rawData: response.data!,
@@ -415,25 +415,26 @@ export class FileMetadataManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/metadata/',
-          toString(scope) as string,
-          '/',
-          toString(templateKey) as string,
-        ) as string,
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/metadata/',
+            toString(scope) as string,
+            '/',
+            toString(templateKey) as string,
+          ) as string,
+          method: 'GET',
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeMetadataFull(response.data!),
       rawData: response.data!,
@@ -478,27 +479,28 @@ export class FileMetadataManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/metadata/',
-          toString(scope) as string,
-          '/',
-          toString(templateKey) as string,
-        ) as string,
-        method: 'POST',
-        headers: headersMap,
-        data: serializeCreateFileMetadataByIdRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/metadata/',
+            toString(scope) as string,
+            '/',
+            toString(templateKey) as string,
+          ) as string,
+          method: 'POST',
+          headers: headersMap,
+          data: serializeCreateFileMetadataByIdRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeMetadataFull(response.data!),
       rawData: response.data!,
@@ -546,29 +548,30 @@ export class FileMetadataManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/metadata/',
-          toString(scope) as string,
-          '/',
-          toString(templateKey) as string,
-        ) as string,
-        method: 'PUT',
-        headers: headersMap,
-        data: requestBody.map(
-          serializeUpdateFileMetadataByIdRequestBody,
-        ) as readonly any[],
-        contentType: 'application/json-patch+json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/metadata/',
+            toString(scope) as string,
+            '/',
+            toString(templateKey) as string,
+          ) as string,
+          method: 'PUT',
+          headers: headersMap,
+          data: requestBody.map(
+            serializeUpdateFileMetadataByIdRequestBody,
+          ) as readonly any[],
+          contentType: 'application/json-patch+json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeMetadataFull(response.data!),
       rawData: response.data!,
@@ -607,25 +610,26 @@ export class FileMetadataManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/metadata/',
-          toString(scope) as string,
-          '/',
-          toString(templateKey) as string,
-        ) as string,
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: 'no_content' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/metadata/',
+            toString(scope) as string,
+            '/',
+            toString(templateKey) as string,
+          ) as string,
+          method: 'DELETE',
+          headers: headersMap,
+          responseFormat: 'no_content' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return void 0;
   }
 }

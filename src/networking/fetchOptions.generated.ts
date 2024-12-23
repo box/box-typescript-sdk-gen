@@ -1,6 +1,6 @@
 import { Authentication } from './auth.generated.js';
-import { SerializedData } from '../serialization/json.js';
 import { NetworkSession } from './network.generated.js';
+import { SerializedData } from '../serialization/json.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 export type ResponseFormat = 'json' | 'binary' | 'no_content';

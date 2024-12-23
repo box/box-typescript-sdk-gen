@@ -7,18 +7,17 @@ import { deserializeFileVersionFull } from '../schemas/fileVersionFull.generated
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { FileVersions } from '../schemas/fileVersions.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { FileVersionFull } from '../schemas/fileVersionFull.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -463,23 +462,24 @@ export class FileVersionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/versions',
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/versions',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFileVersions(response.data!),
       rawData: response.data!,
@@ -526,24 +526,25 @@ export class FileVersionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/versions/',
-          toString(fileVersionId) as string,
-        ) as string,
-        method: 'GET',
-        params: queryParamsMap,
-        headers: headersMap,
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/versions/',
+            toString(fileVersionId) as string,
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFileVersionFull(response.data!),
       rawData: response.data!,
@@ -584,23 +585,24 @@ export class FileVersionsManager {
       ...{ ['if-match']: toString(headers.ifMatch) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/versions/',
-          toString(fileVersionId) as string,
-        ) as string,
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: 'no_content' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/versions/',
+            toString(fileVersionId) as string,
+          ) as string,
+          method: 'DELETE',
+          headers: headersMap,
+          responseFormat: 'no_content' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return void 0;
   }
   /**
@@ -638,25 +640,26 @@ export class FileVersionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/versions/',
-          toString(fileVersionId) as string,
-        ) as string,
-        method: 'PUT',
-        headers: headersMap,
-        data: serializeUpdateFileVersionByIdRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/versions/',
+            toString(fileVersionId) as string,
+          ) as string,
+          method: 'PUT',
+          headers: headersMap,
+          data: serializeUpdateFileVersionByIdRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFileVersionFull(response.data!),
       rawData: response.data!,
@@ -715,25 +718,26 @@ export class FileVersionsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/versions/current',
-        ) as string,
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        data: serializePromoteFileVersionRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/versions/current',
+          ) as string,
+          method: 'POST',
+          params: queryParamsMap,
+          headers: headersMap,
+          data: serializePromoteFileVersionRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFileVersionFull(response.data!),
       rawData: response.data!,

@@ -4,17 +4,16 @@ import { serializeUserAvatar } from '../schemas/userAvatar.generated.js';
 import { deserializeUserAvatar } from '../schemas/userAvatar.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { UserAvatar } from '../schemas/userAvatar.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { sdToJson } from '../serialization/json.js';
 import { MultipartItem } from '../networking/fetchOptions.generated.js';
 import { SerializedData } from '../serialization/json.js';
@@ -202,22 +201,23 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-          '/avatar',
-        ) as string,
-        method: 'GET',
-        headers: headersMap,
-        responseFormat: 'binary' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+            '/avatar',
+          ) as string,
+          method: 'GET',
+          headers: headersMap,
+          responseFormat: 'binary' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return response.content!;
   }
   /**
@@ -242,31 +242,32 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-          '/avatar',
-        ) as string,
-        method: 'POST',
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'pic',
-            fileStream: requestBody.pic,
-            fileName: requestBody.picFileName,
-            contentType: requestBody.picContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+            '/avatar',
+          ) as string,
+          method: 'POST',
+          headers: headersMap,
+          multipartData: [
+            {
+              partName: 'pic',
+              fileStream: requestBody.pic,
+              fileName: requestBody.picFileName,
+              contentType: requestBody.picContentType,
+            } satisfies MultipartItem,
+          ],
+          contentType: 'multipart/form-data',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUserAvatar(response.data!),
       rawData: response.data!,
@@ -293,22 +294,23 @@ export class AvatarsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/users/',
-          toString(userId) as string,
-          '/avatar',
-        ) as string,
-        method: 'DELETE',
-        headers: headersMap,
-        responseFormat: 'no_content' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/users/',
+            toString(userId) as string,
+            '/avatar',
+          ) as string,
+          method: 'DELETE',
+          headers: headersMap,
+          responseFormat: 'no_content' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return void 0;
   }
 }
