@@ -2,7 +2,7 @@ import { Buffer } from 'buffer';
 import type { Readable } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 import { SignJWT, importPKCS8 } from 'jose';
-import { createSHA1 } from 'hash-wasm';
+import { createHMAC, createSHA1, createSHA256 } from 'hash-wasm';
 
 export function isBrowser() {
   return (
@@ -57,6 +57,14 @@ export function dateTimeToString(dateTime: DateTimeWrapper): string {
       .toISOString()
       .match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)![0] + '+00:00'
   );
+}
+
+export function epochSecondsToDateTime(seconds: number): DateTimeWrapper {
+  return new DateTimeWrapper(new Date(seconds * 1000));
+}
+
+export function dateTimeToEpochSeconds(dateTime: DateTimeWrapper): number {
+  return Math.floor(dateTime.value.getTime() / 1000);
 }
 
 export {
@@ -458,4 +466,64 @@ export function createNull(): null {
  */
 export function createCancellationController(): CancellationController {
   return new AbortController();
+}
+
+/**
+ * Stringify JSON with escaped multibyte Unicode characters to ensure computed signatures match PHP's default behavior
+ *
+ * @param {Object} body - The parsed JSON object
+ * @returns {string} - Stringified JSON with escaped multibyte Unicode characters
+ * @private
+ */
+export function jsonStringifyWithEscapedUnicode(body: string) {
+  return body.replace(
+    /[\u007f-\uffff]/g,
+    (char) => `\\u${`0000${char.charCodeAt(0).toString(16)}`.slice(-4)}`,
+  );
+}
+
+/**
+ * Compute the message signature
+ * @see {@Link https://developer.box.com/en/guides/webhooks/handle/setup-signatures/}
+ *
+ * @param {string} body - The request body of the webhook message
+ * @param {Object} headers - The request headers of the webhook message
+ * @param {string} signatureKey - The signature to verify the message with
+ * @returns {?string} - The message signature (or null, if it can't be computed)
+ * @private
+ */
+export async function computeWebhookSignature(
+  body: string,
+  headers: {
+    [key: string]: string;
+  },
+  signatureKey: string,
+): Promise<string | null> {
+  const escapedBody = jsonStringifyWithEscapedUnicode(body).replace(
+    /\//g,
+    '\\/',
+  );
+  if (headers['box-signature-version'] !== '1') {
+    return null;
+  }
+  if (headers['box-signature-algorithm'] !== 'HmacSHA256') {
+    return null;
+  }
+  let signature: string | null = null;
+  if (isBrowser()) {
+    const hashFunc = createSHA256();
+    const hmac = await createHMAC(hashFunc, signatureKey);
+    hmac.init();
+    hmac.update(escapedBody);
+    hmac.update(headers['box-delivery-timestamp']);
+    const result = await hmac.digest('binary');
+    signature = Buffer.from(result).toString('base64');
+  } else {
+    let crypto = eval('require')('crypto');
+    let hmac = crypto.createHmac('sha256', signatureKey);
+    hmac.update(escapedBody);
+    hmac.update(headers['box-delivery-timestamp']);
+    signature = hmac.digest('base64');
+  }
+  return signature;
 }

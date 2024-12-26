@@ -50,7 +50,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
 
   const { contentHeaders = {}, body } = await (async (): Promise<{
     contentHeaders: { [key: string]: string };
-    body: Readable | string | ArrayBuffer;
+    body: Readable | string | Buffer;
   }> => {
     const contentHeaders: { [key: string]: string } = {};
     if (options.multipartData) {

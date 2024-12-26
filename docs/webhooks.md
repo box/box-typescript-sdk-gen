@@ -5,6 +5,7 @@
 - [Get webhook](#get-webhook)
 - [Update webhook](#update-webhook)
 - [Remove webhook](#remove-webhook)
+- [Validate a webhook message](#validate-a-webhook-message)
 
 ## List all webhooks
 
@@ -164,3 +165,35 @@ This function returns a value of type `undefined`.
 
 An empty response will be returned when the webhook
 was successfully deleted.
+
+## Validate a webhook message
+
+Validate a webhook message by verifying the signature and the delivery timestamp
+
+This operation is performed by calling function `validateMessage`.
+
+```ts
+await WebhooksManager.validateMessage(
+  bodyWithJapanese,
+  headersWithJapanese,
+  primaryKey,
+  { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+);
+```
+
+### Arguments
+
+- body `string`
+  - The request body of the webhook message
+- headers `{
+    readonly [key: string]: string;
+}`
+  - The headers of the webhook message
+- primaryKey `string`
+  - The primary signature to verify the message with
+- optionalsInput `ValidateMessageOptionalsInput`
+  -
+
+### Returns
+
+This function returns a value of type `boolean`.
