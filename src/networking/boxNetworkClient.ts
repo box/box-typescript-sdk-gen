@@ -21,6 +21,7 @@ import {
 import { Interceptor } from './interceptors.generated';
 import { FetchOptions } from './fetchOptions.generated';
 import { FetchResponse } from './fetchResponse.generated';
+import { NetworkSession } from './network.generated';
 
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
@@ -136,12 +137,6 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   };
 }
 
-const DEFAULT_MAX_ATTEMPTS = 5;
-const RETRY_BASE_INTERVAL = 1;
-const STATUS_CODE_ACCEPTED = 202,
-  STATUS_CODE_UNAUTHORIZED = 401,
-  STATUS_CODE_TOO_MANY_REQUESTS = 429;
-
 export class BoxNetworkClient implements NetworkClient {
   constructor(
     fields?: Omit<BoxNetworkClient, 'fetch'> &
@@ -150,9 +145,10 @@ export class BoxNetworkClient implements NetworkClient {
     Object.assign(this, fields);
   }
   async fetch(options: FetchOptionsExtended): Promise<FetchResponse> {
-    const fetchOptions: typeof options = options.networkSession?.interceptors
-      ?.length
-      ? options.networkSession?.interceptors.reduce(
+    const numRetries = options.numRetries ?? 0;
+    const networkSession = options.networkSession ?? new NetworkSession({});
+    const fetchOptions: typeof options = networkSession.interceptors?.length
+      ? networkSession.interceptors.reduce(
           (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
             interceptor.beforeRequest(modifiedOptions),
           options,
@@ -203,12 +199,28 @@ export class BoxNetworkClient implements NetworkClient {
       content,
       headers: Object.fromEntries(Array.from(response.headers.entries())),
     };
-    if (fetchOptions.networkSession?.interceptors?.length) {
-      fetchResponse = fetchOptions.networkSession?.interceptors.reduce(
+    if (networkSession.interceptors?.length) {
+      fetchResponse = networkSession.interceptors.reduce(
         (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
           interceptor.afterRequest(modifiedResponse),
         fetchResponse,
       );
+    }
+
+    const shouldRetry = await networkSession.retryStrategy.shouldRetry(
+      fetchOptions,
+      fetchResponse,
+      numRetries,
+    );
+
+    if (shouldRetry) {
+      const retryTimeout = networkSession.retryStrategy.retryAfter(
+        fetchOptions,
+        fetchResponse,
+        numRetries,
+      );
+      await new Promise((resolve) => setTimeout(resolve, retryTimeout));
+      return this.fetch({ ...options, numRetries: numRetries + 1 });
     }
 
     if (
@@ -227,82 +239,43 @@ export class BoxNetworkClient implements NetworkClient {
       });
     }
 
-    const acceptedWithRetryAfter =
-      fetchResponse.status === STATUS_CODE_ACCEPTED &&
-      fetchResponse.headers['retry-after'];
-    const { numRetries = 0 } = fetchOptions;
-    if (
-      fetchResponse.status >= 400 ||
-      (acceptedWithRetryAfter && numRetries < DEFAULT_MAX_ATTEMPTS)
-    ) {
-      const reauthenticationNeeded =
-        fetchResponse.status == STATUS_CODE_UNAUTHORIZED;
-      if (reauthenticationNeeded && fetchOptions.auth) {
-        await fetchOptions.auth.refreshToken(fetchOptions.networkSession);
-
-        // retry the request right away
-        return this.fetch({
-          ...options,
-          numRetries: numRetries + 1,
-          fileStream: fileStreamBuffer
-            ? generateByteStreamFromBuffer(fileStreamBuffer)
-            : void 0,
-        });
-      }
-
-      const isRetryable =
-        fetchOptions.contentType !== 'application/x-www-form-urlencoded' &&
-        (fetchResponse.status === STATUS_CODE_TOO_MANY_REQUESTS ||
-          acceptedWithRetryAfter ||
-          fetchResponse.status >= 500);
-
-      if (isRetryable && numRetries < DEFAULT_MAX_ATTEMPTS) {
-        const retryTimeout = fetchResponse.headers['retry-after']
-          ? parseFloat(fetchResponse.headers['retry-after']!) * 1000
-          : getRetryTimeout(numRetries, RETRY_BASE_INTERVAL * 1000);
-
-        await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-        return this.fetch({ ...options, numRetries: numRetries + 1 });
-      }
-
-      const [code, contextInfo, requestId, helpUrl] = sdIsMap(
-        fetchResponse.data,
-      )
-        ? [
-            sdToJson(fetchResponse.data['code']),
-            sdIsMap(fetchResponse.data['context_info'])
-              ? fetchResponse.data['context_info']
-              : undefined,
-            sdToJson(fetchResponse.data['request_id']),
-            sdToJson(fetchResponse.data['help_url']),
-          ]
-        : [];
-
-      throw new BoxApiError({
-        message: `${fetchResponse.status}`,
-        timestamp: `${Date.now()}`,
-        requestInfo: {
-          method: requestInit.method!,
-          url: fetchOptions.url,
-          queryParams: params,
-          headers: (requestInit.headers as { [key: string]: string }) ?? {},
-          body:
-            typeof requestInit.body === 'string' ? requestInit.body : undefined,
-        },
-        responseInfo: {
-          statusCode: fetchResponse.status,
-          headers: fetchResponse.headers,
-          body: fetchResponse.data,
-          rawBody: new TextDecoder().decode(responseBytesBuffer),
-          code: code,
-          contextInfo: contextInfo,
-          requestId: requestId,
-          helpUrl: helpUrl,
-        },
-      });
+    if (fetchResponse.status >= 200 && fetchResponse.status < 400) {
+      return fetchResponse;
     }
 
-    return fetchResponse;
+    const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
+      ? [
+          sdToJson(fetchResponse.data['code']),
+          sdIsMap(fetchResponse.data['context_info'])
+            ? fetchResponse.data['context_info']
+            : undefined,
+          sdToJson(fetchResponse.data['request_id']),
+          sdToJson(fetchResponse.data['help_url']),
+        ]
+      : [];
+
+    throw new BoxApiError({
+      message: `${fetchResponse.status}`,
+      timestamp: `${Date.now()}`,
+      requestInfo: {
+        method: requestInit.method!,
+        url: fetchOptions.url,
+        queryParams: params,
+        headers: (requestInit.headers as { [key: string]: string }) ?? {},
+        body:
+          typeof requestInit.body === 'string' ? requestInit.body : undefined,
+      },
+      responseInfo: {
+        statusCode: fetchResponse.status,
+        headers: fetchResponse.headers,
+        body: fetchResponse.data,
+        rawBody: new TextDecoder().decode(responseBytesBuffer),
+        code: code,
+        contextInfo: contextInfo,
+        requestId: requestId,
+        helpUrl: helpUrl,
+      },
+    });
   }
 }
 
