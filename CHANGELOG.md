@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.9.0...v1.10.0) (2024-12-30)
+
+
+### Bug Fixes
+
+* Remove unused parameter from `SignRequest` (box/box-openapi[#489](https://github.com/box/box-typescript-sdk-gen/issues/489)) ([#450](https://github.com/box/box-typescript-sdk-gen/issues/450)) ([f5683b7](https://github.com/box/box-typescript-sdk-gen/commit/f5683b703625dd8d504ca52100f692cb8440a474))
+
+
+### New Features and Enhancements
+
+* Add support for replacing the network client implementation (box/box-codegen[#629](https://github.com/box/box-typescript-sdk-gen/issues/629)) ([#454](https://github.com/box/box-typescript-sdk-gen/issues/454)) ([1cb7ddb](https://github.com/box/box-typescript-sdk-gen/commit/1cb7ddb3ada79cebc27fbfce9df90cd8ebad353c))
+* Allow for customizing retry strategy (box/box-codegen[#635](https://github.com/box/box-typescript-sdk-gen/issues/635)) ([#457](https://github.com/box/box-typescript-sdk-gen/issues/457)) ([530ca33](https://github.com/box/box-typescript-sdk-gen/commit/530ca33ff3635581bd8ee91a82bc9f000b18812b))
+* Support webhook message validation (box/box-codegen[#631](https://github.com/box/box-typescript-sdk-gen/issues/631)) ([#455](https://github.com/box/box-typescript-sdk-gen/issues/455)) ([09765a4](https://github.com/box/box-typescript-sdk-gen/commit/09765a42fe25f15095bd1bd0d1377f2da222c9e4))
+
 ## [1.9.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.8.0...v1.9.0) (2024-12-09)
 
 
