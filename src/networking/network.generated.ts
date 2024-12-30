@@ -4,6 +4,8 @@ import { Agent } from '../internal/utils.js';
 import { AgentOptions } from '../internal/utils.js';
 import { createAgent } from '../internal/utils.js';
 import { ProxyConfig } from './proxyConfig.generated.js';
+import { BoxNetworkClient } from './boxNetworkClient.js';
+import { NetworkClient } from './networkClient.generated.js';
 export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
@@ -13,6 +15,7 @@ export class NetworkSession {
   readonly agent: Agent = createAgent(void 0, void 0);
   readonly agentOptions?: AgentOptions;
   readonly proxyConfig?: ProxyConfig;
+  readonly networkClient: NetworkClient = new BoxNetworkClient({});
   constructor(
     fields: Omit<
       NetworkSession,
@@ -20,16 +23,22 @@ export class NetworkSession {
       | 'baseUrls'
       | 'interceptors'
       | 'agent'
+      | 'networkClient'
       | 'withAdditionalHeaders'
       | 'withCustomBaseUrls'
       | 'withCustomAgentOptions'
       | 'withInterceptors'
       | 'withProxy'
+      | 'withNetworkClient'
     > &
       Partial<
         Pick<
           NetworkSession,
-          'additionalHeaders' | 'baseUrls' | 'interceptors' | 'agent'
+          | 'additionalHeaders'
+          | 'baseUrls'
+          | 'interceptors'
+          | 'agent'
+          | 'networkClient'
         >
       >,
   ) {
@@ -51,6 +60,9 @@ export class NetworkSession {
     if (fields.proxyConfig !== undefined) {
       this.proxyConfig = fields.proxyConfig;
     }
+    if (fields.networkClient !== undefined) {
+      this.networkClient = fields.networkClient;
+    }
   }
   /**
      * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including additional headers to be attached to every API call.
@@ -71,6 +83,7 @@ export class NetworkSession {
       agent: this.agent,
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
     });
   }
   /**
@@ -86,6 +99,7 @@ export class NetworkSession {
       agent: this.agent,
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
     });
   }
   /**
@@ -101,6 +115,7 @@ export class NetworkSession {
       agent: createAgent(agentOptions, this.proxyConfig),
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
     });
   }
   /**
@@ -116,6 +131,7 @@ export class NetworkSession {
       agent: this.agent,
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
     });
   }
   /**
@@ -131,6 +147,23 @@ export class NetworkSession {
       agent: createAgent(this.agentOptions, proxyConfig),
       agentOptions: this.agentOptions,
       proxyConfig: proxyConfig,
+      networkClient: this.networkClient,
+    });
+  }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including a custom network client.
+   * @param {NetworkClient} networkClient
+   * @returns {NetworkSession}
+   */
+  withNetworkClient(networkClient: NetworkClient): NetworkSession {
+    return new NetworkSession({
+      additionalHeaders: this.additionalHeaders,
+      baseUrls: this.baseUrls,
+      interceptors: this.interceptors,
+      agent: this.agent,
+      agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
+      networkClient: networkClient,
     });
   }
 }
@@ -143,4 +176,5 @@ export interface NetworkSessionInput {
   readonly agent?: Agent;
   readonly agentOptions?: AgentOptions;
   readonly proxyConfig?: ProxyConfig;
+  readonly networkClient?: NetworkClient;
 }

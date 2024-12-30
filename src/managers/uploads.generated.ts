@@ -11,20 +11,19 @@ import { deserializeDateTime } from '../internal/utils.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Files } from '../schemas/files.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
-import { BoxSdkError } from '../box/errors.js';
 import { UploadUrl } from '../schemas/uploadUrl.generated.js';
 import { ConflictError } from '../schemas/conflictError.generated.js';
+import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
+import { FetchOptions } from '../networking/fetchOptions.generated.js';
+import { FetchResponse } from '../networking/fetchResponse.generated.js';
 import { prepareParams } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { DateTime } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
-import { FetchOptions } from '../networking/fetchOptions.generated.js';
-import { FetchResponse } from '../networking/fetchResponse.generated.js';
-import { fetch } from '../networking/fetch.js';
 import { MultipartItem } from '../networking/fetchOptions.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -424,38 +423,39 @@ export class UploadsManager {
       },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.uploadUrl,
-          '/2.0/files/',
-          toString(fileId) as string,
-          '/content',
-        ) as string,
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'attributes',
-            data: serializeUploadFileVersionRequestBodyAttributesField(
-              requestBody.attributes,
-            ),
-          } satisfies MultipartItem,
-          {
-            partName: 'file',
-            fileStream: requestBody.file,
-            fileName: requestBody.fileFileName,
-            contentType: requestBody.fileContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.uploadUrl,
+            '/2.0/files/',
+            toString(fileId) as string,
+            '/content',
+          ) as string,
+          method: 'POST',
+          params: queryParamsMap,
+          headers: headersMap,
+          multipartData: [
+            {
+              partName: 'attributes',
+              data: serializeUploadFileVersionRequestBodyAttributesField(
+                requestBody.attributes,
+              ),
+            } satisfies MultipartItem,
+            {
+              partName: 'file',
+              fileStream: requestBody.file,
+              fileName: requestBody.fileFileName,
+              contentType: requestBody.fileContentType,
+            } satisfies MultipartItem,
+          ],
+          contentType: 'multipart/form-data',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFiles(response.data!),
       rawData: response.data!,
@@ -483,22 +483,23 @@ export class UploadsManager {
     const headersMap: {
       readonly [key: string]: string;
     } = prepareParams({ ...{}, ...headers.extraHeaders });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.baseUrl,
-          '/2.0/files/content',
-        ) as string,
-        method: 'OPTIONS',
-        headers: headersMap,
-        data: serializePreflightFileUploadCheckRequestBody(requestBody),
-        contentType: 'application/json',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/files/content',
+          ) as string,
+          method: 'OPTIONS',
+          headers: headersMap,
+          data: serializePreflightFileUploadCheckRequestBody(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeUploadUrl(response.data!),
       rawData: response.data!,
@@ -541,36 +542,37 @@ export class UploadsManager {
       ...{ ['content-md5']: toString(headers.contentMd5) as string },
       ...headers.extraHeaders,
     });
-    const response: FetchResponse = (await fetch(
-      new FetchOptions({
-        url: ''.concat(
-          this.networkSession.baseUrls.uploadUrl,
-          '/2.0/files/content',
-        ) as string,
-        method: 'POST',
-        params: queryParamsMap,
-        headers: headersMap,
-        multipartData: [
-          {
-            partName: 'attributes',
-            data: serializeUploadFileRequestBodyAttributesField(
-              requestBody.attributes,
-            ),
-          } satisfies MultipartItem,
-          {
-            partName: 'file',
-            fileStream: requestBody.file,
-            fileName: requestBody.fileFileName,
-            contentType: requestBody.fileContentType,
-          } satisfies MultipartItem,
-        ],
-        contentType: 'multipart/form-data',
-        responseFormat: 'json' as ResponseFormat,
-        auth: this.auth,
-        networkSession: this.networkSession,
-        cancellationToken: cancellationToken,
-      }),
-    )) as FetchResponse;
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.uploadUrl,
+            '/2.0/files/content',
+          ) as string,
+          method: 'POST',
+          params: queryParamsMap,
+          headers: headersMap,
+          multipartData: [
+            {
+              partName: 'attributes',
+              data: serializeUploadFileRequestBodyAttributesField(
+                requestBody.attributes,
+              ),
+            } satisfies MultipartItem,
+            {
+              partName: 'file',
+              fileStream: requestBody.file,
+              fileName: requestBody.fileFileName,
+              contentType: requestBody.fileContentType,
+            } satisfies MultipartItem,
+          ],
+          contentType: 'multipart/form-data',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
     return {
       ...deserializeFiles(response.data!),
       rawData: response.data!,

@@ -74,13 +74,13 @@ import { IntegrationMappingsManager } from './managers/integrationMappings.gener
 import { AiManager } from './managers/ai.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
+import { BoxSdkError } from './box/errors.js';
+import { FetchOptions } from './networking/fetchOptions.generated.js';
+import { FetchResponse } from './networking/fetchResponse.generated.js';
 import { BaseUrls } from './networking/baseUrls.generated.js';
 import { ProxyConfig } from './networking/proxyConfig.generated.js';
 import { AgentOptions } from './internal/utils.js';
 import { Interceptor } from './networking/interceptors.generated.js';
-import { FetchOptions } from './networking/fetchOptions.generated.js';
-import { FetchResponse } from './networking/fetchResponse.generated.js';
-import { fetch } from './networking/fetch.js';
 import { SerializedData } from './serialization/json.js';
 import { sdIsEmpty } from './serialization/json.js';
 import { sdIsBoolean } from './serialization/json.js';
@@ -584,7 +584,7 @@ export class BoxClient {
       responseFormat: fetchOptions.responseFormat,
       followRedirects: fetchOptions.followRedirects,
     });
-    return (await fetch(enrichedFetchOptions)) as FetchResponse;
+    return await networkSession.networkClient.fetch(enrichedFetchOptions);
   }
   /**
    * Create a new client to impersonate user with the provided ID. All calls made with the new client will be made in context of the impersonated user, leaving the original client unmodified.
