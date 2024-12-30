@@ -1,3 +1,5 @@
+import { serializeDateTime } from '../internal/utils.js';
+import { deserializeDateTime } from '../internal/utils.js';
 import { serializeWebhooks } from '../schemas/webhooks.generated.js';
 import { deserializeWebhooks } from '../schemas/webhooks.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
@@ -5,6 +7,7 @@ import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeWebhook } from '../schemas/webhook.generated.js';
 import { deserializeWebhook } from '../schemas/webhook.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
+import { DateTime } from '../internal/utils.js';
 import { Webhooks } from '../schemas/webhooks.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { Webhook } from '../schemas/webhook.generated.js';
@@ -19,6 +22,10 @@ import { ByteStream } from '../internal/utils.js';
 import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
+import { computeWebhookSignature } from '../internal/utils.js';
+import { dateTimeFromString } from '../internal/utils.js';
+import { getEpochTimeInSeconds } from '../internal/utils.js';
+import { dateTimeToEpochSeconds } from '../internal/utils.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
 import { sdIsNumber } from '../serialization/json.js';
@@ -116,6 +123,25 @@ export class DeleteWebhookByIdOptionals {
 export interface DeleteWebhookByIdOptionalsInput {
   readonly headers?: DeleteWebhookByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
+}
+export class ValidateMessageOptionals {
+  readonly secondaryKey?: string = void 0;
+  readonly maxAge?: number = 600;
+  constructor(
+    fields: Omit<ValidateMessageOptionals, 'secondaryKey' | 'maxAge'> &
+      Partial<Pick<ValidateMessageOptionals, 'secondaryKey' | 'maxAge'>>,
+  ) {
+    if (fields.secondaryKey !== undefined) {
+      this.secondaryKey = fields.secondaryKey;
+    }
+    if (fields.maxAge !== undefined) {
+      this.maxAge = fields.maxAge;
+    }
+  }
+}
+export interface ValidateMessageOptionalsInput {
+  readonly secondaryKey?: undefined | string;
+  readonly maxAge?: undefined | number;
 }
 export interface GetWebhooksQueryParams {
   /**
@@ -388,6 +414,7 @@ export class WebhooksManager {
       | 'getWebhookById'
       | 'updateWebhookById'
       | 'deleteWebhookById'
+      | 'validateMessage'
     > &
       Partial<Pick<WebhooksManager, 'networkSession'>>,
   ) {
@@ -614,6 +641,56 @@ export class WebhooksManager {
         }),
       );
     return void 0;
+  }
+  /**
+     * Validate a webhook message by verifying the signature and the delivery timestamp
+     * @param {string} body The request body of the webhook message
+     * @param {{
+        readonly [key: string]: string;
+    }} headers The headers of the webhook message
+     * @param {string} primaryKey The primary signature to verify the message with
+     * @param {ValidateMessageOptionalsInput} optionalsInput
+     * @returns {Promise<boolean>}
+     */
+  static async validateMessage(
+    body: string,
+    headers: {
+      readonly [key: string]: string;
+    },
+    primaryKey: string,
+    optionalsInput: ValidateMessageOptionalsInput = {},
+  ): Promise<boolean> {
+    const optionals: ValidateMessageOptionals = new ValidateMessageOptionals({
+      secondaryKey: optionalsInput.secondaryKey,
+      maxAge: optionalsInput.maxAge,
+    });
+    const secondaryKey: any = optionals.secondaryKey;
+    const maxAge: any = optionals.maxAge;
+    const deliveryTimestamp: DateTime = dateTimeFromString(
+      headers['box-delivery-timestamp'],
+    );
+    const currentEpoch: number = getEpochTimeInSeconds();
+    if (
+      currentEpoch - maxAge > dateTimeToEpochSeconds(deliveryTimestamp) ||
+      dateTimeToEpochSeconds(deliveryTimestamp) > currentEpoch
+    ) {
+      return false;
+    }
+    if (
+      primaryKey &&
+      (await computeWebhookSignature(body, headers, primaryKey)) ==
+        headers['box-signature-primary']
+    ) {
+      return true;
+    }
+    if (
+      secondaryKey &&
+      (await computeWebhookSignature(body, headers, secondaryKey)) ==
+        headers['box-signature-secondary']
+    ) {
+      return true;
+    }
+    return false;
   }
 }
 export interface WebhooksManagerInput {

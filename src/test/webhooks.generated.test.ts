@@ -19,7 +19,9 @@ import { deserializeWebhooks } from '../schemas/webhooks.generated.js';
 import { serializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { deserializeUpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { UpdateWebhookByIdOptionalsInput } from '../managers/webhooks.generated.js';
+import { ValidateMessageOptionalsInput } from '../managers/webhooks.generated.js';
 import { UpdateWebhookByIdOptionals } from '../managers/webhooks.generated.js';
+import { ValidateMessageOptionals } from '../managers/webhooks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
@@ -32,6 +34,11 @@ import { CreateWebhookRequestBodyTriggersField } from '../managers/webhooks.gene
 import { Webhooks } from '../schemas/webhooks.generated.js';
 import { UpdateWebhookByIdRequestBody } from '../managers/webhooks.generated.js';
 import { getUuid } from '../internal/utils.js';
+import { dateTimeToString } from '../internal/utils.js';
+import { epochSecondsToDateTime } from '../internal/utils.js';
+import { getEpochTimeInSeconds } from '../internal/utils.js';
+import { computeWebhookSignature } from '../internal/utils.js';
+import { WebhooksManager } from '../managers/webhooks.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
@@ -103,5 +110,334 @@ test('testWebhooksCRUD', async function testWebhooksCRUD(): Promise<any> {
     await client.webhooks.deleteWebhookById(webhook.id!);
   }).rejects.toThrow();
   await client.folders.deleteFolderById(folder.id);
+});
+test('testWebhookValidation', async function testWebhookValidation(): Promise<any> {
+  const primaryKey: string = 'SamplePrimaryKey';
+  const secondaryKey: string = 'SampleSecondaryKey';
+  const incorrectKey: string = 'IncorrectKey';
+  const body: string =
+    '{"type":"webhook_event","webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"Test.txt"}}';
+  const bodyWithJapanese: string =
+    '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"\u30B9\u30AF\u30EA\u30FC\u30F3\u30B7\u30E7\u30C3\u30C8 2020-08-05.txt"}}';
+  const bodyWithEmoji: string =
+    '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"\uD83D\uDE00 2020-08-05.txt"}}';
+  const bodyWithCarriageReturn: string =
+    '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"test \\r"}}';
+  const headers: {
+    readonly [key: string]: string;
+  } = {
+    ['box-delivery-id']: 'f96bb54b-ee16-4fc5-aa65-8c2d9e5b546f',
+    ['box-delivery-timestamp']: '2020-01-01T00:00:00-07:00',
+    ['box-signature-algorithm']: 'HmacSHA256',
+    ['box-signature-primary']: '6TfeAW3A1PASkgboxxA5yqHNKOwFyMWuEXny/FPD5hI=',
+    ['box-signature-secondary']: 'v+1CD1Jdo3muIcbpv5lxxgPglOqMfsNHPV899xWYydo=',
+    ['box-signature-version']: '1',
+  };
+  const headersWithJapanese: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-signature-primary']: 'LV2uCu+5NJtIHrCXDYgZ0v/PP5THGRuegw3RtdnEyuE=',
+    },
+  };
+  const headersWithEmoji: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-signature-primary']: 'xF/SDZosX4le+v4A0Qn59sZhuD1RqY5KRUKzVMSbh0E=',
+    },
+  };
+  const headersWithCarriageReturn: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-signature-primary']: 'SVkbKgy3dEEf2PbbzpNu2lDZS7zZ/aboU7HOZgBGrJk=',
+    },
+  };
+  const currentDatetime: string = dateTimeToString(
+    epochSecondsToDateTime(getEpochTimeInSeconds()),
+  );
+  const futureDatetime: string = dateTimeToString(
+    epochSecondsToDateTime(getEpochTimeInSeconds() + 1200),
+  );
+  const pastDatetime: string = dateTimeToString(
+    epochSecondsToDateTime(getEpochTimeInSeconds() - 1200),
+  );
+  const headersWithCorrectDatetime: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-delivery-timestamp']: currentDatetime,
+      ['box-signature-primary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
+        primaryKey,
+      ),
+      ['box-signature-secondary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
+        secondaryKey,
+      ),
+    },
+  };
+  const headersWithJapaneseWithCorrectDatetime: {
+    readonly [key: string]: any;
+  } = {
+    ...headersWithJapanese,
+    ...{
+      ['box-delivery-timestamp']: currentDatetime,
+      ['box-signature-primary']: await computeWebhookSignature(
+        bodyWithJapanese,
+        {
+          ...headersWithJapanese,
+          ...{ ['box-delivery-timestamp']: currentDatetime },
+        },
+        primaryKey,
+      ),
+      ['box-signature-secondary']: await computeWebhookSignature(
+        bodyWithJapanese,
+        {
+          ...headersWithJapanese,
+          ...{ ['box-delivery-timestamp']: currentDatetime },
+        },
+        secondaryKey,
+      ),
+    },
+  };
+  const headersWithFutureDatetime: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-delivery-timestamp']: futureDatetime,
+      ['box-signature-primary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
+        primaryKey,
+      ),
+      ['box-signature-secondary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
+        secondaryKey,
+      ),
+    },
+  };
+  const headersWithPastDatetime: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-delivery-timestamp']: pastDatetime,
+      ['box-signature-primary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
+        primaryKey,
+      ),
+      ['box-signature-secondary']: await computeWebhookSignature(
+        body,
+        { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
+        secondaryKey,
+      ),
+    },
+  };
+  const headersWithWrongSignatureVersion: {
+    readonly [key: string]: any;
+  } = { ...headers, ...{ ['box-signature-version']: '2' } };
+  const headersWithWrongSignatureAlgorithm: {
+    readonly [key: string]: any;
+  } = { ...headers, ...{ ['box-signature-algorithm']: 'HmacSHA1' } };
+  if (
+    !(
+      (await computeWebhookSignature(body, headers, primaryKey)) ==
+      headers['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(body, headers, secondaryKey)) ==
+      headers['box-signature-secondary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !!(
+      (await computeWebhookSignature(body, headers, incorrectKey)) ==
+      headers['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(
+        bodyWithJapanese,
+        headersWithJapanese,
+        primaryKey,
+      )) == headersWithJapanese['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(
+        bodyWithEmoji,
+        headersWithEmoji,
+        primaryKey,
+      )) == headersWithEmoji['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(
+        bodyWithCarriageReturn,
+        headersWithCarriageReturn,
+        primaryKey,
+      )) == headersWithCarriageReturn['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      body,
+      headersWithCorrectDatetime,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      body,
+      headersWithCorrectDatetime,
+      primaryKey,
+      { secondaryKey: incorrectKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      body,
+      headersWithCorrectDatetime,
+      incorrectKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        body,
+        headersWithCorrectDatetime,
+        incorrectKey,
+        { secondaryKey: incorrectKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        body,
+        headersWithFutureDatetime,
+        primaryKey,
+        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        body,
+        headersWithPastDatetime,
+        primaryKey,
+        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        body,
+        headersWithWrongSignatureVersion,
+        primaryKey,
+        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        body,
+        headersWithWrongSignatureAlgorithm,
+        primaryKey,
+        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      bodyWithJapanese,
+      headersWithJapaneseWithCorrectDatetime,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      bodyWithJapanese,
+      headersWithJapaneseWithCorrectDatetime,
+      primaryKey,
+      { secondaryKey: incorrectKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(await WebhooksManager.validateMessage(
+      bodyWithJapanese,
+      headersWithJapaneseWithCorrectDatetime,
+      incorrectKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await WebhooksManager.validateMessage(
+        bodyWithJapanese,
+        headersWithJapanese,
+        primaryKey,
+        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+      )) == false
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
 });
 export {};
