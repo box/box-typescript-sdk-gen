@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* unused parameter from `SignRequest` (box/box-openapi[#489](https://github.com/box/box-typescript-sdk-gen/issues/489)) ([#450](https://github.com/box/box-typescript-sdk-gen/issues/450)) ([f5683b7](https://github.com/box/box-typescript-sdk-gen/commit/f5683b703625dd8d504ca52100f692cb8440a474))
+* Remove unused parameter from `SignRequest` (box/box-openapi[#489](https://github.com/box/box-typescript-sdk-gen/issues/489)) ([#450](https://github.com/box/box-typescript-sdk-gen/issues/450)) ([f5683b7](https://github.com/box/box-typescript-sdk-gen/commit/f5683b703625dd8d504ca52100f692cb8440a474))
 
 
 ### New Features and Enhancements
