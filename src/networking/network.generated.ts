@@ -6,6 +6,8 @@ import { createAgent } from '../internal/utils.js';
 import { ProxyConfig } from './proxyConfig.generated.js';
 import { BoxNetworkClient } from './boxNetworkClient.js';
 import { NetworkClient } from './networkClient.generated.js';
+import { RetryStrategy } from './retries.generated.js';
+import { BoxRetryStrategy } from './retries.generated.js';
 export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
@@ -16,6 +18,7 @@ export class NetworkSession {
   readonly agentOptions?: AgentOptions;
   readonly proxyConfig?: ProxyConfig;
   readonly networkClient: NetworkClient = new BoxNetworkClient({});
+  readonly retryStrategy: RetryStrategy = new BoxRetryStrategy({});
   constructor(
     fields: Omit<
       NetworkSession,
@@ -24,12 +27,14 @@ export class NetworkSession {
       | 'interceptors'
       | 'agent'
       | 'networkClient'
+      | 'retryStrategy'
       | 'withAdditionalHeaders'
       | 'withCustomBaseUrls'
       | 'withCustomAgentOptions'
       | 'withInterceptors'
       | 'withProxy'
       | 'withNetworkClient'
+      | 'withRetryStrategy'
     > &
       Partial<
         Pick<
@@ -39,6 +44,7 @@ export class NetworkSession {
           | 'interceptors'
           | 'agent'
           | 'networkClient'
+          | 'retryStrategy'
         >
       >,
   ) {
@@ -63,6 +69,9 @@ export class NetworkSession {
     if (fields.networkClient !== undefined) {
       this.networkClient = fields.networkClient;
     }
+    if (fields.retryStrategy !== undefined) {
+      this.retryStrategy = fields.retryStrategy;
+    }
   }
   /**
      * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including additional headers to be attached to every API call.
@@ -84,6 +93,7 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
     });
   }
   /**
@@ -100,6 +110,7 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
     });
   }
   /**
@@ -116,6 +127,7 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
     });
   }
   /**
@@ -132,6 +144,7 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
     });
   }
   /**
@@ -148,6 +161,7 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: proxyConfig,
       networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
     });
   }
   /**
@@ -164,6 +178,24 @@ export class NetworkSession {
       agentOptions: this.agentOptions,
       proxyConfig: this.proxyConfig,
       networkClient: networkClient,
+      retryStrategy: this.retryStrategy,
+    });
+  }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also applying retry strategy
+   * @param {RetryStrategy} retryStrategy
+   * @returns {NetworkSession}
+   */
+  withRetryStrategy(retryStrategy: RetryStrategy): NetworkSession {
+    return new NetworkSession({
+      additionalHeaders: this.additionalHeaders,
+      baseUrls: this.baseUrls,
+      interceptors: this.interceptors,
+      agent: this.agent,
+      agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
+      retryStrategy: retryStrategy,
     });
   }
 }
@@ -177,4 +209,5 @@ export interface NetworkSessionInput {
   readonly agentOptions?: AgentOptions;
   readonly proxyConfig?: ProxyConfig;
   readonly networkClient?: NetworkClient;
+  readonly retryStrategy?: RetryStrategy;
 }
