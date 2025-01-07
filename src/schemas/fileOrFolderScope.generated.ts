@@ -22,7 +22,8 @@ export type FileOrFolderScopeScopeField =
   | 'item_preview'
   | 'item_rename'
   | 'item_share'
-  | 'item_upload';
+  | 'item_upload'
+  | 'item_read';
 export interface FileOrFolderScope {
   /**
    * The scopes for the resource access */
@@ -75,6 +76,9 @@ export function deserializeFileOrFolderScopeScopeField(
     return val;
   }
   if (val == 'item_upload') {
+    return val;
+  }
+  if (val == 'item_read') {
     return val;
   }
   throw new BoxSdkError({
