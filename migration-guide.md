@@ -28,6 +28,7 @@
 - [Configuration](#configuration)
   - [As-User header](#as-user-header)
   - [Custom Base URLs](#custom-base-urls)
+- [Webhook validation](#webhook-validation)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -576,4 +577,36 @@ const newClient = client.withCustomBaseUrls({
   uploadUrl: 'https://upload.box.com/api',
   oauth2Url: 'https://account.box.com/api/oauth2',
 });
+```
+
+## Webhook validation
+
+Webhook validation is used to validate a webhook message by verifying the signature and the delivery timestamp.
+
+**Legacy (`Box Node SDK`):**
+
+In the old SDK, you could pass the `body` as either a `JSON` object or a `string`, and it would return a `boolean` value indicating whether the message was valid.
+
+```typescript
+let isValid = BoxSDK.validateWebhookMessage(
+  body,
+  headers,
+  primaryKey,
+  secondaryKey,
+);
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+In the new SDK, the `WebhooksManager.validateMessage()` method requires the `body` to be of type `string`.
+So if the body is in `JSON` type, you must convert it to a `string` using `JSON.stringify(body)` before calling `validateMessage()`.
+
+```typescript
+let stringBody = JSON.stringify(body);
+let isValid = await WebhooksManager.validateMessage(
+  stringBody,
+  headers,
+  primaryKey,
+  { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+);
 ```
