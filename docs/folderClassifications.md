@@ -17,7 +17,7 @@ URL explicitly, for example
 This operation is performed by calling function `getClassificationOnFolder`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+[API Reference](https://developer.box.com/reference/get-folders-id-metadata-enterprise-securityClassification-6VMVochwUWo/).
 
 <!-- sample get_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
@@ -53,7 +53,7 @@ URL explicitly, for example
 This operation is performed by calling function `addClassificationToFolder`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+[API Reference](https://developer.box.com/reference/post-folders-id-metadata-enterprise-securityClassification-6VMVochwUWo/).
 
 <!-- sample post_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
@@ -90,7 +90,7 @@ defined for the enterprise will be accepted.
 This operation is performed by calling function `updateClassificationOnFolder`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/put-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+[API Reference](https://developer.box.com/reference/put-folders-id-metadata-enterprise-securityClassification-6VMVochwUWo/).
 
 <!-- sample put_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
@@ -128,7 +128,7 @@ URL explicitly, for example
 This operation is performed by calling function `deleteClassificationFromFolder`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-folders-id-metadata-enterprise-security-classification-6-vm-vochw-u-wo/).
+[API Reference](https://developer.box.com/reference/delete-folders-id-metadata-enterprise-securityClassification-6VMVochwUWo/).
 
 <!-- sample delete_folders_id_metadata_enterprise_securityClassification-6VMVochwUWo -->
 
