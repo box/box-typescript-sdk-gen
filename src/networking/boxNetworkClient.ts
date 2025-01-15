@@ -5,6 +5,7 @@ import { sha1 } from 'hash-wasm'; // Use hash-wasm to calculate SHA1 hash in bro
 import { BoxApiError, BoxSdkError } from '../box/errors';
 import {
   ByteStream,
+  evalRequire,
   generateByteStreamFromBuffer,
   isBrowser,
   readByteStream,
@@ -55,9 +56,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   }> => {
     const contentHeaders: { [key: string]: string } = {};
     if (options.multipartData) {
-      const FormData = isBrowser()
-        ? window.FormData
-        : eval('require')('form-data');
+      const FormData = isBrowser() ? window.FormData : evalRequire('form-data');
       const formData = new FormData();
       for (const item of options.multipartData) {
         if (item.fileStream) {
@@ -290,7 +289,7 @@ async function calculateMD5Hash(data: string | Buffer): Promise<string> {
   }
 
   // Node environment
-  createHash = eval('require')('crypto').createHash;
+  createHash = evalRequire('crypto').createHash;
   return createHash('sha1').update(data).digest('hex');
 }
 

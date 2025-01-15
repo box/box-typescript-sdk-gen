@@ -10,6 +10,13 @@ export function isBrowser() {
   );
 }
 
+export function evalRequire(lib: string) {
+  if (isBrowser()) {
+    throw new Error('This method is not usable in the browser');
+  }
+  return require(lib);
+}
+
 export function getUuid() {
   return uuidv4();
 }
@@ -102,7 +109,7 @@ export class Hash {
     if (isBrowser()) {
       this.#hash = undefined;
     } else {
-      this.#hash = eval('require')('crypto').createHash(algorithm);
+      this.#hash = evalRequire('crypto').createHash(algorithm);
     }
   }
 
@@ -153,7 +160,7 @@ export function generateByteBuffer(size: number): Buffer {
     window.crypto.getRandomValues(buffer);
     return Buffer.from(buffer);
   }
-  const crypto = eval('require')('crypto');
+  const crypto = evalRequire('crypto');
   return crypto.randomBytes(size);
 }
 
@@ -167,7 +174,7 @@ export function generateByteStreamFromBuffer(
           controller.close();
         },
       })
-    : eval('require')('stream').Readable.from(Buffer.from(buffer));
+    : evalRequire('stream').Readable.from(Buffer.from(buffer));
 }
 
 export function generateByteStream(size: number): Readable {
@@ -196,7 +203,7 @@ export function decodeBase64ByteStream(data: string): Readable {
           controller.close();
         },
       })
-    : eval('require')('stream').Readable.from(Buffer.from(data, 'base64'));
+    : evalRequire('stream').Readable.from(Buffer.from(data, 'base64'));
 }
 
 export function stringToByteStream(data: string): Readable {
@@ -212,7 +219,7 @@ export function stringToByteStream(data: string): Readable {
           controller.close();
         },
       })
-    : eval('require')('stream').Readable.from(Buffer.from(data, 'ascii'));
+    : evalRequire('stream').Readable.from(Buffer.from(data, 'ascii'));
 }
 
 export async function readByteStream(byteStream: Readable): Promise<Buffer> {
@@ -365,7 +372,7 @@ export async function createJwtAssertion(
   key: JwtKey,
   options: JwtSignOptions,
 ): Promise<string> {
-  const crypto = eval('require')('crypto');
+  const crypto = evalRequire('crypto');
   const privateKey = crypto.createPrivateKey({
     key: key.key,
     format: 'pem',
@@ -394,7 +401,7 @@ export async function createJwtAssertion(
  * Reads a text file and returns its content.
  */
 export function readTextFromFile(filepath: string): string {
-  return eval('require')('fs').readFileSync(filepath, 'utf8');
+  return evalRequire('fs').readFileSync(filepath, 'utf8');
 }
 
 /**
@@ -411,7 +418,7 @@ export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
   if (isBrowser()) {
     return undefined;
   }
-  const ProxyAgent = eval('require')('proxy-agent').ProxyAgent;
+  const ProxyAgent = evalRequire('proxy-agent').ProxyAgent;
   let agentOptions = options;
 
   if (proxyConfig && proxyConfig.url) {
@@ -519,7 +526,7 @@ export async function computeWebhookSignature(
     const result = await hmac.digest('binary');
     signature = Buffer.from(result).toString('base64');
   } else {
-    let crypto = eval('require')('crypto');
+    let crypto = evalRequire('crypto');
     let hmac = crypto.createHmac('sha256', signatureKey);
     hmac.update(escapedBody);
     hmac.update(headers['box-delivery-timestamp']);

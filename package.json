@@ -50,6 +50,9 @@
     "rollup": "^4.4.0"
   },
   "files": [
-    "lib"
+    "lib",
+    "src",
+    "README.md",
+    "LICENSE"
   ]
 }
