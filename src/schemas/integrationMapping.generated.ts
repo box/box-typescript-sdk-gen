@@ -2,22 +2,22 @@ import { serializeIntegrationMappingBaseTypeField } from './integrationMappingBa
 import { deserializeIntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
 import { serializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { deserializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
-import { serializeFolderMini } from './folderMini.generated.js';
-import { deserializeFolderMini } from './folderMini.generated.js';
 import { serializeIntegrationMappingSlackOptions } from './integrationMappingSlackOptions.generated.js';
 import { deserializeIntegrationMappingSlackOptions } from './integrationMappingSlackOptions.generated.js';
 import { serializeUserIntegrationMappings } from './userIntegrationMappings.generated.js';
 import { deserializeUserIntegrationMappings } from './userIntegrationMappings.generated.js';
 import { serializeIntegrationMappingPartnerItemSlackUnion } from './integrationMappingPartnerItemSlackUnion.generated.js';
 import { deserializeIntegrationMappingPartnerItemSlackUnion } from './integrationMappingPartnerItemSlackUnion.generated.js';
+import { serializeFolderMini } from './folderMini.generated.js';
+import { deserializeFolderMini } from './folderMini.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { IntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
 import { IntegrationMappingBase } from './integrationMappingBase.generated.js';
-import { FolderMini } from './folderMini.generated.js';
 import { IntegrationMappingSlackOptions } from './integrationMappingSlackOptions.generated.js';
 import { UserIntegrationMappings } from './userIntegrationMappings.generated.js';
 import { IntegrationMappingPartnerItemSlackUnion } from './integrationMappingPartnerItemSlackUnion.generated.js';
+import { FolderMini } from './folderMini.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { DateTime } from '../internal/utils.js';
 import { SerializedData } from '../serialization/json.js';
@@ -29,15 +29,15 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingIntegrationTypeField = 'slack';
 export class IntegrationMapping extends IntegrationMappingBase {
-  readonly boxItem!: FolderMini;
-  readonly createdAt?: DateTime;
-  readonly modifiedAt?: DateTime;
   readonly integrationType?: IntegrationMappingIntegrationTypeField;
   readonly isManuallyCreated?: boolean;
   readonly options?: IntegrationMappingSlackOptions;
   readonly createdBy?: UserIntegrationMappings;
   readonly modifiedBy?: UserIntegrationMappings;
   readonly partnerItem!: IntegrationMappingPartnerItemSlackUnion;
+  readonly boxItem!: FolderMini;
+  readonly createdAt?: DateTime;
+  readonly modifiedAt?: DateTime;
   constructor(fields: IntegrationMapping) {
     super(fields);
   }
@@ -69,15 +69,6 @@ export function serializeIntegrationMapping(
   return {
     ...base,
     ...{
-      ['box_item']: serializeFolderMini(val.boxItem),
-      ['created_at']:
-        val.createdAt == void 0
-          ? val.createdAt
-          : serializeDateTime(val.createdAt),
-      ['modified_at']:
-        val.modifiedAt == void 0
-          ? val.modifiedAt
-          : serializeDateTime(val.modifiedAt),
       ['integration_type']:
         val.integrationType == void 0
           ? val.integrationType
@@ -100,6 +91,15 @@ export function serializeIntegrationMapping(
       ['partner_item']: serializeIntegrationMappingPartnerItemSlackUnion(
         val.partnerItem,
       ),
+      ['box_item']: serializeFolderMini(val.boxItem),
+      ['created_at']:
+        val.createdAt == void 0
+          ? val.createdAt
+          : serializeDateTime(val.createdAt),
+      ['modified_at']:
+        val.modifiedAt == void 0
+          ? val.modifiedAt
+          : serializeDateTime(val.modifiedAt),
     },
   };
 }
@@ -111,28 +111,6 @@ export function deserializeIntegrationMapping(
       message: 'Expecting a map for "IntegrationMapping"',
     });
   }
-  if (val.box_item == void 0) {
-    throw new BoxSdkError({
-      message:
-        'Expecting "box_item" of type "IntegrationMapping" to be defined',
-    });
-  }
-  const boxItem: FolderMini = deserializeFolderMini(val.box_item);
-  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
-    throw new BoxSdkError({
-      message: 'Expecting string for "created_at" of type "IntegrationMapping"',
-    });
-  }
-  const createdAt: undefined | DateTime =
-    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
-  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "modified_at" of type "IntegrationMapping"',
-    });
-  }
-  const modifiedAt: undefined | DateTime =
-    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   const integrationType: undefined | IntegrationMappingIntegrationTypeField =
     val.integration_type == void 0
       ? void 0
@@ -168,6 +146,28 @@ export function deserializeIntegrationMapping(
   }
   const partnerItem: IntegrationMappingPartnerItemSlackUnion =
     deserializeIntegrationMappingPartnerItemSlackUnion(val.partner_item);
+  if (val.box_item == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "box_item" of type "IntegrationMapping" to be defined',
+    });
+  }
+  const boxItem: FolderMini = deserializeFolderMini(val.box_item);
+  if (!(val.created_at == void 0) && !sdIsString(val.created_at)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "created_at" of type "IntegrationMapping"',
+    });
+  }
+  const createdAt: undefined | DateTime =
+    val.created_at == void 0 ? void 0 : deserializeDateTime(val.created_at);
+  if (!(val.modified_at == void 0) && !sdIsString(val.modified_at)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "modified_at" of type "IntegrationMapping"',
+    });
+  }
+  const modifiedAt: undefined | DateTime =
+    val.modified_at == void 0 ? void 0 : deserializeDateTime(val.modified_at);
   if (val.id == void 0) {
     throw new BoxSdkError({
       message: 'Expecting "id" of type "IntegrationMapping" to be defined',
@@ -187,15 +187,15 @@ export function deserializeIntegrationMapping(
   const type: IntegrationMappingBaseTypeField =
     deserializeIntegrationMappingBaseTypeField(val.type);
   return {
-    boxItem: boxItem,
-    createdAt: createdAt,
-    modifiedAt: modifiedAt,
     integrationType: integrationType,
     isManuallyCreated: isManuallyCreated,
     options: options,
     createdBy: createdBy,
     modifiedBy: modifiedBy,
     partnerItem: partnerItem,
+    boxItem: boxItem,
+    createdAt: createdAt,
+    modifiedAt: modifiedAt,
     id: id,
     type: type,
   } satisfies IntegrationMapping;
