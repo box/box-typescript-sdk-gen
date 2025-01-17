@@ -18,6 +18,15 @@ export class WebLinkMini extends WebLinkBase {
   readonly name?: string;
   constructor(fields: WebLinkMini) {
     super(fields);
+    if (fields.url !== undefined) {
+      this.url = fields.url;
+    }
+    if (fields.sequenceId !== undefined) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
   }
 }
 export function serializeWebLinkMini(val: WebLinkMini): SerializedData {

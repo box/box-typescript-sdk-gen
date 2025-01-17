@@ -47,6 +47,24 @@ export class GroupFull extends Group {
   readonly permissions?: GroupFullPermissionsField;
   constructor(fields: GroupFull) {
     super(fields);
+    if (fields.provenance !== undefined) {
+      this.provenance = fields.provenance;
+    }
+    if (fields.externalSyncIdentifier !== undefined) {
+      this.externalSyncIdentifier = fields.externalSyncIdentifier;
+    }
+    if (fields.description !== undefined) {
+      this.description = fields.description;
+    }
+    if (fields.invitabilityLevel !== undefined) {
+      this.invitabilityLevel = fields.invitabilityLevel;
+    }
+    if (fields.memberViewabilityLevel !== undefined) {
+      this.memberViewabilityLevel = fields.memberViewabilityLevel;
+    }
+    if (fields.permissions !== undefined) {
+      this.permissions = fields.permissions;
+    }
   }
 }
 export function serializeGroupFullInvitabilityLevelField(

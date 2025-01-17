@@ -52,6 +52,39 @@ export class LegalHoldPolicy extends LegalHoldPolicyMini {
   readonly releaseNotes?: string;
   constructor(fields: LegalHoldPolicy) {
     super(fields);
+    if (fields.policyName !== undefined) {
+      this.policyName = fields.policyName;
+    }
+    if (fields.description !== undefined) {
+      this.description = fields.description;
+    }
+    if (fields.status !== undefined) {
+      this.status = fields.status;
+    }
+    if (fields.assignmentCounts !== undefined) {
+      this.assignmentCounts = fields.assignmentCounts;
+    }
+    if (fields.createdBy !== undefined) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.deletedAt !== undefined) {
+      this.deletedAt = fields.deletedAt;
+    }
+    if (fields.filterStartedAt !== undefined) {
+      this.filterStartedAt = fields.filterStartedAt;
+    }
+    if (fields.filterEndedAt !== undefined) {
+      this.filterEndedAt = fields.filterEndedAt;
+    }
+    if (fields.releaseNotes !== undefined) {
+      this.releaseNotes = fields.releaseNotes;
+    }
   }
 }
 export function serializeLegalHoldPolicyStatusField(

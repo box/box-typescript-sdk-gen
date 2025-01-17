@@ -148,6 +148,42 @@ export class WebLink extends WebLinkMini {
   readonly itemStatus?: WebLinkItemStatusField;
   constructor(fields: WebLink) {
     super(fields);
+    if (fields.parent !== undefined) {
+      this.parent = fields.parent;
+    }
+    if (fields.description !== undefined) {
+      this.description = fields.description;
+    }
+    if (fields.pathCollection !== undefined) {
+      this.pathCollection = fields.pathCollection;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.trashedAt !== undefined) {
+      this.trashedAt = fields.trashedAt;
+    }
+    if (fields.purgedAt !== undefined) {
+      this.purgedAt = fields.purgedAt;
+    }
+    if (fields.createdBy !== undefined) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy !== undefined) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.ownedBy !== undefined) {
+      this.ownedBy = fields.ownedBy;
+    }
+    if (fields.sharedLink !== undefined) {
+      this.sharedLink = fields.sharedLink;
+    }
+    if (fields.itemStatus !== undefined) {
+      this.itemStatus = fields.itemStatus;
+    }
   }
 }
 export function serializeWebLinkPathCollectionField(

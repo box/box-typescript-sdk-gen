@@ -17,6 +17,12 @@ export class UserMini extends UserBase {
   readonly login?: string;
   constructor(fields: UserMini) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.login !== undefined) {
+      this.login = fields.login;
+    }
   }
 }
 export function serializeUserMini(val: UserMini): SerializedData {

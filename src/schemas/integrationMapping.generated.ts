@@ -40,6 +40,33 @@ export class IntegrationMapping extends IntegrationMappingBase {
   readonly modifiedAt?: DateTime;
   constructor(fields: IntegrationMapping) {
     super(fields);
+    if (fields.integrationType !== undefined) {
+      this.integrationType = fields.integrationType;
+    }
+    if (fields.isManuallyCreated !== undefined) {
+      this.isManuallyCreated = fields.isManuallyCreated;
+    }
+    if (fields.options !== undefined) {
+      this.options = fields.options;
+    }
+    if (fields.createdBy !== undefined) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.modifiedBy !== undefined) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.partnerItem !== undefined) {
+      this.partnerItem = fields.partnerItem;
+    }
+    if (fields.boxItem !== undefined) {
+      this.boxItem = fields.boxItem;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export function serializeIntegrationMappingIntegrationTypeField(

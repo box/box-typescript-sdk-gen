@@ -53,6 +53,39 @@ export class RetentionPolicy extends RetentionPolicyMini {
   readonly assignmentCounts?: RetentionPolicyAssignmentCountsField;
   constructor(fields: RetentionPolicy) {
     super(fields);
+    if (fields.description !== undefined) {
+      this.description = fields.description;
+    }
+    if (fields.policyType !== undefined) {
+      this.policyType = fields.policyType;
+    }
+    if (fields.retentionType !== undefined) {
+      this.retentionType = fields.retentionType;
+    }
+    if (fields.status !== undefined) {
+      this.status = fields.status;
+    }
+    if (fields.createdBy !== undefined) {
+      this.createdBy = fields.createdBy;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.canOwnerExtendRetention !== undefined) {
+      this.canOwnerExtendRetention = fields.canOwnerExtendRetention;
+    }
+    if (fields.areOwnersNotified !== undefined) {
+      this.areOwnersNotified = fields.areOwnersNotified;
+    }
+    if (fields.customNotificationRecipients !== undefined) {
+      this.customNotificationRecipients = fields.customNotificationRecipients;
+    }
+    if (fields.assignmentCounts !== undefined) {
+      this.assignmentCounts = fields.assignmentCounts;
+    }
   }
 }
 export function serializeRetentionPolicyPolicyTypeField(

@@ -22,6 +22,18 @@ export class FileMini extends FileBase {
   readonly fileVersion?: FileVersionMini;
   constructor(fields: FileMini) {
     super(fields);
+    if (fields.sequenceId !== undefined) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.sha1 !== undefined) {
+      this.sha1 = fields.sha1;
+    }
+    if (fields.fileVersion !== undefined) {
+      this.fileVersion = fields.fileVersion;
+    }
   }
 }
 export function serializeFileMini(val: FileMini): SerializedData {

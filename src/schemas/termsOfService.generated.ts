@@ -39,6 +39,24 @@ export class TermsOfService extends TermsOfServiceBase {
   readonly modifiedAt?: DateTime;
   constructor(fields: TermsOfService) {
     super(fields);
+    if (fields.status !== undefined) {
+      this.status = fields.status;
+    }
+    if (fields.enterprise !== undefined) {
+      this.enterprise = fields.enterprise;
+    }
+    if (fields.tosType !== undefined) {
+      this.tosType = fields.tosType;
+    }
+    if (fields.text !== undefined) {
+      this.text = fields.text;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export function serializeTermsOfServiceStatusField(

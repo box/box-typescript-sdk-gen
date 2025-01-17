@@ -18,6 +18,12 @@ export class GroupMini extends GroupBase {
   readonly groupType?: GroupMiniGroupTypeField;
   constructor(fields: GroupMini) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.groupType !== undefined) {
+      this.groupType = fields.groupType;
+    }
   }
 }
 export function serializeGroupMiniGroupTypeField(

@@ -48,6 +48,45 @@ export class User extends UserMini {
   readonly notificationEmail?: UserNotificationEmailField | null;
   constructor(fields: User) {
     super(fields);
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.language !== undefined) {
+      this.language = fields.language;
+    }
+    if (fields.timezone !== undefined) {
+      this.timezone = fields.timezone;
+    }
+    if (fields.spaceAmount !== undefined) {
+      this.spaceAmount = fields.spaceAmount;
+    }
+    if (fields.spaceUsed !== undefined) {
+      this.spaceUsed = fields.spaceUsed;
+    }
+    if (fields.maxUploadSize !== undefined) {
+      this.maxUploadSize = fields.maxUploadSize;
+    }
+    if (fields.status !== undefined) {
+      this.status = fields.status;
+    }
+    if (fields.jobTitle !== undefined) {
+      this.jobTitle = fields.jobTitle;
+    }
+    if (fields.phone !== undefined) {
+      this.phone = fields.phone;
+    }
+    if (fields.address !== undefined) {
+      this.address = fields.address;
+    }
+    if (fields.avatarUrl !== undefined) {
+      this.avatarUrl = fields.avatarUrl;
+    }
+    if (fields.notificationEmail !== undefined) {
+      this.notificationEmail = fields.notificationEmail;
+    }
   }
 }
 export function serializeUserStatusField(val: UserStatusField): SerializedData {
