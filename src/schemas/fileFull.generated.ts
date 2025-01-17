@@ -305,6 +305,69 @@ export class FileFull extends File {
   readonly isAssociatedWithAppItem?: boolean;
   constructor(fields: FileFull) {
     super(fields);
+    if (fields.versionNumber !== undefined) {
+      this.versionNumber = fields.versionNumber;
+    }
+    if (fields.commentCount !== undefined) {
+      this.commentCount = fields.commentCount;
+    }
+    if (fields.permissions !== undefined) {
+      this.permissions = fields.permissions;
+    }
+    if (fields.tags !== undefined) {
+      this.tags = fields.tags;
+    }
+    if (fields.lock !== undefined) {
+      this.lock = fields.lock;
+    }
+    if (fields.extension !== undefined) {
+      this.extension = fields.extension;
+    }
+    if (fields.isPackage !== undefined) {
+      this.isPackage = fields.isPackage;
+    }
+    if (fields.expiringEmbedLink !== undefined) {
+      this.expiringEmbedLink = fields.expiringEmbedLink;
+    }
+    if (fields.watermarkInfo !== undefined) {
+      this.watermarkInfo = fields.watermarkInfo;
+    }
+    if (fields.isAccessibleViaSharedLink !== undefined) {
+      this.isAccessibleViaSharedLink = fields.isAccessibleViaSharedLink;
+    }
+    if (fields.allowedInviteeRoles !== undefined) {
+      this.allowedInviteeRoles = fields.allowedInviteeRoles;
+    }
+    if (fields.isExternallyOwned !== undefined) {
+      this.isExternallyOwned = fields.isExternallyOwned;
+    }
+    if (fields.hasCollaborations !== undefined) {
+      this.hasCollaborations = fields.hasCollaborations;
+    }
+    if (fields.metadata !== undefined) {
+      this.metadata = fields.metadata;
+    }
+    if (fields.expiresAt !== undefined) {
+      this.expiresAt = fields.expiresAt;
+    }
+    if (fields.representations !== undefined) {
+      this.representations = fields.representations;
+    }
+    if (fields.classification !== undefined) {
+      this.classification = fields.classification;
+    }
+    if (fields.uploaderDisplayName !== undefined) {
+      this.uploaderDisplayName = fields.uploaderDisplayName;
+    }
+    if (fields.dispositionAt !== undefined) {
+      this.dispositionAt = fields.dispositionAt;
+    }
+    if (fields.sharedLinkPermissionOptions !== undefined) {
+      this.sharedLinkPermissionOptions = fields.sharedLinkPermissionOptions;
+    }
+    if (fields.isAssociatedWithAppItem !== undefined) {
+      this.isAssociatedWithAppItem = fields.isAssociatedWithAppItem;
+    }
   }
 }
 export function serializeFileFullPermissionsField(

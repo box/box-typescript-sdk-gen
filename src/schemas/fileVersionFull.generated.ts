@@ -28,6 +28,9 @@ export class FileVersionFull extends FileVersion {
   readonly versionNumber?: string;
   constructor(fields: FileVersionFull) {
     super(fields);
+    if (fields.versionNumber !== undefined) {
+      this.versionNumber = fields.versionNumber;
+    }
   }
 }
 export function serializeFileVersionFull(val: FileVersionFull): SerializedData {

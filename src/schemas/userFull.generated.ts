@@ -59,6 +59,42 @@ export class UserFull extends User {
   readonly externalAppUserId?: string;
   constructor(fields: UserFull) {
     super(fields);
+    if (fields.role !== undefined) {
+      this.role = fields.role;
+    }
+    if (fields.trackingCodes !== undefined) {
+      this.trackingCodes = fields.trackingCodes;
+    }
+    if (fields.canSeeManagedUsers !== undefined) {
+      this.canSeeManagedUsers = fields.canSeeManagedUsers;
+    }
+    if (fields.isSyncEnabled !== undefined) {
+      this.isSyncEnabled = fields.isSyncEnabled;
+    }
+    if (fields.isExternalCollabRestricted !== undefined) {
+      this.isExternalCollabRestricted = fields.isExternalCollabRestricted;
+    }
+    if (fields.isExemptFromDeviceLimits !== undefined) {
+      this.isExemptFromDeviceLimits = fields.isExemptFromDeviceLimits;
+    }
+    if (fields.isExemptFromLoginVerification !== undefined) {
+      this.isExemptFromLoginVerification = fields.isExemptFromLoginVerification;
+    }
+    if (fields.enterprise !== undefined) {
+      this.enterprise = fields.enterprise;
+    }
+    if (fields.myTags !== undefined) {
+      this.myTags = fields.myTags;
+    }
+    if (fields.hostname !== undefined) {
+      this.hostname = fields.hostname;
+    }
+    if (fields.isPlatformAccessOnly !== undefined) {
+      this.isPlatformAccessOnly = fields.isPlatformAccessOnly;
+    }
+    if (fields.externalAppUserId !== undefined) {
+      this.externalAppUserId = fields.externalAppUserId;
+    }
   }
 }
 export function serializeUserFullRoleField(

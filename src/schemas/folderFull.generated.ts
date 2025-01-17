@@ -132,6 +132,52 @@ export class FolderFull extends Folder {
   readonly isAssociatedWithAppItem?: boolean;
   constructor(fields: FolderFull) {
     super(fields);
+    if (fields.syncState !== undefined) {
+      this.syncState = fields.syncState;
+    }
+    if (fields.hasCollaborations !== undefined) {
+      this.hasCollaborations = fields.hasCollaborations;
+    }
+    if (fields.permissions !== undefined) {
+      this.permissions = fields.permissions;
+    }
+    if (fields.tags !== undefined) {
+      this.tags = fields.tags;
+    }
+    if (fields.canNonOwnersInvite !== undefined) {
+      this.canNonOwnersInvite = fields.canNonOwnersInvite;
+    }
+    if (fields.isExternallyOwned !== undefined) {
+      this.isExternallyOwned = fields.isExternallyOwned;
+    }
+    if (fields.metadata !== undefined) {
+      this.metadata = fields.metadata;
+    }
+    if (fields.isCollaborationRestrictedToEnterprise !== undefined) {
+      this.isCollaborationRestrictedToEnterprise =
+        fields.isCollaborationRestrictedToEnterprise;
+    }
+    if (fields.allowedSharedLinkAccessLevels !== undefined) {
+      this.allowedSharedLinkAccessLevels = fields.allowedSharedLinkAccessLevels;
+    }
+    if (fields.allowedInviteeRoles !== undefined) {
+      this.allowedInviteeRoles = fields.allowedInviteeRoles;
+    }
+    if (fields.watermarkInfo !== undefined) {
+      this.watermarkInfo = fields.watermarkInfo;
+    }
+    if (fields.isAccessibleViaSharedLink !== undefined) {
+      this.isAccessibleViaSharedLink = fields.isAccessibleViaSharedLink;
+    }
+    if (fields.canNonOwnersViewCollaborators !== undefined) {
+      this.canNonOwnersViewCollaborators = fields.canNonOwnersViewCollaborators;
+    }
+    if (fields.classification !== undefined) {
+      this.classification = fields.classification;
+    }
+    if (fields.isAssociatedWithAppItem !== undefined) {
+      this.isAssociatedWithAppItem = fields.isAssociatedWithAppItem;
+    }
   }
 }
 export function serializeFolderFullSyncStateField(

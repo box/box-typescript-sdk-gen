@@ -19,6 +19,12 @@ export class FolderMini extends FolderBase {
     fields: Omit<FolderMini, 'type'> & Partial<Pick<FolderMini, 'type'>>,
   ) {
     super(fields);
+    if (fields.sequenceId !== undefined) {
+      this.sequenceId = fields.sequenceId;
+    }
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
   }
 }
 export function serializeFolderMini(val: FolderMini): SerializedData {

@@ -16,6 +16,9 @@ export class StoragePolicy extends StoragePolicyMini {
   readonly name?: string;
   constructor(fields: StoragePolicy) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
   }
 }
 export function serializeStoragePolicy(val: StoragePolicy): SerializedData {

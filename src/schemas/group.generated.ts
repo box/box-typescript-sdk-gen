@@ -26,6 +26,12 @@ export class Group extends GroupMini {
   readonly modifiedAt?: DateTime;
   constructor(fields: Group) {
     super(fields);
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
   }
 }
 export function serializeGroup(val: Group): SerializedData {

@@ -35,6 +35,39 @@ export class FileVersion extends FileVersionMini {
   readonly uploaderDisplayName?: string;
   constructor(fields: FileVersion) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.size !== undefined) {
+      this.size = fields.size;
+    }
+    if (fields.createdAt !== undefined) {
+      this.createdAt = fields.createdAt;
+    }
+    if (fields.modifiedAt !== undefined) {
+      this.modifiedAt = fields.modifiedAt;
+    }
+    if (fields.modifiedBy !== undefined) {
+      this.modifiedBy = fields.modifiedBy;
+    }
+    if (fields.trashedAt !== undefined) {
+      this.trashedAt = fields.trashedAt;
+    }
+    if (fields.trashedBy !== undefined) {
+      this.trashedBy = fields.trashedBy;
+    }
+    if (fields.restoredAt !== undefined) {
+      this.restoredAt = fields.restoredAt;
+    }
+    if (fields.restoredBy !== undefined) {
+      this.restoredBy = fields.restoredBy;
+    }
+    if (fields.purgedAt !== undefined) {
+      this.purgedAt = fields.purgedAt;
+    }
+    if (fields.uploaderDisplayName !== undefined) {
+      this.uploaderDisplayName = fields.uploaderDisplayName;
+    }
   }
 }
 export function serializeFileVersion(val: FileVersion): SerializedData {

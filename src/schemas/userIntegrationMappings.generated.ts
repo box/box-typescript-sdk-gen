@@ -17,6 +17,12 @@ export class UserIntegrationMappings extends UserBase {
   readonly login?: string;
   constructor(fields: UserIntegrationMappings) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.login !== undefined) {
+      this.login = fields.login;
+    }
   }
 }
 export function serializeUserIntegrationMappings(

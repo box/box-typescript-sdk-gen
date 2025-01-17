@@ -18,6 +18,15 @@ export class UserCollaborations extends UserBase {
   readonly isActive?: boolean;
   constructor(fields: UserCollaborations) {
     super(fields);
+    if (fields.name !== undefined) {
+      this.name = fields.name;
+    }
+    if (fields.login !== undefined) {
+      this.login = fields.login;
+    }
+    if (fields.isActive !== undefined) {
+      this.isActive = fields.isActive;
+    }
   }
 }
 export function serializeUserCollaborations(

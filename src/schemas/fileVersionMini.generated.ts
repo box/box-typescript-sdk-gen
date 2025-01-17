@@ -16,6 +16,9 @@ export class FileVersionMini extends FileVersionBase {
   readonly sha1?: string;
   constructor(fields: FileVersionMini) {
     super(fields);
+    if (fields.sha1 !== undefined) {
+      this.sha1 = fields.sha1;
+    }
   }
 }
 export function serializeFileVersionMini(val: FileVersionMini): SerializedData {

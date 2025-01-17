@@ -21,6 +21,15 @@ export class RetentionPolicyMini extends RetentionPolicyBase {
   readonly dispositionAction?: RetentionPolicyMiniDispositionActionField;
   constructor(fields: RetentionPolicyMini) {
     super(fields);
+    if (fields.policyName !== undefined) {
+      this.policyName = fields.policyName;
+    }
+    if (fields.retentionLength !== undefined) {
+      this.retentionLength = fields.retentionLength;
+    }
+    if (fields.dispositionAction !== undefined) {
+      this.dispositionAction = fields.dispositionAction;
+    }
   }
 }
 export function serializeRetentionPolicyMiniDispositionActionField(
