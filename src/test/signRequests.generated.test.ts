@@ -114,13 +114,15 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
   if (!(createdSignRequest.isDocumentPreparationNeeded == false)) {
     throw new Error('Assertion failed');
   }
-  if (!(createdSignRequest.name == 'Sign Request')) {
+  if (!(createdSignRequest.name == 'Sign Request.pdf')) {
     throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.redirectUrl == 'https://www.box.com')) {
     throw new Error('Assertion failed');
   }
-  if (!(createdSignRequest.signFiles!.files![0].name == fileToSign.name)) {
+  if (
+    !(createdSignRequest.signFiles!.files![0].name == createdSignRequest.name)
+  ) {
     throw new Error('Assertion failed');
   }
   if (!(createdSignRequest.signers![1].email == signerEmail)) {
@@ -164,7 +166,7 @@ test('testCreateGetCancelAndListSignRequest', async function testCreateGetCancel
   }
   const newSignRequest: SignRequest =
     await client.signRequests.getSignRequestById(createdSignRequest.id!);
-  if (!(newSignRequest.signFiles!.files![0].name == fileToSign.name)) {
+  if (!(newSignRequest.signFiles!.files![0].name == createdSignRequest.name)) {
     throw new Error('Assertion failed');
   }
   if (!(newSignRequest.signers![1].email == signerEmail)) {

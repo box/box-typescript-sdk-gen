@@ -1089,10 +1089,13 @@ export class FilesManager {
       }
       return response.url;
     }
-    if (response.headers.location == void 0) {
-      throw new BoxSdkError({ message: 'No location header in response' });
+    if ('location' in response.headers) {
+      return response.headers.location;
     }
-    return response.headers.location;
+    if ('Location' in response.headers) {
+      return response.headers.Location;
+    }
+    throw new BoxSdkError({ message: 'No location header in response' });
   }
   /**
      * Retrieves a thumbnail, or smaller image representation, of a file.
