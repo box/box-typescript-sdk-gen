@@ -16,7 +16,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type GroupMembershipTypeField = 'group_membership';
-export type GroupMembershipRoleField = 'member' | 'admin';
+export type GroupMembershipRoleField = 'member' | 'admin' | string;
 export interface GroupMembership {
   /**
    * The unique identifier for this group membership */
@@ -64,6 +64,9 @@ export function deserializeGroupMembershipRoleField(
     return val;
   }
   if (val == 'admin') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

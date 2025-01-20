@@ -147,7 +147,8 @@ export interface GetCollaborationWhitelistEntriesHeadersInput {
 export type CreateCollaborationWhitelistEntryRequestBodyDirectionField =
   | 'inbound'
   | 'outbound'
-  | 'both';
+  | 'both'
+  | string;
 export interface CreateCollaborationWhitelistEntryRequestBody {
   /**
    * The domain to add to the list of allowed domains. */
@@ -449,6 +450,9 @@ export function deserializeCreateCollaborationWhitelistEntryRequestBodyDirection
     return val;
   }
   if (val == 'both') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -26,7 +26,8 @@ export type DocGenJobV2025R0StatusField =
   | 'completed'
   | 'failed'
   | 'completed_with_error'
-  | 'pending';
+  | 'pending'
+  | string;
 export class DocGenJobV2025R0 extends DocGenJobBaseV2025R0 {
   readonly batch!: DocGenBatchBaseV2025R0;
   readonly templateFile!: FileReferenceV2025R0;
@@ -81,6 +82,9 @@ export function deserializeDocGenJobV2025R0StatusField(
     return val;
   }
   if (val == 'pending') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

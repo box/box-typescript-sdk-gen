@@ -100,7 +100,10 @@ export interface UpdateTermsOfServiceByIdOptionalsInput {
   readonly headers?: UpdateTermsOfServiceByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export type GetTermsOfServiceQueryParamsTosTypeField = 'external' | 'managed';
+export type GetTermsOfServiceQueryParamsTosTypeField =
+  | 'external'
+  | 'managed'
+  | string;
 export interface GetTermsOfServiceQueryParams {
   /**
    * Limits the results to the terms of service of the given type. */
@@ -130,10 +133,14 @@ export interface GetTermsOfServiceHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type CreateTermsOfServiceRequestBodyStatusField = 'enabled' | 'disabled';
+export type CreateTermsOfServiceRequestBodyStatusField =
+  | 'enabled'
+  | 'disabled'
+  | string;
 export type CreateTermsOfServiceRequestBodyTosTypeField =
   | 'external'
-  | 'managed';
+  | 'managed'
+  | string;
 export interface CreateTermsOfServiceRequestBody {
   /**
    * Whether this terms of service is active. */
@@ -199,7 +206,8 @@ export interface GetTermsOfServiceByIdHeadersInput {
 }
 export type UpdateTermsOfServiceByIdRequestBodyStatusField =
   | 'enabled'
-  | 'disabled';
+  | 'disabled'
+  | string;
 export interface UpdateTermsOfServiceByIdRequestBody {
   /**
    * Whether this terms of service is active. */
@@ -453,6 +461,9 @@ export function deserializeGetTermsOfServiceQueryParamsTosTypeField(
   if (val == 'managed') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetTermsOfServiceQueryParamsTosTypeField",
   });
@@ -471,6 +482,9 @@ export function deserializeCreateTermsOfServiceRequestBodyStatusField(
   if (val == 'disabled') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CreateTermsOfServiceRequestBodyStatusField",
   });
@@ -487,6 +501,9 @@ export function deserializeCreateTermsOfServiceRequestBodyTosTypeField(
     return val;
   }
   if (val == 'managed') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -556,6 +573,9 @@ export function deserializeUpdateTermsOfServiceByIdRequestBodyStatusField(
     return val;
   }
   if (val == 'disabled') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

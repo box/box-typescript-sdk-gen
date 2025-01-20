@@ -119,9 +119,10 @@ export interface GetClassificationTemplateHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type AddClassificationRequestBodyOpField = 'addEnumOption';
+export type AddClassificationRequestBodyOpField = 'addEnumOption' | string;
 export type AddClassificationRequestBodyFieldKeyField =
-  'Box__Security__Classification__Key';
+  | 'Box__Security__Classification__Key'
+  | string;
 export interface AddClassificationRequestBodyDataStaticConfigClassificationField {
   /**
    * A longer description of the classification. */
@@ -233,9 +234,10 @@ export interface AddClassificationHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateClassificationRequestBodyOpField = 'editEnumOption';
+export type UpdateClassificationRequestBodyOpField = 'editEnumOption' | string;
 export type UpdateClassificationRequestBodyFieldKeyField =
-  'Box__Security__Classification__Key';
+  | 'Box__Security__Classification__Key'
+  | string;
 export interface UpdateClassificationRequestBodyDataStaticConfigClassificationField {
   /**
    * A longer description of the classification. */
@@ -355,16 +357,22 @@ export interface UpdateClassificationHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type CreateClassificationTemplateRequestBodyScopeField = 'enterprise';
+export type CreateClassificationTemplateRequestBodyScopeField =
+  | 'enterprise'
+  | string;
 export type CreateClassificationTemplateRequestBodyTemplateKeyField =
-  'securityClassification-6VMVochwUWo';
+  | 'securityClassification-6VMVochwUWo'
+  | string;
 export type CreateClassificationTemplateRequestBodyDisplayNameField =
-  'Classification';
+  | 'Classification'
+  | string;
 export type CreateClassificationTemplateRequestBodyFieldsTypeField = 'enum';
 export type CreateClassificationTemplateRequestBodyFieldsKeyField =
-  'Box__Security__Classification__Key';
+  | 'Box__Security__Classification__Key'
+  | string;
 export type CreateClassificationTemplateRequestBodyFieldsDisplayNameField =
-  'Classification';
+  | 'Classification'
+  | string;
 export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfigClassificationField {
   /**
    * A longer description of the classification. */
@@ -845,6 +853,9 @@ export function deserializeAddClassificationRequestBodyOpField(
   if (val == 'addEnumOption') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize AddClassificationRequestBodyOpField",
   });
@@ -858,6 +869,9 @@ export function deserializeAddClassificationRequestBodyFieldKeyField(
   val: SerializedData,
 ): AddClassificationRequestBodyFieldKeyField {
   if (val == 'Box__Security__Classification__Key') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1092,6 +1106,9 @@ export function deserializeUpdateClassificationRequestBodyOpField(
   if (val == 'editEnumOption') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateClassificationRequestBodyOpField",
   });
@@ -1105,6 +1122,9 @@ export function deserializeUpdateClassificationRequestBodyFieldKeyField(
   val: SerializedData,
 ): UpdateClassificationRequestBodyFieldKeyField {
   if (val == 'Box__Security__Classification__Key') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1369,6 +1389,9 @@ export function deserializeCreateClassificationTemplateRequestBodyScopeField(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize CreateClassificationTemplateRequestBodyScopeField",
@@ -1385,6 +1408,9 @@ export function deserializeCreateClassificationTemplateRequestBodyTemplateKeyFie
   if (val == 'securityClassification-6VMVochwUWo') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize CreateClassificationTemplateRequestBodyTemplateKeyField",
@@ -1399,6 +1425,9 @@ export function deserializeCreateClassificationTemplateRequestBodyDisplayNameFie
   val: SerializedData,
 ): CreateClassificationTemplateRequestBodyDisplayNameField {
   if (val == 'Classification') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1433,6 +1462,9 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsKeyField
   if (val == 'Box__Security__Classification__Key') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize CreateClassificationTemplateRequestBodyFieldsKeyField",
@@ -1447,6 +1479,9 @@ export function deserializeCreateClassificationTemplateRequestBodyFieldsDisplayN
   val: SerializedData,
 ): CreateClassificationTemplateRequestBodyFieldsDisplayNameField {
   if (val == 'Classification') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

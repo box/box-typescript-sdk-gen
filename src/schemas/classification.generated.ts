@@ -6,7 +6,9 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type ClassificationTemplateField = 'securityClassification-6VMVochwUWo';
+export type ClassificationTemplateField =
+  | 'securityClassification-6VMVochwUWo'
+  | string;
 export interface Classification {
   /**
    * The name of the classification applied to the item. */
@@ -52,6 +54,9 @@ export function deserializeClassificationTemplateField(
   val: SerializedData,
 ): ClassificationTemplateField {
   if (val == 'securityClassification-6VMVochwUWo') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

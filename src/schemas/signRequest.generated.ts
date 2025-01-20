@@ -40,7 +40,8 @@ export type SignRequestStatusField =
   | 'error_sending'
   | 'expired'
   | 'finalizing'
-  | 'error_finalizing';
+  | 'error_finalizing'
+  | string;
 export interface SignRequestSignFilesField {
   readonly files?: readonly FileMini[];
   /**
@@ -145,6 +146,9 @@ export function deserializeSignRequestStatusField(
     return val;
   }
   if (val == 'error_finalizing') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

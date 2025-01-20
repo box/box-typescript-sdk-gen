@@ -189,11 +189,13 @@ export type UpdateCollaborationByIdRequestBodyRoleField =
   | 'previewer uploader'
   | 'viewer uploader'
   | 'co-owner'
-  | 'owner';
+  | 'owner'
+  | string;
 export type UpdateCollaborationByIdRequestBodyStatusField =
   | 'pending'
   | 'accepted'
-  | 'rejected';
+  | 'rejected'
+  | string;
 export interface UpdateCollaborationByIdRequestBody {
   /**
    * The level of access granted. */
@@ -321,7 +323,8 @@ export type CreateCollaborationRequestBodyRoleField =
   | 'uploader'
   | 'previewer uploader'
   | 'viewer uploader'
-  | 'co-owner';
+  | 'co-owner'
+  | string;
 export interface CreateCollaborationRequestBody {
   /**
    * The item to attach the comment to. */
@@ -674,6 +677,9 @@ export function deserializeUpdateCollaborationByIdRequestBodyRoleField(
   if (val == 'owner') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateCollaborationByIdRequestBodyRoleField",
   });
@@ -693,6 +699,9 @@ export function deserializeUpdateCollaborationByIdRequestBodyStatusField(
     return val;
   }
   if (val == 'rejected') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -905,6 +914,9 @@ export function deserializeCreateCollaborationRequestBodyRoleField(
     return val;
   }
   if (val == 'co-owner') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

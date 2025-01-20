@@ -45,7 +45,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type FolderFullSyncStateField =
   | 'synced'
   | 'not_synced'
-  | 'partially_synced';
+  | 'partially_synced'
+  | string;
 export interface FolderFullPermissionsField {
   /**
    * Specifies if the current user can delete this item. */
@@ -85,7 +86,8 @@ export interface FolderFullMetadataField {
 export type FolderFullAllowedSharedLinkAccessLevelsField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export type FolderFullAllowedInviteeRolesField =
   | 'editor'
   | 'viewer'
@@ -93,7 +95,8 @@ export type FolderFullAllowedInviteeRolesField =
   | 'uploader'
   | 'previewer uploader'
   | 'viewer uploader'
-  | 'co-owner';
+  | 'co-owner'
+  | string;
 export interface FolderFullWatermarkInfoField {
   /**
    * Specifies if this item has a watermark applied. */
@@ -195,6 +198,9 @@ export function deserializeFolderFullSyncStateField(
     return val;
   }
   if (val == 'partially_synced') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -391,6 +397,9 @@ export function deserializeFolderFullAllowedSharedLinkAccessLevelsField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize FolderFullAllowedSharedLinkAccessLevelsField",
   });
@@ -422,6 +431,9 @@ export function deserializeFolderFullAllowedInviteeRolesField(
     return val;
   }
   if (val == 'co-owner') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

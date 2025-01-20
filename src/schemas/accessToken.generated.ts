@@ -9,9 +9,10 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type AccessTokenTokenTypeField = 'bearer';
+export type AccessTokenTokenTypeField = 'bearer' | string;
 export type AccessTokenIssuedTokenTypeField =
-  'urn:ietf:params:oauth:token-type:access_token';
+  | 'urn:ietf:params:oauth:token-type:access_token'
+  | string;
 export interface AccessToken {
   /**
    * The requested access token. */
@@ -48,6 +49,9 @@ export function deserializeAccessTokenTokenTypeField(
   if (val == 'bearer') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize AccessTokenTokenTypeField",
   });
@@ -61,6 +65,9 @@ export function deserializeAccessTokenIssuedTokenTypeField(
   val: SerializedData,
 ): AccessTokenIssuedTokenTypeField {
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

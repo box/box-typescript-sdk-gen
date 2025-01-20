@@ -362,7 +362,8 @@ export interface UpdateFileByIdRequestBodyParentField {
 export type UpdateFileByIdRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateFileByIdRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -409,7 +410,7 @@ export interface UpdateFileByIdRequestBodySharedLinkField {
   readonly permissions?: UpdateFileByIdRequestBodySharedLinkPermissionsField;
   readonly rawData?: SerializedData;
 }
-export type UpdateFileByIdRequestBodyLockAccessField = 'lock';
+export type UpdateFileByIdRequestBodyLockAccessField = 'lock' | string;
 export interface UpdateFileByIdRequestBodyLockField {
   /**
    * The type of this object. */
@@ -424,7 +425,8 @@ export interface UpdateFileByIdRequestBodyLockField {
 }
 export type UpdateFileByIdRequestBodyPermissionsCanDownloadField =
   | 'open'
-  | 'company';
+  | 'company'
+  | string;
 export interface UpdateFileByIdRequestBodyPermissionsField {
   /**
    * Defines who is allowed to download this file. The possible
@@ -665,7 +667,7 @@ export interface CopyFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetFileThumbnailUrlExtension = 'png' | 'jpg';
+export type GetFileThumbnailUrlExtension = 'png' | 'jpg' | string;
 export interface GetFileThumbnailUrlQueryParams {
   /**
    * The minimum height of the thumbnail */
@@ -704,7 +706,7 @@ export interface GetFileThumbnailUrlHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetFileThumbnailByIdExtension = 'png' | 'jpg';
+export type GetFileThumbnailByIdExtension = 'png' | 'jpg' | string;
 export interface GetFileThumbnailByIdQueryParams {
   /**
    * The minimum height of the thumbnail */
@@ -1225,6 +1227,9 @@ export function deserializeUpdateFileByIdRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateFileByIdRequestBodySharedLinkAccessField",
   });
@@ -1340,6 +1345,9 @@ export function deserializeUpdateFileByIdRequestBodyLockAccessField(
   if (val == 'lock') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateFileByIdRequestBodyLockAccessField",
   });
@@ -1408,6 +1416,9 @@ export function deserializeUpdateFileByIdRequestBodyPermissionsCanDownloadField(
     return val;
   }
   if (val == 'company') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1705,6 +1716,9 @@ export function deserializeGetFileThumbnailUrlExtension(
   if (val == 'jpg') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetFileThumbnailUrlExtension",
   });
@@ -1721,6 +1735,9 @@ export function deserializeGetFileThumbnailByIdExtension(
     return val;
   }
   if (val == 'jpg') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

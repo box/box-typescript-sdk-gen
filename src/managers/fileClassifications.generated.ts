@@ -196,9 +196,10 @@ export interface AddClassificationToFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateClassificationOnFileRequestBodyOpField = 'replace';
+export type UpdateClassificationOnFileRequestBodyOpField = 'replace' | string;
 export type UpdateClassificationOnFileRequestBodyPathField =
-  '/Box__Security__Classification__Key';
+  | '/Box__Security__Classification__Key'
+  | string;
 export class UpdateClassificationOnFileRequestBody {
   /**
    * `replace` */
@@ -592,6 +593,9 @@ export function deserializeUpdateClassificationOnFileRequestBodyOpField(
   if (val == 'replace') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateClassificationOnFileRequestBodyOpField",
   });
@@ -605,6 +609,9 @@ export function deserializeUpdateClassificationOnFileRequestBodyPathField(
   val: SerializedData,
 ): UpdateClassificationOnFileRequestBodyPathField {
   if (val == '/Box__Security__Classification__Key') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -9,7 +9,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type FileVersionsOrderDirectionField = 'ASC' | 'DESC';
+export type FileVersionsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface FileVersionsOrderField {
   /**
    * The field to order by */
@@ -63,6 +63,9 @@ export function deserializeFileVersionsOrderDirectionField(
     return val;
   }
   if (val == 'DESC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

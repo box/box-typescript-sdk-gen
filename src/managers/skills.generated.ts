@@ -216,7 +216,7 @@ export interface CreateBoxSkillCardsOnFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace';
+export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace' | string;
 export interface UpdateBoxSkillCardsOnFileRequestBody {
   /**
    * `replace` */
@@ -282,7 +282,8 @@ export type UpdateAllSkillCardsOnFileRequestBodyStatusField =
   | 'processing'
   | 'success'
   | 'transient_failure'
-  | 'permanent_failure';
+  | 'permanent_failure'
+  | string;
 export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
   /**
    * A list of Box Skill cards to apply to this file. */
@@ -696,6 +697,9 @@ export function deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField(
   if (val == 'replace') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateBoxSkillCardsOnFileRequestBodyOpField",
   });
@@ -771,6 +775,9 @@ export function deserializeUpdateAllSkillCardsOnFileRequestBodyStatusField(
     return val;
   }
   if (val == 'permanent_failure') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

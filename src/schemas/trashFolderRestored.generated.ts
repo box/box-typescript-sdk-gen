@@ -28,7 +28,8 @@ export interface TrashFolderRestoredPathCollectionField {
 export type TrashFolderRestoredItemStatusField =
   | 'active'
   | 'trashed'
-  | 'deleted';
+  | 'deleted'
+  | string;
 export interface TrashFolderRestored {
   /**
    * The unique identifier that represent a folder.
@@ -190,6 +191,9 @@ export function deserializeTrashFolderRestoredItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

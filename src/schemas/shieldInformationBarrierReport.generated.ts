@@ -28,7 +28,8 @@ export type ShieldInformationBarrierReportStatusField =
   | 'pending'
   | 'error'
   | 'done'
-  | 'cancelled';
+  | 'cancelled'
+  | string;
 export type ShieldInformationBarrierReport =
   ShieldInformationBarrierReportBase & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
@@ -64,6 +65,9 @@ export function deserializeShieldInformationBarrierReportStatusField(
     return val;
   }
   if (val == 'cancelled') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -125,8 +125,11 @@ export interface DeleteSlackIntegrationMappingByIdOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
-  'channel';
-export type GetSlackIntegrationMappingQueryParamsBoxItemTypeField = 'folder';
+  | 'channel'
+  | string;
+export type GetSlackIntegrationMappingQueryParamsBoxItemTypeField =
+  | 'folder'
+  | string;
 export interface GetSlackIntegrationMappingQueryParams {
   /**
    * Defines the position marker at which to begin returning results. This is
@@ -490,6 +493,9 @@ export function deserializeGetSlackIntegrationMappingQueryParamsPartnerItemTypeF
   if (val == 'channel') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize GetSlackIntegrationMappingQueryParamsPartnerItemTypeField",
@@ -504,6 +510,9 @@ export function deserializeGetSlackIntegrationMappingQueryParamsBoxItemTypeField
   val: SerializedData,
 ): GetSlackIntegrationMappingQueryParamsBoxItemTypeField {
   if (val == 'folder') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

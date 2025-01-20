@@ -55,7 +55,8 @@ export interface GetFileVersionRetentionByIdOptionalsInput {
 }
 export type GetFileVersionRetentionsQueryParamsDispositionActionField =
   | 'permanently_delete'
-  | 'remove_retention';
+  | 'remove_retention'
+  | string;
 export interface GetFileVersionRetentionsQueryParams {
   /**
    * Filters results by files with this ID. */
@@ -278,6 +279,9 @@ export function deserializeGetFileVersionRetentionsQueryParamsDispositionActionF
     return val;
   }
   if (val == 'remove_retention') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

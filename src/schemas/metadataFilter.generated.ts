@@ -12,7 +12,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type MetadataFilterScopeField =
   | 'global'
   | 'enterprise'
-  | 'enterprise_{enterprise_id}';
+  | 'enterprise_{enterprise_id}'
+  | string;
 export interface MetadataFilter {
   /**
    * Specifies the scope of the template to filter search results by.
@@ -64,6 +65,9 @@ export function deserializeMetadataFilterScopeField(
     return val;
   }
   if (val == 'enterprise_{enterprise_id}') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -21,7 +21,8 @@ export type ShieldInformationBarrierStatusField =
   | 'pending'
   | 'disabled'
   | 'enabled'
-  | 'invalid';
+  | 'invalid'
+  | string;
 export interface ShieldInformationBarrier {
   /**
    * The unique identifier for the shield information barrier */
@@ -90,6 +91,9 @@ export function deserializeShieldInformationBarrierStatusField(
     return val;
   }
   if (val == 'invalid') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

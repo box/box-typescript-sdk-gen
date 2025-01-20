@@ -15,7 +15,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type AiAskModeField = 'multiple_item_qa' | 'single_item_qa';
+export type AiAskModeField = 'multiple_item_qa' | 'single_item_qa' | string;
 export interface AiAsk {
   /**
    * The mode specifies if this request is for a single or multiple items. If you select `single_item_qa` the `items` array can have one element only. Selecting `multiple_item_qa` allows you to provide up to 25 items. */
@@ -47,6 +47,9 @@ export function deserializeAiAskModeField(val: SerializedData): AiAskModeField {
     return val;
   }
   if (val == 'single_item_qa') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize AiAskModeField" });

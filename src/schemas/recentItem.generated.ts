@@ -17,7 +17,8 @@ export type RecentItemInteractionTypeField =
   | 'item_upload'
   | 'item_comment'
   | 'item_open'
-  | 'item_modify';
+  | 'item_modify'
+  | string;
 export interface RecentItem {
   /**
    * `recent_item` */
@@ -57,6 +58,9 @@ export function deserializeRecentItemInteractionTypeField(
     return val;
   }
   if (val == 'item_modify') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

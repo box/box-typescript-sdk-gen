@@ -24,7 +24,8 @@ export type ClientErrorV2025R0CodeField =
   | 'internal_server_error'
   | 'unavailable'
   | 'item_name_invalid'
-  | 'insufficient_scope';
+  | 'insufficient_scope'
+  | string;
 export interface ClientErrorV2025R0ContextInfoField {
   /**
    * More details on the error. */
@@ -130,6 +131,9 @@ export function deserializeClientErrorV2025R0CodeField(
     return val;
   }
   if (val == 'insufficient_scope') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

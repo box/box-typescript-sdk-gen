@@ -30,7 +30,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type UserFullRoleField = 'admin' | 'coadmin' | 'user';
+export type UserFullRoleField = 'admin' | 'coadmin' | 'user' | string;
 export type UserFullEnterpriseTypeField = 'enterprise';
 export interface UserFullEnterpriseField {
   /**
@@ -112,6 +112,9 @@ export function deserializeUserFullRoleField(
     return val;
   }
   if (val == 'user') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize UserFullRoleField" });

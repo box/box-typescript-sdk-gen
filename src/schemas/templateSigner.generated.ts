@@ -12,7 +12,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type TemplateSignerRoleField =
   | 'signer'
   | 'approver'
-  | 'final_copy_reader';
+  | 'final_copy_reader'
+  | string;
 export interface TemplateSigner {
   readonly inputs?: readonly TemplateSignerInput[];
   /**
@@ -61,6 +62,9 @@ export function deserializeTemplateSignerRoleField(
     return val;
   }
   if (val == 'final_copy_reader') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

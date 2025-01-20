@@ -217,7 +217,7 @@ export interface GetMetadataTemplatesByInstanceIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetMetadataTemplateScope = 'global' | 'enterprise';
+export type GetMetadataTemplateScope = 'global' | 'enterprise' | string;
 export class GetMetadataTemplateHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -242,7 +242,7 @@ export interface GetMetadataTemplateHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateMetadataTemplateScope = 'global' | 'enterprise';
+export type UpdateMetadataTemplateScope = 'global' | 'enterprise' | string;
 export type UpdateMetadataTemplateRequestBodyOpField =
   | 'editTemplate'
   | 'addField'
@@ -256,7 +256,8 @@ export type UpdateMetadataTemplateRequestBodyOpField =
   | 'editEnumOption'
   | 'removeEnumOption'
   | 'editMultiSelectOption'
-  | 'removeMultiSelectOption';
+  | 'removeMultiSelectOption'
+  | string;
 export interface UpdateMetadataTemplateRequestBody {
   /**
    * The type of change to perform on the template. Some
@@ -318,7 +319,7 @@ export interface UpdateMetadataTemplateHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type DeleteMetadataTemplateScope = 'global' | 'enterprise';
+export type DeleteMetadataTemplateScope = 'global' | 'enterprise' | string;
 export class DeleteMetadataTemplateHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -976,6 +977,9 @@ export function deserializeGetMetadataTemplateScope(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetMetadataTemplateScope",
   });
@@ -992,6 +996,9 @@ export function deserializeUpdateMetadataTemplateScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1043,6 +1050,9 @@ export function deserializeUpdateMetadataTemplateRequestBodyOpField(
     return val;
   }
   if (val == 'removeMultiSelectOption') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1248,6 +1258,9 @@ export function deserializeDeleteMetadataTemplateScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

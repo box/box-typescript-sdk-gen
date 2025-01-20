@@ -9,7 +9,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type SignRequestCreateSignerRoleField =
   | 'signer'
   | 'approver'
-  | 'final_copy_reader';
+  | 'final_copy_reader'
+  | string;
 export interface SignRequestCreateSigner {
   /**
    * Email address of the signer.
@@ -85,6 +86,9 @@ export function deserializeSignRequestCreateSignerRoleField(
     return val;
   }
   if (val == 'final_copy_reader') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

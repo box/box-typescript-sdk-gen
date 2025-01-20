@@ -44,7 +44,11 @@ export interface TrashWebLinkPathCollectionField {
   readonly entries: readonly TrashWebLinkPathCollectionEntriesField[];
   readonly rawData?: SerializedData;
 }
-export type TrashWebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
+export type TrashWebLinkItemStatusField =
+  | 'active'
+  | 'trashed'
+  | 'deleted'
+  | string;
 export interface TrashWebLink {
   /**
    * `web_link` */
@@ -262,6 +266,9 @@ export function deserializeTrashWebLinkItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

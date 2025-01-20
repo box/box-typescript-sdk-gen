@@ -203,11 +203,13 @@ export interface GetGroupsHeadersInput {
 export type CreateGroupRequestBodyInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export type CreateGroupRequestBodyMemberViewabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export interface CreateGroupRequestBody {
   /**
    * The name of the new group to be created. This name must be unique
@@ -340,11 +342,13 @@ export interface GetGroupByIdHeadersInput {
 export type UpdateGroupByIdRequestBodyInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export type UpdateGroupByIdRequestBodyMemberViewabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export interface UpdateGroupByIdRequestBody {
   /**
    * The name of the new group to be created. Must be unique within the
@@ -756,6 +760,9 @@ export function deserializeCreateGroupRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CreateGroupRequestBodyInvitabilityLevelField",
   });
@@ -775,6 +782,9 @@ export function deserializeCreateGroupRequestBodyMemberViewabilityLevelField(
     return val;
   }
   if (val == 'all_managed_users') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -895,6 +905,9 @@ export function deserializeUpdateGroupByIdRequestBodyInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize UpdateGroupByIdRequestBodyInvitabilityLevelField",
@@ -915,6 +928,9 @@ export function deserializeUpdateGroupByIdRequestBodyMemberViewabilityLevelField
     return val;
   }
   if (val == 'all_managed_users') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

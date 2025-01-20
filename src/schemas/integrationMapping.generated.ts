@@ -27,7 +27,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type IntegrationMappingIntegrationTypeField = 'slack';
+export type IntegrationMappingIntegrationTypeField = 'slack' | string;
 export class IntegrationMapping extends IntegrationMappingBase {
   readonly integrationType?: IntegrationMappingIntegrationTypeField;
   readonly isManuallyCreated?: boolean;
@@ -78,6 +78,9 @@ export function deserializeIntegrationMappingIntegrationTypeField(
   val: SerializedData,
 ): IntegrationMappingIntegrationTypeField {
   if (val == 'slack') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

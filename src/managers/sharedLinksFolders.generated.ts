@@ -250,7 +250,8 @@ export interface GetSharedLinkForFolderHeadersInput {
 export type AddShareLinkToFolderRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface AddShareLinkToFolderRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -350,7 +351,8 @@ export interface AddShareLinkToFolderHeadersInput {
 export type UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateSharedLinkOnFolderRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -838,6 +840,9 @@ export function deserializeAddShareLinkToFolderRequestBodySharedLinkAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize AddShareLinkToFolderRequestBodySharedLinkAccessField",
@@ -1015,6 +1020,9 @@ export function deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessFi
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

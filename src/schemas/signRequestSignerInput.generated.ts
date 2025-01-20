@@ -34,7 +34,8 @@ export type SignRequestSignerInputContentTypeField =
   | 'email'
   | 'attachment'
   | 'radio'
-  | 'dropdown';
+  | 'dropdown'
+  | string;
 export type SignRequestSignerInput = SignRequestPrefillTag & {
   /**
    * Type of input */
@@ -130,6 +131,9 @@ export function deserializeSignRequestSignerInputContentTypeField(
     return val;
   }
   if (val == 'dropdown') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

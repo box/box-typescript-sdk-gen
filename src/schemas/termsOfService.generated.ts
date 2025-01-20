@@ -15,7 +15,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type TermsOfServiceStatusField = 'enabled' | 'disabled';
+export type TermsOfServiceStatusField = 'enabled' | 'disabled' | string;
 export type TermsOfServiceEnterpriseTypeField = 'enterprise';
 export interface TermsOfServiceEnterpriseField {
   /**
@@ -29,7 +29,7 @@ export interface TermsOfServiceEnterpriseField {
   readonly name?: string;
   readonly rawData?: SerializedData;
 }
-export type TermsOfServiceTosTypeField = 'managed' | 'external';
+export type TermsOfServiceTosTypeField = 'managed' | 'external' | string;
 export class TermsOfService extends TermsOfServiceBase {
   readonly status?: TermsOfServiceStatusField;
   readonly enterprise?: TermsOfServiceEnterpriseField;
@@ -71,6 +71,9 @@ export function deserializeTermsOfServiceStatusField(
     return val;
   }
   if (val == 'disabled') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -148,6 +151,9 @@ export function deserializeTermsOfServiceTosTypeField(
     return val;
   }
   if (val == 'external') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

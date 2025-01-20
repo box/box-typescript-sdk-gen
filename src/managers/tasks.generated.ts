@@ -171,10 +171,11 @@ export interface CreateTaskRequestBodyItemField {
   readonly type?: CreateTaskRequestBodyItemTypeField;
   readonly rawData?: SerializedData;
 }
-export type CreateTaskRequestBodyActionField = 'review' | 'complete';
+export type CreateTaskRequestBodyActionField = 'review' | 'complete' | string;
 export type CreateTaskRequestBodyCompletionRuleField =
   | 'all_assignees'
-  | 'any_assignee';
+  | 'any_assignee'
+  | string;
 export interface CreateTaskRequestBody {
   /**
    * The file to attach the task to. */
@@ -252,10 +253,14 @@ export interface GetTaskByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateTaskByIdRequestBodyActionField = 'review' | 'complete';
+export type UpdateTaskByIdRequestBodyActionField =
+  | 'review'
+  | 'complete'
+  | string;
 export type UpdateTaskByIdRequestBodyCompletionRuleField =
   | 'all_assignees'
-  | 'any_assignee';
+  | 'any_assignee'
+  | string;
 export interface UpdateTaskByIdRequestBody {
   /**
    * The action the task assignee will be prompted to do. Must be
@@ -633,6 +638,9 @@ export function deserializeCreateTaskRequestBodyActionField(
   if (val == 'complete') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CreateTaskRequestBodyActionField",
   });
@@ -649,6 +657,9 @@ export function deserializeCreateTaskRequestBodyCompletionRuleField(
     return val;
   }
   if (val == 'any_assignee') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -733,6 +744,9 @@ export function deserializeUpdateTaskByIdRequestBodyActionField(
   if (val == 'complete') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateTaskByIdRequestBodyActionField",
   });
@@ -749,6 +763,9 @@ export function deserializeUpdateTaskByIdRequestBodyCompletionRuleField(
     return val;
   }
   if (val == 'any_assignee') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

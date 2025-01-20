@@ -290,7 +290,8 @@ export type UpdateTaskAssignmentByIdRequestBodyResolutionStateField =
   | 'completed'
   | 'incomplete'
   | 'approved'
-  | 'rejected';
+  | 'rejected'
+  | string;
 export interface UpdateTaskAssignmentByIdRequestBody {
   /**
    * An optional message by the assignee that can be added to the task. */
@@ -785,6 +786,9 @@ export function deserializeUpdateTaskAssignmentByIdRequestBodyResolutionStateFie
     return val;
   }
   if (val == 'rejected') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

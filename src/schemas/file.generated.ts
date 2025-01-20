@@ -36,16 +36,22 @@ export interface FilePathCollectionField {
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
-export type FileSharedLinkAccessField = 'open' | 'company' | 'collaborators';
+export type FileSharedLinkAccessField =
+  | 'open'
+  | 'company'
+  | 'collaborators'
+  | string;
 export type FileSharedLinkEffectiveAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export type FileSharedLinkEffectivePermissionField =
   | 'can_edit'
   | 'can_download'
   | 'can_preview'
-  | 'no_access';
+  | 'no_access'
+  | string;
 export interface FileSharedLinkPermissionsField {
   /**
    * Defines if the shared link allows for the item to be downloaded. For
@@ -135,7 +141,7 @@ export interface FileSharedLinkField {
   readonly previewCount: number;
   readonly rawData?: SerializedData;
 }
-export type FileItemStatusField = 'active' | 'trashed' | 'deleted';
+export type FileItemStatusField = 'active' | 'trashed' | 'deleted' | string;
 export class File extends FileMini {
   readonly description?: string;
   readonly size?: number;
@@ -271,6 +277,9 @@ export function deserializeFileSharedLinkAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize FileSharedLinkAccessField",
   });
@@ -290,6 +299,9 @@ export function deserializeFileSharedLinkEffectiveAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -314,6 +326,9 @@ export function deserializeFileSharedLinkEffectivePermissionField(
     return val;
   }
   if (val == 'no_access') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -557,6 +572,9 @@ export function deserializeFileItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize FileItemStatusField" });

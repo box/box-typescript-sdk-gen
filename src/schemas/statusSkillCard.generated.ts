@@ -25,7 +25,8 @@ export type StatusSkillCardStatusCodeField =
   | 'processing'
   | 'success'
   | 'transient_failure'
-  | 'permanent_failure';
+  | 'permanent_failure'
+  | string;
 export interface StatusSkillCardStatusField {
   /**
    * A code for the status of this Skill invocation. By
@@ -287,6 +288,9 @@ export function deserializeStatusSkillCardStatusCodeField(
     return val;
   }
   if (val == 'permanent_failure') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -9,7 +9,10 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type FileRequestUpdateRequestStatusField = 'active' | 'inactive';
+export type FileRequestUpdateRequestStatusField =
+  | 'active'
+  | 'inactive'
+  | string;
 export interface FileRequestUpdateRequest {
   /**
    * An optional new title for the file request. This can be
@@ -74,6 +77,9 @@ export function deserializeFileRequestUpdateRequestStatusField(
     return val;
   }
   if (val == 'inactive') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

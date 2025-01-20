@@ -154,7 +154,8 @@ export interface DeleteRetentionPolicyByIdOptionalsInput {
 }
 export type GetRetentionPoliciesQueryParamsPolicyTypeField =
   | 'finite'
-  | 'indefinite';
+  | 'indefinite'
+  | string;
 export interface GetRetentionPoliciesQueryParams {
   /**
    * Filters results by a case sensitive prefix of the name of
@@ -211,13 +212,16 @@ export interface GetRetentionPoliciesHeadersInput {
 }
 export type CreateRetentionPolicyRequestBodyPolicyTypeField =
   | 'finite'
-  | 'indefinite';
+  | 'indefinite'
+  | string;
 export type CreateRetentionPolicyRequestBodyDispositionActionField =
   | 'permanently_delete'
-  | 'remove_retention';
+  | 'remove_retention'
+  | string;
 export type CreateRetentionPolicyRequestBodyRetentionTypeField =
   | 'modifiable'
-  | 'non_modifiable';
+  | 'non_modifiable'
+  | string;
 export interface CreateRetentionPolicyRequestBody {
   /**
    * The name for the retention policy */
@@ -729,6 +733,9 @@ export function deserializeGetRetentionPoliciesQueryParamsPolicyTypeField(
   if (val == 'indefinite') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetRetentionPoliciesQueryParamsPolicyTypeField",
   });
@@ -745,6 +752,9 @@ export function deserializeCreateRetentionPolicyRequestBodyPolicyTypeField(
     return val;
   }
   if (val == 'indefinite') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -766,6 +776,9 @@ export function deserializeCreateRetentionPolicyRequestBodyDispositionActionFiel
   if (val == 'remove_retention') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize CreateRetentionPolicyRequestBodyDispositionActionField",
@@ -783,6 +796,9 @@ export function deserializeCreateRetentionPolicyRequestBodyRetentionTypeField(
     return val;
   }
   if (val == 'non_modifiable') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

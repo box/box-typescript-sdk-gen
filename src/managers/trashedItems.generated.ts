@@ -22,8 +22,12 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type GetTrashedItemsQueryParamsDirectionField = 'ASC' | 'DESC';
-export type GetTrashedItemsQueryParamsSortField = 'name' | 'date' | 'size';
+export type GetTrashedItemsQueryParamsDirectionField = 'ASC' | 'DESC' | string;
+export type GetTrashedItemsQueryParamsSortField =
+  | 'name'
+  | 'date'
+  | 'size'
+  | string;
 export interface GetTrashedItemsQueryParams {
   /**
    * A comma-separated list of attributes to include in the
@@ -193,6 +197,9 @@ export function deserializeGetTrashedItemsQueryParamsDirectionField(
   if (val == 'DESC') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetTrashedItemsQueryParamsDirectionField",
   });
@@ -212,6 +219,9 @@ export function deserializeGetTrashedItemsQueryParamsSortField(
     return val;
   }
   if (val == 'size') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

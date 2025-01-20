@@ -9,8 +9,8 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type DevicePinnersOrderByField = 'id';
-export type DevicePinnersOrderDirectionField = 'asc' | 'desc';
+export type DevicePinnersOrderByField = 'id' | string;
+export type DevicePinnersOrderDirectionField = 'asc' | 'desc' | string;
 export interface DevicePinnersOrderField {
   /**
    * The field that is ordered by */
@@ -48,6 +48,9 @@ export function deserializeDevicePinnersOrderByField(
   if (val == 'id') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize DevicePinnersOrderByField",
   });
@@ -64,6 +67,9 @@ export function deserializeDevicePinnersOrderDirectionField(
     return val;
   }
   if (val == 'desc') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

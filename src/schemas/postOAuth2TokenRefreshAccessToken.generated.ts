@@ -6,7 +6,9 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type PostOAuth2TokenRefreshAccessTokenGrantTypeField = 'refresh_token';
+export type PostOAuth2TokenRefreshAccessTokenGrantTypeField =
+  | 'refresh_token'
+  | string;
 export class PostOAuth2TokenRefreshAccessToken {
   /**
    * The type of request being made, in this case a refresh request. */
@@ -67,6 +69,9 @@ export function deserializePostOAuth2TokenRefreshAccessTokenGrantTypeField(
   val: SerializedData,
 ): PostOAuth2TokenRefreshAccessTokenGrantTypeField {
   if (val == 'refresh_token') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
