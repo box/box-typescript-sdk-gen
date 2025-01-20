@@ -24,9 +24,12 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type RetentionPolicyPolicyTypeField = 'finite' | 'indefinite';
-export type RetentionPolicyRetentionTypeField = 'modifiable' | 'non_modifiable';
-export type RetentionPolicyStatusField = 'active' | 'retired';
+export type RetentionPolicyPolicyTypeField = 'finite' | 'indefinite' | string;
+export type RetentionPolicyRetentionTypeField =
+  | 'modifiable'
+  | 'non_modifiable'
+  | string;
+export type RetentionPolicyStatusField = 'active' | 'retired' | string;
 export interface RetentionPolicyAssignmentCountsField {
   /**
    * The number of enterprise assignments this policy has. The maximum value is 1. */
@@ -102,6 +105,9 @@ export function deserializeRetentionPolicyPolicyTypeField(
   if (val == 'indefinite') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize RetentionPolicyPolicyTypeField",
   });
@@ -120,6 +126,9 @@ export function deserializeRetentionPolicyRetentionTypeField(
   if (val == 'non_modifiable') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize RetentionPolicyRetentionTypeField",
   });
@@ -136,6 +145,9 @@ export function deserializeRetentionPolicyStatusField(
     return val;
   }
   if (val == 'retired') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -7,7 +7,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type RoleVariableTypeField = 'variable';
-export type RoleVariableVariableTypeField = 'collaborator_role';
+export type RoleVariableVariableTypeField = 'collaborator_role' | string;
 export type RoleVariableVariableValueField =
   | 'editor'
   | 'viewer'
@@ -15,7 +15,8 @@ export type RoleVariableVariableValueField =
   | 'uploader'
   | 'previewer uploader'
   | 'viewer uploader'
-  | 'co-owner';
+  | 'co-owner'
+  | string;
 export class RoleVariable {
   /**
    * Role object type.
@@ -84,6 +85,9 @@ export function deserializeRoleVariableVariableTypeField(
   if (val == 'collaborator_role') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize RoleVariableVariableTypeField",
   });
@@ -115,6 +119,9 @@ export function deserializeRoleVariableVariableValueField(
     return val;
   }
   if (val == 'co-owner') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

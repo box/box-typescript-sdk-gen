@@ -59,7 +59,8 @@ export type WebhookInvocationTriggerField =
   | 'SIGN_REQUEST.COMPLETED'
   | 'SIGN_REQUEST.DECLINED'
   | 'SIGN_REQUEST.EXPIRED'
-  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
+  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED'
+  | string;
 export interface WebhookInvocation {
   /**
    * The unique identifier for this webhook invocation */
@@ -218,6 +219,9 @@ export function deserializeWebhookInvocationTriggerField(
     return val;
   }
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

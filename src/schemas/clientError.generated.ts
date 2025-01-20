@@ -24,7 +24,8 @@ export type ClientErrorCodeField =
   | 'internal_server_error'
   | 'unavailable'
   | 'item_name_invalid'
-  | 'insufficient_scope';
+  | 'insufficient_scope'
+  | string;
 export interface ClientError {
   /**
    * error */
@@ -124,6 +125,9 @@ export function deserializeClientErrorCodeField(
     return val;
   }
   if (val == 'insufficient_scope') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize ClientErrorCodeField" });

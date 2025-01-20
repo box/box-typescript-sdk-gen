@@ -20,7 +20,9 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type WorkflowFlowsTypeField = 'flow';
 export type WorkflowFlowsTriggerTypeField = 'trigger';
-export type WorkflowFlowsTriggerTriggerTypeField = 'WORKFLOW_MANUAL_START';
+export type WorkflowFlowsTriggerTriggerTypeField =
+  | 'WORKFLOW_MANUAL_START'
+  | string;
 export type WorkflowFlowsTriggerScopeTypeField = 'trigger_scope';
 export type WorkflowFlowsTriggerScopeObjectTypeField = 'folder';
 export interface WorkflowFlowsTriggerScopeObjectField {
@@ -80,7 +82,8 @@ export type WorkflowFlowsOutcomesActionTypeField =
   | 'go_back_to_step'
   | 'apply_file_classification'
   | 'apply_folder_classification'
-  | 'send_notification';
+  | 'send_notification'
+  | string;
 export type WorkflowFlowsOutcomesIfRejectedTypeField = 'outcome';
 export type WorkflowFlowsOutcomesIfRejectedActionTypeField =
   | 'add_metadata'
@@ -105,7 +108,8 @@ export type WorkflowFlowsOutcomesIfRejectedActionTypeField =
   | 'go_back_to_step'
   | 'apply_file_classification'
   | 'apply_folder_classification'
-  | 'send_notification';
+  | 'send_notification'
+  | string;
 export interface WorkflowFlowsOutcomesIfRejectedField {
   /**
    * The identifier of the outcome */
@@ -195,6 +199,9 @@ export function deserializeWorkflowFlowsTriggerTriggerTypeField(
   val: SerializedData,
 ): WorkflowFlowsTriggerTriggerTypeField {
   if (val == 'WORKFLOW_MANUAL_START') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -459,6 +466,9 @@ export function deserializeWorkflowFlowsOutcomesActionTypeField(
   if (val == 'send_notification') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize WorkflowFlowsOutcomesActionTypeField",
   });
@@ -553,6 +563,9 @@ export function deserializeWorkflowFlowsOutcomesIfRejectedActionTypeField(
     return val;
   }
   if (val == 'send_notification') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

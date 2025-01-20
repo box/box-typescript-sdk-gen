@@ -33,8 +33,13 @@ export type CollaborationRoleField =
   | 'previewer uploader'
   | 'viewer uploader'
   | 'co-owner'
-  | 'owner';
-export type CollaborationStatusField = 'accepted' | 'pending' | 'rejected';
+  | 'owner'
+  | string;
+export type CollaborationStatusField =
+  | 'accepted'
+  | 'pending'
+  | 'rejected'
+  | string;
 export interface CollaborationAcceptanceRequirementsStatusTermsOfServiceRequirementField {
   /**
    * Whether or not the terms of service have been accepted.  The
@@ -267,6 +272,9 @@ export function deserializeCollaborationRoleField(
   if (val == 'owner') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CollaborationRoleField",
   });
@@ -286,6 +294,9 @@ export function deserializeCollaborationStatusField(
     return val;
   }
   if (val == 'rejected') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

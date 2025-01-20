@@ -166,7 +166,11 @@ export interface DeleteUserByIdOptionalsInput {
   readonly headers?: DeleteUserByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export type GetUsersQueryParamsUserTypeField = 'all' | 'managed' | 'external';
+export type GetUsersQueryParamsUserTypeField =
+  | 'all'
+  | 'managed'
+  | 'external'
+  | string;
 export interface GetUsersQueryParams {
   /**
    * Limits the results to only users who's `name` or
@@ -260,12 +264,13 @@ export interface GetUsersHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type CreateUserRequestBodyRoleField = 'coadmin' | 'user';
+export type CreateUserRequestBodyRoleField = 'coadmin' | 'user' | string;
 export type CreateUserRequestBodyStatusField =
   | 'active'
   | 'inactive'
   | 'cannot_delete_edit'
-  | 'cannot_delete_edit_upload';
+  | 'cannot_delete_edit_upload'
+  | string;
 export interface CreateUserRequestBody {
   /**
    * The name of the user */
@@ -446,12 +451,13 @@ export interface GetUserByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateUserByIdRequestBodyRoleField = 'coadmin' | 'user';
+export type UpdateUserByIdRequestBodyRoleField = 'coadmin' | 'user' | string;
 export type UpdateUserByIdRequestBodyStatusField =
   | 'active'
   | 'inactive'
   | 'cannot_delete_edit'
-  | 'cannot_delete_edit_upload';
+  | 'cannot_delete_edit_upload'
+  | string;
 export interface UpdateUserByIdRequestBodyNotificationEmailField {
   /**
    * The email address to send the notifications to. */
@@ -998,6 +1004,9 @@ export function deserializeGetUsersQueryParamsUserTypeField(
   if (val == 'external') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetUsersQueryParamsUserTypeField",
   });
@@ -1014,6 +1023,9 @@ export function deserializeCreateUserRequestBodyRoleField(
     return val;
   }
   if (val == 'user') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1038,6 +1050,9 @@ export function deserializeCreateUserRequestBodyStatusField(
     return val;
   }
   if (val == 'cannot_delete_edit_upload') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1288,6 +1303,9 @@ export function deserializeUpdateUserByIdRequestBodyRoleField(
   if (val == 'user') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateUserByIdRequestBodyRoleField",
   });
@@ -1310,6 +1328,9 @@ export function deserializeUpdateUserByIdRequestBodyStatusField(
     return val;
   }
   if (val == 'cannot_delete_edit_upload') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -205,7 +205,8 @@ export type GetAiAgentDefaultConfigQueryParamsModeField =
   | 'ask'
   | 'text_gen'
   | 'extract'
-  | 'extract_structured';
+  | 'extract_structured'
+  | string;
 export interface GetAiAgentDefaultConfigQueryParams {
   /**
    * The mode to filter the agent config to return. */
@@ -556,6 +557,9 @@ export function deserializeGetAiAgentDefaultConfigQueryParamsModeField(
     return val;
   }
   if (val == 'extract_structured') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

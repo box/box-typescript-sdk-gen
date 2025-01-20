@@ -27,11 +27,13 @@ import { sdIsMap } from '../serialization/json.js';
 export type GroupFullInvitabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export type GroupFullMemberViewabilityLevelField =
   | 'admins_only'
   | 'admins_and_members'
-  | 'all_managed_users';
+  | 'all_managed_users'
+  | string;
 export interface GroupFullPermissionsField {
   /**
    * Specifies if the user can invite the group to collaborate on any items. */
@@ -84,6 +86,9 @@ export function deserializeGroupFullInvitabilityLevelField(
   if (val == 'all_managed_users') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GroupFullInvitabilityLevelField",
   });
@@ -103,6 +108,9 @@ export function deserializeGroupFullMemberViewabilityLevelField(
     return val;
   }
   if (val == 'all_managed_users') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

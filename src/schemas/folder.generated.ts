@@ -33,16 +33,22 @@ export interface FolderPathCollectionField {
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
-export type FolderSharedLinkAccessField = 'open' | 'company' | 'collaborators';
+export type FolderSharedLinkAccessField =
+  | 'open'
+  | 'company'
+  | 'collaborators'
+  | string;
 export type FolderSharedLinkEffectiveAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export type FolderSharedLinkEffectivePermissionField =
   | 'can_edit'
   | 'can_download'
   | 'can_preview'
-  | 'no_access';
+  | 'no_access'
+  | string;
 export interface FolderSharedLinkPermissionsField {
   /**
    * Defines if the shared link allows for the item to be downloaded. For
@@ -132,7 +138,10 @@ export interface FolderSharedLinkField {
   readonly previewCount: number;
   readonly rawData?: SerializedData;
 }
-export type FolderFolderUploadEmailAccessField = 'open' | 'collaborators';
+export type FolderFolderUploadEmailAccessField =
+  | 'open'
+  | 'collaborators'
+  | string;
 export interface FolderFolderUploadEmailField {
   /**
    * When this parameter has been set, users can email files
@@ -154,7 +163,7 @@ export interface FolderFolderUploadEmailField {
   readonly email?: string;
   readonly rawData?: SerializedData;
 }
-export type FolderItemStatusField = 'active' | 'trashed' | 'deleted';
+export type FolderItemStatusField = 'active' | 'trashed' | 'deleted' | string;
 export class Folder extends FolderMini {
   readonly createdAt?: DateTime | null;
   readonly modifiedAt?: DateTime | null;
@@ -298,6 +307,9 @@ export function deserializeFolderSharedLinkAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize FolderSharedLinkAccessField",
   });
@@ -317,6 +329,9 @@ export function deserializeFolderSharedLinkEffectiveAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -341,6 +356,9 @@ export function deserializeFolderSharedLinkEffectivePermissionField(
     return val;
   }
   if (val == 'no_access') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -585,6 +603,9 @@ export function deserializeFolderFolderUploadEmailAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize FolderFolderUploadEmailAccessField",
   });
@@ -639,6 +660,9 @@ export function deserializeFolderItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize FolderItemStatusField" });

@@ -14,7 +14,8 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type RetentionPolicyMiniDispositionActionField =
   | 'permanently_delete'
-  | 'remove_retention';
+  | 'remove_retention'
+  | string;
 export class RetentionPolicyMini extends RetentionPolicyBase {
   readonly policyName?: string;
   readonly retentionLength?: string;
@@ -44,6 +45,9 @@ export function deserializeRetentionPolicyMiniDispositionActionField(
     return val;
   }
   if (val == 'remove_retention') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

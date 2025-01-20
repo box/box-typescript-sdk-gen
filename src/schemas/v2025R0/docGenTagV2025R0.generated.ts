@@ -12,7 +12,8 @@ export type DocGenTagV2025R0TagTypeField =
   | 'conditional'
   | 'for-loop'
   | 'table-loop'
-  | 'image';
+  | 'image'
+  | string;
 export interface DocGenTagV2025R0 {
   /**
    * The content of the tag. */
@@ -49,6 +50,9 @@ export function deserializeDocGenTagV2025R0TagTypeField(
     return val;
   }
   if (val == 'image') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

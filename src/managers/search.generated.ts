@@ -82,13 +82,15 @@ export interface SearchByMetadataQueryHeadersInput {
 }
 export type SearchForContentQueryParamsScopeField =
   | 'user_content'
-  | 'enterprise_content';
+  | 'enterprise_content'
+  | string;
 export type SearchForContentQueryParamsContentTypesField =
   | 'name'
   | 'description'
   | 'file_content'
   | 'comments'
-  | 'tag';
+  | 'tag'
+  | string;
 export type SearchForContentQueryParamsTypeField =
   | 'file'
   | 'folder'
@@ -96,9 +98,13 @@ export type SearchForContentQueryParamsTypeField =
 export type SearchForContentQueryParamsTrashContentField =
   | 'non_trashed_only'
   | 'trashed_only'
-  | 'all_items';
-export type SearchForContentQueryParamsSortField = 'modified_at' | 'relevance';
-export type SearchForContentQueryParamsDirectionField = 'DESC' | 'ASC';
+  | 'all_items'
+  | string;
+export type SearchForContentQueryParamsSortField =
+  | 'modified_at'
+  | 'relevance'
+  | string;
+export type SearchForContentQueryParamsDirectionField = 'DESC' | 'ASC' | string;
 export interface SearchForContentQueryParams {
   /**
    * The string to search for. This query is matched against item names,
@@ -560,6 +566,9 @@ export function deserializeSearchForContentQueryParamsScopeField(
   if (val == 'enterprise_content') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize SearchForContentQueryParamsScopeField",
   });
@@ -585,6 +594,9 @@ export function deserializeSearchForContentQueryParamsContentTypesField(
     return val;
   }
   if (val == 'tag') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -629,6 +641,9 @@ export function deserializeSearchForContentQueryParamsTrashContentField(
   if (val == 'all_items') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize SearchForContentQueryParamsTrashContentField",
   });
@@ -647,6 +662,9 @@ export function deserializeSearchForContentQueryParamsSortField(
   if (val == 'relevance') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize SearchForContentQueryParamsSortField",
   });
@@ -663,6 +681,9 @@ export function deserializeSearchForContentQueryParamsDirectionField(
     return val;
   }
   if (val == 'ASC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

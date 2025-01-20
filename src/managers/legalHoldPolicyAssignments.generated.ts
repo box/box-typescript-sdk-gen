@@ -178,7 +178,8 @@ export type GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField =
   | 'file'
   | 'file_version'
   | 'folder'
-  | 'user';
+  | 'user'
+  | string;
 export interface GetLegalHoldPolicyAssignmentsQueryParams {
   /**
    * The ID of the legal hold policy */
@@ -681,6 +682,9 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeF
     return val;
   }
   if (val == 'user') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

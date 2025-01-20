@@ -19,8 +19,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type TaskTypeField = 'task';
-export type TaskActionField = 'review' | 'complete';
-export type TaskCompletionRuleField = 'all_assignees' | 'any_assignee';
+export type TaskActionField = 'review' | 'complete' | string;
+export type TaskCompletionRuleField = 'all_assignees' | 'any_assignee' | string;
 export interface Task {
   /**
    * The unique identifier for this task */
@@ -79,6 +79,9 @@ export function deserializeTaskActionField(
   if (val == 'complete') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({ message: "Can't deserialize TaskActionField" });
 }
 export function serializeTaskCompletionRuleField(
@@ -93,6 +96,9 @@ export function deserializeTaskCompletionRuleField(
     return val;
   }
   if (val == 'any_assignee') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

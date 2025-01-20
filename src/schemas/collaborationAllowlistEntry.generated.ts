@@ -14,7 +14,8 @@ export type CollaborationAllowlistEntryTypeField =
 export type CollaborationAllowlistEntryDirectionField =
   | 'inbound'
   | 'outbound'
-  | 'both';
+  | 'both'
+  | string;
 export type CollaborationAllowlistEntryEnterpriseTypeField = 'enterprise';
 export interface CollaborationAllowlistEntryEnterpriseField {
   /**
@@ -77,6 +78,9 @@ export function deserializeCollaborationAllowlistEntryDirectionField(
     return val;
   }
   if (val == 'both') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

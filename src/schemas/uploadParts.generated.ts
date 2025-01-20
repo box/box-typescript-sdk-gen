@@ -9,7 +9,7 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type UploadPartsOrderDirectionField = 'ASC' | 'DESC';
+export type UploadPartsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface UploadPartsOrderField {
   /**
    * The field to order by */
@@ -64,6 +64,9 @@ export function deserializeUploadPartsOrderDirectionField(
     return val;
   }
   if (val == 'DESC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

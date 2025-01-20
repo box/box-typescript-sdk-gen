@@ -94,7 +94,8 @@ export type FileFullLockAppTypeField =
   | 'gsuite'
   | 'office_wopi'
   | 'office_wopiplus'
-  | 'other';
+  | 'other'
+  | string;
 export interface FileFullLockField {
   /**
    * The unique identifier for this lock */
@@ -120,7 +121,7 @@ export interface FileFullLockField {
   readonly appType?: FileFullLockAppTypeField | null;
   readonly rawData?: SerializedData;
 }
-export type FileFullExpiringEmbedLinkTokenTypeField = 'bearer';
+export type FileFullExpiringEmbedLinkTokenTypeField = 'bearer' | string;
 export interface FileFullExpiringEmbedLinkField {
   /**
    * The requested access token. */
@@ -155,7 +156,8 @@ export type FileFullAllowedInviteeRolesField =
   | 'uploader'
   | 'previewer uploader'
   | 'viewer uploader'
-  | 'co-owner';
+  | 'co-owner'
+  | string;
 export interface FileFullMetadataField {
   readonly extraData?: {
     readonly [key: string]: {
@@ -220,7 +222,8 @@ export type FileFullRepresentationsEntriesStatusStateField =
   | 'success'
   | 'viewable'
   | 'pending'
-  | 'none';
+  | 'none'
+  | string;
 export interface FileFullRepresentationsEntriesStatusField {
   /**
    * The status of the representation.
@@ -278,7 +281,8 @@ export interface FileFullClassificationField {
 export type FileFullSharedLinkPermissionOptionsField =
   | 'can_preview'
   | 'can_download'
-  | 'can_edit';
+  | 'can_edit'
+  | string;
 export class FileFull extends File {
   readonly versionNumber?: string;
   readonly commentCount?: number;
@@ -600,6 +604,9 @@ export function deserializeFileFullLockAppTypeField(
   if (val == 'other') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize FileFullLockAppTypeField",
   });
@@ -696,6 +703,9 @@ export function deserializeFileFullExpiringEmbedLinkTokenTypeField(
   val: SerializedData,
 ): FileFullExpiringEmbedLinkTokenTypeField {
   if (val == 'bearer') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -832,6 +842,9 @@ export function deserializeFileFullAllowedInviteeRolesField(
     return val;
   }
   if (val == 'co-owner') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1001,6 +1014,9 @@ export function deserializeFileFullRepresentationsEntriesStatusStateField(
     return val;
   }
   if (val == 'none') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1199,6 +1215,9 @@ export function deserializeFileFullSharedLinkPermissionOptionsField(
     return val;
   }
   if (val == 'can_edit') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

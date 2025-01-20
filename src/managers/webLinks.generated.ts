@@ -226,7 +226,8 @@ export interface UpdateWebLinkByIdRequestBodyParentField {
 export type UpdateWebLinkByIdRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateWebLinkByIdRequestBodySharedLinkField {
   /**
    * The level of access for the shared link. This can be
@@ -662,6 +663,9 @@ export function deserializeUpdateWebLinkByIdRequestBodySharedLinkAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

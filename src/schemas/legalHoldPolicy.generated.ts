@@ -22,7 +22,8 @@ export type LegalHoldPolicyStatusField =
   | 'active'
   | 'applying'
   | 'releasing'
-  | 'released';
+  | 'released'
+  | string;
 export interface LegalHoldPolicyAssignmentCountsField {
   /**
    * The number of users this policy is applied to */
@@ -105,6 +106,9 @@ export function deserializeLegalHoldPolicyStatusField(
     return val;
   }
   if (val == 'released') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

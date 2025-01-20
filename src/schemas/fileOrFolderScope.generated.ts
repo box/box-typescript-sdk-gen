@@ -23,7 +23,8 @@ export type FileOrFolderScopeScopeField =
   | 'item_rename'
   | 'item_share'
   | 'item_upload'
-  | 'item_read';
+  | 'item_read'
+  | string;
 export interface FileOrFolderScope {
   /**
    * The scopes for the resource access */
@@ -79,6 +80,9 @@ export function deserializeFileOrFolderScopeScopeField(
     return val;
   }
   if (val == 'item_read') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

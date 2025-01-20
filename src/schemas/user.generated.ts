@@ -22,7 +22,8 @@ export type UserStatusField =
   | 'active'
   | 'inactive'
   | 'cannot_delete_edit'
-  | 'cannot_delete_edit_upload';
+  | 'cannot_delete_edit_upload'
+  | string;
 export interface UserNotificationEmailField {
   /**
    * The email address to send the notifications to. */
@@ -105,6 +106,9 @@ export function deserializeUserStatusField(
     return val;
   }
   if (val == 'cannot_delete_edit_upload') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({ message: "Can't deserialize UserStatusField" });

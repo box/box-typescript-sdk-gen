@@ -253,7 +253,8 @@ export interface GetSharedLinkForWebLinkHeadersInput {
 export type AddShareLinkToWebLinkRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface AddShareLinkToWebLinkRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -352,7 +353,8 @@ export interface AddShareLinkToWebLinkHeadersInput {
 export type UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateSharedLinkOnWebLinkRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -803,6 +805,9 @@ export function deserializeAddShareLinkToWebLinkRequestBodySharedLinkAccessField
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize AddShareLinkToWebLinkRequestBodySharedLinkAccessField",
@@ -982,6 +987,9 @@ export function deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessF
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

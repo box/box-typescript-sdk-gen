@@ -6,8 +6,15 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type MetadataQueryIndexStatusField = 'building' | 'active' | 'disabled';
-export type MetadataQueryIndexFieldsSortDirectionField = 'asc' | 'desc';
+export type MetadataQueryIndexStatusField =
+  | 'building'
+  | 'active'
+  | 'disabled'
+  | string;
+export type MetadataQueryIndexFieldsSortDirectionField =
+  | 'asc'
+  | 'desc'
+  | string;
 export interface MetadataQueryIndexFieldsField {
   /**
    * The metadata template field key. */
@@ -49,6 +56,9 @@ export function deserializeMetadataQueryIndexStatusField(
   if (val == 'disabled') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize MetadataQueryIndexStatusField",
   });
@@ -65,6 +75,9 @@ export function deserializeMetadataQueryIndexFieldsSortDirectionField(
     return val;
   }
   if (val == 'desc') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

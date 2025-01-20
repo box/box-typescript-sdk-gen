@@ -118,7 +118,7 @@ export interface RevokeAccessTokenOptionalsInput {
   readonly headers?: RevokeAccessTokenHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export type AuthorizeUserQueryParamsResponseTypeField = 'code';
+export type AuthorizeUserQueryParamsResponseTypeField = 'code' | string;
 export interface AuthorizeUserQueryParams {
   /**
    * The type of response we'd like to receive. */
@@ -479,6 +479,9 @@ export function deserializeAuthorizeUserQueryParamsResponseTypeField(
   val: SerializedData,
 ): AuthorizeUserQueryParamsResponseTypeField {
   if (val == 'code') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

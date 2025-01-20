@@ -228,7 +228,8 @@ export type CreateWebhookRequestBodyTriggersField =
   | 'SIGN_REQUEST.COMPLETED'
   | 'SIGN_REQUEST.DECLINED'
   | 'SIGN_REQUEST.EXPIRED'
-  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
+  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED'
+  | string;
 export interface CreateWebhookRequestBody {
   /**
    * The item that will trigger the webhook */
@@ -340,7 +341,8 @@ export type UpdateWebhookByIdRequestBodyTriggersField =
   | 'SIGN_REQUEST.COMPLETED'
   | 'SIGN_REQUEST.DECLINED'
   | 'SIGN_REQUEST.EXPIRED'
-  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED';
+  | 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED'
+  | string;
 export interface UpdateWebhookByIdRequestBody {
   /**
    * The item that will trigger the webhook */
@@ -875,6 +877,9 @@ export function deserializeCreateWebhookRequestBodyTriggersField(
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CreateWebhookRequestBodyTriggersField",
   });
@@ -1127,6 +1132,9 @@ export function deserializeUpdateWebhookByIdRequestBodyTriggersField(
     return val;
   }
   if (val == 'SIGN_REQUEST.SIGNER_EMAIL_BOUNCED') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

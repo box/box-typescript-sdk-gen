@@ -33,16 +33,22 @@ export interface WebLinkPathCollectionField {
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
-export type WebLinkSharedLinkAccessField = 'open' | 'company' | 'collaborators';
+export type WebLinkSharedLinkAccessField =
+  | 'open'
+  | 'company'
+  | 'collaborators'
+  | string;
 export type WebLinkSharedLinkEffectiveAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export type WebLinkSharedLinkEffectivePermissionField =
   | 'can_edit'
   | 'can_download'
   | 'can_preview'
-  | 'no_access';
+  | 'no_access'
+  | string;
 export interface WebLinkSharedLinkPermissionsField {
   /**
    * Defines if the shared link allows for the item to be downloaded. For
@@ -132,7 +138,7 @@ export interface WebLinkSharedLinkField {
   readonly previewCount: number;
   readonly rawData?: SerializedData;
 }
-export type WebLinkItemStatusField = 'active' | 'trashed' | 'deleted';
+export type WebLinkItemStatusField = 'active' | 'trashed' | 'deleted' | string;
 export class WebLink extends WebLinkMini {
   readonly parent?: FolderMini;
   readonly description?: string;
@@ -256,6 +262,9 @@ export function deserializeWebLinkSharedLinkAccessField(
   if (val == 'collaborators') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize WebLinkSharedLinkAccessField",
   });
@@ -275,6 +284,9 @@ export function deserializeWebLinkSharedLinkEffectiveAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -299,6 +311,9 @@ export function deserializeWebLinkSharedLinkEffectivePermissionField(
     return val;
   }
   if (val == 'no_access') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -545,6 +560,9 @@ export function deserializeWebLinkItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

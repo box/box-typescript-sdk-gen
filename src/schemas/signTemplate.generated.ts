@@ -22,8 +22,9 @@ export type SignTemplateAdditionalInfoNonEditableField =
   | 'name'
   | 'days_valid'
   | 'signers'
-  | 'source_files';
-export type SignTemplateAdditionalInfoRequiredSignersField = 'email';
+  | 'source_files'
+  | string;
+export type SignTemplateAdditionalInfoRequiredSignersField = 'email' | string;
 export interface SignTemplateAdditionalInfoRequiredField {
   /**
    * Required signer fields. */
@@ -178,6 +179,9 @@ export function deserializeSignTemplateAdditionalInfoNonEditableField(
   if (val == 'source_files') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize SignTemplateAdditionalInfoNonEditableField",
   });
@@ -191,6 +195,9 @@ export function deserializeSignTemplateAdditionalInfoRequiredSignersField(
   val: SerializedData,
 ): SignTemplateAdditionalInfoRequiredSignersField {
   if (val == 'email') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -11,12 +11,15 @@ export type PostOAuth2TokenGrantTypeField =
   | 'refresh_token'
   | 'client_credentials'
   | 'urn:ietf:params:oauth:grant-type:jwt-bearer'
-  | 'urn:ietf:params:oauth:grant-type:token-exchange';
+  | 'urn:ietf:params:oauth:grant-type:token-exchange'
+  | string;
 export type PostOAuth2TokenSubjectTokenTypeField =
-  'urn:ietf:params:oauth:token-type:access_token';
+  | 'urn:ietf:params:oauth:token-type:access_token'
+  | string;
 export type PostOAuth2TokenActorTokenTypeField =
-  'urn:ietf:params:oauth:token-type:id_token';
-export type PostOAuth2TokenBoxSubjectTypeField = 'enterprise' | 'user';
+  | 'urn:ietf:params:oauth:token-type:id_token'
+  | string;
+export type PostOAuth2TokenBoxSubjectTypeField = 'enterprise' | 'user' | string;
 export interface PostOAuth2Token {
   /**
    * The type of request being made, either using a client-side obtained
@@ -127,6 +130,9 @@ export function deserializePostOAuth2TokenGrantTypeField(
   if (val == 'urn:ietf:params:oauth:grant-type:token-exchange') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize PostOAuth2TokenGrantTypeField",
   });
@@ -142,6 +148,9 @@ export function deserializePostOAuth2TokenSubjectTokenTypeField(
   if (val == 'urn:ietf:params:oauth:token-type:access_token') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize PostOAuth2TokenSubjectTokenTypeField",
   });
@@ -155,6 +164,9 @@ export function deserializePostOAuth2TokenActorTokenTypeField(
   val: SerializedData,
 ): PostOAuth2TokenActorTokenTypeField {
   if (val == 'urn:ietf:params:oauth:token-type:id_token') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -173,6 +185,9 @@ export function deserializePostOAuth2TokenBoxSubjectTypeField(
     return val;
   }
   if (val == 'user') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -8,12 +8,16 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type ClassificationTemplateTypeField = 'metadata_template';
 export type ClassificationTemplateTemplateKeyField =
-  'securityClassification-6VMVochwUWo';
-export type ClassificationTemplateDisplayNameField = 'Classification';
+  | 'securityClassification-6VMVochwUWo'
+  | string;
+export type ClassificationTemplateDisplayNameField = 'Classification' | string;
 export type ClassificationTemplateFieldsTypeField = 'enum';
 export type ClassificationTemplateFieldsKeyField =
-  'Box__Security__Classification__Key';
-export type ClassificationTemplateFieldsDisplayNameField = 'Classification';
+  | 'Box__Security__Classification__Key'
+  | string;
+export type ClassificationTemplateFieldsDisplayNameField =
+  | 'Classification'
+  | string;
 export interface ClassificationTemplateFieldsOptionsStaticConfigClassificationField {
   /**
    * A longer description of the classification. */
@@ -273,6 +277,9 @@ export function deserializeClassificationTemplateTemplateKeyField(
   if (val == 'securityClassification-6VMVochwUWo') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize ClassificationTemplateTemplateKeyField",
   });
@@ -286,6 +293,9 @@ export function deserializeClassificationTemplateDisplayNameField(
   val: SerializedData,
 ): ClassificationTemplateDisplayNameField {
   if (val == 'Classification') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -318,6 +328,9 @@ export function deserializeClassificationTemplateFieldsKeyField(
   if (val == 'Box__Security__Classification__Key') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize ClassificationTemplateFieldsKeyField",
   });
@@ -331,6 +344,9 @@ export function deserializeClassificationTemplateFieldsDisplayNameField(
   val: SerializedData,
 ): ClassificationTemplateFieldsDisplayNameField {
   if (val == 'Classification') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

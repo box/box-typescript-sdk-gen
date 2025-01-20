@@ -9,7 +9,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type ZipDownloadStatusStateField =
   | 'in_progress'
   | 'failed'
-  | 'succeeded';
+  | 'succeeded'
+  | string;
 export interface ZipDownloadStatus {
   /**
    * The total number of files in the archive. */
@@ -49,6 +50,9 @@ export function deserializeZipDownloadStatusStateField(
     return val;
   }
   if (val == 'succeeded') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

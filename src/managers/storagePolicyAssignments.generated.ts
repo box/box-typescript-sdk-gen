@@ -167,7 +167,8 @@ export interface DeleteStoragePolicyAssignmentByIdOptionalsInput {
 }
 export type GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField =
   | 'user'
-  | 'enterprise';
+  | 'enterprise'
+  | string;
 export interface GetStoragePolicyAssignmentsQueryParams {
   /**
    * Defines the position marker at which to begin returning results. This is
@@ -680,6 +681,9 @@ export function deserializeGetStoragePolicyAssignmentsQueryParamsResolvedForType
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

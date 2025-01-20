@@ -218,7 +218,8 @@ export interface GetMetadataCascadePoliciesHeadersInput {
 }
 export type CreateMetadataCascadePolicyRequestBodyScopeField =
   | 'global'
-  | 'enterprise';
+  | 'enterprise'
+  | string;
 export interface CreateMetadataCascadePolicyRequestBody {
   /**
    * The ID of the folder to apply the policy to. This folder will
@@ -322,7 +323,8 @@ export interface DeleteMetadataCascadePolicyByIdHeadersInput {
 }
 export type ApplyMetadataCascadePolicyRequestBodyConflictResolutionField =
   | 'none'
-  | 'overwrite';
+  | 'overwrite'
+  | string;
 export interface ApplyMetadataCascadePolicyRequestBody {
   /**
    * Describes the desired behavior when dealing with the conflict
@@ -628,6 +630,9 @@ export function deserializeCreateMetadataCascadePolicyRequestBodyScopeField(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message:
       "Can't deserialize CreateMetadataCascadePolicyRequestBodyScopeField",
@@ -704,6 +709,9 @@ export function deserializeApplyMetadataCascadePolicyRequestBodyConflictResoluti
     return val;
   }
   if (val == 'overwrite') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

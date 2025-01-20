@@ -160,7 +160,8 @@ export interface DeleteDevicePinnerByIdHeadersInput {
 }
 export type GetEnterpriseDevicePinnersQueryParamsDirectionField =
   | 'ASC'
-  | 'DESC';
+  | 'DESC'
+  | string;
 export interface GetEnterpriseDevicePinnersQueryParams {
   /**
    * Defines the position marker at which to begin returning results. This is
@@ -374,6 +375,9 @@ export function deserializeGetEnterpriseDevicePinnersQueryParamsDirectionField(
     return val;
   }
   if (val == 'DESC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

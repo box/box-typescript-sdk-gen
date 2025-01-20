@@ -35,7 +35,8 @@ export type TemplateSignerInputContentTypeField =
   | 'email'
   | 'attachment'
   | 'radio'
-  | 'dropdown';
+  | 'dropdown'
+  | string;
 export interface TemplateSignerInputCoordinatesField {
   /**
    * Relative x coordinate to the page the input is on, ranging from 0 to 1. */
@@ -173,6 +174,9 @@ export function deserializeTemplateSignerInputContentTypeField(
     return val;
   }
   if (val == 'dropdown') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

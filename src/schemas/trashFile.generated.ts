@@ -47,7 +47,11 @@ export interface TrashFilePathCollectionField {
   readonly entries: readonly TrashFilePathCollectionEntriesField[];
   readonly rawData?: SerializedData;
 }
-export type TrashFileItemStatusField = 'active' | 'trashed' | 'deleted';
+export type TrashFileItemStatusField =
+  | 'active'
+  | 'trashed'
+  | 'deleted'
+  | string;
 export class TrashFile {
   /**
    * The unique identifier that represent a file.
@@ -434,6 +438,9 @@ export function deserializeTrashFileItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

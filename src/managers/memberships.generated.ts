@@ -315,7 +315,10 @@ export interface CreateGroupMembershipRequestBodyGroupField {
   readonly id: string;
   readonly rawData?: SerializedData;
 }
-export type CreateGroupMembershipRequestBodyRoleField = 'member' | 'admin';
+export type CreateGroupMembershipRequestBodyRoleField =
+  | 'member'
+  | 'admin'
+  | string;
 export interface CreateGroupMembershipRequestBody {
   /**
    * The user to add to the group. */
@@ -416,7 +419,10 @@ export interface GetGroupMembershipByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateGroupMembershipByIdRequestBodyRoleField = 'member' | 'admin';
+export type UpdateGroupMembershipByIdRequestBodyRoleField =
+  | 'member'
+  | 'admin'
+  | string;
 export interface UpdateGroupMembershipByIdRequestBody {
   /**
    * The role of the user in the group. */
@@ -912,6 +918,9 @@ export function deserializeCreateGroupMembershipRequestBodyRoleField(
   if (val == 'admin') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CreateGroupMembershipRequestBodyRoleField",
   });
@@ -1015,6 +1024,9 @@ export function deserializeUpdateGroupMembershipByIdRequestBodyRoleField(
     return val;
   }
   if (val == 'admin') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

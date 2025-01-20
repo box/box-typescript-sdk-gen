@@ -20,7 +20,8 @@ export type TaskAssignmentResolutionStateField =
   | 'completed'
   | 'incomplete'
   | 'approved'
-  | 'rejected';
+  | 'rejected'
+  | string;
 export interface TaskAssignment {
   /**
    * The unique identifier for this task assignment */
@@ -86,6 +87,9 @@ export function deserializeTaskAssignmentResolutionStateField(
     return val;
   }
   if (val == 'rejected') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

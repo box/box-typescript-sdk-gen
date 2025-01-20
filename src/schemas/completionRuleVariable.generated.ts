@@ -7,10 +7,13 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type CompletionRuleVariableTypeField = 'variable';
-export type CompletionRuleVariableVariableTypeField = 'task_completion_rule';
+export type CompletionRuleVariableVariableTypeField =
+  | 'task_completion_rule'
+  | string;
 export type CompletionRuleVariableVariableValueField =
   | 'all_assignees'
-  | 'any_assignees';
+  | 'any_assignees'
+  | string;
 export class CompletionRuleVariable {
   /**
    * Completion
@@ -96,6 +99,9 @@ export function deserializeCompletionRuleVariableVariableTypeField(
   if (val == 'task_completion_rule') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize CompletionRuleVariableVariableTypeField",
   });
@@ -112,6 +118,9 @@ export function deserializeCompletionRuleVariableVariableValueField(
     return val;
   }
   if (val == 'any_assignees') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

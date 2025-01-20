@@ -7,7 +7,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type CollaboratorVariableTypeField = 'variable';
-export type CollaboratorVariableVariableTypeField = 'user_list';
+export type CollaboratorVariableVariableTypeField = 'user_list' | string;
 export type CollaboratorVariableVariableValueTypeField = 'user';
 export class CollaboratorVariableVariableValueField {
   /**
@@ -119,6 +119,9 @@ export function deserializeCollaboratorVariableVariableTypeField(
   val: SerializedData,
 ): CollaboratorVariableVariableTypeField {
   if (val == 'user_list') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

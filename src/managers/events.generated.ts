@@ -57,7 +57,8 @@ export type GetEventsQueryParamsStreamTypeField =
   | 'changes'
   | 'sync'
   | 'admin_logs'
-  | 'admin_logs_streaming';
+  | 'admin_logs_streaming'
+  | string;
 export type GetEventsQueryParamsEventTypeField =
   | 'ACCESS_GRANTED'
   | 'ACCESS_REVOKED'
@@ -429,6 +430,9 @@ export function deserializeGetEventsQueryParamsStreamTypeField(
     return val;
   }
   if (val == 'admin_logs_streaming') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

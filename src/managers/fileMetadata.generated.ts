@@ -169,7 +169,7 @@ export interface GetFileMetadataHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetFileMetadataByIdScope = 'global' | 'enterprise';
+export type GetFileMetadataByIdScope = 'global' | 'enterprise' | string;
 export class GetFileMetadataByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -194,7 +194,7 @@ export interface GetFileMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type CreateFileMetadataByIdScope = 'global' | 'enterprise';
+export type CreateFileMetadataByIdScope = 'global' | 'enterprise' | string;
 export type CreateFileMetadataByIdRequestBody = {
   readonly [key: string]: any;
 };
@@ -222,14 +222,15 @@ export interface CreateFileMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateFileMetadataByIdScope = 'global' | 'enterprise';
+export type UpdateFileMetadataByIdScope = 'global' | 'enterprise' | string;
 export type UpdateFileMetadataByIdRequestBodyOpField =
   | 'add'
   | 'replace'
   | 'remove'
   | 'test'
   | 'move'
-  | 'copy';
+  | 'copy'
+  | string;
 export interface UpdateFileMetadataByIdRequestBody {
   /**
    * The type of change to perform on the template. Some
@@ -286,7 +287,7 @@ export interface UpdateFileMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type DeleteFileMetadataByIdScope = 'global' | 'enterprise';
+export type DeleteFileMetadataByIdScope = 'global' | 'enterprise' | string;
 export class DeleteFileMetadataByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -651,6 +652,9 @@ export function deserializeGetFileMetadataByIdScope(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetFileMetadataByIdScope",
   });
@@ -667,6 +671,9 @@ export function deserializeCreateFileMetadataByIdScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -717,6 +724,9 @@ export function deserializeUpdateFileMetadataByIdScope(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateFileMetadataByIdScope",
   });
@@ -745,6 +755,9 @@ export function deserializeUpdateFileMetadataByIdRequestBodyOpField(
     return val;
   }
   if (val == 'copy') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -816,6 +829,9 @@ export function deserializeDeleteFileMetadataByIdScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

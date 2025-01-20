@@ -138,7 +138,8 @@ export interface GetShieldInformationBarrierByIdHeadersInput {
 }
 export type UpdateShieldInformationBarrierStatusRequestBodyStatusField =
   | 'pending'
-  | 'disabled';
+  | 'disabled'
+  | string;
 export interface UpdateShieldInformationBarrierStatusRequestBody {
   /**
    * The ID of the shield information barrier. */
@@ -454,6 +455,9 @@ export function deserializeUpdateShieldInformationBarrierStatusRequestBodyStatus
     return val;
   }
   if (val == 'disabled') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

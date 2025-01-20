@@ -28,7 +28,8 @@ export interface TrashWebLinkRestoredPathCollectionField {
 export type TrashWebLinkRestoredItemStatusField =
   | 'active'
   | 'trashed'
-  | 'deleted';
+  | 'deleted'
+  | string;
 export interface TrashWebLinkRestored {
   /**
    * `web_link` */
@@ -166,6 +167,9 @@ export function deserializeTrashWebLinkRestoredItemStatusField(
     return val;
   }
   if (val == 'deleted') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

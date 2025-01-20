@@ -170,7 +170,7 @@ export interface GetFolderMetadataHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetFolderMetadataByIdScope = 'global' | 'enterprise';
+export type GetFolderMetadataByIdScope = 'global' | 'enterprise' | string;
 export class GetFolderMetadataByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -195,7 +195,7 @@ export interface GetFolderMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type CreateFolderMetadataByIdScope = 'global' | 'enterprise';
+export type CreateFolderMetadataByIdScope = 'global' | 'enterprise' | string;
 export type CreateFolderMetadataByIdRequestBody = {
   readonly [key: string]: any;
 };
@@ -223,14 +223,15 @@ export interface CreateFolderMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateFolderMetadataByIdScope = 'global' | 'enterprise';
+export type UpdateFolderMetadataByIdScope = 'global' | 'enterprise' | string;
 export type UpdateFolderMetadataByIdRequestBodyOpField =
   | 'add'
   | 'replace'
   | 'remove'
   | 'test'
   | 'move'
-  | 'copy';
+  | 'copy'
+  | string;
 export interface UpdateFolderMetadataByIdRequestBody {
   /**
    * The type of change to perform on the template. Some
@@ -287,7 +288,7 @@ export interface UpdateFolderMetadataByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type DeleteFolderMetadataByIdScope = 'global' | 'enterprise';
+export type DeleteFolderMetadataByIdScope = 'global' | 'enterprise' | string;
 export class DeleteFolderMetadataByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -673,6 +674,9 @@ export function deserializeGetFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetFolderMetadataByIdScope",
   });
@@ -689,6 +693,9 @@ export function deserializeCreateFolderMetadataByIdScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -739,6 +746,9 @@ export function deserializeUpdateFolderMetadataByIdScope(
   if (val == 'enterprise') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateFolderMetadataByIdScope",
   });
@@ -767,6 +777,9 @@ export function deserializeUpdateFolderMetadataByIdRequestBodyOpField(
     return val;
   }
   if (val == 'copy') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -838,6 +851,9 @@ export function deserializeDeleteFolderMetadataByIdScope(
     return val;
   }
   if (val == 'enterprise') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

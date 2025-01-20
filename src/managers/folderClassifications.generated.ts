@@ -199,9 +199,10 @@ export interface AddClassificationToFolderHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateClassificationOnFolderRequestBodyOpField = 'replace';
+export type UpdateClassificationOnFolderRequestBodyOpField = 'replace' | string;
 export type UpdateClassificationOnFolderRequestBodyPathField =
-  '/Box__Security__Classification__Key';
+  | '/Box__Security__Classification__Key'
+  | string;
 export class UpdateClassificationOnFolderRequestBody {
   /**
    * `replace` */
@@ -607,6 +608,9 @@ export function deserializeUpdateClassificationOnFolderRequestBodyOpField(
   if (val == 'replace') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize UpdateClassificationOnFolderRequestBodyOpField",
   });
@@ -620,6 +624,9 @@ export function deserializeUpdateClassificationOnFolderRequestBodyPathField(
   val: SerializedData,
 ): UpdateClassificationOnFolderRequestBodyPathField {
   if (val == '/Box__Security__Classification__Key') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

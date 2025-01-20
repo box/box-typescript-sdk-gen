@@ -12,7 +12,10 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export type GroupMiniGroupTypeField = 'managed_group' | 'all_users_group';
+export type GroupMiniGroupTypeField =
+  | 'managed_group'
+  | 'all_users_group'
+  | string;
 export class GroupMini extends GroupBase {
   readonly name?: string;
   readonly groupType?: GroupMiniGroupTypeField;
@@ -38,6 +41,9 @@ export function deserializeGroupMiniGroupTypeField(
     return val;
   }
   if (val == 'all_users_group') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

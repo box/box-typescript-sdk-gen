@@ -232,8 +232,13 @@ export interface CopyFolderOptionalsInput {
   readonly headers?: CopyFolderHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export type GetFolderByIdQueryParamsSortField = 'id' | 'name' | 'date' | 'size';
-export type GetFolderByIdQueryParamsDirectionField = 'ASC' | 'DESC';
+export type GetFolderByIdQueryParamsSortField =
+  | 'id'
+  | 'name'
+  | 'date'
+  | 'size'
+  | string;
+export type GetFolderByIdQueryParamsDirectionField = 'ASC' | 'DESC' | string;
 export interface GetFolderByIdQueryParams {
   /**
    * A comma-separated list of attributes to include in the
@@ -369,7 +374,8 @@ export interface GetFolderByIdHeadersInput {
 export type UpdateFolderByIdRequestBodySyncStateField =
   | 'synced'
   | 'not_synced'
-  | 'partially_synced';
+  | 'partially_synced'
+  | string;
 export interface UpdateFolderByIdRequestBodyParentField {
   /**
    * The ID of parent item */
@@ -382,7 +388,8 @@ export interface UpdateFolderByIdRequestBodyParentField {
 export type UpdateFolderByIdRequestBodySharedLinkAccessField =
   | 'open'
   | 'company'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateFolderByIdRequestBodySharedLinkPermissionsField {
   /**
    * If the shared link allows for downloading of files.
@@ -431,7 +438,8 @@ export interface UpdateFolderByIdRequestBodySharedLinkField {
 }
 export type UpdateFolderByIdRequestBodyFolderUploadEmailAccessField =
   | 'open'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface UpdateFolderByIdRequestBodyFolderUploadEmailField {
   /**
    * When this parameter has been set, users can email files
@@ -635,8 +643,9 @@ export type GetFolderItemsQueryParamsSortField =
   | 'id'
   | 'name'
   | 'date'
-  | 'size';
-export type GetFolderItemsQueryParamsDirectionField = 'ASC' | 'DESC';
+  | 'size'
+  | string;
+export type GetFolderItemsQueryParamsDirectionField = 'ASC' | 'DESC' | string;
 export interface GetFolderItemsQueryParams {
   /**
    * A comma-separated list of attributes to include in the
@@ -773,7 +782,8 @@ export interface CreateFolderRequestBodyParentField {
 }
 export type CreateFolderRequestBodyFolderUploadEmailAccessField =
   | 'open'
-  | 'collaborators';
+  | 'collaborators'
+  | string;
 export interface CreateFolderRequestBodyFolderUploadEmailField {
   /**
    * When this parameter has been set, users can email files
@@ -795,7 +805,8 @@ export interface CreateFolderRequestBodyFolderUploadEmailField {
 export type CreateFolderRequestBodySyncStateField =
   | 'synced'
   | 'not_synced'
-  | 'partially_synced';
+  | 'partially_synced'
+  | string;
 export interface CreateFolderRequestBody {
   /**
    * The name for the new folder.
@@ -1361,6 +1372,9 @@ export function deserializeGetFolderByIdQueryParamsSortField(
   if (val == 'size') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetFolderByIdQueryParamsSortField",
   });
@@ -1377,6 +1391,9 @@ export function deserializeGetFolderByIdQueryParamsDirectionField(
     return val;
   }
   if (val == 'DESC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1398,6 +1415,9 @@ export function deserializeUpdateFolderByIdRequestBodySyncStateField(
     return val;
   }
   if (val == 'partially_synced') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1452,6 +1472,9 @@ export function deserializeUpdateFolderByIdRequestBodySharedLinkAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1572,6 +1595,9 @@ export function deserializeUpdateFolderByIdRequestBodyFolderUploadEmailAccessFie
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1841,6 +1867,9 @@ export function deserializeGetFolderItemsQueryParamsSortField(
   if (val == 'size') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize GetFolderItemsQueryParamsSortField",
   });
@@ -1857,6 +1886,9 @@ export function deserializeGetFolderItemsQueryParamsDirectionField(
     return val;
   }
   if (val == 'DESC') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1903,6 +1935,9 @@ export function deserializeCreateFolderRequestBodyFolderUploadEmailAccessField(
     return val;
   }
   if (val == 'collaborators') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -1958,6 +1993,9 @@ export function deserializeCreateFolderRequestBodySyncStateField(
     return val;
   }
   if (val == 'partially_synced') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

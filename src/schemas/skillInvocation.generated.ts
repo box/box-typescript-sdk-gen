@@ -32,7 +32,7 @@ export interface SkillInvocationSkillField {
   readonly apiKey?: string;
   readonly rawData?: SerializedData;
 }
-export type SkillInvocationTokenReadTokenTypeField = 'bearer';
+export type SkillInvocationTokenReadTokenTypeField = 'bearer' | string;
 export interface SkillInvocationTokenReadField {
   /**
    * The requested access token. */
@@ -50,7 +50,7 @@ export interface SkillInvocationTokenReadField {
   readonly restrictedTo?: string;
   readonly rawData?: SerializedData;
 }
-export type SkillInvocationTokenWriteTokenTypeField = 'bearer';
+export type SkillInvocationTokenWriteTokenTypeField = 'bearer' | string;
 export interface SkillInvocationTokenWriteField {
   /**
    * The requested access token. */
@@ -82,7 +82,8 @@ export type SkillInvocationStatusStateField =
   | 'processing'
   | 'success'
   | 'transient_failure'
-  | 'permanent_failure';
+  | 'permanent_failure'
+  | string;
 export interface SkillInvocationStatusField {
   /**
    * The state of this event.
@@ -239,6 +240,9 @@ export function deserializeSkillInvocationTokenReadTokenTypeField(
   if (val == 'bearer') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({
     message: "Can't deserialize SkillInvocationTokenReadTokenTypeField",
   });
@@ -308,6 +312,9 @@ export function deserializeSkillInvocationTokenWriteTokenTypeField(
   val: SerializedData,
 ): SkillInvocationTokenWriteTokenTypeField {
   if (val == 'bearer') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
@@ -423,6 +430,9 @@ export function deserializeSkillInvocationStatusStateField(
     return val;
   }
   if (val == 'permanent_failure') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

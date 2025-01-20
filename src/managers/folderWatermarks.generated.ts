@@ -119,7 +119,9 @@ export interface GetFolderWatermarkHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type UpdateFolderWatermarkRequestBodyWatermarkImprintField = 'default';
+export type UpdateFolderWatermarkRequestBodyWatermarkImprintField =
+  | 'default'
+  | string;
 export class UpdateFolderWatermarkRequestBodyWatermarkField {
   /**
    * The type of watermark to apply.
@@ -393,6 +395,9 @@ export function deserializeUpdateFolderWatermarkRequestBodyWatermarkImprintField
   val: SerializedData,
 ): UpdateFolderWatermarkRequestBodyWatermarkImprintField {
   if (val == 'default') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

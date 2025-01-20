@@ -24,7 +24,8 @@ import { sdIsMap } from '../serialization/json.js';
 export type SignRequestCreateRequestSignatureColorField =
   | 'blue'
   | 'black'
-  | 'red';
+  | 'red'
+  | string;
 export type SignRequestCreateRequest = SignRequestBase & {
   /**
    * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
@@ -59,6 +60,9 @@ export function deserializeSignRequestCreateRequestSignatureColorField(
     return val;
   }
   if (val == 'red') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

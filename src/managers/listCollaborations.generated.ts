@@ -240,7 +240,7 @@ export interface GetFolderCollaborationsHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetCollaborationsQueryParamsStatusField = 'pending';
+export type GetCollaborationsQueryParamsStatusField = 'pending' | string;
 export interface GetCollaborationsQueryParams {
   /**
    * The status of the collaborations to retrieve */
@@ -595,6 +595,9 @@ export function deserializeGetCollaborationsQueryParamsStatusField(
   val: SerializedData,
 ): GetCollaborationsQueryParamsStatusField {
   if (val == 'pending') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

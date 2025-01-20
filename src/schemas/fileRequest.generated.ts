@@ -16,7 +16,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type FileRequestTypeField = 'file_request';
-export type FileRequestStatusField = 'active' | 'inactive';
+export type FileRequestStatusField = 'active' | 'inactive' | string;
 export class FileRequest {
   /**
    * The unique identifier for this file request. */
@@ -258,6 +258,9 @@ export function deserializeFileRequestStatusField(
     return val;
   }
   if (val == 'inactive') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({

@@ -7,8 +7,8 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type CollectionTypeField = 'collection';
-export type CollectionNameField = 'Favorites';
-export type CollectionCollectionTypeField = 'favorites';
+export type CollectionNameField = 'Favorites' | string;
+export type CollectionCollectionTypeField = 'favorites' | string;
 export interface Collection {
   /**
    * The unique identifier for this collection. */
@@ -50,6 +50,9 @@ export function deserializeCollectionNameField(
   if (val == 'Favorites') {
     return val;
   }
+  if (sdIsString(val)) {
+    return val;
+  }
   throw new BoxSdkError({ message: "Can't deserialize CollectionNameField" });
 }
 export function serializeCollectionCollectionTypeField(
@@ -61,6 +64,9 @@ export function deserializeCollectionCollectionTypeField(
   val: SerializedData,
 ): CollectionCollectionTypeField {
   if (val == 'favorites') {
+    return val;
+  }
+  if (sdIsString(val)) {
     return val;
   }
   throw new BoxSdkError({
