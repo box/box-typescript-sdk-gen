@@ -211,11 +211,11 @@ export interface FileFullRepresentationsEntriesPropertiesField {
   /**
    * Indicates if the representation is build up out of multiple
    * pages. */
-  readonly paged?: boolean;
+  readonly paged?: string;
   /**
    * Indicates if the representation can be used as a thumbnail of
    * the file. */
-  readonly thumb?: boolean;
+  readonly thumb?: string;
   readonly rawData?: SerializedData;
 }
 export type FileFullRepresentationsEntriesStatusStateField =
@@ -976,20 +976,20 @@ export function deserializeFileFullRepresentationsEntriesPropertiesField(
   }
   const dimensions: undefined | string =
     val.dimensions == void 0 ? void 0 : val.dimensions;
-  if (!(val.paged == void 0) && !sdIsBoolean(val.paged)) {
+  if (!(val.paged == void 0) && !sdIsString(val.paged)) {
     throw new BoxSdkError({
       message:
-        'Expecting boolean for "paged" of type "FileFullRepresentationsEntriesPropertiesField"',
+        'Expecting string for "paged" of type "FileFullRepresentationsEntriesPropertiesField"',
     });
   }
-  const paged: undefined | boolean = val.paged == void 0 ? void 0 : val.paged;
-  if (!(val.thumb == void 0) && !sdIsBoolean(val.thumb)) {
+  const paged: undefined | string = val.paged == void 0 ? void 0 : val.paged;
+  if (!(val.thumb == void 0) && !sdIsString(val.thumb)) {
     throw new BoxSdkError({
       message:
-        'Expecting boolean for "thumb" of type "FileFullRepresentationsEntriesPropertiesField"',
+        'Expecting string for "thumb" of type "FileFullRepresentationsEntriesPropertiesField"',
     });
   }
-  const thumb: undefined | boolean = val.thumb == void 0 ? void 0 : val.thumb;
+  const thumb: undefined | string = val.thumb == void 0 ? void 0 : val.thumb;
   return {
     dimensions: dimensions,
     paged: paged,
