@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.10.0...v1.11.0) (2025-01-21)
+
+
+### Bug Fixes
+
+* Add missing field assignments in constructor  (box/box-codegen[#646](https://github.com/box/box-typescript-sdk-gen/issues/646)) ([#485](https://github.com/box/box-typescript-sdk-gen/issues/485)) ([0592f7b](https://github.com/box/box-typescript-sdk-gen/commit/0592f7bcde962c50d88ec69f6c359af754200e56))
+* Add missing token scope (box/box-openapi[#490](https://github.com/box/box-typescript-sdk-gen/issues/490)) ([#459](https://github.com/box/box-typescript-sdk-gen/issues/459)) ([f0c0d91](https://github.com/box/box-typescript-sdk-gen/commit/f0c0d918c6d1a6466f9c02c760e3cbee18dab940))
+* correct parameters types in file representation (box/box-openapi[#503](https://github.com/box/box-typescript-sdk-gen/issues/503)) ([#489](https://github.com/box/box-typescript-sdk-gen/issues/489)) ([d11529a](https://github.com/box/box-typescript-sdk-gen/commit/d11529a2958504e9106996fd475f0d99825b6926))
+* Fix invalid variant config for Integration mapping Slack (box/box-openapi[#492](https://github.com/box/box-typescript-sdk-gen/issues/492)) ([#462](https://github.com/box/box-typescript-sdk-gen/issues/462)) ([660dc6e](https://github.com/box/box-typescript-sdk-gen/commit/660dc6ecd0302930ef5ce4d051860bac69a12188))
+* order of fields in the `IntegrationMapping` schema (box/box-openapi[#497](https://github.com/box/box-typescript-sdk-gen/issues/497)) ([#476](https://github.com/box/box-typescript-sdk-gen/issues/476)) ([93e2bc3](https://github.com/box/box-typescript-sdk-gen/commit/93e2bc3f878f28d11d66a680c75ef0c06eada991))
+* Remove `eval` usage (box/box-codegen[#636](https://github.com/box/box-typescript-sdk-gen/issues/636)) ([#474](https://github.com/box/box-typescript-sdk-gen/issues/474)) ([7c86f34](https://github.com/box/box-typescript-sdk-gen/commit/7c86f345e863efa338ac5808c5ec43cb6c549953))
+* Remove auth when cross origin redirect (box/box-codegen[#648](https://github.com/box/box-typescript-sdk-gen/issues/648)) ([#488](https://github.com/box/box-typescript-sdk-gen/issues/488)) ([56fb287](https://github.com/box/box-typescript-sdk-gen/commit/56fb2879ab70ef6d5584b2591ff9c8d3ade2b7d7))
+
+
+### New Features and Enhancements
+
+* Support Box Doc Gen API (box/box-codegen[#644](https://github.com/box/box-typescript-sdk-gen/issues/644)) ([#486](https://github.com/box/box-typescript-sdk-gen/issues/486)) ([0d3bc18](https://github.com/box/box-typescript-sdk-gen/commit/0d3bc1813e11c1e482794f57c0843823e7e4cbc8))
+* Use extensible enums (box/box-codegen[#639](https://github.com/box/box-typescript-sdk-gen/issues/639)) ([#487](https://github.com/box/box-typescript-sdk-gen/issues/487)) ([2a24c7a](https://github.com/box/box-typescript-sdk-gen/commit/2a24c7a0dbc3c946a69c5081939943d9b184d441))
+
 ## [1.10.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.9.0...v1.10.0) (2024-12-30)
 
 
