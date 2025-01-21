@@ -232,8 +232,13 @@ export class BoxNetworkClient implements NetworkClient {
           message: `Unable to follow redirect for ${fetchOptions.url}`,
         });
       }
+      const sameOrigin =
+        new URL(fetchResponse.headers['location']).origin ===
+        new URL(fetchOptions.url).origin;
       return this.fetch({
         ...options,
+        params: undefined,
+        auth: sameOrigin ? fetchOptions.auth : undefined,
         url: fetchResponse.headers['location'],
       });
     }
