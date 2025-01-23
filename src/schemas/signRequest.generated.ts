@@ -90,6 +90,15 @@ export type SignRequest = SignRequestBase & {
    * Uses `days_valid` to calculate the date and time, in GMT, the sign request will expire if unsigned. */
   readonly autoExpireAt?: DateTime | null;
   readonly parentFolder?: FolderMini;
+  /**
+   * The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer" */
+  readonly collaboratorLevel?: string | null;
+  /**
+   * The email address of the sender of the sign request. */
+  readonly senderEmail?: string | null;
+  /**
+   * The user ID of the sender of the sign request. */
+  readonly senderId?: number | null;
 };
 export function serializeSignRequestTypeField(
   val: SignRequestTypeField,
@@ -253,6 +262,9 @@ export function serializeSignRequest(val: SignRequest): SerializedData {
         val.parentFolder == void 0
           ? val.parentFolder
           : serializeFolderMini(val.parentFolder),
+      ['collaborator_level']: val.collaboratorLevel,
+      ['sender_email']: val.senderEmail,
+      ['sender_id']: val.senderId,
     },
   };
 }
@@ -331,6 +343,31 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     val.parent_folder == void 0
       ? void 0
       : deserializeFolderMini(val.parent_folder);
+  if (
+    !(val.collaborator_level == void 0) &&
+    !sdIsString(val.collaborator_level)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "collaborator_level" of type "SignRequest"',
+    });
+  }
+  const collaboratorLevel: undefined | string =
+    val.collaborator_level == void 0 ? void 0 : val.collaborator_level;
+  if (!(val.sender_email == void 0) && !sdIsString(val.sender_email)) {
+    throw new BoxSdkError({
+      message: 'Expecting string for "sender_email" of type "SignRequest"',
+    });
+  }
+  const senderEmail: undefined | string =
+    val.sender_email == void 0 ? void 0 : val.sender_email;
+  if (!(val.sender_id == void 0) && !sdIsNumber(val.sender_id)) {
+    throw new BoxSdkError({
+      message: 'Expecting number for "sender_id" of type "SignRequest"',
+    });
+  }
+  const senderId: undefined | number =
+    val.sender_id == void 0 ? void 0 : val.sender_id;
   if (
     !(val.is_document_preparation_needed == void 0) &&
     !sdIsBoolean(val.is_document_preparation_needed)
@@ -465,6 +502,9 @@ export function deserializeSignRequest(val: SerializedData): SignRequest {
     signFiles: signFiles,
     autoExpireAt: autoExpireAt,
     parentFolder: parentFolder,
+    collaboratorLevel: collaboratorLevel,
+    senderEmail: senderEmail,
+    senderId: senderId,
     isDocumentPreparationNeeded: isDocumentPreparationNeeded,
     redirectUrl: redirectUrl,
     declinedRedirectUrl: declinedRedirectUrl,
