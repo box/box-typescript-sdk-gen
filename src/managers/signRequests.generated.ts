@@ -196,6 +196,16 @@ export interface GetSignRequestsQueryParams {
   /**
    * The maximum number of items to return per page. */
   readonly limit?: number;
+  /**
+   * A list of sender emails to filter the signature requests by sender.
+   * If provided, `shared_requests` must be set to `true`. */
+  readonly senders?: readonly string[];
+  /**
+   * If set to `true`, only includes requests that user is not an owner,
+   * but user is a collaborator. Collaborator access is determined by the
+   * user access level of the sign files of the request.
+   * Default is `false`. Must be set to `true` if `senders` are provided. */
+  readonly sharedRequests?: boolean;
 }
 export class GetSignRequestsHeaders {
   /**
@@ -413,6 +423,10 @@ export class SignRequestsManager {
     } = prepareParams({
       ['marker']: toString(queryParams.marker) as string,
       ['limit']: toString(queryParams.limit) as string,
+      ['senders']: queryParams.senders
+        ? queryParams.senders.map(toString).join(',')
+        : undefined,
+      ['shared_requests']: toString(queryParams.sharedRequests) as string,
     });
     const headersMap: {
       readonly [key: string]: string;
