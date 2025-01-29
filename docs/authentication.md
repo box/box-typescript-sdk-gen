@@ -15,6 +15,8 @@
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
   - [OAuth 2.0 Auth](#oauth-20-auth)
     - [Authentication with OAuth2](#authentication-with-oauth2)
+- [Retrieve current access token](#retrieve-current-access-token)
+- [Refresh access token](#refresh-access-token)
 - [Revoke token](#revoke-token)
 - [Downscope token](#downscope-token)
 - [Token storage](#token-storage)
@@ -300,12 +302,39 @@ After a user logs in and grants your application access to their Box account,
 they will be redirected to your application's `redirect_uri` which will contain
 an auth code. This auth code can then be used along with your client ID and
 client secret to establish an API connection.
-You need to provide the auth code to the SDK to obtain an access token, then you can use the SDK as usual.
+You need to provide the auth code to the SDK to obtain an access token.
+Calling `oauth.getTokensAuthorizationCodeGrant('code')` will exchange the auth code for an access token
+and save it in the `BoxOAuth` token storage. The SDK will automatically refresh the token when needed.
+All you need to do is create a client object with the `BoxOAuth` object and start making API calls.
 
 <!-- sample post_oauth2_token --->
 
 ```js
 await oauth.getTokensAuthorizationCodeGrant('code');
+
+const client = new BoxClient({ auth: oauth });
+```
+
+# Retrieve current access token
+
+After initializing the authentication object, the SDK will able to retrieve the access token.
+To retrieve the current access token you can use the following code:
+
+<!-- sample post_oauth2_token -->
+
+```js
+await auth.retrieveToken();
+```
+
+# Refresh access token
+
+Access tokens are short-lived and need to be refreshed periodically. The SDK will automatically refresh the token when needed.
+If you want to manually refresh the token, you can use the following code:
+
+<!-- sample post_oauth2_token refresh -->
+
+```js
+await auth.refreshToken();
 ```
 
 # Revoke token
