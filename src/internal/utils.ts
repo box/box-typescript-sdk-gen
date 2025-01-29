@@ -453,10 +453,10 @@ export async function delayInSeconds(seconds: number): Promise<void> {
  * @returns Value from object raw data.
  */
 export function getValueFromObjectRawData(obj: any, key: string): any {
-  if (obj && typeof obj === 'object' && obj.rawData) {
-    return obj.rawData[key];
+  if (!obj || typeof obj !== 'object' || !obj.rawData) {
+    return undefined;
   }
-  return undefined;
+  return key.split('.').reduce((value, k) => value?.[k], obj.rawData);
 }
 
 /**

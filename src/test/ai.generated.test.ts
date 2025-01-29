@@ -384,16 +384,9 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
     } satisfies AiExtractStructured);
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
-      'John'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
-      'Doe'
+      (toString(
+        getValueFromObjectRawData(response, 'answer.hobby'),
+      ) as string) == (['guitar'].map(toString).join(',') as string)
     )
   ) {
     throw new Error('Assertion failed');
@@ -401,23 +394,39 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth'),
+        getValueFromObjectRawData(response, 'answer.firstName'),
+      ) as string) == 'John'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.lastName'),
+      ) as string) == 'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.dateOfBirth'),
       ) as string) == '1990-07-04'
     )
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+    !(
+      (toString(getValueFromObjectRawData(response, 'answer.age')) as string) ==
+      '34'
+    )
   ) {
     throw new Error('Assertion failed');
   }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar'].map(toString).join(',') as string)
-    )
-  ) {
+  if (!(response.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(file.id);
@@ -491,16 +500,9 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
     } satisfies AiExtractStructured);
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
-      'John'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
-      'Doe'
+      (toString(
+        getValueFromObjectRawData(response, 'answer.firstName'),
+      ) as string) == 'John'
     )
   ) {
     throw new Error('Assertion failed');
@@ -508,23 +510,39 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth'),
+        getValueFromObjectRawData(response, 'answer.lastName'),
+      ) as string) == 'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.dateOfBirth'),
       ) as string) == '1990-07-04T00:00:00Z'
     )
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+    !(
+      (toString(getValueFromObjectRawData(response, 'answer.age')) as string) ==
+      '34'
+    )
   ) {
     throw new Error('Assertion failed');
   }
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar'].map(toString).join(',') as string)
+      (toString(
+        getValueFromObjectRawData(response, 'answer.hobby'),
+      ) as string) == (['guitar'].map(toString).join(',') as string)
     )
   ) {
+    throw new Error('Assertion failed');
+  }
+  if (!(response.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
