@@ -302,12 +302,17 @@ After a user logs in and grants your application access to their Box account,
 they will be redirected to your application's `redirect_uri` which will contain
 an auth code. This auth code can then be used along with your client ID and
 client secret to establish an API connection.
-You need to provide the auth code to the SDK to obtain an access token, then you can use the SDK as usual.
+You need to provide the auth code to the SDK to obtain an access token.
+Calling `oauth.getTokensAuthorizationCodeGrant('code')` will exchange the auth code for an access token
+and save it in the `BoxOAuth` token storage. The SDK will automatically refresh the token when needed.
+All you need to do is create a client object with the `BoxOAuth` object and start making API calls.
 
 <!-- sample post_oauth2_token --->
 
 ```js
 await oauth.getTokensAuthorizationCodeGrant('code');
+
+const client = new BoxClient({ auth: oauth });
 ```
 
 # Retrieve current access token

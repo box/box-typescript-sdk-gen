@@ -404,7 +404,8 @@ sdk.getTokensAuthorizationCodeGrant('<CODE>', null, function (err, tokenInfo) {
 The new SDK simplifies the process:
 
 ```typescript
-const accessToken = await oauth.getTokensAuthorizationCodeGrant('code');
+await oauth.getTokensAuthorizationCodeGrant('code');
+const client = new BoxClient({ auth: oauth });
 ```
 
 ### Customizable Token Storage and Retrieval Callbacks
