@@ -32,8 +32,8 @@ import { serializeUploadFileRequestBodyAttributesParentField } from '../managers
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
 import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
-import { serializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
-import { deserializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { serializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
+import { deserializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { serializeAiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
@@ -82,7 +82,7 @@ import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { AiExtract } from '../schemas/aiExtract.generated.js';
-import { AiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { AiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { AiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
 import { AiExtractStructuredFieldsOptionsField } from '../schemas/aiExtractStructured.generated.js';
@@ -337,8 +337,8 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
   } satisfies UploadFileRequestBody);
   const file: FileFull = uploadedFiles.entries![0];
   await delayInSeconds(5);
-  const response: AiExtractResponse = await client.ai.createAiExtractStructured(
-    {
+  const response: AiExtractStructuredResponse =
+    await client.ai.createAiExtractStructured({
       fields: [
         {
           key: 'firstName',
@@ -381,20 +381,12 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
         } satisfies AiExtractStructuredFieldsField,
       ],
       items: [new AiItemBase({ id: file.id })],
-    } satisfies AiExtractStructured,
-  );
+    } satisfies AiExtractStructured);
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
-      'John'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
-      'Doe'
+      (toString(
+        getValueFromObjectRawData(response, 'answer.hobby'),
+      ) as string) == (['guitar'].map(toString).join(',') as string)
     )
   ) {
     throw new Error('Assertion failed');
@@ -402,23 +394,39 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth'),
+        getValueFromObjectRawData(response, 'answer.firstName'),
+      ) as string) == 'John'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.lastName'),
+      ) as string) == 'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.dateOfBirth'),
       ) as string) == '1990-07-04'
     )
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+    !(
+      (toString(getValueFromObjectRawData(response, 'answer.age')) as string) ==
+      '34'
+    )
   ) {
     throw new Error('Assertion failed');
   }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar'].map(toString).join(',') as string)
-    )
-  ) {
+  if (!(response.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(file.id);
@@ -482,27 +490,19 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
       ],
     } satisfies CreateMetadataTemplateRequestBody);
-  const response: AiExtractResponse = await client.ai.createAiExtractStructured(
-    {
+  const response: AiExtractStructuredResponse =
+    await client.ai.createAiExtractStructured({
       metadataTemplate: {
         templateKey: templateKey,
         scope: 'enterprise',
       } satisfies AiExtractStructuredMetadataTemplateField,
       items: [new AiItemBase({ id: file.id })],
-    } satisfies AiExtractStructured,
-  );
+    } satisfies AiExtractStructured);
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'firstName')) as string) ==
-      'John'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-  if (
-    !(
-      (toString(getValueFromObjectRawData(response, 'lastName')) as string) ==
-      'Doe'
+      (toString(
+        getValueFromObjectRawData(response, 'answer.firstName'),
+      ) as string) == 'John'
     )
   ) {
     throw new Error('Assertion failed');
@@ -510,23 +510,39 @@ test('testAIExtractStructuredWithMetadataTemplate', async function testAIExtract
   if (
     !(
       (toString(
-        getValueFromObjectRawData(response, 'dateOfBirth'),
+        getValueFromObjectRawData(response, 'answer.lastName'),
+      ) as string) == 'Doe'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(
+        getValueFromObjectRawData(response, 'answer.dateOfBirth'),
       ) as string) == '1990-07-04T00:00:00Z'
     )
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !((toString(getValueFromObjectRawData(response, 'age')) as string) == '34')
+    !(
+      (toString(getValueFromObjectRawData(response, 'answer.age')) as string) ==
+      '34'
+    )
   ) {
     throw new Error('Assertion failed');
   }
   if (
     !(
-      (toString(getValueFromObjectRawData(response, 'hobby')) as string) ==
-      (['guitar'].map(toString).join(',') as string)
+      (toString(
+        getValueFromObjectRawData(response, 'answer.hobby'),
+      ) as string) == (['guitar'].map(toString).join(',') as string)
     )
   ) {
+    throw new Error('Assertion failed');
+  }
+  if (!(response.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(

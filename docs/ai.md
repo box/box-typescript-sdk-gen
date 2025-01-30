@@ -204,6 +204,6 @@ await client.ai.createAiExtractStructured({
 
 ### Returns
 
-This function returns a value of type `AiExtractResponse`.
+This function returns a value of type `AiExtractStructuredResponse`.
 
 A successful response including the answer from the LLM.

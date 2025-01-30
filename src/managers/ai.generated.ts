@@ -12,8 +12,8 @@ import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentT
 import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
 import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
-import { serializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
-import { deserializeAiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { serializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
+import { deserializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
@@ -24,7 +24,7 @@ import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
 import { AiExtract } from '../schemas/aiExtract.generated.js';
-import { AiExtractResponse } from '../schemas/aiExtractResponse.generated.js';
+import { AiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
@@ -496,12 +496,12 @@ export class AiManager {
    * or use the [metadata template API](g://metadata/templates/create).
    * @param {AiExtractStructured} requestBody Request body of createAiExtractStructured method
    * @param {CreateAiExtractStructuredOptionalsInput} optionalsInput
-   * @returns {Promise<AiExtractResponse>}
+   * @returns {Promise<AiExtractStructuredResponse>}
    */
   async createAiExtractStructured(
     requestBody: AiExtractStructured,
     optionalsInput: CreateAiExtractStructuredOptionalsInput = {},
-  ): Promise<AiExtractResponse> {
+  ): Promise<AiExtractStructuredResponse> {
     const optionals: CreateAiExtractStructuredOptionals =
       new CreateAiExtractStructuredOptionals({
         headers: optionalsInput.headers,
@@ -530,7 +530,7 @@ export class AiManager {
         }),
       );
     return {
-      ...deserializeAiExtractResponse(response.data!),
+      ...deserializeAiExtractStructuredResponse(response.data!),
       rawData: response.data!,
     };
   }
