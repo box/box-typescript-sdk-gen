@@ -8,6 +8,12 @@ import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
 import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadUrl } from '../schemas/uploadUrl.generated.js';
+import { deserializeUploadUrl } from '../schemas/uploadUrl.generated.js';
+import { serializePreflightFileUploadCheckRequestBody } from '../managers/uploads.generated.js';
+import { deserializePreflightFileUploadCheckRequestBody } from '../managers/uploads.generated.js';
+import { serializePreflightFileUploadCheckRequestBodyParentField } from '../managers/uploads.generated.js';
+import { deserializePreflightFileUploadCheckRequestBodyParentField } from '../managers/uploads.generated.js';
 import { UploadFileOptionalsInput } from '../managers/uploads.generated.js';
 import { UploadFileOptionals } from '../managers/uploads.generated.js';
 import { ByteStream } from '../internal/utils.js';
@@ -21,6 +27,9 @@ import { UploadFileVersionRequestBodyAttributesField } from '../managers/uploads
 import { CancellationToken } from '../internal/utils.js';
 import { UploadFileQueryParams } from '../managers/uploads.generated.js';
 import { UploadFileHeaders } from '../managers/uploads.generated.js';
+import { UploadUrl } from '../schemas/uploadUrl.generated.js';
+import { PreflightFileUploadCheckRequestBody } from '../managers/uploads.generated.js';
+import { PreflightFileUploadCheckRequestBodyParentField } from '../managers/uploads.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { createTokenAndCancelAfter } from '../internal/utils.js';
@@ -88,5 +97,19 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
       } satisfies UploadFileOptionalsInput,
     );
   }).rejects.toThrow();
+});
+test('testPreflightCheck', async function testPreflightCheck(): Promise<any> {
+  const newFileName: string = getUuid();
+  const preflightCheckResult: UploadUrl =
+    await client.uploads.preflightFileUploadCheck({
+      name: newFileName,
+      size: 1024 * 1024,
+      parent: {
+        id: '0',
+      } satisfies PreflightFileUploadCheckRequestBodyParentField,
+    } satisfies PreflightFileUploadCheckRequestBody);
+  if (!!(preflightCheckResult.uploadUrl == '')) {
+    throw new Error('Assertion failed');
+  }
 });
 export {};

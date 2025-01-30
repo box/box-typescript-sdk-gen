@@ -62,6 +62,7 @@ import { MetadataFilterScopeField } from '../schemas/metadataFilter.generated.js
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
+import { delayInSeconds } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { MetadataFieldFilterDateRange } from '../schemas/metadataFieldFilterDateRange.generated.js';
 import { MetadataFieldFilterFloatRange } from '../schemas/metadataFieldFilterFloatRange.generated.js';
@@ -159,6 +160,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   if (!(metadata.scope == template.scope)) {
     throw new Error('Assertion failed');
   }
+  await delayInSeconds(5);
   const searchFrom: string = ''.concat(
     template.scope!,
     '.',
