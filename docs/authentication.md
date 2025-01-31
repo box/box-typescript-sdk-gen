@@ -15,6 +15,7 @@
     - [Switching between Service Account and User](#switching-between-service-account-and-user)
   - [OAuth 2.0 Auth](#oauth-20-auth)
     - [Authentication with OAuth2](#authentication-with-oauth2)
+    - [Injecting existing token into BoxOAuth](#injecting-existing-token-into-boxoauth)
 - [Retrieve current access token](#retrieve-current-access-token)
 - [Refresh access token](#refresh-access-token)
 - [Revoke token](#revoke-token)
@@ -315,9 +316,27 @@ await oauth.getTokensAuthorizationCodeGrant('code');
 const client = new BoxClient({ auth: oauth });
 ```
 
+### Injecting existing token into BoxOAuth
+
+If you already have an access token and refresh token, you can inject them into the `BoxOAuth` token storage
+to avoid repeating the authentication process. This can be useful when you want to reuse the token
+between runs of your application.
+
+```js
+const accessToken: AccessToken = {
+  accessToken: '<ACCESS_TOKEN>',
+  refreshToken: '<REFRESH_TOKEN>',
+};
+await oauth.tokenStorage.store(accessToken);
+const client = new BoxClient({ auth: oauth });
+```
+
+Alternatively, you can create a custom implementation of `TokenStorage` interface and pass it to the `BoxOAuth` object.
+See the [Custom storage](#custom-storage) section for more information.
+
 # Retrieve current access token
 
-After initializing the authentication object, the SDK will able to retrieve the access token.
+After initializing the authentication object, the SDK will be able to retrieve the access token.
 To retrieve the current access token you can use the following code:
 
 <!-- sample post_oauth2_token -->
@@ -403,7 +422,21 @@ const oauth = new BoxOAuth({ config: config });
 You can also provide a custom token storage class. All you need to do is create a class that implements `TokenStorage`
 interface and pass an instance of your class to the AuthConfig constructor.
 
-```js
+```typescript
+class MyCustomTokenStorage implements TokenStorage {
+  async store(token: AccessToken): Promise<undefined> {
+    // store token in your custom storage
+  }
+
+  async get(): Promise<undefined | AccessToken> {
+    // retrieve token from your custom storage
+  }
+
+  async clear(): Promise<undefined> {
+    // clear token from your custom storage
+  }
+}
+
 const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
   clientSecret: 'OAUTH_CLIENT_SECRET',
