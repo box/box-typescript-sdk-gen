@@ -132,10 +132,10 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
       } satisfies AiItemAsk,
     ],
   } satisfies AiAsk);
-  if (!(response.answer.includes('East') as boolean)) {
+  if (!(response!.answer.includes('East') as boolean)) {
     throw new Error('Assertion failed');
   }
-  if (!(response.completionReason == 'done')) {
+  if (!(response!.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileToAsk.id);
@@ -159,10 +159,10 @@ test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<
       } satisfies AiItemAsk,
     ],
   } satisfies AiAsk);
-  if (!(response.answer.includes('East') as boolean)) {
+  if (!(response!.answer.includes('East') as boolean)) {
     throw new Error('Assertion failed');
   }
-  if (!(response.completionReason == 'done')) {
+  if (!(response!.completionReason == 'done')) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileToAsk1.id);
