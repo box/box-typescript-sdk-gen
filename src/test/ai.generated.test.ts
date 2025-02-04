@@ -6,10 +6,10 @@ import { serializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAsk } from '../schemas/aiAsk.generated.js';
 import { serializeAiAskModeField } from '../schemas/aiAsk.generated.js';
 import { deserializeAiAskModeField } from '../schemas/aiAsk.generated.js';
-import { serializeAiItemBase } from '../schemas/aiItemBase.generated.js';
-import { deserializeAiItemBase } from '../schemas/aiItemBase.generated.js';
-import { serializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
-import { deserializeAiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
+import { serializeAiItemAsk } from '../schemas/aiItemAsk.generated.js';
+import { deserializeAiItemAsk } from '../schemas/aiItemAsk.generated.js';
+import { serializeAiItemAskTypeField } from '../schemas/aiItemAsk.generated.js';
+import { deserializeAiItemAskTypeField } from '../schemas/aiItemAsk.generated.js';
 import { serializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { deserializeAiResponse } from '../schemas/aiResponse.generated.js';
 import { serializeAiTextGen } from '../schemas/aiTextGen.generated.js';
@@ -32,6 +32,8 @@ import { serializeUploadFileRequestBodyAttributesParentField } from '../managers
 import { deserializeUploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeAiExtract } from '../schemas/aiExtract.generated.js';
 import { deserializeAiExtract } from '../schemas/aiExtract.generated.js';
+import { serializeAiItemBase } from '../schemas/aiItemBase.generated.js';
+import { deserializeAiItemBase } from '../schemas/aiItemBase.generated.js';
 import { serializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { deserializeAiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
@@ -67,8 +69,8 @@ import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
 import { AiAskModeField } from '../schemas/aiAsk.generated.js';
-import { AiItemBase } from '../schemas/aiItemBase.generated.js';
-import { AiItemBaseTypeField } from '../schemas/aiItemBase.generated.js';
+import { AiItemAsk } from '../schemas/aiItemAsk.generated.js';
+import { AiItemAskTypeField } from '../schemas/aiItemAsk.generated.js';
 import { AiResponse } from '../schemas/aiResponse.generated.js';
 import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
@@ -82,6 +84,7 @@ import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { AiExtract } from '../schemas/aiExtract.generated.js';
+import { AiItemBase } from '../schemas/aiItemBase.generated.js';
 import { AiExtractStructuredResponse } from '../schemas/aiExtractStructuredResponse.generated.js';
 import { AiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { AiExtractStructuredFieldsField } from '../schemas/aiExtractStructured.generated.js';
@@ -118,15 +121,15 @@ import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
   const fileToAsk: FileFull = await uploadNewFile();
-  const response: AiResponseFull = await client.ai.createAiAsk({
+  const response: undefined | AiResponseFull = await client.ai.createAiAsk({
     mode: 'single_item_qa' as AiAskModeField,
     prompt: 'which direction sun rises',
     items: [
-      new AiItemBase({
+      {
         id: fileToAsk.id,
-        type: 'file' as AiItemBaseTypeField,
+        type: 'file' as AiItemAskTypeField,
         content: 'Sun rises in the East',
-      }),
+      } satisfies AiItemAsk,
     ],
   } satisfies AiAsk);
   if (!(response.answer.includes('East') as boolean)) {
@@ -140,20 +143,20 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
 test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<any> {
   const fileToAsk1: FileFull = await uploadNewFile();
   const fileToAsk2: FileFull = await uploadNewFile();
-  const response: AiResponseFull = await client.ai.createAiAsk({
+  const response: undefined | AiResponseFull = await client.ai.createAiAsk({
     mode: 'multiple_item_qa' as AiAskModeField,
     prompt: 'Which direction sun rises?',
     items: [
-      new AiItemBase({
+      {
         id: fileToAsk1.id,
-        type: 'file' as AiItemBaseTypeField,
+        type: 'file' as AiItemAskTypeField,
         content: 'Earth goes around the sun',
-      }),
-      new AiItemBase({
+      } satisfies AiItemAsk,
+      {
         id: fileToAsk2.id,
-        type: 'file' as AiItemBaseTypeField,
+        type: 'file' as AiItemAskTypeField,
         content: 'Sun rises in the East in the morning',
-      }),
+      } satisfies AiItemAsk,
     ],
   } satisfies AiAsk);
   if (!(response.answer.includes('East') as boolean)) {

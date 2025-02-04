@@ -22,16 +22,16 @@ await client.ai.createAiAsk({
   mode: 'multiple_item_qa' as AiAskModeField,
   prompt: 'Which direction sun rises?',
   items: [
-    new AiItemBase({
+    {
       id: fileToAsk1.id,
-      type: 'file' as AiItemBaseTypeField,
+      type: 'file' as AiItemAskTypeField,
       content: 'Earth goes around the sun',
-    }),
-    new AiItemBase({
+    } satisfies AiItemAsk,
+    {
       id: fileToAsk2.id,
-      type: 'file' as AiItemBaseTypeField,
+      type: 'file' as AiItemAskTypeField,
       content: 'Sun rises in the East in the morning',
-    }),
+    } satisfies AiItemAsk,
   ],
 } satisfies AiAsk);
 ```
@@ -45,9 +45,9 @@ await client.ai.createAiAsk({
 
 ### Returns
 
-This function returns a value of type `AiResponseFull`.
+This function returns a value of type `undefined | AiResponseFull`.
 
-A successful response including the answer from the LLM.
+A successful response including the answer from the LLM.No content is available to answer the question. This is returned when the request item is a hub, but content in the hubs is not indexed. To ensure content in the hub is indexed, make sure Box AI for Hubs in the Admin Console was enabled before hub creation.
 
 ## Generate text
 
