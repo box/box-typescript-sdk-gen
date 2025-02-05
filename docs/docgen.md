@@ -12,7 +12,7 @@ Get details of the Box Doc Gen job.
 This operation is performed by calling function `getDocgenJobByIdV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-jobs-id-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-jobs-id/).
 
 <!-- sample get_docgen_jobs_id_v2025.0 -->
 
@@ -40,7 +40,7 @@ Lists all Box Doc Gen jobs for a user.
 This operation is performed by calling function `getDocgenJobsV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-jobs-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-jobs/).
 
 <!-- sample get_docgen_jobs_v2025.0 -->
 
@@ -70,7 +70,7 @@ Lists Box Doc Gen jobs in a batch
 This operation is performed by calling function `getDocgenBatchJobByIdV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-batch-jobs-id-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-batch-jobs-id/).
 
 <!-- sample get_docgen_batch_jobs_id_v2025.0 -->
 
@@ -98,7 +98,7 @@ Generates a document using a Box Doc Gen template.
 This operation is performed by calling function `createDocgenBatchV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-docgen-batches-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/post-docgen-batches/).
 
 <!-- sample post_docgen_batches_v2025.0 -->
 

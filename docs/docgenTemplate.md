@@ -14,7 +14,7 @@ Marks a file as a Box Doc Gen template.
 This operation is performed by calling function `createDocgenTemplateV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/post-docgen-templates-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/post-docgen-templates/).
 
 <!-- sample post_docgen_templates_v2025.0 -->
 
@@ -44,7 +44,7 @@ Lists Box Doc Gen templates on which the user is a collaborator.
 This operation is performed by calling function `getDocgenTemplatesV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-templates-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-templates/).
 
 <!-- sample get_docgen_templates_v2025.0 -->
 
@@ -74,7 +74,7 @@ Unmarks file as Box Doc Gen template
 This operation is performed by calling function `deleteDocgenTemplateByIdV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/delete-docgen-templates-id-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/delete-docgen-templates-id/).
 
 <!-- sample delete_docgen_templates_id_v2025.0 -->
 
@@ -104,7 +104,7 @@ Lists details of a specific Box Doc Gen template.
 This operation is performed by calling function `getDocgenTemplateByIdV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-templates-id-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-templates-id/).
 
 <!-- sample get_docgen_templates_id_v2025.0 -->
 
@@ -134,7 +134,7 @@ Lists all tags in a Box Doc Gen template.
 This operation is performed by calling function `getDocgenTemplateTagsV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-templates-id-tags-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-templates-id-tags/).
 
 <!-- sample get_docgen_templates_id_tags_v2025.0 -->
 
@@ -164,7 +164,7 @@ Lists the users jobs which use this template.
 This operation is performed by calling function `getDocgenTemplateJobByIdV2025R0`.
 
 See the endpoint docs at
-[API Reference](https://developer.box.com/reference/get-docgen-template-jobs-id-v2025.0/).
+[API Reference](https://developer.box.com/reference/v2025.0/get-docgen-template-jobs-id/).
 
 <!-- sample get_docgen_template_jobs_id_v2025.0 -->
 
