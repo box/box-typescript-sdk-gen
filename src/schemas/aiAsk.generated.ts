@@ -1,10 +1,10 @@
-import { serializeAiItemBase } from './aiItemBase.generated.js';
-import { deserializeAiItemBase } from './aiItemBase.generated.js';
+import { serializeAiItemAsk } from './aiItemAsk.generated.js';
+import { deserializeAiItemAsk } from './aiItemAsk.generated.js';
 import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { serializeAiAgentAsk } from './aiAgentAsk.generated.js';
 import { deserializeAiAgentAsk } from './aiAgentAsk.generated.js';
-import { AiItemBase } from './aiItemBase.generated.js';
+import { AiItemAsk } from './aiItemAsk.generated.js';
 import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { AiAgentAsk } from './aiAgentAsk.generated.js';
 import { BoxSdkError } from '../box/errors.js';
@@ -29,7 +29,7 @@ export interface AiAsk {
    * **Note**: Box AI handles documents with text representations up to 1MB in size, or a maximum of 25 files, whichever comes first.
    * If the file size exceeds 1MB, the first 1MB of text representation will be processed.
    * If you set `mode` parameter to `single_item_qa`, the `items` array can have one element only.  */
-  readonly items: readonly AiItemBase[];
+  readonly items: readonly AiItemAsk[];
   /**
    * The history of prompts and answers previously passed to the LLM. This provides additional context to the LLM in generating the response. */
   readonly dialogueHistory?: readonly AiDialogueHistory[];
@@ -58,8 +58,8 @@ export function serializeAiAsk(val: AiAsk): SerializedData {
   return {
     ['mode']: serializeAiAskModeField(val.mode),
     ['prompt']: val.prompt,
-    ['items']: val.items.map(function (item: AiItemBase): SerializedData {
-      return serializeAiItemBase(item);
+    ['items']: val.items.map(function (item: AiItemAsk): SerializedData {
+      return serializeAiItemAsk(item);
     }) as readonly any[],
     ['dialogue_history']:
       val.dialogueHistory == void 0
@@ -105,9 +105,9 @@ export function deserializeAiAsk(val: SerializedData): AiAsk {
       message: 'Expecting array for "items" of type "AiAsk"',
     });
   }
-  const items: readonly AiItemBase[] = sdIsList(val.items)
-    ? (val.items.map(function (itm: SerializedData): AiItemBase {
-        return deserializeAiItemBase(itm);
+  const items: readonly AiItemAsk[] = sdIsList(val.items)
+    ? (val.items.map(function (itm: SerializedData): AiItemAsk {
+        return deserializeAiItemAsk(itm);
       }) as readonly any[])
     : [];
   if (!(val.dialogue_history == void 0) && !sdIsList(val.dialogue_history)) {

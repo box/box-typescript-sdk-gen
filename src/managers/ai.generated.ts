@@ -317,12 +317,12 @@ export class AiManager {
    * Sends an AI request to supported LLMs and returns an answer specifically focused on the user's question given the provided context.
    * @param {AiAsk} requestBody Request body of createAiAsk method
    * @param {CreateAiAskOptionalsInput} optionalsInput
-   * @returns {Promise<AiResponseFull>}
+   * @returns {Promise<undefined | AiResponseFull>}
    */
   async createAiAsk(
     requestBody: AiAsk,
     optionalsInput: CreateAiAskOptionalsInput = {},
-  ): Promise<AiResponseFull> {
+  ): Promise<undefined | AiResponseFull> {
     const optionals: CreateAiAskOptionals = new CreateAiAskOptionals({
       headers: optionalsInput.headers,
       cancellationToken: optionalsInput.cancellationToken,
@@ -349,6 +349,9 @@ export class AiManager {
           cancellationToken: cancellationToken,
         }),
       );
+    if ((toString(response.status) as string) == '204') {
+      return void 0;
+    }
     return {
       ...deserializeAiResponseFull(response.data!),
       rawData: response.data!,
