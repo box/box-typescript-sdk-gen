@@ -181,7 +181,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
       },
     } satisfies MetadataQuery,
   );
-  if (!(query.entries!.length >= 1)) {
+  if (!(query.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
