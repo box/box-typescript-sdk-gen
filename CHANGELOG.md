@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### New Features and Enhancements
 
 * Add Box Sign shared requests (box/box-openapi[#504](https://github.com/box/box-typescript-sdk-gen/issues/504)) ([#491](https://github.com/box/box-typescript-sdk-gen/issues/491)) ([e90255c](https://github.com/box/box-typescript-sdk-gen/commit/e90255c5d97a7a1a10dd529b58426142c5c6f0d4))
-* Add hubs support to `/ai/ask` (box/box-codegen[#656](https://github.com/box/box-typescript-sdk-gen/issues/656)) ([#507](https://github.com/box/box-typescript-sdk-gen/issues/507)) ([9f29d8c](https://github.com/box/box-typescript-sdk-gen/commit/9f29d8cb1f1d3b8c7625da1ddb9f2abd62d133f0))
+* feat: Add hubs support to `/ai/ask`. Replace type of `items` property from `AiItemBase[]` to `AiItemAsk[]` in the `AiAsk` interface (box/box-codegen[#656](https://github.com/box/box-typescript-sdk-gen/issues/656)) ([#507](https://github.com/box/box-typescript-sdk-gen/issues/507)) ([9f29d8c](https://github.com/box/box-typescript-sdk-gen/commit/9f29d8cb1f1d3b8c7625da1ddb9f2abd62d133f0))
 * Update `/ai/extract_structured` response schema (box/box-codegen[#641](https://github.com/box/box-typescript-sdk-gen/issues/641)) ([#498](https://github.com/box/box-typescript-sdk-gen/issues/498)) ([502ac11](https://github.com/box/box-typescript-sdk-gen/commit/502ac11a2ad4e56fceece0deb6a15dbfc8b429ff))
 
 ## [1.11.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.10.0...v1.11.0) (2025-01-21)
