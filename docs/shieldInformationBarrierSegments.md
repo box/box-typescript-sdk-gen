@@ -50,7 +50,7 @@ See the endpoint docs at
 
 ```ts
 await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegmentById(
-  segment.id!,
+  segmentId,
 );
 ```
 
@@ -154,6 +154,7 @@ await client.shieldInformationBarrierSegments.createShieldInformationBarrierSegm
       type: 'shield_information_barrier' as ShieldInformationBarrierBaseTypeField,
     } satisfies ShieldInformationBarrierBase,
     name: segmentName,
+    description: segmentDescription,
   } satisfies CreateShieldInformationBarrierSegmentRequestBody,
 );
 ```

@@ -174,8 +174,8 @@ This operation is performed by calling function `validateMessage`.
 
 ```ts
 await WebhooksManager.validateMessage(
-  bodyWithJapanese,
-  headersWithJapanese,
+  body,
+  headersWithCorrectDatetime,
   primaryKey,
   { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
 );

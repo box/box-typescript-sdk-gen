@@ -134,15 +134,34 @@ See the endpoint docs at
 await client.signRequests.createSignRequest({
   signers: [
     {
-      email: signer1Email,
-      signerGroupId: 'user',
-    } satisfies SignRequestCreateSigner,
-    {
-      email: signer2Email,
-      signerGroupId: 'user',
+      email: signerEmail,
+      suppressNotifications: true,
+      declinedRedirectUrl: 'https://www.box.com',
+      embedUrlExternalUserId: '123',
+      isInPerson: false,
+      loginRequired: false,
+      password: 'password',
+      role: 'signer' as SignRequestCreateSignerRoleField,
     } satisfies SignRequestCreateSigner,
   ],
+  areRemindersEnabled: true,
+  areTextSignaturesEnabled: true,
+  daysValid: 30,
+  declinedRedirectUrl: 'https://www.box.com',
+  emailMessage: 'Please sign this document',
+  emailSubject: 'Sign this document',
+  externalId: '123',
+  externalSystemName: 'BoxSignIntegration',
+  isDocumentPreparationNeeded: false,
+  name: 'Sign Request',
   parentFolder: new FolderMini({ id: destinationFolder.id }),
+  redirectUrl: 'https://www.box.com',
+  prefillTags: [
+    {
+      dateValue: dateFromString('2035-01-01'),
+      documentTagId: '0',
+    } satisfies SignRequestPrefillTag,
+  ],
   sourceFiles: [new FileBase({ id: fileToSign.id })],
 } satisfies SignRequestCreateRequest);
 ```

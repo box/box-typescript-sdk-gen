@@ -30,7 +30,7 @@ await userClient.sharedLinksFolders.findFolderForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       folderFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword',
+      '&shared_link_password=Secret123@',
     ) as string,
   } satisfies FindFolderForSharedLinkHeadersInput,
 );

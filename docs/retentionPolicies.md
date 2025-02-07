@@ -49,13 +49,14 @@ See the endpoint docs at
 
 ```ts
 await client.retentionPolicies.createRetentionPolicy({
-  policyName: getUuid(),
+  policyName: retentionPolicyName,
   policyType: 'finite' as CreateRetentionPolicyRequestBodyPolicyTypeField,
+  areOwnersNotified: true,
+  canOwnerExtendRetention: true,
+  description: retentionDescription,
   dispositionAction:
     'remove_retention' as CreateRetentionPolicyRequestBodyDispositionActionField,
   retentionLength: '1',
-  description: description,
-  canOwnerExtendRetention: false,
   retentionType:
     'modifiable' as CreateRetentionPolicyRequestBodyRetentionTypeField,
 } satisfies CreateRetentionPolicyRequestBody);

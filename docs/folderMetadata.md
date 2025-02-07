@@ -99,15 +99,9 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.createFolderMetadataById(
   folder.id,
-  'enterprise' as CreateFolderMetadataByIdScope,
-  templateKey,
-  {
-    ['name']: 'John',
-    ['age']: 23,
-    ['birthDate']: '2001-01-03T02:20:50.520Z',
-    ['countryCode']: 'US',
-    ['sports']: ['basketball', 'tennis'],
-  },
+  'global' as CreateFolderMetadataByIdScope,
+  'properties',
+  { ['abc']: 'xyz' },
 );
 ```
 
@@ -198,8 +192,8 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
-  'enterprise' as DeleteFolderMetadataByIdScope,
-  templateKey,
+  'global' as DeleteFolderMetadataByIdScope,
+  'properties',
 );
 ```
 

@@ -54,16 +54,6 @@ See the endpoint docs at
 await client.fileVersions.getFileVersionById(
   file.id,
   fileVersions.entries![0].id,
-  {
-    queryParams: {
-      fields: [
-        'trashed_at' as string,
-        'trashed_by' as string,
-        'restored_at' as string,
-        'restored_by' as string,
-      ],
-    } satisfies GetFileVersionByIdQueryParams,
-  } satisfies GetFileVersionByIdOptionalsInput,
 );
 ```
 

@@ -83,7 +83,7 @@ See the endpoint docs at
 
 ```ts
 await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
-  entry.id!,
+  newEntry.id!,
 );
 ```
 

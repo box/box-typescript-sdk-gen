@@ -138,8 +138,8 @@ See the endpoint docs at
 await client.comments.createComment({
   message: message,
   item: {
-    id: newComment.id!,
-    type: 'comment' as CreateCommentRequestBodyItemTypeField,
+    id: fileId,
+    type: 'file' as CreateCommentRequestBodyItemTypeField,
   } satisfies CreateCommentRequestBodyItemField,
 } satisfies CreateCommentRequestBody);
 ```

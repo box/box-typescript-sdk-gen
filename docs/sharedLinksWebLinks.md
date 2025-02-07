@@ -30,7 +30,7 @@ await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       webLinkFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword',
+      '&shared_link_password=Secret123@',
     ) as string,
   } satisfies FindWebLinkForSharedLinkHeadersInput,
 );

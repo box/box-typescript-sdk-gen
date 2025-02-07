@@ -94,15 +94,9 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.createFileMetadataById(
   file.id,
-  'enterprise' as CreateFileMetadataByIdScope,
-  templateKey,
-  {
-    ['name']: 'John',
-    ['age']: 23,
-    ['birthDate']: '2001-01-03T02:20:50.520Z',
-    ['countryCode']: 'US',
-    ['sports']: ['basketball', 'tennis'],
-  },
+  'global' as CreateFileMetadataByIdScope,
+  'properties',
+  { ['abc']: 'xyz' },
 );
 ```
 
@@ -193,8 +187,8 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.deleteFileMetadataById(
   file.id,
-  'enterprise' as DeleteFileMetadataByIdScope,
-  templateKey,
+  'global' as DeleteFileMetadataByIdScope,
+  'properties',
 );
 ```
 

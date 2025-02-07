@@ -84,7 +84,16 @@ See the endpoint docs at
 <!-- sample get_groups_id -->
 
 ```ts
-await client.groups.getGroupById(group.id);
+await client.groups.getGroupById(group.id, {
+  queryParams: {
+    fields: [
+      'id' as string,
+      'name' as string,
+      'description' as string,
+      'group_type' as string,
+    ],
+  } satisfies GetGroupByIdQueryParams,
+} satisfies GetGroupByIdOptionalsInput);
 ```
 
 ### Arguments

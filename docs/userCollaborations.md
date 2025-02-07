@@ -81,7 +81,7 @@ See the endpoint docs at
 <!-- sample delete_collaborations_id -->
 
 ```ts
-await client.userCollaborations.deleteCollaborationById(groupCollaboration.id);
+await client.userCollaborations.deleteCollaborationById(collaborationId);
 ```
 
 ### Arguments
@@ -126,12 +126,12 @@ See the endpoint docs at
 ```ts
 await client.userCollaborations.createCollaboration({
   item: {
-    type: 'file' as CreateCollaborationRequestBodyItemTypeField,
-    id: file.id,
+    type: 'folder' as CreateCollaborationRequestBodyItemTypeField,
+    id: folder.id,
   } satisfies CreateCollaborationRequestBodyItemField,
   accessibleBy: {
     type: 'user' as CreateCollaborationRequestBodyAccessibleByTypeField,
-    id: getEnvVar('USER_ID'),
+    id: user.id,
   } satisfies CreateCollaborationRequestBodyAccessibleByField,
   role: 'editor' as CreateCollaborationRequestBodyRoleField,
 } satisfies CreateCollaborationRequestBody);
