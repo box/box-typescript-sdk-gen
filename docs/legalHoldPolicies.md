@@ -52,9 +52,7 @@ See the endpoint docs at
 await client.legalHoldPolicies.createLegalHoldPolicy({
   policyName: legalHoldPolicyName,
   description: legalHoldDescription,
-  isOngoing: false,
-  filterStartedAt: filterStartedAt,
-  filterEndedAt: filterEndedAt,
+  isOngoing: true,
 } satisfies CreateLegalHoldPolicyRequestBody);
 ```
 
@@ -146,7 +144,7 @@ See the endpoint docs at
 <!-- sample delete_legal_hold_policies_id -->
 
 ```ts
-await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);
+await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicyId);
 ```
 
 ### Arguments

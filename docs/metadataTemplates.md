@@ -273,42 +273,9 @@ await client.metadataTemplates.createMetadataTemplate({
   templateKey: templateKey,
   fields: [
     {
-      key: 'firstName',
-      displayName: 'First name',
-      description: 'Person first name',
       type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    {
-      key: 'lastName',
-      displayName: 'Last name',
-      description: 'Person last name',
-      type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    {
-      key: 'dateOfBirth',
-      displayName: 'Birth date',
-      description: 'Person date of birth',
-      type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    {
-      key: 'age',
-      displayName: 'Age',
-      description: 'Person age',
-      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
-    {
-      key: 'hobby',
-      displayName: 'Hobby',
-      description: 'Person hobby',
-      type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
-      options: [
-        {
-          key: 'guitar',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-        {
-          key: 'books',
-        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
-      ],
+      key: 'testName',
+      displayName: 'testName',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
 } satisfies CreateMetadataTemplateRequestBody);

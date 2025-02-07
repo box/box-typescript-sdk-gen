@@ -17,7 +17,7 @@ See the endpoint docs at
 <!-- sample get_file_requests_id -->
 
 ```ts
-await client.fileRequests.getFileRequestById(updatedFileRequest.id);
+await client.fileRequests.getFileRequestById(fileRequestId);
 ```
 
 ### Arguments

@@ -33,7 +33,7 @@ await userClient.sharedLinksFiles.findFileForSharedLink(
     boxapi: ''.concat(
       'shared_link=',
       fileFromApi.sharedLink!.url,
-      '&shared_link_password=incorrectPassword',
+      '&shared_link_password=Secret123@',
     ) as string,
   } satisfies FindFileForSharedLinkHeadersInput,
 );

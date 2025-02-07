@@ -20,7 +20,7 @@ See the endpoint docs at
 
 ```ts
 await client.docgenTemplate.createDocgenTemplateV2025R0({
-  file: new FileReferenceV2025R0({ id: uploadedFile.id }),
+  file: new FileReferenceV2025R0({ id: file.id }),
 } satisfies DocGenTemplateCreateRequestV2025R0);
 ```
 

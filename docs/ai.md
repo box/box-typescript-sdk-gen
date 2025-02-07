@@ -19,18 +19,13 @@ See the endpoint docs at
 
 ```ts
 await client.ai.createAiAsk({
-  mode: 'multiple_item_qa' as AiAskModeField,
-  prompt: 'Which direction sun rises?',
+  mode: 'single_item_qa' as AiAskModeField,
+  prompt: 'which direction sun rises',
   items: [
     {
-      id: fileToAsk1.id,
+      id: fileToAsk.id,
       type: 'file' as AiItemAskTypeField,
-      content: 'Earth goes around the sun',
-    } satisfies AiItemAsk,
-    {
-      id: fileToAsk2.id,
-      type: 'file' as AiItemAskTypeField,
-      content: 'Sun rises in the East in the morning',
+      content: 'Sun rises in the East',
     } satisfies AiItemAsk,
   ],
 } satisfies AiAsk);
@@ -112,7 +107,7 @@ See the endpoint docs at
 
 ```ts
 await client.ai.getAiAgentDefaultConfig({
-  mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
+  mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
   language: 'en-US',
 } satisfies GetAiAgentDefaultConfigQueryParams);
 ```
@@ -187,10 +182,47 @@ See the endpoint docs at
 
 ```ts
 await client.ai.createAiExtractStructured({
-  metadataTemplate: {
-    templateKey: templateKey,
-    scope: 'enterprise',
-  } satisfies AiExtractStructuredMetadataTemplateField,
+  fields: [
+    {
+      key: 'firstName',
+      displayName: 'First name',
+      description: 'Person first name',
+      prompt: 'What is the your first name?',
+      type: 'string',
+    } satisfies AiExtractStructuredFieldsField,
+    {
+      key: 'lastName',
+      displayName: 'Last name',
+      description: 'Person last name',
+      prompt: 'What is the your last name?',
+      type: 'string',
+    } satisfies AiExtractStructuredFieldsField,
+    {
+      key: 'dateOfBirth',
+      displayName: 'Birth date',
+      description: 'Person date of birth',
+      prompt: 'What is the date of your birth?',
+      type: 'date',
+    } satisfies AiExtractStructuredFieldsField,
+    {
+      key: 'age',
+      displayName: 'Age',
+      description: 'Person age',
+      prompt: 'How old are you?',
+      type: 'float',
+    } satisfies AiExtractStructuredFieldsField,
+    {
+      key: 'hobby',
+      displayName: 'Hobby',
+      description: 'Person hobby',
+      prompt: 'What is your hobby?',
+      type: 'multiSelect',
+      options: [
+        { key: 'guitar' } satisfies AiExtractStructuredFieldsOptionsField,
+        { key: 'books' } satisfies AiExtractStructuredFieldsOptionsField,
+      ],
+    } satisfies AiExtractStructuredFieldsField,
+  ],
   items: [new AiItemBase({ id: file.id })],
 } satisfies AiExtractStructured);
 ```

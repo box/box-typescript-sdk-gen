@@ -19,9 +19,9 @@ See the endpoint docs at
 <!-- sample get_files_id -->
 
 ```ts
-await client.files.getFileById(fileId, {
+await client.files.getFileById(uploadedFile.id, {
   queryParams: {
-    fields: ['is_associated_with_app_item' as string],
+    fields: ['is_externally_owned' as string, 'has_collaborations' as string],
   } satisfies GetFileByIdQueryParams,
 } satisfies GetFileByIdOptionalsInput);
 ```
@@ -56,8 +56,11 @@ See the endpoint docs at
 <!-- sample put_files_id -->
 
 ```ts
-await downscopedClient.files.updateFileById(file.id, {
-  requestBody: { name: getUuid() } satisfies UpdateFileByIdRequestBody,
+await client.files.updateFileById(fileToUpdate.id, {
+  requestBody: {
+    name: updatedName,
+    description: 'Updated description',
+  } satisfies UpdateFileByIdRequestBody,
 } satisfies UpdateFileByIdOptionalsInput);
 ```
 
@@ -94,7 +97,7 @@ See the endpoint docs at
 <!-- sample delete_files_id -->
 
 ```ts
-await parentClient.files.deleteFileById(file.id);
+await client.files.deleteFileById(thumbnailFile.id);
 ```
 
 ### Arguments
