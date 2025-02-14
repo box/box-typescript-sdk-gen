@@ -64,6 +64,8 @@ import { serializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js'
 import { deserializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
 import { serializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
 import { deserializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { serializeAiAgentLongTextTool } from '../schemas/aiAgentLongTextTool.generated.js';
+import { deserializeAiAgentLongTextTool } from '../schemas/aiAgentLongTextTool.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
@@ -109,6 +111,7 @@ import { AiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
 import { AiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { AiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
 import { AiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { AiAgentLongTextTool } from '../schemas/aiAgentLongTextTool.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
