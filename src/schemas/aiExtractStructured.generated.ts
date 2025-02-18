@@ -1,9 +1,9 @@
 import { serializeAiItemBase } from './aiItemBase.generated.js';
 import { deserializeAiItemBase } from './aiItemBase.generated.js';
-import { serializeAiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
-import { deserializeAiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
+import { serializeAiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
+import { deserializeAiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
 import { AiItemBase } from './aiItemBase.generated.js';
-import { AiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
+import { AiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -69,7 +69,7 @@ export interface AiExtractStructured {
    * The fields to be extracted from the provided items.
    * For your request to work, you must provide either `metadata_template` or `fields`, but not both. */
   readonly fields?: readonly AiExtractStructuredFieldsField[];
-  readonly aiAgent?: AiAgentExtractStructured;
+  readonly aiAgent?: AiAgentExtractStructuredOrAiAgentReference;
   readonly rawData?: SerializedData;
 }
 export function serializeAiExtractStructuredMetadataTemplateTypeField(
@@ -279,7 +279,7 @@ export function serializeAiExtractStructured(
     ['ai_agent']:
       val.aiAgent == void 0
         ? val.aiAgent
-        : serializeAiAgentExtractStructured(val.aiAgent),
+        : serializeAiAgentExtractStructuredOrAiAgentReference(val.aiAgent),
   };
 }
 export function deserializeAiExtractStructured(
@@ -326,10 +326,10 @@ export function deserializeAiExtractStructured(
             return deserializeAiExtractStructuredFieldsField(itm);
           }) as readonly any[])
         : [];
-  const aiAgent: undefined | AiAgentExtractStructured =
+  const aiAgent: undefined | AiAgentExtractStructuredOrAiAgentReference =
     val.ai_agent == void 0
       ? void 0
-      : deserializeAiAgentExtractStructured(val.ai_agent);
+      : deserializeAiAgentExtractStructuredOrAiAgentReference(val.ai_agent);
   return {
     items: items,
     metadataTemplate: metadataTemplate,

@@ -1,9 +1,9 @@
 import { serializeAiItemBase } from './aiItemBase.generated.js';
 import { deserializeAiItemBase } from './aiItemBase.generated.js';
-import { serializeAiAgentExtract } from './aiAgentExtract.generated.js';
-import { deserializeAiAgentExtract } from './aiAgentExtract.generated.js';
+import { serializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
+import { deserializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
 import { AiItemBase } from './aiItemBase.generated.js';
-import { AiAgentExtract } from './aiAgentExtract.generated.js';
+import { AiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -19,7 +19,7 @@ export interface AiExtract {
   /**
    * The items that LLM will process. Currently, you can use files only. */
   readonly items: readonly AiItemBase[];
-  readonly aiAgent?: AiAgentExtract;
+  readonly aiAgent?: AiAgentExtractOrAiAgentReference;
   readonly rawData?: SerializedData;
 }
 export function serializeAiExtract(val: AiExtract): SerializedData {
@@ -31,7 +31,7 @@ export function serializeAiExtract(val: AiExtract): SerializedData {
     ['ai_agent']:
       val.aiAgent == void 0
         ? val.aiAgent
-        : serializeAiAgentExtract(val.aiAgent),
+        : serializeAiAgentExtractOrAiAgentReference(val.aiAgent),
   };
 }
 export function deserializeAiExtract(val: SerializedData): AiExtract {
@@ -64,7 +64,9 @@ export function deserializeAiExtract(val: SerializedData): AiExtract {
         return deserializeAiItemBase(itm);
       }) as readonly any[])
     : [];
-  const aiAgent: undefined | AiAgentExtract =
-    val.ai_agent == void 0 ? void 0 : deserializeAiAgentExtract(val.ai_agent);
+  const aiAgent: undefined | AiAgentExtractOrAiAgentReference =
+    val.ai_agent == void 0
+      ? void 0
+      : deserializeAiAgentExtractOrAiAgentReference(val.ai_agent);
   return { prompt: prompt, items: items, aiAgent: aiAgent } satisfies AiExtract;
 }
