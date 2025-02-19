@@ -14,9 +14,11 @@
     "node": ">=16.0.0"
   },
   "main": "./lib/index.js",
+  "module": "./lib-esm/index.js",
   "scripts": {
     "build": "tsc",
     "postbuild": "rollup -c",
+    "build:esm": "tsc --project tsconfig.esm.json",
     "start": "echo \"Error: no start specified\" && exit 1",
     "test": "jest"
   },
