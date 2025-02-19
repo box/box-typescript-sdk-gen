@@ -72,6 +72,7 @@ import { WorkflowsManager } from './managers/workflows.generated.js';
 import { SignTemplatesManager } from './managers/signTemplates.generated.js';
 import { IntegrationMappingsManager } from './managers/integrationMappings.generated.js';
 import { AiManager } from './managers/ai.generated.js';
+import { AiStudioManager } from './managers/aiStudio.generated.js';
 import { DocgenTemplateManager } from './managers/docgenTemplate.generated.js';
 import { DocgenManager } from './managers/docgen.generated.js';
 import { Authentication } from './networking/auth.generated.js';
@@ -165,6 +166,7 @@ export class BoxClient {
   readonly signTemplates: SignTemplatesManager;
   readonly integrationMappings: IntegrationMappingsManager;
   readonly ai: AiManager;
+  readonly aiStudio: AiStudioManager;
   readonly docgenTemplate: DocgenTemplateManager;
   readonly docgen: DocgenManager;
   constructor(
@@ -240,6 +242,7 @@ export class BoxClient {
       | 'signTemplates'
       | 'integrationMappings'
       | 'ai'
+      | 'aiStudio'
       | 'docgenTemplate'
       | 'docgen'
       | 'networkSession'
@@ -543,6 +546,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.ai = new AiManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.aiStudio = new AiStudioManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });

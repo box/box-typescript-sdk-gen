@@ -1,9 +1,9 @@
 import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
-import { serializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
-import { deserializeAiAgentTextGen } from './aiAgentTextGen.generated.js';
+import { serializeAiAgentReferenceOrAiAgentTextGen } from './aiAgentReferenceOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentReferenceOrAiAgentTextGen } from './aiAgentReferenceOrAiAgentTextGen.generated.js';
 import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
-import { AiAgentTextGen } from './aiAgentTextGen.generated.js';
+import { AiAgentReferenceOrAiAgentTextGen } from './aiAgentReferenceOrAiAgentTextGen.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -68,7 +68,7 @@ export interface AiTextGen {
   /**
    * The history of prompts and answers previously passed to the LLM. This parameter provides the additional context to the LLM when generating the response. */
   readonly dialogueHistory?: readonly AiDialogueHistory[];
-  readonly aiAgent?: AiAgentTextGen;
+  readonly aiAgent?: AiAgentReferenceOrAiAgentTextGen;
   readonly rawData?: SerializedData;
 }
 export function serializeAiTextGenItemsTypeField(
@@ -198,7 +198,7 @@ export function serializeAiTextGen(val: AiTextGen): SerializedData {
     ['ai_agent']:
       val.aiAgent == void 0
         ? val.aiAgent
-        : serializeAiAgentTextGen(val.aiAgent),
+        : serializeAiAgentReferenceOrAiAgentTextGen(val.aiAgent),
   };
 }
 export function deserializeAiTextGen(val: SerializedData): AiTextGen {
@@ -246,8 +246,10 @@ export function deserializeAiTextGen(val: SerializedData): AiTextGen {
             return deserializeAiDialogueHistory(itm);
           }) as readonly any[])
         : [];
-  const aiAgent: undefined | AiAgentTextGen =
-    val.ai_agent == void 0 ? void 0 : deserializeAiAgentTextGen(val.ai_agent);
+  const aiAgent: undefined | AiAgentReferenceOrAiAgentTextGen =
+    val.ai_agent == void 0
+      ? void 0
+      : deserializeAiAgentReferenceOrAiAgentTextGen(val.ai_agent);
   return {
     prompt: prompt,
     items: items,
