@@ -15,7 +15,11 @@ This operation is performed by calling function `getAiAgents`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-ai-agents/).
 
-_Currently we don't have an example for calling `getAiAgents` in integration tests_
+<!-- sample get_ai_agents -->
+
+```ts
+await client.aiStudio.getAiAgents();
+```
 
 ### Arguments
 
@@ -41,7 +45,15 @@ This operation is performed by calling function `createAiAgent`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-ai-agents/).
 
-_Currently we don't have an example for calling `createAiAgent` in integration tests_
+<!-- sample post_ai_agents -->
+
+```ts
+await client.aiStudio.createAiAgent({
+  name: agentName,
+  accessState: 'enabled',
+  ask: new AiStudioAgentAsk({ accessState: 'enabled', description: 'desc1' }),
+} satisfies CreateAiAgentInput);
+```
 
 ### Arguments
 
@@ -65,7 +77,15 @@ This operation is performed by calling function `updateAiAgentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-ai-agents-id/).
 
-_Currently we don't have an example for calling `updateAiAgentById` in integration tests_
+<!-- sample put_ai_agents_id -->
+
+```ts
+await client.aiStudio.updateAiAgentById(createdAgent.id, {
+  name: agentName,
+  accessState: 'enabled',
+  ask: new AiStudioAgentAsk({ accessState: 'disabled', description: 'desc2' }),
+} satisfies CreateAiAgentInput);
+```
 
 ### Arguments
 
@@ -91,7 +111,15 @@ This operation is performed by calling function `getAiAgentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-ai-agents-id/).
 
-_Currently we don't have an example for calling `getAiAgentById` in integration tests_
+<!-- sample get_ai_agents_id -->
+
+```ts
+await client.aiStudio.getAiAgentById(createdAgent.id, {
+  queryParams: {
+    fields: ['ask' as string],
+  } satisfies GetAiAgentByIdQueryParams,
+} satisfies GetAiAgentByIdOptionalsInput);
+```
 
 ### Arguments
 
@@ -115,7 +143,11 @@ This operation is performed by calling function `deleteAiAgentById`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-ai-agents-id/).
 
-_Currently we don't have an example for calling `deleteAiAgentById` in integration tests_
+<!-- sample delete_ai_agents_id -->
+
+```ts
+await client.aiStudio.deleteAiAgentById(createdAgent.id);
+```
 
 ### Arguments
 
