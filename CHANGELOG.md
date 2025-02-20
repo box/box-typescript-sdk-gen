@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.12.0...v1.13.0) (2025-02-20)
+
+
+### New Features and Enhancements
+
+* Support AI Studio API (box/box-codegen[#626](https://github.com/box/box-typescript-sdk-gen/issues/626)) ([#520](https://github.com/box/box-typescript-sdk-gen/issues/520)) ([949b856](https://github.com/box/box-typescript-sdk-gen/commit/949b856ce1d77b1aa425b91b46440b46b383438a))
+
 ## [1.12.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.11.0...v1.12.0) (2025-02-06)
 
 
