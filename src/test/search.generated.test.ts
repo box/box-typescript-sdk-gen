@@ -28,12 +28,12 @@ import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTempla
 import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
-import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
-import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { serializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { serializeMetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
+import { serializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
+import { deserializeSearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { serializeMetadataFieldFilterDateRange } from '../schemas/metadataFieldFilterDateRange.generated.js';
 import { deserializeMetadataFieldFilterDateRange } from '../schemas/metadataFieldFilterDateRange.generated.js';
 import { serializeMetadataFieldFilterFloatRange } from '../schemas/metadataFieldFilterFloatRange.generated.js';
@@ -56,9 +56,9 @@ import { MetadataQuery } from '../schemas/metadataQuery.generated.js';
 import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { SearchResultsOrSearchResultsWithSharedLinks } from '../schemas/searchResultsOrSearchResultsWithSharedLinks.generated.js';
 import { SearchForContentQueryParams } from '../managers/search.generated.js';
-import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { MetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { MetadataFilterScopeField } from '../schemas/metadataFilter.generated.js';
+import { SearchForContentQueryParamsTrashContentField } from '../managers/search.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
@@ -190,41 +190,6 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   );
   await client.files.deleteFileById(file.id);
 });
-test('testGetSearch', async function testGetSearch(): Promise<any> {
-  const keyword: string = 'test';
-  const search: SearchResultsOrSearchResultsWithSharedLinks =
-    await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
-      query: keyword,
-      trashContent:
-        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
-    } satisfies SearchForContentQueryParams);
-  if (!(search.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
-  if (!((toString(search.type) as string) == 'search_results_items')) {
-    throw new Error('Assertion failed');
-  }
-  const searchWithSharedLink: SearchResultsOrSearchResultsWithSharedLinks =
-    await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
-      query: keyword,
-      trashContent:
-        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
-      includeRecentSharedLinks: true,
-    } satisfies SearchForContentQueryParams);
-  if (!(searchWithSharedLink.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
-  if (
-    !(
-      (toString(searchWithSharedLink.type) as string) ==
-      'search_results_with_shared_links'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-});
 test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
   const templateKey: string = ''.concat('key', getUuid()) as string;
   const template: MetadataTemplate =
@@ -328,5 +293,40 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
     template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
+});
+test('testGetSearch', async function testGetSearch(): Promise<any> {
+  const keyword: string = 'test';
+  const search: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      query: keyword,
+      trashContent:
+        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
+    } satisfies SearchForContentQueryParams);
+  if (!(search.entries!.length >= 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(search.type) as string) == 'search_results_items')) {
+    throw new Error('Assertion failed');
+  }
+  const searchWithSharedLink: SearchResultsOrSearchResultsWithSharedLinks =
+    await client.search.searchForContent({
+      ancestorFolderIds: ['0' as string],
+      query: keyword,
+      trashContent:
+        'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
+      includeRecentSharedLinks: true,
+    } satisfies SearchForContentQueryParams);
+  if (!(searchWithSharedLink.entries!.length >= 0)) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(searchWithSharedLink.type) as string) ==
+      'search_results_with_shared_links'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
 });
 export {};
