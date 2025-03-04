@@ -8,7 +8,7 @@
 ![build](https://github.com/box/box-typescript-sdk-gen/actions/workflows/build_and_test.yml/badge.svg)
 [![npm version](https://badge.fury.io/js/box-typescript-sdk-gen.svg)](https://badge.fury.io/js/box-typescript-sdk-gen)
 [![image](https://img.shields.io/npm/dm/box-typescript-sdk-gen.svg)](https://badge.fury.io/js/box-typescript-sdk-gen)
-![Platform](https://img.shields.io/badge/node-18--20-blue)
+![Platform](https://img.shields.io/badge/node-18--22-blue)
 [![Coverage](https://coveralls.io/repos/github/box/box-typescript-sdk-gen/badge.svg?branch=main)](https://coveralls.io/github/box/box-typescript-sdk-gen?branch=main)
 
 We are excited to introduce the stable release of the latest generation of Box TypeScript SDK, designed to elevate the developer experience and streamline your integration with the Box Content Cloud.
