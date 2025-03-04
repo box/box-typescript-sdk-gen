@@ -277,6 +277,45 @@ await client.metadataTemplates.createMetadataTemplate({
       key: 'testName',
       displayName: 'testName',
     } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'age',
+      displayName: 'age',
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'birthDate',
+      displayName: 'birthDate',
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'countryCode',
+      displayName: 'countryCode',
+      options: [
+        {
+          key: 'US',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'CA',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+    {
+      type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+      key: 'sports',
+      displayName: 'sports',
+      options: [
+        {
+          key: 'basketball',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'football',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+        {
+          key: 'tennis',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBodyFieldsField,
   ],
 } satisfies CreateMetadataTemplateRequestBody);
 ```
