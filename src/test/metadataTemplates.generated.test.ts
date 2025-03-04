@@ -6,6 +6,8 @@ import { serializeCreateMetadataTemplateRequestBodyFieldsField } from '../manage
 import { deserializeCreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { serializeUpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { deserializeUpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { serializeUpdateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -31,6 +33,7 @@ import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
+import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { UpdateMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { UpdateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { UpdateMetadataTemplateRequestBodyOpField } from '../managers/metadataTemplates.generated.js';
@@ -45,6 +48,8 @@ import { DeleteFileMetadataByIdScope } from '../managers/fileMetadata.generated.
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
+import { toString } from '../internal/utils.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -66,6 +71,45 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
           key: 'testName',
           displayName: 'testName',
         } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'age',
+          displayName: 'age',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'birthDate',
+          displayName: 'birthDate',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'countryCode',
+          displayName: 'countryCode',
+          options: [
+            {
+              key: 'US',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'CA',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'sports',
+          displayName: 'sports',
+          options: [
+            {
+              key: 'basketball',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'football',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'tennis',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
       ],
     } satisfies CreateMetadataTemplateRequestBody);
   if (!(template.templateKey == templateKey)) {
@@ -74,13 +118,52 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
   if (!(template.displayName == templateKey)) {
     throw new Error('Assertion failed');
   }
-  if (!(template.fields!.length == 1)) {
+  if (!(template.fields!.length == 5)) {
     throw new Error('Assertion failed');
   }
   if (!(template.fields![0].key == 'testName')) {
     throw new Error('Assertion failed');
   }
   if (!(template.fields![0].displayName == 'testName')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(template.fields![0].type) as string) == 'string')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![1].key == 'age')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![1].displayName == 'age')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(template.fields![1].type) as string) == 'float')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![2].key == 'birthDate')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![2].displayName == 'birthDate')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(template.fields![2].type) as string) == 'date')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![3].key == 'countryCode')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![3].displayName == 'countryCode')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(template.fields![3].type) as string) == 'enum')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![4].key == 'sports')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(template.fields![4].displayName == 'sports')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(template.fields![4].type) as string) == 'multiSelect')) {
     throw new Error('Assertion failed');
   }
   const updatedTemplate: MetadataTemplate =
@@ -95,13 +178,13 @@ test('testMetadataTemplates', async function testMetadataTemplates(): Promise<an
         } satisfies UpdateMetadataTemplateRequestBody,
       ],
     );
-  if (!(updatedTemplate.fields!.length == 2)) {
+  if (!(updatedTemplate.fields!.length == 6)) {
     throw new Error('Assertion failed');
   }
-  if (!(updatedTemplate.fields![1].key == 'newfieldname')) {
+  if (!(updatedTemplate.fields![5].key == 'newfieldname')) {
     throw new Error('Assertion failed');
   }
-  if (!(updatedTemplate.fields![1].displayName == 'newFieldName')) {
+  if (!(updatedTemplate.fields![5].displayName == 'newFieldName')) {
     throw new Error('Assertion failed');
   }
   const getMetadataTemplate: MetadataTemplate =
