@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "moduleResolution": "Node",
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
     "outDir": "lib",
     "isolatedModules": true,
