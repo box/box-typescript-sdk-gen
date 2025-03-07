@@ -1,7 +1,7 @@
 {
   "name": "box-typescript-sdk-gen",
   "author": "Box <oss@box.com>",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "Official Box TypeScript Generated SDK",
   "keywords": [
     "box",
