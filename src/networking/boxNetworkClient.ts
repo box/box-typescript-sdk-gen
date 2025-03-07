@@ -1,14 +1,13 @@
 import nodeFetch, { RequestInit } from 'node-fetch';
-import type { Readable } from 'stream';
-import { sha1 } from 'hash-wasm'; // Use hash-wasm to calculate SHA1 hash in browser
 
 import { BoxApiError, BoxSdkError } from '../box/errors';
 import {
   ByteStream,
-  evalRequire,
+  FormData,
   generateByteStreamFromBuffer,
   isBrowser,
   readByteStream,
+  calculateMD5Hash,
 } from '../internal/utils';
 import { sdkVersion } from './version';
 import { NetworkClient } from './networkClient.generated';
@@ -52,12 +51,12 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
 
   const { contentHeaders = {}, body } = await (async (): Promise<{
     contentHeaders: { [key: string]: string };
-    body: Readable | string | Buffer;
+    body: ByteStream | string | Buffer;
   }> => {
     const contentHeaders: { [key: string]: string } = {};
     if (options.multipartData) {
-      const FormData = isBrowser() ? window.FormData : evalRequire('form-data');
-      const formData = new FormData();
+      const FormDataClass = isBrowser() ? window.FormData : FormData;
+      const formData: any = new FormDataClass();
       for (const item of options.multipartData) {
         if (item.fileStream) {
           const buffer = await readByteStream(item.fileStream);
@@ -104,7 +103,9 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
         }
         return {
           contentHeaders,
-          body: isBrowser() ? await readByteStream(fileStream) : fileStream,
+          body: isBrowser()
+            ? await readByteStream(fileStream)
+            : (fileStream as any),
         };
 
       default:
@@ -129,7 +130,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       // Additional headers will override the default headers
       ...options.networkSession?.additionalHeaders,
     },
-    body,
+    body: body as any,
     signal: options.cancellationToken as RequestInit['signal'],
     agent: options.networkSession?.agent,
     ...(fileStream && isBrowser() && { duplex: 'half' }),
@@ -281,21 +282,6 @@ export class BoxNetworkClient implements NetworkClient {
       },
     });
   }
-}
-
-async function calculateMD5Hash(data: string | Buffer): Promise<string> {
-  /**
-   * Calculate the SHA1 hash of the data
-   */
-  let createHash: any;
-  // Browser environment
-  if (isBrowser()) {
-    return await sha1(data);
-  }
-
-  // Node environment
-  createHash = evalRequire('crypto').createHash;
-  return createHash('sha1').update(data).digest('hex');
 }
 
 function constructBoxUAHeader() {

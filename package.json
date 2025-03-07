@@ -14,6 +14,11 @@
     "node": ">=16.0.0"
   },
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "browser": {
+    "./src/internal/utilsNode.ts": "./src/internal/utilsBrowser.ts",
+    "./lib/internal/utilsNode.js": "./lib/internal/utilsBrowser.js"
+  },
   "scripts": {
     "build": "tsc",
     "postbuild": "rollup -c",
@@ -26,14 +31,14 @@
     "url": "https://github.com/box/box-typescript-sdk-gen.git"
   },
   "dependencies": {
-    "form-data": "^4.0.0",
-    "node-fetch": "^2.6.3",
     "buffer": "^6.0.3",
+    "form-data": "^4.0.0",
+    "hash-wasm": "^4.12.0",
     "jose": "^5.2.2",
-    "tslib": "^2.6.2",
-    "uuid": "^9.0.0",
+    "node-fetch": "^2.6.3",
     "proxy-agent": "^6.4.0",
-    "hash-wasm": "^4.12.0"
+    "tslib": "^2.6.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -46,7 +51,8 @@
     "@types/uuid": "^9.0.1",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
-    "typescript": "*",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
     "rollup": "^4.4.0"
   },
   "files": [
