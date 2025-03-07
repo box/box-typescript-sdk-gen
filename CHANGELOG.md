@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.13.0...v1.13.1) (2025-03-07)
+
+
+### Bug Fixes
+
+* Split browser configuration in `package.json` for TypeScript (box/box-codegen[#672](https://github.com/box/box-typescript-sdk-gen/issues/672)) ([#538](https://github.com/box/box-typescript-sdk-gen/issues/538)) ([ca7e291](https://github.com/box/box-typescript-sdk-gen/commit/ca7e29180e450cbb346a76aadfdade1062559b1e))
+
 ## [1.13.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.12.0...v1.13.0) (2025-02-20)
 
 
