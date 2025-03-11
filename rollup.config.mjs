@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
 import fs from 'fs';
+import path from 'path';
 
 function getBrowserConfig() {
   const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
@@ -45,6 +46,32 @@ function replaceFiles(options = {}) {
   };
 }
 
+function cleanupTypeScript(options = {}) {
+  const { tsconfig } = options;
+  const tsconfigFile = JSON.parse(fs.readFileSync(tsconfig, 'utf-8'));
+  let tsOutputDir;
+
+  return {
+    name: 'cleanup-typescript',
+    generateBundle(outputOptions) {
+      const outputDir =
+        outputOptions.dir ||
+        (outputOptions.file
+          ? outputOptions.file.substring(0, outputOptions.file.lastIndexOf('/'))
+          : 'dist');
+      tsOutputDir = path.resolve(
+        outputDir,
+        tsconfigFile.compilerOptions.outDir,
+      );
+    },
+    closeBundle() {
+      if (tsOutputDir) {
+        fs.rmSync(tsOutputDir, { recursive: true, force: true });
+      }
+    },
+  };
+}
+
 export default {
   input: 'src/index.ts',
   output: {
@@ -67,5 +94,8 @@ export default {
       tsconfig: './tsconfig.rollup.json',
     }), // Compiles TypeScript
     json(), // Converts JSON files to ES6 modules
+    cleanupTypeScript({
+      tsconfig: './tsconfig.rollup.json',
+    }),
   ],
 };
