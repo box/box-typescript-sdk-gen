@@ -4,7 +4,7 @@
     "module": "ESNext",
     "declaration": true,
     "sourceMap": true,
-    "outDir": "lib",
+    "outDir": "lib-rollup",
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
