@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.2](https://github.com/box/box-typescript-sdk-gen/compare/v1.13.1...v1.13.2) (2025-03-11)
+
+
+### Bug Fixes
+
+* Fix `rollup` plugin output directory in Typescript (box/box-codegen[#678](https://github.com/box/box-typescript-sdk-gen/issues/678)) ([#543](https://github.com/box/box-typescript-sdk-gen/issues/543)) ([f828d5e](https://github.com/box/box-typescript-sdk-gen/commit/f828d5e7e3079c48590e9766f0dccd25ee1af9ca))
+
 ### [1.13.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.13.0...v1.13.1) (2025-03-07)
 
 
