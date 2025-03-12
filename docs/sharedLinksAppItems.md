@@ -8,18 +8,24 @@ Returns the app item represented by a shared link.
 
 The link can originate from the current enterprise or another.
 
-This operation is performed by calling function `getSharedItemAppItems`.
+This operation is performed by calling function `findAppItemForSharedLink`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-shared-items--app-items/).
 
-_Currently we don't have an example for calling `getSharedItemAppItems` in integration tests_
+<!-- sample get_shared_items#app_items -->
+
+```ts
+await client.sharedLinksAppItems.findAppItemForSharedLink({
+  boxapi: ''.concat('shared_link=', appItemSharedLink) as string,
+} satisfies FindAppItemForSharedLinkHeadersInput);
+```
 
 ### Arguments
 
-- headersInput `GetSharedItemAppItemsHeadersInput`
-  - Headers of getSharedItemAppItems method
-- optionalsInput `GetSharedItemAppItemsOptionalsInput`
+- headersInput `FindAppItemForSharedLinkHeadersInput`
+  - Headers of findAppItemForSharedLink method
+- optionalsInput `FindAppItemForSharedLinkOptionalsInput`
   -
 
 ### Returns

@@ -22,21 +22,21 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
-export class GetSharedItemAppItemsOptionals {
+export class FindAppItemForSharedLinkOptionals {
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
-    fields: Omit<GetSharedItemAppItemsOptionals, 'cancellationToken'> &
-      Partial<Pick<GetSharedItemAppItemsOptionals, 'cancellationToken'>>,
+    fields: Omit<FindAppItemForSharedLinkOptionals, 'cancellationToken'> &
+      Partial<Pick<FindAppItemForSharedLinkOptionals, 'cancellationToken'>>,
   ) {
     if (fields.cancellationToken !== undefined) {
       this.cancellationToken = fields.cancellationToken;
     }
   }
 }
-export interface GetSharedItemAppItemsOptionalsInput {
+export interface FindAppItemForSharedLinkOptionalsInput {
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class GetSharedItemAppItemsHeaders {
+export class FindAppItemForSharedLinkHeaders {
   /**
    * A header containing the shared link and optional password for the
    * shared link.
@@ -49,8 +49,8 @@ export class GetSharedItemAppItemsHeaders {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<GetSharedItemAppItemsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetSharedItemAppItemsHeaders, 'extraHeaders'>>,
+    fields: Omit<FindAppItemForSharedLinkHeaders, 'extraHeaders'> &
+      Partial<Pick<FindAppItemForSharedLinkHeaders, 'extraHeaders'>>,
   ) {
     if (fields.boxapi !== undefined) {
       this.boxapi = fields.boxapi;
@@ -60,7 +60,7 @@ export class GetSharedItemAppItemsHeaders {
     }
   }
 }
-export interface GetSharedItemAppItemsHeadersInput {
+export interface FindAppItemForSharedLinkHeadersInput {
   /**
    * A header containing the shared link and optional password for the
    * shared link.
@@ -81,7 +81,7 @@ export class SharedLinksAppItemsManager {
   constructor(
     fields: Omit<
       SharedLinksAppItemsManager,
-      'networkSession' | 'getSharedItemAppItems'
+      'networkSession' | 'findAppItemForSharedLink'
     > &
       Partial<Pick<SharedLinksAppItemsManager, 'networkSession'>>,
   ) {
@@ -96,21 +96,21 @@ export class SharedLinksAppItemsManager {
    * Returns the app item represented by a shared link.
    *
    * The link can originate from the current enterprise or another.
-   * @param {GetSharedItemAppItemsHeadersInput} headersInput Headers of getSharedItemAppItems method
-   * @param {GetSharedItemAppItemsOptionalsInput} optionalsInput
+   * @param {FindAppItemForSharedLinkHeadersInput} headersInput Headers of findAppItemForSharedLink method
+   * @param {FindAppItemForSharedLinkOptionalsInput} optionalsInput
    * @returns {Promise<AppItem>}
    */
-  async getSharedItemAppItems(
-    headersInput: GetSharedItemAppItemsHeadersInput,
-    optionalsInput: GetSharedItemAppItemsOptionalsInput = {},
+  async findAppItemForSharedLink(
+    headersInput: FindAppItemForSharedLinkHeadersInput,
+    optionalsInput: FindAppItemForSharedLinkOptionalsInput = {},
   ): Promise<AppItem> {
-    const headers: GetSharedItemAppItemsHeaders =
-      new GetSharedItemAppItemsHeaders({
+    const headers: FindAppItemForSharedLinkHeaders =
+      new FindAppItemForSharedLinkHeaders({
         boxapi: headersInput.boxapi,
         extraHeaders: headersInput.extraHeaders,
       });
-    const optionals: GetSharedItemAppItemsOptionals =
-      new GetSharedItemAppItemsOptionals({
+    const optionals: FindAppItemForSharedLinkOptionals =
+      new FindAppItemForSharedLinkOptionals({
         cancellationToken: optionalsInput.cancellationToken,
       });
     const cancellationToken: any = optionals.cancellationToken;
