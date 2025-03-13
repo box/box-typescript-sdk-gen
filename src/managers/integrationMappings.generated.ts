@@ -136,18 +136,18 @@ export interface DeleteSlackIntegrationMappingByIdOptionalsInput {
   readonly headers?: DeleteSlackIntegrationMappingByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class CreateIntegrationMappingTeamsOptionals {
-  readonly headers: CreateIntegrationMappingTeamsHeaders =
-    new CreateIntegrationMappingTeamsHeaders({});
+export class CreateTeamsIntegrationMappingOptionals {
+  readonly headers: CreateTeamsIntegrationMappingHeaders =
+    new CreateTeamsIntegrationMappingHeaders({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<
-      CreateIntegrationMappingTeamsOptionals,
+      CreateTeamsIntegrationMappingOptionals,
       'headers' | 'cancellationToken'
     > &
       Partial<
         Pick<
-          CreateIntegrationMappingTeamsOptionals,
+          CreateTeamsIntegrationMappingOptionals,
           'headers' | 'cancellationToken'
         >
       >,
@@ -160,24 +160,24 @@ export class CreateIntegrationMappingTeamsOptionals {
     }
   }
 }
-export interface CreateIntegrationMappingTeamsOptionalsInput {
-  readonly headers?: CreateIntegrationMappingTeamsHeaders;
+export interface CreateTeamsIntegrationMappingOptionalsInput {
+  readonly headers?: CreateTeamsIntegrationMappingHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class UpdateIntegrationMappingTeamsByIdOptionals {
-  readonly requestBody: UpdateIntegrationMappingTeamsByIdRequestBody =
-    {} satisfies UpdateIntegrationMappingTeamsByIdRequestBody;
-  readonly headers: UpdateIntegrationMappingTeamsByIdHeaders =
-    new UpdateIntegrationMappingTeamsByIdHeaders({});
+export class UpdateTeamsIntegrationMappingByIdOptionals {
+  readonly requestBody: UpdateTeamsIntegrationMappingByIdRequestBody =
+    {} satisfies UpdateTeamsIntegrationMappingByIdRequestBody;
+  readonly headers: UpdateTeamsIntegrationMappingByIdHeaders =
+    new UpdateTeamsIntegrationMappingByIdHeaders({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<
-      UpdateIntegrationMappingTeamsByIdOptionals,
+      UpdateTeamsIntegrationMappingByIdOptionals,
       'requestBody' | 'headers' | 'cancellationToken'
     > &
       Partial<
         Pick<
-          UpdateIntegrationMappingTeamsByIdOptionals,
+          UpdateTeamsIntegrationMappingByIdOptionals,
           'requestBody' | 'headers' | 'cancellationToken'
         >
       >,
@@ -193,23 +193,23 @@ export class UpdateIntegrationMappingTeamsByIdOptionals {
     }
   }
 }
-export interface UpdateIntegrationMappingTeamsByIdOptionalsInput {
-  readonly requestBody?: UpdateIntegrationMappingTeamsByIdRequestBody;
-  readonly headers?: UpdateIntegrationMappingTeamsByIdHeaders;
+export interface UpdateTeamsIntegrationMappingByIdOptionalsInput {
+  readonly requestBody?: UpdateTeamsIntegrationMappingByIdRequestBody;
+  readonly headers?: UpdateTeamsIntegrationMappingByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class DeleteIntegrationMappingTeamsByIdOptionals {
-  readonly headers: DeleteIntegrationMappingTeamsByIdHeaders =
-    new DeleteIntegrationMappingTeamsByIdHeaders({});
+export class DeleteTeamsIntegrationMappingByIdOptionals {
+  readonly headers: DeleteTeamsIntegrationMappingByIdHeaders =
+    new DeleteTeamsIntegrationMappingByIdHeaders({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<
-      DeleteIntegrationMappingTeamsByIdOptionals,
+      DeleteTeamsIntegrationMappingByIdOptionals,
       'headers' | 'cancellationToken'
     > &
       Partial<
         Pick<
-          DeleteIntegrationMappingTeamsByIdOptionals,
+          DeleteTeamsIntegrationMappingByIdOptionals,
           'headers' | 'cancellationToken'
         >
       >,
@@ -222,8 +222,8 @@ export class DeleteIntegrationMappingTeamsByIdOptionals {
     }
   }
 }
-export interface DeleteIntegrationMappingTeamsByIdOptionalsInput {
-  readonly headers?: DeleteIntegrationMappingTeamsByIdHeaders;
+export interface DeleteTeamsIntegrationMappingByIdOptionalsInput {
+  readonly headers?: DeleteTeamsIntegrationMappingByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
@@ -359,17 +359,17 @@ export interface DeleteSlackIntegrationMappingByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export type GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField =
+export type GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField =
   | 'channel'
   | 'team'
   | string;
-export type GetIntegrationMappingTeamsQueryParamsBoxItemTypeField =
+export type GetTeamsIntegrationMappingQueryParamsBoxItemTypeField =
   | 'folder'
   | string;
-export interface GetIntegrationMappingTeamsQueryParams {
+export interface GetTeamsIntegrationMappingQueryParams {
   /**
    * Mapped item type, for which the mapping should be returned */
-  readonly partnerItemType?: GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField;
+  readonly partnerItemType?: GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField;
   /**
    * ID of the mapped item, for which the mapping should be returned */
   readonly partnerItemId?: string;
@@ -378,24 +378,24 @@ export interface GetIntegrationMappingTeamsQueryParams {
   readonly boxItemId?: string;
   /**
    * Box item type, for which the mappings should be returned */
-  readonly boxItemType?: GetIntegrationMappingTeamsQueryParamsBoxItemTypeField;
+  readonly boxItemType?: GetTeamsIntegrationMappingQueryParamsBoxItemTypeField;
 }
-export class GetIntegrationMappingTeamsHeaders {
+export class GetTeamsIntegrationMappingHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<GetIntegrationMappingTeamsHeaders, 'extraHeaders'> &
-      Partial<Pick<GetIntegrationMappingTeamsHeaders, 'extraHeaders'>>,
+    fields: Omit<GetTeamsIntegrationMappingHeaders, 'extraHeaders'> &
+      Partial<Pick<GetTeamsIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
-export interface GetIntegrationMappingTeamsHeadersInput {
+export interface GetTeamsIntegrationMappingHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -404,22 +404,22 @@ export interface GetIntegrationMappingTeamsHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export class CreateIntegrationMappingTeamsHeaders {
+export class CreateTeamsIntegrationMappingHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<CreateIntegrationMappingTeamsHeaders, 'extraHeaders'> &
-      Partial<Pick<CreateIntegrationMappingTeamsHeaders, 'extraHeaders'>>,
+    fields: Omit<CreateTeamsIntegrationMappingHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateTeamsIntegrationMappingHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
-export interface CreateIntegrationMappingTeamsHeadersInput {
+export interface CreateTeamsIntegrationMappingHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -428,26 +428,26 @@ export interface CreateIntegrationMappingTeamsHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export interface UpdateIntegrationMappingTeamsByIdRequestBody {
+export interface UpdateTeamsIntegrationMappingByIdRequestBody {
   readonly boxItem?: FolderReference;
   readonly rawData?: SerializedData;
 }
-export class UpdateIntegrationMappingTeamsByIdHeaders {
+export class UpdateTeamsIntegrationMappingByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<UpdateIntegrationMappingTeamsByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<UpdateIntegrationMappingTeamsByIdHeaders, 'extraHeaders'>>,
+    fields: Omit<UpdateTeamsIntegrationMappingByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateTeamsIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
-export interface UpdateIntegrationMappingTeamsByIdHeadersInput {
+export interface UpdateTeamsIntegrationMappingByIdHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -456,22 +456,22 @@ export interface UpdateIntegrationMappingTeamsByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export class DeleteIntegrationMappingTeamsByIdHeaders {
+export class DeleteTeamsIntegrationMappingByIdHeaders {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?: {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<DeleteIntegrationMappingTeamsByIdHeaders, 'extraHeaders'> &
-      Partial<Pick<DeleteIntegrationMappingTeamsByIdHeaders, 'extraHeaders'>>,
+    fields: Omit<DeleteTeamsIntegrationMappingByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteTeamsIntegrationMappingByIdHeaders, 'extraHeaders'>>,
   ) {
     if (fields.extraHeaders !== undefined) {
       this.extraHeaders = fields.extraHeaders;
     }
   }
 }
-export interface DeleteIntegrationMappingTeamsByIdHeadersInput {
+export interface DeleteTeamsIntegrationMappingByIdHeadersInput {
   /**
    * Extra headers that will be included in the HTTP request. */
   readonly extraHeaders?:
@@ -491,10 +491,10 @@ export class IntegrationMappingsManager {
       | 'createSlackIntegrationMapping'
       | 'updateSlackIntegrationMappingById'
       | 'deleteSlackIntegrationMappingById'
-      | 'getIntegrationMappingTeams'
-      | 'createIntegrationMappingTeams'
-      | 'updateIntegrationMappingTeamsById'
-      | 'deleteIntegrationMappingTeamsById'
+      | 'getTeamsIntegrationMapping'
+      | 'createTeamsIntegrationMapping'
+      | 'updateTeamsIntegrationMappingById'
+      | 'deleteTeamsIntegrationMappingById'
     > &
       Partial<Pick<IntegrationMappingsManager, 'networkSession'>>,
   ) {
@@ -708,20 +708,20 @@ export class IntegrationMappingsManager {
    * Lists [Teams integration mappings](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams) in a users' enterprise.
    * You need Admin or Co-Admin role to
    * use this endpoint.
-   * @param {GetIntegrationMappingTeamsQueryParams} queryParams Query parameters of getIntegrationMappingTeams method
-   * @param {GetIntegrationMappingTeamsHeadersInput} headersInput Headers of getIntegrationMappingTeams method
+   * @param {GetTeamsIntegrationMappingQueryParams} queryParams Query parameters of getTeamsIntegrationMapping method
+   * @param {GetTeamsIntegrationMappingHeadersInput} headersInput Headers of getTeamsIntegrationMapping method
    * @param {CancellationToken} cancellationToken Token used for request cancellation.
    * @returns {Promise<IntegrationMappingsTeams>}
    */
-  async getIntegrationMappingTeams(
-    queryParams: GetIntegrationMappingTeamsQueryParams = {} satisfies GetIntegrationMappingTeamsQueryParams,
-    headersInput: GetIntegrationMappingTeamsHeadersInput = new GetIntegrationMappingTeamsHeaders(
+  async getTeamsIntegrationMapping(
+    queryParams: GetTeamsIntegrationMappingQueryParams = {} satisfies GetTeamsIntegrationMappingQueryParams,
+    headersInput: GetTeamsIntegrationMappingHeadersInput = new GetTeamsIntegrationMappingHeaders(
       {},
     ),
     cancellationToken?: CancellationToken,
   ): Promise<IntegrationMappingsTeams> {
-    const headers: GetIntegrationMappingTeamsHeaders =
-      new GetIntegrationMappingTeamsHeaders({
+    const headers: GetTeamsIntegrationMappingHeaders =
+      new GetTeamsIntegrationMappingHeaders({
         extraHeaders: headersInput.extraHeaders,
       });
     const queryParamsMap: {
@@ -761,16 +761,16 @@ export class IntegrationMappingsManager {
    * by mapping a Teams channel to a Box item.
    * You need Admin or Co-Admin role to
    * use this endpoint.
-   * @param {IntegrationMappingTeamsCreateRequest} requestBody Request body of createIntegrationMappingTeams method
-   * @param {CreateIntegrationMappingTeamsOptionalsInput} optionalsInput
+   * @param {IntegrationMappingTeamsCreateRequest} requestBody Request body of createTeamsIntegrationMapping method
+   * @param {CreateTeamsIntegrationMappingOptionalsInput} optionalsInput
    * @returns {Promise<IntegrationMappingTeams>}
    */
-  async createIntegrationMappingTeams(
+  async createTeamsIntegrationMapping(
     requestBody: IntegrationMappingTeamsCreateRequest,
-    optionalsInput: CreateIntegrationMappingTeamsOptionalsInput = {},
+    optionalsInput: CreateTeamsIntegrationMappingOptionalsInput = {},
   ): Promise<IntegrationMappingTeams> {
-    const optionals: CreateIntegrationMappingTeamsOptionals =
-      new CreateIntegrationMappingTeamsOptionals({
+    const optionals: CreateTeamsIntegrationMappingOptionals =
+      new CreateTeamsIntegrationMappingOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
       });
@@ -808,15 +808,15 @@ export class IntegrationMappingsManager {
      * use this endpoint.
      * @param {string} integrationMappingId An ID of an integration mapping
     Example: "11235432"
-     * @param {UpdateIntegrationMappingTeamsByIdOptionalsInput} optionalsInput
+     * @param {UpdateTeamsIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<IntegrationMappingTeams>}
      */
-  async updateIntegrationMappingTeamsById(
+  async updateTeamsIntegrationMappingById(
     integrationMappingId: string,
-    optionalsInput: UpdateIntegrationMappingTeamsByIdOptionalsInput = {},
+    optionalsInput: UpdateTeamsIntegrationMappingByIdOptionalsInput = {},
   ): Promise<IntegrationMappingTeams> {
-    const optionals: UpdateIntegrationMappingTeamsByIdOptionals =
-      new UpdateIntegrationMappingTeamsByIdOptionals({
+    const optionals: UpdateTeamsIntegrationMappingByIdOptionals =
+      new UpdateTeamsIntegrationMappingByIdOptionals({
         requestBody: optionalsInput.requestBody,
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
@@ -837,7 +837,7 @@ export class IntegrationMappingsManager {
           ) as string,
           method: 'PUT',
           headers: headersMap,
-          data: serializeUpdateIntegrationMappingTeamsByIdRequestBody(
+          data: serializeUpdateTeamsIntegrationMappingByIdRequestBody(
             requestBody,
           ),
           contentType: 'application/json',
@@ -858,15 +858,15 @@ export class IntegrationMappingsManager {
      * use this endpoint.
      * @param {string} integrationMappingId An ID of an integration mapping
     Example: "11235432"
-     * @param {DeleteIntegrationMappingTeamsByIdOptionalsInput} optionalsInput
+     * @param {DeleteTeamsIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
      */
-  async deleteIntegrationMappingTeamsById(
+  async deleteTeamsIntegrationMappingById(
     integrationMappingId: string,
-    optionalsInput: DeleteIntegrationMappingTeamsByIdOptionalsInput = {},
+    optionalsInput: DeleteTeamsIntegrationMappingByIdOptionalsInput = {},
   ): Promise<undefined> {
-    const optionals: DeleteIntegrationMappingTeamsByIdOptionals =
-      new DeleteIntegrationMappingTeamsByIdOptionals({
+    const optionals: DeleteTeamsIntegrationMappingByIdOptionals =
+      new DeleteTeamsIntegrationMappingByIdOptionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
       });
@@ -972,14 +972,14 @@ export function deserializeUpdateSlackIntegrationMappingByIdRequestBody(
     options: options,
   } satisfies UpdateSlackIntegrationMappingByIdRequestBody;
 }
-export function serializeGetIntegrationMappingTeamsQueryParamsPartnerItemTypeField(
-  val: GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField,
+export function serializeGetTeamsIntegrationMappingQueryParamsPartnerItemTypeField(
+  val: GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField,
 ): SerializedData {
   return val;
 }
-export function deserializeGetIntegrationMappingTeamsQueryParamsPartnerItemTypeField(
+export function deserializeGetTeamsIntegrationMappingQueryParamsPartnerItemTypeField(
   val: SerializedData,
-): GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField {
+): GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField {
   if (val == 'channel') {
     return val;
   }
@@ -991,17 +991,17 @@ export function deserializeGetIntegrationMappingTeamsQueryParamsPartnerItemTypeF
   }
   throw new BoxSdkError({
     message:
-      "Can't deserialize GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField",
+      "Can't deserialize GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField",
   });
 }
-export function serializeGetIntegrationMappingTeamsQueryParamsBoxItemTypeField(
-  val: GetIntegrationMappingTeamsQueryParamsBoxItemTypeField,
+export function serializeGetTeamsIntegrationMappingQueryParamsBoxItemTypeField(
+  val: GetTeamsIntegrationMappingQueryParamsBoxItemTypeField,
 ): SerializedData {
   return val;
 }
-export function deserializeGetIntegrationMappingTeamsQueryParamsBoxItemTypeField(
+export function deserializeGetTeamsIntegrationMappingQueryParamsBoxItemTypeField(
   val: SerializedData,
-): GetIntegrationMappingTeamsQueryParamsBoxItemTypeField {
+): GetTeamsIntegrationMappingQueryParamsBoxItemTypeField {
   if (val == 'folder') {
     return val;
   }
@@ -1010,11 +1010,11 @@ export function deserializeGetIntegrationMappingTeamsQueryParamsBoxItemTypeField
   }
   throw new BoxSdkError({
     message:
-      "Can't deserialize GetIntegrationMappingTeamsQueryParamsBoxItemTypeField",
+      "Can't deserialize GetTeamsIntegrationMappingQueryParamsBoxItemTypeField",
   });
 }
-export function serializeUpdateIntegrationMappingTeamsByIdRequestBody(
-  val: UpdateIntegrationMappingTeamsByIdRequestBody,
+export function serializeUpdateTeamsIntegrationMappingByIdRequestBody(
+  val: UpdateTeamsIntegrationMappingByIdRequestBody,
 ): SerializedData {
   return {
     ['box_item']:
@@ -1023,18 +1023,18 @@ export function serializeUpdateIntegrationMappingTeamsByIdRequestBody(
         : serializeFolderReference(val.boxItem),
   };
 }
-export function deserializeUpdateIntegrationMappingTeamsByIdRequestBody(
+export function deserializeUpdateTeamsIntegrationMappingByIdRequestBody(
   val: SerializedData,
-): UpdateIntegrationMappingTeamsByIdRequestBody {
+): UpdateTeamsIntegrationMappingByIdRequestBody {
   if (!sdIsMap(val)) {
     throw new BoxSdkError({
       message:
-        'Expecting a map for "UpdateIntegrationMappingTeamsByIdRequestBody"',
+        'Expecting a map for "UpdateTeamsIntegrationMappingByIdRequestBody"',
     });
   }
   const boxItem: undefined | FolderReference =
     val.box_item == void 0 ? void 0 : deserializeFolderReference(val.box_item);
   return {
     boxItem: boxItem,
-  } satisfies UpdateIntegrationMappingTeamsByIdRequestBody;
+  } satisfies UpdateTeamsIntegrationMappingByIdRequestBody;
 }
