@@ -36,6 +36,7 @@ import { SharedLinksFoldersManager } from './managers/sharedLinksFolders.generat
 import { WebLinksManager } from './managers/webLinks.generated.js';
 import { TrashedWebLinksManager } from './managers/trashedWebLinks.generated.js';
 import { SharedLinksWebLinksManager } from './managers/sharedLinksWebLinks.generated.js';
+import { SharedLinksAppItemsManager } from './managers/sharedLinksAppItems.generated.js';
 import { UsersManager } from './managers/users.generated.js';
 import { SessionTerminationManager } from './managers/sessionTermination.generated.js';
 import { AvatarsManager } from './managers/avatars.generated.js';
@@ -130,6 +131,7 @@ export class BoxClient {
   readonly webLinks: WebLinksManager;
   readonly trashedWebLinks: TrashedWebLinksManager;
   readonly sharedLinksWebLinks: SharedLinksWebLinksManager;
+  readonly sharedLinksAppItems: SharedLinksAppItemsManager;
   readonly users: UsersManager;
   readonly sessionTermination: SessionTerminationManager;
   readonly avatars: AvatarsManager;
@@ -206,6 +208,7 @@ export class BoxClient {
       | 'webLinks'
       | 'trashedWebLinks'
       | 'sharedLinksWebLinks'
+      | 'sharedLinksAppItems'
       | 'users'
       | 'sessionTermination'
       | 'avatars'
@@ -396,6 +399,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.sharedLinksWebLinks = new SharedLinksWebLinksManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.sharedLinksAppItems = new SharedLinksAppItemsManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });
