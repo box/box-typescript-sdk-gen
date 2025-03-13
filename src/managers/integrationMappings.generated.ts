@@ -10,6 +10,14 @@ import { serializeIntegrationMappingBoxItemSlack } from '../schemas/integrationM
 import { deserializeIntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
 import { serializeIntegrationMappingSlackOptions } from '../schemas/integrationMappingSlackOptions.generated.js';
 import { deserializeIntegrationMappingSlackOptions } from '../schemas/integrationMappingSlackOptions.generated.js';
+import { serializeIntegrationMappingsTeams } from '../schemas/integrationMappingsTeams.generated.js';
+import { deserializeIntegrationMappingsTeams } from '../schemas/integrationMappingsTeams.generated.js';
+import { serializeIntegrationMappingTeams } from '../schemas/integrationMappingTeams.generated.js';
+import { deserializeIntegrationMappingTeams } from '../schemas/integrationMappingTeams.generated.js';
+import { serializeIntegrationMappingTeamsCreateRequest } from '../schemas/integrationMappingTeamsCreateRequest.generated.js';
+import { deserializeIntegrationMappingTeamsCreateRequest } from '../schemas/integrationMappingTeamsCreateRequest.generated.js';
+import { serializeFolderReference } from '../schemas/folderReference.generated.js';
+import { deserializeFolderReference } from '../schemas/folderReference.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { IntegrationMappings } from '../schemas/integrationMappings.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
@@ -17,6 +25,10 @@ import { IntegrationMapping } from '../schemas/integrationMapping.generated.js';
 import { IntegrationMappingSlackCreateRequest } from '../schemas/integrationMappingSlackCreateRequest.generated.js';
 import { IntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
 import { IntegrationMappingSlackOptions } from '../schemas/integrationMappingSlackOptions.generated.js';
+import { IntegrationMappingsTeams } from '../schemas/integrationMappingsTeams.generated.js';
+import { IntegrationMappingTeams } from '../schemas/integrationMappingTeams.generated.js';
+import { IntegrationMappingTeamsCreateRequest } from '../schemas/integrationMappingTeamsCreateRequest.generated.js';
+import { FolderReference } from '../schemas/folderReference.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
@@ -122,6 +134,96 @@ export class DeleteSlackIntegrationMappingByIdOptionals {
 }
 export interface DeleteSlackIntegrationMappingByIdOptionalsInput {
   readonly headers?: DeleteSlackIntegrationMappingByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateIntegrationMappingTeamsOptionals {
+  readonly headers: CreateIntegrationMappingTeamsHeaders =
+    new CreateIntegrationMappingTeamsHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateIntegrationMappingTeamsOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          CreateIntegrationMappingTeamsOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >,
+  ) {
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateIntegrationMappingTeamsOptionalsInput {
+  readonly headers?: CreateIntegrationMappingTeamsHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateIntegrationMappingTeamsByIdOptionals {
+  readonly requestBody: UpdateIntegrationMappingTeamsByIdRequestBody =
+    {} satisfies UpdateIntegrationMappingTeamsByIdRequestBody;
+  readonly headers: UpdateIntegrationMappingTeamsByIdHeaders =
+    new UpdateIntegrationMappingTeamsByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateIntegrationMappingTeamsByIdOptionals,
+      'requestBody' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UpdateIntegrationMappingTeamsByIdOptionals,
+          'requestBody' | 'headers' | 'cancellationToken'
+        >
+      >,
+  ) {
+    if (fields.requestBody !== undefined) {
+      this.requestBody = fields.requestBody;
+    }
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateIntegrationMappingTeamsByIdOptionalsInput {
+  readonly requestBody?: UpdateIntegrationMappingTeamsByIdRequestBody;
+  readonly headers?: UpdateIntegrationMappingTeamsByIdHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class DeleteIntegrationMappingTeamsByIdOptionals {
+  readonly headers: DeleteIntegrationMappingTeamsByIdHeaders =
+    new DeleteIntegrationMappingTeamsByIdHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      DeleteIntegrationMappingTeamsByIdOptionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          DeleteIntegrationMappingTeamsByIdOptionals,
+          'headers' | 'cancellationToken'
+        >
+      >,
+  ) {
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface DeleteIntegrationMappingTeamsByIdOptionalsInput {
+  readonly headers?: DeleteIntegrationMappingTeamsByIdHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export type GetSlackIntegrationMappingQueryParamsPartnerItemTypeField =
@@ -257,6 +359,127 @@ export interface DeleteSlackIntegrationMappingByIdHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export type GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField =
+  | 'channel'
+  | 'team'
+  | string;
+export type GetIntegrationMappingTeamsQueryParamsBoxItemTypeField =
+  | 'folder'
+  | string;
+export interface GetIntegrationMappingTeamsQueryParams {
+  /**
+   * Mapped item type, for which the mapping should be returned */
+  readonly partnerItemType?: GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField;
+  /**
+   * ID of the mapped item, for which the mapping should be returned */
+  readonly partnerItemId?: string;
+  /**
+   * Box item ID, for which the mappings should be returned */
+  readonly boxItemId?: string;
+  /**
+   * Box item type, for which the mappings should be returned */
+  readonly boxItemType?: GetIntegrationMappingTeamsQueryParamsBoxItemTypeField;
+}
+export class GetIntegrationMappingTeamsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<GetIntegrationMappingTeamsHeaders, 'extraHeaders'> &
+      Partial<Pick<GetIntegrationMappingTeamsHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface GetIntegrationMappingTeamsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export class CreateIntegrationMappingTeamsHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateIntegrationMappingTeamsHeaders, 'extraHeaders'> &
+      Partial<Pick<CreateIntegrationMappingTeamsHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateIntegrationMappingTeamsHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export interface UpdateIntegrationMappingTeamsByIdRequestBody {
+  readonly boxItem?: FolderReference;
+  readonly rawData?: SerializedData;
+}
+export class UpdateIntegrationMappingTeamsByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<UpdateIntegrationMappingTeamsByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<UpdateIntegrationMappingTeamsByIdHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface UpdateIntegrationMappingTeamsByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export class DeleteIntegrationMappingTeamsByIdHeaders {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<DeleteIntegrationMappingTeamsByIdHeaders, 'extraHeaders'> &
+      Partial<Pick<DeleteIntegrationMappingTeamsByIdHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface DeleteIntegrationMappingTeamsByIdHeadersInput {
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class IntegrationMappingsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -268,6 +491,10 @@ export class IntegrationMappingsManager {
       | 'createSlackIntegrationMapping'
       | 'updateSlackIntegrationMappingById'
       | 'deleteSlackIntegrationMappingById'
+      | 'getIntegrationMappingTeams'
+      | 'createIntegrationMappingTeams'
+      | 'updateIntegrationMappingTeamsById'
+      | 'deleteIntegrationMappingTeamsById'
     > &
       Partial<Pick<IntegrationMappingsManager, 'networkSession'>>,
   ) {
@@ -477,6 +704,195 @@ export class IntegrationMappingsManager {
       );
     return void 0;
   }
+  /**
+   * Lists [Teams integration mappings](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams) in a users' enterprise.
+   * You need Admin or Co-Admin role to
+   * use this endpoint.
+   * @param {GetIntegrationMappingTeamsQueryParams} queryParams Query parameters of getIntegrationMappingTeams method
+   * @param {GetIntegrationMappingTeamsHeadersInput} headersInput Headers of getIntegrationMappingTeams method
+   * @param {CancellationToken} cancellationToken Token used for request cancellation.
+   * @returns {Promise<IntegrationMappingsTeams>}
+   */
+  async getIntegrationMappingTeams(
+    queryParams: GetIntegrationMappingTeamsQueryParams = {} satisfies GetIntegrationMappingTeamsQueryParams,
+    headersInput: GetIntegrationMappingTeamsHeadersInput = new GetIntegrationMappingTeamsHeaders(
+      {},
+    ),
+    cancellationToken?: CancellationToken,
+  ): Promise<IntegrationMappingsTeams> {
+    const headers: GetIntegrationMappingTeamsHeaders =
+      new GetIntegrationMappingTeamsHeaders({
+        extraHeaders: headersInput.extraHeaders,
+      });
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['partner_item_type']: toString(queryParams.partnerItemType) as string,
+      ['partner_item_id']: toString(queryParams.partnerItemId) as string,
+      ['box_item_id']: toString(queryParams.boxItemId) as string,
+      ['box_item_type']: toString(queryParams.boxItemType) as string,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/integration_mappings/teams',
+          ) as string,
+          method: 'GET',
+          params: queryParamsMap,
+          headers: headersMap,
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeIntegrationMappingsTeams(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
+   * Creates a [Teams integration mapping](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams)
+   * by mapping a Teams channel to a Box item.
+   * You need Admin or Co-Admin role to
+   * use this endpoint.
+   * @param {IntegrationMappingTeamsCreateRequest} requestBody Request body of createIntegrationMappingTeams method
+   * @param {CreateIntegrationMappingTeamsOptionalsInput} optionalsInput
+   * @returns {Promise<IntegrationMappingTeams>}
+   */
+  async createIntegrationMappingTeams(
+    requestBody: IntegrationMappingTeamsCreateRequest,
+    optionalsInput: CreateIntegrationMappingTeamsOptionalsInput = {},
+  ): Promise<IntegrationMappingTeams> {
+    const optionals: CreateIntegrationMappingTeamsOptionals =
+      new CreateIntegrationMappingTeamsOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/integration_mappings/teams',
+          ) as string,
+          method: 'POST',
+          headers: headersMap,
+          data: serializeIntegrationMappingTeamsCreateRequest(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeIntegrationMappingTeams(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
+     * Updates a [Teams integration mapping](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams).
+     * Supports updating the Box folder ID and options.
+     * You need Admin or Co-Admin role to
+     * use this endpoint.
+     * @param {string} integrationMappingId An ID of an integration mapping
+    Example: "11235432"
+     * @param {UpdateIntegrationMappingTeamsByIdOptionalsInput} optionalsInput
+     * @returns {Promise<IntegrationMappingTeams>}
+     */
+  async updateIntegrationMappingTeamsById(
+    integrationMappingId: string,
+    optionalsInput: UpdateIntegrationMappingTeamsByIdOptionalsInput = {},
+  ): Promise<IntegrationMappingTeams> {
+    const optionals: UpdateIntegrationMappingTeamsByIdOptionals =
+      new UpdateIntegrationMappingTeamsByIdOptionals({
+        requestBody: optionalsInput.requestBody,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const requestBody: any = optionals.requestBody;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/integration_mappings/teams/',
+            toString(integrationMappingId) as string,
+          ) as string,
+          method: 'PUT',
+          headers: headersMap,
+          data: serializeUpdateIntegrationMappingTeamsByIdRequestBody(
+            requestBody,
+          ),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeIntegrationMappingTeams(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
+     * Deletes a [Teams integration mapping](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams).
+     * You need Admin or Co-Admin role to
+     * use this endpoint.
+     * @param {string} integrationMappingId An ID of an integration mapping
+    Example: "11235432"
+     * @param {DeleteIntegrationMappingTeamsByIdOptionalsInput} optionalsInput
+     * @returns {Promise<undefined>}
+     */
+  async deleteIntegrationMappingTeamsById(
+    integrationMappingId: string,
+    optionalsInput: DeleteIntegrationMappingTeamsByIdOptionalsInput = {},
+  ): Promise<undefined> {
+    const optionals: DeleteIntegrationMappingTeamsByIdOptionals =
+      new DeleteIntegrationMappingTeamsByIdOptionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({ ...{}, ...headers.extraHeaders });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/integration_mappings/teams/',
+            toString(integrationMappingId) as string,
+          ) as string,
+          method: 'DELETE',
+          headers: headersMap,
+          responseFormat: 'no_content' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return void 0;
+  }
 }
 export interface IntegrationMappingsManagerInput {
   readonly auth?: Authentication;
@@ -555,4 +971,70 @@ export function deserializeUpdateSlackIntegrationMappingByIdRequestBody(
     boxItem: boxItem,
     options: options,
   } satisfies UpdateSlackIntegrationMappingByIdRequestBody;
+}
+export function serializeGetIntegrationMappingTeamsQueryParamsPartnerItemTypeField(
+  val: GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField,
+): SerializedData {
+  return val;
+}
+export function deserializeGetIntegrationMappingTeamsQueryParamsPartnerItemTypeField(
+  val: SerializedData,
+): GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField {
+  if (val == 'channel') {
+    return val;
+  }
+  if (val == 'team') {
+    return val;
+  }
+  if (sdIsString(val)) {
+    return val;
+  }
+  throw new BoxSdkError({
+    message:
+      "Can't deserialize GetIntegrationMappingTeamsQueryParamsPartnerItemTypeField",
+  });
+}
+export function serializeGetIntegrationMappingTeamsQueryParamsBoxItemTypeField(
+  val: GetIntegrationMappingTeamsQueryParamsBoxItemTypeField,
+): SerializedData {
+  return val;
+}
+export function deserializeGetIntegrationMappingTeamsQueryParamsBoxItemTypeField(
+  val: SerializedData,
+): GetIntegrationMappingTeamsQueryParamsBoxItemTypeField {
+  if (val == 'folder') {
+    return val;
+  }
+  if (sdIsString(val)) {
+    return val;
+  }
+  throw new BoxSdkError({
+    message:
+      "Can't deserialize GetIntegrationMappingTeamsQueryParamsBoxItemTypeField",
+  });
+}
+export function serializeUpdateIntegrationMappingTeamsByIdRequestBody(
+  val: UpdateIntegrationMappingTeamsByIdRequestBody,
+): SerializedData {
+  return {
+    ['box_item']:
+      val.boxItem == void 0
+        ? val.boxItem
+        : serializeFolderReference(val.boxItem),
+  };
+}
+export function deserializeUpdateIntegrationMappingTeamsByIdRequestBody(
+  val: SerializedData,
+): UpdateIntegrationMappingTeamsByIdRequestBody {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UpdateIntegrationMappingTeamsByIdRequestBody"',
+    });
+  }
+  const boxItem: undefined | FolderReference =
+    val.box_item == void 0 ? void 0 : deserializeFolderReference(val.box_item);
+  return {
+    boxItem: boxItem,
+  } satisfies UpdateIntegrationMappingTeamsByIdRequestBody;
 }
