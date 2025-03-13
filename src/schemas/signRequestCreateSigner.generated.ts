@@ -54,6 +54,11 @@ export interface SignRequestCreateSigner {
    * a free Box account. */
   readonly loginRequired?: boolean | null;
   /**
+   * If set, this phone number will be used to verify the signer
+   * via two-factor authentication before they are able to sign the document.
+   * Cannot be selected in combination with `login_required`. */
+  readonly verificationPhoneNumber?: string | null;
+  /**
    * If set, the signer is required to enter the password before they are able
    * to sign a document. This field is write only. */
   readonly password?: string | null;
@@ -110,6 +115,7 @@ export function serializeSignRequestCreateSigner(
     ['redirect_url']: val.redirectUrl,
     ['declined_redirect_url']: val.declinedRedirectUrl,
     ['login_required']: val.loginRequired,
+    ['verification_phone_number']: val.verificationPhoneNumber,
     ['password']: val.password,
     ['signer_group_id']: val.signerGroupId,
     ['suppress_notifications']: val.suppressNotifications,
@@ -187,6 +193,19 @@ export function deserializeSignRequestCreateSigner(
   }
   const loginRequired: undefined | boolean =
     val.login_required == void 0 ? void 0 : val.login_required;
+  if (
+    !(val.verification_phone_number == void 0) &&
+    !sdIsString(val.verification_phone_number)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "verification_phone_number" of type "SignRequestCreateSigner"',
+    });
+  }
+  const verificationPhoneNumber: undefined | string =
+    val.verification_phone_number == void 0
+      ? void 0
+      : val.verification_phone_number;
   if (!(val.password == void 0) && !sdIsString(val.password)) {
     throw new BoxSdkError({
       message:
@@ -223,6 +242,7 @@ export function deserializeSignRequestCreateSigner(
     redirectUrl: redirectUrl,
     declinedRedirectUrl: declinedRedirectUrl,
     loginRequired: loginRequired,
+    verificationPhoneNumber: verificationPhoneNumber,
     password: password,
     signerGroupId: signerGroupId,
     suppressNotifications: suppressNotifications,
