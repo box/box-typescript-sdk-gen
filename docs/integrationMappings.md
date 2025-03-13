@@ -93,7 +93,18 @@ This operation is performed by calling function `updateSlackIntegrationMappingBy
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-integration-mappings-slack-id/).
 
-_Currently we don't have an example for calling `updateSlackIntegrationMappingById` in integration tests_
+<!-- sample put_integration_mappings_slack_id -->
+
+```ts
+await userClient.integrationMappings.updateSlackIntegrationMappingById(
+  integrationMappingId,
+  {
+    requestBody: {
+      boxItem: new IntegrationMappingBoxItemSlack({ id: '1234567' }),
+    } satisfies UpdateSlackIntegrationMappingByIdRequestBody,
+  } satisfies UpdateSlackIntegrationMappingByIdOptionalsInput,
+);
+```
 
 ### Arguments
 
@@ -120,7 +131,13 @@ This operation is performed by calling function `deleteSlackIntegrationMappingBy
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-integration-mappings-slack-id/).
 
-_Currently we don't have an example for calling `deleteSlackIntegrationMappingById` in integration tests_
+<!-- sample delete_integration_mappings_slack_id -->
+
+```ts
+await userClient.integrationMappings.deleteSlackIntegrationMappingById(
+  integrationMappingId,
+);
+```
 
 ### Arguments
 
@@ -141,19 +158,23 @@ Lists [Teams integration mappings](https://support.box.com/hc/en-us/articles/360
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `getIntegrationMappingTeams`.
+This operation is performed by calling function `getTeamsIntegrationMapping`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/get-integration-mappings-teams/).
 
-_Currently we don't have an example for calling `getIntegrationMappingTeams` in integration tests_
+<!-- sample get_integration_mappings_teams -->
+
+```ts
+await userClient.integrationMappings.getTeamsIntegrationMapping();
+```
 
 ### Arguments
 
-- queryParams `GetIntegrationMappingTeamsQueryParams`
-  - Query parameters of getIntegrationMappingTeams method
-- headersInput `GetIntegrationMappingTeamsHeadersInput`
-  - Headers of getIntegrationMappingTeams method
+- queryParams `GetTeamsIntegrationMappingQueryParams`
+  - Query parameters of getTeamsIntegrationMapping method
+- headersInput `GetTeamsIntegrationMappingHeadersInput`
+  - Headers of getTeamsIntegrationMapping method
 - cancellationToken `undefined | CancellationToken`
   - Token used for request cancellation.
 
@@ -170,18 +191,30 @@ by mapping a Teams channel to a Box item.
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `createIntegrationMappingTeams`.
+This operation is performed by calling function `createTeamsIntegrationMapping`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/post-integration-mappings-teams/).
 
-_Currently we don't have an example for calling `createIntegrationMappingTeams` in integration tests_
+<!-- sample post_integration_mappings_teams -->
+
+```ts
+await userClient.integrationMappings.createTeamsIntegrationMapping({
+  partnerItem: {
+    type: 'channel' as IntegrationMappingPartnerItemTeamsCreateRequestTypeField,
+    id: partnerItemId,
+    tenantId: tenantId,
+    teamId: teamId,
+  } satisfies IntegrationMappingPartnerItemTeamsCreateRequest,
+  boxItem: new FolderReference({ id: folder.id }),
+} satisfies IntegrationMappingTeamsCreateRequest);
+```
 
 ### Arguments
 
 - requestBody `IntegrationMappingTeamsCreateRequest`
-  - Request body of createIntegrationMappingTeams method
-- optionalsInput `CreateIntegrationMappingTeamsOptionalsInput`
+  - Request body of createTeamsIntegrationMapping method
+- optionalsInput `CreateTeamsIntegrationMappingOptionalsInput`
   -
 
 ### Returns
@@ -197,18 +230,29 @@ Supports updating the Box folder ID and options.
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `updateIntegrationMappingTeamsById`.
+This operation is performed by calling function `updateTeamsIntegrationMappingById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-integration-mappings-teams-id/).
 
-_Currently we don't have an example for calling `updateIntegrationMappingTeamsById` in integration tests_
+<!-- sample put_integration_mappings_teams_id -->
+
+```ts
+await userClient.integrationMappings.updateTeamsIntegrationMappingById(
+  integrationMappingId,
+  {
+    requestBody: {
+      boxItem: new FolderReference({ id: '1234567' }),
+    } satisfies UpdateTeamsIntegrationMappingByIdRequestBody,
+  } satisfies UpdateTeamsIntegrationMappingByIdOptionalsInput,
+);
+```
 
 ### Arguments
 
 - integrationMappingId `string`
   - An ID of an integration mapping Example: "11235432"
-- optionalsInput `UpdateIntegrationMappingTeamsByIdOptionalsInput`
+- optionalsInput `UpdateTeamsIntegrationMappingByIdOptionalsInput`
   -
 
 ### Returns
@@ -223,18 +267,24 @@ Deletes a [Teams integration mapping](https://support.box.com/hc/en-us/articles/
 You need Admin or Co-Admin role to
 use this endpoint.
 
-This operation is performed by calling function `deleteIntegrationMappingTeamsById`.
+This operation is performed by calling function `deleteTeamsIntegrationMappingById`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/delete-integration-mappings-teams-id/).
 
-_Currently we don't have an example for calling `deleteIntegrationMappingTeamsById` in integration tests_
+<!-- sample delete_integration_mappings_teams_id -->
+
+```ts
+await userClient.integrationMappings.deleteTeamsIntegrationMappingById(
+  integrationMappingId,
+);
+```
 
 ### Arguments
 
 - integrationMappingId `string`
   - An ID of an integration mapping Example: "11235432"
-- optionalsInput `DeleteIntegrationMappingTeamsByIdOptionalsInput`
+- optionalsInput `DeleteTeamsIntegrationMappingByIdOptionalsInput`
   -
 
 ### Returns
