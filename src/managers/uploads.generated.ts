@@ -98,6 +98,40 @@ export interface UploadFileOptionalsInput {
   readonly headers?: UploadFileHeaders;
   readonly cancellationToken?: undefined | CancellationToken;
 }
+export class UploadWithPreflightCheckOptionals {
+  readonly queryParams: UploadWithPreflightCheckQueryParams =
+    {} satisfies UploadWithPreflightCheckQueryParams;
+  readonly headers: UploadWithPreflightCheckHeaders =
+    new UploadWithPreflightCheckHeaders({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UploadWithPreflightCheckOptionals,
+      'queryParams' | 'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<
+          UploadWithPreflightCheckOptionals,
+          'queryParams' | 'headers' | 'cancellationToken'
+        >
+      >,
+  ) {
+    if (fields.queryParams !== undefined) {
+      this.queryParams = fields.queryParams;
+    }
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UploadWithPreflightCheckOptionalsInput {
+  readonly queryParams?: UploadWithPreflightCheckQueryParams;
+  readonly headers?: UploadWithPreflightCheckHeaders;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export interface UploadFileVersionRequestBodyAttributesField {
   /**
    * An optional new name for the file. If specified, the file
@@ -353,6 +387,100 @@ export interface UploadFileHeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export interface UploadWithPreflightCheckRequestBodyAttributesParentField {
+  /**
+   * The id of the parent folder. Use
+   * `0` for the user's root folder. */
+  readonly id: string;
+  readonly rawData?: SerializedData;
+}
+export interface UploadWithPreflightCheckRequestBodyAttributesField {
+  /**
+   * The name of the file */
+  readonly name: string;
+  /**
+   * The parent folder to upload the file to */
+  readonly parent: UploadWithPreflightCheckRequestBodyAttributesParentField;
+  /**
+   * Defines the time the file was originally created at.
+   *
+   * If not set, the upload time will be used. */
+  readonly contentCreatedAt?: DateTime;
+  /**
+   * Defines the time the file was last modified at.
+   *
+   * If not set, the upload time will be used. */
+  readonly contentModifiedAt?: DateTime;
+  /**
+   * The size of the file in bytes */
+  readonly size: number;
+  readonly rawData?: SerializedData;
+}
+export interface UploadWithPreflightCheckRequestBody {
+  readonly attributes: UploadWithPreflightCheckRequestBodyAttributesField;
+  /**
+   * The content of the file to upload to Box.
+   *
+   * <Message warning>
+   *
+   *   The `attributes` part of the body must come **before** the
+   *   `file` part. Requests that do not follow this format when
+   *   uploading the file will receive a HTTP `400` error with a
+   *   `metadata_after_file_contents` error code.
+   *
+   * </Message> */
+  readonly file: ByteStream;
+  readonly fileFileName?: string;
+  readonly fileContentType?: string;
+}
+export interface UploadWithPreflightCheckQueryParams {
+  /**
+   * A comma-separated list of attributes to include in the
+   * response. This can be used to request fields that are
+   * not normally returned in a standard response.
+   *
+   * Be aware that specifying this parameter will have the
+   * effect that none of the standard fields are returned in
+   * the response unless explicitly specified, instead only
+   * fields for the mini representation are returned, additional
+   * to the fields requested. */
+  readonly fields?: readonly string[];
+}
+export class UploadWithPreflightCheckHeaders {
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
+  readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<UploadWithPreflightCheckHeaders, 'extraHeaders'> &
+      Partial<Pick<UploadWithPreflightCheckHeaders, 'extraHeaders'>>,
+  ) {
+    if (fields.contentMd5 !== undefined) {
+      this.contentMd5 = fields.contentMd5;
+    }
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface UploadWithPreflightCheckHeadersInput {
+  /**
+   * An optional header containing the SHA1 hash of the file to
+   * ensure that the file was not corrupted in transit. */
+  readonly contentMd5?: string;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class UploadsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -363,6 +491,7 @@ export class UploadsManager {
       | 'uploadFileVersion'
       | 'preflightFileUploadCheck'
       | 'uploadFile'
+      | 'uploadWithPreflightCheck'
     > &
       Partial<Pick<UploadsManager, 'networkSession'>>,
   ) {
@@ -549,6 +678,90 @@ export class UploadsManager {
             this.networkSession.baseUrls.uploadUrl,
             '/2.0/files/content',
           ) as string,
+          method: 'POST',
+          params: queryParamsMap,
+          headers: headersMap,
+          multipartData: [
+            {
+              partName: 'attributes',
+              data: serializeUploadFileRequestBodyAttributesField(
+                requestBody.attributes,
+              ),
+            } satisfies MultipartItem,
+            {
+              partName: 'file',
+              fileStream: requestBody.file,
+              fileName: requestBody.fileFileName,
+              contentType: requestBody.fileContentType,
+            } satisfies MultipartItem,
+          ],
+          contentType: 'multipart/form-data',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeFiles(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
+   *  Upload a file with a preflight check
+   * @param {UploadWithPreflightCheckRequestBody} requestBody
+   * @param {UploadWithPreflightCheckOptionalsInput} optionalsInput
+   * @returns {Promise<Files>}
+   */
+  async uploadWithPreflightCheck(
+    requestBody: UploadWithPreflightCheckRequestBody,
+    optionalsInput: UploadWithPreflightCheckOptionalsInput = {},
+  ): Promise<Files> {
+    const optionals: UploadWithPreflightCheckOptionals =
+      new UploadWithPreflightCheckOptionals({
+        queryParams: optionalsInput.queryParams,
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const queryParams: any = optionals.queryParams;
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const queryParamsMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ['fields']: queryParams.fields
+        ? queryParams.fields.map(toString).join(',')
+        : undefined,
+    });
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{ ['content-md5']: toString(headers.contentMd5) as string },
+      ...headers.extraHeaders,
+    });
+    const preflightUploadUrl: UploadUrl = await this.preflightFileUploadCheck(
+      {
+        name: requestBody.attributes.name,
+        size: requestBody.attributes.size,
+        parent: {
+          id: requestBody.attributes.parent.id,
+        } satisfies PreflightFileUploadCheckRequestBodyParentField,
+      } satisfies PreflightFileUploadCheckRequestBody,
+      {
+        extraHeaders: headers.extraHeaders,
+      } satisfies PreflightFileUploadCheckHeadersInput,
+      cancellationToken,
+    );
+    if (
+      preflightUploadUrl.uploadUrl == void 0 ||
+      !(preflightUploadUrl.uploadUrl!.includes('http') as boolean)
+    ) {
+      throw new BoxSdkError({ message: 'Unable to get preflight upload URL' });
+    }
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: preflightUploadUrl.uploadUrl!,
           method: 'POST',
           params: queryParamsMap,
           headers: headersMap,
@@ -807,4 +1020,134 @@ export function deserializeUploadFileRequestBodyAttributesField(
     contentCreatedAt: contentCreatedAt,
     contentModifiedAt: contentModifiedAt,
   } satisfies UploadFileRequestBodyAttributesField;
+}
+export function serializeUploadWithPreflightCheckRequestBodyAttributesParentField(
+  val: UploadWithPreflightCheckRequestBodyAttributesParentField,
+): SerializedData {
+  return { ['id']: val.id };
+}
+export function deserializeUploadWithPreflightCheckRequestBodyAttributesParentField(
+  val: SerializedData,
+): UploadWithPreflightCheckRequestBodyAttributesParentField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UploadWithPreflightCheckRequestBodyAttributesParentField"',
+    });
+  }
+  if (val.id == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "id" of type "UploadWithPreflightCheckRequestBodyAttributesParentField" to be defined',
+    });
+  }
+  if (!sdIsString(val.id)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "id" of type "UploadWithPreflightCheckRequestBodyAttributesParentField"',
+    });
+  }
+  const id: string = val.id;
+  return {
+    id: id,
+  } satisfies UploadWithPreflightCheckRequestBodyAttributesParentField;
+}
+export function serializeUploadWithPreflightCheckRequestBodyAttributesField(
+  val: UploadWithPreflightCheckRequestBodyAttributesField,
+): SerializedData {
+  return {
+    ['name']: val.name,
+    ['parent']:
+      serializeUploadWithPreflightCheckRequestBodyAttributesParentField(
+        val.parent,
+      ),
+    ['content_created_at']:
+      val.contentCreatedAt == void 0
+        ? val.contentCreatedAt
+        : serializeDateTime(val.contentCreatedAt),
+    ['content_modified_at']:
+      val.contentModifiedAt == void 0
+        ? val.contentModifiedAt
+        : serializeDateTime(val.contentModifiedAt),
+    ['size']: val.size,
+  };
+}
+export function deserializeUploadWithPreflightCheckRequestBodyAttributesField(
+  val: SerializedData,
+): UploadWithPreflightCheckRequestBodyAttributesField {
+  if (!sdIsMap(val)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting a map for "UploadWithPreflightCheckRequestBodyAttributesField"',
+    });
+  }
+  if (val.name == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "name" of type "UploadWithPreflightCheckRequestBodyAttributesField" to be defined',
+    });
+  }
+  if (!sdIsString(val.name)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "name" of type "UploadWithPreflightCheckRequestBodyAttributesField"',
+    });
+  }
+  const name: string = val.name;
+  if (val.parent == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "parent" of type "UploadWithPreflightCheckRequestBodyAttributesField" to be defined',
+    });
+  }
+  const parent: UploadWithPreflightCheckRequestBodyAttributesParentField =
+    deserializeUploadWithPreflightCheckRequestBodyAttributesParentField(
+      val.parent,
+    );
+  if (
+    !(val.content_created_at == void 0) &&
+    !sdIsString(val.content_created_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_created_at" of type "UploadWithPreflightCheckRequestBodyAttributesField"',
+    });
+  }
+  const contentCreatedAt: undefined | DateTime =
+    val.content_created_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_created_at);
+  if (
+    !(val.content_modified_at == void 0) &&
+    !sdIsString(val.content_modified_at)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting string for "content_modified_at" of type "UploadWithPreflightCheckRequestBodyAttributesField"',
+    });
+  }
+  const contentModifiedAt: undefined | DateTime =
+    val.content_modified_at == void 0
+      ? void 0
+      : deserializeDateTime(val.content_modified_at);
+  if (val.size == void 0) {
+    throw new BoxSdkError({
+      message:
+        'Expecting "size" of type "UploadWithPreflightCheckRequestBodyAttributesField" to be defined',
+    });
+  }
+  if (!sdIsNumber(val.size)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting number for "size" of type "UploadWithPreflightCheckRequestBodyAttributesField"',
+    });
+  }
+  const size: number = val.size;
+  return {
+    name: name,
+    parent: parent,
+    contentCreatedAt: contentCreatedAt,
+    contentModifiedAt: contentModifiedAt,
+    size: size,
+  } satisfies UploadWithPreflightCheckRequestBodyAttributesField;
 }
