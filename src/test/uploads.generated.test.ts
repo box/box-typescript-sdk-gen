@@ -8,6 +8,10 @@ import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
 import { serializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { deserializeUploadFileVersionRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadWithPreflightCheckRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { deserializeUploadWithPreflightCheckRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { serializeUploadWithPreflightCheckRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
+import { deserializeUploadWithPreflightCheckRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { serializeUploadUrl } from '../schemas/uploadUrl.generated.js';
 import { deserializeUploadUrl } from '../schemas/uploadUrl.generated.js';
 import { serializePreflightFileUploadCheckRequestBody } from '../managers/uploads.generated.js';
@@ -27,6 +31,9 @@ import { UploadFileVersionRequestBodyAttributesField } from '../managers/uploads
 import { CancellationToken } from '../internal/utils.js';
 import { UploadFileQueryParams } from '../managers/uploads.generated.js';
 import { UploadFileHeaders } from '../managers/uploads.generated.js';
+import { UploadWithPreflightCheckRequestBody } from '../managers/uploads.generated.js';
+import { UploadWithPreflightCheckRequestBodyAttributesField } from '../managers/uploads.generated.js';
+import { UploadWithPreflightCheckRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { UploadUrl } from '../schemas/uploadUrl.generated.js';
 import { PreflightFileUploadCheckRequestBody } from '../managers/uploads.generated.js';
 import { PreflightFileUploadCheckRequestBodyParentField } from '../managers/uploads.generated.js';
@@ -97,6 +104,53 @@ test('testRequestCancellation', async function testRequestCancellation(): Promis
       } satisfies UploadFileOptionalsInput,
     );
   }).rejects.toThrow();
+});
+test('testUploadFileWithPreflightCheck', async function testUploadFileWithPreflightCheck(): Promise<any> {
+  const newFileName: string = getUuid();
+  const fileContentStream: ByteStream = generateByteStream(1024 * 1024);
+  await expect(async () => {
+    await client.uploads.uploadWithPreflightCheck({
+      attributes: {
+        name: newFileName,
+        size: -1,
+        parent: {
+          id: '0',
+        } satisfies UploadWithPreflightCheckRequestBodyAttributesParentField,
+      } satisfies UploadWithPreflightCheckRequestBodyAttributesField,
+      file: fileContentStream,
+    } satisfies UploadWithPreflightCheckRequestBody);
+  }).rejects.toThrow();
+  const uploadFilesWithPreflight: Files =
+    await client.uploads.uploadWithPreflightCheck({
+      attributes: {
+        name: newFileName,
+        size: 1024 * 1024,
+        parent: {
+          id: '0',
+        } satisfies UploadWithPreflightCheckRequestBodyAttributesParentField,
+      } satisfies UploadWithPreflightCheckRequestBodyAttributesField,
+      file: fileContentStream,
+    } satisfies UploadWithPreflightCheckRequestBody);
+  const file: FileFull = uploadFilesWithPreflight.entries![0];
+  if (!(file.name == newFileName)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(file.size == 1024 * 1024)) {
+    throw new Error('Assertion failed');
+  }
+  await expect(async () => {
+    await client.uploads.uploadWithPreflightCheck({
+      attributes: {
+        name: newFileName,
+        size: 1024 * 1024,
+        parent: {
+          id: '0',
+        } satisfies UploadWithPreflightCheckRequestBodyAttributesParentField,
+      } satisfies UploadWithPreflightCheckRequestBodyAttributesField,
+      file: fileContentStream,
+    } satisfies UploadWithPreflightCheckRequestBody);
+  }).rejects.toThrow();
+  await client.files.deleteFileById(file.id);
 });
 test('testPreflightCheck', async function testPreflightCheck(): Promise<any> {
   const newFileName: string = getUuid();
