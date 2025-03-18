@@ -7,13 +7,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* add `verification_phone_number` property to create sign request (box/box-openapi[#515](https://github.com/box/box-typescript-sdk-gen/issues/515)) ([#546](https://github.com/box/box-typescript-sdk-gen/issues/546)) ([916502c](https://github.com/box/box-typescript-sdk-gen/commit/916502c47cb4936ab93a40b3f1552c1860173a8e))
+* Add `verification_phone_number` property to create sign request (box/box-openapi[#515](https://github.com/box/box-typescript-sdk-gen/issues/515)) ([#546](https://github.com/box/box-typescript-sdk-gen/issues/546)) ([916502c](https://github.com/box/box-typescript-sdk-gen/commit/916502c47cb4936ab93a40b3f1552c1860173a8e))
 
 
 ### New Features and Enhancements
 
-* add find app item for shared link endpoint (box/box-openapi[#514](https://github.com/box/box-typescript-sdk-gen/issues/514)) ([#545](https://github.com/box/box-typescript-sdk-gen/issues/545)) ([7c32eaf](https://github.com/box/box-typescript-sdk-gen/commit/7c32eaf2af3ef08299d9dd69e744304b20f4309f))
-* add Integration Mappings Teams API (box/box-openapi[#517](https://github.com/box/box-typescript-sdk-gen/issues/517)) ([#548](https://github.com/box/box-typescript-sdk-gen/issues/548)) ([6ce1c7c](https://github.com/box/box-typescript-sdk-gen/commit/6ce1c7c78c9bc5d70383065e95f01bc8133fdd52))
+* Add find app item for shared link endpoint (box/box-openapi[#514](https://github.com/box/box-typescript-sdk-gen/issues/514)) ([#545](https://github.com/box/box-typescript-sdk-gen/issues/545)) ([7c32eaf](https://github.com/box/box-typescript-sdk-gen/commit/7c32eaf2af3ef08299d9dd69e744304b20f4309f))
+* Add Integration Mappings Teams API (box/box-openapi[#517](https://github.com/box/box-typescript-sdk-gen/issues/517)) ([#548](https://github.com/box/box-typescript-sdk-gen/issues/548)) ([6ce1c7c](https://github.com/box/box-typescript-sdk-gen/commit/6ce1c7c78c9bc5d70383065e95f01bc8133fdd52))
 * Support upload with preflight check (box/box-codegen[#676](https://github.com/box/box-typescript-sdk-gen/issues/676)) ([#554](https://github.com/box/box-typescript-sdk-gen/issues/554)) ([e3aa784](https://github.com/box/box-typescript-sdk-gen/commit/e3aa784b73c7b473fdf06c05c7f657a54fc08e4c))
 
 ### [1.13.2](https://github.com/box/box-typescript-sdk-gen/compare/v1.13.1...v1.13.2) (2025-03-11)
