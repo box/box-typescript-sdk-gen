@@ -33,6 +33,7 @@ Embrace the new generation of Box SDKs and unlock the full potential of the Box 
 - [Installing](#installing)
 - [Getting Started](#getting-started)
 - [Documentation](#documentation)
+- [Browser Support](#browser-support)
 - [Upgrades](#upgrades)
 - [Integration Tests](#integration-tests)
   - [Running integration tests locally](#running-integration-tests-locally)
@@ -100,6 +101,12 @@ To run the example locally:
 # Documentation
 
 Browse the [docs](docs/README.md) or see [API Reference](https://developer.box.com/reference/) for more information.
+
+# Browser Support
+
+This SDK works in modern browsers that support ES6+ features. It seamlessly integrates with frontend frameworks like ReactJS, Angular, and NextJS. Check out our example below:
+
+- [React Sample App](https://github.com/box-community/box-ts-sdk-react)
 
 # Upgrades
 
