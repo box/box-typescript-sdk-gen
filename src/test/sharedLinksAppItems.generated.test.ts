@@ -16,7 +16,7 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
-test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any> {
+test('testSharedLinksAppItems', async function testSharedLinksAppItems(): Promise<any> {
   const appItemSharedLink: string = getEnvVar('APP_ITEM_SHARED_LINK');
   const appItem: AppItem =
     await client.sharedLinksAppItems.findAppItemForSharedLink({
