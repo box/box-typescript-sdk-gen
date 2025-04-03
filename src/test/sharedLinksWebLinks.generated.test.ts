@@ -18,6 +18,8 @@ import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '..
 import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
 import { serializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
 import { deserializeUpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
+import { serializeRemoveSharedLinkFromWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { deserializeRemoveSharedLinkFromWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
 import { FindWebLinkForSharedLinkHeadersInput } from '../managers/sharedLinksWebLinks.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
@@ -35,11 +37,14 @@ import { UpdateSharedLinkOnWebLinkRequestBody } from '../managers/sharedLinksWeb
 import { UpdateSharedLinkOnWebLinkRequestBodySharedLinkField } from '../managers/sharedLinksWebLinks.generated.js';
 import { UpdateSharedLinkOnWebLinkRequestBodySharedLinkAccessField } from '../managers/sharedLinksWebLinks.generated.js';
 import { UpdateSharedLinkOnWebLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
+import { RemoveSharedLinkFromWebLinkRequestBody } from '../managers/sharedLinksWebLinks.generated.js';
+import { RemoveSharedLinkFromWebLinkQueryParams } from '../managers/sharedLinksWebLinks.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
+import { createNull } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -120,6 +125,20 @@ test('testSharedLinksWebLinks', async function testSharedLinksWebLinks(): Promis
       (toString(updatedWebLink.sharedLink!.access) as string) == 'collaborators'
     )
   ) {
+    throw new Error('Assertion failed');
+  }
+  await client.sharedLinksWebLinks.removeSharedLinkFromWebLink(
+    webLinkId,
+    {
+      sharedLink: createNull(),
+    } satisfies RemoveSharedLinkFromWebLinkRequestBody,
+    { fields: 'shared_link' } satisfies RemoveSharedLinkFromWebLinkQueryParams,
+  );
+  const webLinkFromApiAfterRemove: WebLink =
+    await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
+      fields: 'shared_link',
+    } satisfies GetSharedLinkForWebLinkQueryParams);
+  if (!(webLinkFromApiAfterRemove.sharedLink == void 0)) {
     throw new Error('Assertion failed');
   }
   await client.webLinks.deleteWebLinkById(webLinkId);

@@ -178,7 +178,15 @@ This operation is performed by calling function `removeSharedLinkFromFolder`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-folders-id--remove-shared-link/).
 
-_Currently we don't have an example for calling `removeSharedLinkFromFolder` in integration tests_
+<!-- sample put_folders_id#remove_shared_link -->
+
+```ts
+await client.sharedLinksFolders.removeSharedLinkFromFolder(
+  folder.id,
+  { sharedLink: createNull() } satisfies RemoveSharedLinkFromFolderRequestBody,
+  { fields: 'shared_link' } satisfies RemoveSharedLinkFromFolderQueryParams,
+);
+```
 
 ### Arguments
 

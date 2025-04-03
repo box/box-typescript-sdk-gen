@@ -16,6 +16,8 @@ import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../
 import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
 import { serializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
 import { deserializeUpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
+import { serializeRemoveSharedLinkFromFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { deserializeRemoveSharedLinkFromFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
 import { FindFolderForSharedLinkHeadersInput } from '../managers/sharedLinksFolders.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
@@ -32,11 +34,14 @@ import { UpdateSharedLinkOnFolderRequestBody } from '../managers/sharedLinksFold
 import { UpdateSharedLinkOnFolderRequestBodySharedLinkField } from '../managers/sharedLinksFolders.generated.js';
 import { UpdateSharedLinkOnFolderRequestBodySharedLinkAccessField } from '../managers/sharedLinksFolders.generated.js';
 import { UpdateSharedLinkOnFolderQueryParams } from '../managers/sharedLinksFolders.generated.js';
+import { RemoveSharedLinkFromFolderRequestBody } from '../managers/sharedLinksFolders.generated.js';
+import { RemoveSharedLinkFromFolderQueryParams } from '../managers/sharedLinksFolders.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
+import { createNull } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -111,6 +116,20 @@ test('testSharedLinksFolders', async function testSharedLinksFolders(): Promise<
   if (
     !((toString(updatedFolder.sharedLink!.access) as string) == 'collaborators')
   ) {
+    throw new Error('Assertion failed');
+  }
+  await client.sharedLinksFolders.removeSharedLinkFromFolder(
+    folder.id,
+    {
+      sharedLink: createNull(),
+    } satisfies RemoveSharedLinkFromFolderRequestBody,
+    { fields: 'shared_link' } satisfies RemoveSharedLinkFromFolderQueryParams,
+  );
+  const folderFromApiAfterRemove: FolderFull =
+    await client.sharedLinksFolders.getSharedLinkForFolder(folder.id, {
+      fields: 'shared_link',
+    } satisfies GetSharedLinkForFolderQueryParams);
+  if (!(folderFromApiAfterRemove.sharedLink == void 0)) {
     throw new Error('Assertion failed');
   }
   await client.folders.deleteFolderById(folder.id);

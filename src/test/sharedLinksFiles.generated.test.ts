@@ -18,6 +18,8 @@ import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkField } from '../ma
 import { deserializeUpdateSharedLinkOnFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
 import { serializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { deserializeUpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
+import { serializeRemoveSharedLinkFromFileRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { deserializeRemoveSharedLinkFromFileRequestBody } from '../managers/sharedLinksFiles.generated.js';
 import { FindFileForSharedLinkHeadersInput } from '../managers/sharedLinksFiles.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { Files } from '../schemas/files.generated.js';
@@ -36,11 +38,14 @@ import { UpdateSharedLinkOnFileRequestBody } from '../managers/sharedLinksFiles.
 import { UpdateSharedLinkOnFileRequestBodySharedLinkField } from '../managers/sharedLinksFiles.generated.js';
 import { UpdateSharedLinkOnFileRequestBodySharedLinkAccessField } from '../managers/sharedLinksFiles.generated.js';
 import { UpdateSharedLinkOnFileQueryParams } from '../managers/sharedLinksFiles.generated.js';
+import { RemoveSharedLinkFromFileRequestBody } from '../managers/sharedLinksFiles.generated.js';
+import { RemoveSharedLinkFromFileQueryParams } from '../managers/sharedLinksFiles.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
+import { createNull } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -119,6 +124,18 @@ test('testSharedLinksFiles', async function testSharedLinksFiles(): Promise<any>
   if (
     !((toString(updatedFile.sharedLink!.access) as string) == 'collaborators')
   ) {
+    throw new Error('Assertion failed');
+  }
+  await client.sharedLinksFiles.removeSharedLinkFromFile(
+    fileId,
+    { sharedLink: createNull() } satisfies RemoveSharedLinkFromFileRequestBody,
+    { fields: 'shared_link' } satisfies RemoveSharedLinkFromFileQueryParams,
+  );
+  const fileFromApiAfterRemove: FileFull =
+    await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
+      fields: 'shared_link',
+    } satisfies GetSharedLinkForFileQueryParams);
+  if (!(fileFromApiAfterRemove.sharedLink == void 0)) {
     throw new Error('Assertion failed');
   }
   await client.files.deleteFileById(fileId);

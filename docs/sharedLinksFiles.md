@@ -181,7 +181,15 @@ This operation is performed by calling function `removeSharedLinkFromFile`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/put-files-id--remove-shared-link/).
 
-_Currently we don't have an example for calling `removeSharedLinkFromFile` in integration tests_
+<!-- sample put_files_id#remove_shared_link -->
+
+```ts
+await client.sharedLinksFiles.removeSharedLinkFromFile(
+  fileId,
+  { sharedLink: createNull() } satisfies RemoveSharedLinkFromFileRequestBody,
+  { fields: 'shared_link' } satisfies RemoveSharedLinkFromFileQueryParams,
+);
+```
 
 ### Arguments
 
