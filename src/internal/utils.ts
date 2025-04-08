@@ -21,6 +21,7 @@ import {
   FormData,
   generateReadableStreamFromFile,
 } from './utilsNode';
+import { sanitizedValue } from '../serialization/json';
 
 export type HashName = 'sha1';
 export type DigestHashType = 'base64';
@@ -238,4 +239,20 @@ export function createCancellationController(): CancellationController {
 
 export function random(min: number, max: number): number {
   return Math.random() * (max - min) + min;
+}
+
+/**
+ * Sanitize a map by replacing sensitive values with a placeholder.
+ * @param dictionary The map to sanitize
+ * @param keysToSanitize Keys to sanitize
+ */
+export function sanitizeMap(
+  dictionary: Record<string, string>,
+  keysToSanitize: Record<string, string>,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.entries(dictionary).map(([k, v]) =>
+      k.toLowerCase() in keysToSanitize ? [k, sanitizedValue()] : [k, v],
+    ),
+  );
 }

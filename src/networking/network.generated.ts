@@ -1,3 +1,4 @@
+import { DataSanitizerInput } from '../internal/logging.generated.js';
 import { BaseUrls } from './baseUrls.generated.js';
 import { Interceptor } from './interceptors.generated.js';
 import { Agent } from '../internal/utils.js';
@@ -8,6 +9,7 @@ import { BoxNetworkClient } from './boxNetworkClient.js';
 import { NetworkClient } from './networkClient.generated.js';
 import { RetryStrategy } from './retries.generated.js';
 import { BoxRetryStrategy } from './retries.generated.js';
+import { DataSanitizer } from '../internal/logging.generated.js';
 export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;
@@ -19,6 +21,7 @@ export class NetworkSession {
   readonly proxyConfig?: ProxyConfig;
   readonly networkClient: NetworkClient = new BoxNetworkClient({});
   readonly retryStrategy: RetryStrategy = new BoxRetryStrategy({});
+  readonly dataSanitizer: DataSanitizer = new DataSanitizer({});
   constructor(
     fields: Omit<
       NetworkSession,
@@ -28,6 +31,7 @@ export class NetworkSession {
       | 'agent'
       | 'networkClient'
       | 'retryStrategy'
+      | 'dataSanitizer'
       | 'withAdditionalHeaders'
       | 'withCustomBaseUrls'
       | 'withCustomAgentOptions'
@@ -35,6 +39,7 @@ export class NetworkSession {
       | 'withProxy'
       | 'withNetworkClient'
       | 'withRetryStrategy'
+      | 'withDataSanitizer'
     > &
       Partial<
         Pick<
@@ -45,6 +50,7 @@ export class NetworkSession {
           | 'agent'
           | 'networkClient'
           | 'retryStrategy'
+          | 'dataSanitizer'
         >
       >,
   ) {
@@ -72,6 +78,9 @@ export class NetworkSession {
     if (fields.retryStrategy !== undefined) {
       this.retryStrategy = fields.retryStrategy;
     }
+    if (fields.dataSanitizer !== undefined) {
+      this.dataSanitizer = fields.dataSanitizer;
+    }
   }
   /**
      * Generate a fresh network session by duplicating the existing configuration and network parameters, while also including additional headers to be attached to every API call.
@@ -94,6 +103,7 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -111,6 +121,7 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -128,6 +139,7 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -145,6 +157,7 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -162,6 +175,7 @@ export class NetworkSession {
       proxyConfig: proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -179,6 +193,7 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: networkClient,
       retryStrategy: this.retryStrategy,
+      dataSanitizer: this.dataSanitizer,
     });
   }
   /**
@@ -196,6 +211,26 @@ export class NetworkSession {
       proxyConfig: this.proxyConfig,
       networkClient: this.networkClient,
       retryStrategy: retryStrategy,
+      dataSanitizer: this.dataSanitizer,
+    });
+  }
+  /**
+   * Generate a fresh network session by duplicating the existing configuration and network parameters, while also applying data sanitizer
+   * @param {DataSanitizerInput} dataSanitizerInput
+   * @returns {NetworkSession}
+   */
+  withDataSanitizer(dataSanitizerInput: DataSanitizerInput): NetworkSession {
+    const dataSanitizer: DataSanitizer = new DataSanitizer({});
+    return new NetworkSession({
+      additionalHeaders: this.additionalHeaders,
+      baseUrls: this.baseUrls,
+      interceptors: this.interceptors,
+      agent: this.agent,
+      agentOptions: this.agentOptions,
+      proxyConfig: this.proxyConfig,
+      networkClient: this.networkClient,
+      retryStrategy: this.retryStrategy,
+      dataSanitizer: dataSanitizer,
     });
   }
 }
@@ -210,4 +245,5 @@ export interface NetworkSessionInput {
   readonly proxyConfig?: ProxyConfig;
   readonly networkClient?: NetworkClient;
   readonly retryStrategy?: RetryStrategy;
+  readonly dataSanitizer?: DataSanitizer;
 }
