@@ -64,3 +64,35 @@ export function sdIsList(data: SerializedData): data is SerializedDataList {
 export function sdIsMap(data: SerializedData): data is SerializedDataMap {
   return typeof data === 'object' && data != null && !Array.isArray(data);
 }
+
+/**
+ * Returns a string replacement for sensitive data.
+ */
+export function sanitizedValue(): string {
+  return '---[redacted]---';
+}
+
+/**
+ * Sanitize serialized data by replacing sensitive values with a placeholder.
+ * @param sd SerializedData to sanitize
+ * @param keysToSanitize Keys to sanitize
+ */
+export function sanitizeSerializedData(
+  sd: SerializedData,
+  keysToSanitize: Record<string, string>,
+): SerializedData {
+  if (!sdIsMap(sd)) {
+    return sd;
+  }
+  const sanitizedDictionary: { [key: string]: SerializedData | undefined } = {};
+  for (const [key, value] of Object.entries(sd)) {
+    if (key.toLowerCase() in keysToSanitize && typeof value === 'string') {
+      sanitizedDictionary[key] = sanitizedValue();
+    } else if (typeof value === 'object') {
+      sanitizedDictionary[key] = sanitizeSerializedData(value, keysToSanitize);
+    } else {
+      sanitizedDictionary[key] = value;
+    }
+  }
+  return sanitizedDictionary;
+}

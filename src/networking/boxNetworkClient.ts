@@ -248,7 +248,9 @@ export class BoxNetworkClient implements NetworkClient {
       return fetchResponse;
     }
 
-    const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
+    const [code, contextInfo, requestId, helpUrl, message] = sdIsMap(
+      fetchResponse.data,
+    )
       ? [
           sdToJson(fetchResponse.data['code']),
           sdIsMap(fetchResponse.data['context_info'])
@@ -256,11 +258,12 @@ export class BoxNetworkClient implements NetworkClient {
             : undefined,
           sdToJson(fetchResponse.data['request_id']),
           sdToJson(fetchResponse.data['help_url']),
+          sdToJson(fetchResponse.data['message']),
         ]
       : [];
 
     throw new BoxApiError({
-      message: `${fetchResponse.status}`,
+      message: `${fetchResponse.status} ${message}; Request ID: ${requestId}`,
       timestamp: `${Date.now()}`,
       requestInfo: {
         method: requestInit.method!,
@@ -280,6 +283,7 @@ export class BoxNetworkClient implements NetworkClient {
         requestId: requestId,
         helpUrl: helpUrl,
       },
+      dataSanitizer: networkSession.dataSanitizer,
     });
   }
 }
