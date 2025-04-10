@@ -1,6 +1,7 @@
-import nodeFetch, { RequestInit } from 'node-fetch';
+import nodeFetch, { RequestInit } from "node-fetch";
 
-import { BoxApiError, BoxSdkError } from '../box/errors';
+import { BoxApiError, BoxSdkError } from "../box/errors";
+import { Readable } from "stream";
 import {
   ByteStream,
   FormData,
@@ -8,20 +9,20 @@ import {
   isBrowser,
   readByteStream,
   calculateMD5Hash,
-} from '../internal/utils';
-import { sdkVersion } from './version';
-import { NetworkClient } from './networkClient.generated';
+} from "../internal/utils";
+import { sdkVersion } from "./version";
+import { NetworkClient } from "./networkClient.generated";
 import {
   SerializedData,
   jsonToSerializedData,
   sdIsMap,
   sdToJson,
   sdToUrlParams,
-} from '../serialization/json';
-import { Interceptor } from './interceptors.generated';
-import { FetchOptions } from './fetchOptions.generated';
-import { FetchResponse } from './fetchResponse.generated';
-import { NetworkSession } from './network.generated';
+} from "../serialization/json";
+import { Interceptor } from "./interceptors.generated";
+import { FetchOptions } from "./fetchOptions.generated";
+import { FetchResponse } from "./fetchResponse.generated";
+import { NetworkSession } from "./network.generated";
 
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
@@ -42,9 +43,9 @@ type FetchOptionsExtended = FetchOptions & {
 
 async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   const {
-    method = 'GET',
+    method = "GET",
     headers = {},
-    contentType: contentTypeInput = 'application/json',
+    contentType: contentTypeInput = "application/json",
     data,
     fileStream,
   } = options;
@@ -61,23 +62,23 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
         if (item.fileStream) {
           const buffer = await readByteStream(item.fileStream);
           const blob = isBrowser() ? new Blob([buffer]) : buffer;
-          contentHeaders['content-md5'] = await calculateMD5Hash(buffer);
+          contentHeaders["content-md5"] = await calculateMD5Hash(buffer);
           formData.append(item.partName, blob, {
-            filename: item.fileName ?? 'file',
-            contentType: item.contentType ?? 'application/octet-stream',
+            filename: item.fileName ?? "file",
+            contentType: item.contentType ?? "application/octet-stream",
           });
         } else if (item.data) {
           formData.append(item.partName, sdToJson(item.data));
         } else {
           throw new BoxSdkError({
-            message: 'Multipart item must have either body or fileStream',
+            message: "Multipart item must have either body or fileStream",
           });
         }
       }
       return {
         contentHeaders: {
           ...(!isBrowser() && {
-            'Content-Type': `multipart/form-data; boundary=${formData.getBoundary()}`,
+            "Content-Type": `multipart/form-data; boundary=${formData.getBoundary()}`,
           }),
           ...contentHeaders,
         },
@@ -85,20 +86,20 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       };
     }
 
-    contentHeaders['Content-Type'] = contentTypeInput;
+    contentHeaders["Content-Type"] = contentTypeInput;
     switch (contentTypeInput) {
-      case 'application/json':
-      case 'application/json-patch+json':
+      case "application/json":
+      case "application/json-patch+json":
         return { contentHeaders, body: sdToJson(data) };
 
-      case 'application/x-www-form-urlencoded':
+      case "application/x-www-form-urlencoded":
         return { contentHeaders, body: sdToUrlParams(data) };
 
-      case 'application/octet-stream':
+      case "application/octet-stream":
         if (!fileStream) {
           throw new BoxSdkError({
             message:
-              'fileStream required for application/octet-stream content type',
+              "fileStream required for application/octet-stream content type",
           });
         }
         return {
@@ -122,25 +123,25 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       ...headers,
       ...(options.auth && {
         Authorization: await options.auth.retrieveAuthorizationHeader(
-          options.networkSession,
+          options.networkSession
         ),
       }),
-      'User-Agent': userAgentHeader,
-      'X-Box-UA': xBoxUaHeader,
+      "User-Agent": userAgentHeader,
+      "X-Box-UA": xBoxUaHeader,
       // Additional headers will override the default headers
       ...options.networkSession?.additionalHeaders,
     },
     body: body as any,
-    signal: options.cancellationToken as RequestInit['signal'],
+    signal: options.cancellationToken as RequestInit["signal"],
     agent: options.networkSession?.agent,
-    ...(fileStream && isBrowser() && { duplex: 'half' }),
+    ...(fileStream && isBrowser() && { duplex: "half" }),
   };
 }
 
 export class BoxNetworkClient implements NetworkClient {
   constructor(
-    fields?: Omit<BoxNetworkClient, 'fetch'> &
-      Partial<Pick<BoxNetworkClient, 'fetch'>>,
+    fields?: Omit<BoxNetworkClient, "fetch"> &
+      Partial<Pick<BoxNetworkClient, "fetch">>
   ) {
     Object.assign(this, fields);
   }
@@ -151,7 +152,7 @@ export class BoxNetworkClient implements NetworkClient {
       ? networkSession.interceptors.reduce(
           (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
             interceptor.beforeRequest(modifiedOptions),
-          options,
+          options
         )
       : options;
     const fileStreamBuffer = fetchOptions.fileStream
@@ -166,31 +167,36 @@ export class BoxNetworkClient implements NetworkClient {
 
     const { params = {} } = fetchOptions;
     const response = await nodeFetch(
-      ''.concat(
+      "".concat(
         fetchOptions.url,
-        Object.keys(params).length === 0 || fetchOptions.url.endsWith('?')
-          ? ''
-          : '?',
-        new URLSearchParams(params).toString(),
+        Object.keys(params).length === 0 || fetchOptions.url.endsWith("?")
+          ? ""
+          : "?",
+        new URLSearchParams(params).toString()
       ),
-      { ...requestInit, redirect: isBrowser() ? 'follow' : 'manual' },
+      { ...requestInit, redirect: isBrowser() ? "follow" : "manual" }
     );
 
-    const contentType = response.headers.get('content-type') ?? '';
+    const contentType = response.headers.get("content-type") ?? "";
     const ignoreResponseBody = fetchOptions.followRedirects === false;
-    const responseBytesBuffer = !ignoreResponseBody
-      ? await response.arrayBuffer()
-      : new Uint8Array();
 
-    const data = ((): SerializedData => {
-      if (!ignoreResponseBody && contentType.includes('application/json')) {
+    let data: SerializedData | undefined;
+    let content: ByteStream | undefined;
+    let responseBytesBuffer: ArrayBuffer | undefined;
+
+    if (!ignoreResponseBody) {
+      if (options.responseFormat === "binary") {
+        content = response.body as ByteStream;
+        responseBytesBuffer = new Uint8Array();
+      } else if (options.responseFormat === "json") {
+        responseBytesBuffer = await response.arrayBuffer();
         const text = new TextDecoder().decode(responseBytesBuffer);
-        return jsonToSerializedData(text);
+        if (contentType.includes("application/json")) {
+          data = jsonToSerializedData(text);
+        }
+        content = generateByteStreamFromBuffer(responseBytesBuffer);
       }
-      return void 0;
-    })();
-
-    const content = generateByteStreamFromBuffer(responseBytesBuffer);
+    }
 
     let fetchResponse: FetchResponse = {
       url: response.url,
@@ -203,21 +209,21 @@ export class BoxNetworkClient implements NetworkClient {
       fetchResponse = networkSession.interceptors.reduce(
         (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
           interceptor.afterRequest(modifiedResponse),
-        fetchResponse,
+        fetchResponse
       );
     }
 
     const shouldRetry = await networkSession.retryStrategy.shouldRetry(
       fetchOptions,
       fetchResponse,
-      numRetries,
+      numRetries
     );
 
     if (shouldRetry) {
       const retryTimeout = networkSession.retryStrategy.retryAfter(
         fetchOptions,
         fetchResponse,
-        numRetries,
+        numRetries
       );
       await new Promise((resolve) => setTimeout(resolve, retryTimeout));
       return this.fetch({ ...options, numRetries: numRetries + 1 });
@@ -228,19 +234,19 @@ export class BoxNetworkClient implements NetworkClient {
       fetchResponse.status < 400 &&
       fetchOptions.followRedirects !== false
     ) {
-      if (!fetchResponse.headers['location']) {
+      if (!fetchResponse.headers["location"]) {
         throw new BoxSdkError({
           message: `Unable to follow redirect for ${fetchOptions.url}`,
         });
       }
       const sameOrigin =
-        new URL(fetchResponse.headers['location']).origin ===
+        new URL(fetchResponse.headers["location"]).origin ===
         new URL(fetchOptions.url).origin;
       return this.fetch({
         ...options,
         params: undefined,
         auth: sameOrigin ? fetchOptions.auth : undefined,
-        url: fetchResponse.headers['location'],
+        url: fetchResponse.headers["location"],
       });
     }
 
@@ -250,12 +256,12 @@ export class BoxNetworkClient implements NetworkClient {
 
     const [code, contextInfo, requestId, helpUrl] = sdIsMap(fetchResponse.data)
       ? [
-          sdToJson(fetchResponse.data['code']),
-          sdIsMap(fetchResponse.data['context_info'])
-            ? fetchResponse.data['context_info']
+          sdToJson(fetchResponse.data["code"]),
+          sdIsMap(fetchResponse.data["context_info"])
+            ? fetchResponse.data["context_info"]
             : undefined,
-          sdToJson(fetchResponse.data['request_id']),
-          sdToJson(fetchResponse.data['help_url']),
+          sdToJson(fetchResponse.data["request_id"]),
+          sdToJson(fetchResponse.data["help_url"]),
         ]
       : [];
 
@@ -268,7 +274,7 @@ export class BoxNetworkClient implements NetworkClient {
         queryParams: params,
         headers: (requestInit.headers as { [key: string]: string }) ?? {},
         body:
-          typeof requestInit.body === 'string' ? requestInit.body : undefined,
+          typeof requestInit.body === "string" ? requestInit.body : undefined,
       },
       responseInfo: {
         statusCode: fetchResponse.status,
@@ -289,12 +295,12 @@ function constructBoxUAHeader() {
     agent: `box-javascript-generated-sdk/${sdkVersion}`,
     env: isBrowser()
       ? navigator.userAgent
-      : `Node/${process.version.replace('v', '')}`,
+      : `Node/${process.version.replace("v", "")}`,
   } as Record<string, string>;
 
   return Object.keys(analyticsIdentifiers)
     .map((k) => `${k}=${analyticsIdentifiers[k]}`)
-    .join('; ');
+    .join("; ");
 }
 
 // Retry intervals are between 50% and 150% of the exponentially increasing base amount
