@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.15.0...v1.15.1) (2025-04-11)
+
+
+### Bug Fixes
+
+* Fix data sanitizer for TypeScript (box/box-codegen[#702](https://github.com/box/box-typescript-sdk-gen/issues/702)) ([#582](https://github.com/box/box-typescript-sdk-gen/issues/582)) ([eb79c0f](https://github.com/box/box-typescript-sdk-gen/commit/eb79c0faa11f40667289155e71b8893a96eb558a))
+
 ## [1.15.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.14.0...v1.15.0) (2025-04-10)
 
 
