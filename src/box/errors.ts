@@ -1,6 +1,6 @@
 import { SerializedData } from '../serialization/json.js';
 import { GeneratedCodeError } from '../internal/errors.js';
-import util from 'util';
+import { utilLib } from '../internal/utils.js';
 import { DataSanitizer } from '../internal/logging.generated';
 
 export class BoxSdkError extends GeneratedCodeError {
@@ -60,7 +60,7 @@ export class BoxApiError extends BoxSdkError {
     Object.setPrototypeOf(this, BoxApiError.prototype);
   }
 
-  [util.inspect.custom]() {
+  [utilLib.inspect.custom]() {
     return this.toString();
   }
 

@@ -20,6 +20,7 @@ import {
   Buffer,
   FormData,
   generateReadableStreamFromFile,
+  utilLib,
 } from './utilsNode';
 import { sanitizedValue } from '../serialization/json';
 
@@ -43,6 +44,7 @@ export {
   jsonStringifyWithEscapedUnicode,
   computeWebhookSignature,
   calculateMD5Hash,
+  utilLib,
 };
 
 export { Buffer, FormData };
