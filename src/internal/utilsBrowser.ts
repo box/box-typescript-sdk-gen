@@ -9,6 +9,12 @@ export type Agent = any;
 export type HashName = 'sha1';
 export type DigestHashType = 'base64';
 
+export class utilLib {
+  static inspect = {
+    custom: 'inspect.custom',
+  };
+}
+
 export class Hash {
   #hash: any;
   algorithm: HashName;

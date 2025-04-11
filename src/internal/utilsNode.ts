@@ -5,8 +5,9 @@ import { default as crypto } from 'crypto';
 import { default as fs } from 'fs';
 import { ProxyAgent } from 'proxy-agent';
 import { default as FormData } from 'form-data';
+import util from 'util';
 
-export { Buffer, Readable as ByteStream, FormData };
+export { Buffer, Readable as ByteStream, FormData, util as utilLib };
 export type AgentOptions = any;
 export type Agent = any;
 export type HashName = 'sha1';
