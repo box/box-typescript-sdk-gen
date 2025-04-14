@@ -33,6 +33,7 @@ import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesParentField } from '../managers/uploads.generated.js';
 import { GetFileThumbnailUrlExtension } from '../managers/files.generated.js';
+import { Buffer } from '../internal/utils.js';
 import { GetFileThumbnailByIdExtension } from '../managers/files.generated.js';
 import { GetFileByIdQueryParams } from '../managers/files.generated.js';
 import { GetFileByIdHeaders } from '../managers/files.generated.js';
@@ -46,6 +47,8 @@ import { CopyFileRequestBodyParentField } from '../managers/files.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { generateByteStream } from '../internal/utils.js';
 import { readByteStream } from '../internal/utils.js';
+import { generateByteStreamFromBuffer } from '../internal/utils.js';
+import { generateByteBuffer } from '../internal/utils.js';
 import { bufferEquals } from '../internal/utils.js';
 import { ByteStream } from '../internal/utils.js';
 import { createNull } from '../internal/utils.js';
@@ -93,7 +96,9 @@ test('testGetFileThumbnailUrl', async function testGetFileThumbnailUrl(): Promis
 });
 test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any> {
   const thumbnailFileName: string = getUuid();
-  const thumbnailContentStream: ByteStream = generateByteStream(1024 * 1024);
+  const thumbnailBuffer: Buffer = generateByteBuffer(1024 * 1024);
+  const thumbnailContentStream: ByteStream =
+    generateByteStreamFromBuffer(thumbnailBuffer);
   const thumbnailFile: FileFull = await uploadFile(
     thumbnailFileName,
     thumbnailContentStream,
@@ -104,12 +109,7 @@ test('testGetFileThumbnail', async function testGetFileThumbnail(): Promise<any>
       'png' as GetFileThumbnailByIdExtension,
     );
   if (
-    !!(
-      bufferEquals(
-        await readByteStream(thumbnail!),
-        await readByteStream(thumbnailContentStream),
-      ) == true
-    )
+    !!(bufferEquals(await readByteStream(thumbnail!), thumbnailBuffer) == true)
   ) {
     throw new Error('Assertion failed');
   }

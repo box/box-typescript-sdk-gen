@@ -8,6 +8,8 @@ import {
   isBrowser,
   readByteStream,
   calculateMD5Hash,
+  multipartStreamToBuffer,
+  multipartBufferToStream,
 } from '../internal/utils';
 import { sdkVersion } from './version';
 import { NetworkClient } from './networkClient.generated';
@@ -26,7 +28,15 @@ import { NetworkSession } from './network.generated';
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
 })`;
+
 export const xBoxUaHeader = constructBoxUAHeader();
+export const shouldIncludeBoxUaHeader = (options: FetchOptions) => {
+  return !(
+    isBrowser() &&
+    (options.responseFormat === 'binary' ||
+      options.responseFormat === 'no_content')
+  );
+};
 
 export interface MultipartItem {
   readonly partName: string;
@@ -118,15 +128,18 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
   return {
     method,
     headers: {
-      ...contentHeaders,
+      // Only set content type if it is not a GET request
+      ...(method != 'GET' && contentHeaders),
       ...headers,
       ...(options.auth && {
         Authorization: await options.auth.retrieveAuthorizationHeader(
           options.networkSession,
         ),
       }),
-      'User-Agent': userAgentHeader,
-      'X-Box-UA': xBoxUaHeader,
+      ...(shouldIncludeBoxUaHeader(options) && {
+        'User-Agent': userAgentHeader,
+        'X-Box-UA': xBoxUaHeader,
+      }),
       // Additional headers will override the default headers
       ...options.networkSession?.additionalHeaders,
     },
@@ -157,10 +170,17 @@ export class BoxNetworkClient implements NetworkClient {
     const fileStreamBuffer = fetchOptions.fileStream
       ? await readByteStream(fetchOptions.fileStream)
       : void 0;
+    const multipartBuffer = fetchOptions.multipartData
+      ? await multipartStreamToBuffer(fetchOptions.multipartData)
+      : void 0;
+
     const requestInit = await createRequestInit({
       ...fetchOptions,
       fileStream: fileStreamBuffer
         ? generateByteStreamFromBuffer(fileStreamBuffer)
+        : void 0,
+      multipartData: multipartBuffer
+        ? multipartBufferToStream(multipartBuffer)
         : void 0,
     });
 
@@ -220,7 +240,16 @@ export class BoxNetworkClient implements NetworkClient {
         numRetries,
       );
       await new Promise((resolve) => setTimeout(resolve, retryTimeout));
-      return this.fetch({ ...options, numRetries: numRetries + 1 });
+      return this.fetch({
+        ...options,
+        numRetries: numRetries + 1,
+        fileStream: fileStreamBuffer
+          ? generateByteStreamFromBuffer(fileStreamBuffer)
+          : void 0,
+        multipartData: multipartBuffer
+          ? multipartBufferToStream(multipartBuffer)
+          : void 0,
+      });
     }
 
     if (

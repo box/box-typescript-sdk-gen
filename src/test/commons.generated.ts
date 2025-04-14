@@ -80,6 +80,10 @@ import { BoxClient } from '../client.generated.js';
 import { ClassificationTemplate } from '../schemas/classificationTemplate.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { TermsOfService } from '../schemas/termsOfService.generated.js';
+import { Authentication } from '../networking/auth.generated.js';
+import { BoxCcgAuth } from '../box/ccgAuth.generated.js';
+import { CcgConfig } from '../box/ccgAuth.generated.js';
+import { isBrowser } from '../internal/utils.js';
 import { BoxJwtAuth } from '../box/jwtAuth.generated.js';
 import { JwtConfig } from '../box/jwtAuth.generated.js';
 import { toString } from '../internal/utils.js';
@@ -91,6 +95,15 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export function getCcgAuth(): BoxCcgAuth {
+  const ccgConfig: CcgConfig = new CcgConfig({
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+    enterpriseId: getEnvVar('ENTERPRISE_ID'),
+  });
+  const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
+  return auth;
+}
 export function getJwtAuth(): BoxJwtAuth {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
     decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
@@ -99,12 +112,19 @@ export function getJwtAuth(): BoxJwtAuth {
   return auth;
 }
 export function getDefaultClientWithUserSubject(userId: string): BoxClient {
+  if (isBrowser()) {
+    const ccgAuth: BoxCcgAuth = getCcgAuth();
+    const ccgAuthUser: BoxCcgAuth = ccgAuth.withUserSubject(userId);
+    return new BoxClient({ auth: ccgAuthUser });
+  }
   const auth: BoxJwtAuth = getJwtAuth();
   const authUser: BoxJwtAuth = auth.withUserSubject(userId);
   return new BoxClient({ auth: authUser });
 }
 export function getDefaultClient(): BoxClient {
-  const client: BoxClient = new BoxClient({ auth: getJwtAuth() });
+  const client: BoxClient = new BoxClient({
+    auth: isBrowser() ? getCcgAuth() : getJwtAuth(),
+  });
   return client;
 }
 export async function createNewFolder(): Promise<FolderFull> {
