@@ -45,6 +45,17 @@ export interface TemplateSigner {
   /**
    * An identifier for the signer. This can be used to identify a signer within the template. */
   readonly publicId?: string;
+  /**
+   * If true for signers with a defined email, the password provided when the template was created is used by default.
+   * If true for signers without a specified / defined email, the creator needs to provide a password when using the template. */
+  readonly isPasswordRequired?: boolean | null;
+  /**
+   * If true for signers with a defined email, the phone number provided when the template was created is used by default.
+   * If true for signers without a specified / defined email, the template creator needs to provide a phone number when creating a request. */
+  readonly isPhoneNumberRequired?: boolean | null;
+  /**
+   * If true, the signer is required to login to access the document. */
+  readonly loginRequired?: boolean | null;
   readonly rawData?: SerializedData;
 }
 export function serializeTemplateSignerRoleField(
@@ -89,6 +100,9 @@ export function serializeTemplateSigner(val: TemplateSigner): SerializedData {
     ['signer_group_id']: val.signerGroupId,
     ['label']: val.label,
     ['public_id']: val.publicId,
+    ['is_password_required']: val.isPasswordRequired,
+    ['is_phone_number_required']: val.isPhoneNumberRequired,
+    ['login_required']: val.loginRequired,
   };
 }
 export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
@@ -150,6 +164,38 @@ export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
   }
   const publicId: undefined | string =
     val.public_id == void 0 ? void 0 : val.public_id;
+  if (
+    !(val.is_password_required == void 0) &&
+    !sdIsBoolean(val.is_password_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_password_required" of type "TemplateSigner"',
+    });
+  }
+  const isPasswordRequired: undefined | boolean =
+    val.is_password_required == void 0 ? void 0 : val.is_password_required;
+  if (
+    !(val.is_phone_number_required == void 0) &&
+    !sdIsBoolean(val.is_phone_number_required)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "is_phone_number_required" of type "TemplateSigner"',
+    });
+  }
+  const isPhoneNumberRequired: undefined | boolean =
+    val.is_phone_number_required == void 0
+      ? void 0
+      : val.is_phone_number_required;
+  if (!(val.login_required == void 0) && !sdIsBoolean(val.login_required)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting boolean for "login_required" of type "TemplateSigner"',
+    });
+  }
+  const loginRequired: undefined | boolean =
+    val.login_required == void 0 ? void 0 : val.login_required;
   return {
     inputs: inputs,
     email: email,
@@ -159,5 +205,8 @@ export function deserializeTemplateSigner(val: SerializedData): TemplateSigner {
     signerGroupId: signerGroupId,
     label: label,
     publicId: publicId,
+    isPasswordRequired: isPasswordRequired,
+    isPhoneNumberRequired: isPhoneNumberRequired,
+    loginRequired: loginRequired,
   } satisfies TemplateSigner;
 }
