@@ -20,8 +20,11 @@ import {
   Buffer,
   FormData,
   generateReadableStreamFromFile,
+  getEnvVar,
+  setEnvVar,
   utilLib,
 } from './utilsNode';
+import { MultipartItem } from '../networking';
 import { sanitizedValue } from '../serialization/json';
 
 export type HashName = 'sha1';
@@ -44,6 +47,8 @@ export {
   jsonStringifyWithEscapedUnicode,
   computeWebhookSignature,
   calculateMD5Hash,
+  getEnvVar,
+  setEnvVar,
   utilLib,
 };
 
@@ -131,10 +136,6 @@ export function hexStrToBase64(hex: string) {
   const base64 = btoa(String.fromCharCode.apply(null, Array.from(hexBytes)));
 
   return base64;
-}
-
-export function getEnvVar(name: string) {
-  return process.env[name] || '';
 }
 
 export function generateByteStream(size: number): ByteStream {
@@ -241,6 +242,42 @@ export function createCancellationController(): CancellationController {
 
 export function random(min: number, max: number): number {
   return Math.random() * (max - min) + min;
+}
+
+export async function multipartStreamToBuffer(
+  multipart: readonly MultipartItem[],
+): Promise<(MultipartItem & { fileStreamBuffer?: Buffer })[]> {
+  return await Promise.all(
+    multipart.map(async (item) => {
+      if (!item.fileStream) {
+        return item;
+      }
+      return {
+        ...item,
+        fileStream: undefined,
+        fileStreamBuffer: item.fileStream
+          ? await readByteStream(item.fileStream)
+          : undefined,
+      };
+    }),
+  );
+}
+
+export function multipartBufferToStream(
+  multipart: (MultipartItem & { fileStreamBuffer?: Buffer })[],
+): readonly MultipartItem[] {
+  return multipart.map((item) => {
+    if (!item.fileStreamBuffer) {
+      return item;
+    }
+    return {
+      ...item,
+      fileStreamBuffer: undefined,
+      fileStream: item.fileStreamBuffer
+        ? generateByteStreamFromBuffer(item.fileStreamBuffer)
+        : undefined,
+    } as MultipartItem;
+  });
 }
 
 /**

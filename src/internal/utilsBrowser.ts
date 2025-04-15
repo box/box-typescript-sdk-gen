@@ -57,8 +57,17 @@ export class Hash {
 }
 
 export function generateByteBuffer(size: number): Buffer {
+  // Maximum size for crypto.getRandomValues is 65536 bytes
+  const MAX_CHUNK_SIZE = 65536;
   const buffer = new Uint8Array(size);
-  window.crypto.getRandomValues(buffer);
+
+  for (let offset = 0; offset < size; offset += MAX_CHUNK_SIZE) {
+    const length = Math.min(MAX_CHUNK_SIZE, size - offset);
+    const chunk = new Uint8Array(length);
+    window.crypto.getRandomValues(chunk);
+    buffer.set(chunk, offset);
+  }
+
   return Buffer.from(buffer);
 }
 
@@ -122,6 +131,27 @@ export function stringToByteStream(data: string): ReadableStream {
       controller.close();
     },
   });
+}
+
+export function getEnvVar(name: string): string {
+  if (
+    typeof window !== 'undefined' &&
+    (window as any).env &&
+    (window as any).env[name]
+  ) {
+    return (window as any).env[name];
+  }
+  return '';
+}
+
+export function setEnvVar(name: string, value: string): void {
+  if (typeof window === 'undefined') {
+    throw new Error('This function requires a browser environment');
+  }
+  if (!(window as any).env) {
+    (window as any).env = {};
+  }
+  (window as any).env[name] = value;
 }
 
 export async function readByteStream(byteStream: ByteStream): Promise<Buffer> {

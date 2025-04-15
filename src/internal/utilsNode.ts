@@ -271,3 +271,17 @@ export function random(min: number, max: number): number {
 export async function calculateMD5Hash(data: string | Buffer): Promise<string> {
   return crypto.createHash('sha1').update(data).digest('hex');
 }
+
+export function getEnvVar(name: string): string {
+  if (typeof process === 'undefined' || !process.env) {
+    throw new Error('This function requires a Node.js environment');
+  }
+  return process.env[name] || '';
+}
+
+export function setEnvVar(name: string, value: string): void {
+  if (typeof process === 'undefined' || !process.env) {
+    throw new Error('This function requires a Node.js environment');
+  }
+  process.env[name] = value;
+}
