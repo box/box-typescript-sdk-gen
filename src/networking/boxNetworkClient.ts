@@ -198,19 +198,24 @@ export class BoxNetworkClient implements NetworkClient {
 
     const contentType = response.headers.get('content-type') ?? '';
     const ignoreResponseBody = fetchOptions.followRedirects === false;
-    const responseBytesBuffer = !ignoreResponseBody
-      ? await response.arrayBuffer()
-      : new Uint8Array();
 
-    const data = ((): SerializedData => {
-      if (!ignoreResponseBody && contentType.includes('application/json')) {
+    let data: SerializedData | undefined;
+    let content: ByteStream = generateByteStreamFromBuffer(new Uint8Array());
+    let responseBytesBuffer: ArrayBuffer | undefined;
+
+    if (!ignoreResponseBody) {
+      if (options.responseFormat === 'binary') {
+        content = response.body as ByteStream;
+        responseBytesBuffer = new Uint8Array();
+      } else if (options.responseFormat === 'json') {
+        responseBytesBuffer = await response.arrayBuffer();
         const text = new TextDecoder().decode(responseBytesBuffer);
-        return jsonToSerializedData(text);
+        if (contentType.includes('application/json')) {
+          data = jsonToSerializedData(text);
+        }
+        content = generateByteStreamFromBuffer(responseBytesBuffer);
       }
-      return void 0;
-    })();
-
-    const content = generateByteStreamFromBuffer(responseBytesBuffer);
+    }
 
     let fetchResponse: FetchResponse = {
       url: response.url,
