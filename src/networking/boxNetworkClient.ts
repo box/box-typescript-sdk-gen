@@ -23,7 +23,9 @@ import {
 import { Interceptor } from './interceptors.generated';
 import { FetchOptions } from './fetchOptions.generated';
 import { FetchResponse } from './fetchResponse.generated';
-import { NetworkSession } from './network.generated';
+import { RetryStrategy } from './retries.generated.js';
+import { BoxRetryStrategy } from './retries.generated.js';
+import { DataSanitizer } from '../internal/logging.generated.js';
 
 export const userAgentHeader = `Box JavaScript generated SDK v${sdkVersion} (${
   isBrowser() ? navigator.userAgent : `Node ${process.version}`
@@ -159,9 +161,14 @@ export class BoxNetworkClient implements NetworkClient {
   }
   async fetch(options: FetchOptionsExtended): Promise<FetchResponse> {
     const numRetries = options.numRetries ?? 0;
-    const networkSession = options.networkSession ?? new NetworkSession({});
-    const fetchOptions: typeof options = networkSession.interceptors?.length
-      ? networkSession.interceptors.reduce(
+    const interceptors: readonly Interceptor[] =
+      options.networkSession?.interceptors ?? [];
+    const retryStrategy: RetryStrategy =
+      options.networkSession?.retryStrategy ?? new BoxRetryStrategy({});
+    const dataSanitizer: DataSanitizer =
+      options.networkSession?.dataSanitizer ?? new DataSanitizer({});
+    const fetchOptions: typeof options = interceptors.length
+      ? interceptors.reduce(
           (modifiedOptions: FetchOptions, interceptor: Interceptor) =>
             interceptor.beforeRequest(modifiedOptions),
           options,
@@ -224,22 +231,22 @@ export class BoxNetworkClient implements NetworkClient {
       content,
       headers: Object.fromEntries(Array.from(response.headers.entries())),
     };
-    if (networkSession.interceptors?.length) {
-      fetchResponse = networkSession.interceptors.reduce(
+    if (interceptors.length) {
+      fetchResponse = interceptors.reduce(
         (modifiedResponse: FetchResponse, interceptor: Interceptor) =>
           interceptor.afterRequest(modifiedResponse),
         fetchResponse,
       );
     }
 
-    const shouldRetry = await networkSession.retryStrategy.shouldRetry(
+    const shouldRetry = await retryStrategy.shouldRetry(
       fetchOptions,
       fetchResponse,
       numRetries,
     );
 
     if (shouldRetry) {
-      const retryTimeout = networkSession.retryStrategy.retryAfter(
+      const retryTimeout = retryStrategy.retryAfter(
         fetchOptions,
         fetchResponse,
         numRetries,
@@ -317,7 +324,7 @@ export class BoxNetworkClient implements NetworkClient {
         requestId: requestId,
         helpUrl: helpUrl,
       },
-      dataSanitizer: networkSession.dataSanitizer,
+      dataSanitizer: dataSanitizer,
     });
   }
 }
