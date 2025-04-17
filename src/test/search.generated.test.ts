@@ -164,7 +164,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   const searchFrom: string = ''.concat(
     template.scope!,
     '.',
-    template.templateKey,
+    template.templateKey!,
   ) as string;
   const query: MetadataQueryResults = await client.search.searchByMetadataQuery(
     {
@@ -186,7 +186,7 @@ test('testCreateMetaDataQueryExecuteRead', async function testCreateMetaDataQuer
   }
   await client.metadataTemplates.deleteMetadataTemplate(
     'enterprise' as DeleteMetadataTemplateScope,
-    template.templateKey,
+    template.templateKey!,
   );
   await client.files.deleteFileById(file.id);
 });
