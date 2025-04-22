@@ -60,7 +60,7 @@ See the endpoint docs at
 ```ts
 await userClient.integrationMappings.createSlackIntegrationMapping({
   partnerItem: new IntegrationMappingPartnerItemSlack({
-    id: partnerItemId,
+    id: slackPartnerItemId,
     slackOrgId: slackOrgId,
   }),
   boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
@@ -97,10 +97,10 @@ See the endpoint docs at
 
 ```ts
 await userClient.integrationMappings.updateSlackIntegrationMappingById(
-  integrationMappingId,
+  slackIntegrationMapping.id,
   {
     requestBody: {
-      boxItem: new IntegrationMappingBoxItemSlack({ id: '1234567' }),
+      boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
     } satisfies UpdateSlackIntegrationMappingByIdRequestBody,
   } satisfies UpdateSlackIntegrationMappingByIdOptionalsInput,
 );
@@ -135,7 +135,7 @@ See the endpoint docs at
 
 ```ts
 await userClient.integrationMappings.deleteSlackIntegrationMappingById(
-  integrationMappingId,
+  slackIntegrationMapping.id,
 );
 ```
 

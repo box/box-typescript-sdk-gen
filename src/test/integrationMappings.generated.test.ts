@@ -4,14 +4,28 @@ import { serializeCreateFolderRequestBody } from '../managers/folders.generated.
 import { deserializeCreateFolderRequestBody } from '../managers/folders.generated.js';
 import { serializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
 import { deserializeCreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { serializeCreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { serializeCreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { deserializeCreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { serializeIntegrationMappings } from '../schemas/integrationMappings.generated.js';
+import { deserializeIntegrationMappings } from '../schemas/integrationMappings.generated.js';
 import { serializeIntegrationMappingSlackCreateRequest } from '../schemas/integrationMappingSlackCreateRequest.generated.js';
 import { deserializeIntegrationMappingSlackCreateRequest } from '../schemas/integrationMappingSlackCreateRequest.generated.js';
 import { serializeIntegrationMappingPartnerItemSlack } from '../schemas/integrationMappingPartnerItemSlack.generated.js';
 import { deserializeIntegrationMappingPartnerItemSlack } from '../schemas/integrationMappingPartnerItemSlack.generated.js';
 import { serializeIntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
 import { deserializeIntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
-import { serializeIntegrationMappings } from '../schemas/integrationMappings.generated.js';
-import { deserializeIntegrationMappings } from '../schemas/integrationMappings.generated.js';
+import { serializeIntegrationMapping } from '../schemas/integrationMapping.generated.js';
+import { deserializeIntegrationMapping } from '../schemas/integrationMapping.generated.js';
 import { serializeUpdateSlackIntegrationMappingByIdRequestBody } from '../managers/integrationMappings.generated.js';
 import { deserializeUpdateSlackIntegrationMappingByIdRequestBody } from '../managers/integrationMappings.generated.js';
 import { serializeIntegrationMappingTeamsCreateRequest } from '../schemas/integrationMappingTeamsCreateRequest.generated.js';
@@ -32,10 +46,17 @@ import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
 import { CreateFolderRequestBody } from '../managers/folders.generated.js';
 import { CreateFolderRequestBodyParentField } from '../managers/folders.generated.js';
+import { CreateCollaborationRequestBody } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyItemField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyItemTypeField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyAccessibleByField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyAccessibleByTypeField } from '../managers/userCollaborations.generated.js';
+import { CreateCollaborationRequestBodyRoleField } from '../managers/userCollaborations.generated.js';
+import { IntegrationMappings } from '../schemas/integrationMappings.generated.js';
 import { IntegrationMappingSlackCreateRequest } from '../schemas/integrationMappingSlackCreateRequest.generated.js';
 import { IntegrationMappingPartnerItemSlack } from '../schemas/integrationMappingPartnerItemSlack.generated.js';
 import { IntegrationMappingBoxItemSlack } from '../schemas/integrationMappingBoxItemSlack.generated.js';
-import { IntegrationMappings } from '../schemas/integrationMappings.generated.js';
+import { IntegrationMapping } from '../schemas/integrationMapping.generated.js';
 import { UpdateSlackIntegrationMappingByIdRequestBody } from '../managers/integrationMappings.generated.js';
 import { IntegrationMappingTeamsCreateRequest } from '../schemas/integrationMappingTeamsCreateRequest.generated.js';
 import { IntegrationMappingPartnerItemTeamsCreateRequest } from '../schemas/integrationMappingPartnerItemTeamsCreateRequest.generated.js';
@@ -45,8 +66,10 @@ import { UpdateTeamsIntegrationMappingByIdRequestBody } from '../managers/integr
 import { generateByteStream } from '../internal/utils.js';
 import { getUuid } from '../internal/utils.js';
 import { getEnvVar } from '../internal/utils.js';
+import { toString } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { getDefaultClientWithUserSubject } from './commons.generated.js';
+import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -56,45 +79,96 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testSlackIntegrationMappings', async function testSlackIntegrationMappings(): Promise<any> {
-  const folder: FolderFull = await client.folders.createFolder({
+  const userId: string = getEnvVar('USER_ID');
+  const slackAutomationUserId: string = getEnvVar('SLACK_AUTOMATION_USER_ID');
+  const slackOrgId: string = getEnvVar('SLACK_ORG_ID');
+  const slackPartnerItemId: string = getEnvVar('SLACK_PARTNER_ITEM_ID');
+  const userClient: BoxClient = getDefaultClientWithUserSubject(userId);
+  const folder: FolderFull = await userClient.folders.createFolder({
     name: getUuid(),
     parent: { id: '0' } satisfies CreateFolderRequestBodyParentField,
   } satisfies CreateFolderRequestBody);
-  const slackOrgId: string = '1';
-  const partnerItemId: string = '1';
-  const userId: string = getEnvVar('USER_ID');
-  const userClient: BoxClient = getDefaultClientWithUserSubject(userId);
-  await expect(async () => {
+  await userClient.userCollaborations.createCollaboration({
+    item: {
+      type: 'folder' as CreateCollaborationRequestBodyItemTypeField,
+      id: folder.id,
+    } satisfies CreateCollaborationRequestBodyItemField,
+    accessibleBy: {
+      type: 'user' as CreateCollaborationRequestBodyAccessibleByTypeField,
+      id: slackAutomationUserId,
+    } satisfies CreateCollaborationRequestBodyAccessibleByField,
+    role: 'co-owner' as CreateCollaborationRequestBodyRoleField,
+  } satisfies CreateCollaborationRequestBody);
+  const slackIntegrations: IntegrationMappings =
+    await userClient.integrationMappings.getSlackIntegrationMapping();
+  if (slackIntegrations.entries!.length == 0) {
     await userClient.integrationMappings.createSlackIntegrationMapping({
       partnerItem: new IntegrationMappingPartnerItemSlack({
-        id: partnerItemId,
+        id: slackPartnerItemId,
         slackOrgId: slackOrgId,
       }),
       boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
     } satisfies IntegrationMappingSlackCreateRequest);
-  }).rejects.toThrow();
-  const integrationMappings: IntegrationMappings =
+  }
+  const slackMappings: IntegrationMappings =
     await userClient.integrationMappings.getSlackIntegrationMapping();
-  if (!(integrationMappings.entries!.length == 0)) {
+  if (!(slackMappings.entries!.length >= 1)) {
     throw new Error('Assertion failed');
   }
-  const integrationMappingId: string = '123456';
-  await expect(async () => {
+  const slackIntegrationMapping: IntegrationMapping = slackMappings.entries![0];
+  if (
+    !((toString(slackIntegrationMapping.integrationType) as string) == 'slack')
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(slackIntegrationMapping.type) as string) ==
+      'integration_mapping'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !((toString(slackIntegrationMapping.boxItem.type) as string) == 'folder')
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (!(slackIntegrationMapping.partnerItem.id == slackPartnerItemId)) {
+    throw new Error('Assertion failed');
+  }
+  if (!(slackIntegrationMapping.partnerItem.slackWorkspaceId == slackOrgId)) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(slackIntegrationMapping.partnerItem.type) as string) ==
+      'channel'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  const updatedSlackMapping: IntegrationMapping =
     await userClient.integrationMappings.updateSlackIntegrationMappingById(
-      integrationMappingId,
+      slackIntegrationMapping.id,
       {
         requestBody: {
-          boxItem: new IntegrationMappingBoxItemSlack({ id: '1234567' }),
+          boxItem: new IntegrationMappingBoxItemSlack({ id: folder.id }),
         } satisfies UpdateSlackIntegrationMappingByIdRequestBody,
       } satisfies UpdateSlackIntegrationMappingByIdOptionalsInput,
     );
-  }).rejects.toThrow();
-  await expect(async () => {
+  if (!((toString(updatedSlackMapping.boxItem.type) as string) == 'folder')) {
+    throw new Error('Assertion failed');
+  }
+  if (!(updatedSlackMapping.boxItem.id == folder.id)) {
+    throw new Error('Assertion failed');
+  }
+  if (slackMappings.entries!.length > 2) {
     await userClient.integrationMappings.deleteSlackIntegrationMappingById(
-      integrationMappingId,
+      slackIntegrationMapping.id,
     );
-  }).rejects.toThrow();
-  await client.folders.deleteFolderById(folder.id);
+  }
+  await userClient.folders.deleteFolderById(folder.id);
 });
 test('testTeamsIntegrationMappings', async function testTeamsIntegrationMappings(): Promise<any> {
   const folder: FolderFull = await client.folders.createFolder({
