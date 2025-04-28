@@ -212,7 +212,7 @@ export class BoxNetworkClient implements NetworkClient {
 
     if (!ignoreResponseBody) {
       if (options.responseFormat === 'binary') {
-        content = response.body as ByteStream;
+        content = response.body as unknown as ByteStream;
         responseBytesBuffer = new Uint8Array();
       } else if (options.responseFormat === 'json') {
         responseBytesBuffer = await response.arrayBuffer();

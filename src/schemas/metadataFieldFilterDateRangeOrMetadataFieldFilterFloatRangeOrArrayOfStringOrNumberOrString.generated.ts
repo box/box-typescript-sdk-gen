@@ -28,7 +28,7 @@ export function serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatR
   if (sdIsNumber(val)) {
     return val;
   }
-  if (sdIsList(val)) {
+  if (sdIsList(val) && val.every(sdIsString)) {
     return val;
   }
   try {
@@ -55,6 +55,9 @@ export function deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloa
     return val;
   }
   if (sdIsNumber(val)) {
+    return val;
+  }
+  if (sdIsList(val) && val.every(sdIsString)) {
     return val;
   }
   try {
