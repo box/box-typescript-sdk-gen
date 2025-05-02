@@ -4,10 +4,13 @@ import { serializeClientError } from '../schemas/clientError.generated.js';
 import { deserializeClientError } from '../schemas/clientError.generated.js';
 import { serializeMetadataFull } from '../schemas/metadataFull.generated.js';
 import { deserializeMetadataFull } from '../schemas/metadataFull.generated.js';
+import { serializeMetadataInstanceValue } from '../schemas/metadataInstanceValue.generated.js';
+import { deserializeMetadataInstanceValue } from '../schemas/metadataInstanceValue.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { Metadatas } from '../schemas/metadatas.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { MetadataFull } from '../schemas/metadataFull.generated.js';
+import { MetadataInstanceValue } from '../schemas/metadataInstanceValue.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
@@ -246,17 +249,7 @@ export interface UpdateFolderMetadataByIdRequestBody {
    * of the template. The characters `~` and `/` are reserved
    * characters and must be escaped in the key. */
   readonly path?: string;
-  /**
-   * The value to be set or tested.
-   *
-   * Required for `add`, `replace`, and `test` operations. For `add`,
-   * if the value exists already the previous value will be overwritten
-   * by the new value. For `replace`, the value must exist before
-   * replacing.
-   *
-   * For `test`, the existing value at the `path` location must match
-   * the specified value. */
-  readonly value?: string;
+  readonly value?: MetadataInstanceValue;
   /**
    * The location in the metadata JSON object to move or copy a value
    * from. Required for `move` or `copy` operations and must be in the
@@ -795,7 +788,10 @@ export function serializeUpdateFolderMetadataByIdRequestBody(
         ? val.op
         : serializeUpdateFolderMetadataByIdRequestBodyOpField(val.op),
     ['path']: val.path,
-    ['value']: val.value,
+    ['value']:
+      val.value == void 0
+        ? val.value
+        : serializeMetadataInstanceValue(val.value),
     ['from']: val.from,
   };
 }
@@ -818,13 +814,8 @@ export function deserializeUpdateFolderMetadataByIdRequestBody(
     });
   }
   const path: undefined | string = val.path == void 0 ? void 0 : val.path;
-  if (!(val.value == void 0) && !sdIsString(val.value)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "value" of type "UpdateFolderMetadataByIdRequestBody"',
-    });
-  }
-  const value: undefined | string = val.value == void 0 ? void 0 : val.value;
+  const value: undefined | MetadataInstanceValue =
+    val.value == void 0 ? void 0 : deserializeMetadataInstanceValue(val.value);
   if (!(val.from == void 0) && !sdIsString(val.from)) {
     throw new BoxSdkError({
       message:

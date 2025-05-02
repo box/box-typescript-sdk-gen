@@ -8,20 +8,20 @@ import { serializeAiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.
 import { deserializeAiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.js';
 import { serializeAiSingleAgentResponse } from './aiSingleAgentResponse.generated.js';
 import { deserializeAiSingleAgentResponse } from './aiSingleAgentResponse.generated.js';
-import { serializeAiStudioAgentAsk } from './aiStudioAgentAsk.generated.js';
-import { deserializeAiStudioAgentAsk } from './aiStudioAgentAsk.generated.js';
-import { serializeAiStudioAgentTextGen } from './aiStudioAgentTextGen.generated.js';
-import { deserializeAiStudioAgentTextGen } from './aiStudioAgentTextGen.generated.js';
-import { serializeAiStudioAgentExtract } from './aiStudioAgentExtract.generated.js';
-import { deserializeAiStudioAgentExtract } from './aiStudioAgentExtract.generated.js';
+import { serializeAiStudioAgentAskResponse } from './aiStudioAgentAskResponse.generated.js';
+import { deserializeAiStudioAgentAskResponse } from './aiStudioAgentAskResponse.generated.js';
+import { serializeAiStudioAgentTextGenResponse } from './aiStudioAgentTextGenResponse.generated.js';
+import { deserializeAiStudioAgentTextGenResponse } from './aiStudioAgentTextGenResponse.generated.js';
+import { serializeAiStudioAgentExtractResponse } from './aiStudioAgentExtractResponse.generated.js';
+import { deserializeAiStudioAgentExtractResponse } from './aiStudioAgentExtractResponse.generated.js';
 import { AiSingleAgentResponseTypeField } from './aiSingleAgentResponse.generated.js';
 import { UserBase } from './userBase.generated.js';
 import { DateTime } from '../internal/utils.js';
 import { AiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.js';
 import { AiSingleAgentResponse } from './aiSingleAgentResponse.generated.js';
-import { AiStudioAgentAsk } from './aiStudioAgentAsk.generated.js';
-import { AiStudioAgentTextGen } from './aiStudioAgentTextGen.generated.js';
-import { AiStudioAgentExtract } from './aiStudioAgentExtract.generated.js';
+import { AiStudioAgentAskResponse } from './aiStudioAgentAskResponse.generated.js';
+import { AiStudioAgentTextGenResponse } from './aiStudioAgentTextGenResponse.generated.js';
+import { AiStudioAgentExtractResponse } from './aiStudioAgentExtractResponse.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -31,9 +31,9 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiSingleAgentResponseFull = AiSingleAgentResponse & {
-  readonly ask?: AiStudioAgentAsk;
-  readonly textGen?: AiStudioAgentTextGen;
-  readonly extract?: AiStudioAgentExtract;
+  readonly ask?: AiStudioAgentAskResponse;
+  readonly textGen?: AiStudioAgentTextGenResponse;
+  readonly extract?: AiStudioAgentExtractResponse;
 };
 export function serializeAiSingleAgentResponseFull(
   val: AiSingleAgentResponseFull,
@@ -47,15 +47,18 @@ export function serializeAiSingleAgentResponseFull(
   return {
     ...base,
     ...{
-      ['ask']: val.ask == void 0 ? val.ask : serializeAiStudioAgentAsk(val.ask),
+      ['ask']:
+        val.ask == void 0
+          ? val.ask
+          : serializeAiStudioAgentAskResponse(val.ask),
       ['text_gen']:
         val.textGen == void 0
           ? val.textGen
-          : serializeAiStudioAgentTextGen(val.textGen),
+          : serializeAiStudioAgentTextGenResponse(val.textGen),
       ['extract']:
         val.extract == void 0
           ? val.extract
-          : serializeAiStudioAgentExtract(val.extract),
+          : serializeAiStudioAgentExtractResponse(val.extract),
     },
   };
 }
@@ -67,16 +70,16 @@ export function deserializeAiSingleAgentResponseFull(
       message: 'Expecting a map for "AiSingleAgentResponseFull"',
     });
   }
-  const ask: undefined | AiStudioAgentAsk =
-    val.ask == void 0 ? void 0 : deserializeAiStudioAgentAsk(val.ask);
-  const textGen: undefined | AiStudioAgentTextGen =
+  const ask: undefined | AiStudioAgentAskResponse =
+    val.ask == void 0 ? void 0 : deserializeAiStudioAgentAskResponse(val.ask);
+  const textGen: undefined | AiStudioAgentTextGenResponse =
     val.text_gen == void 0
       ? void 0
-      : deserializeAiStudioAgentTextGen(val.text_gen);
-  const extract: undefined | AiStudioAgentExtract =
+      : deserializeAiStudioAgentTextGenResponse(val.text_gen);
+  const extract: undefined | AiStudioAgentExtractResponse =
     val.extract == void 0
       ? void 0
-      : deserializeAiStudioAgentExtract(val.extract);
+      : deserializeAiStudioAgentExtractResponse(val.extract);
   if (val.id == void 0) {
     throw new BoxSdkError({
       message:
