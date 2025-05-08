@@ -1,8 +1,8 @@
-import { serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
+import { deserializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { serializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { deserializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
-import { AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { AiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { AiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
@@ -85,14 +85,10 @@ export function deserializeAiAgentBasicTextToolTextGen(
     val.num_tokens_for_completion == void 0
       ? void 0
       : val.num_tokens_for_completion;
-  const llmEndpointParams:
-    | undefined
-    | AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+  const llmEndpointParams: undefined | AiLlmEndpointParams =
     val.llm_endpoint_params == void 0
       ? void 0
-      : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params,
-        );
+      : deserializeAiLlmEndpointParams(val.llm_endpoint_params);
   return {
     systemMessage: systemMessage,
     promptTemplate: promptTemplate,

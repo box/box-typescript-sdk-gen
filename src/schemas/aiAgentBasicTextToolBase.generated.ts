@@ -1,6 +1,6 @@
-import { serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
+import { deserializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
+import { AiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -16,9 +16,7 @@ export interface AiAgentBasicTextToolBase {
   /**
    * The number of tokens for completion. */
   readonly numTokensForCompletion?: number;
-  /**
-   * The parameters for the LLM endpoint specific to OpenAI / Google models. */
-  readonly llmEndpointParams?: AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi;
+  readonly llmEndpointParams?: AiLlmEndpointParams;
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentBasicTextToolBase(
@@ -30,9 +28,7 @@ export function serializeAiAgentBasicTextToolBase(
     ['llm_endpoint_params']:
       val.llmEndpointParams == void 0
         ? val.llmEndpointParams
-        : serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-            val.llmEndpointParams,
-          ),
+        : serializeAiLlmEndpointParams(val.llmEndpointParams),
   };
 }
 export function deserializeAiAgentBasicTextToolBase(
@@ -63,14 +59,10 @@ export function deserializeAiAgentBasicTextToolBase(
     val.num_tokens_for_completion == void 0
       ? void 0
       : val.num_tokens_for_completion;
-  const llmEndpointParams:
-    | undefined
-    | AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+  const llmEndpointParams: undefined | AiLlmEndpointParams =
     val.llm_endpoint_params == void 0
       ? void 0
-      : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params,
-        );
+      : deserializeAiLlmEndpointParams(val.llm_endpoint_params);
   return {
     model: model,
     numTokensForCompletion: numTokensForCompletion,
