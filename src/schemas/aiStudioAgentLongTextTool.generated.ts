@@ -1,5 +1,5 @@
-import { serializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
-import { deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { serializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
+import { deserializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { serializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { deserializeAiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { serializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
@@ -8,7 +8,7 @@ import { serializeAiAgentLongTextToolEmbeddingsField } from './aiAgentLongTextTo
 import { deserializeAiAgentLongTextToolEmbeddingsField } from './aiAgentLongTextTool.generated.js';
 import { serializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
 import { deserializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi } from './aiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi.generated.js';
+import { AiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { AiAgentBasicTextToolBase } from './aiAgentBasicTextToolBase.generated.js';
 import { AiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
 import { AiAgentLongTextToolEmbeddingsField } from './aiAgentLongTextTool.generated.js';
@@ -103,14 +103,10 @@ export function deserializeAiStudioAgentLongTextTool(
     val.num_tokens_for_completion == void 0
       ? void 0
       : val.num_tokens_for_completion;
-  const llmEndpointParams:
-    | undefined
-    | AiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi =
+  const llmEndpointParams: undefined | AiLlmEndpointParams =
     val.llm_endpoint_params == void 0
       ? void 0
-      : deserializeAiLlmEndpointParamsAwsOrAiLlmEndpointParamsGoogleOrAiLlmEndpointParamsOpenAi(
-          val.llm_endpoint_params,
-        );
+      : deserializeAiLlmEndpointParams(val.llm_endpoint_params);
   return {
     isCustomInstructionsIncluded: isCustomInstructionsIncluded,
     embeddings: embeddings,
