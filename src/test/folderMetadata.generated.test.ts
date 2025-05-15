@@ -1,21 +1,5 @@
 import { serializeFolderFull } from '../schemas/folderFull.generated.js';
 import { deserializeFolderFull } from '../schemas/folderFull.generated.js';
-import { serializeMetadatas } from '../schemas/metadatas.generated.js';
-import { deserializeMetadatas } from '../schemas/metadatas.generated.js';
-import { serializeMetadataFull } from '../schemas/metadataFull.generated.js';
-import { deserializeMetadataFull } from '../schemas/metadataFull.generated.js';
-import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { serializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { deserializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
-import { serializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
-import { deserializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
-import { serializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { deserializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { serializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { deserializeMetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { serializeCreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -26,24 +10,40 @@ import { serializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../ma
 import { deserializeCreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { serializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
 import { deserializeCreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { serializeMetadataFull } from '../schemas/metadataFull.generated.js';
+import { deserializeMetadataFull } from '../schemas/metadataFull.generated.js';
+import { serializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeCreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { serializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { deserializeUpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { serializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeDeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { serializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
 import { deserializeDeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { serializeMetadatas } from '../schemas/metadatas.generated.js';
+import { deserializeMetadatas } from '../schemas/metadatas.generated.js';
+import { serializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { deserializeGetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FolderFull } from '../schemas/folderFull.generated.js';
-import { Metadatas } from '../schemas/metadatas.generated.js';
-import { MetadataFull } from '../schemas/metadataFull.generated.js';
-import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { GetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
-import { UpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
-import { DeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsTypeField } from '../managers/metadataTemplates.generated.js';
 import { CreateMetadataTemplateRequestBodyFieldsOptionsField } from '../managers/metadataTemplates.generated.js';
+import { MetadataFull } from '../schemas/metadataFull.generated.js';
+import { CreateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdRequestBody } from '../managers/folderMetadata.generated.js';
+import { UpdateFolderMetadataByIdRequestBodyOpField } from '../managers/folderMetadata.generated.js';
+import { DeleteFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { DeleteMetadataTemplateScope } from '../managers/metadataTemplates.generated.js';
+import { Metadatas } from '../schemas/metadatas.generated.js';
+import { GetFolderMetadataByIdScope } from '../managers/folderMetadata.generated.js';
 import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { createNewFolder } from './commons.generated.js';
@@ -57,6 +57,142 @@ import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
+test('testUpdatingFolderMetadata', async function testUpdatingFolderMetadata(): Promise<any> {
+  const folder: FolderFull = await createNewFolder();
+  const templateKey: string = ''.concat('key', getUuid()) as string;
+  const template: MetadataTemplate =
+    await client.metadataTemplates.createMetadataTemplate({
+      scope: 'enterprise',
+      displayName: templateKey,
+      templateKey: templateKey,
+      fields: [
+        {
+          type: 'string' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'name',
+          displayName: 'name',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'float' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'age',
+          displayName: 'age',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'date' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'birthDate',
+          displayName: 'birthDate',
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'enum' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'countryCode',
+          displayName: 'countryCode',
+          options: [
+            {
+              key: 'US',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'CA',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+        {
+          type: 'multiSelect' as CreateMetadataTemplateRequestBodyFieldsTypeField,
+          key: 'sports',
+          displayName: 'sports',
+          options: [
+            {
+              key: 'basketball',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'football',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+            {
+              key: 'tennis',
+            } satisfies CreateMetadataTemplateRequestBodyFieldsOptionsField,
+          ],
+        } satisfies CreateMetadataTemplateRequestBodyFieldsField,
+      ],
+    } satisfies CreateMetadataTemplateRequestBody);
+  const createdMetadata: MetadataFull =
+    await client.folderMetadata.createFolderMetadataById(
+      folder.id,
+      'enterprise' as CreateFolderMetadataByIdScope,
+      templateKey,
+      {
+        ['name']: 'John',
+        ['age']: 23,
+        ['birthDate']: '2001-01-03T02:20:50.520Z',
+        ['countryCode']: 'US',
+        ['sports']: ['basketball', 'tennis'],
+      },
+    );
+  const updatedMetadata: MetadataFull =
+    await client.folderMetadata.updateFolderMetadataById(
+      folder.id,
+      'enterprise' as UpdateFolderMetadataByIdScope,
+      templateKey,
+      [
+        {
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+          path: '/name',
+          value: 'Jack',
+        } satisfies UpdateFolderMetadataByIdRequestBody,
+        {
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+          path: '/age',
+          value: 24,
+        } satisfies UpdateFolderMetadataByIdRequestBody,
+        {
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+          path: '/birthDate',
+          value: '2000-01-03T02:20:50.520Z',
+        } satisfies UpdateFolderMetadataByIdRequestBody,
+        {
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+          path: '/countryCode',
+          value: 'CA',
+        } satisfies UpdateFolderMetadataByIdRequestBody,
+        {
+          op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+          path: '/sports',
+          value: ['football'],
+        } satisfies UpdateFolderMetadataByIdRequestBody,
+      ],
+    );
+  if (!((toString(updatedMetadata.template) as string) == templateKey)) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(updatedMetadata.extraData!.name) as string) == 'Jack')) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(updatedMetadata.extraData!.age) as string) == '24')) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (toString(updatedMetadata.extraData!.birthDate) as string) ==
+      '2000-01-03T02:20:50.520Z'
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (!((toString(updatedMetadata.extraData!.countryCode) as string) == 'CA')) {
+    throw new Error('Assertion failed');
+  }
+  const sports: readonly string[] = updatedMetadata.extraData!.sports;
+  if (!(sports[0] == 'football')) {
+    throw new Error('Assertion failed');
+  }
+  await client.folderMetadata.deleteFolderMetadataById(
+    folder.id,
+    'enterprise' as DeleteFolderMetadataByIdScope,
+    templateKey,
+  );
+  await client.metadataTemplates.deleteMetadataTemplate(
+    'enterprise' as DeleteMetadataTemplateScope,
+    templateKey,
+  );
+  await client.folders.deleteFolderById(folder.id);
+});
 test('testGlobalFolderMetadata', async function testGlobalFolderMetadata(): Promise<any> {
   const folder: FolderFull = await createNewFolder();
   const folderMetadata: Metadatas =
