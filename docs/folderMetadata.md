@@ -99,9 +99,15 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.createFolderMetadataById(
   folder.id,
-  'global' as CreateFolderMetadataByIdScope,
-  'properties',
-  { ['abc']: 'xyz' },
+  'enterprise' as CreateFolderMetadataByIdScope,
+  templateKey,
+  {
+    ['name']: 'John',
+    ['age']: 23,
+    ['birthDate']: '2001-01-03T02:20:50.520Z',
+    ['countryCode']: 'US',
+    ['sports']: ['basketball', 'tennis'],
+  },
 );
 ```
 
@@ -146,13 +152,33 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.updateFolderMetadataById(
   folder.id,
-  'global' as UpdateFolderMetadataByIdScope,
-  'properties',
+  'enterprise' as UpdateFolderMetadataByIdScope,
+  templateKey,
   [
     {
       op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
-      path: '/abc',
-      value: newValue,
+      path: '/name',
+      value: 'Jack',
+    } satisfies UpdateFolderMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+      path: '/age',
+      value: 24,
+    } satisfies UpdateFolderMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+      path: '/birthDate',
+      value: '2000-01-03T02:20:50.520Z',
+    } satisfies UpdateFolderMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+      path: '/countryCode',
+      value: 'CA',
+    } satisfies UpdateFolderMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFolderMetadataByIdRequestBodyOpField,
+      path: '/sports',
+      value: ['football'],
     } satisfies UpdateFolderMetadataByIdRequestBody,
   ],
 );
@@ -192,8 +218,8 @@ See the endpoint docs at
 ```ts
 await client.folderMetadata.deleteFolderMetadataById(
   folder.id,
-  'global' as DeleteFolderMetadataByIdScope,
-  'properties',
+  'enterprise' as DeleteFolderMetadataByIdScope,
+  templateKey,
 );
 ```
 

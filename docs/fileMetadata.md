@@ -94,9 +94,15 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.createFileMetadataById(
   file.id,
-  'global' as CreateFileMetadataByIdScope,
-  'properties',
-  { ['abc']: 'xyz' },
+  'enterprise' as CreateFileMetadataByIdScope,
+  templateKey,
+  {
+    ['name']: 'John',
+    ['age']: 23,
+    ['birthDate']: '2001-01-03T02:20:50.520Z',
+    ['countryCode']: 'US',
+    ['sports']: ['basketball', 'tennis'],
+  },
 );
 ```
 
@@ -141,13 +147,33 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.updateFileMetadataById(
   file.id,
-  'global' as UpdateFileMetadataByIdScope,
-  'properties',
+  'enterprise' as UpdateFileMetadataByIdScope,
+  templateKey,
   [
     {
       op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
-      path: '/abc',
-      value: newValue,
+      path: '/name',
+      value: 'Jack',
+    } satisfies UpdateFileMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
+      path: '/age',
+      value: 24,
+    } satisfies UpdateFileMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
+      path: '/birthDate',
+      value: '2000-01-03T02:20:50.520Z',
+    } satisfies UpdateFileMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
+      path: '/countryCode',
+      value: 'CA',
+    } satisfies UpdateFileMetadataByIdRequestBody,
+    {
+      op: 'replace' as UpdateFileMetadataByIdRequestBodyOpField,
+      path: '/sports',
+      value: ['football'],
     } satisfies UpdateFileMetadataByIdRequestBody,
   ],
 );
@@ -187,8 +213,8 @@ See the endpoint docs at
 ```ts
 await client.fileMetadata.deleteFileMetadataById(
   file.id,
-  'global' as DeleteFileMetadataByIdScope,
-  'properties',
+  'enterprise' as DeleteFileMetadataByIdScope,
+  templateKey,
 );
 ```
 
