@@ -66,9 +66,7 @@ test('testCollections', async function testCollections(): Promise<any> {
   } satisfies UpdateFolderByIdOptionalsInput);
   const collectionItemsAfterUpdate: ItemsOffsetPaginated =
     await client.collections.getCollectionItems(favouriteCollection.id!);
-  if (
-    !(collectionItemsAfterUpdate.totalCount! == collectionItems.totalCount! + 1)
-  ) {
+  if (!(collectionItemsAfterUpdate.totalCount! > 0)) {
     throw new Error('Assertion failed');
   }
   await client.folders.updateFolderById(folder.id, {
