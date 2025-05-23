@@ -213,7 +213,8 @@ export class BoxOAuth implements Authentication {
     sharedLink?: string,
     networkSession?: NetworkSession,
   ): Promise<AccessToken> {
-    const token: undefined | AccessToken = await this.tokenStorage.get();
+    const token: undefined | AccessToken =
+      await this.retrieveToken(networkSession);
     if (token == void 0 || token!.accessToken == void 0) {
       throw new BoxSdkError({ message: 'No access token is available.' });
     }

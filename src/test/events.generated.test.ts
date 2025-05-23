@@ -118,7 +118,8 @@ test('testEventSourceFileOrFolder', async function testEventSourceFileOrFolder()
   if (
     !(
       (toString(source.type) as string) == 'file' ||
-      (toString(source.type) as string) == 'folder'
+      (toString(source.type) as string) == 'folder' ||
+      (toString(source.type) as string) == 'collaboration'
     )
   ) {
     throw new Error('Assertion failed');
