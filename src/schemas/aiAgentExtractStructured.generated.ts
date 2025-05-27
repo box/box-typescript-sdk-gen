@@ -20,6 +20,7 @@ export class AiAgentExtractStructured {
     'ai_agent_extract_structured' as AiAgentExtractStructuredTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentExtractStructured, 'type'> &
@@ -34,6 +35,9 @@ export class AiAgentExtractStructured {
     if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
     }
+    if (fields.basicImage !== undefined) {
+      this.basicImage = fields.basicImage;
+    }
     if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
@@ -45,6 +49,7 @@ export interface AiAgentExtractStructuredInput {
   readonly type?: AiAgentExtractStructuredTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractStructuredTypeField(
@@ -75,6 +80,10 @@ export function serializeAiAgentExtractStructured(
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
   };
 }
 export function deserializeAiAgentExtractStructured(
@@ -101,10 +110,15 @@ export function deserializeAiAgentExtractStructured(
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiAgentExtractStructured;
 }
 export function serializeAiAgentExtractStructuredInput(
@@ -123,6 +137,10 @@ export function serializeAiAgentExtractStructuredInput(
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
   };
 }
 export function deserializeAiAgentExtractStructuredInput(
@@ -145,9 +163,14 @@ export function deserializeAiAgentExtractStructuredInput(
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiAgentExtractStructuredInput;
 }

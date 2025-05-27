@@ -179,6 +179,8 @@ export type GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField =
   | 'file_version'
   | 'folder'
   | 'user'
+  | 'ownership'
+  | 'interactions'
   | string;
 export interface GetLegalHoldPolicyAssignmentsQueryParams {
   /**
@@ -241,7 +243,9 @@ export type CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField =
   | 'file'
   | 'file_version'
   | 'folder'
-  | 'user';
+  | 'user'
+  | 'ownership'
+  | 'interaction';
 export interface CreateLegalHoldPolicyAssignmentRequestBodyAssignToField {
   /**
    * The type of item to assign the policy to */
@@ -684,6 +688,12 @@ export function deserializeGetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeF
   if (val == 'user') {
     return val;
   }
+  if (val == 'ownership') {
+    return val;
+  }
+  if (val == 'interactions') {
+    return val;
+  }
   if (sdIsString(val)) {
     return val;
   }
@@ -710,6 +720,12 @@ export function deserializeCreateLegalHoldPolicyAssignmentRequestBodyAssignToTyp
     return val;
   }
   if (val == 'user') {
+    return val;
+  }
+  if (val == 'ownership') {
+    return val;
+  }
+  if (val == 'interaction') {
     return val;
   }
   throw new BoxSdkError({
