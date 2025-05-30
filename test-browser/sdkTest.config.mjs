@@ -3,6 +3,7 @@ export const testConfig = {
   test_jwt_auth: 'skip',
   test_jwt_auth_downscope: 'skip',
   test_jwt_auth_revoke: 'skip',
+  test_jwt_downscope_token_succeeds_if_no_token_available: 'skip',
 
   // Unknown reason, these tests fail in browser
   testDocgenBatchAndJobs: 'skip',
