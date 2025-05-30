@@ -17,7 +17,7 @@ See the endpoint docs at
 <!-- sample get_docgen_jobs_id_v2025.0 -->
 
 ```ts
-await client.docgen.getDocgenJobByIdV2025R0(docgenJobs.entries![0].id);
+await client.docgen.getDocgenJobByIdV2025R0(docgenJobItemFromList.id);
 ```
 
 ### Arguments
@@ -45,7 +45,9 @@ See the endpoint docs at
 <!-- sample get_docgen_jobs_v2025.0 -->
 
 ```ts
-await client.docgen.getDocgenJobsV2025R0();
+await client.docgen.getDocgenJobsV2025R0({
+  limit: 500,
+} satisfies GetDocgenJobsV2025R0QueryParams);
 ```
 
 ### Arguments

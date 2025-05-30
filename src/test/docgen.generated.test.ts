@@ -20,6 +20,8 @@ import { serializeDocGenJobsV2025R0 } from '../schemas/v2025R0/docGenJobsV2025R0
 import { deserializeDocGenJobsV2025R0 } from '../schemas/v2025R0/docGenJobsV2025R0.generated.js';
 import { serializeDocGenJobsFullV2025R0 } from '../schemas/v2025R0/docGenJobsFullV2025R0.generated.js';
 import { deserializeDocGenJobsFullV2025R0 } from '../schemas/v2025R0/docGenJobsFullV2025R0.generated.js';
+import { serializeDocGenJobFullV2025R0 } from '../schemas/v2025R0/docGenJobFullV2025R0.generated.js';
+import { deserializeDocGenJobFullV2025R0 } from '../schemas/v2025R0/docGenJobFullV2025R0.generated.js';
 import { serializeDocGenJobV2025R0 } from '../schemas/v2025R0/docGenJobV2025R0.generated.js';
 import { deserializeDocGenJobV2025R0 } from '../schemas/v2025R0/docGenJobV2025R0.generated.js';
 import { BoxClient } from '../client.generated.js';
@@ -34,6 +36,8 @@ import { DocGenBatchCreateRequestV2025R0DestinationFolderField } from '../schema
 import { DocGenDocumentGenerationDataV2025R0 } from '../schemas/v2025R0/docGenDocumentGenerationDataV2025R0.generated.js';
 import { DocGenJobsV2025R0 } from '../schemas/v2025R0/docGenJobsV2025R0.generated.js';
 import { DocGenJobsFullV2025R0 } from '../schemas/v2025R0/docGenJobsFullV2025R0.generated.js';
+import { GetDocgenJobsV2025R0QueryParams } from '../managers/docgen.generated.js';
+import { DocGenJobFullV2025R0 } from '../schemas/v2025R0/docGenJobFullV2025R0.generated.js';
 import { DocGenJobV2025R0 } from '../schemas/v2025R0/docGenJobV2025R0.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
@@ -103,7 +107,9 @@ test('testDocgenBatchAndJobs', async function testDocgenBatchAndJobs(): Promise<
     throw new Error('Assertion failed');
   }
   const docgenJobs: DocGenJobsFullV2025R0 =
-    await client.docgen.getDocgenJobsV2025R0();
+    await client.docgen.getDocgenJobsV2025R0({
+      limit: 500,
+    } satisfies GetDocgenJobsV2025R0QueryParams);
   if (!(docgenJobs.entries!.length >= 1)) {
     throw new Error('Assertion failed');
   }
@@ -150,8 +156,11 @@ test('testDocgenBatchAndJobs', async function testDocgenBatchAndJobs(): Promise<
   if (!((toString(docgenJobs.entries![0].type) as string) == 'docgen_job')) {
     throw new Error('Assertion failed');
   }
+  const indexOfItem: number = 0;
+  const docgenJobItemFromList: DocGenJobFullV2025R0 =
+    docgenJobs.entries![indexOfItem];
   const docgenJob: DocGenJobV2025R0 =
-    await client.docgen.getDocgenJobByIdV2025R0(docgenJobs.entries![0].id);
+    await client.docgen.getDocgenJobByIdV2025R0(docgenJobItemFromList.id);
   if (!!(docgenJob.batch.id == '')) {
     throw new Error('Assertion failed');
   }
