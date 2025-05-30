@@ -292,7 +292,10 @@ export interface UploadFileRequestBodyAttributesParentField {
 }
 export interface UploadFileRequestBodyAttributesField {
   /**
-   * The name of the file */
+   * The name of the file.
+   *
+   * File names must be unique within their parent folder. The name check is case-insensitive, so a file
+   * named `New File` cannot be created in a parent folder that already contains a folder named `new file`. */
   readonly name: string;
   /**
    * The parent folder to upload the file to */
@@ -396,7 +399,10 @@ export interface UploadWithPreflightCheckRequestBodyAttributesParentField {
 }
 export interface UploadWithPreflightCheckRequestBodyAttributesField {
   /**
-   * The name of the file */
+   * The name of the file.
+   *
+   * File names must be unique within their parent folder. The name check is case-insensitive, so a file
+   * named `New File` cannot be created in a parent folder that already contains a folder named `new file`. */
   readonly name: string;
   /**
    * The parent folder to upload the file to */
