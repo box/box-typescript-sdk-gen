@@ -137,6 +137,32 @@ test('test_jwt_auth_downscope', async function test_jwt_auth_downscope(): Promis
   }).rejects.toThrow();
   await parentClient.files.deleteFileById(file.id);
 });
+test('test_jwt_downscope_token_succeeds_if_no_token_available', async function test_jwt_downscope_token_succeeds_if_no_token_available(): Promise<any> {
+  const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
+    decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
+  );
+  const auth: BoxJwtAuth = new BoxJwtAuth({ config: jwtConfig });
+  const downscopedToken: AccessToken = await auth.downscopeToken([
+    'root_readonly',
+  ]);
+  if (!!(downscopedToken.accessToken == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  const downscopedClient: BoxClient = new BoxClient({
+    auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
+  });
+  await expect(async () => {
+    await downscopedClient.uploads.uploadFile({
+      attributes: {
+        name: getUuid(),
+        parent: {
+          id: '0',
+        } satisfies UploadFileRequestBodyAttributesParentField,
+      } satisfies UploadFileRequestBodyAttributesField,
+      file: generateByteStream(1024 * 1024),
+    } satisfies UploadFileRequestBody);
+  }).rejects.toThrow();
+});
 test('test_jwt_auth_revoke', async function test_jwt_auth_revoke(): Promise<any> {
   const jwtConfig: JwtConfig = JwtConfig.fromConfigJsonString(
     decodeBase64(getEnvVar('JWT_CONFIG_BASE_64')),
@@ -174,6 +200,19 @@ test('test_oauth_auth_authorizeUrl', function test_oauth_auth_authorizeUrl(): an
   ) {
     throw new Error('Assertion failed');
   }
+});
+test('test_oauth_downscope_token_succeeds_if_no_token_available', async function test_oauth_downscope_token_succeeds_if_no_token_available(): Promise<any> {
+  const config: OAuthConfig = new OAuthConfig({
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+  });
+  const auth: BoxOAuth = new BoxOAuth({ config: config });
+  const resourcePath: string = ''.concat(
+    'https://api.box.com/2.0/files/12345',
+  ) as string;
+  await expect(async () => {
+    await auth.downscopeToken(['item_rename', 'item_preview'], resourcePath);
+  }).rejects.toThrow();
 });
 test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   const userId: string = getEnvVar('USER_ID');
@@ -240,6 +279,34 @@ test('test_ccg_auth_downscope', async function test_ccg_auth_downscope(): Promis
   }).rejects.toThrow();
   await parentClient.folders.deleteFolderById(folder.id);
 });
+test('test_ccg_downscope_token_succeeds_if_no_token_available', async function test_ccg_downscope_token_succeeds_if_no_token_available(): Promise<any> {
+  const ccgConfig: CcgConfig = new CcgConfig({
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+    userId: getEnvVar('USER_ID'),
+  });
+  const auth: BoxCcgAuth = new BoxCcgAuth({ config: ccgConfig });
+  const downscopedToken: AccessToken = await auth.downscopeToken([
+    'root_readonly',
+  ]);
+  if (!!(downscopedToken.accessToken == void 0)) {
+    throw new Error('Assertion failed');
+  }
+  const downscopedClient: BoxClient = new BoxClient({
+    auth: new BoxDeveloperTokenAuth({ token: downscopedToken.accessToken! }),
+  });
+  await expect(async () => {
+    await downscopedClient.uploads.uploadFile({
+      attributes: {
+        name: getUuid(),
+        parent: {
+          id: '0',
+        } satisfies UploadFileRequestBodyAttributesParentField,
+      } satisfies UploadFileRequestBodyAttributesField,
+      file: generateByteStream(1024 * 1024),
+    } satisfies UploadFileRequestBody);
+  }).rejects.toThrow();
+});
 test('test_ccg_auth_revoke', async function test_ccg_auth_revoke(): Promise<any> {
   const ccgConfig: CcgConfig = new CcgConfig({
     clientId: getEnvVar('CLIENT_ID'),
@@ -261,6 +328,22 @@ test('test_ccg_auth_revoke', async function test_ccg_auth_revoke(): Promise<any>
   ) {
     throw new Error('Assertion failed');
   }
+});
+test('test_developer_downscope_token_succeeds_if_no_token_available', async function test_developer_downscope_token_succeeds_if_no_token_available(): Promise<any> {
+  const developerTokenConfig: DeveloperTokenConfig = {
+    clientId: getEnvVar('CLIENT_ID'),
+    clientSecret: getEnvVar('CLIENT_SECRET'),
+  } satisfies DeveloperTokenConfig;
+  const auth: BoxDeveloperTokenAuth = new BoxDeveloperTokenAuth({
+    token: '',
+    config: developerTokenConfig,
+  });
+  const resourcePath: string = ''.concat(
+    'https://api.box.com/2.0/folders/12345',
+  ) as string;
+  await expect(async () => {
+    await auth.downscopeToken(['item_rename', 'item_preview'], resourcePath);
+  }).rejects.toThrow();
 });
 test('test_developer_token_auth_revoke', async function test_developer_token_auth_revoke(): Promise<any> {
   const developerTokenConfig: DeveloperTokenConfig = {
