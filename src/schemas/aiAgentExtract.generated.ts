@@ -20,6 +20,7 @@ export class AiAgentExtract {
     'ai_agent_extract' as AiAgentExtractTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentExtract, 'type'> &
@@ -34,6 +35,9 @@ export class AiAgentExtract {
     if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
     }
+    if (fields.basicImage !== undefined) {
+      this.basicImage = fields.basicImage;
+    }
     if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
@@ -45,6 +49,7 @@ export interface AiAgentExtractInput {
   readonly type?: AiAgentExtractTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentExtractTypeField(
@@ -73,6 +78,10 @@ export function serializeAiAgentExtract(val: AiAgentExtract): SerializedData {
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
   };
 }
 export function deserializeAiAgentExtract(val: SerializedData): AiAgentExtract {
@@ -95,10 +104,15 @@ export function deserializeAiAgentExtract(val: SerializedData): AiAgentExtract {
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiAgentExtract;
 }
 export function serializeAiAgentExtractInput(
@@ -117,6 +131,10 @@ export function serializeAiAgentExtractInput(
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
   };
 }
 export function deserializeAiAgentExtractInput(
@@ -137,9 +155,14 @@ export function deserializeAiAgentExtractInput(
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiAgentExtractInput;
 }

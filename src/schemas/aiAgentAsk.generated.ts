@@ -21,6 +21,8 @@ export class AiAgentAsk {
   readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
+  readonly basicImageMulti?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiAgentAsk, 'type'> & Partial<Pick<AiAgentAsk, 'type'>>,
@@ -40,6 +42,12 @@ export class AiAgentAsk {
     if (fields.basicTextMulti !== undefined) {
       this.basicTextMulti = fields.basicTextMulti;
     }
+    if (fields.basicImage !== undefined) {
+      this.basicImage = fields.basicImage;
+    }
+    if (fields.basicImageMulti !== undefined) {
+      this.basicImageMulti = fields.basicImageMulti;
+    }
     if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
@@ -53,6 +61,8 @@ export interface AiAgentAskInput {
   readonly basicText?: AiAgentBasicTextTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
+  readonly basicImage?: AiAgentBasicTextTool;
+  readonly basicImageMulti?: AiAgentBasicTextTool;
   readonly rawData?: SerializedData;
 }
 export function serializeAiAgentAskTypeField(
@@ -87,6 +97,14 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
       val.basicTextMulti == void 0
         ? val.basicTextMulti
         : serializeAiAgentBasicTextTool(val.basicTextMulti),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
+    ['basic_image_multi']:
+      val.basicImageMulti == void 0
+        ? val.basicImageMulti
+        : serializeAiAgentBasicTextTool(val.basicImageMulti),
   };
 }
 export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
@@ -115,12 +133,22 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
     val.basic_text_multi == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text_multi);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
+  const basicImageMulti: undefined | AiAgentBasicTextTool =
+    val.basic_image_multi == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image_multi);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
     longTextMulti: longTextMulti,
     basicTextMulti: basicTextMulti,
+    basicImage: basicImage,
+    basicImageMulti: basicImageMulti,
   } satisfies AiAgentAsk;
 }
 export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
@@ -143,6 +171,14 @@ export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
       val.basicTextMulti == void 0
         ? val.basicTextMulti
         : serializeAiAgentBasicTextTool(val.basicTextMulti),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiAgentBasicTextTool(val.basicImage),
+    ['basic_image_multi']:
+      val.basicImageMulti == void 0
+        ? val.basicImageMulti
+        : serializeAiAgentBasicTextTool(val.basicImageMulti),
   };
 }
 export function deserializeAiAgentAskInput(
@@ -169,11 +205,21 @@ export function deserializeAiAgentAskInput(
     val.basic_text_multi == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text_multi);
+  const basicImage: undefined | AiAgentBasicTextTool =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image);
+  const basicImageMulti: undefined | AiAgentBasicTextTool =
+    val.basic_image_multi == void 0
+      ? void 0
+      : deserializeAiAgentBasicTextTool(val.basic_image_multi);
   return {
     type: type,
     longText: longText,
     basicText: basicText,
     longTextMulti: longTextMulti,
     basicTextMulti: basicTextMulti,
+    basicImage: basicImage,
+    basicImageMulti: basicImageMulti,
   } satisfies AiAgentAskInput;
 }
