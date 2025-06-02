@@ -246,7 +246,7 @@ export async function computeWebhookSignature(
   signatureKey: string,
 ): Promise<string | null> {
   const escapedBody = jsonStringifyWithEscapedUnicode(body).replace(
-    /\//g,
+    /(?<!\\)\//g,
     '\\/',
   );
   if (headers['box-signature-version'] !== '1') {
