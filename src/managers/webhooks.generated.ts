@@ -680,14 +680,28 @@ export class WebhooksManager {
     }
     if (
       primaryKey &&
-      (await computeWebhookSignature(body, headers, primaryKey)) ==
+      (await computeWebhookSignature(body, headers, primaryKey, false)) ==
+        headers['box-signature-primary']
+    ) {
+      return true;
+    }
+    if (
+      primaryKey &&
+      (await computeWebhookSignature(body, headers, primaryKey, true)) ==
         headers['box-signature-primary']
     ) {
       return true;
     }
     if (
       secondaryKey &&
-      (await computeWebhookSignature(body, headers, secondaryKey)) ==
+      (await computeWebhookSignature(body, headers, secondaryKey, false)) ==
+        headers['box-signature-secondary']
+    ) {
+      return true;
+    }
+    if (
+      secondaryKey &&
+      (await computeWebhookSignature(body, headers, secondaryKey, true)) ==
         headers['box-signature-secondary']
     ) {
       return true;

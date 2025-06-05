@@ -196,11 +196,13 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
         primaryKey,
+        true,
       ),
       ['box-signature-secondary']: await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
         secondaryKey,
+        true,
       ),
     },
   };
@@ -217,6 +219,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
           ...{ ['box-delivery-timestamp']: currentDatetime },
         },
         primaryKey,
+        true,
       ),
       ['box-signature-secondary']: await computeWebhookSignature(
         bodyWithJapanese,
@@ -225,6 +228,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
           ...{ ['box-delivery-timestamp']: currentDatetime },
         },
         secondaryKey,
+        true,
       ),
     },
   };
@@ -238,11 +242,13 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
         primaryKey,
+        true,
       ),
       ['box-signature-secondary']: await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
         secondaryKey,
+        true,
       ),
     },
   };
@@ -256,11 +262,13 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
         primaryKey,
+        true,
       ),
       ['box-signature-secondary']: await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
         secondaryKey,
+        true,
       ),
     },
   };
@@ -272,7 +280,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
   } = { ...headers, ...{ ['box-signature-algorithm']: 'HmacSHA1' } };
   if (
     !(
-      (await computeWebhookSignature(body, headers, primaryKey)) ==
+      (await computeWebhookSignature(body, headers, primaryKey, true)) ==
       headers['box-signature-primary']
     )
   ) {
@@ -280,7 +288,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
   }
   if (
     !(
-      (await computeWebhookSignature(body, headers, secondaryKey)) ==
+      (await computeWebhookSignature(body, headers, secondaryKey, true)) ==
       headers['box-signature-secondary']
     )
   ) {
@@ -288,7 +296,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
   }
   if (
     !!(
-      (await computeWebhookSignature(body, headers, incorrectKey)) ==
+      (await computeWebhookSignature(body, headers, incorrectKey, true)) ==
       headers['box-signature-primary']
     )
   ) {
@@ -300,6 +308,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         bodyWithJapanese,
         headersWithJapanese,
         primaryKey,
+        true,
       )) == headersWithJapanese['box-signature-primary']
     )
   ) {
@@ -311,6 +320,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         bodyWithEmoji,
         headersWithEmoji,
         primaryKey,
+        true,
       )) == headersWithEmoji['box-signature-primary']
     )
   ) {
@@ -322,6 +332,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         bodyWithCarriageReturn,
         headersWithCarriageReturn,
         primaryKey,
+        true,
       )) == headersWithCarriageReturn['box-signature-primary']
     )
   ) {
@@ -333,6 +344,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         bodyWithForwardSlash,
         headersWithForwardSlash,
         primaryKey,
+        true,
       )) == headersWithForwardSlash['box-signature-primary']
     )
   ) {
@@ -344,6 +356,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         bodyWithBackSlash,
         headersWithBackSlash,
         primaryKey,
+        true,
       )) == headersWithBackSlash['box-signature-primary']
     )
   ) {
