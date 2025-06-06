@@ -76,6 +76,7 @@ import { AiManager } from './managers/ai.generated.js';
 import { AiStudioManager } from './managers/aiStudio.generated.js';
 import { DocgenTemplateManager } from './managers/docgenTemplate.generated.js';
 import { DocgenManager } from './managers/docgen.generated.js';
+import { ShieldListsManager } from './managers/shieldLists.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BoxSdkError } from './box/errors.js';
@@ -171,6 +172,7 @@ export class BoxClient {
   readonly aiStudio: AiStudioManager;
   readonly docgenTemplate: DocgenTemplateManager;
   readonly docgen: DocgenManager;
+  readonly shieldLists: ShieldListsManager;
   constructor(
     fields: Omit<
       BoxClient,
@@ -248,6 +250,7 @@ export class BoxClient {
       | 'aiStudio'
       | 'docgenTemplate'
       | 'docgen'
+      | 'shieldLists'
       | 'networkSession'
       | 'makeRequest'
       | 'withAsUserHeader'
@@ -565,6 +568,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.docgen = new DocgenManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.shieldLists = new ShieldListsManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });
