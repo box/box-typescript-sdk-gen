@@ -215,17 +215,19 @@ export function createAgent(options?: AgentOptions, proxyConfig?: any): Agent {
 }
 
 /**
- * Stringify JSON with escaped multibyte Unicode characters to ensure computed signatures match PHP's default behavior
+ * Stringify JSON with escaped multibyte Unicode characters and slashes to ensure computed signatures match PHP's default behavior
  *
  * @param {Object} body - The parsed JSON object
  * @returns {string} - Stringified JSON with escaped multibyte Unicode characters
  * @private
  */
 export function jsonStringifyWithEscapedUnicode(body: string) {
-  return body.replace(
-    /[\u007f-\uffff]/g,
-    (char) => `\\u${`0000${char.charCodeAt(0).toString(16)}`.slice(-4)}`,
-  );
+  return body
+    .replace(
+      /[\u007f-\uffff]/g,
+      (char) => `\\u${`0000${char.charCodeAt(0).toString(16)}`.slice(-4)}`,
+    )
+    .replace(/(?<!\\)\//g, '\\/');
 }
 
 /**
@@ -235,6 +237,7 @@ export function jsonStringifyWithEscapedUnicode(body: string) {
  * @param {string} body - The request body of the webhook message
  * @param {Object} headers - The request headers of the webhook message
  * @param {string} signatureKey - The signature to verify the message with
+ * @param {string} escapeBody - Indicates if payload should be escaped or left as is
  * @returns {?string} - The message signature (or null, if it can't be computed)
  * @private
  */
@@ -244,11 +247,9 @@ export async function computeWebhookSignature(
     [key: string]: string;
   },
   signatureKey: string,
+  escapeBody: boolean = false,
 ): Promise<string | null> {
-  const escapedBody = jsonStringifyWithEscapedUnicode(body).replace(
-    /(?<!\\)\//g,
-    '\\/',
-  );
+  const escapedBody = escapeBody ? jsonStringifyWithEscapedUnicode(body) : body;
   if (headers['box-signature-version'] !== '1') {
     return null;
   }
