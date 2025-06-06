@@ -123,6 +123,10 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"\uD83D\uDE00 2020-08-05.txt"}}';
   const bodyWithCarriageReturn: string =
     '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"test \\r"}}';
+  const bodyWithForwardSlash: string =
+    '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"\\/"}}';
+  const bodyWithBackSlash: string =
+    '{"webhook":{"id":"1234567890"},"trigger":"FILE.UPLOADED","source":{"id":"1234567890","type":"file","name":"\\\\"}}';
   const headers: {
     readonly [key: string]: string;
   } = {
@@ -155,6 +159,22 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     ...headers,
     ...{
       ['box-signature-primary']: 'SVkbKgy3dEEf2PbbzpNu2lDZS7zZ/aboU7HOZgBGrJk=',
+    },
+  };
+  const headersWithForwardSlash: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-signature-primary']: 't41PWT5ZB6OcysnD6SDy9Ud+p9hdXxIdXqcdweyZv/Q=',
+    },
+  };
+  const headersWithBackSlash: {
+    readonly [key: string]: any;
+  } = {
+    ...headers,
+    ...{
+      ['box-signature-primary']: 'ERpMZwUQsGDTfj82ehdX6VvDZfvOhK5ULNfVmwVAGe0=',
     },
   };
   const currentDatetime: string = dateTimeToString(
@@ -303,6 +323,28 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         headersWithCarriageReturn,
         primaryKey,
       )) == headersWithCarriageReturn['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(
+        bodyWithForwardSlash,
+        headersWithForwardSlash,
+        primaryKey,
+      )) == headersWithForwardSlash['box-signature-primary']
+    )
+  ) {
+    throw new Error('Assertion failed');
+  }
+  if (
+    !(
+      (await computeWebhookSignature(
+        bodyWithBackSlash,
+        headersWithBackSlash,
+        primaryKey,
+      )) == headersWithBackSlash['box-signature-primary']
     )
   ) {
     throw new Error('Assertion failed');
