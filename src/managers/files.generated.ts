@@ -452,7 +452,10 @@ export interface UpdateFileByIdRequestBodyCollectionsField {
 export interface UpdateFileByIdRequestBody {
   /**
    * An optional different name for the file. This can be used to
-   * rename the file. */
+   * rename the file.
+   *
+   * File names must be unique within their parent folder. The name check is case-insensitive, so a file
+   * named `New File` cannot be created in a parent folder that already contains a folder named `new file`. */
   readonly name?: string;
   /**
    * The description for a file. This can be seen in the right-hand sidebar panel
