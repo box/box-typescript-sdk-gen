@@ -35,6 +35,8 @@ import { File } from '../schemas/file.generated.js';
 import { Folder } from '../schemas/folder.generated.js';
 import { User } from '../schemas/user.generated.js';
 import { dateTimeFromString } from '../internal/utils.js';
+import { getEpochTimeInSeconds } from '../internal/utils.js';
+import { epochSecondsToDateTime } from '../internal/utils.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -143,9 +145,14 @@ test('testGetEventsWithLongPolling', async function testGetEventsWithLongPolling
   }
 });
 test('testGetEventsWithDateFilters', async function testGetEventsWithDateFilters(): Promise<any> {
-  const createdAfterDate: DateTime = dateTimeFromString('2024-06-09T00:00:00Z');
-  const createdBeforeDate: DateTime = dateTimeFromString(
-    '2025-06-09T00:00:00Z',
+  const currentEpochTimeInSeconds: number = getEpochTimeInSeconds();
+  const epochTimeInSecondsAWeekAgo: number =
+    currentEpochTimeInSeconds - 7 * 24 * 60 * 60;
+  const createdAfterDate: DateTime = epochSecondsToDateTime(
+    epochTimeInSecondsAWeekAgo,
+  );
+  const createdBeforeDate: DateTime = epochSecondsToDateTime(
+    currentEpochTimeInSeconds,
   );
   const servers: Events = await client.events.getEvents({
     streamType: 'admin_logs' as GetEventsQueryParamsStreamTypeField,
