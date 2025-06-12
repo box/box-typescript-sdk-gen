@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.15.1...v1.16.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* compute webhook signature with and without escaping the body (box/box-codegen[#737](https://github.com/box/box-typescript-sdk-gen/issues/737)) ([#627](https://github.com/box/box-typescript-sdk-gen/issues/627)) ([6a21b8e](https://github.com/box/box-typescript-sdk-gen/commit/6a21b8ed54ef26041feccaa5481951355965e514))
+* Fix circular dependency in `boxNetworkClient` (box/box-codegen[#708](https://github.com/box/box-typescript-sdk-gen/issues/708)) ([#591](https://github.com/box/box-typescript-sdk-gen/issues/591)) ([b383889](https://github.com/box/box-typescript-sdk-gen/commit/b383889b9fdc91c6cfed7169e4d36a22a8c8a0fa))
+* Fix downscope token to use `retrieveToken` method for token retrieval (box/box-codegen[#731](https://github.com/box/box-typescript-sdk-gen/issues/731)) ([#618](https://github.com/box/box-typescript-sdk-gen/issues/618)) ([90edb0c](https://github.com/box/box-typescript-sdk-gen/commit/90edb0cc9bddc474c20b8b83770a4d314843edab))
+* fix slash escaping when calculating webhook signature (box/box-codegen[#736](https://github.com/box/box-typescript-sdk-gen/issues/736)) ([#624](https://github.com/box/box-typescript-sdk-gen/issues/624)) ([a0307d0](https://github.com/box/box-typescript-sdk-gen/commit/a0307d0c4c5dfed1a66e395a1dfb4c8ff387561d))
+* handle list of strings in metadata filter (box/box-codegen[#716](https://github.com/box/box-typescript-sdk-gen/issues/716)) ([#597](https://github.com/box/box-typescript-sdk-gen/issues/597)) ([979ff2c](https://github.com/box/box-typescript-sdk-gen/commit/979ff2c82edce9a969444febf1896d866ca154bf))
+* Improve file download to avoid storing content in memory (box/box-codegen[#701](https://github.com/box/box-typescript-sdk-gen/issues/701)) ([#589](https://github.com/box/box-typescript-sdk-gen/issues/589)) ([513a15e](https://github.com/box/box-typescript-sdk-gen/commit/513a15eb28736d28d665324949d145dd3387d27d))
+* Modify utils functions for browser (box/box-codegen[#686](https://github.com/box/box-typescript-sdk-gen/issues/686)) ([#585](https://github.com/box/box-typescript-sdk-gen/issues/585)) ([7232170](https://github.com/box/box-typescript-sdk-gen/commit/7232170fe7901cb7ba9ebf79ffc6a7c0b376a1c8))
+* Use constant-time comparison for HMAC signatures (box/box-codegen[#739](https://github.com/box/box-typescript-sdk-gen/issues/739)) ([#630](https://github.com/box/box-typescript-sdk-gen/issues/630)) ([efdcaaf](https://github.com/box/box-typescript-sdk-gen/commit/efdcaaf605fc6f14bbbf171e2797d73e97302bfe))
+
+
+### New Features and Enhancements
+
+* add AI agents warnings; allow for more types of metadata value (box/box-openapi[#520](https://github.com/box/box-typescript-sdk-gen/issues/520)) ([#600](https://github.com/box/box-typescript-sdk-gen/issues/600)) ([a5a555f](https://github.com/box/box-typescript-sdk-gen/commit/a5a555f835df5b550b9839e3e1fcff5d9f2b9f96))
+* Add security settings properties on sign template schema (box/box-openapi[#518](https://github.com/box/box-typescript-sdk-gen/issues/518)) ([#588](https://github.com/box/box-typescript-sdk-gen/issues/588)) ([dfd3e5f](https://github.com/box/box-typescript-sdk-gen/commit/dfd3e5f7ecf8a8e49d79ed7df4d7e1f88f3e8537))
+* add Shield Lists APIs (box/box-openapi[#528](https://github.com/box/box-typescript-sdk-gen/issues/528)) ([#622](https://github.com/box/box-typescript-sdk-gen/issues/622)) ([be3af44](https://github.com/box/box-typescript-sdk-gen/commit/be3af441a66da02254d38576bb9ec258142f6d2d))
+* add support of IBM models to AI API (box/box-openapi[#522](https://github.com/box/box-typescript-sdk-gen/issues/522)) ([#601](https://github.com/box/box-typescript-sdk-gen/issues/601)) ([b060b8c](https://github.com/box/box-typescript-sdk-gen/commit/b060b8c21a13abdfb12988f9c6e6beb014fa104f))
+* increase max items for ai extract endpoints (box/box-openapi[#525](https://github.com/box/box-typescript-sdk-gen/issues/525)) ([#602](https://github.com/box/box-typescript-sdk-gen/issues/602)) ([86c5d14](https://github.com/box/box-typescript-sdk-gen/commit/86c5d14bafe8789c306a1688bcf010207c302ca9))
+* Update legal holds and AI models (box/box-openapi[#526](https://github.com/box/box-typescript-sdk-gen/issues/526)) ([#620](https://github.com/box/box-typescript-sdk-gen/issues/620)) ([de3df57](https://github.com/box/box-typescript-sdk-gen/commit/de3df57cc90577a49ea40de278bde423d17c4f06))
+
 ### [1.15.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.15.0...v1.15.1) (2025-04-11)
 
 
