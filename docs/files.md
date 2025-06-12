@@ -21,7 +21,7 @@ See the endpoint docs at
 ```ts
 await client.files.getFileById(uploadedFile.id, {
   queryParams: {
-    fields: ['is_externally_owned' as string, 'has_collaborations' as string],
+    fields: ['is_externally_owned', 'has_collaborations'],
   } satisfies GetFileByIdQueryParams,
 } satisfies GetFileByIdOptionalsInput);
 ```

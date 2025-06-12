@@ -55,7 +55,7 @@ test('test_get_folder_info', async function test_get_folder_info(): Promise<any>
 test('test_get_folder_full_info_with_extra_fields', async function test_get_folder_full_info_with_extra_fields(): Promise<any> {
   const rootFolder: FolderFull = await client.folders.getFolderById('0', {
     queryParams: {
-      fields: ['has_collaborations' as string, 'tags' as string],
+      fields: ['has_collaborations', 'tags'],
     } satisfies GetFolderByIdQueryParams,
   } satisfies GetFolderByIdOptionalsInput);
   if (!(rootFolder.id == '0')) {

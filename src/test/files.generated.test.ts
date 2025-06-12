@@ -121,7 +121,7 @@ test('testGetFileFullExtraFields', async function testGetFileFullExtraFields(): 
   const uploadedFile: FileFull = await uploadFile(newFileName, fileStream);
   const file: FileFull = await client.files.getFileById(uploadedFile.id, {
     queryParams: {
-      fields: ['is_externally_owned' as string, 'has_collaborations' as string],
+      fields: ['is_externally_owned', 'has_collaborations'],
     } satisfies GetFileByIdQueryParams,
   } satisfies GetFileByIdOptionalsInput);
   if (!(file.isExternallyOwned == false)) {
@@ -142,9 +142,7 @@ test('testCreateGetAndDeleteFile', async function testCreateGetAndDeleteFile(): 
   const file: FileFull = await client.files.getFileById(uploadedFile.id);
   await expect(async () => {
     await client.files.getFileById(uploadedFile.id, {
-      queryParams: {
-        fields: ['name' as string],
-      } satisfies GetFileByIdQueryParams,
+      queryParams: { fields: ['name'] } satisfies GetFileByIdQueryParams,
       headers: new GetFileByIdHeaders({
         extraHeaders: { ['if-none-match']: file.etag! },
       }),
@@ -189,18 +187,14 @@ test('testFileLock', async function testFileLock(): Promise<any> {
         access: 'lock' as UpdateFileByIdRequestBodyLockAccessField,
       } satisfies UpdateFileByIdRequestBodyLockField,
     } satisfies UpdateFileByIdRequestBody,
-    queryParams: {
-      fields: ['lock' as string],
-    } satisfies UpdateFileByIdQueryParams,
+    queryParams: { fields: ['lock'] } satisfies UpdateFileByIdQueryParams,
   } satisfies UpdateFileByIdOptionalsInput);
   if (!!(fileWithLock.lock == void 0)) {
     throw new Error('Assertion failed');
   }
   const fileWithoutLock: FileFull = await client.files.updateFileById(file.id, {
     requestBody: { lock: createNull() } satisfies UpdateFileByIdRequestBody,
-    queryParams: {
-      fields: ['lock' as string],
-    } satisfies UpdateFileByIdQueryParams,
+    queryParams: { fields: ['lock'] } satisfies UpdateFileByIdQueryParams,
   } satisfies UpdateFileByIdOptionalsInput);
   if (!(fileWithoutLock.lock == void 0)) {
     throw new Error('Assertion failed');

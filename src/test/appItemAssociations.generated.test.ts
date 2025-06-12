@@ -57,7 +57,7 @@ test('testListFileAppItemAssocations', async function testListFileAppItemAssocat
   }
   const file: FileFull = await client.files.getFileById(fileId, {
     queryParams: {
-      fields: ['is_associated_with_app_item' as string],
+      fields: ['is_associated_with_app_item'],
     } satisfies GetFileByIdQueryParams,
   } satisfies GetFileByIdOptionalsInput);
   if (!(file.isAssociatedWithAppItem! == true)) {
@@ -92,7 +92,7 @@ test('testListFolderAppItemAssocations', async function testListFolderAppItemAss
   }
   const folder: FolderFull = await client.folders.getFolderById(folderId, {
     queryParams: {
-      fields: ['is_associated_with_app_item' as string],
+      fields: ['is_associated_with_app_item'],
     } satisfies GetFolderByIdQueryParams,
   } satisfies GetFolderByIdOptionalsInput);
   if (!(folder.isAssociatedWithAppItem! == true)) {
