@@ -249,7 +249,6 @@ export async function computeWebhookSignature(
   signatureKey: string,
   escapeBody: boolean = false,
 ): Promise<string | null> {
-  const escapedBody = escapeBody ? jsonStringifyWithEscapedUnicode(body) : body;
   if (headers['box-signature-version'] !== '1') {
     return null;
   }
@@ -258,11 +257,30 @@ export async function computeWebhookSignature(
   }
   let signature: string | null = null;
 
+  const escapedBody = escapeBody ? jsonStringifyWithEscapedUnicode(body) : body;
   let hmac = crypto.createHmac('sha256', signatureKey);
   hmac.update(escapedBody);
   hmac.update(headers['box-delivery-timestamp']);
   signature = hmac.digest('base64');
   return signature;
+}
+
+export async function compareSignatures(
+  expectedSignature: string | null,
+  receivedSignature: string | null,
+): Promise<boolean> {
+  if (!expectedSignature || !receivedSignature) {
+    return false;
+  }
+
+  const expectedBuffer = Buffer.from(expectedSignature, 'base64');
+  const receivedBuffer = Buffer.from(receivedSignature, 'base64');
+
+  if (expectedBuffer.length !== receivedBuffer.length) {
+    return false;
+  }
+
+  return crypto.timingSafeEqual(expectedBuffer, receivedBuffer);
 }
 
 export function random(min: number, max: number): number {

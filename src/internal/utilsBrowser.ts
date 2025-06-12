@@ -282,6 +282,7 @@ export function jsonStringifyWithEscapedUnicode(body: string) {
  * @param {string} body - The request body of the webhook message
  * @param {Object} headers - The request headers of the webhook message
  * @param {string} signatureKey - The signature to verify the message with
+ * @param {string} escapeBody - Indicates if payload should be escaped or left as is
  * @returns {?string} - The message signature (or null, if it can't be computed)
  * @private
  */
@@ -293,7 +294,6 @@ export async function computeWebhookSignature(
   signatureKey: string,
   escapeBody: boolean = false,
 ): Promise<string | null> {
-  const escapedBody = escapeBody ? jsonStringifyWithEscapedUnicode(body) : body;
   if (headers['box-signature-version'] !== '1') {
     return null;
   }
@@ -301,6 +301,7 @@ export async function computeWebhookSignature(
     return null;
   }
   let signature: string | null = null;
+  const escapedBody = escapeBody ? jsonStringifyWithEscapedUnicode(body) : body;
   const hashFunc = createSHA256();
   const hmac = await createHMAC(hashFunc, signatureKey);
   hmac.init();
@@ -310,6 +311,23 @@ export async function computeWebhookSignature(
   signature = Buffer.from(result).toString('base64');
 
   return signature;
+}
+
+export async function compareSignatures(
+  expectedSignature: string | null,
+  receivedSignature: string | null,
+): Promise<boolean> {
+  if (!expectedSignature || !receivedSignature) {
+    return false;
+  }
+  if (expectedSignature.length !== receivedSignature.length) return false;
+
+  let result = 0;
+  for (let i = 0; i < expectedSignature.length; i++) {
+    result |= expectedSignature.charCodeAt(i) ^ receivedSignature.charCodeAt(i);
+  }
+
+  return result === 0;
 }
 
 export async function calculateMD5Hash(data: string | Buffer): Promise<string> {

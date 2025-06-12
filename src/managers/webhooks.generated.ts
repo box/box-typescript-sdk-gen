@@ -23,6 +23,7 @@ import { CancellationToken } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
 import { computeWebhookSignature } from '../internal/utils.js';
+import { compareSignatures } from '../internal/utils.js';
 import { dateTimeFromString } from '../internal/utils.js';
 import { getEpochTimeInSeconds } from '../internal/utils.js';
 import { dateTimeToEpochSeconds } from '../internal/utils.js';
@@ -680,29 +681,37 @@ export class WebhooksManager {
     }
     if (
       primaryKey &&
-      (await computeWebhookSignature(body, headers, primaryKey, false)) ==
-        headers['box-signature-primary']
+      (await compareSignatures(
+        await computeWebhookSignature(body, headers, primaryKey, false),
+        headers['box-signature-primary'],
+      ))
     ) {
       return true;
     }
     if (
       primaryKey &&
-      (await computeWebhookSignature(body, headers, primaryKey, true)) ==
-        headers['box-signature-primary']
+      (await compareSignatures(
+        await computeWebhookSignature(body, headers, primaryKey, true),
+        headers['box-signature-primary'],
+      ))
     ) {
       return true;
     }
     if (
       secondaryKey &&
-      (await computeWebhookSignature(body, headers, secondaryKey, false)) ==
-        headers['box-signature-secondary']
+      (await compareSignatures(
+        await computeWebhookSignature(body, headers, secondaryKey, false),
+        headers['box-signature-secondary'],
+      ))
     ) {
       return true;
     }
     if (
       secondaryKey &&
-      (await computeWebhookSignature(body, headers, secondaryKey, true)) ==
-        headers['box-signature-secondary']
+      (await compareSignatures(
+        await computeWebhookSignature(body, headers, secondaryKey, true),
+        headers['box-signature-secondary'],
+      ))
     ) {
       return true;
     }
