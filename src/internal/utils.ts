@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import {
   calculateMD5Hash,
+  compareSignatures,
   computeWebhookSignature,
   createAgent,
   createJwtAssertion,
@@ -45,6 +46,7 @@ export {
   readTextFromFile,
   createAgent,
   jsonStringifyWithEscapedUnicode,
+  compareSignatures,
   computeWebhookSignature,
   calculateMD5Hash,
   getEnvVar,

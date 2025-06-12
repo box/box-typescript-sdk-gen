@@ -38,6 +38,7 @@ import { dateTimeToString } from '../internal/utils.js';
 import { epochSecondsToDateTime } from '../internal/utils.js';
 import { getEpochTimeInSeconds } from '../internal/utils.js';
 import { computeWebhookSignature } from '../internal/utils.js';
+import { compareSignatures } from '../internal/utils.js';
 import { WebhooksManager } from '../managers/webhooks.generated.js';
 import { getDefaultClient } from './commons.generated.js';
 import { toString } from '../internal/utils.js';
@@ -279,86 +280,91 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     readonly [key: string]: any;
   } = { ...headers, ...{ ['box-signature-algorithm']: 'HmacSHA1' } };
   if (
-    !(
-      (await computeWebhookSignature(body, headers, primaryKey, true)) ==
-      headers['box-signature-primary']
-    )
+    !(await compareSignatures(
+      await computeWebhookSignature(body, headers, primaryKey, true),
+      headers['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(body, headers, secondaryKey, true)) ==
-      headers['box-signature-secondary']
-    )
+    !(await compareSignatures(
+      await computeWebhookSignature(body, headers, secondaryKey, true),
+      headers['box-signature-secondary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !!(
-      (await computeWebhookSignature(body, headers, incorrectKey, true)) ==
-      headers['box-signature-primary']
-    )
+    !!(await compareSignatures(
+      await computeWebhookSignature(body, headers, incorrectKey, true),
+      headers['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(
+    !(await compareSignatures(
+      await computeWebhookSignature(
         bodyWithJapanese,
         headersWithJapanese,
         primaryKey,
         true,
-      )) == headersWithJapanese['box-signature-primary']
-    )
+      ),
+      headersWithJapanese['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(
+    !(await compareSignatures(
+      await computeWebhookSignature(
         bodyWithEmoji,
         headersWithEmoji,
         primaryKey,
         true,
-      )) == headersWithEmoji['box-signature-primary']
-    )
+      ),
+      headersWithEmoji['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(
+    !(await compareSignatures(
+      await computeWebhookSignature(
         bodyWithCarriageReturn,
         headersWithCarriageReturn,
         primaryKey,
         true,
-      )) == headersWithCarriageReturn['box-signature-primary']
-    )
+      ),
+      headersWithCarriageReturn['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(
+    !(await compareSignatures(
+      await computeWebhookSignature(
         bodyWithForwardSlash,
         headersWithForwardSlash,
         primaryKey,
         true,
-      )) == headersWithForwardSlash['box-signature-primary']
-    )
+      ),
+      headersWithForwardSlash['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await computeWebhookSignature(
+    !(await compareSignatures(
+      await computeWebhookSignature(
         bodyWithBackSlash,
         headersWithBackSlash,
         primaryKey,
         true,
-      )) == headersWithBackSlash['box-signature-primary']
-    )
+      ),
+      headersWithBackSlash['box-signature-primary'],
+    ))
   ) {
     throw new Error('Assertion failed');
   }
@@ -393,62 +399,52 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        body,
-        headersWithCorrectDatetime,
-        incorrectKey,
-        { secondaryKey: incorrectKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      body,
+      headersWithCorrectDatetime,
+      incorrectKey,
+      { secondaryKey: incorrectKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        body,
-        headersWithFutureDatetime,
-        primaryKey,
-        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      body,
+      headersWithFutureDatetime,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        body,
-        headersWithPastDatetime,
-        primaryKey,
-        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      body,
+      headersWithPastDatetime,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        body,
-        headersWithWrongSignatureVersion,
-        primaryKey,
-        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      body,
+      headersWithWrongSignatureVersion,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        body,
-        headersWithWrongSignatureAlgorithm,
-        primaryKey,
-        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      body,
+      headersWithWrongSignatureAlgorithm,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
@@ -483,14 +479,12 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     throw new Error('Assertion failed');
   }
   if (
-    !(
-      (await WebhooksManager.validateMessage(
-        bodyWithJapanese,
-        headersWithJapanese,
-        primaryKey,
-        { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
-      )) == false
-    )
+    !!(await WebhooksManager.validateMessage(
+      bodyWithJapanese,
+      headersWithJapanese,
+      primaryKey,
+      { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+    ))
   ) {
     throw new Error('Assertion failed');
   }
