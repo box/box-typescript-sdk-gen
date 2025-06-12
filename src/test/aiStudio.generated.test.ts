@@ -71,9 +71,7 @@ test('testAiStudioCRUD', async function testAiStudioCRUD(): Promise<any> {
   }
   const retrievedAgent: AiSingleAgentResponseFull =
     await client.aiStudio.getAiAgentById(createdAgent.id, {
-      queryParams: {
-        fields: ['ask' as string],
-      } satisfies GetAiAgentByIdQueryParams,
+      queryParams: { fields: ['ask'] } satisfies GetAiAgentByIdQueryParams,
     } satisfies GetAiAgentByIdOptionalsInput);
   if (!(retrievedAgent.name == agentName)) {
     throw new Error('Assertion failed');

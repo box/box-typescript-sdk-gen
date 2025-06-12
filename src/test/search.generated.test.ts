@@ -264,7 +264,7 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
     );
   const query: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
+      ancestorFolderIds: ['0'],
       mdfilters: [
         {
           filters: {
@@ -298,7 +298,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   const keyword: string = 'test';
   const search: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
+      ancestorFolderIds: ['0'],
       query: keyword,
       trashContent:
         'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
@@ -311,7 +311,7 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
   }
   const searchWithSharedLink: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
-      ancestorFolderIds: ['0' as string],
+      ancestorFolderIds: ['0'],
       query: keyword,
       trashContent:
         'non_trashed_only' as SearchForContentQueryParamsTrashContentField,

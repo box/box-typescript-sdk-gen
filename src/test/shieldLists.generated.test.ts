@@ -60,7 +60,7 @@ test('testCreateGetUpdateDeleteShieldList', async function testCreateGetUpdateDe
       description: 'A list of things that are shielded',
       content: new ShieldListContentCountryV2025R0({
         type: 'country' as ShieldListContentCountryV2025R0TypeField,
-        countryCodes: ['US' as string, 'PL' as string],
+        countryCodes: ['US', 'PL'],
       }),
     } satisfies ShieldListsCreateV2025R0);
   const shieldListContentDomainName: string = ''.concat(
@@ -73,7 +73,7 @@ test('testCreateGetUpdateDeleteShieldList', async function testCreateGetUpdateDe
       description: 'A list of things that are shielded',
       content: new ShieldListContentDomainV2025R0({
         type: 'domain' as ShieldListContentDomainV2025R0TypeField,
-        domains: ['box.com' as string, 'example.com' as string],
+        domains: ['box.com', 'example.com'],
       }),
     } satisfies ShieldListsCreateV2025R0);
   const shieldListContentEmailName: string = ''.concat(
@@ -86,10 +86,7 @@ test('testCreateGetUpdateDeleteShieldList', async function testCreateGetUpdateDe
       description: 'A list of things that are shielded',
       content: new ShieldListContentEmailV2025R0({
         type: 'email' as ShieldListContentEmailV2025R0TypeField,
-        emailAddresses: [
-          'test@box.com' as string,
-          'test@example.com' as string,
-        ],
+        emailAddresses: ['test@box.com', 'test@example.com'],
       }),
     } satisfies ShieldListsCreateV2025R0);
   const shieldListContentIpName: string = ''.concat(
@@ -102,7 +99,7 @@ test('testCreateGetUpdateDeleteShieldList', async function testCreateGetUpdateDe
       description: 'A list of things that are shielded',
       content: new ShieldListContentIpV2025R0({
         type: 'ip' as ShieldListContentIpV2025R0TypeField,
-        ipAddresses: ['127.0.0.1' as string, '80.12.12.12/24' as string],
+        ipAddresses: ['127.0.0.1', '80.12.12.12/24'],
       }),
     } satisfies ShieldListsCreateV2025R0);
   const shieldLists: ShieldListsV2025R0 =
@@ -125,7 +122,7 @@ test('testCreateGetUpdateDeleteShieldList', async function testCreateGetUpdateDe
     description: 'Updated description',
     content: new ShieldListContentCountryV2025R0({
       type: 'country' as ShieldListContentCountryV2025R0TypeField,
-      countryCodes: ['US' as string],
+      countryCodes: ['US'],
     }),
   } satisfies ShieldListsUpdateV2025R0);
   const getShieldListCountryUpdated: ShieldListV2025R0 =

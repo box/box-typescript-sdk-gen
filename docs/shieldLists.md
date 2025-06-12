@@ -51,7 +51,7 @@ await client.shieldLists.createShieldListV2025R0({
   description: 'A list of things that are shielded',
   content: new ShieldListContentCountryV2025R0({
     type: 'country' as ShieldListContentCountryV2025R0TypeField,
-    countryCodes: ['US' as string, 'PL' as string],
+    countryCodes: ['US', 'PL'],
   }),
 } satisfies ShieldListsCreateV2025R0);
 ```
@@ -142,7 +142,7 @@ await client.shieldLists.updateShieldListByIdV2025R0(shieldListCountry.id, {
   description: 'Updated description',
   content: new ShieldListContentCountryV2025R0({
     type: 'country' as ShieldListContentCountryV2025R0TypeField,
-    countryCodes: ['US' as string],
+    countryCodes: ['US'],
   }),
 } satisfies ShieldListsUpdateV2025R0);
 ```

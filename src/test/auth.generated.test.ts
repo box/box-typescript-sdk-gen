@@ -89,7 +89,7 @@ test('test_jwt_auth', async function test_jwt_auth(): Promise<any> {
   const enterpriseAuth: BoxJwtAuth = auth.withEnterpriseSubject(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
   const newUser: UserFull = await enterpriseClient.users.getUserMe({
-    fields: ['enterprise' as string],
+    fields: ['enterprise'],
   } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
     throw new Error('Assertion failed');
@@ -233,7 +233,7 @@ test('test_ccg_auth', async function test_ccg_auth(): Promise<any> {
   const enterpriseAuth: BoxCcgAuth = auth.withEnterpriseSubject(enterpriseId);
   const enterpriseClient: BoxClient = new BoxClient({ auth: enterpriseAuth });
   const newUser: UserFull = await enterpriseClient.users.getUserMe({
-    fields: ['enterprise' as string],
+    fields: ['enterprise'],
   } satisfies GetUserMeQueryParams);
   if (!!(newUser.enterprise == void 0)) {
     throw new Error('Assertion failed');

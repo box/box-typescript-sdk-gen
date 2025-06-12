@@ -44,12 +44,7 @@ test('test_create_get_delete_group', async function test_create_get_delete_group
   }
   const groupById: GroupFull = await client.groups.getGroupById(group.id, {
     queryParams: {
-      fields: [
-        'id' as string,
-        'name' as string,
-        'description' as string,
-        'group_type' as string,
-      ],
+      fields: ['id', 'name', 'description', 'group_type'],
     } satisfies GetGroupByIdQueryParams,
   } satisfies GetGroupByIdOptionalsInput);
   if (!(groupById.id == group.id)) {

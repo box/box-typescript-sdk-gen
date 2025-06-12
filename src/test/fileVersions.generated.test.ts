@@ -141,12 +141,7 @@ test('testRemoveAndRestoreFileVersion', async function testRemoveAndRestoreFileV
       fileVersions.entries![0].id,
       {
         queryParams: {
-          fields: [
-            'trashed_at' as string,
-            'trashed_by' as string,
-            'restored_at' as string,
-            'restored_by' as string,
-          ],
+          fields: ['trashed_at', 'trashed_by', 'restored_at', 'restored_by'],
         } satisfies GetFileVersionByIdQueryParams,
       } satisfies GetFileVersionByIdOptionalsInput,
     );
@@ -169,12 +164,7 @@ test('testRemoveAndRestoreFileVersion', async function testRemoveAndRestoreFileV
       fileVersions.entries![0].id,
       {
         queryParams: {
-          fields: [
-            'trashed_at' as string,
-            'trashed_by' as string,
-            'restored_at' as string,
-            'restored_by' as string,
-          ],
+          fields: ['trashed_at', 'trashed_by', 'restored_at', 'restored_by'],
         } satisfies GetFileVersionByIdQueryParams,
       } satisfies GetFileVersionByIdOptionalsInput,
     );
@@ -201,12 +191,7 @@ test('testRemoveAndRestoreFileVersion', async function testRemoveAndRestoreFileV
       fileVersions.entries![0].id,
       {
         queryParams: {
-          fields: [
-            'trashed_at' as string,
-            'trashed_by' as string,
-            'restored_at' as string,
-            'restored_by' as string,
-          ],
+          fields: ['trashed_at', 'trashed_by', 'restored_at', 'restored_by'],
         } satisfies GetFileVersionByIdQueryParams,
       } satisfies GetFileVersionByIdOptionalsInput,
     );

@@ -62,7 +62,7 @@ See the endpoint docs at
 
 ```ts
 await client.search.searchForContent({
-  ancestorFolderIds: ['0' as string],
+  ancestorFolderIds: ['0'],
   mdfilters: [
     {
       filters: {

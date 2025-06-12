@@ -115,9 +115,7 @@ See the endpoint docs at
 
 ```ts
 await client.aiStudio.getAiAgentById(createdAgent.id, {
-  queryParams: {
-    fields: ['ask' as string],
-  } satisfies GetAiAgentByIdQueryParams,
+  queryParams: { fields: ['ask'] } satisfies GetAiAgentByIdQueryParams,
 } satisfies GetAiAgentByIdOptionalsInput);
 ```
 
