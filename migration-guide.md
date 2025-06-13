@@ -28,7 +28,9 @@
 - [Configuration](#configuration)
   - [As-User header](#as-user-header)
   - [Custom Base URLs](#custom-base-urls)
-- [Webhook validation](#webhook-validation)
+- [Convenience methods](#convenience-methods)
+  - [Webhook validation](#webhook-validation)
+  - [Chunked upload of big files](#chunked-upload-of-big-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -580,7 +582,9 @@ const newClient = client.withCustomBaseUrls({
 });
 ```
 
-## Webhook validation
+## Convenience methods
+
+### Webhook validation
 
 Webhook validation is used to validate a webhook message by verifying the signature and the delivery timestamp.
 
@@ -609,5 +613,50 @@ let isValid = await WebhooksManager.validateMessage(
   headers,
   primaryKey,
   { secondaryKey: secondaryKey } satisfies ValidateMessageOptionalsInput,
+);
+```
+
+### Chunked upload of big files
+
+For large files or in cases where the network connection is less reliable, you may want to upload the file in parts.
+This allows a single part to fail without aborting the entire upload, and failed parts are being retried automatically.
+
+**Legacy (`Box Node SDK`):**
+
+In the old SDK, you could use the `getChunkedUploader()` method to create a chunked uploader object.
+Then, you would call the `start()` method to begin the upload process.
+The `getChunkedUploader()` method requires the `parentFolderId`, `fileSize`, `fileName` and `stream` parameters.
+
+```typescript
+var stream = fs.createReadStream('/path/to/file.txt');
+var fileName = 'new_name.txt';
+var fileSize = fs.statSync('/path/to/file.txt').size;
+var parentFolderId = '0';
+client.files
+  .getChunkedUploader(parentFolderId, fileSize, fileName, stream)
+  .then((uploader) => uploader.start())
+  .then((file) => {
+    /* ... */
+  });
+```
+
+**Modern (`Box TypeScript SDK`):**
+
+In the new SDK, the equivalent method is `chunked_uploads.uploadBigFile()`. It accepts a `Readable` object
+as the `file` parameter, and the `fileName` and `fileSize` parameters are now passed as arguments.
+The `parentFolderId` parameter is also required to specify the folder where the file will be uploaded.
+
+```typescript
+import { File } from 'box-typescript-sdk-gen/lib/schemas/file.generated.js';
+
+var fileByteStream = fs.createReadStream('/path/to/file.txt');
+var fileName = 'new_name.txt';
+var fileSize = fs.statSync('/path/to/file.txt').size;
+var parentFolderId = '0';
+const uploadedFile: File = await client.chunkedUploads.uploadBigFile(
+  fileByteStream,
+  fileName,
+  fileSize,
+  parentFolderId,
 );
 ```
