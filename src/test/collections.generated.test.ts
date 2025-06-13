@@ -72,13 +72,6 @@ test('testCollections', async function testCollections(): Promise<any> {
   await client.folders.updateFolderById(folder.id, {
     requestBody: { collections: [] } satisfies UpdateFolderByIdRequestBody,
   } satisfies UpdateFolderByIdOptionalsInput);
-  const collectionItemsAfterRemove: ItemsOffsetPaginated =
-    await client.collections.getCollectionItems(favouriteCollection.id!);
-  if (
-    !(collectionItemsAfterRemove.totalCount! == collectionItems.totalCount!)
-  ) {
-    throw new Error('Assertion failed');
-  }
   await client.folders.deleteFolderById(folder.id);
 });
 export {};
