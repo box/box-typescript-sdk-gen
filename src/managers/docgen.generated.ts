@@ -123,7 +123,7 @@ export interface CreateDocgenBatchV2025R0OptionalsInput {
 }
 export class GetDocgenJobByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -150,7 +150,7 @@ export class GetDocgenJobByIdV2025R0Headers {
 }
 export interface GetDocgenJobByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -173,7 +173,7 @@ export interface GetDocgenJobsV2025R0QueryParams {
 }
 export class GetDocgenJobsV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -195,7 +195,7 @@ export class GetDocgenJobsV2025R0Headers {
 }
 export interface GetDocgenJobsV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -218,7 +218,7 @@ export interface GetDocgenBatchJobByIdV2025R0QueryParams {
 }
 export class GetDocgenBatchJobByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -245,7 +245,7 @@ export class GetDocgenBatchJobByIdV2025R0Headers {
 }
 export interface GetDocgenBatchJobByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -257,7 +257,7 @@ export interface GetDocgenBatchJobByIdV2025R0HeadersInput {
 }
 export class CreateDocgenBatchV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -284,7 +284,7 @@ export class CreateDocgenBatchV2025R0Headers {
 }
 export interface CreateDocgenBatchV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -413,7 +413,7 @@ export class DocgenManager {
     };
   }
   /**
-     * Lists Box Doc Gen jobs in a batch
+     * Lists Box Doc Gen jobs in a batch.
      * @param {string} batchId Box Doc Gen batch ID.
     Example: 123
      * @param {GetDocgenBatchJobByIdV2025R0OptionalsInput} optionalsInput

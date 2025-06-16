@@ -163,9 +163,9 @@ export class FindFileForSharedLinkHeaders {
    * A header containing the shared link and optional password for the
    * shared link.
    *
-   * The format for this header is as follows.
+   * The format for this header is as follows:
    *
-   * `shared_link=[link]&shared_link_password=[password]` */
+   * `shared_link=[link]&shared_link_password=[password]`. */
   readonly boxapi!: string;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -200,9 +200,9 @@ export interface FindFileForSharedLinkHeadersInput {
    * A header containing the shared link and optional password for the
    * shared link.
    *
-   * The format for this header is as follows.
+   * The format for this header is as follows:
    *
-   * `shared_link=[link]&shared_link_password=[password]` */
+   * `shared_link=[link]&shared_link_password=[password]`. */
   readonly boxapi: string;
   /**
    * Extra headers that will be included in the HTTP request. */

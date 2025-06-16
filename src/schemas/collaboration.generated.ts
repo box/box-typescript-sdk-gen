@@ -85,7 +85,7 @@ export class Collaboration {
    * The unique identifier for this collaboration. */
   readonly id!: string;
   /**
-   * `collaboration` */
+   * The value will always be `collaboration`. */
   readonly type: CollaborationTypeField =
     'collaboration' as CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink | null;
@@ -184,7 +184,7 @@ export interface CollaborationInput {
    * The unique identifier for this collaboration. */
   readonly id: string;
   /**
-   * `collaboration` */
+   * The value will always be `collaboration`. */
   readonly type?: CollaborationTypeField;
   readonly item?: FileOrFolderOrWebLink | null;
   readonly appItem?: AppItem | null;

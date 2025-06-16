@@ -163,16 +163,16 @@ export interface EventAdditionalDetailsField {
 }
 export interface Event {
   /**
-   * `event` */
+   * The value will always be `event`. */
   readonly type?: string;
   /**
-   * When the event object was created */
+   * When the event object was created. */
   readonly createdAt?: DateTime;
   /**
-   * When the event object was recorded in database */
+   * When the event object was recorded in database. */
   readonly recordedAt?: DateTime;
   /**
-   * The ID of the event object. You can use this to detect duplicate events */
+   * The ID of the event object. You can use this to detect duplicate events. */
   readonly eventId?: string;
   readonly createdBy?: UserMini;
   readonly eventType?: EventEventTypeField;

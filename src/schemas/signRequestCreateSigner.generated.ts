@@ -27,7 +27,7 @@ export interface SignRequestCreateSigner {
    * sender signs, they are redirected to the next `in_person` signer. */
   readonly isInPerson?: boolean;
   /**
-   * Order of the signer */
+   * Order of the signer. */
   readonly order?: number;
   /**
    * User ID for the signer in an external application responsible
@@ -72,7 +72,7 @@ export interface SignRequestCreateSigner {
    * instead for signers in the same signer group. */
   readonly signerGroupId?: string | null;
   /**
-   * If true, no emails about the sign request will be sent */
+   * If true, no emails about the sign request will be sent. */
   readonly suppressNotifications?: boolean | null;
   readonly rawData?: SerializedData;
 }

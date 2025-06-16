@@ -24,10 +24,10 @@ export type TaskAssignmentResolutionStateField =
   | string;
 export interface TaskAssignment {
   /**
-   * The unique identifier for this task assignment */
+   * The unique identifier for this task assignment. */
   readonly id?: string;
   /**
-   * `task_assignment` */
+   * The value will always be `task_assignment`. */
   readonly type?: TaskAssignmentTypeField;
   readonly item?: FileMini;
   readonly assignedTo?: UserMini;

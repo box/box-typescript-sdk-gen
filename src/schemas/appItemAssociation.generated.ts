@@ -18,7 +18,7 @@ export class AppItemAssociation {
    * The unique identifier for this app item association. */
   readonly id!: string;
   /**
-   * `app_item_association` */
+   * The value will always be `app_item_association`. */
   readonly type: AppItemAssociationTypeField =
     'app_item_association' as AppItemAssociationTypeField;
   readonly appItem!: AppItem;
@@ -50,7 +50,7 @@ export interface AppItemAssociationInput {
    * The unique identifier for this app item association. */
   readonly id: string;
   /**
-   * `app_item_association` */
+   * The value will always be `app_item_association`. */
   readonly type?: AppItemAssociationTypeField;
   readonly appItem: AppItem;
   readonly item: FileBaseOrFolderBaseOrWebLinkBase;

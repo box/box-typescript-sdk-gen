@@ -27,34 +27,34 @@ export type WorkflowFlowsTriggerScopeTypeField = 'trigger_scope';
 export type WorkflowFlowsTriggerScopeObjectTypeField = 'folder';
 export interface WorkflowFlowsTriggerScopeObjectField {
   /**
-   * The type of the object */
+   * The type of the object. */
   readonly type?: WorkflowFlowsTriggerScopeObjectTypeField;
   /**
-   * The id of the object */
+   * The id of the object. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsTriggerScopeField {
   /**
-   * The trigger scope's resource type */
+   * The trigger scope's resource type. */
   readonly type?: WorkflowFlowsTriggerScopeTypeField;
   /**
-   * Indicates the path of the condition value to check */
+   * Indicates the path of the condition value to check. */
   readonly ref?: string;
   /**
-   * The object the `ref` points to */
+   * The object the `ref` points to. */
   readonly object?: WorkflowFlowsTriggerScopeObjectField;
   readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsTriggerField {
   /**
-   * The trigger's resource type */
+   * The trigger's resource type. */
   readonly type?: WorkflowFlowsTriggerTypeField;
   /**
-   * The type of trigger selected for this flow */
+   * The type of trigger selected for this flow. */
   readonly triggerType?: WorkflowFlowsTriggerTriggerTypeField;
   /**
-   * List of trigger scopes */
+   * List of trigger scopes. */
   readonly scope?: readonly WorkflowFlowsTriggerScopeField[];
   readonly rawData?: SerializedData;
 }
@@ -112,45 +112,45 @@ export type WorkflowFlowsOutcomesIfRejectedActionTypeField =
   | string;
 export interface WorkflowFlowsOutcomesIfRejectedField {
   /**
-   * The identifier of the outcome */
+   * The identifier of the outcome. */
   readonly id?: string;
   /**
-   * The outcomes resource type */
+   * The outcomes resource type. */
   readonly type?: WorkflowFlowsOutcomesIfRejectedTypeField;
   /**
-   * The name of the outcome */
+   * The name of the outcome. */
   readonly name?: string;
   readonly actionType?: WorkflowFlowsOutcomesIfRejectedActionTypeField;
   readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsOutcomesField {
   /**
-   * The identifier of the outcome */
+   * The identifier of the outcome. */
   readonly id?: string;
   /**
-   * The outcomes resource type */
+   * The outcomes resource type. */
   readonly type?: WorkflowFlowsOutcomesTypeField;
   /**
-   * The name of the outcome */
+   * The name of the outcome. */
   readonly name?: string;
   readonly actionType?: WorkflowFlowsOutcomesActionTypeField;
   /**
    * If `action_type` is `assign_task` and the task is rejected, returns a
-   * list of outcomes to complete */
+   * list of outcomes to complete. */
   readonly ifRejected?: readonly WorkflowFlowsOutcomesIfRejectedField[];
   readonly rawData?: SerializedData;
 }
 export interface WorkflowFlowsField {
   /**
-   * The identifier of the flow */
+   * The identifier of the flow. */
   readonly id?: string;
   /**
-   * The flow's resource type */
+   * The flow's resource type. */
   readonly type?: WorkflowFlowsTypeField;
   readonly trigger?: WorkflowFlowsTriggerField;
   readonly outcomes?: readonly WorkflowFlowsOutcomesField[];
   /**
-   * When this flow was created */
+   * When this flow was created. */
   readonly createdAt?: DateTime;
   readonly createdBy?: UserBase;
   readonly rawData?: SerializedData;

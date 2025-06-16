@@ -12,7 +12,7 @@ export class FileVersionBaseV2025R0 {
    * The unique identifier that represent a file version. */
   readonly id!: string;
   /**
-   * `file_version` */
+   * The value will always be `file_version`. */
   readonly type: FileVersionBaseV2025R0TypeField =
     'file_version' as FileVersionBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
@@ -36,7 +36,7 @@ export interface FileVersionBaseV2025R0Input {
    * The unique identifier that represent a file version. */
   readonly id: string;
   /**
-   * `file_version` */
+   * The value will always be `file_version`. */
   readonly type?: FileVersionBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
 }

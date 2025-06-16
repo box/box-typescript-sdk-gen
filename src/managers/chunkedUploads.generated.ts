@@ -352,10 +352,10 @@ export interface CreateFileUploadSessionRequestBody {
    * The ID of the folder to upload the new file to. */
   readonly folderId: string;
   /**
-   * The total number of bytes of the file to be uploaded */
+   * The total number of bytes of the file to be uploaded. */
   readonly fileSize: number;
   /**
-   * The name of new file */
+   * The name of new file. */
   readonly fileName: string;
   readonly rawData?: SerializedData;
 }
@@ -385,10 +385,10 @@ export interface CreateFileUploadSessionHeadersInput {
 }
 export interface CreateFileUploadSessionForExistingFileRequestBody {
   /**
-   * The total number of bytes of the file to be uploaded */
+   * The total number of bytes of the file to be uploaded. */
   readonly fileSize: number;
   /**
-   * The optional new name of new file */
+   * The optional new name of new file. */
   readonly fileName?: string;
   readonly rawData?: SerializedData;
 }
@@ -479,7 +479,7 @@ export class UploadFilePartByUrlHeaders {
    *
    * To get the value for the `SHA` digest, use the
    * openSSL command to encode the file part:
-   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`.
    *
    * [1]: https://tools.ietf.org/html/rfc3230 */
   readonly digest!: string;
@@ -528,7 +528,7 @@ export interface UploadFilePartByUrlHeadersInput {
    *
    * To get the value for the `SHA` digest, use the
    * openSSL command to encode the file part:
-   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`.
    *
    * [1]: https://tools.ietf.org/html/rfc3230 */
   readonly digest: string;
@@ -565,7 +565,7 @@ export class UploadFilePartHeaders {
    *
    * To get the value for the `SHA` digest, use the
    * openSSL command to encode the file part:
-   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`.
    *
    * [1]: https://tools.ietf.org/html/rfc3230 */
   readonly digest!: string;
@@ -614,7 +614,7 @@ export interface UploadFilePartHeadersInput {
    *
    * To get the value for the `SHA` digest, use the
    * openSSL command to encode the file part:
-   * `openssl sha1 -binary <FILE_PART_NAME> | base64`
+   * `openssl sha1 -binary <FILE_PART_NAME> | base64`.
    *
    * [1]: https://tools.ietf.org/html/rfc3230 */
   readonly digest: string;
@@ -763,7 +763,7 @@ export interface GetFileUploadSessionPartsHeadersInput {
 }
 export interface CreateFileUploadSessionCommitByUrlRequestBody {
   /**
-   * The list details for the uploaded parts */
+   * The list details for the uploaded parts. */
   readonly parts: readonly UploadPart[];
   readonly rawData?: SerializedData;
 }
@@ -854,7 +854,7 @@ export interface CreateFileUploadSessionCommitByUrlHeadersInput {
 }
 export interface CreateFileUploadSessionCommitRequestBody {
   /**
-   * The list details for the uploaded parts */
+   * The list details for the uploaded parts. */
   readonly parts: readonly UploadPart[];
   readonly rawData?: SerializedData;
 }

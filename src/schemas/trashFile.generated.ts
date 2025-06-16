@@ -22,16 +22,16 @@ export type TrashFileTypeField = 'file';
 export type TrashFilePathCollectionEntriesTypeField = 'folder';
 export interface TrashFilePathCollectionEntriesField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: TrashFilePathCollectionEntriesTypeField;
   /**
    * The unique identifier that represent a folder. */
   readonly id?: string;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly sequenceId?: string | null;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly etag?: string | null;
   /**
    * The name of the Trash folder. */
@@ -43,7 +43,7 @@ export interface TrashFilePathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * Array of folders for this item's path collection */
+   * Array of folders for this item's path collection. */
   readonly entries: readonly TrashFilePathCollectionEntriesField[];
   readonly rawData?: SerializedData;
 }
@@ -68,11 +68,11 @@ export class TrashFile {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type: TrashFileTypeField = 'file' as TrashFileTypeField;
   readonly sequenceId!: string;
   /**
-   * The name of the file */
+   * The name of the file. */
   readonly name?: string;
   /**
    * The SHA1 hash of the file. This can be used to compare the contents
@@ -80,7 +80,7 @@ export class TrashFile {
   readonly sha1!: string;
   readonly fileVersion?: FileVersionMini;
   /**
-   * The optional description of this file */
+   * The optional description of this file. */
   readonly description!: string;
   /**
    * The file size in bytes. Be careful parsing this integer as it can
@@ -215,11 +215,11 @@ export interface TrashFileInput {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: TrashFileTypeField;
   readonly sequenceId: string;
   /**
-   * The name of the file */
+   * The name of the file. */
   readonly name?: string;
   /**
    * The SHA1 hash of the file. This can be used to compare the contents
@@ -227,7 +227,7 @@ export interface TrashFileInput {
   readonly sha1: string;
   readonly fileVersion?: FileVersionMini;
   /**
-   * The optional description of this file */
+   * The optional description of this file. */
   readonly description: string;
   /**
    * The file size in bytes. Be careful parsing this integer as it can

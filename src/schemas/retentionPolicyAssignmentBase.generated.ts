@@ -13,7 +13,7 @@ export class RetentionPolicyAssignmentBase {
    * The unique identifier that represents a file version. */
   readonly id!: string;
   /**
-   * `retention_policy_assignment` */
+   * The value will always be `retention_policy_assignment`. */
   readonly type: RetentionPolicyAssignmentBaseTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentBaseTypeField;
   readonly rawData?: SerializedData;
@@ -37,7 +37,7 @@ export interface RetentionPolicyAssignmentBaseInput {
    * The unique identifier that represents a file version. */
   readonly id: string;
   /**
-   * `retention_policy_assignment` */
+   * The value will always be `retention_policy_assignment`. */
   readonly type?: RetentionPolicyAssignmentBaseTypeField;
   readonly rawData?: SerializedData;
 }

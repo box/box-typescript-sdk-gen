@@ -40,7 +40,7 @@ await userClient.integrationMappings.getSlackIntegrationMapping();
 
 This function returns a value of type `IntegrationMappings`.
 
-Returns a collection of integration mappings
+Returns a collection of integration mappings.
 
 ## Create Slack integration mapping
 
@@ -109,7 +109,7 @@ await userClient.integrationMappings.updateSlackIntegrationMappingById(
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping Example: "11235432"
+  - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `UpdateSlackIntegrationMappingByIdOptionalsInput`
   -
 
@@ -142,7 +142,7 @@ await userClient.integrationMappings.deleteSlackIntegrationMappingById(
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping Example: "11235432"
+  - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `DeleteSlackIntegrationMappingByIdOptionalsInput`
   -
 
@@ -150,7 +150,7 @@ await userClient.integrationMappings.deleteSlackIntegrationMappingById(
 
 This function returns a value of type `undefined`.
 
-Empty body in response
+Empty body in response.
 
 ## List Teams integration mappings
 
@@ -182,7 +182,7 @@ await userClient.integrationMappings.getTeamsIntegrationMapping();
 
 This function returns a value of type `IntegrationMappingsTeams`.
 
-Returns a collection of integration mappings
+Returns a collection of integration mappings.
 
 ## Create Teams integration mapping
 
@@ -251,7 +251,7 @@ await userClient.integrationMappings.updateTeamsIntegrationMappingById(
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping Example: "11235432"
+  - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `UpdateTeamsIntegrationMappingByIdOptionalsInput`
   -
 
@@ -283,7 +283,7 @@ await userClient.integrationMappings.deleteTeamsIntegrationMappingById(
 ### Arguments
 
 - integrationMappingId `string`
-  - An ID of an integration mapping Example: "11235432"
+  - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `DeleteTeamsIntegrationMappingByIdOptionalsInput`
   -
 
@@ -291,4 +291,4 @@ await userClient.integrationMappings.deleteTeamsIntegrationMappingById(
 
 This function returns a value of type `undefined`.
 
-Empty body in response
+Empty body in response.

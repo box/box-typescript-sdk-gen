@@ -23,7 +23,7 @@ export interface KeywordSkillCardSkillCardTitleField {
 export type KeywordSkillCardSkillTypeField = 'service';
 export class KeywordSkillCardSkillField {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type: KeywordSkillCardSkillTypeField =
     'service' as KeywordSkillCardSkillTypeField;
   /**
@@ -48,7 +48,7 @@ export class KeywordSkillCardSkillField {
 }
 export interface KeywordSkillCardSkillFieldInput {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type?: KeywordSkillCardSkillTypeField;
   /**
    * A custom identifier that represent the service that
@@ -59,7 +59,7 @@ export interface KeywordSkillCardSkillFieldInput {
 export type KeywordSkillCardInvocationTypeField = 'skill_invocation';
 export class KeywordSkillCardInvocationField {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type: KeywordSkillCardInvocationTypeField =
     'skill_invocation' as KeywordSkillCardInvocationTypeField;
   /**
@@ -87,7 +87,7 @@ export class KeywordSkillCardInvocationField {
 }
 export interface KeywordSkillCardInvocationFieldInput {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type?: KeywordSkillCardInvocationTypeField;
   /**
    * A custom identifier that represent the instance of
@@ -109,11 +109,11 @@ export class KeywordSkillCard {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type: KeywordSkillCardTypeField =
     'skill_card' as KeywordSkillCardTypeField;
   /**
-   * `keyword` */
+   * The value will always be `keyword`. */
   readonly skillCardType: KeywordSkillCardSkillCardTypeField =
     'keyword' as KeywordSkillCardSkillCardTypeField;
   /**
@@ -165,10 +165,10 @@ export interface KeywordSkillCardInput {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type?: KeywordSkillCardTypeField;
   /**
-   * `keyword` */
+   * The value will always be `keyword`. */
   readonly skillCardType?: KeywordSkillCardSkillCardTypeField;
   /**
    * The title of the card. */

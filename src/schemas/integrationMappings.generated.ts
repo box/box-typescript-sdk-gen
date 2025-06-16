@@ -19,7 +19,7 @@ export interface IntegrationMappings {
    * The marker for the start of the next page of results. */
   readonly nextMarker?: string | null;
   /**
-   * A list of integration mappings */
+   * A list of integration mappings. */
   readonly entries?: readonly IntegrationMapping[];
   readonly rawData?: SerializedData;
 }

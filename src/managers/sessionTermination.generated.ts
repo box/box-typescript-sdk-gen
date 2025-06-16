@@ -73,10 +73,10 @@ export interface TerminateGroupsSessionsOptionalsInput {
 }
 export interface TerminateUsersSessionsRequestBody {
   /**
-   * A list of user IDs */
+   * A list of user IDs. */
   readonly userIds: readonly string[];
   /**
-   * A list of user logins */
+   * A list of user logins. */
   readonly userLogins: readonly string[];
   readonly rawData?: SerializedData;
 }
@@ -106,7 +106,7 @@ export interface TerminateUsersSessionsHeadersInput {
 }
 export interface TerminateGroupsSessionsRequestBody {
   /**
-   * A list of group IDs */
+   * A list of group IDs. */
   readonly groupIds: readonly string[];
   readonly rawData?: SerializedData;
 }

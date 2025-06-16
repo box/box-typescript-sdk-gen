@@ -31,7 +31,7 @@ export type SignRequestCreateRequest = SignRequestBase & {
    * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
   readonly sourceFiles?: readonly FileBase[] | null;
   /**
-   * Force a specific color for the signature (blue, black, or red) */
+   * Force a specific color for the signature (blue, black, or red). */
   readonly signatureColor?: SignRequestCreateRequestSignatureColorField | null;
   /**
    * Array of signers for the signature request. 35 is the

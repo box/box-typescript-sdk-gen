@@ -164,10 +164,10 @@ export interface GetFileTasksHeadersInput {
 export type CreateTaskRequestBodyItemTypeField = 'file';
 export interface CreateTaskRequestBodyItemField {
   /**
-   * The ID of the file */
+   * The ID of the file. */
   readonly id?: string;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: CreateTaskRequestBodyItemTypeField;
   readonly rawData?: SerializedData;
 }
@@ -183,9 +183,9 @@ export interface CreateTaskRequestBody {
   /**
    * The action the task assignee will be prompted to do. Must be
    *
-   * * `review` defines an approval task that can be approved or
+   * * `review` defines an approval task that can be approved or,
    * rejected
-   * * `complete` defines a general task which can be completed */
+   * * `complete` defines a general task which can be completed. */
   readonly action?: CreateTaskRequestBodyActionField;
   /**
    * An optional message to include with the task. */
@@ -266,8 +266,8 @@ export interface UpdateTaskByIdRequestBody {
    * The action the task assignee will be prompted to do. Must be
    *
    * * `review` defines an approval task that can be approved or
-   * rejected
-   * * `complete` defines a general task which can be completed */
+   * rejected,
+   * * `complete` defines a general task which can be completed. */
   readonly action?: UpdateTaskByIdRequestBodyActionField;
   /**
    * The message included with the task. */

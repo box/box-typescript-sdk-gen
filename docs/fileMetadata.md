@@ -62,9 +62,9 @@ await client.fileMetadata.getFileMetadataById(
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `GetFileMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `GetFileMetadataByIdOptionalsInput`
   -
 
@@ -111,9 +111,9 @@ await client.fileMetadata.createFileMetadataById(
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `CreateFileMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - requestBody `CreateFileMetadataByIdRequestBody`
   - Request body of createFileMetadataById method
 - optionalsInput `CreateFileMetadataByIdOptionalsInput`
@@ -184,9 +184,9 @@ await client.fileMetadata.updateFileMetadataById(
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `UpdateFileMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - requestBody `readonly UpdateFileMetadataByIdRequestBody[]`
   - Request body of updateFileMetadataById method
 - optionalsInput `UpdateFileMetadataByIdOptionalsInput`
@@ -223,9 +223,9 @@ await client.fileMetadata.deleteFileMetadataById(
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - scope `DeleteFileMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteFileMetadataByIdOptionalsInput`
   -
 

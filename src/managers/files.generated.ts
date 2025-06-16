@@ -275,7 +275,7 @@ export class GetFileByIdHeaders {
    * document file types in Box using the `[extracted_text]`
    * representation.
    *
-   * `x-rep-hints: [extracted_text]` */
+   * `x-rep-hints: [extracted_text]`. */
   readonly xRepHints?: string;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -340,7 +340,7 @@ export interface GetFileByIdHeadersInput {
    * document file types in Box using the `[extracted_text]`
    * representation.
    *
-   * `x-rep-hints: [extracted_text]` */
+   * `x-rep-hints: [extracted_text]`. */
   readonly xRepHints?: string;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -352,7 +352,7 @@ export interface GetFileByIdHeadersInput {
 }
 export interface UpdateFileByIdRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   /**
    * The input for `user_id` is optional. Moving to non-root folder is not allowed when `user_id` is present. Parent folder id should be zero when `user_id` is provided. */
@@ -442,10 +442,10 @@ export interface UpdateFileByIdRequestBodyPermissionsField {
 }
 export interface UpdateFileByIdRequestBodyCollectionsField {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id?: string;
   /**
-   * The type for this object */
+   * The type for this object. */
   readonly type?: string;
   readonly rawData?: SerializedData;
 }
@@ -673,16 +673,16 @@ export interface CopyFileHeadersInput {
 export type GetFileThumbnailUrlExtension = 'png' | 'jpg' | string;
 export interface GetFileThumbnailUrlQueryParams {
   /**
-   * The minimum height of the thumbnail */
+   * The minimum height of the thumbnail. */
   readonly minHeight?: number;
   /**
-   * The minimum width of the thumbnail */
+   * The minimum width of the thumbnail. */
   readonly minWidth?: number;
   /**
-   * The maximum height of the thumbnail */
+   * The maximum height of the thumbnail. */
   readonly maxHeight?: number;
   /**
-   * The maximum width of the thumbnail */
+   * The maximum width of the thumbnail. */
   readonly maxWidth?: number;
 }
 export class GetFileThumbnailUrlHeaders {
@@ -712,16 +712,16 @@ export interface GetFileThumbnailUrlHeadersInput {
 export type GetFileThumbnailByIdExtension = 'png' | 'jpg' | string;
 export interface GetFileThumbnailByIdQueryParams {
   /**
-   * The minimum height of the thumbnail */
+   * The minimum height of the thumbnail. */
   readonly minHeight?: number;
   /**
-   * The minimum width of the thumbnail */
+   * The minimum width of the thumbnail. */
   readonly minWidth?: number;
   /**
-   * The maximum height of the thumbnail */
+   * The maximum height of the thumbnail. */
   readonly maxHeight?: number;
   /**
-   * The maximum width of the thumbnail */
+   * The maximum width of the thumbnail. */
   readonly maxWidth?: number;
 }
 export class GetFileThumbnailByIdHeaders {
@@ -1032,7 +1032,7 @@ export class FilesManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {GetFileThumbnailUrlExtension} extension The file format for the thumbnail
+     * @param {GetFileThumbnailUrlExtension} extension The file format for the thumbnail.
     Example: "png"
      * @param {GetFileThumbnailUrlOptionalsInput} optionalsInput
      * @returns {Promise<string>}
@@ -1121,7 +1121,7 @@ export class FilesManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {GetFileThumbnailByIdExtension} extension The file format for the thumbnail
+     * @param {GetFileThumbnailByIdExtension} extension The file format for the thumbnail.
     Example: "png"
      * @param {GetFileThumbnailByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined | ByteStream>}

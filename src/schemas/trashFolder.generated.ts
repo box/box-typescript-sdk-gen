@@ -19,16 +19,16 @@ export type TrashFolderTypeField = 'folder';
 export type TrashFolderPathCollectionEntriesTypeField = 'folder';
 export interface TrashFolderPathCollectionEntriesField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: TrashFolderPathCollectionEntriesTypeField;
   /**
    * The unique identifier that represent a folder. */
   readonly id?: string;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly sequenceId?: string | null;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly etag?: string | null;
   /**
    * The name of the Trash folder. */
@@ -40,7 +40,7 @@ export interface TrashFolderPathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * Array of folders for this item's path collection */
+   * Array of folders for this item's path collection. */
   readonly entries: readonly TrashFolderPathCollectionEntriesField[];
   readonly rawData?: SerializedData;
 }
@@ -65,7 +65,7 @@ export class TrashFolder {
    * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type: TrashFolderTypeField = 'folder' as TrashFolderTypeField;
   readonly sequenceId?: string;
   /**
@@ -212,7 +212,7 @@ export interface TrashFolderInput {
    * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: TrashFolderTypeField;
   readonly sequenceId?: string;
   /**

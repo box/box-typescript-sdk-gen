@@ -13,7 +13,7 @@ export interface MetadataBase {
    * of the parent in the form `{type}_{id}`. */
   readonly parent?: string;
   /**
-   * The name of the template */
+   * The name of the template. */
   readonly template?: string;
   /**
    * An ID for the scope in which this template

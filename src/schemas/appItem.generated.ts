@@ -12,7 +12,7 @@ export class AppItem {
    * The unique identifier for this app item. */
   readonly id!: string;
   /**
-   * `app_item` */
+   * The value will always be `app_item`. */
   readonly type: AppItemTypeField = 'app_item' as AppItemTypeField;
   /**
    * The type of the app that owns this app item. */
@@ -38,7 +38,7 @@ export interface AppItemInput {
    * The unique identifier for this app item. */
   readonly id: string;
   /**
-   * `app_item` */
+   * The value will always be `app_item`. */
   readonly type?: AppItemTypeField;
   /**
    * The type of the app that owns this app item. */

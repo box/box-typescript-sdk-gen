@@ -30,14 +30,14 @@ export interface ClassificationTemplateFieldsOptionsStaticConfigClassificationFi
    * without notice. Currently, the color mappings are as
    * follows.
    *
-   * * `0`: Yellow
-   * * `1`: Orange
-   * * `2`: Watermelon red
-   * * `3`: Purple rain
-   * * `4`: Light blue
-   * * `5`: Dark blue
-   * * `6`: Light green
-   * * `7`: Gray */
+   * * `0`: Yellow.
+   * * `1`: Orange.
+   * * `2`: Watermelon red.
+   * * `3`: Purple rain.
+   * * `4`: Light blue.
+   * * `5`: Dark blue.
+   * * `6`: Light green.
+   * * `7`: Gray. */
   readonly colorId?: number;
   readonly rawData?: SerializedData;
 }
@@ -79,7 +79,7 @@ export class ClassificationTemplateFieldsField {
   readonly key: ClassificationTemplateFieldsKeyField =
     'Box__Security__Classification__Key' as ClassificationTemplateFieldsKeyField;
   /**
-   * `Classification` */
+   * The value will always be `Classification`. */
   readonly displayName: ClassificationTemplateFieldsDisplayNameField =
     'Classification' as ClassificationTemplateFieldsDisplayNameField;
   /**
@@ -133,7 +133,7 @@ export interface ClassificationTemplateFieldsFieldInput {
    * available in the enterprise. */
   readonly key?: ClassificationTemplateFieldsKeyField;
   /**
-   * `Classification` */
+   * The value will always be `Classification`. */
   readonly displayName?: ClassificationTemplateFieldsDisplayNameField;
   /**
    * Classifications are always visible to web and mobile users. */
@@ -148,7 +148,7 @@ export class ClassificationTemplate {
    * The ID of the classification template. */
   readonly id!: string;
   /**
-   * `metadata_template` */
+   * The value will always be `metadata_template`. */
   readonly type: ClassificationTemplateTypeField =
     'metadata_template' as ClassificationTemplateTypeField;
   /**
@@ -156,7 +156,7 @@ export class ClassificationTemplate {
    * `enterprise_{id}` where the `id` is the enterprise ID. */
   readonly scope!: string;
   /**
-   * `securityClassification-6VMVochwUWo` */
+   * The value will always be `securityClassification-6VMVochwUWo`. */
   readonly templateKey: ClassificationTemplateTemplateKeyField =
     'securityClassification-6VMVochwUWo' as ClassificationTemplateTemplateKeyField;
   /**
@@ -222,14 +222,14 @@ export interface ClassificationTemplateInput {
    * The ID of the classification template. */
   readonly id: string;
   /**
-   * `metadata_template` */
+   * The value will always be `metadata_template`. */
   readonly type?: ClassificationTemplateTypeField;
   /**
    * The scope of the classification template. This is in the format
    * `enterprise_{id}` where the `id` is the enterprise ID. */
   readonly scope: string;
   /**
-   * `securityClassification-6VMVochwUWo` */
+   * The value will always be `securityClassification-6VMVochwUWo`. */
   readonly templateKey?: ClassificationTemplateTemplateKeyField;
   /**
    * The name of this template as shown in web and mobile interfaces. */

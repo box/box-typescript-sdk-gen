@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type UserBaseTypeField = 'user';
 export class UserBase {
   /**
-   * The unique identifier for this user */
+   * The unique identifier for this user. */
   readonly id!: string;
   /**
-   * `user` */
+   * The value will always be `user`. */
   readonly type: UserBaseTypeField = 'user' as UserBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
@@ -31,10 +31,10 @@ export class UserBase {
 }
 export interface UserBaseInput {
   /**
-   * The unique identifier for this user */
+   * The unique identifier for this user. */
   readonly id: string;
   /**
-   * `user` */
+   * The value will always be `user`. */
   readonly type?: UserBaseTypeField;
   readonly rawData?: SerializedData;
 }

@@ -23,7 +23,7 @@ export interface LegalHoldPolicyAssignments {
   readonly prevMarker?: string | null;
   /**
    * A list of legal hold
-   * policy assignments */
+   * policy assignments. */
   readonly entries?: readonly LegalHoldPolicyAssignment[];
   readonly rawData?: SerializedData;
 }

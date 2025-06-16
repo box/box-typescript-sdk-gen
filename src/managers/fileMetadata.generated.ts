@@ -386,9 +386,9 @@ export class FileMetadataManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {GetFileMetadataByIdScope} scope The scope of the metadata template
+     * @param {GetFileMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {GetFileMetadataByIdOptionalsInput} optionalsInput
      * @returns {Promise<MetadataFull>}
@@ -448,9 +448,9 @@ export class FileMetadataManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {CreateFileMetadataByIdScope} scope The scope of the metadata template
+     * @param {CreateFileMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {CreateFileMetadataByIdRequestBody} requestBody Request body of createFileMetadataById method
      * @param {CreateFileMetadataByIdOptionalsInput} optionalsInput
@@ -517,9 +517,9 @@ export class FileMetadataManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {UpdateFileMetadataByIdScope} scope The scope of the metadata template
+     * @param {UpdateFileMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {readonly UpdateFileMetadataByIdRequestBody[]} requestBody Request body of updateFileMetadataById method
      * @param {UpdateFileMetadataByIdOptionalsInput} optionalsInput
@@ -581,9 +581,9 @@ export class FileMetadataManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {DeleteFileMetadataByIdScope} scope The scope of the metadata template
+     * @param {DeleteFileMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {DeleteFileMetadataByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}

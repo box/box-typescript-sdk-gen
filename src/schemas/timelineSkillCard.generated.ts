@@ -23,7 +23,7 @@ export interface TimelineSkillCardSkillCardTitleField {
 export type TimelineSkillCardSkillTypeField = 'service';
 export class TimelineSkillCardSkillField {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type: TimelineSkillCardSkillTypeField =
     'service' as TimelineSkillCardSkillTypeField;
   /**
@@ -48,7 +48,7 @@ export class TimelineSkillCardSkillField {
 }
 export interface TimelineSkillCardSkillFieldInput {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type?: TimelineSkillCardSkillTypeField;
   /**
    * A custom identifier that represent the service that
@@ -59,7 +59,7 @@ export interface TimelineSkillCardSkillFieldInput {
 export type TimelineSkillCardInvocationTypeField = 'skill_invocation';
 export class TimelineSkillCardInvocationField {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type: TimelineSkillCardInvocationTypeField =
     'skill_invocation' as TimelineSkillCardInvocationTypeField;
   /**
@@ -87,7 +87,7 @@ export class TimelineSkillCardInvocationField {
 }
 export interface TimelineSkillCardInvocationFieldInput {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type?: TimelineSkillCardInvocationTypeField;
   /**
    * A custom identifier that represent the instance of
@@ -135,11 +135,11 @@ export class TimelineSkillCard {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type: TimelineSkillCardTypeField =
     'skill_card' as TimelineSkillCardTypeField;
   /**
-   * `timeline` */
+   * The value will always be `timeline`. */
   readonly skillCardType: TimelineSkillCardSkillCardTypeField =
     'timeline' as TimelineSkillCardSkillCardTypeField;
   /**
@@ -197,10 +197,10 @@ export interface TimelineSkillCardInput {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type?: TimelineSkillCardTypeField;
   /**
-   * `timeline` */
+   * The value will always be `timeline`. */
   readonly skillCardType?: TimelineSkillCardSkillCardTypeField;
   /**
    * The title of the card. */

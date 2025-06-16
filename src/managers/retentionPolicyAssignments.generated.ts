@@ -264,10 +264,10 @@ export interface CreateRetentionPolicyAssignmentRequestBodyFilterFieldsField {
 }
 export interface CreateRetentionPolicyAssignmentRequestBody {
   /**
-   * The ID of the retention policy to assign */
+   * The ID of the retention policy to assign. */
   readonly policyId: string;
   /**
-   * The item to assign the policy to */
+   * The item to assign the policy to. */
   readonly assignTo: CreateRetentionPolicyAssignmentRequestBodyAssignToField;
   /**
    * If the `assign_to` type is `metadata_template`,
@@ -532,7 +532,7 @@ export class RetentionPolicyAssignmentsManager {
     };
   }
   /**
-     * Retrieves a retention policy assignment
+     * Retrieves a retention policy assignment.
      * @param {string} retentionPolicyAssignmentId The ID of the retention policy assignment.
     Example: "1233123"
      * @param {GetRetentionPolicyAssignmentByIdOptionalsInput} optionalsInput

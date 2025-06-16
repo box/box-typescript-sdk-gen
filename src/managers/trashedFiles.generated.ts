@@ -127,7 +127,7 @@ export interface DeleteTrashedFileByIdOptionalsInput {
 }
 export interface RestoreFileFromTrashRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }

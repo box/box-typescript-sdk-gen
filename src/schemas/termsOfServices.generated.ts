@@ -14,7 +14,7 @@ export interface TermsOfServices {
    * The total number of objects. */
   readonly totalCount?: number;
   /**
-   * A list of terms of service objects */
+   * A list of terms of service objects. */
   readonly entries?: readonly TermsOfService[];
   readonly rawData?: SerializedData;
 }

@@ -65,9 +65,9 @@ await client.metadataTemplates.getMetadataTemplate(
 ### Arguments
 
 - scope `GetMetadataTemplateScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `GetMetadataTemplateOptionalsInput`
   -
 
@@ -112,9 +112,9 @@ await client.metadataTemplates.updateMetadataTemplate(
 ### Arguments
 
 - scope `UpdateMetadataTemplateScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - requestBody `readonly UpdateMetadataTemplateRequestBody[]`
   - Request body of updateMetadataTemplate method
 - optionalsInput `UpdateMetadataTemplateOptionalsInput`
@@ -149,9 +149,9 @@ await client.metadataTemplates.deleteMetadataTemplate(
 ### Arguments
 
 - scope `DeleteMetadataTemplateScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteMetadataTemplateOptionalsInput`
   -
 
@@ -180,7 +180,7 @@ await client.metadataTemplates.getMetadataTemplateById(template.id);
 ### Arguments
 
 - templateId `string`
-  - The ID of the template Example: "f7a9891f"
+  - The ID of the template. Example: "f7a9891f"
 - optionalsInput `GetMetadataTemplateByIdOptionalsInput`
   -
 
@@ -225,7 +225,7 @@ and their corresponding schema.
 ## List all metadata templates for enterprise
 
 Used to retrieve all metadata templates created to be used specifically within
-the user's enterprise
+the user's enterprise.
 
 This operation is performed by calling function `getEnterpriseMetadataTemplates`.
 

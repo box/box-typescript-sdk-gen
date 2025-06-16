@@ -11,7 +11,7 @@ import { sdIsList } from '../../serialization/json.js';
 import { sdIsMap } from '../../serialization/json.js';
 export interface ShieldListsV2025R0 {
   /**
-   * A list of shield list objects */
+   * A list of shield list objects. */
   readonly entries?: readonly ShieldListMiniV2025R0[];
   readonly rawData?: SerializedData;
 }

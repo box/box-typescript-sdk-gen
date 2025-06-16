@@ -142,7 +142,7 @@ export interface UpdateShieldListByIdV2025R0OptionalsInput {
 }
 export class GetShieldListsV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -166,7 +166,7 @@ export class GetShieldListsV2025R0Headers {
 }
 export interface GetShieldListsV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -178,7 +178,7 @@ export interface GetShieldListsV2025R0HeadersInput {
 }
 export class CreateShieldListV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -205,7 +205,7 @@ export class CreateShieldListV2025R0Headers {
 }
 export interface CreateShieldListV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -217,7 +217,7 @@ export interface CreateShieldListV2025R0HeadersInput {
 }
 export class GetShieldListByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -244,7 +244,7 @@ export class GetShieldListByIdV2025R0Headers {
 }
 export interface GetShieldListByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -256,7 +256,7 @@ export interface GetShieldListByIdV2025R0HeadersInput {
 }
 export class DeleteShieldListByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -283,7 +283,7 @@ export class DeleteShieldListByIdV2025R0Headers {
 }
 export interface DeleteShieldListByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -295,7 +295,7 @@ export interface DeleteShieldListByIdV2025R0HeadersInput {
 }
 export class UpdateShieldListByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -322,7 +322,7 @@ export class UpdateShieldListByIdV2025R0Headers {
 }
 export interface UpdateShieldListByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */

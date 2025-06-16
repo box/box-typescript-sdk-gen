@@ -90,7 +90,7 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment Example: "753465"
+  - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `GetLegalHoldPolicyAssignmentByIdOptionalsInput`
   -
 
@@ -123,7 +123,7 @@ await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment Example: "753465"
+  - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `DeleteLegalHoldPolicyAssignmentByIdOptionalsInput`
   -
 
@@ -172,7 +172,7 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
 ### Arguments
 
 - legalHoldPolicyAssignmentId `string`
-  - The ID of the legal hold policy assignment Example: "753465"
+  - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput`
   -
 

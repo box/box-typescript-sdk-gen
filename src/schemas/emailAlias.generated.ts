@@ -9,16 +9,16 @@ import { sdIsMap } from '../serialization/json.js';
 export type EmailAliasTypeField = 'email_alias';
 export interface EmailAlias {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id?: string;
   /**
-   * `email_alias` */
+   * The value will always be `email_alias`. */
   readonly type?: EmailAliasTypeField;
   /**
-   * The email address */
+   * The email address. */
   readonly email?: string;
   /**
-   * Whether the email address has been confirmed */
+   * Whether the email address has been confirmed. */
   readonly isConfirmed?: boolean;
   readonly rawData?: SerializedData;
 }

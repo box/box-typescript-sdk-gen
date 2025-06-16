@@ -399,7 +399,7 @@ export class AiManager {
     };
   }
   /**
-   * Get the AI agent default config
+   * Get the AI agent default config.
    * @param {GetAiAgentDefaultConfigQueryParams} queryParams Query parameters of getAiAgentDefaultConfig method
    * @param {GetAiAgentDefaultConfigOptionalsInput} optionalsInput
    * @returns {Promise<AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen>}

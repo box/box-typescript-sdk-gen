@@ -12,7 +12,7 @@ export interface CommentBase {
    * The unique identifier for this comment. */
   readonly id?: string;
   /**
-   * `comment` */
+   * The value will always be `comment`. */
   readonly type?: CommentBaseTypeField;
   readonly rawData?: SerializedData;
 }

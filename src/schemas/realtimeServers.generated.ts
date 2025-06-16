@@ -14,7 +14,7 @@ export interface RealtimeServers {
    * The number of items in this response. */
   readonly chunkSize?: number;
   /**
-   * A list of real-time servers */
+   * A list of real-time servers. */
   readonly entries?: readonly RealtimeServer[];
   readonly rawData?: SerializedData;
 }

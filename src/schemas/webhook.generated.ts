@@ -70,11 +70,11 @@ export type Webhook = WebhookMini & {
    * the webhook was created. */
   readonly createdAt?: DateTime;
   /**
-   * The URL that is notified by this webhook */
+   * The URL that is notified by this webhook. */
   readonly address?: string;
   /**
    * An array of event names that this webhook is
-   * to be triggered for */
+   * to be triggered for. */
   readonly triggers?: readonly WebhookTriggersField[];
 };
 export function serializeWebhookTriggersField(

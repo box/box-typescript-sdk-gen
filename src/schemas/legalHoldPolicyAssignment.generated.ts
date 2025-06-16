@@ -30,7 +30,7 @@ export type LegalHoldPolicyAssignment = LegalHoldPolicyAssignmentBase & {
   readonly assignedBy?: UserMini;
   /**
    * When the legal hold policy assignment object was
-   * created */
+   * created. */
   readonly assignedAt?: DateTime;
   /**
    * When the assignment release request was sent.

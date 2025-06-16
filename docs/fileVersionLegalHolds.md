@@ -24,7 +24,7 @@ await client.fileVersionLegalHolds.getFileVersionLegalHoldById(
 ### Arguments
 
 - fileVersionLegalHoldId `string`
-  - The ID of the file version legal hold Example: "2348213"
+  - The ID of the file version legal hold. Example: "2348213"
 - optionalsInput `GetFileVersionLegalHoldByIdOptionalsInput`
   -
 

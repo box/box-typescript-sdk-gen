@@ -182,10 +182,10 @@ export interface GetWebhooksHeadersInput {
 export type CreateWebhookRequestBodyTargetTypeField = 'file' | 'folder';
 export interface CreateWebhookRequestBodyTargetField {
   /**
-   * The ID of the item to trigger a webhook */
+   * The ID of the item to trigger a webhook. */
   readonly id?: string;
   /**
-   * The type of item to trigger a webhook */
+   * The type of item to trigger a webhook. */
   readonly type?: CreateWebhookRequestBodyTargetTypeField;
   readonly rawData?: SerializedData;
 }
@@ -233,14 +233,14 @@ export type CreateWebhookRequestBodyTriggersField =
   | string;
 export interface CreateWebhookRequestBody {
   /**
-   * The item that will trigger the webhook */
+   * The item that will trigger the webhook. */
   readonly target: CreateWebhookRequestBodyTargetField;
   /**
-   * The URL that is notified by this webhook */
+   * The URL that is notified by this webhook. */
   readonly address: string;
   /**
    * An array of event names that this webhook is
-   * to be triggered for */
+   * to be triggered for. */
   readonly triggers: readonly CreateWebhookRequestBodyTriggersField[];
   readonly rawData?: SerializedData;
 }
@@ -295,10 +295,10 @@ export interface GetWebhookByIdHeadersInput {
 export type UpdateWebhookByIdRequestBodyTargetTypeField = 'file' | 'folder';
 export interface UpdateWebhookByIdRequestBodyTargetField {
   /**
-   * The ID of the item to trigger a webhook */
+   * The ID of the item to trigger a webhook. */
   readonly id?: string;
   /**
-   * The type of item to trigger a webhook */
+   * The type of item to trigger a webhook. */
   readonly type?: UpdateWebhookByIdRequestBodyTargetTypeField;
   readonly rawData?: SerializedData;
 }
@@ -346,14 +346,14 @@ export type UpdateWebhookByIdRequestBodyTriggersField =
   | string;
 export interface UpdateWebhookByIdRequestBody {
   /**
-   * The item that will trigger the webhook */
+   * The item that will trigger the webhook. */
   readonly target?: UpdateWebhookByIdRequestBodyTargetField;
   /**
-   * The URL that is notified by this webhook */
+   * The URL that is notified by this webhook. */
   readonly address?: string;
   /**
    * An array of event names that this webhook is
-   * to be triggered for */
+   * to be triggered for. */
   readonly triggers?: readonly UpdateWebhookByIdRequestBodyTriggersField[];
   readonly rawData?: SerializedData;
 }
@@ -520,7 +520,7 @@ export class WebhooksManager {
     };
   }
   /**
-     * Retrieves a specific webhook
+     * Retrieves a specific webhook.
      * @param {string} webhookId The ID of the webhook.
     Example: "3321123"
      * @param {GetWebhookByIdOptionalsInput} optionalsInput

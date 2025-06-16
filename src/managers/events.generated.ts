@@ -204,7 +204,7 @@ export interface GetEventsQueryParams {
    * * `0` or `null` will return all events. */
   readonly streamPosition?: string;
   /**
-   * Limits the number of events returned
+   * Limits the number of events returned.
    *
    * Note: Sometimes, the events less than the limit requested can be returned
    * even when there may be more events remaining. This is primarily done in

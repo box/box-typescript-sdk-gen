@@ -81,11 +81,11 @@ export interface FileFullPermissionsField {
    * Specifies if the user can upload a new version of this file. */
   readonly canUpload: boolean;
   /**
-   * Specifies if the user view all annotations placed on this file */
+   * Specifies if the user view all annotations placed on this file. */
   readonly canViewAnnotationsAll: boolean;
   /**
    * Specifies if the user view annotations placed by themselves
-   * on this file */
+   * on this file. */
   readonly canViewAnnotationsSelf: boolean;
   readonly rawData?: SerializedData;
 }
@@ -98,10 +98,10 @@ export type FileFullLockAppTypeField =
   | string;
 export interface FileFullLockField {
   /**
-   * The unique identifier for this lock */
+   * The unique identifier for this lock. */
   readonly id?: string;
   /**
-   * `lock` */
+   * The value will always be `lock`. */
   readonly type?: FileFullLockTypeField;
   readonly createdBy?: UserMini;
   /**
@@ -260,13 +260,13 @@ export interface FileFullRepresentationsEntriesField {
 }
 export interface FileFullRepresentationsField {
   /**
-   * A list of files */
+   * A list of files. */
   readonly entries?: readonly FileFullRepresentationsEntriesField[];
   readonly rawData?: SerializedData;
 }
 export interface FileFullClassificationField {
   /**
-   * The name of the classification */
+   * The name of the classification. */
   readonly name?: string;
   /**
    * An explanation of the meaning of this classification. */

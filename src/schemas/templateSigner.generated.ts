@@ -17,7 +17,7 @@ export type TemplateSignerRoleField =
 export interface TemplateSigner {
   readonly inputs?: readonly TemplateSignerInput[];
   /**
-   * Email address of the signer */
+   * Email address of the signer. */
   readonly email?: string | null;
   /**
    * Defines the role of the signer in the signature request. A role of
@@ -32,7 +32,7 @@ export interface TemplateSigner {
    * redirected to the next `in_person` signer. */
   readonly isInPerson?: boolean;
   /**
-   * Order of the signer */
+   * Order of the signer. */
   readonly order?: number;
   /**
    * If provided, this value points signers that are assigned the same inputs and belongs to same signer group.

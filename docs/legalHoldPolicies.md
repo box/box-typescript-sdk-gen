@@ -89,7 +89,7 @@ await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy Example: "324432"
+  - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `GetLegalHoldPolicyByIdOptionalsInput`
   -
 
@@ -121,7 +121,7 @@ await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy Example: "324432"
+  - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `UpdateLegalHoldPolicyByIdOptionalsInput`
   -
 
@@ -152,7 +152,7 @@ await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);
 ### Arguments
 
 - legalHoldPolicyId `string`
-  - The ID of the legal hold policy Example: "324432"
+  - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `DeleteLegalHoldPolicyByIdOptionalsInput`
   -
 

@@ -26,7 +26,7 @@ export class SearchResults {
    * as the `offset` query parameter used. */
   readonly offset?: number;
   /**
-   * Specifies the response as search result items without shared links */
+   * Specifies the response as search result items without shared links. */
   readonly type: SearchResultsTypeField =
     'search_results_items' as SearchResultsTypeField;
   /**
@@ -72,7 +72,7 @@ export interface SearchResultsInput {
    * as the `offset` query parameter used. */
   readonly offset?: number;
   /**
-   * Specifies the response as search result items without shared links */
+   * Specifies the response as search result items without shared links. */
   readonly type?: SearchResultsTypeField;
   /**
    * The search results for the query provided. */

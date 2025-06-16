@@ -13,7 +13,7 @@ export class ShieldListContentEmailV2025R0 {
   readonly type: ShieldListContentEmailV2025R0TypeField =
     'email' as ShieldListContentEmailV2025R0TypeField;
   /**
-   * List of emails */
+   * List of emails. */
   readonly emailAddresses!: readonly string[];
   readonly rawData?: SerializedData;
   constructor(
@@ -36,7 +36,7 @@ export interface ShieldListContentEmailV2025R0Input {
    * The type of content in the shield list. */
   readonly type?: ShieldListContentEmailV2025R0TypeField;
   /**
-   * List of emails */
+   * List of emails. */
   readonly emailAddresses: readonly string[];
   readonly rawData?: SerializedData;
 }

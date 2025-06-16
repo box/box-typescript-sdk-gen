@@ -67,7 +67,7 @@ export class MetadataTemplate {
    * The ID of the metadata template. */
   readonly id!: string;
   /**
-   * `metadata_template` */
+   * The value will always be `metadata_template`. */
   readonly type: MetadataTemplateTypeField =
     'metadata_template' as MetadataTemplateTypeField;
   /**
@@ -137,7 +137,7 @@ export interface MetadataTemplateInput {
    * The ID of the metadata template. */
   readonly id: string;
   /**
-   * `metadata_template` */
+   * The value will always be `metadata_template`. */
   readonly type?: MetadataTemplateTypeField;
   /**
    * The scope of the metadata template can either be `global` or

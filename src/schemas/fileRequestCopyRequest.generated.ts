@@ -18,7 +18,7 @@ import { sdIsMap } from '../serialization/json.js';
 export type FileRequestCopyRequestFolderTypeField = 'folder';
 export interface FileRequestCopyRequestFolderField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: FileRequestCopyRequestFolderTypeField;
   /**
    * The ID of the folder to associate the new

@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type CommentsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface CommentsOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: CommentsOrderDirectionField;
   readonly rawData?: SerializedData;
 }
@@ -47,7 +47,7 @@ export interface Comments {
    * For marker-based paginated APIs, this field will be omitted. */
   readonly order?: readonly CommentsOrderField[];
   /**
-   * A list of comments */
+   * A list of comments. */
   readonly entries?: readonly CommentFull[];
   readonly rawData?: SerializedData;
 }

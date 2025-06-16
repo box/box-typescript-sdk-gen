@@ -20,7 +20,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiStudioAgentBasicTextToolResponse = AiStudioAgentBasicTextTool & {
   /**
-   * Warnings concerning tool */
+   * Warnings concerning tool. */
   readonly warnings?: readonly string[];
 };
 export function serializeAiStudioAgentBasicTextToolResponse(

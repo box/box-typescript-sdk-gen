@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type StoragePolicyMiniTypeField = 'storage_policy';
 export class StoragePolicyMini {
   /**
-   * The unique identifier for this storage policy */
+   * The unique identifier for this storage policy. */
   readonly id!: string;
   /**
-   * `storage_policy` */
+   * The value will always be `storage_policy`. */
   readonly type: StoragePolicyMiniTypeField =
     'storage_policy' as StoragePolicyMiniTypeField;
   readonly rawData?: SerializedData;
@@ -33,10 +33,10 @@ export class StoragePolicyMini {
 }
 export interface StoragePolicyMiniInput {
   /**
-   * The unique identifier for this storage policy */
+   * The unique identifier for this storage policy. */
   readonly id: string;
   /**
-   * `storage_policy` */
+   * The value will always be `storage_policy`. */
   readonly type?: StoragePolicyMiniTypeField;
   readonly rawData?: SerializedData;
 }

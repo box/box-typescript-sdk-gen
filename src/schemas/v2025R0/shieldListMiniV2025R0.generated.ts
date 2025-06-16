@@ -15,14 +15,14 @@ export interface ShieldListMiniV2025R0ContentField {
 }
 export class ShieldListMiniV2025R0 {
   /**
-   * Unique global identifier for this list */
+   * Unique global identifier for this list. */
   readonly id!: string;
   /**
-   * The type of object */
+   * The type of object. */
   readonly type: ShieldListMiniV2025R0TypeField =
     'shield_list' as ShieldListMiniV2025R0TypeField;
   /**
-   * Name of Shield List */
+   * Name of Shield List. */
   readonly name!: string;
   readonly content!: ShieldListMiniV2025R0ContentField;
   readonly rawData?: SerializedData;
@@ -49,13 +49,13 @@ export class ShieldListMiniV2025R0 {
 }
 export interface ShieldListMiniV2025R0Input {
   /**
-   * Unique global identifier for this list */
+   * Unique global identifier for this list. */
   readonly id: string;
   /**
-   * The type of object */
+   * The type of object. */
   readonly type?: ShieldListMiniV2025R0TypeField;
   /**
-   * Name of Shield List */
+   * Name of Shield List. */
   readonly name: string;
   readonly content: ShieldListMiniV2025R0ContentField;
   readonly rawData?: SerializedData;

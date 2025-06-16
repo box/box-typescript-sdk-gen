@@ -63,7 +63,7 @@ await client.fileVersionRetentions.getFileVersionRetentionById(
 ### Arguments
 
 - fileVersionRetentionId `string`
-  - The ID of the file version retention Example: "3424234"
+  - The ID of the file version retention. Example: "3424234"
 - optionalsInput `GetFileVersionRetentionByIdOptionalsInput`
   -
 

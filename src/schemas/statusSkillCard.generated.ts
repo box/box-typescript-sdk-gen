@@ -43,7 +43,7 @@ export interface StatusSkillCardStatusField {
 export type StatusSkillCardSkillTypeField = 'service';
 export class StatusSkillCardSkillField {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type: StatusSkillCardSkillTypeField =
     'service' as StatusSkillCardSkillTypeField;
   /**
@@ -68,7 +68,7 @@ export class StatusSkillCardSkillField {
 }
 export interface StatusSkillCardSkillFieldInput {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type?: StatusSkillCardSkillTypeField;
   /**
    * A custom identifier that represent the service that
@@ -79,7 +79,7 @@ export interface StatusSkillCardSkillFieldInput {
 export type StatusSkillCardInvocationTypeField = 'skill_invocation';
 export class StatusSkillCardInvocationField {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type: StatusSkillCardInvocationTypeField =
     'skill_invocation' as StatusSkillCardInvocationTypeField;
   /**
@@ -107,7 +107,7 @@ export class StatusSkillCardInvocationField {
 }
 export interface StatusSkillCardInvocationFieldInput {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type?: StatusSkillCardInvocationTypeField;
   /**
    * A custom identifier that represent the instance of
@@ -123,11 +123,11 @@ export class StatusSkillCard {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type: StatusSkillCardTypeField =
     'skill_card' as StatusSkillCardTypeField;
   /**
-   * `status` */
+   * The value will always be `status`. */
   readonly skillCardType: StatusSkillCardSkillCardTypeField =
     'status' as StatusSkillCardSkillCardTypeField;
   /**
@@ -179,10 +179,10 @@ export interface StatusSkillCardInput {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type?: StatusSkillCardTypeField;
   /**
-   * `status` */
+   * The value will always be `status`. */
   readonly skillCardType?: StatusSkillCardSkillCardTypeField;
   /**
    * The title of the card. */

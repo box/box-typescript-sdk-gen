@@ -462,7 +462,7 @@ export class LegalHoldPoliciesManager {
   }
   /**
      * Retrieve a legal hold policy.
-     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy.
     Example: "324432"
      * @param {GetLegalHoldPolicyByIdOptionalsInput} optionalsInput
      * @returns {Promise<LegalHoldPolicy>}
@@ -504,7 +504,7 @@ export class LegalHoldPoliciesManager {
   }
   /**
      * Update legal hold policy.
-     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy.
     Example: "324432"
      * @param {UpdateLegalHoldPolicyByIdOptionalsInput} optionalsInput
      * @returns {Promise<LegalHoldPolicy>}
@@ -553,7 +553,7 @@ export class LegalHoldPoliciesManager {
      *
      * This is an asynchronous process. The policy will not be
      * fully deleted yet when the response returns.
-     * @param {string} legalHoldPolicyId The ID of the legal hold policy
+     * @param {string} legalHoldPolicyId The ID of the legal hold policy.
     Example: "324432"
      * @param {DeleteLegalHoldPolicyByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}

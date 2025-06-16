@@ -60,13 +60,13 @@ export interface TransferOwnedFolderOptionalsInput {
 export interface TransferOwnedFolderRequestBodyOwnedByField {
   /**
    * The ID of the user who the folder will be
-   * transferred to */
+   * transferred to. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
 export interface TransferOwnedFolderRequestBody {
   /**
-   * The user who the folder will be transferred to */
+   * The user who the folder will be transferred to. */
   readonly ownedBy: TransferOwnedFolderRequestBodyOwnedByField;
   readonly rawData?: SerializedData;
 }

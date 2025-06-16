@@ -266,7 +266,7 @@ export interface CreateShieldInformationBarrierSegmentMemberRequestBodyShieldInf
 }
 export interface CreateShieldInformationBarrierSegmentMemberRequestBody {
   /**
-   * -| A type of the shield barrier segment member. */
+   * A type of the shield barrier segment member. */
   readonly type?: CreateShieldInformationBarrierSegmentMemberRequestBodyTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
   /**

@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type ItemsOffsetPaginatedOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface ItemsOffsetPaginatedOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: ItemsOffsetPaginatedOrderDirectionField;
   readonly rawData?: SerializedData;
 }

@@ -32,7 +32,7 @@ export interface ShieldInformationBarrierSegmentMemberShieldInformationBarrierSe
    * shield information barrier segment. */
   readonly id?: string;
   /**
-   * The type of the shield information barrier segment */
+   * The type of the shield information barrier segment. */
   readonly type?: ShieldInformationBarrierSegmentMemberShieldInformationBarrierSegmentTypeField;
   readonly rawData?: SerializedData;
 }

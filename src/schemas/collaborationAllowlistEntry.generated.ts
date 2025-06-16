@@ -22,29 +22,29 @@ export interface CollaborationAllowlistEntryEnterpriseField {
    * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: CollaborationAllowlistEntryEnterpriseTypeField;
   /**
-   * The name of the enterprise */
+   * The name of the enterprise. */
   readonly name?: string;
   readonly rawData?: SerializedData;
 }
 export interface CollaborationAllowlistEntry {
   /**
-   * The unique identifier for this entry */
+   * The unique identifier for this entry. */
   readonly id?: string;
   /**
-   * `collaboration_whitelist_entry` */
+   * The value will always be `collaboration_whitelist_entry`. */
   readonly type?: CollaborationAllowlistEntryTypeField;
   /**
-   * The whitelisted domain */
+   * The whitelisted domain. */
   readonly domain?: string;
   /**
    * The direction of the collaborations to allow. */
   readonly direction?: CollaborationAllowlistEntryDirectionField;
   readonly enterprise?: CollaborationAllowlistEntryEnterpriseField;
   /**
-   * The time the entry was created at */
+   * The time the entry was created at. */
   readonly createdAt?: DateTime;
   readonly rawData?: SerializedData;
 }

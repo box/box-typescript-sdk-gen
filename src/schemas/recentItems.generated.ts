@@ -22,7 +22,7 @@ export interface RecentItems {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of recent items */
+   * A list of recent items. */
   readonly entries?: readonly RecentItem[];
   readonly rawData?: SerializedData;
 }

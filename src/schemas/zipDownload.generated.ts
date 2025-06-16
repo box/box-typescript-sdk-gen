@@ -12,13 +12,13 @@ import { sdIsMap } from '../serialization/json.js';
 export type ZipDownloadNameConflictsTypeField = 'file' | 'folder';
 export interface ZipDownloadNameConflictsField {
   /**
-   * The identifier of the item */
+   * The identifier of the item. */
   readonly id?: string;
   /**
-   * The type of this item */
+   * The type of this item. */
   readonly type?: ZipDownloadNameConflictsTypeField;
   /**
-   * The original name of this item */
+   * Box Developer Documentation. */
   readonly originalName?: string;
   /**
    * The new name of this item as it will appear in the

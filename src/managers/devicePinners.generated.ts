@@ -223,7 +223,7 @@ export class DevicePinnersManager {
   }
   /**
      * Retrieves information about an individual device pin.
-     * @param {string} devicePinnerId The ID of the device pin
+     * @param {string} devicePinnerId The ID of the device pin.
     Example: "2324234"
      * @param {GetDevicePinnerByIdOptionalsInput} optionalsInput
      * @returns {Promise<DevicePinner>}
@@ -265,7 +265,7 @@ export class DevicePinnersManager {
   }
   /**
      * Deletes an individual device pin.
-     * @param {string} devicePinnerId The ID of the device pin
+     * @param {string} devicePinnerId The ID of the device pin.
     Example: "2324234"
      * @param {DeleteDevicePinnerByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -307,7 +307,7 @@ export class DevicePinnersManager {
      *
      * The user must have admin privileges, and the application
      * needs the "manage enterprise" scope to make this call.
-     * @param {string} enterpriseId The ID of the enterprise
+     * @param {string} enterpriseId The ID of the enterprise.
     Example: "3442311"
      * @param {GetEnterpriseDevicePinnersOptionalsInput} optionalsInput
      * @returns {Promise<DevicePinners>}

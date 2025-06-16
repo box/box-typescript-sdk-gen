@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type EnterpriseBaseTypeField = 'enterprise';
 export interface EnterpriseBase {
   /**
-   * The unique identifier for this enterprise */
+   * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: EnterpriseBaseTypeField;
   readonly rawData?: SerializedData;
 }

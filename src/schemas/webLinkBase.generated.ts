@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type WebLinkBaseTypeField = 'web_link';
 export class WebLinkBase {
   /**
-   * The unique identifier for this web link */
+   * The unique identifier for this web link. */
   readonly id!: string;
   /**
-   * `web_link` */
+   * The value will always be `web_link`. */
   readonly type: WebLinkBaseTypeField = 'web_link' as WebLinkBaseTypeField;
   /**
    * The entity tag of this web link. Used with `If-Match`
@@ -38,10 +38,10 @@ export class WebLinkBase {
 }
 export interface WebLinkBaseInput {
   /**
-   * The unique identifier for this web link */
+   * The unique identifier for this web link. */
   readonly id: string;
   /**
-   * `web_link` */
+   * The value will always be `web_link`. */
   readonly type?: WebLinkBaseTypeField;
   /**
    * The entity tag of this web link. Used with `If-Match`

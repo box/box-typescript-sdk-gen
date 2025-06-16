@@ -22,7 +22,7 @@ export interface FilesOnHold {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of files */
+   * A list of files. */
   readonly entries?: readonly FileMini[];
   readonly rawData?: SerializedData;
 }

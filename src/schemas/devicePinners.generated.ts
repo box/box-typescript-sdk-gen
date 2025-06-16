@@ -13,16 +13,16 @@ export type DevicePinnersOrderByField = 'id' | string;
 export type DevicePinnersOrderDirectionField = 'asc' | 'desc' | string;
 export interface DevicePinnersOrderField {
   /**
-   * The field that is ordered by */
+   * The field that is ordered by. */
   readonly by?: DevicePinnersOrderByField;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: DevicePinnersOrderDirectionField;
   readonly rawData?: SerializedData;
 }
 export interface DevicePinners {
   /**
-   * A list of device pins */
+   * A list of device pins. */
   readonly entries?: readonly DevicePinner[];
   /**
    * The limit that was used for these entries. This will be the same as the

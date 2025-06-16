@@ -219,7 +219,7 @@ export interface CreateBoxSkillCardsOnFileHeadersInput {
 export type UpdateBoxSkillCardsOnFileRequestBodyOpField = 'replace' | string;
 export interface UpdateBoxSkillCardsOnFileRequestBody {
   /**
-   * `replace` */
+   * The value will always be `replace`. */
   readonly op?: UpdateBoxSkillCardsOnFileRequestBodyOpField;
   /**
    * The JSON Path that represents the card to replace. In most cases
@@ -293,10 +293,10 @@ export interface UpdateAllSkillCardsOnFileRequestBodyMetadataField {
 export type UpdateAllSkillCardsOnFileRequestBodyFileTypeField = 'file';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileField {
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileTypeField;
   /**
-   * The ID of the file */
+   * The ID of the file. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
@@ -304,19 +304,19 @@ export type UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField =
   'file_version';
 export interface UpdateAllSkillCardsOnFileRequestBodyFileVersionField {
   /**
-   * `file_version` */
+   * The value will always be `file_version`. */
   readonly type?: UpdateAllSkillCardsOnFileRequestBodyFileVersionTypeField;
   /**
-   * The ID of the file version */
+   * The ID of the file version. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export interface UpdateAllSkillCardsOnFileRequestBodyUsageField {
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly unit?: string;
   /**
-   * `1` */
+   * Number of resources affected. */
   readonly value?: number;
   readonly rawData?: SerializedData;
 }

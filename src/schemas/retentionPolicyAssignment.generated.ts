@@ -46,7 +46,7 @@ export class RetentionPolicyAssignment {
    * The unique identifier for a retention policy assignment. */
   readonly id!: string;
   /**
-   * `retention_policy_assignment` */
+   * The value will always be `retention_policy_assignment`. */
   readonly type: RetentionPolicyAssignmentTypeField =
     'retention_policy_assignment' as RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
@@ -110,7 +110,7 @@ export interface RetentionPolicyAssignmentInput {
    * The unique identifier for a retention policy assignment. */
   readonly id: string;
   /**
-   * `retention_policy_assignment` */
+   * The value will always be `retention_policy_assignment`. */
   readonly type?: RetentionPolicyAssignmentTypeField;
   readonly retentionPolicy?: RetentionPolicyMini;
   /**

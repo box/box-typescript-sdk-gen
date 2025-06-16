@@ -22,7 +22,7 @@ export interface LegalHoldPolicies {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of legal hold policies */
+   * A list of legal hold policies. */
   readonly entries?: readonly LegalHoldPolicy[];
   readonly rawData?: SerializedData;
 }

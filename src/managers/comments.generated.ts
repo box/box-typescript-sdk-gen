@@ -270,7 +270,7 @@ export interface GetCommentByIdHeadersInput {
 }
 export interface UpdateCommentByIdRequestBody {
   /**
-   * The text of the comment to update */
+   * The text of the comment to update. */
   readonly message?: string;
   readonly rawData?: SerializedData;
 }
@@ -338,7 +338,7 @@ export interface DeleteCommentByIdHeadersInput {
 export type CreateCommentRequestBodyItemTypeField = 'file' | 'comment';
 export interface CreateCommentRequestBodyItemField {
   /**
-   * The ID of the item */
+   * The ID of the item. */
   readonly id: string;
   /**
    * The type of the item that this comment will be placed on. */

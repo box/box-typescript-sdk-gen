@@ -27,7 +27,7 @@ export interface ShieldListV2025R0 {
   readonly name: string;
   readonly enterprise: EnterpriseReferenceV2025R0;
   /**
-   * Description of Shield List */
+   * Description of Shield List. */
   readonly description?: string;
   /**
    * ISO date time string when this shield list object was created. */

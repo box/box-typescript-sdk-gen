@@ -224,7 +224,7 @@ export type CreateRetentionPolicyRequestBodyRetentionTypeField =
   | string;
 export interface CreateRetentionPolicyRequestBody {
   /**
-   * The name for the retention policy */
+   * The name for the retention policy. */
   readonly policyName: string;
   /**
    * The additional text description of the retention policy. */
@@ -346,7 +346,7 @@ export interface GetRetentionPolicyByIdHeadersInput {
 }
 export interface UpdateRetentionPolicyByIdRequestBody {
   /**
-   * The name for the retention policy */
+   * The name for the retention policy. */
   readonly policyName?: string | null;
   /**
    * The additional text description of the retention policy. */

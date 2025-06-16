@@ -25,16 +25,16 @@ export type ShieldInformationBarrierStatusField =
   | string;
 export interface ShieldInformationBarrier {
   /**
-   * The unique identifier for the shield information barrier */
+   * The unique identifier for the shield information barrier. */
   readonly id?: string;
   /**
-   * The type of the shield information barrier */
+   * The type of the shield information barrier. */
   readonly type?: ShieldInformationBarrierTypeField;
   /**
    * The `type` and `id` of enterprise this barrier is under. */
   readonly enterprise?: EnterpriseBase;
   /**
-   * Status of the shield information barrier */
+   * Status of the shield information barrier. */
   readonly status?: ShieldInformationBarrierStatusField;
   /**
    * ISO date time string when this

@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type GroupBaseTypeField = 'group';
 export class GroupBase {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id!: string;
   /**
-   * `group` */
+   * The value will always be `group`. */
   readonly type: GroupBaseTypeField = 'group' as GroupBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
@@ -31,10 +31,10 @@ export class GroupBase {
 }
 export interface GroupBaseInput {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id: string;
   /**
-   * `group` */
+   * The value will always be `group`. */
   readonly type?: GroupBaseTypeField;
   readonly rawData?: SerializedData;
 }

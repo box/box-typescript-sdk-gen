@@ -68,7 +68,7 @@ export interface SignTemplateReadySignLinkField {
 }
 export interface SignTemplateCustomBrandingField {
   /**
-   * Name of the company */
+   * Name of the company. */
   readonly companyName?: string | null;
   /**
    * Custom branding logo URI in the form of a base64 image. */
@@ -83,7 +83,7 @@ export interface SignTemplateCustomBrandingField {
 }
 export interface SignTemplate {
   /**
-   * object type */
+   * The value will always be `sign-template`. */
   readonly type?: SignTemplateTypeField;
   /**
    * Template identifier. */
@@ -92,23 +92,43 @@ export interface SignTemplate {
    * The name of the template. */
   readonly name?: string | null;
   /**
-   * Subject of signature request email. This is cleaned by sign request. If this field is not passed, a default subject will be used. */
+   * Subject of signature request email. This is cleaned by sign
+   * request. If this field is not passed, a default subject will be used. */
   readonly emailSubject?: string | null;
   /**
-   * Message to include in signature request email. The field is cleaned through sanitization of specific characters. However, some html tags are allowed. Links included in the message are also converted to hyperlinks in the email. The message may contain the following html tags including `a`, `abbr`, `acronym`, `b`, `blockquote`, `code`, `em`, `i`, `ul`, `li`, `ol`, and `strong`. Be aware that when the text to html ratio is too high, the email may end up in spam filters. Custom styles on these tags are not allowed. If this field is not passed, a default message will be used. */
+   * Message to include in signature request email. The field
+   * is cleaned through sanitization of specific characters. However,
+   * some html tags are allowed. Links included in the
+   * message are also converted to hyperlinks in the email. The
+   * message may contain the following html tags including `a`, `abbr`,
+   * `acronym`, `b`, `blockquote`, `code`, `em`, `i`, `ul`, `li`, `ol`, and
+   * `strong`. Be aware that when the text
+   * to html ratio is too high, the email
+   * may end up in spam filters. Custom styles on
+   * these tags are not allowed.
+   * If this field is not passed, a default message will be used. */
   readonly emailMessage?: string | null;
   /**
-   * Set the number of days after which the created signature request will automatically expire if not completed. By default, we do not apply any expiration date on signature requests, and the signature request does not expire. */
+   * Set the number of days after which the
+   * created signature request will automatically
+   * expire if not completed. By default, we do
+   * not apply any expiration date on signature
+   * requests, and the signature request does not expire. */
   readonly daysValid?: number | null;
   readonly parentFolder?: FolderMini;
   /**
-   * List of files to create a signing document from. Only the ID and type fields are required for each file. */
+   * List of files to create a signing document from.
+   * Only the ID and type fields are required
+   * for each file. */
   readonly sourceFiles?: readonly FileMini[];
   /**
-   * Indicates if the template input fields are editable or not. */
+   * Indicates if the template input
+   * fields are editable or not. */
   readonly areFieldsLocked?: boolean;
   /**
-   * Indicates if the template document options are editable or not, for example renaming the document. */
+   * Indicates if the template document options
+   * are editable or not,
+   * for example renaming the document. */
   readonly areOptionsLocked?: boolean;
   /**
    * Indicates if the template signers are editable or not. */
@@ -117,7 +137,8 @@ export interface SignTemplate {
    * Indicates if the template email settings are editable or not. */
   readonly areEmailSettingsLocked?: boolean;
   /**
-   * Indicates if the template files are editable or not. This includes deleting or renaming template files. */
+   * Indicates if the template files are editable or not.
+   * This includes deleting or renaming template files. */
   readonly areFilesLocked?: boolean;
   /**
    * Array of signers for the template.
@@ -129,10 +150,19 @@ export interface SignTemplate {
    * Read more about [segments and ethical walls](https://support.box.com/hc/en-us/articles/9920431507603-Understanding-Information-Barriers#h_01GFVJEHQA06N7XEZ4GCZ9GFAQ). */
   readonly signers?: readonly TemplateSigner[];
   /**
-   * Additional information on which fields are required and which fields are not editable. */
+   * Additional information on which fields are
+   * required and which fields are not editable. */
   readonly additionalInfo?: SignTemplateAdditionalInfoField;
   /**
-   * Box's ready-sign link feature enables you to create a link to a signature request that you've created from a template. Use this link when you want to post a signature request on a public form — such as an email, social media post, or web page — without knowing who the signers will be. Note: The ready-sign link feature is limited to Enterprise Plus customers and not available to Box Verified Enterprises. */
+   * Box's ready-sign link feature enables you to create a
+   * link to a signature request that
+   * you've created from a template. Use this link
+   * when you want to post a signature request
+   * on a public form — such as an email, social media post,
+   * or web page — without knowing who the signers will be.
+   * Note: The ready-sign link feature is
+   * limited to Enterprise Plus customers and not
+   * available to Box Verified Enterprises. */
   readonly readySignLink?: SignTemplateReadySignLinkField | null;
   /**
    * Custom branding applied to notifications

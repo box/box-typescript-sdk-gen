@@ -24,17 +24,17 @@ export interface FileVersionRetention {
    * The unique identifier for this file version retention. */
   readonly id?: string;
   /**
-   * `file_version_retention` */
+   * The value will always be `file_version_retention`. */
   readonly type?: FileVersionRetentionTypeField;
   readonly fileVersion?: FileVersionMini;
   readonly file?: FileMini;
   /**
    * When this file version retention object was
-   * created */
+   * created. */
   readonly appliedAt?: DateTime;
   /**
    * When the retention expires on this file
-   * version retention */
+   * version retention. */
   readonly dispositionAt?: DateTime;
   readonly winningRetentionPolicy?: RetentionPolicyMini;
   readonly rawData?: SerializedData;

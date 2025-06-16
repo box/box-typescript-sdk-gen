@@ -39,8 +39,7 @@ export interface FolderLock {
   /**
    * The operations that have been locked. Currently the `move`
    * and `delete` operations cannot be locked separately, and both need to be
-   * set to `true`.
-   *  */
+   * set to `true`. */
   readonly lockedOperations?: FolderLockLockedOperationsField;
   /**
    * The lock type, always `freeze`. */

@@ -23,7 +23,7 @@ export class FolderBase {
    * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type: FolderBaseTypeField = 'folder' as FolderBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
@@ -59,7 +59,7 @@ export interface FolderBaseInput {
    * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: FolderBaseTypeField;
   readonly rawData?: SerializedData;
 }

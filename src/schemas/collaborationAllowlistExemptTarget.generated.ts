@@ -21,27 +21,27 @@ export interface CollaborationAllowlistExemptTargetEnterpriseField {
    * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: CollaborationAllowlistExemptTargetEnterpriseTypeField;
   /**
-   * The name of the enterprise */
+   * The name of the enterprise. */
   readonly name?: string;
   readonly rawData?: SerializedData;
 }
 export interface CollaborationAllowlistExemptTarget {
   /**
-   * The unique identifier for this exemption */
+   * The unique identifier for this exemption. */
   readonly id?: string;
   /**
-   * `collaboration_whitelist_exempt_target` */
+   * The value will always be `collaboration_whitelist_exempt_target`. */
   readonly type?: CollaborationAllowlistExemptTargetTypeField;
   readonly enterprise?: CollaborationAllowlistExemptTargetEnterpriseField;
   readonly user?: UserMini;
   /**
-   * The time the entry was created */
+   * The time the entry was created. */
   readonly createdAt?: DateTime;
   /**
-   * The time the entry was modified */
+   * The time the entry was modified. */
   readonly modifiedAt?: DateTime;
   readonly rawData?: SerializedData;
 }

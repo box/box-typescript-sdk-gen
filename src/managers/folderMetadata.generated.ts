@@ -395,9 +395,9 @@ export class FolderMetadataManager {
     The root folder of a Box account is
     always represented by the ID `0`.
     Example: "12345"
-     * @param {GetFolderMetadataByIdScope} scope The scope of the metadata template
+     * @param {GetFolderMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {GetFolderMetadataByIdOptionalsInput} optionalsInput
      * @returns {Promise<MetadataFull>}
@@ -464,9 +464,9 @@ export class FolderMetadataManager {
     The root folder of a Box account is
     always represented by the ID `0`.
     Example: "12345"
-     * @param {CreateFolderMetadataByIdScope} scope The scope of the metadata template
+     * @param {CreateFolderMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {CreateFolderMetadataByIdRequestBody} requestBody Request body of createFolderMetadataById method
      * @param {CreateFolderMetadataByIdOptionalsInput} optionalsInput
@@ -536,9 +536,9 @@ export class FolderMetadataManager {
     The root folder of a Box account is
     always represented by the ID `0`.
     Example: "12345"
-     * @param {UpdateFolderMetadataByIdScope} scope The scope of the metadata template
+     * @param {UpdateFolderMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {readonly UpdateFolderMetadataByIdRequestBody[]} requestBody Request body of updateFolderMetadataById method
      * @param {UpdateFolderMetadataByIdOptionalsInput} optionalsInput
@@ -603,9 +603,9 @@ export class FolderMetadataManager {
     The root folder of a Box account is
     always represented by the ID `0`.
     Example: "12345"
-     * @param {DeleteFolderMetadataByIdScope} scope The scope of the metadata template
+     * @param {DeleteFolderMetadataByIdScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {DeleteFolderMetadataByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}

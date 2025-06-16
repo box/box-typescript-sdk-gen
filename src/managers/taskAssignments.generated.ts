@@ -184,7 +184,7 @@ export interface GetTaskAssignmentsHeadersInput {
 export type CreateTaskAssignmentRequestBodyTaskTypeField = 'task';
 export class CreateTaskAssignmentRequestBodyTaskField {
   /**
-   * The ID of the task */
+   * The ID of the task. */
   readonly id!: string;
   /**
    * The type of the item to assign. */
@@ -208,7 +208,7 @@ export class CreateTaskAssignmentRequestBodyTaskField {
 }
 export interface CreateTaskAssignmentRequestBodyTaskFieldInput {
   /**
-   * The ID of the task */
+   * The ID of the task. */
   readonly id: string;
   /**
    * The type of the item to assign. */

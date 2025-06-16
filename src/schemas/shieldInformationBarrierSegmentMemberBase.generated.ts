@@ -11,10 +11,10 @@ export type ShieldInformationBarrierSegmentMemberBaseTypeField =
 export interface ShieldInformationBarrierSegmentMemberBase {
   /**
    * The unique identifier for the
-   * shield information barrier segment member */
+   * shield information barrier segment member. */
   readonly id?: string;
   /**
-   * The type of the shield information barrier segment member */
+   * The type of the shield information barrier segment member. */
   readonly type?: ShieldInformationBarrierSegmentMemberBaseTypeField;
   readonly rawData?: SerializedData;
 }

@@ -88,7 +88,7 @@ export interface PostOAuth2Token {
    * new access token.
    *
    * The `subject_token` will need to have all of these scopes or
-   * the call will error with **401 Unauthorized**. */
+   * the call will error with **401 Unauthorized**.. */
   readonly scope?: string;
   /**
    * Full URL for the file that the token should be generated for. */

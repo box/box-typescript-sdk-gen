@@ -152,7 +152,7 @@ export interface UpdateFolderWatermarkRequestBodyWatermarkFieldInput {
 }
 export interface UpdateFolderWatermarkRequestBody {
   /**
-   * The watermark to imprint on the folder */
+   * The watermark to imprint on the folder. */
   readonly watermark: UpdateFolderWatermarkRequestBodyWatermarkField;
   readonly rawData?: SerializedData;
 }

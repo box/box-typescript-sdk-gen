@@ -11,10 +11,10 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface WatermarkWatermarkField {
   /**
-   * When this watermark was created */
+   * When this watermark was created. */
   readonly createdAt?: DateTime;
   /**
-   * When this task was modified */
+   * When this task was modified. */
   readonly modifiedAt?: DateTime;
   readonly rawData?: SerializedData;
 }

@@ -11,10 +11,10 @@ export type IntegrationMappingPartnerItemTeamsCreateRequestTypeField =
   | 'team';
 export interface IntegrationMappingPartnerItemTeamsCreateRequest {
   /**
-   * Type of the mapped item referenced in `id` */
+   * Type of the mapped item referenced in `id`. */
   readonly type: IntegrationMappingPartnerItemTeamsCreateRequestTypeField;
   /**
-   * ID of the mapped item (of type referenced in `type`) */
+   * ID of the mapped item (of type referenced in `type`). */
   readonly id: string;
   /**
    * ID of the tenant that is registered with Microsoft Teams. */

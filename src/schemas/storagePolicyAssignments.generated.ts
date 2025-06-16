@@ -22,7 +22,7 @@ export interface StoragePolicyAssignments {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of storage policy assignments */
+   * A list of storage policy assignments. */
   readonly entries?: readonly StoragePolicyAssignment[];
   readonly rawData?: SerializedData;
 }

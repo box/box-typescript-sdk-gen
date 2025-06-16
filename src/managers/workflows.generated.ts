@@ -116,39 +116,39 @@ export interface GetWorkflowsHeadersInput {
 export type StartWorkflowRequestBodyTypeField = 'workflow_parameters';
 export interface StartWorkflowRequestBodyFlowField {
   /**
-   * The type of the flow object */
+   * The type of the flow object. */
   readonly type?: string;
   /**
-   * The id of the flow */
+   * The id of the flow. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export type StartWorkflowRequestBodyFilesTypeField = 'file';
 export interface StartWorkflowRequestBodyFilesField {
   /**
-   * The type of the file object */
+   * The type of the file object. */
   readonly type?: StartWorkflowRequestBodyFilesTypeField;
   /**
-   * The id of the file */
+   * The id of the file. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export type StartWorkflowRequestBodyFolderTypeField = 'folder';
 export interface StartWorkflowRequestBodyFolderField {
   /**
-   * The type of the folder object */
+   * The type of the folder object. */
   readonly type?: StartWorkflowRequestBodyFolderTypeField;
   /**
-   * The id of the folder */
+   * The id of the folder. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export interface StartWorkflowRequestBody {
   /**
-   * The type of the parameters object */
+   * The type of the parameters object. */
   readonly type?: StartWorkflowRequestBodyTypeField;
   /**
-   * The flow that will be triggered */
+   * The flow that will be triggered. */
   readonly flow: StartWorkflowRequestBodyFlowField;
   /**
    * The array of files for which the workflow should start. All files

@@ -14,7 +14,7 @@ import { sdIsList } from '../../serialization/json.js';
 import { sdIsMap } from '../../serialization/json.js';
 export type DocGenTemplateV2025R0 = DocGenTemplateBaseV2025R0 & {
   /**
-   * The name of the template */
+   * The name of the template. */
   readonly fileName?: string | null;
 };
 export function serializeDocGenTemplateV2025R0(

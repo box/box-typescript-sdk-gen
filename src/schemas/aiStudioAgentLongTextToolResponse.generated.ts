@@ -26,7 +26,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiStudioAgentLongTextToolResponse = AiStudioAgentLongTextTool & {
   /**
-   * Warnings concerning tool */
+   * Warnings concerning tool. */
   readonly warnings?: readonly string[];
 };
 export function serializeAiStudioAgentLongTextToolResponse(

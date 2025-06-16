@@ -22,7 +22,7 @@ export interface CollaborationAllowlistEntries {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of allowed collaboration domains */
+   * A list of allowed collaboration domains. */
   readonly entries?: readonly CollaborationAllowlistEntry[];
   readonly rawData?: SerializedData;
 }

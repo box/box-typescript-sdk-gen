@@ -623,9 +623,9 @@ export class MetadataTemplatesManager {
      *
      * To find the `scope` and `templateKey` for a template, list all templates for
      * an enterprise or globally, or list all templates applied to a file or folder.
-     * @param {GetMetadataTemplateScope} scope The scope of the metadata template
+     * @param {GetMetadataTemplateScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {GetMetadataTemplateOptionalsInput} optionalsInput
      * @returns {Promise<MetadataTemplate>}
@@ -677,9 +677,9 @@ export class MetadataTemplatesManager {
      *
      * The update is applied atomically. If any errors occur during the
      * application of the operations, the metadata template will not be changed.
-     * @param {UpdateMetadataTemplateScope} scope The scope of the metadata template
+     * @param {UpdateMetadataTemplateScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {readonly UpdateMetadataTemplateRequestBody[]} requestBody Request body of updateMetadataTemplate method
      * @param {UpdateMetadataTemplateOptionalsInput} optionalsInput
@@ -732,9 +732,9 @@ export class MetadataTemplatesManager {
   /**
      * Delete a metadata template and its instances.
      * This deletion is permanent and can not be reversed.
-     * @param {DeleteMetadataTemplateScope} scope The scope of the metadata template
+     * @param {DeleteMetadataTemplateScope} scope The scope of the metadata template.
     Example: "global"
-     * @param {string} templateKey The name of the metadata template
+     * @param {string} templateKey The name of the metadata template.
     Example: "properties"
      * @param {DeleteMetadataTemplateOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -777,7 +777,7 @@ export class MetadataTemplatesManager {
   }
   /**
      * Retrieves a metadata template by its ID.
-     * @param {string} templateId The ID of the template
+     * @param {string} templateId The ID of the template.
     Example: "f7a9891f"
      * @param {GetMetadataTemplateByIdOptionalsInput} optionalsInput
      * @returns {Promise<MetadataTemplate>}
@@ -868,7 +868,7 @@ export class MetadataTemplatesManager {
   }
   /**
    * Used to retrieve all metadata templates created to be used specifically within
-   * the user's enterprise
+   * the user's enterprise.
    * @param {GetEnterpriseMetadataTemplatesQueryParams} queryParams Query parameters of getEnterpriseMetadataTemplates method
    * @param {GetEnterpriseMetadataTemplatesHeadersInput} headersInput Headers of getEnterpriseMetadataTemplates method
    * @param {CancellationToken} cancellationToken Token used for request cancellation.

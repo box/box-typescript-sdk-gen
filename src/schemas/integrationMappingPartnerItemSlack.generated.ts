@@ -9,11 +9,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingPartnerItemSlackTypeField = 'channel';
 export class IntegrationMappingPartnerItemSlack {
   /**
-   * Type of the mapped item referenced in `id` */
+   * Type of the mapped item referenced in `id`. */
   readonly type: IntegrationMappingPartnerItemSlackTypeField =
     'channel' as IntegrationMappingPartnerItemSlackTypeField;
   /**
-   * ID of the mapped item (of type referenced in `type`) */
+   * ID of the mapped item (of type referenced in `type`). */
   readonly id!: string;
   /**
    * ID of the Slack workspace with which the item is associated. Use this parameter if Box for Slack is installed at a workspace level. Do not use `slack_org_id` at the same time. */
@@ -45,10 +45,10 @@ export class IntegrationMappingPartnerItemSlack {
 }
 export interface IntegrationMappingPartnerItemSlackInput {
   /**
-   * Type of the mapped item referenced in `id` */
+   * Type of the mapped item referenced in `id`. */
   readonly type?: IntegrationMappingPartnerItemSlackTypeField;
   /**
-   * ID of the mapped item (of type referenced in `type`) */
+   * ID of the mapped item (of type referenced in `type`). */
   readonly id: string;
   /**
    * ID of the Slack workspace with which the item is associated. Use this parameter if Box for Slack is installed at a workspace level. Do not use `slack_org_id` at the same time. */

@@ -22,7 +22,7 @@ export class FileRequest {
    * The unique identifier for this file request. */
   readonly id!: string;
   /**
-   * `file_request` */
+   * The value will always be `file_request`. */
   readonly type: FileRequestTypeField = 'file_request' as FileRequestTypeField;
   /**
    * The title of file request. This is shown
@@ -156,7 +156,7 @@ export interface FileRequestInput {
    * The unique identifier for this file request. */
   readonly id: string;
   /**
-   * `file_request` */
+   * The value will always be `file_request`. */
   readonly type?: FileRequestTypeField;
   /**
    * The title of file request. This is shown

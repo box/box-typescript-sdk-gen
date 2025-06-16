@@ -41,7 +41,7 @@ export class FindAppItemForSharedLinkHeaders {
    * A header containing the shared link and optional password for the
    * shared link.
    *
-   * The format for this header is `shared_link=[link]&shared_link_password=[password]` */
+   * The format for this header is `shared_link=[link]&shared_link_password=[password]`. */
   readonly boxapi!: string;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -65,7 +65,7 @@ export interface FindAppItemForSharedLinkHeadersInput {
    * A header containing the shared link and optional password for the
    * shared link.
    *
-   * The format for this header is `shared_link=[link]&shared_link_password=[password]` */
+   * The format for this header is `shared_link=[link]&shared_link_password=[password]`. */
   readonly boxapi: string;
   /**
    * Extra headers that will be included in the HTTP request. */

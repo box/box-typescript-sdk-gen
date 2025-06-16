@@ -14,13 +14,13 @@ export interface SignRequestPrefillTag {
    * This references the ID of a specific tag contained in a file of the signature request. */
   readonly documentTagId?: string | null;
   /**
-   * Text prefill value */
+   * Text prefill value. */
   readonly textValue?: string | null;
   /**
-   * Checkbox prefill value */
+   * Checkbox prefill value. */
   readonly checkboxValue?: boolean | null;
   /**
-   * Date prefill value */
+   * Date prefill value. */
   readonly dateValue?: Date | null;
   readonly rawData?: SerializedData;
 }

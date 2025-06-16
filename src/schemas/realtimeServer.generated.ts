@@ -8,13 +8,13 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface RealtimeServer {
   /**
-   * `realtime_server` */
+   * The value will always be `realtime_server`. */
   readonly type?: string;
   /**
    * The URL for the server. */
   readonly url?: string;
   /**
-   * The time in minutes for which this server is available */
+   * The time in minutes for which this server is available. */
   readonly ttl?: string;
   /**
    * The maximum number of retries this server will

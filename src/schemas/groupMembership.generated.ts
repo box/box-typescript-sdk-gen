@@ -19,10 +19,10 @@ export type GroupMembershipTypeField = 'group_membership';
 export type GroupMembershipRoleField = 'member' | 'admin' | string;
 export interface GroupMembership {
   /**
-   * The unique identifier for this group membership */
+   * The unique identifier for this group membership. */
   readonly id?: string;
   /**
-   * `group_membership` */
+   * The value will always be `group_membership`. */
   readonly type?: GroupMembershipTypeField;
   readonly user?: UserMini;
   readonly group?: GroupMini;

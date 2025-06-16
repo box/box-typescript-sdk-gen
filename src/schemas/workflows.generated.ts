@@ -22,7 +22,7 @@ export interface Workflows {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of workflows */
+   * A list of workflows. */
   readonly entries?: readonly Workflow[];
   readonly rawData?: SerializedData;
 }

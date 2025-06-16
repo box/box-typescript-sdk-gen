@@ -19,7 +19,7 @@ export interface Events {
    * of events. */
   readonly nextStreamPosition?: EventsNextStreamPositionField;
   /**
-   * A list of events */
+   * A list of events. */
   readonly entries?: readonly Event[];
   readonly rawData?: SerializedData;
 }

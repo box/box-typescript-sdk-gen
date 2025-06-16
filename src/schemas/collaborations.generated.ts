@@ -22,7 +22,7 @@ export interface Collaborations {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of collaborations */
+   * A list of collaborations. */
   readonly entries?: readonly Collaboration[];
   readonly rawData?: SerializedData;
 }

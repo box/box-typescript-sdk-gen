@@ -90,22 +90,22 @@ export interface GetInviteByIdOptionalsInput {
 }
 export interface CreateInviteRequestBodyEnterpriseField {
   /**
-   * The ID of the enterprise */
+   * The ID of the enterprise. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
 export interface CreateInviteRequestBodyActionableByField {
   /**
-   * The login of the invited user */
+   * The login of the invited user. */
   readonly login?: string;
   readonly rawData?: SerializedData;
 }
 export interface CreateInviteRequestBody {
   /**
-   * The enterprise to invite the user to */
+   * The enterprise to invite the user to. */
   readonly enterprise: CreateInviteRequestBodyEnterpriseField;
   /**
-   * The user to invite */
+   * The user to invite. */
   readonly actionableBy: CreateInviteRequestBodyActionableByField;
   readonly rawData?: SerializedData;
 }

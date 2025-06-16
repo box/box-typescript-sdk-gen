@@ -11,7 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface RetentionPolicyAssignments {
   /**
-   * A list of retention policy assignments */
+   * A list of retention policy assignments. */
   readonly entries?: readonly RetentionPolicyAssignment[];
   /**
    * The limit that was used for these entries. This will be the same as the

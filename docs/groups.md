@@ -102,7 +102,7 @@ await client.groups.getGroupById(group.id, {
 
 This function returns a value of type `GroupFull`.
 
-Returns the group object
+Returns the group object.
 
 ## Update group
 

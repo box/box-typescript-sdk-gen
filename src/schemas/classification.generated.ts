@@ -19,7 +19,7 @@ export interface Classification {
    * of the parent in the form `{type}_{id}`. */
   readonly parent?: string;
   /**
-   * `securityClassification-6VMVochwUWo` */
+   * The value will always be `securityClassification-6VMVochwUWo`. */
   readonly template?: ClassificationTemplateField;
   /**
    * The scope of the enterprise that this classification has been

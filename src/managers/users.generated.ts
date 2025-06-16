@@ -273,7 +273,7 @@ export type CreateUserRequestBodyStatusField =
   | string;
 export interface CreateUserRequestBody {
   /**
-   * The name of the user */
+   * The name of the user. */
   readonly name: string;
   /**
    * The email address the user uses to log in
@@ -285,23 +285,23 @@ export interface CreateUserRequestBody {
    * Specifies that the user is an app user. */
   readonly isPlatformAccessOnly?: boolean;
   /**
-   * The user’s enterprise role */
+   * The user’s enterprise role. */
   readonly role?: CreateUserRequestBodyRoleField;
   /**
    * The language of the user, formatted in modified version of the
    * [ISO 639-1](/guides/api-calls/language-codes) format. */
   readonly language?: string;
   /**
-   * Whether the user can use Box Sync */
+   * Whether the user can use Box Sync. */
   readonly isSyncEnabled?: boolean;
   /**
-   * The user’s job title */
+   * The user’s job title. */
   readonly jobTitle?: string;
   /**
-   * The user’s phone number */
+   * The user’s phone number. */
   readonly phone?: string;
   /**
-   * The user’s address */
+   * The user’s address. */
   readonly address?: string;
   /**
    * The user’s total available space in bytes. Set this to `-1` to
@@ -315,23 +315,23 @@ export interface CreateUserRequestBody {
   readonly trackingCodes?: readonly TrackingCode[];
   /**
    * Whether the user can see other enterprise users in their
-   * contact list */
+   * contact list. */
   readonly canSeeManagedUsers?: boolean;
   /**
-   * The user's timezone */
+   * The user's timezone. */
   readonly timezone?: string;
   /**
    * Whether the user is allowed to collaborate with users outside
-   * their enterprise */
+   * their enterprise. */
   readonly isExternalCollabRestricted?: boolean;
   /**
-   * Whether to exempt the user from enterprise device limits */
+   * Whether to exempt the user from enterprise device limits. */
   readonly isExemptFromDeviceLimits?: boolean;
   /**
-   * Whether the user must use two-factor authentication */
+   * Whether the user must use two-factor authentication. */
   readonly isExemptFromLoginVerification?: boolean;
   /**
-   * The user's account status */
+   * The user's account status. */
   readonly status?: CreateUserRequestBodyStatusField;
   /**
    * An external identifier for an app user, which can be used to look
@@ -467,14 +467,14 @@ export interface UpdateUserByIdRequestBodyNotificationEmailField {
 export interface UpdateUserByIdRequestBody {
   /**
    * Set this to `null` to roll the user out of the enterprise
-   * and make them a free user */
+   * and make them a free user. */
   readonly enterprise?: string | null;
   /**
    * Whether the user should receive an email when they
-   * are rolled out of an enterprise */
+   * are rolled out of an enterprise. */
   readonly notify?: boolean;
   /**
-   * The name of the user */
+   * The name of the user. */
   readonly name?: string;
   /**
    * The email address the user uses to log in
@@ -483,23 +483,23 @@ export interface UpdateUserByIdRequestBody {
    * primary login address cannot be changed. */
   readonly login?: string;
   /**
-   * The user’s enterprise role */
+   * The user’s enterprise role. */
   readonly role?: UpdateUserByIdRequestBodyRoleField;
   /**
    * The language of the user, formatted in modified version of the
    * [ISO 639-1](/guides/api-calls/language-codes) format. */
   readonly language?: string;
   /**
-   * Whether the user can use Box Sync */
+   * Whether the user can use Box Sync. */
   readonly isSyncEnabled?: boolean;
   /**
-   * The user’s job title */
+   * The user’s job title. */
   readonly jobTitle?: string;
   /**
-   * The user’s phone number */
+   * The user’s phone number. */
   readonly phone?: string;
   /**
-   * The user’s address */
+   * The user’s address. */
   readonly address?: string;
   /**
    * Tracking codes allow an admin to generate reports from the
@@ -509,26 +509,26 @@ export interface UpdateUserByIdRequestBody {
   readonly trackingCodes?: readonly TrackingCode[];
   /**
    * Whether the user can see other enterprise users in their
-   * contact list */
+   * contact list. */
   readonly canSeeManagedUsers?: boolean;
   /**
-   * The user's timezone */
+   * The user's timezone. */
   readonly timezone?: string;
   /**
    * Whether the user is allowed to collaborate with users outside
-   * their enterprise */
+   * their enterprise. */
   readonly isExternalCollabRestricted?: boolean;
   /**
-   * Whether to exempt the user from enterprise device limits */
+   * Whether to exempt the user from enterprise device limits. */
   readonly isExemptFromDeviceLimits?: boolean;
   /**
-   * Whether the user must use two-factor authentication */
+   * Whether the user must use two-factor authentication. */
   readonly isExemptFromLoginVerification?: boolean;
   /**
-   * Whether the user is required to reset their password */
+   * Whether the user is required to reset their password. */
   readonly isPasswordResetRequired?: boolean;
   /**
-   * The user's account status */
+   * The user's account status. */
   readonly status?: UpdateUserByIdRequestBodyStatusField;
   /**
    * The user’s total available space in bytes. Set this to `-1` to
@@ -592,11 +592,11 @@ export interface UpdateUserByIdHeadersInput {
 export interface DeleteUserByIdQueryParams {
   /**
    * Whether the user will receive email notification of
-   * the deletion */
+   * the deletion. */
   readonly notify?: boolean;
   /**
    * Whether the user should be deleted even if this user
-   * still own files */
+   * still own files. */
   readonly force?: boolean;
 }
 export class DeleteUserByIdHeaders {
