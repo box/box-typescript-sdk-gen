@@ -21,7 +21,7 @@ export type RecentItemInteractionTypeField =
   | string;
 export interface RecentItem {
   /**
-   * `recent_item` */
+   * The value will always be `recent_item`. */
   readonly type?: string;
   readonly item?: FileFullOrFolderFullOrWebLink;
   /**

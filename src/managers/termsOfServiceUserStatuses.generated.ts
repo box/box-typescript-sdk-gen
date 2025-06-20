@@ -149,7 +149,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyTosField {
   readonly type: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField =
     'terms_of_service' as CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
   /**
-   * The ID of terms of service */
+   * The ID of terms of service. */
   readonly id!: string;
   readonly rawData?: SerializedData;
   constructor(
@@ -174,7 +174,7 @@ export interface CreateTermsOfServiceStatusForUserRequestBodyTosFieldInput {
    * The type of object. */
   readonly type?: CreateTermsOfServiceStatusForUserRequestBodyTosTypeField;
   /**
-   * The ID of terms of service */
+   * The ID of terms of service. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
@@ -185,7 +185,7 @@ export class CreateTermsOfServiceStatusForUserRequestBodyUserField {
   readonly type: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField =
     'user' as CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
   /**
-   * The ID of user */
+   * The ID of user. */
   readonly id!: string;
   readonly rawData?: SerializedData;
   constructor(
@@ -213,7 +213,7 @@ export interface CreateTermsOfServiceStatusForUserRequestBodyUserFieldInput {
    * The type of object. */
   readonly type?: CreateTermsOfServiceStatusForUserRequestBodyUserTypeField;
   /**
-   * The ID of user */
+   * The ID of user. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

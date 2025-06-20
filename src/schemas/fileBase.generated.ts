@@ -23,7 +23,7 @@ export class FileBase {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type: FileBaseTypeField = 'file' as FileBaseTypeField;
   readonly rawData?: SerializedData;
   constructor(
@@ -59,7 +59,7 @@ export interface FileBaseInput {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: FileBaseTypeField;
   readonly rawData?: SerializedData;
 }

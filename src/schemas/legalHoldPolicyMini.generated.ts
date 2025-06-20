@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type LegalHoldPolicyMiniTypeField = 'legal_hold_policy';
 export class LegalHoldPolicyMini {
   /**
-   * The unique identifier for this legal hold policy */
+   * The unique identifier for this legal hold policy. */
   readonly id!: string;
   /**
-   * `legal_hold_policy` */
+   * The value will always be `legal_hold_policy`. */
   readonly type: LegalHoldPolicyMiniTypeField =
     'legal_hold_policy' as LegalHoldPolicyMiniTypeField;
   readonly rawData?: SerializedData;
@@ -33,10 +33,10 @@ export class LegalHoldPolicyMini {
 }
 export interface LegalHoldPolicyMiniInput {
   /**
-   * The unique identifier for this legal hold policy */
+   * The unique identifier for this legal hold policy. */
   readonly id: string;
   /**
-   * `legal_hold_policy` */
+   * The value will always be `legal_hold_policy`. */
   readonly type?: LegalHoldPolicyMiniTypeField;
   readonly rawData?: SerializedData;
 }

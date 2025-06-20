@@ -11,7 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface FolderLocks {
   /**
-   * A list of folder locks */
+   * A list of folder locks. */
   readonly entries?: readonly FolderLock[];
   /**
    * The limit that was used for these entries. This will be the same as the

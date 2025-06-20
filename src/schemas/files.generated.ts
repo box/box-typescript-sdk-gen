@@ -14,7 +14,7 @@ export interface Files {
    * The number of files. */
   readonly totalCount?: number;
   /**
-   * A list of files */
+   * A list of files. */
   readonly entries?: readonly FileFull[];
   readonly rawData?: SerializedData;
 }

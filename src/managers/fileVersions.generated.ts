@@ -356,10 +356,10 @@ export interface UpdateFileVersionByIdHeadersInput {
 export type PromoteFileVersionRequestBodyTypeField = 'file_version';
 export interface PromoteFileVersionRequestBody {
   /**
-   * The file version ID */
+   * The file version ID. */
   readonly id?: string;
   /**
-   * The type to promote */
+   * The type to promote. */
   readonly type?: PromoteFileVersionRequestBodyTypeField;
   readonly rawData?: SerializedData;
 }
@@ -497,7 +497,7 @@ export class FileVersionsManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {string} fileVersionId The ID of the file version
+     * @param {string} fileVersionId The ID of the file version.
     Example: "1234"
      * @param {GetFileVersionByIdOptionalsInput} optionalsInput
      * @returns {Promise<FileVersionFull>}
@@ -562,7 +562,7 @@ export class FileVersionsManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {string} fileVersionId The ID of the file version
+     * @param {string} fileVersionId The ID of the file version.
     Example: "1234"
      * @param {DeleteFileVersionByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -618,7 +618,7 @@ export class FileVersionsManager {
     for the URL `https://*.app.box.com/files/123`
     the `file_id` is `123`.
     Example: "12345"
-     * @param {string} fileVersionId The ID of the file version
+     * @param {string} fileVersionId The ID of the file version.
     Example: "1234"
      * @param {UpdateFileVersionByIdOptionalsInput} optionalsInput
      * @returns {Promise<FileVersionFull>}

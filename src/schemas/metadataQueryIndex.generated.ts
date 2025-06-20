@@ -29,10 +29,10 @@ export interface MetadataQueryIndex {
    * The ID of the metadata query index. */
   readonly id?: string;
   /**
-   * Value is always `metadata_query_index` */
+   * Value is always `metadata_query_index`. */
   readonly type: string;
   /**
-   * The status of the metadata query index */
+   * The status of the metadata query index. */
   readonly status: MetadataQueryIndexStatusField;
   /**
    * A list of template fields which make up the index. */

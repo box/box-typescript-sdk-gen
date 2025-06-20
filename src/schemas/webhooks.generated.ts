@@ -22,7 +22,7 @@ export interface Webhooks {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of webhooks */
+   * A list of webhooks. */
   readonly entries?: readonly WebhookMini[];
   readonly rawData?: SerializedData;
 }

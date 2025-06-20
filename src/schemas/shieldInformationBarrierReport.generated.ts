@@ -34,7 +34,7 @@ export type ShieldInformationBarrierReport =
   ShieldInformationBarrierReportBase & {
     readonly shieldInformationBarrier?: ShieldInformationBarrierReference;
     /**
-     * Status of the shield information report */
+     * Status of the shield information report. */
     readonly status?: ShieldInformationBarrierReportStatusField;
     readonly details?: ShieldInformationBarrierReportDetails;
     /**

@@ -65,7 +65,7 @@ await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegm
 
 This function returns a value of type `undefined`.
 
-Empty body in response
+Empty body in response.
 
 ## Update shield information barrier segment with specified ID
 

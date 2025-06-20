@@ -68,9 +68,9 @@ await client.avatars.createUserAvatar(user.id, {
 
 This function returns a value of type `UserAvatar`.
 
-- `ok`: Returns the `pic_urls` object with URLs to existing
-  user avatars that were updated.\* `created`: Returns the `pic_urls` object with URLS to user avatars
-  uploaded to Box with the request.
+`ok`: Returns the `pic_urls` object with URLs to existing
+user avatars that were updated.`created`: Returns the `pic_urls` object with URLS to user avatars
+uploaded to Box with the request.
 
 ## Delete user avatar
 
@@ -99,4 +99,4 @@ await client.avatars.deleteUserAvatar(user.id);
 
 This function returns a value of type `undefined`.
 
-- `no_content`: Removes the avatar and returns an empty response.
+`no_content`: Removes the avatar and returns an empty response.

@@ -12,7 +12,7 @@ export class DocGenJobBaseV2025R0 {
    * The unique identifier that represent a Box Doc Gen job. */
   readonly id!: string;
   /**
-   * `docgen_job` */
+   * The value will always be `docgen_job`. */
   readonly type: DocGenJobBaseV2025R0TypeField =
     'docgen_job' as DocGenJobBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
@@ -36,7 +36,7 @@ export interface DocGenJobBaseV2025R0Input {
    * The unique identifier that represent a Box Doc Gen job. */
   readonly id: string;
   /**
-   * `docgen_job` */
+   * The value will always be `docgen_job`. */
   readonly type?: DocGenJobBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
 }

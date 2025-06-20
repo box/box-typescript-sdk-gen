@@ -12,7 +12,7 @@ export class RetentionPolicyBase {
    * The unique identifier that represents a retention policy. */
   readonly id!: string;
   /**
-   * `retention_policy` */
+   * The value will always be `retention_policy`. */
   readonly type: RetentionPolicyBaseTypeField =
     'retention_policy' as RetentionPolicyBaseTypeField;
   readonly rawData?: SerializedData;
@@ -36,7 +36,7 @@ export interface RetentionPolicyBaseInput {
    * The unique identifier that represents a retention policy. */
   readonly id: string;
   /**
-   * `retention_policy` */
+   * The value will always be `retention_policy`. */
   readonly type?: RetentionPolicyBaseTypeField;
   readonly rawData?: SerializedData;
 }

@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type UploadPartsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface UploadPartsOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: UploadPartsOrderDirectionField;
   readonly rawData?: SerializedData;
 }
@@ -48,7 +48,7 @@ export interface UploadParts {
   readonly order?: readonly UploadPartsOrderField[];
   /**
    * A list of uploaded chunks for an upload
-   * session */
+   * session. */
   readonly entries?: readonly UploadPart[];
   readonly rawData?: SerializedData;
 }

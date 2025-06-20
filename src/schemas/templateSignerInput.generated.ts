@@ -57,10 +57,10 @@ export interface TemplateSignerInputDimensionsField {
 }
 export type TemplateSignerInput = SignRequestPrefillTag & {
   /**
-   * Type of input */
+   * Type of input. */
   readonly type?: TemplateSignerInputTypeField;
   /**
-   * Content type of input */
+   * Content type of input. */
   readonly contentType?: TemplateSignerInputContentTypeField;
   /**
    * Whether or not the input is required. */
@@ -72,10 +72,13 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
    * Document identifier. */
   readonly documentId?: string | null;
   /**
-   * When the input is of the type `dropdown` this values will be filled with all the dropdown options. */
+   * When the input is of the type `dropdown` this
+   * values will be filled with all the
+   * dropdown options. */
   readonly dropdownChoices?: readonly string[] | null;
   /**
-   * When the input is of type `radio` they can be grouped to gather with this identifier. */
+   * When the input is of type `radio` they can be
+   * grouped to gather with this identifier. */
   readonly groupId?: string | null;
   /**
    * Where the input is located on a page. */
@@ -87,7 +90,7 @@ export type TemplateSignerInput = SignRequestPrefillTag & {
    * The label field is used especially for text, attachment, radio, and checkbox type inputs. */
   readonly label?: string | null;
   /**
-   * Whether this input was defined as read-only(immutable by signers) or not */
+   * Whether this input was defined as read-only(immutable by signers) or not. */
   readonly readOnly?: boolean;
 };
 export function serializeTemplateSignerInputTypeField(

@@ -21,7 +21,7 @@ export interface TrashWebLinkRestoredPathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * The parent folders for this item */
+   * The parent folders for this item. */
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
@@ -32,10 +32,10 @@ export type TrashWebLinkRestoredItemStatusField =
   | string;
 export interface TrashWebLinkRestored {
   /**
-   * `web_link` */
+   * The value will always be `web_link`. */
   readonly type?: TrashWebLinkRestoredTypeField;
   /**
-   * The unique identifier for this web link */
+   * The unique identifier for this web link. */
   readonly id?: string;
   readonly sequenceId: string;
   /**
@@ -43,10 +43,10 @@ export interface TrashWebLinkRestored {
    * headers. */
   readonly etag?: string;
   /**
-   * The name of the web link */
+   * The name of the web link. */
   readonly name?: string;
   /**
-   * The URL this web link points to */
+   * The URL this web link points to. */
   readonly url?: string;
   readonly parent?: FolderMini;
   /**
@@ -80,7 +80,7 @@ export interface TrashWebLinkRestored {
   /**
    * Whether this item is deleted or not. Values include `active`,
    * `trashed` if the file has been moved to the trash, and `deleted` if
-   * the file has been permanently deleted */
+   * the file has been permanently deleted. */
   readonly itemStatus?: TrashWebLinkRestoredItemStatusField;
   readonly rawData?: SerializedData;
 }

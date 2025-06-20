@@ -11,20 +11,20 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface SkillCardsMetadata {
   /**
-   * Whether the user can edit this metadata */
+   * Whether the user can edit this metadata. */
   readonly canEdit?: boolean;
   /**
-   * A UUID to identify the metadata object */
+   * A UUID to identify the metadata object. */
   readonly id?: string;
   /**
-   * An ID for the parent folder */
+   * An ID for the parent folder. */
   readonly parent?: string;
   /**
    * An ID for the scope in which this template
-   * has been applied */
+   * has been applied. */
   readonly scope?: string;
   /**
-   * The name of the template */
+   * The name of the template. */
   readonly template?: string;
   /**
    * A unique identifier for the "type" of this instance. This is an internal

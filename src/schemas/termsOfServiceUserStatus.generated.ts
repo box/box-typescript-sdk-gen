@@ -18,19 +18,19 @@ import { sdIsMap } from '../serialization/json.js';
 export type TermsOfServiceUserStatusTypeField = 'terms_of_service_user_status';
 export class TermsOfServiceUserStatus {
   /**
-   * The unique identifier for this terms of service user status */
+   * The unique identifier for this terms of service user status. */
   readonly id!: string;
   /**
-   * `terms_of_service_user_status` */
+   * The value will always be `terms_of_service_user_status`. */
   readonly type: TermsOfServiceUserStatusTypeField =
     'terms_of_service_user_status' as TermsOfServiceUserStatusTypeField;
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   /**
-   * If the user has accepted the terms of services */
+   * If the user has accepted the terms of services. */
   readonly isAccepted?: boolean;
   /**
-   * When the legal item was created */
+   * When the legal item was created. */
   readonly createdAt?: DateTime;
   /**
    * When the legal item was modified. */
@@ -68,18 +68,18 @@ export class TermsOfServiceUserStatus {
 }
 export interface TermsOfServiceUserStatusInput {
   /**
-   * The unique identifier for this terms of service user status */
+   * The unique identifier for this terms of service user status. */
   readonly id: string;
   /**
-   * `terms_of_service_user_status` */
+   * The value will always be `terms_of_service_user_status`. */
   readonly type?: TermsOfServiceUserStatusTypeField;
   readonly tos?: TermsOfServiceBase;
   readonly user?: UserMini;
   /**
-   * If the user has accepted the terms of services */
+   * If the user has accepted the terms of services. */
   readonly isAccepted?: boolean;
   /**
-   * When the legal item was created */
+   * When the legal item was created. */
   readonly createdAt?: DateTime;
   /**
    * When the legal item was modified. */

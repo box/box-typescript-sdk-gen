@@ -22,7 +22,7 @@ export interface MetadataCascadePolicies {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of metadata cascade policies */
+   * A list of metadata cascade policies. */
   readonly entries?: readonly MetadataCascadePolicy[];
   readonly rawData?: SerializedData;
 }

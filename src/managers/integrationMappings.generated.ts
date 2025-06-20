@@ -243,19 +243,21 @@ export interface GetSlackIntegrationMappingQueryParams {
    * The maximum number of items to return per page. */
   readonly limit?: number;
   /**
-   * Mapped item type, for which the mapping should be returned */
+   * Mapped item type, for which the mapping should be returned. */
   readonly partnerItemType?: GetSlackIntegrationMappingQueryParamsPartnerItemTypeField;
   /**
-   * ID of the mapped item, for which the mapping should be returned */
+   * ID of the mapped item,
+   * for which the mapping should be returned. */
   readonly partnerItemId?: string;
   /**
-   * Box item ID, for which the mappings should be returned */
+   * Box item ID, for which the mappings should be returned. */
   readonly boxItemId?: string;
   /**
-   * Box item type, for which the mappings should be returned */
+   * Box item type, for
+   * which the mappings should be returned. */
   readonly boxItemType?: GetSlackIntegrationMappingQueryParamsBoxItemTypeField;
   /**
-   * Whether the mapping has been manually created */
+   * Whether the mapping has been manually created. */
   readonly isManuallyCreated?: boolean;
 }
 export class GetSlackIntegrationMappingHeaders {
@@ -368,16 +370,18 @@ export type GetTeamsIntegrationMappingQueryParamsBoxItemTypeField =
   | string;
 export interface GetTeamsIntegrationMappingQueryParams {
   /**
-   * Mapped item type, for which the mapping should be returned */
+   * Mapped item type, for which the mapping should be returned. */
   readonly partnerItemType?: GetTeamsIntegrationMappingQueryParamsPartnerItemTypeField;
   /**
-   * ID of the mapped item, for which the mapping should be returned */
+   * ID of the mapped item,
+   * for which the mapping should be returned. */
   readonly partnerItemId?: string;
   /**
-   * Box item ID, for which the mappings should be returned */
+   * Box item ID, for which the mappings should be returned. */
   readonly boxItemId?: string;
   /**
-   * Box item type, for which the mappings should be returned */
+   * Box item type, for
+   * which the mappings should be returned. */
   readonly boxItemType?: GetTeamsIntegrationMappingQueryParamsBoxItemTypeField;
 }
 export class GetTeamsIntegrationMappingHeaders {
@@ -615,7 +619,7 @@ export class IntegrationMappingsManager {
      *
      * You need Admin or Co-Admin role to
      * use this endpoint.
-     * @param {string} integrationMappingId An ID of an integration mapping
+     * @param {string} integrationMappingId An ID of an integration mapping.
     Example: "11235432"
      * @param {UpdateSlackIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<IntegrationMapping>}
@@ -667,7 +671,7 @@ export class IntegrationMappingsManager {
      *
      * You need Admin or Co-Admin role to
      * use this endpoint.
-     * @param {string} integrationMappingId An ID of an integration mapping
+     * @param {string} integrationMappingId An ID of an integration mapping.
     Example: "11235432"
      * @param {DeleteSlackIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -806,7 +810,7 @@ export class IntegrationMappingsManager {
      * Supports updating the Box folder ID and options.
      * You need Admin or Co-Admin role to
      * use this endpoint.
-     * @param {string} integrationMappingId An ID of an integration mapping
+     * @param {string} integrationMappingId An ID of an integration mapping.
     Example: "11235432"
      * @param {UpdateTeamsIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<IntegrationMappingTeams>}
@@ -856,7 +860,7 @@ export class IntegrationMappingsManager {
      * Deletes a [Teams integration mapping](https://support.box.com/hc/en-us/articles/360044681474-Using-Box-for-Teams).
      * You need Admin or Co-Admin role to
      * use this endpoint.
-     * @param {string} integrationMappingId An ID of an integration mapping
+     * @param {string} integrationMappingId An ID of an integration mapping.
     Example: "11235432"
      * @param {DeleteTeamsIntegrationMappingByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}

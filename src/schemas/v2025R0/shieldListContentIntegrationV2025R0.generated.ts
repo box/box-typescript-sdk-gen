@@ -19,7 +19,7 @@ export class ShieldListContentIntegrationV2025R0 {
   readonly type: ShieldListContentIntegrationV2025R0TypeField =
     'integration' as ShieldListContentIntegrationV2025R0TypeField;
   /**
-   * List of integration */
+   * List of integration. */
   readonly integrations!: readonly ShieldListContentIntegrationV2025R0IntegrationsField[];
   readonly rawData?: SerializedData;
   constructor(
@@ -42,7 +42,7 @@ export interface ShieldListContentIntegrationV2025R0Input {
    * The type of content in the shield list. */
   readonly type?: ShieldListContentIntegrationV2025R0TypeField;
   /**
-   * List of integration */
+   * List of integration. */
   readonly integrations: readonly ShieldListContentIntegrationV2025R0IntegrationsField[];
   readonly rawData?: SerializedData;
 }

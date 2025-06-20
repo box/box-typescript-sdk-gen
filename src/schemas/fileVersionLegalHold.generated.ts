@@ -21,10 +21,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type FileVersionLegalHoldTypeField = 'file_version_legal_hold';
 export interface FileVersionLegalHold {
   /**
-   * The unique identifier for this file version legal hold */
+   * The unique identifier for this file version legal hold. */
   readonly id?: string;
   /**
-   * `file_version_legal_hold` */
+   * The value will always be `file_version_legal_hold`. */
   readonly type?: FileVersionLegalHoldTypeField;
   readonly fileVersion?: FileVersionMini;
   readonly file?: FileMini;

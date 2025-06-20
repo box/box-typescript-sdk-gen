@@ -19,16 +19,16 @@ export type SkillInvocationTypeField = 'skill_invocation';
 export type SkillInvocationSkillTypeField = 'skill';
 export interface SkillInvocationSkillField {
   /**
-   * The unique identifier for this skill */
+   * The unique identifier for this skill. */
   readonly id?: string;
   /**
-   * `skill` */
+   * The value will always be `skill`. */
   readonly type?: SkillInvocationSkillTypeField;
   /**
-   * The name of the skill */
+   * The name of the skill. */
   readonly name?: string;
   /**
-   * The client ID of the application */
+   * The client ID of the application. */
   readonly apiKey?: string;
   readonly rawData?: SerializedData;
 }
@@ -70,10 +70,10 @@ export interface SkillInvocationTokenWriteField {
 }
 export interface SkillInvocationTokenField {
   /**
-   * The basics of an access token */
+   * The basics of an access token. */
   readonly read?: SkillInvocationTokenReadField;
   /**
-   * The basics of an access token */
+   * The basics of an access token. */
   readonly write?: SkillInvocationTokenWriteField;
   readonly rawData?: SerializedData;
 }
@@ -98,7 +98,7 @@ export interface SkillInvocationStatusField {
    *   retry would not help. */
   readonly state?: SkillInvocationStatusStateField;
   /**
-   * Status information */
+   * Status information. */
   readonly message?: string;
   /**
    * Error code information, if error occurred. */
@@ -114,23 +114,23 @@ export interface SkillInvocationEnterpriseField {
    * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: SkillInvocationEnterpriseTypeField;
   /**
-   * The name of the enterprise */
+   * The name of the enterprise. */
   readonly name?: string;
   readonly rawData?: SerializedData;
 }
 export interface SkillInvocation {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type?: SkillInvocationTypeField;
   /**
    * Unique identifier for the invocation request. */
   readonly id?: string;
   readonly skill?: SkillInvocationSkillField;
   /**
-   * The read-only and read-write access tokens for this item */
+   * The read-only and read-write access tokens for this item. */
   readonly token?: SkillInvocationTokenField;
   /**
    * The details status of this event. */
@@ -139,7 +139,7 @@ export interface SkillInvocation {
    * The time this invocation was created. */
   readonly createdAt?: DateTime;
   /**
-   * Action that triggered the invocation */
+   * Action that triggered the invocation. */
   readonly trigger?: string;
   readonly enterprise?: SkillInvocationEnterpriseField;
   readonly source?: FileOrFolder;

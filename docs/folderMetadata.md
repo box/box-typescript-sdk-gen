@@ -63,9 +63,9 @@ await client.folderMetadata.getFolderMetadataById(
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - scope `GetFolderMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `GetFolderMetadataByIdOptionalsInput`
   -
 
@@ -116,9 +116,9 @@ await client.folderMetadata.createFolderMetadataById(
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - scope `CreateFolderMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - requestBody `CreateFolderMetadataByIdRequestBody`
   - Request body of createFolderMetadataById method
 - optionalsInput `CreateFolderMetadataByIdOptionalsInput`
@@ -189,9 +189,9 @@ await client.folderMetadata.updateFolderMetadataById(
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - scope `UpdateFolderMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - requestBody `readonly UpdateFolderMetadataByIdRequestBody[]`
   - Request body of updateFolderMetadataById method
 - optionalsInput `UpdateFolderMetadataByIdOptionalsInput`
@@ -228,9 +228,9 @@ await client.folderMetadata.deleteFolderMetadataById(
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - scope `DeleteFolderMetadataByIdScope`
-  - The scope of the metadata template Example: "global"
+  - The scope of the metadata template. Example: "global"
 - templateKey `string`
-  - The name of the metadata template Example: "properties"
+  - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteFolderMetadataByIdOptionalsInput`
   -
 

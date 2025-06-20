@@ -11,7 +11,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface IntegrationMappingsTeams {
   /**
-   * A list of integration mappings */
+   * A list of integration mappings. */
   readonly entries?: readonly IntegrationMappingTeams[];
   readonly rawData?: SerializedData;
 }

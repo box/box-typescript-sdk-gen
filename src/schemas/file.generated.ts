@@ -32,7 +32,7 @@ export interface FilePathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * The parent folders for this item */
+   * The parent folders for this item. */
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }

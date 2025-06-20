@@ -15,11 +15,11 @@ export interface DevicePinner {
    * The unique identifier for this device pin. */
   readonly id?: string;
   /**
-   * `device_pinner` */
+   * The value will always be `device_pinner`. */
   readonly type?: DevicePinnerTypeField;
   readonly ownedBy?: UserMini;
   /**
-   * The type of device being pinned */
+   * The type of device being pinned. */
   readonly productName?: string;
   readonly rawData?: SerializedData;
 }

@@ -21,7 +21,7 @@ export interface TrashFolderRestoredPathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * The parent folders for this item */
+   * The parent folders for this item. */
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
@@ -46,7 +46,7 @@ export interface TrashFolderRestored {
    * perform changes on the folder if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: TrashFolderRestoredTypeField;
   readonly sequenceId?: string;
   /**
@@ -102,8 +102,8 @@ export interface TrashFolderRestored {
   /**
    * Defines if this item has been deleted or not.
    *
-   * * `active` when the item has is not in the trash
-   * * `trashed` when the item has been moved to the trash but not deleted
+   * * `active` when the item has is not in the trash,
+   * * `trashed` when the item has been moved to the trash but not deleted,
    * * `deleted` when the item has been permanently deleted. */
   readonly itemStatus?: TrashFolderRestoredItemStatusField;
   readonly rawData?: SerializedData;

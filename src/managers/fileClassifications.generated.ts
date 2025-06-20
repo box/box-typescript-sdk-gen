@@ -202,7 +202,7 @@ export type UpdateClassificationOnFileRequestBodyPathField =
   | string;
 export class UpdateClassificationOnFileRequestBody {
   /**
-   * `replace` */
+   * The value will always be `replace`. */
   readonly op: UpdateClassificationOnFileRequestBodyOpField =
     'replace' as UpdateClassificationOnFileRequestBodyOpField;
   /**
@@ -239,7 +239,7 @@ export class UpdateClassificationOnFileRequestBody {
 }
 export interface UpdateClassificationOnFileRequestBodyInput {
   /**
-   * `replace` */
+   * The value will always be `replace`. */
   readonly op?: UpdateClassificationOnFileRequestBodyOpField;
   /**
    * Defines classifications

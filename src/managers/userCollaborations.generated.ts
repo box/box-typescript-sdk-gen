@@ -201,7 +201,6 @@ export interface UpdateCollaborationByIdRequestBody {
    * The level of access granted. */
   readonly role: UpdateCollaborationByIdRequestBodyRoleField;
   /**
-   * <!--alex ignore reject-->
    * Set the status of a `pending` collaboration invitation,
    * effectively accepting, or rejecting the invite. */
   readonly status?: UpdateCollaborationByIdRequestBodyStatusField;
@@ -289,10 +288,10 @@ export type CreateCollaborationRequestBodyItemTypeField = 'file' | 'folder';
 export interface CreateCollaborationRequestBodyItemField {
   /**
    * The type of the item that this collaboration will be
-   * granted access to */
+   * granted access to. */
   readonly type?: CreateCollaborationRequestBodyItemTypeField;
   /**
-   * The ID of the item that will be granted access to */
+   * The ID of the item that will be granted access to. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
@@ -434,7 +433,7 @@ export class UserCollaborationsManager {
   }
   /**
      * Retrieves a single collaboration.
-     * @param {string} collaborationId The ID of the collaboration
+     * @param {string} collaborationId The ID of the collaboration.
     Example: "1234"
      * @param {GetCollaborationByIdOptionalsInput} optionalsInput
      * @returns {Promise<Collaboration>}
@@ -488,7 +487,7 @@ export class UserCollaborationsManager {
      * Updates a collaboration.
      * Can be used to change the owner of an item, or to
      * accept collaboration invites.
-     * @param {string} collaborationId The ID of the collaboration
+     * @param {string} collaborationId The ID of the collaboration.
     Example: "1234"
      * @param {UpdateCollaborationByIdRequestBody} requestBody Request body of updateCollaborationById method
      * @param {UpdateCollaborationByIdOptionalsInput} optionalsInput
@@ -537,7 +536,7 @@ export class UserCollaborationsManager {
   }
   /**
      * Deletes a single collaboration.
-     * @param {string} collaborationId The ID of the collaboration
+     * @param {string} collaborationId The ID of the collaboration.
     Example: "1234"
      * @param {DeleteCollaborationByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}

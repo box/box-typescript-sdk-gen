@@ -69,7 +69,7 @@ Returns a collection of templates.
 
 ## Delete Box Doc Gen template
 
-Unmarks file as Box Doc Gen template
+Unmarks file as Box Doc Gen template.
 
 This operation is performed by calling function `deleteDocgenTemplateByIdV2025R0`.
 

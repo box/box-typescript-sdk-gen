@@ -135,14 +135,14 @@ export interface AddClassificationRequestBodyDataStaticConfigClassificationField
    * without notice. Currently, the color mappings are as
    * follows.
    *
-   * * `0`: Yellow
-   * * `1`: Orange
-   * * `2`: Watermelon red
-   * * `3`: Purple rain
-   * * `4`: Light blue
-   * * `5`: Dark blue
-   * * `6`: Light green
-   * * `7`: Gray */
+   * * `0`: Yellow.
+   * * `1`: Orange.
+   * * `2`: Watermelon red.
+   * * `3`: Purple rain.
+   * * `4`: Light blue.
+   * * `5`: Dark blue.
+   * * `6`: Light green.
+   * * `7`: Gray. */
   readonly colorId?: number;
   readonly rawData?: SerializedData;
 }
@@ -250,14 +250,14 @@ export interface UpdateClassificationRequestBodyDataStaticConfigClassificationFi
    * without notice. Currently, the color mappings are as
    * follows.
    *
-   * * `0`: Yellow
-   * * `1`: Orange
-   * * `2`: Watermelon red
-   * * `3`: Purple rain
-   * * `4`: Light blue
-   * * `5`: Dark blue
-   * * `6`: Light green
-   * * `7`: Gray */
+   * * `0`: Yellow.
+   * * `1`: Orange.
+   * * `2`: Watermelon red.
+   * * `3`: Purple rain.
+   * * `4`: Light blue.
+   * * `5`: Dark blue.
+   * * `6`: Light green.
+   * * `7`: Gray. */
   readonly colorId?: number;
   readonly rawData?: SerializedData;
 }
@@ -385,14 +385,14 @@ export interface CreateClassificationTemplateRequestBodyFieldsOptionsStaticConfi
    * change without notice. Currently, the color
    * mappings are as follows.
    *
-   * * `0`: Yellow
-   * * `1`: Orange
-   * * `2`: Watermelon red
-   * * `3`: Purple rain
-   * * `4`: Light blue
-   * * `5`: Dark blue
-   * * `6`: Light green
-   * * `7`: Gray */
+   * * `0`: Yellow.
+   * * `1`: Orange.
+   * * `2`: Watermelon red.
+   * * `3`: Purple rain.
+   * * `4`: Light blue.
+   * * `5`: Dark blue.
+   * * `6`: Light green.
+   * * `7`: Gray. */
   readonly colorId?: number;
   readonly rawData?: SerializedData;
 }

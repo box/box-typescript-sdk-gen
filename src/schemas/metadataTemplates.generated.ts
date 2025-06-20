@@ -22,7 +22,7 @@ export interface MetadataTemplates {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of metadata templates */
+   * A list of metadata templates. */
   readonly entries?: readonly MetadataTemplate[];
   readonly rawData?: SerializedData;
 }

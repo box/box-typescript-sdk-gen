@@ -23,7 +23,7 @@ export interface TranscriptSkillCardSkillCardTitleField {
 export type TranscriptSkillCardSkillTypeField = 'service';
 export class TranscriptSkillCardSkillField {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type: TranscriptSkillCardSkillTypeField =
     'service' as TranscriptSkillCardSkillTypeField;
   /**
@@ -48,7 +48,7 @@ export class TranscriptSkillCardSkillField {
 }
 export interface TranscriptSkillCardSkillFieldInput {
   /**
-   * `service` */
+   * The value will always be `service`. */
   readonly type?: TranscriptSkillCardSkillTypeField;
   /**
    * A custom identifier that represent the service that
@@ -59,7 +59,7 @@ export interface TranscriptSkillCardSkillFieldInput {
 export type TranscriptSkillCardInvocationTypeField = 'skill_invocation';
 export class TranscriptSkillCardInvocationField {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type: TranscriptSkillCardInvocationTypeField =
     'skill_invocation' as TranscriptSkillCardInvocationTypeField;
   /**
@@ -87,7 +87,7 @@ export class TranscriptSkillCardInvocationField {
 }
 export interface TranscriptSkillCardInvocationFieldInput {
   /**
-   * `skill_invocation` */
+   * The value will always be `skill_invocation`. */
   readonly type?: TranscriptSkillCardInvocationTypeField;
   /**
    * A custom identifier that represent the instance of
@@ -121,11 +121,11 @@ export class TranscriptSkillCard {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type: TranscriptSkillCardTypeField =
     'skill_card' as TranscriptSkillCardTypeField;
   /**
-   * `transcript` */
+   * The value will always be `transcript`. */
   readonly skillCardType: TranscriptSkillCardSkillCardTypeField =
     'transcript' as TranscriptSkillCardSkillCardTypeField;
   /**
@@ -187,10 +187,10 @@ export interface TranscriptSkillCardInput {
    * The optional date and time this card was created at. */
   readonly createdAt?: DateTime;
   /**
-   * `skill_card` */
+   * The value will always be `skill_card`. */
   readonly type?: TranscriptSkillCardTypeField;
   /**
-   * `transcript` */
+   * The value will always be `transcript`. */
   readonly skillCardType?: TranscriptSkillCardSkillCardTypeField;
   /**
    * The title of the card. */

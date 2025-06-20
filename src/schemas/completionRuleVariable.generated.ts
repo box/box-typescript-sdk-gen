@@ -17,22 +17,19 @@ export type CompletionRuleVariableVariableValueField =
 export class CompletionRuleVariable {
   /**
    * Completion
-   * Rule object type.
-   *  */
+   * Rule object type. */
   readonly type: CompletionRuleVariableTypeField =
     'variable' as CompletionRuleVariableTypeField;
   /**
    * Variable type
    * for the Completion
-   * Rule object.
-   *  */
+   * Rule object. */
   readonly variableType: CompletionRuleVariableVariableTypeField =
     'task_completion_rule' as CompletionRuleVariableVariableTypeField;
   /**
    * Variable
    * values for a completion
-   * rule.
-   *  */
+   * rule. */
   readonly variableValue!: CompletionRuleVariableVariableValueField;
   readonly rawData?: SerializedData;
   constructor(
@@ -56,20 +53,17 @@ export class CompletionRuleVariable {
 export interface CompletionRuleVariableInput {
   /**
    * Completion
-   * Rule object type.
-   *  */
+   * Rule object type. */
   readonly type?: CompletionRuleVariableTypeField;
   /**
    * Variable type
    * for the Completion
-   * Rule object.
-   *  */
+   * Rule object. */
   readonly variableType?: CompletionRuleVariableVariableTypeField;
   /**
    * Variable
    * values for a completion
-   * rule.
-   *  */
+   * rule. */
   readonly variableValue: CompletionRuleVariableVariableValueField;
   readonly rawData?: SerializedData;
 }

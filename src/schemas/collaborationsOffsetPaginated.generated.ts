@@ -31,7 +31,7 @@ export interface CollaborationsOffsetPaginated {
    * For marker-based paginated APIs, this field will be omitted. */
   readonly offset?: number;
   /**
-   * A list of collaborations */
+   * A list of collaborations. */
   readonly entries?: readonly Collaboration[];
   readonly rawData?: SerializedData;
 }

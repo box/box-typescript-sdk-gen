@@ -19,16 +19,16 @@ export type TrashWebLinkTypeField = 'web_link';
 export type TrashWebLinkPathCollectionEntriesTypeField = 'folder';
 export interface TrashWebLinkPathCollectionEntriesField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: TrashWebLinkPathCollectionEntriesTypeField;
   /**
    * The unique identifier that represent a folder. */
   readonly id?: string;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly sequenceId?: string | null;
   /**
-   * This field is null for the Trash folder */
+   * This field is null for the Trash folder. */
   readonly etag?: string | null;
   /**
    * The name of the Trash folder. */
@@ -40,7 +40,7 @@ export interface TrashWebLinkPathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * Array of folders for this item's path collection */
+   * Array of folders for this item's path collection. */
   readonly entries: readonly TrashWebLinkPathCollectionEntriesField[];
   readonly rawData?: SerializedData;
 }
@@ -51,10 +51,10 @@ export type TrashWebLinkItemStatusField =
   | string;
 export interface TrashWebLink {
   /**
-   * `web_link` */
+   * The value will always be `web_link`. */
   readonly type?: TrashWebLinkTypeField;
   /**
-   * The unique identifier for this web link */
+   * The unique identifier for this web link. */
   readonly id?: string;
   readonly sequenceId?: string;
   /**
@@ -62,10 +62,10 @@ export interface TrashWebLink {
    * headers. */
   readonly etag?: string;
   /**
-   * The name of the web link */
+   * The name of the web link. */
   readonly name?: string;
   /**
-   * The URL this web link points to */
+   * The URL this web link points to. */
   readonly url?: string;
   readonly parent?: FolderMini;
   /**
@@ -97,7 +97,7 @@ export interface TrashWebLink {
   /**
    * Whether this item is deleted or not. Values include `active`,
    * `trashed` if the file has been moved to the trash, and `deleted` if
-   * the file has been permanently deleted */
+   * the file has been permanently deleted. */
   readonly itemStatus?: TrashWebLinkItemStatusField;
   readonly rawData?: SerializedData;
 }

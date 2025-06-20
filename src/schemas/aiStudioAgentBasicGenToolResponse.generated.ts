@@ -29,7 +29,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiStudioAgentBasicGenToolResponse = AiStudioAgentBasicGenTool & {
   /**
-   * Warnings concerning tool */
+   * Warnings concerning tool. */
   readonly warnings?: readonly string[];
 };
 export function serializeAiStudioAgentBasicGenToolResponse(

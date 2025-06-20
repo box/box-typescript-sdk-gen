@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type GroupsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface GroupsOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: GroupsOrderDirectionField;
   readonly rawData?: SerializedData;
 }
@@ -47,7 +47,7 @@ export interface Groups {
    * For marker-based paginated APIs, this field will be omitted. */
   readonly order?: readonly GroupsOrderField[];
   /**
-   * A list of groups */
+   * A list of groups. */
   readonly entries?: readonly GroupFull[];
   readonly rawData?: SerializedData;
 }

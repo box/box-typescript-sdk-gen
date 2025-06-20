@@ -27,7 +27,7 @@ export type FileOrFolderScopeScopeField =
   | string;
 export interface FileOrFolderScope {
   /**
-   * The scopes for the resource access */
+   * The scopes for the resource access. */
   readonly scope?: FileOrFolderScopeScopeField;
   readonly object?: FileMiniOrFolderMini;
   readonly rawData?: SerializedData;

@@ -9,10 +9,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type IntegrationMappingPartnerItemTeamsTypeField = 'channel' | 'team';
 export interface IntegrationMappingPartnerItemTeams {
   /**
-   * Type of the mapped item referenced in `id` */
+   * Type of the mapped item referenced in `id`. */
   readonly type: IntegrationMappingPartnerItemTeamsTypeField;
   /**
-   * ID of the mapped item (of type referenced in `type`) */
+   * ID of the mapped item (of type referenced in `type`). */
   readonly id: string;
   /**
    * ID of the tenant that is registered with Microsoft Teams. */

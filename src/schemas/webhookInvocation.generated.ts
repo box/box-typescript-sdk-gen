@@ -63,10 +63,10 @@ export type WebhookInvocationTriggerField =
   | string;
 export interface WebhookInvocation {
   /**
-   * The unique identifier for this webhook invocation */
+   * The unique identifier for this webhook invocation. */
   readonly id?: string;
   /**
-   * `webhook_event` */
+   * The value will always be `webhook_event`. */
   readonly type?: WebhookInvocationTypeField;
   readonly webhook?: Webhook;
   readonly createdBy?: UserMini;

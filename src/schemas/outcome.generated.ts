@@ -17,7 +17,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export interface Outcome {
   /**
-   * ID of a specific outcome */
+   * ID of a specific outcome. */
   readonly id: string;
   readonly collaborators?: CollaboratorVariable;
   readonly completionRule?: CompletionRuleVariable;

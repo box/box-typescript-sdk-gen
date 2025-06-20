@@ -19,30 +19,30 @@ export interface InviteInvitedToField {
    * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: InviteInvitedToTypeField;
   /**
-   * The name of the enterprise */
+   * The name of the enterprise. */
   readonly name?: string;
   readonly rawData?: SerializedData;
 }
 export class Invite {
   /**
-   * The unique identifier for this invite */
+   * The unique identifier for this invite. */
   readonly id!: string;
   /**
-   * `invite` */
+   * The value will always be `invite`. */
   readonly type: InviteTypeField = 'invite' as InviteTypeField;
   /**
-   * A representation of a Box enterprise */
+   * A representation of a Box enterprise. */
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
   /**
-   * The status of the invite */
+   * The status of the invite. */
   readonly status?: string;
   /**
-   * When the invite was created */
+   * When the invite was created. */
   readonly createdAt?: DateTime;
   /**
    * When the invite was modified. */
@@ -80,21 +80,21 @@ export class Invite {
 }
 export interface InviteInput {
   /**
-   * The unique identifier for this invite */
+   * The unique identifier for this invite. */
   readonly id: string;
   /**
-   * `invite` */
+   * The value will always be `invite`. */
   readonly type?: InviteTypeField;
   /**
-   * A representation of a Box enterprise */
+   * A representation of a Box enterprise. */
   readonly invitedTo?: InviteInvitedToField;
   readonly actionableBy?: UserMini;
   readonly invitedBy?: UserMini;
   /**
-   * The status of the invite */
+   * The status of the invite. */
   readonly status?: string;
   /**
-   * When the invite was created */
+   * When the invite was created. */
   readonly createdAt?: DateTime;
   /**
    * When the invite was modified. */

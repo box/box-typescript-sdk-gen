@@ -259,10 +259,10 @@ export interface SearchForContentQueryParams {
    * parameter only takes one value. By default the API returns
    * items that match any of these types.
    *
-   * * `file` - Limits the search results to files
-   * * `folder` - Limits the search results to folders
+   * * `file` - Limits the search results to files,
+   * * `folder` - Limits the search results to folders,
    * * `web_link` - Limits the search results to web links, also known
-   *    as bookmarks */
+   *    as bookmarks. */
   readonly type?: SearchForContentQueryParamsTypeField;
   /**
    * Determines if the search should look in the trash for items.
@@ -310,7 +310,7 @@ export interface SearchForContentQueryParams {
    * When this parameter has been set to true,
    * the format of the response of this API changes to return
    * a list of [Search Results with
-   * Shared Links](r://search_results_with_shared_links) */
+   * Shared Links](r://search_results_with_shared_links). */
   readonly includeRecentSharedLinks?: boolean;
   /**
    * A comma-separated list of attributes to include in the

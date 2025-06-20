@@ -14,7 +14,7 @@ export interface Collection {
    * The unique identifier for this collection. */
   readonly id?: string;
   /**
-   * `collection` */
+   * The value will always be `collection`. */
   readonly type?: CollectionTypeField;
   /**
    * The name of the collection. */

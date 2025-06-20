@@ -177,10 +177,10 @@ export interface GetStoragePolicyAssignmentsQueryParams {
    * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
   /**
-   * The target type to return assignments for */
+   * The target type to return assignments for. */
   readonly resolvedForType: GetStoragePolicyAssignmentsQueryParamsResolvedForTypeField;
   /**
-   * The ID of the user or enterprise to return assignments for */
+   * The ID of the user or enterprise to return assignments for. */
   readonly resolvedForId: string;
 }
 export class GetStoragePolicyAssignmentsHeaders {
@@ -255,14 +255,14 @@ export interface CreateStoragePolicyAssignmentRequestBodyAssignedToField {
    * The type to assign the policy to. */
   readonly type: CreateStoragePolicyAssignmentRequestBodyAssignedToTypeField;
   /**
-   * The ID of the user or enterprise */
+   * The ID of the user or enterprise. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
 export interface CreateStoragePolicyAssignmentRequestBody {
   /**
    * The storage policy to assign to the user or
-   * enterprise */
+   * enterprise. */
   readonly storagePolicy: CreateStoragePolicyAssignmentRequestBodyStoragePolicyField;
   /**
    * The user or enterprise to assign the storage
@@ -364,7 +364,7 @@ export interface UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyFieldI
 export interface UpdateStoragePolicyAssignmentByIdRequestBody {
   /**
    * The storage policy to assign to the user or
-   * enterprise */
+   * enterprise. */
   readonly storagePolicy: UpdateStoragePolicyAssignmentByIdRequestBodyStoragePolicyField;
   readonly rawData?: SerializedData;
 }

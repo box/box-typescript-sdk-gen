@@ -45,15 +45,13 @@ export interface CollaboratorVariableVariableValueFieldInput {
 export class CollaboratorVariable {
   /**
    * Collaborator
-   * object type.
-   *  */
+   * object type. */
   readonly type: CollaboratorVariableTypeField =
     'variable' as CollaboratorVariableTypeField;
   /**
    * Variable type
    * for the Collaborator
-   * object.
-   *  */
+   * object. */
   readonly variableType: CollaboratorVariableVariableTypeField =
     'user_list' as CollaboratorVariableVariableTypeField;
   /**
@@ -81,14 +79,12 @@ export class CollaboratorVariable {
 export interface CollaboratorVariableInput {
   /**
    * Collaborator
-   * object type.
-   *  */
+   * object type. */
   readonly type?: CollaboratorVariableTypeField;
   /**
    * Variable type
    * for the Collaborator
-   * object.
-   *  */
+   * object. */
   readonly variableType?: CollaboratorVariableVariableTypeField;
   /**
    * A list of user IDs. */

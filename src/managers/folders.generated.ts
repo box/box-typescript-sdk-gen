@@ -378,7 +378,7 @@ export type UpdateFolderByIdRequestBodySyncStateField =
   | string;
 export interface UpdateFolderByIdRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   /**
    * The input for `user_id` is optional. Moving to non-root folder is not allowed when `user_id` is present. Parent folder id should be zero when `user_id` is provided. */
@@ -460,10 +460,10 @@ export interface UpdateFolderByIdRequestBodyFolderUploadEmailField {
 }
 export interface UpdateFolderByIdRequestBodyCollectionsField {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id?: string;
   /**
-   * The type for this object */
+   * The type for this object. */
   readonly type?: string;
   readonly rawData?: SerializedData;
 }
@@ -481,7 +481,7 @@ export interface UpdateFolderByIdRequestBody {
    * a folder named `new folder`. */
   readonly name?: string;
   /**
-   * The optional description of this folder */
+   * The optional description of this folder. */
   readonly description?: string;
   /**
    * Specifies whether a folder should be synced to a
@@ -785,7 +785,7 @@ export interface GetFolderItemsHeadersInput {
 }
 export interface CreateFolderRequestBodyParentField {
   /**
-   * The ID of parent folder */
+   * The ID of parent folder. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
@@ -879,7 +879,7 @@ export interface CreateFolderHeadersInput {
 }
 export interface CopyFolderRequestBodyParentField {
   /**
-   * The ID of parent folder */
+   * The ID of parent folder. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

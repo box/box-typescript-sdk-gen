@@ -14,7 +14,7 @@ export interface TaskAssignments {
    * The total number of items in this collection. */
   readonly totalCount?: number;
   /**
-   * A list of task assignments */
+   * A list of task assignments. */
   readonly entries?: readonly TaskAssignment[];
   readonly rawData?: SerializedData;
 }

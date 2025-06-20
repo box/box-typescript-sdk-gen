@@ -9,11 +9,11 @@ import { sdIsMap } from '../../serialization/json.js';
 export type FileReferenceV2025R0TypeField = 'file';
 export class FileReferenceV2025R0 {
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type: FileReferenceV2025R0TypeField =
     'file' as FileReferenceV2025R0TypeField;
   /**
-   * ID of the object */
+   * ID of the object. */
   readonly id!: string;
   readonly rawData?: SerializedData;
   constructor(
@@ -33,10 +33,10 @@ export class FileReferenceV2025R0 {
 }
 export interface FileReferenceV2025R0Input {
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: FileReferenceV2025R0TypeField;
   /**
-   * ID of the object */
+   * ID of the object. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

@@ -14,7 +14,7 @@ export interface EmailAliases {
    * The number of email aliases. */
   readonly totalCount?: number;
   /**
-   * A list of email aliases */
+   * A list of email aliases. */
   readonly entries?: readonly EmailAlias[];
   readonly rawData?: SerializedData;
 }

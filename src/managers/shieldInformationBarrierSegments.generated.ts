@@ -312,10 +312,10 @@ export interface GetShieldInformationBarrierSegmentsHeadersInput {
 export interface CreateShieldInformationBarrierSegmentRequestBody {
   readonly shieldInformationBarrier: ShieldInformationBarrierBase;
   /**
-   * Name of the shield information barrier segment */
+   * Name of the shield information barrier segment. */
   readonly name: string;
   /**
-   * Description of the shield information barrier segment */
+   * Description of the shield information barrier segment. */
   readonly description?: string;
   readonly rawData?: SerializedData;
 }

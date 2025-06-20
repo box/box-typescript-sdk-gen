@@ -19,11 +19,11 @@ export type DocGenBatchCreateRequestV2025R0DestinationFolderTypeField =
   'folder';
 export class DocGenBatchCreateRequestV2025R0DestinationFolderField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type: DocGenBatchCreateRequestV2025R0DestinationFolderTypeField =
     'folder' as DocGenBatchCreateRequestV2025R0DestinationFolderTypeField;
   /**
-   * ID of the folder */
+   * ID of the folder. */
   readonly id!: string;
   readonly rawData?: SerializedData;
   constructor(
@@ -48,10 +48,10 @@ export class DocGenBatchCreateRequestV2025R0DestinationFolderField {
 }
 export interface DocGenBatchCreateRequestV2025R0DestinationFolderFieldInput {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: DocGenBatchCreateRequestV2025R0DestinationFolderTypeField;
   /**
-   * ID of the folder */
+   * ID of the folder. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

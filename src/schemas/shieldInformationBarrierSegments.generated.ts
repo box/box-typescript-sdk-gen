@@ -20,7 +20,7 @@ export interface ShieldInformationBarrierSegments {
   readonly nextMarker?: string | null;
   /**
    * A list of shield information barrier
-   * segments */
+   * segments. */
   readonly entries?: readonly ShieldInformationBarrierSegment[];
   readonly rawData?: SerializedData;
 }

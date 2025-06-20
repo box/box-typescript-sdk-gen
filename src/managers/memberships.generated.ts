@@ -305,13 +305,13 @@ export interface GetGroupMembershipsHeadersInput {
 }
 export interface CreateGroupMembershipRequestBodyUserField {
   /**
-   * The ID of the user to add to the group */
+   * The ID of the user to add to the group. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
 export interface CreateGroupMembershipRequestBodyGroupField {
   /**
-   * The ID of the group to add the user to */
+   * The ID of the group to add the user to. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

@@ -23,7 +23,7 @@ await client.userCollaborations.getCollaborationById(collaborationId);
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration Example: "1234"
+  - The ID of the collaboration. Example: "1234"
 - optionalsInput `GetCollaborationByIdOptionalsInput`
   -
 
@@ -55,7 +55,7 @@ await client.userCollaborations.updateCollaborationById(collaborationId, {
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration Example: "1234"
+  - The ID of the collaboration. Example: "1234"
 - requestBody `UpdateCollaborationByIdRequestBody`
   - Request body of updateCollaborationById method
 - optionalsInput `UpdateCollaborationByIdOptionalsInput`
@@ -87,7 +87,7 @@ await client.userCollaborations.deleteCollaborationById(collaborationId);
 ### Arguments
 
 - collaborationId `string`
-  - The ID of the collaboration Example: "1234"
+  - The ID of the collaboration. Example: "1234"
 - optionalsInput `DeleteCollaborationByIdOptionalsInput`
   -
 

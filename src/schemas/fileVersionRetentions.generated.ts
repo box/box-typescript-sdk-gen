@@ -22,7 +22,7 @@ export interface FileVersionRetentions {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of file version retentions */
+   * A list of file version retentions. */
   readonly entries?: readonly FileVersionRetention[];
   readonly rawData?: SerializedData;
 }

@@ -55,7 +55,7 @@ export interface SignRequestSignFilesField {
 }
 export type SignRequest = SignRequestBase & {
   /**
-   * object type */
+   * The value will always be `sign-request`. */
   readonly type?: SignRequestTypeField;
   /**
    * List of files to create a signing document from. This is currently limited to ten files. Only the ID and type fields are required for each file. */
@@ -91,7 +91,7 @@ export type SignRequest = SignRequestBase & {
   readonly autoExpireAt?: DateTime | null;
   readonly parentFolder?: FolderMini;
   /**
-   * The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer" */
+   * The collaborator level of the user to the sign request. Values can include "owner", "editor", and "viewer". */
   readonly collaboratorLevel?: string | null;
   /**
    * The email address of the sender of the sign request. */

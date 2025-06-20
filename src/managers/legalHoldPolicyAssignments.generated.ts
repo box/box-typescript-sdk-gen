@@ -184,7 +184,7 @@ export type GetLegalHoldPolicyAssignmentsQueryParamsAssignToTypeField =
   | string;
 export interface GetLegalHoldPolicyAssignmentsQueryParams {
   /**
-   * The ID of the legal hold policy */
+   * The ID of the legal hold policy. */
   readonly policyId: string;
   /**
    * Filters the results by the type of item the
@@ -248,10 +248,10 @@ export type CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField =
   | 'interaction';
 export interface CreateLegalHoldPolicyAssignmentRequestBodyAssignToField {
   /**
-   * The type of item to assign the policy to */
+   * The type of item to assign the policy to. */
   readonly type: CreateLegalHoldPolicyAssignmentRequestBodyAssignToTypeField;
   /**
-   * The ID of item to assign the policy to */
+   * The ID of item to assign the policy to. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
@@ -260,7 +260,7 @@ export interface CreateLegalHoldPolicyAssignmentRequestBody {
    * The ID of the policy to assign. */
   readonly policyId: string;
   /**
-   * The item to assign the policy to */
+   * The item to assign the policy to. */
   readonly assignTo: CreateLegalHoldPolicyAssignmentRequestBodyAssignToField;
   readonly rawData?: SerializedData;
 }
@@ -508,7 +508,7 @@ export class LegalHoldPolicyAssignmentsManager {
   }
   /**
      * Retrieve a legal hold policy assignment.
-     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment
+     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment.
     Example: "753465"
      * @param {GetLegalHoldPolicyAssignmentByIdOptionalsInput} optionalsInput
      * @returns {Promise<LegalHoldPolicyAssignment>}
@@ -553,7 +553,7 @@ export class LegalHoldPolicyAssignmentsManager {
      *
      * This is an asynchronous process. The policy will not be
      * fully removed yet when the response returns.
-     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment
+     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment.
     Example: "753465"
      * @param {DeleteLegalHoldPolicyAssignmentByIdOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -610,7 +610,7 @@ export class LegalHoldPolicyAssignmentsManager {
      *
      * The `GET /legal_hold_policy_assignments?policy_id={id}` API can be used to
      * find a list of policy assignments for a given policy ID.
-     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment
+     * @param {string} legalHoldPolicyAssignmentId The ID of the legal hold policy assignment.
     Example: "753465"
      * @param {GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput} optionalsInput
      * @returns {Promise<FilesOnHold>}

@@ -66,7 +66,7 @@ await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformation
 
 This function returns a value of type `undefined`.
 
-Empty body in response
+Empty body in response.
 
 ## List shield information barrier segment restrictions
 

@@ -245,16 +245,16 @@ export interface UploadFileVersionHeadersInput {
 }
 export interface PreflightFileUploadCheckRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }
 export interface PreflightFileUploadCheckRequestBody {
   /**
-   * The name for the file */
+   * The name for the file. */
   readonly name?: string;
   /**
-   * The size of the file in bytes */
+   * The size of the file in bytes. */
   readonly size?: number;
   readonly parent?: PreflightFileUploadCheckRequestBodyParentField;
   readonly rawData?: SerializedData;
@@ -298,7 +298,7 @@ export interface UploadFileRequestBodyAttributesField {
    * named `New File` cannot be created in a parent folder that already contains a folder named `new file`. */
   readonly name: string;
   /**
-   * The parent folder to upload the file to */
+   * The parent folder to upload the file to. */
   readonly parent: UploadFileRequestBodyAttributesParentField;
   /**
    * Defines the time the file was originally created at.
@@ -405,7 +405,7 @@ export interface UploadWithPreflightCheckRequestBodyAttributesField {
    * named `New File` cannot be created in a parent folder that already contains a folder named `new file`. */
   readonly name: string;
   /**
-   * The parent folder to upload the file to */
+   * The parent folder to upload the file to. */
   readonly parent: UploadWithPreflightCheckRequestBodyAttributesParentField;
   /**
    * Defines the time the file was originally created at.

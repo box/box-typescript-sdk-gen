@@ -19,17 +19,17 @@ export type ShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegment {
   /**
-   * The unique identifier for the shield information barrier segment */
+   * The unique identifier for the shield information barrier segment. */
   readonly id?: string;
   /**
-   * The type of the shield information barrier segment */
+   * The type of the shield information barrier segment. */
   readonly type?: ShieldInformationBarrierSegmentTypeField;
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
   /**
-   * Name of the shield information barrier segment */
+   * Name of the shield information barrier segment. */
   readonly name?: string;
   /**
-   * Description of the shield information barrier segment */
+   * Description of the shield information barrier segment. */
   readonly description?: string;
   /**
    * ISO date time string when this shield information

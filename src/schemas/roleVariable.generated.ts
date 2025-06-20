@@ -19,13 +19,11 @@ export type RoleVariableVariableValueField =
   | string;
 export class RoleVariable {
   /**
-   * Role object type.
-   *  */
+   * Role object type. */
   readonly type: RoleVariableTypeField = 'variable' as RoleVariableTypeField;
   /**
    * The variable type used
-   * by the object.
-   *  */
+   * by the object. */
   readonly variableType: RoleVariableVariableTypeField =
     'collaborator_role' as RoleVariableVariableTypeField;
   readonly variableValue!: RoleVariableVariableValueField;
@@ -50,13 +48,11 @@ export class RoleVariable {
 }
 export interface RoleVariableInput {
   /**
-   * Role object type.
-   *  */
+   * Role object type. */
   readonly type?: RoleVariableTypeField;
   /**
    * The variable type used
-   * by the object.
-   *  */
+   * by the object. */
   readonly variableType?: RoleVariableVariableTypeField;
   readonly variableValue: RoleVariableVariableValueField;
   readonly rawData?: SerializedData;

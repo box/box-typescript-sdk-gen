@@ -105,7 +105,7 @@ export interface FolderFullWatermarkInfoField {
 }
 export interface FolderFullClassificationField {
   /**
-   * The name of the classification */
+   * The name of the classification. */
   readonly name?: string;
   /**
    * An explanation of the meaning of this classification. */

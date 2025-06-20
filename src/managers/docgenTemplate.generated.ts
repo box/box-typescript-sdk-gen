@@ -197,7 +197,7 @@ export interface GetDocgenTemplateJobByIdV2025R0OptionalsInput {
 }
 export class CreateDocgenTemplateV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -224,7 +224,7 @@ export class CreateDocgenTemplateV2025R0Headers {
 }
 export interface CreateDocgenTemplateV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -247,7 +247,7 @@ export interface GetDocgenTemplatesV2025R0QueryParams {
 }
 export class GetDocgenTemplatesV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -274,7 +274,7 @@ export class GetDocgenTemplatesV2025R0Headers {
 }
 export interface GetDocgenTemplatesV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -286,7 +286,7 @@ export interface GetDocgenTemplatesV2025R0HeadersInput {
 }
 export class DeleteDocgenTemplateByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -316,7 +316,7 @@ export class DeleteDocgenTemplateByIdV2025R0Headers {
 }
 export interface DeleteDocgenTemplateByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -328,7 +328,7 @@ export interface DeleteDocgenTemplateByIdV2025R0HeadersInput {
 }
 export class GetDocgenTemplateByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -355,7 +355,7 @@ export class GetDocgenTemplateByIdV2025R0Headers {
 }
 export interface GetDocgenTemplateByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -381,7 +381,7 @@ export interface GetDocgenTemplateTagsV2025R0QueryParams {
 }
 export class GetDocgenTemplateTagsV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -408,7 +408,7 @@ export class GetDocgenTemplateTagsV2025R0Headers {
 }
 export interface GetDocgenTemplateTagsV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -431,7 +431,7 @@ export interface GetDocgenTemplateJobByIdV2025R0QueryParams {
 }
 export class GetDocgenTemplateJobByIdV2025R0Headers {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
     '2025.0' as BoxVersionHeaderV2025R0;
   /**
@@ -461,7 +461,7 @@ export class GetDocgenTemplateJobByIdV2025R0Headers {
 }
 export interface GetDocgenTemplateJobByIdV2025R0HeadersInput {
   /**
-   * Version header */
+   * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
   /**
    * Extra headers that will be included in the HTTP request. */
@@ -592,7 +592,7 @@ export class DocgenTemplateManager {
     };
   }
   /**
-     * Unmarks file as Box Doc Gen template
+     * Unmarks file as Box Doc Gen template.
      * @param {string} templateId ID of the file which will no longer be marked as a Box Doc Gen template.
     Example: "123"
      * @param {DeleteDocgenTemplateByIdV2025R0OptionalsInput} optionalsInput

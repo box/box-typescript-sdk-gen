@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type FileVersionsOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface FileVersionsOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: FileVersionsOrderDirectionField;
   readonly rawData?: SerializedData;
 }
@@ -47,7 +47,7 @@ export interface FileVersions {
    * For marker-based paginated APIs, this field will be omitted. */
   readonly order?: readonly FileVersionsOrderField[];
   /**
-   * A list of file versions */
+   * A list of file versions. */
   readonly entries?: readonly FileVersionFull[];
   readonly rawData?: SerializedData;
 }

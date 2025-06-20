@@ -22,7 +22,7 @@ await client.devicePinners.getDevicePinnerById(devicePinnerId);
 ### Arguments
 
 - devicePinnerId `string`
-  - The ID of the device pin Example: "2324234"
+  - The ID of the device pin. Example: "2324234"
 - optionalsInput `GetDevicePinnerByIdOptionalsInput`
   -
 
@@ -50,7 +50,7 @@ await client.devicePinners.deleteDevicePinnerById(devicePinnerId);
 ### Arguments
 
 - devicePinnerId `string`
-  - The ID of the device pin Example: "2324234"
+  - The ID of the device pin. Example: "2324234"
 - optionalsInput `DeleteDevicePinnerByIdOptionalsInput`
   -
 
@@ -81,7 +81,7 @@ await client.devicePinners.getEnterpriseDevicePinners(enterpriseId);
 ### Arguments
 
 - enterpriseId `string`
-  - The ID of the enterprise Example: "3442311"
+  - The ID of the enterprise. Example: "3442311"
 - optionalsInput `GetEnterpriseDevicePinnersOptionalsInput`
   -
 

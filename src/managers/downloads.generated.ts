@@ -92,7 +92,7 @@ export interface DownloadFileOptionalsInput {
 }
 export interface GetDownloadFileUrlQueryParams {
   /**
-   * The file version to download */
+   * The file version to download. */
   readonly version?: string;
   /**
    * An optional access token that can be used to pre-authenticate this request, which means that a download link can be shared with a browser or a third party service without them needing to know how to handle the authentication.
@@ -167,7 +167,7 @@ export interface GetDownloadFileUrlHeadersInput {
 }
 export interface DownloadFileQueryParams {
   /**
-   * The file version to download */
+   * The file version to download. */
   readonly version?: string;
   /**
    * An optional access token that can be used to pre-authenticate this request, which means that a download link can be shared with a browser or a third party service without them needing to know how to handle the authentication.

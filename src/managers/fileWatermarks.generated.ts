@@ -150,7 +150,7 @@ export interface UpdateFileWatermarkRequestBodyWatermarkFieldInput {
 }
 export interface UpdateFileWatermarkRequestBody {
   /**
-   * The watermark to imprint on the file */
+   * The watermark to imprint on the file. */
   readonly watermark: UpdateFileWatermarkRequestBodyWatermarkField;
   readonly rawData?: SerializedData;
 }

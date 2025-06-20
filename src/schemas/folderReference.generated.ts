@@ -9,11 +9,11 @@ import { sdIsMap } from '../serialization/json.js';
 export type FolderReferenceTypeField = 'folder';
 export class FolderReference {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type: FolderReferenceTypeField =
     'folder' as FolderReferenceTypeField;
   /**
-   * ID of the folder */
+   * ID of the folder. */
   readonly id!: string;
   readonly rawData?: SerializedData;
   constructor(
@@ -33,10 +33,10 @@ export class FolderReference {
 }
 export interface FolderReferenceInput {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: FolderReferenceTypeField;
   /**
-   * ID of the folder */
+   * ID of the folder. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }

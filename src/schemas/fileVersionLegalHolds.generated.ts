@@ -22,7 +22,7 @@ export interface FileVersionLegalHolds {
    * The marker for the start of the previous page of results. */
   readonly prevMarker?: string | null;
   /**
-   * A list of file version legal holds */
+   * A list of file version legal holds. */
   readonly entries?: readonly FileVersionLegalHold[];
   readonly rawData?: SerializedData;
 }

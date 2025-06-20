@@ -22,10 +22,10 @@ export interface TermsOfServiceEnterpriseField {
    * The unique identifier for this enterprise. */
   readonly id?: string;
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: TermsOfServiceEnterpriseTypeField;
   /**
-   * The name of the enterprise */
+   * The name of the enterprise. */
   readonly name?: string;
   readonly rawData?: SerializedData;
 }

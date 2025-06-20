@@ -16,7 +16,7 @@ export interface Tasks {
    * `total_count`. */
   readonly totalCount?: number;
   /**
-   * A list of tasks */
+   * A list of tasks. */
   readonly entries?: readonly Task[];
   readonly rawData?: SerializedData;
 }

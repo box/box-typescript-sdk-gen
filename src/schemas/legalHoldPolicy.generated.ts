@@ -26,16 +26,16 @@ export type LegalHoldPolicyStatusField =
   | string;
 export interface LegalHoldPolicyAssignmentCountsField {
   /**
-   * The number of users this policy is applied to */
+   * The number of users this policy is applied to. */
   readonly user?: number;
   /**
-   * The number of folders this policy is applied to */
+   * The number of folders this policy is applied to. */
   readonly folder?: number;
   /**
-   * The number of files this policy is applied to */
+   * The number of files this policy is applied to. */
   readonly file?: number;
   /**
-   * The number of file versions this policy is applied to */
+   * The number of file versions this policy is applied to. */
   readonly fileVersion?: number;
   readonly rawData?: SerializedData;
 }

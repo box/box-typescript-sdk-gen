@@ -243,7 +243,7 @@ export interface GetFolderCollaborationsHeadersInput {
 export type GetCollaborationsQueryParamsStatusField = 'pending' | string;
 export interface GetCollaborationsQueryParams {
   /**
-   * The status of the collaborations to retrieve */
+   * The status of the collaborations to retrieve. */
   readonly status: GetCollaborationsQueryParamsStatusField;
   /**
    * A comma-separated list of attributes to include in the

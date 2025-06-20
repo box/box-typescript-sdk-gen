@@ -9,19 +9,19 @@ import { sdIsMap } from '../serialization/json.js';
 export type WorkflowMiniTypeField = 'workflow';
 export interface WorkflowMini {
   /**
-   * The unique identifier for the workflow */
+   * The unique identifier for the workflow. */
   readonly id?: string;
   /**
-   * `workflow` */
+   * The value will always be `workflow`. */
   readonly type?: WorkflowMiniTypeField;
   /**
-   * The name of the workflow */
+   * The name of the workflow. */
   readonly name?: string;
   /**
    * The description for a workflow. */
   readonly description?: string;
   /**
-   * Specifies if this workflow is enabled */
+   * Specifies if this workflow is enabled. */
   readonly isEnabled?: boolean;
   readonly rawData?: SerializedData;
 }

@@ -11,10 +11,10 @@ export class IntegrationMappingBase {
   /**
    * A unique identifier of a folder mapping
    * (part of a composite key together
-   * with `integration_type`) */
+   * with `integration_type`). */
   readonly id!: string;
   /**
-   * Mapping type */
+   * Mapping type. */
   readonly type: IntegrationMappingBaseTypeField =
     'integration_mapping' as IntegrationMappingBaseTypeField;
   readonly rawData?: SerializedData;
@@ -37,10 +37,10 @@ export interface IntegrationMappingBaseInput {
   /**
    * A unique identifier of a folder mapping
    * (part of a composite key together
-   * with `integration_type`) */
+   * with `integration_type`). */
   readonly id: string;
   /**
-   * Mapping type */
+   * Mapping type. */
   readonly type?: IntegrationMappingBaseTypeField;
   readonly rawData?: SerializedData;
 }

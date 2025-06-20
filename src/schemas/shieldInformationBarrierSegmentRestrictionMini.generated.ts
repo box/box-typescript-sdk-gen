@@ -20,7 +20,7 @@ export interface ShieldInformationBarrierSegmentRestrictionMiniShieldInformation
    * requesting shield information barrier segment. */
   readonly id?: string;
   /**
-   * The type of the shield information barrier segment */
+   * The type of the shield information barrier segment. */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniShieldInformationBarrierSegmentTypeField;
   readonly rawData?: SerializedData;
 }
@@ -32,7 +32,7 @@ export interface ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegment
    * restricted shield information barrier segment. */
   readonly id?: string;
   /**
-   * The type of the shield information segment */
+   * The type of the shield information segment. */
   readonly type?: ShieldInformationBarrierSegmentRestrictionMiniRestrictedSegmentTypeField;
   readonly rawData?: SerializedData;
 }

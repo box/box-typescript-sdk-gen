@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type StoragePolicyAssignmentTypeField = 'storage_policy_assignment';
 export interface StoragePolicyAssignmentAssignedToField {
   /**
-   * The unique identifier for this object */
+   * The unique identifier for this object. */
   readonly id?: string;
   /**
-   * The type for this object */
+   * The type for this object. */
   readonly type?: string;
   readonly rawData?: SerializedData;
 }
@@ -24,7 +24,7 @@ export class StoragePolicyAssignment {
    * The unique identifier for a storage policy assignment. */
   readonly id!: string;
   /**
-   * `storage_policy_assignment` */
+   * The value will always be `storage_policy_assignment`. */
   readonly type: StoragePolicyAssignmentTypeField =
     'storage_policy_assignment' as StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
@@ -56,7 +56,7 @@ export interface StoragePolicyAssignmentInput {
    * The unique identifier for a storage policy assignment. */
   readonly id: string;
   /**
-   * `storage_policy_assignment` */
+   * The value will always be `storage_policy_assignment`. */
   readonly type?: StoragePolicyAssignmentTypeField;
   readonly storagePolicy?: StoragePolicyMini;
   readonly assignedTo?: StoragePolicyAssignmentAssignedToField;

@@ -72,4 +72,4 @@ await client.invites.getInviteById(invitation.id);
 
 This function returns a value of type `Invite`.
 
-Returns an invite object
+Returns an invite object.

@@ -163,7 +163,7 @@ export class FileVersionLegalHoldsManager {
   /**
      * Retrieves information about the legal hold policies
      * assigned to a file version.
-     * @param {string} fileVersionLegalHoldId The ID of the file version legal hold
+     * @param {string} fileVersionLegalHoldId The ID of the file version legal hold.
     Example: "2348213"
      * @param {GetFileVersionLegalHoldByIdOptionalsInput} optionalsInput
      * @returns {Promise<FileVersionLegalHold>}

@@ -101,7 +101,7 @@ export interface GetFileAppItemAssociationsQueryParams {
    * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
   /**
-   * If given, only return app items for this application type */
+   * If given, only return app items for this application type. */
   readonly applicationType?: string;
 }
 export class GetFileAppItemAssociationsHeaders {
@@ -139,7 +139,7 @@ export interface GetFolderAppItemAssociationsQueryParams {
    * This requires `usemarker` to be set to `true`. */
   readonly marker?: string;
   /**
-   * If given, returns only app items for this application type */
+   * If given, returns only app items for this application type. */
   readonly applicationType?: string;
 }
 export class GetFolderAppItemAssociationsHeaders {

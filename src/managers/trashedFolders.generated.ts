@@ -126,7 +126,7 @@ export interface DeleteTrashedFolderByIdOptionalsInput {
 }
 export interface RestoreFolderFromTrashRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   readonly rawData?: SerializedData;
 }

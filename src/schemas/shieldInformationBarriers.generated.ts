@@ -19,7 +19,7 @@ export interface ShieldInformationBarriers {
    * The marker for the start of the next page of results. */
   readonly nextMarker?: string | null;
   /**
-   * A list of shield information barrier objects */
+   * A list of shield information barrier objects. */
   readonly entries?: readonly ShieldInformationBarrier[];
   readonly rawData?: SerializedData;
 }

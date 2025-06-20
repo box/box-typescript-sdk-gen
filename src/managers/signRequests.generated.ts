@@ -279,7 +279,7 @@ export class SignRequestsManager {
   }
   /**
      * Cancels a sign request.
-     * @param {string} signRequestId The ID of the signature request
+     * @param {string} signRequestId The ID of the signature request.
     Example: "33243242"
      * @param {CancelSignRequestOptionalsInput} optionalsInput
      * @returns {Promise<SignRequest>}
@@ -322,7 +322,7 @@ export class SignRequestsManager {
   }
   /**
      * Resends a signature request email to all outstanding signers.
-     * @param {string} signRequestId The ID of the signature request
+     * @param {string} signRequestId The ID of the signature request.
     Example: "33243242"
      * @param {ResendSignRequestOptionalsInput} optionalsInput
      * @returns {Promise<undefined>}
@@ -362,7 +362,7 @@ export class SignRequestsManager {
   }
   /**
      * Gets a sign request by ID.
-     * @param {string} signRequestId The ID of the signature request
+     * @param {string} signRequestId The ID of the signature request.
     Example: "33243242"
      * @param {GetSignRequestByIdOptionalsInput} optionalsInput
      * @returns {Promise<SignRequest>}

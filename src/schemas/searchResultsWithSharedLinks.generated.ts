@@ -27,7 +27,7 @@ export class SearchResultsWithSharedLinks {
    * as the `offset` query parameter used. */
   readonly offset?: number;
   /**
-   * Specifies the response as search result items with shared links */
+   * Specifies the response as search result items with shared links. */
   readonly type: SearchResultsWithSharedLinksTypeField =
     'search_results_with_shared_links' as SearchResultsWithSharedLinksTypeField;
   /**
@@ -76,7 +76,7 @@ export interface SearchResultsWithSharedLinksInput {
    * as the `offset` query parameter used. */
   readonly offset?: number;
   /**
-   * Specifies the response as search result items with shared links */
+   * Specifies the response as search result items with shared links. */
   readonly type?: SearchResultsWithSharedLinksTypeField;
   /**
    * The search results for the query provided, including the

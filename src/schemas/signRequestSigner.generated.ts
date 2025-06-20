@@ -33,14 +33,14 @@ export interface SignRequestSignerSignerDecisionField {
 }
 export type SignRequestSigner = SignRequestCreateSigner & {
   /**
-   * Set to `true` if the signer views the document */
+   * Set to `true` if the signer views the document. */
   readonly hasViewedDocument?: boolean;
   /**
    * Final decision made by the signer. */
   readonly signerDecision?: SignRequestSignerSignerDecisionField | null;
   readonly inputs?: readonly SignRequestSignerInput[];
   /**
-   * URL to direct a signer to for signing */
+   * URL to direct a signer to for signing. */
   readonly embedUrl?: string | null;
   /**
    * This URL is specifically designed for

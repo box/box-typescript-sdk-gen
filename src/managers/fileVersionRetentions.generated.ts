@@ -222,7 +222,7 @@ export class FileVersionRetentionsManager {
      * File retention API is now **deprecated**.
      * To get information about files and file versions under retention,
      * see [files under retention](e://get-retention-policy-assignments-id-files-under-retention) or [file versions under retention](e://get-retention-policy-assignments-id-file-versions-under-retention) endpoints.
-     * @param {string} fileVersionRetentionId The ID of the file version retention
+     * @param {string} fileVersionRetentionId The ID of the file version retention.
     Example: "3424234"
      * @param {GetFileVersionRetentionByIdOptionalsInput} optionalsInput
      * @returns {Promise<FileVersionRetention>}

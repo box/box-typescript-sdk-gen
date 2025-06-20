@@ -12,7 +12,7 @@ export class DocGenBatchBaseV2025R0 {
    * The unique identifier that represents a Box Doc Gen batch. */
   readonly id!: string;
   /**
-   * `docgen_batch` */
+   * The value will always be `docgen_batch`. */
   readonly type: DocGenBatchBaseV2025R0TypeField =
     'docgen_batch' as DocGenBatchBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
@@ -36,7 +36,7 @@ export interface DocGenBatchBaseV2025R0Input {
    * The unique identifier that represents a Box Doc Gen batch. */
   readonly id: string;
   /**
-   * `docgen_batch` */
+   * The value will always be `docgen_batch`. */
   readonly type?: DocGenBatchBaseV2025R0TypeField;
   readonly rawData?: SerializedData;
 }

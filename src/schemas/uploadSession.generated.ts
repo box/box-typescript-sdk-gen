@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type UploadSessionTypeField = 'upload_session';
 export interface UploadSessionSessionEndpointsField {
   /**
-   * The URL to upload parts to */
+   * The URL to upload parts to. */
   readonly uploadPart?: string;
   /**
-   * The URL used to commit the file */
+   * The URL used to commit the file. */
   readonly commit?: string;
   /**
    * The URL for used to abort the session. */
@@ -33,10 +33,10 @@ export interface UploadSessionSessionEndpointsField {
 }
 export interface UploadSession {
   /**
-   * The unique identifier for this session */
+   * The unique identifier for this session. */
   readonly id?: string;
   /**
-   * `upload_session` */
+   * The value will always be `upload_session`. */
   readonly type?: UploadSessionTypeField;
   /**
    * The date and time when this session expires. */

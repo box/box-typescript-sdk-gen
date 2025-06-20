@@ -9,14 +9,14 @@ import { sdIsMap } from '../serialization/json.js';
 export type TrackingCodeTypeField = 'tracking_code';
 export interface TrackingCode {
   /**
-   * `tracking_code` */
+   * The value will always be `tracking_code`. */
   readonly type?: TrackingCodeTypeField;
   /**
    * The name of the tracking code, which must be preconfigured in
-   * the Admin Console */
+   * the Admin Console. */
   readonly name?: string;
   /**
-   * The value of the tracking code */
+   * The value of the tracking code. */
   readonly value?: string;
   readonly rawData?: SerializedData;
 }

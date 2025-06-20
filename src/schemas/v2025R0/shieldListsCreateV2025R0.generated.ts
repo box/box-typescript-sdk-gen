@@ -14,7 +14,7 @@ export interface ShieldListsCreateV2025R0 {
    * The name of the shield list. */
   readonly name: string;
   /**
-   * Description of Shield List: Optional. */
+   * Optional description of Shield List. */
   readonly description?: string;
   readonly content: ShieldListContentRequestV2025R0;
   readonly rawData?: SerializedData;

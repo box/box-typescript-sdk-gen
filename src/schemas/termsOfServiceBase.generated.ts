@@ -12,7 +12,7 @@ export class TermsOfServiceBase {
    * The unique identifier for this terms of service. */
   readonly id!: string;
   /**
-   * `terms_of_service` */
+   * The value will always be `terms_of_service`. */
   readonly type: TermsOfServiceBaseTypeField =
     'terms_of_service' as TermsOfServiceBaseTypeField;
   readonly rawData?: SerializedData;
@@ -36,7 +36,7 @@ export interface TermsOfServiceBaseInput {
    * The unique identifier for this terms of service. */
   readonly id: string;
   /**
-   * `terms_of_service` */
+   * The value will always be `terms_of_service`. */
   readonly type?: TermsOfServiceBaseTypeField;
   readonly rawData?: SerializedData;
 }

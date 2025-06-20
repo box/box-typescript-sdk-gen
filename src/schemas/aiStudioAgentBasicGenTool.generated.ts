@@ -26,7 +26,7 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export type AiStudioAgentBasicGenTool = AiAgentBasicGenTool & {
   /**
-   * True if system message contains custom instructions placeholder, false otherwise */
+   * True if system message contains custom instructions placeholder, false otherwise. */
   readonly isCustomInstructionsIncluded?: boolean;
 };
 export function serializeAiStudioAgentBasicGenTool(

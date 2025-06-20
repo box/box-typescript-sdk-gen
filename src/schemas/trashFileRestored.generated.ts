@@ -24,7 +24,7 @@ export interface TrashFileRestoredPathCollectionField {
    * The number of folders in this list. */
   readonly totalCount: number;
   /**
-   * The parent folders for this item */
+   * The parent folders for this item. */
   readonly entries: readonly FolderMini[];
   readonly rawData?: SerializedData;
 }
@@ -49,12 +49,12 @@ export class TrashFileRestored {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type: TrashFileRestoredTypeField =
     'file' as TrashFileRestoredTypeField;
   readonly sequenceId!: string;
   /**
-   * The name of the file */
+   * The name of the file. */
   readonly name?: string;
   /**
    * The SHA1 hash of the file. This can be used to compare the contents
@@ -62,7 +62,7 @@ export class TrashFileRestored {
   readonly sha1!: string;
   readonly fileVersion?: FileVersionMini;
   /**
-   * The optional description of this file */
+   * The optional description of this file. */
   readonly description!: string;
   /**
    * The file size in bytes. Be careful parsing this integer as it can
@@ -199,11 +199,11 @@ export interface TrashFileRestoredInput {
    * perform changes on the file if (no) changes have happened. */
   readonly etag?: string | null;
   /**
-   * `file` */
+   * The value will always be `file`. */
   readonly type?: TrashFileRestoredTypeField;
   readonly sequenceId: string;
   /**
-   * The name of the file */
+   * The name of the file. */
   readonly name?: string;
   /**
    * The SHA1 hash of the file. This can be used to compare the contents
@@ -211,7 +211,7 @@ export interface TrashFileRestoredInput {
   readonly sha1: string;
   readonly fileVersion?: FileVersionMini;
   /**
-   * The optional description of this file */
+   * The optional description of this file. */
   readonly description: string;
   /**
    * The file size in bytes. Be careful parsing this integer as it can

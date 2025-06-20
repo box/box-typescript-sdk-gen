@@ -10,7 +10,7 @@ export type MetadataCascadePolicyTypeField = 'metadata_cascade_policy';
 export type MetadataCascadePolicyOwnerEnterpriseTypeField = 'enterprise';
 export interface MetadataCascadePolicyOwnerEnterpriseField {
   /**
-   * `enterprise` */
+   * The value will always be `enterprise`. */
   readonly type?: MetadataCascadePolicyOwnerEnterpriseTypeField;
   /**
    * The ID of the enterprise that owns the policy. */
@@ -20,7 +20,7 @@ export interface MetadataCascadePolicyOwnerEnterpriseField {
 export type MetadataCascadePolicyParentTypeField = 'folder';
 export interface MetadataCascadePolicyParentField {
   /**
-   * `folder` */
+   * The value will always be `folder`. */
   readonly type?: MetadataCascadePolicyParentTypeField;
   /**
    * The ID of the folder the policy is applied to. */
@@ -29,10 +29,10 @@ export interface MetadataCascadePolicyParentField {
 }
 export class MetadataCascadePolicy {
   /**
-   * The ID of the metadata cascade policy object */
+   * The ID of the metadata cascade policy object. */
   readonly id!: string;
   /**
-   * `metadata_cascade_policy` */
+   * The value will always be `metadata_cascade_policy`. */
   readonly type: MetadataCascadePolicyTypeField =
     'metadata_cascade_policy' as MetadataCascadePolicyTypeField;
   /**
@@ -95,10 +95,10 @@ export class MetadataCascadePolicy {
 }
 export interface MetadataCascadePolicyInput {
   /**
-   * The ID of the metadata cascade policy object */
+   * The ID of the metadata cascade policy object. */
   readonly id: string;
   /**
-   * `metadata_cascade_policy` */
+   * The value will always be `metadata_cascade_policy`. */
   readonly type?: MetadataCascadePolicyTypeField;
   /**
    * The enterprise that owns this policy. */

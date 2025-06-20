@@ -26,21 +26,15 @@ export type ClientErrorV2025R0CodeField =
   | 'item_name_invalid'
   | 'insufficient_scope'
   | string;
-export interface ClientErrorV2025R0ContextInfoField {
-  /**
-   * More details on the error. */
-  readonly message?: string;
-  readonly rawData?: SerializedData;
-}
 export interface ClientErrorV2025R0 {
   /**
-   * error */
+   * The value will always be `error`. */
   readonly type?: ClientErrorV2025R0TypeField;
   /**
    * The HTTP status of the response. */
   readonly status?: number;
   /**
-   * A Box-specific error code */
+   * A Box-specific error code. */
   readonly code?: ClientErrorV2025R0CodeField;
   /**
    * A short message describing the error. */
@@ -49,7 +43,9 @@ export interface ClientErrorV2025R0 {
    * A free-form object that contains additional context
    * about the error. The possible fields are defined on
    * a per-endpoint basis. `message` is only one example. */
-  readonly contextInfo?: ClientErrorV2025R0ContextInfoField | null;
+  readonly contextInfo?: {
+    readonly [key: string]: any;
+  } | null;
   /**
    * A URL that links to more information about why this error occurred. */
   readonly helpUrl?: string;
@@ -140,29 +136,6 @@ export function deserializeClientErrorV2025R0CodeField(
     message: "Can't deserialize ClientErrorV2025R0CodeField",
   });
 }
-export function serializeClientErrorV2025R0ContextInfoField(
-  val: ClientErrorV2025R0ContextInfoField,
-): SerializedData {
-  return { ['message']: val.message };
-}
-export function deserializeClientErrorV2025R0ContextInfoField(
-  val: SerializedData,
-): ClientErrorV2025R0ContextInfoField {
-  if (!sdIsMap(val)) {
-    throw new BoxSdkError({
-      message: 'Expecting a map for "ClientErrorV2025R0ContextInfoField"',
-    });
-  }
-  if (!(val.message == void 0) && !sdIsString(val.message)) {
-    throw new BoxSdkError({
-      message:
-        'Expecting string for "message" of type "ClientErrorV2025R0ContextInfoField"',
-    });
-  }
-  const message: undefined | string =
-    val.message == void 0 ? void 0 : val.message;
-  return { message: message } satisfies ClientErrorV2025R0ContextInfoField;
-}
 export function serializeClientErrorV2025R0(
   val: ClientErrorV2025R0,
 ): SerializedData {
@@ -180,7 +153,16 @@ export function serializeClientErrorV2025R0(
     ['context_info']:
       val.contextInfo == void 0
         ? val.contextInfo
-        : serializeClientErrorV2025R0ContextInfoField(val.contextInfo),
+        : (Object.fromEntries(
+            Object.entries(val.contextInfo).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          }),
     ['help_url']: val.helpUrl,
     ['request_id']: val.requestId,
   };
@@ -214,10 +196,31 @@ export function deserializeClientErrorV2025R0(
   }
   const message: undefined | string =
     val.message == void 0 ? void 0 : val.message;
-  const contextInfo: undefined | ClientErrorV2025R0ContextInfoField =
+  if (!(val.context_info == void 0) && !sdIsMap(val.context_info)) {
+    throw new BoxSdkError({
+      message:
+        'Expecting object for "context_info" of type "ClientErrorV2025R0"',
+    });
+  }
+  const contextInfo:
+    | undefined
+    | {
+        readonly [key: string]: any;
+      } =
     val.context_info == void 0
       ? void 0
-      : deserializeClientErrorV2025R0ContextInfoField(val.context_info);
+      : sdIsMap(val.context_info)
+        ? (Object.fromEntries(
+            Object.entries(val.context_info).map(([k, v]: [string, any]) => [
+              k,
+              (function (v: any): any {
+                return v;
+              })(v),
+            ]),
+          ) as {
+            readonly [key: string]: any;
+          })
+        : {};
   if (!(val.help_url == void 0) && !sdIsString(val.help_url)) {
     throw new BoxSdkError({
       message: 'Expecting string for "help_url" of type "ClientErrorV2025R0"',

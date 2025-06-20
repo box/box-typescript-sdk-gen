@@ -119,7 +119,7 @@ export interface DeleteWebLinkByIdOptionalsInput {
 }
 export interface CreateWebLinkRequestBodyParentField {
   /**
-   * The ID of parent folder */
+   * The ID of parent folder. */
   readonly id: string;
   readonly rawData?: SerializedData;
 }
@@ -216,7 +216,7 @@ export interface GetWebLinkByIdHeadersInput {
 }
 export interface UpdateWebLinkByIdRequestBodyParentField {
   /**
-   * The ID of parent item */
+   * The ID of parent item. */
   readonly id?: string;
   /**
    * The input for `user_id` is optional. Moving to non-root folder is not allowed when `user_id` is present. Parent folder id should be zero when `user_id` is provided. */

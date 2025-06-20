@@ -38,16 +38,16 @@ export type SignRequestSignerInputContentTypeField =
   | string;
 export type SignRequestSignerInput = SignRequestPrefillTag & {
   /**
-   * Type of input */
+   * Type of input. */
   readonly type?: SignRequestSignerInputTypeField;
   /**
-   * Content type of input */
+   * Content type of input. */
   readonly contentType?: SignRequestSignerInputContentTypeField;
   /**
-   * Index of page that the input is on */
+   * Index of page that the input is on. */
   readonly pageIndex: number;
   /**
-   * Whether this input was defined as read-only(immutable by signers) or not */
+   * Whether this input was defined as read-only(immutable by signers) or not. */
   readonly readOnly?: boolean;
 };
 export function serializeSignRequestSignerInputTypeField(

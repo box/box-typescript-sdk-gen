@@ -28,13 +28,13 @@ export type ClientErrorCodeField =
   | string;
 export interface ClientError {
   /**
-   * error */
+   * The value will always be `error`. */
   readonly type?: ClientErrorTypeField;
   /**
    * The HTTP status of the response. */
   readonly status?: number;
   /**
-   * A Box-specific error code */
+   * A Box-specific error code. */
   readonly code?: ClientErrorCodeField;
   /**
    * A short message describing the error. */

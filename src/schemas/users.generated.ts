@@ -12,10 +12,10 @@ import { sdIsMap } from '../serialization/json.js';
 export type UsersOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface UsersOrderField {
   /**
-   * The field to order by */
+   * The field to order by. */
   readonly by?: string;
   /**
-   * The direction to order by, either ascending or descending */
+   * The direction to order by, either ascending or descending. */
   readonly direction?: UsersOrderDirectionField;
   readonly rawData?: SerializedData;
 }
@@ -53,7 +53,7 @@ export interface Users {
    * For marker-based paginated APIs, this field will be omitted. */
   readonly order?: readonly UsersOrderField[];
   /**
-   * A list of users */
+   * A list of users. */
   readonly entries?: readonly UserFull[];
   readonly rawData?: SerializedData;
 }
