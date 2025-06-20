@@ -76,6 +76,8 @@ import { AiManager } from './managers/ai.generated.js';
 import { AiStudioManager } from './managers/aiStudio.generated.js';
 import { DocgenTemplateManager } from './managers/docgenTemplate.generated.js';
 import { DocgenManager } from './managers/docgen.generated.js';
+import { HubsManager } from './managers/hubs.generated.js';
+import { HubCollaborationsManager } from './managers/hubCollaborations.generated.js';
 import { ShieldListsManager } from './managers/shieldLists.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
@@ -172,6 +174,8 @@ export class BoxClient {
   readonly aiStudio: AiStudioManager;
   readonly docgenTemplate: DocgenTemplateManager;
   readonly docgen: DocgenManager;
+  readonly hubs: HubsManager;
+  readonly hubCollaborations: HubCollaborationsManager;
   readonly shieldLists: ShieldListsManager;
   constructor(
     fields: Omit<
@@ -250,6 +254,8 @@ export class BoxClient {
       | 'aiStudio'
       | 'docgenTemplate'
       | 'docgen'
+      | 'hubs'
+      | 'hubCollaborations'
       | 'shieldLists'
       | 'networkSession'
       | 'makeRequest'
@@ -568,6 +574,14 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.docgen = new DocgenManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.hubs = new HubsManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.hubCollaborations = new HubCollaborationsManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });
