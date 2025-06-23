@@ -15,7 +15,13 @@ This operation is performed by calling function `getHubCollaborationsV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/get-hub-collaborations/).
 
-_Currently we don't have an example for calling `getHubCollaborationsV2025R0` in integration tests_
+<!-- sample get_hub_collaborations_v2025.0 -->
+
+```ts
+await client.hubCollaborations.getHubCollaborationsV2025R0({
+  hubId: hub.id,
+} satisfies GetHubCollaborationsV2025R0QueryParams);
+```
 
 ### Arguments
 
@@ -41,7 +47,18 @@ This operation is performed by calling function `createHubCollaborationV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/post-hub-collaborations/).
 
-_Currently we don't have an example for calling `createHubCollaborationV2025R0` in integration tests_
+<!-- sample post_hub_collaborations_v2025.0 -->
+
+```ts
+await client.hubCollaborations.createHubCollaborationV2025R0({
+  hub: new HubCollaborationCreateRequestV2025R0HubField({ id: hub.id }),
+  accessibleBy: {
+    type: 'user',
+    id: user.id,
+  } satisfies HubCollaborationCreateRequestV2025R0AccessibleByField,
+  role: 'viewer',
+} satisfies HubCollaborationCreateRequestV2025R0);
+```
 
 ### Arguments
 
@@ -65,7 +82,13 @@ This operation is performed by calling function `getHubCollaborationByIdV2025R0`
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/get-hub-collaborations-id/).
 
-_Currently we don't have an example for calling `getHubCollaborationByIdV2025R0` in integration tests_
+<!-- sample get_hub_collaborations_id_v2025.0 -->
+
+```ts
+await client.hubCollaborations.getHubCollaborationByIdV2025R0(
+  createdCollaboration.id,
+);
+```
 
 ### Arguments
 
@@ -90,7 +113,14 @@ This operation is performed by calling function `updateHubCollaborationByIdV2025
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/put-hub-collaborations-id/).
 
-_Currently we don't have an example for calling `updateHubCollaborationByIdV2025R0` in integration tests_
+<!-- sample put_hub_collaborations_id_v2025.0 -->
+
+```ts
+await client.hubCollaborations.updateHubCollaborationByIdV2025R0(
+  createdCollaboration.id,
+  { role: 'editor' } satisfies HubCollaborationUpdateRequestV2025R0,
+);
+```
 
 ### Arguments
 
@@ -116,7 +146,13 @@ This operation is performed by calling function `deleteHubCollaborationByIdV2025
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/delete-hub-collaborations-id/).
 
-_Currently we don't have an example for calling `deleteHubCollaborationByIdV2025R0` in integration tests_
+<!-- sample delete_hub_collaborations_id_v2025.0 -->
+
+```ts
+await client.hubCollaborations.deleteHubCollaborationByIdV2025R0(
+  createdCollaboration.id,
+);
+```
 
 ### Arguments
 
