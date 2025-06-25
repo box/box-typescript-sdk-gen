@@ -139,7 +139,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     ['box-signature-version']: '1',
   };
   const headersWithJapanese: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
@@ -147,7 +147,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     },
   };
   const headersWithEmoji: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
@@ -155,7 +155,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     },
   };
   const headersWithCarriageReturn: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
@@ -163,7 +163,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     },
   };
   const headersWithForwardSlash: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
@@ -171,7 +171,7 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     },
   };
   const headersWithBackSlash: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
@@ -188,32 +188,32 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
     epochSecondsToDateTime(getEpochTimeInSeconds() - 1200),
   );
   const headersWithCorrectDatetime: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
       ['box-delivery-timestamp']: currentDatetime,
-      ['box-signature-primary']: await computeWebhookSignature(
+      ['box-signature-primary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
         primaryKey,
         true,
-      ),
-      ['box-signature-secondary']: await computeWebhookSignature(
+      ))!,
+      ['box-signature-secondary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: currentDatetime } },
         secondaryKey,
         true,
-      ),
+      ))!,
     },
   };
   const headersWithJapaneseWithCorrectDatetime: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headersWithJapanese,
     ...{
       ['box-delivery-timestamp']: currentDatetime,
-      ['box-signature-primary']: await computeWebhookSignature(
+      ['box-signature-primary']: (await computeWebhookSignature(
         bodyWithJapanese,
         {
           ...headersWithJapanese,
@@ -221,8 +221,8 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         },
         primaryKey,
         true,
-      ),
-      ['box-signature-secondary']: await computeWebhookSignature(
+      ))!,
+      ['box-signature-secondary']: (await computeWebhookSignature(
         bodyWithJapanese,
         {
           ...headersWithJapanese,
@@ -230,54 +230,54 @@ test('testWebhookValidation', async function testWebhookValidation(): Promise<an
         },
         secondaryKey,
         true,
-      ),
+      ))!,
     },
   };
   const headersWithFutureDatetime: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
       ['box-delivery-timestamp']: futureDatetime,
-      ['box-signature-primary']: await computeWebhookSignature(
+      ['box-signature-primary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
         primaryKey,
         true,
-      ),
-      ['box-signature-secondary']: await computeWebhookSignature(
+      ))!,
+      ['box-signature-secondary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: futureDatetime } },
         secondaryKey,
         true,
-      ),
+      ))!,
     },
   };
   const headersWithPastDatetime: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = {
     ...headers,
     ...{
       ['box-delivery-timestamp']: pastDatetime,
-      ['box-signature-primary']: await computeWebhookSignature(
+      ['box-signature-primary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
         primaryKey,
         true,
-      ),
-      ['box-signature-secondary']: await computeWebhookSignature(
+      ))!,
+      ['box-signature-secondary']: (await computeWebhookSignature(
         body,
         { ...headers, ...{ ['box-delivery-timestamp']: pastDatetime } },
         secondaryKey,
         true,
-      ),
+      ))!,
     },
   };
   const headersWithWrongSignatureVersion: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = { ...headers, ...{ ['box-signature-version']: '2' } };
   const headersWithWrongSignatureAlgorithm: {
-    readonly [key: string]: any;
+    readonly [key: string]: string;
   } = { ...headers, ...{ ['box-signature-algorithm']: 'HmacSHA1' } };
   if (
     !(await compareSignatures(
