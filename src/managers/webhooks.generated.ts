@@ -680,7 +680,8 @@ export class WebhooksManager {
       return false;
     }
     if (
-      primaryKey &&
+      !(primaryKey == void 0) &&
+      !(headers['box-signature-primary'] == void 0) &&
       (await compareSignatures(
         await computeWebhookSignature(body, headers, primaryKey, false),
         headers['box-signature-primary'],
@@ -689,7 +690,8 @@ export class WebhooksManager {
       return true;
     }
     if (
-      primaryKey &&
+      !(primaryKey == void 0) &&
+      !(headers['box-signature-primary'] == void 0) &&
       (await compareSignatures(
         await computeWebhookSignature(body, headers, primaryKey, true),
         headers['box-signature-primary'],
@@ -698,7 +700,8 @@ export class WebhooksManager {
       return true;
     }
     if (
-      secondaryKey &&
+      !(secondaryKey == void 0) &&
+      !(headers['box-signature-secondary'] == void 0) &&
       (await compareSignatures(
         await computeWebhookSignature(body, headers, secondaryKey, false),
         headers['box-signature-secondary'],
@@ -707,7 +710,8 @@ export class WebhooksManager {
       return true;
     }
     if (
-      secondaryKey &&
+      !(secondaryKey == void 0) &&
+      !(headers['box-signature-secondary'] == void 0) &&
       (await compareSignatures(
         await computeWebhookSignature(body, headers, secondaryKey, true),
         headers['box-signature-secondary'],
