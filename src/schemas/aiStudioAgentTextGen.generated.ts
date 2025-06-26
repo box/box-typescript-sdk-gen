@@ -19,11 +19,14 @@ export class AiStudioAgentTextGen {
    * The state of the AI Agent capability. Possible values are: `enabled` and `disabled`. */
   readonly accessState!: string;
   /**
-   * The description of the AI Agent. */
+   * The description of the AI agent. */
   readonly description!: string;
   /**
-   * Custom instructions for the agent. */
+   * Custom instructions for the AI agent. */
   readonly customInstructions?: string | null;
+  /**
+   * Suggested questions for the AI agent. If null, suggested question will be generated. If empty, no suggested questions will be displayed. */
+  readonly suggestedQuestions?: readonly string[];
   readonly basicGen?: AiStudioAgentBasicGenTool;
   readonly rawData?: SerializedData;
   constructor(
@@ -42,6 +45,9 @@ export class AiStudioAgentTextGen {
     if (fields.customInstructions !== undefined) {
       this.customInstructions = fields.customInstructions;
     }
+    if (fields.suggestedQuestions !== undefined) {
+      this.suggestedQuestions = fields.suggestedQuestions;
+    }
     if (fields.basicGen !== undefined) {
       this.basicGen = fields.basicGen;
     }
@@ -58,11 +64,14 @@ export interface AiStudioAgentTextGenInput {
    * The state of the AI Agent capability. Possible values are: `enabled` and `disabled`. */
   readonly accessState: string;
   /**
-   * The description of the AI Agent. */
+   * The description of the AI agent. */
   readonly description: string;
   /**
-   * Custom instructions for the agent. */
+   * Custom instructions for the AI agent. */
   readonly customInstructions?: string | null;
+  /**
+   * Suggested questions for the AI agent. If null, suggested question will be generated. If empty, no suggested questions will be displayed. */
+  readonly suggestedQuestions?: readonly string[];
   readonly basicGen?: AiStudioAgentBasicGenTool;
   readonly rawData?: SerializedData;
 }
@@ -89,6 +98,12 @@ export function serializeAiStudioAgentTextGen(
     ['access_state']: val.accessState,
     ['description']: val.description,
     ['custom_instructions']: val.customInstructions,
+    ['suggested_questions']:
+      val.suggestedQuestions == void 0
+        ? val.suggestedQuestions
+        : (val.suggestedQuestions.map(function (item: string): SerializedData {
+            return item;
+          }) as readonly any[]),
     ['basic_gen']:
       val.basicGen == void 0
         ? val.basicGen
@@ -147,6 +162,28 @@ export function deserializeAiStudioAgentTextGen(
   }
   const customInstructions: undefined | string =
     val.custom_instructions == void 0 ? void 0 : val.custom_instructions;
+  if (
+    !(val.suggested_questions == void 0) &&
+    !sdIsList(val.suggested_questions)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "suggested_questions" of type "AiStudioAgentTextGen"',
+    });
+  }
+  const suggestedQuestions: undefined | readonly string[] =
+    val.suggested_questions == void 0
+      ? void 0
+      : sdIsList(val.suggested_questions)
+        ? (val.suggested_questions.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "AiStudioAgentTextGen"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   const basicGen: undefined | AiStudioAgentBasicGenTool =
     val.basic_gen == void 0
       ? void 0
@@ -156,6 +193,7 @@ export function deserializeAiStudioAgentTextGen(
     accessState: accessState,
     description: description,
     customInstructions: customInstructions,
+    suggestedQuestions: suggestedQuestions,
     basicGen: basicGen,
   } satisfies AiStudioAgentTextGen;
 }
@@ -170,6 +208,12 @@ export function serializeAiStudioAgentTextGenInput(
     ['access_state']: val.accessState,
     ['description']: val.description,
     ['custom_instructions']: val.customInstructions,
+    ['suggested_questions']:
+      val.suggestedQuestions == void 0
+        ? val.suggestedQuestions
+        : (val.suggestedQuestions.map(function (item: string): SerializedData {
+            return item;
+          }) as readonly any[]),
     ['basic_gen']:
       val.basicGen == void 0
         ? val.basicGen
@@ -225,6 +269,28 @@ export function deserializeAiStudioAgentTextGenInput(
   }
   const customInstructions: undefined | string =
     val.custom_instructions == void 0 ? void 0 : val.custom_instructions;
+  if (
+    !(val.suggested_questions == void 0) &&
+    !sdIsList(val.suggested_questions)
+  ) {
+    throw new BoxSdkError({
+      message:
+        'Expecting array for "suggested_questions" of type "AiStudioAgentTextGenInput"',
+    });
+  }
+  const suggestedQuestions: undefined | readonly string[] =
+    val.suggested_questions == void 0
+      ? void 0
+      : sdIsList(val.suggested_questions)
+        ? (val.suggested_questions.map(function (itm: SerializedData): string {
+            if (!sdIsString(itm)) {
+              throw new BoxSdkError({
+                message: 'Expecting string for "AiStudioAgentTextGenInput"',
+              });
+            }
+            return itm;
+          }) as readonly any[])
+        : [];
   const basicGen: undefined | AiStudioAgentBasicGenTool =
     val.basic_gen == void 0
       ? void 0
@@ -234,6 +300,7 @@ export function deserializeAiStudioAgentTextGenInput(
     accessState: accessState,
     description: description,
     customInstructions: customInstructions,
+    suggestedQuestions: suggestedQuestions,
     basicGen: basicGen,
   } satisfies AiStudioAgentTextGenInput;
 }
