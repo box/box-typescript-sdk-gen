@@ -1095,10 +1095,10 @@ export class FilesManager {
       return response.url;
     }
     if ('location' in response.headers) {
-      return response.headers.location;
+      return response.headers.location!;
     }
     if ('Location' in response.headers) {
-      return response.headers.Location;
+      return response.headers.Location!;
     }
     throw new BoxSdkError({ message: 'No location header in response' });
   }
