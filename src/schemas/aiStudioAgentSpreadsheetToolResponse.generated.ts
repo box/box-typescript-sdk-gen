@@ -1,7 +1,10 @@
+import { serializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
+import { deserializeAiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { serializeAiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
 import { deserializeAiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
 import { serializeAiStudioAgentSpreadsheetTool } from './aiStudioAgentSpreadsheetTool.generated.js';
 import { deserializeAiStudioAgentSpreadsheetTool } from './aiStudioAgentSpreadsheetTool.generated.js';
+import { AiLlmEndpointParams } from './aiLlmEndpointParams.generated.js';
 import { AiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
 import { AiStudioAgentSpreadsheetTool } from './aiStudioAgentSpreadsheetTool.generated.js';
 import { BoxSdkError } from '../box/errors.js';
