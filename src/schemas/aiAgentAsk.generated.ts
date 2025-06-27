@@ -2,8 +2,11 @@ import { serializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js
 import { deserializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
 import { serializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
 import { deserializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
+import { serializeAiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
+import { deserializeAiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
 import { AiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
 import { AiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
+import { AiAgentSpreadsheetTool } from './aiAgentSpreadsheetTool.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -19,6 +22,7 @@ export class AiAgentAsk {
   readonly type: AiAgentAskTypeField = 'ai_agent_ask' as AiAgentAskTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly spreadsheet?: AiAgentSpreadsheetTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
   readonly basicImage?: AiAgentBasicTextTool;
@@ -35,6 +39,9 @@ export class AiAgentAsk {
     }
     if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
+    }
+    if (fields.spreadsheet !== undefined) {
+      this.spreadsheet = fields.spreadsheet;
     }
     if (fields.longTextMulti !== undefined) {
       this.longTextMulti = fields.longTextMulti;
@@ -59,6 +66,7 @@ export interface AiAgentAskInput {
   readonly type?: AiAgentAskTypeField;
   readonly longText?: AiAgentLongTextTool;
   readonly basicText?: AiAgentBasicTextTool;
+  readonly spreadsheet?: AiAgentSpreadsheetTool;
   readonly longTextMulti?: AiAgentLongTextTool;
   readonly basicTextMulti?: AiAgentBasicTextTool;
   readonly basicImage?: AiAgentBasicTextTool;
@@ -89,6 +97,10 @@ export function serializeAiAgentAsk(val: AiAgentAsk): SerializedData {
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['spreadsheet']:
+      val.spreadsheet == void 0
+        ? val.spreadsheet
+        : serializeAiAgentSpreadsheetTool(val.spreadsheet),
     ['long_text_multi']:
       val.longTextMulti == void 0
         ? val.longTextMulti
@@ -125,6 +137,10 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const spreadsheet: undefined | AiAgentSpreadsheetTool =
+    val.spreadsheet == void 0
+      ? void 0
+      : deserializeAiAgentSpreadsheetTool(val.spreadsheet);
   const longTextMulti: undefined | AiAgentLongTextTool =
     val.long_text_multi == void 0
       ? void 0
@@ -145,6 +161,7 @@ export function deserializeAiAgentAsk(val: SerializedData): AiAgentAsk {
     type: type,
     longText: longText,
     basicText: basicText,
+    spreadsheet: spreadsheet,
     longTextMulti: longTextMulti,
     basicTextMulti: basicTextMulti,
     basicImage: basicImage,
@@ -163,6 +180,10 @@ export function serializeAiAgentAskInput(val: AiAgentAskInput): SerializedData {
       val.basicText == void 0
         ? val.basicText
         : serializeAiAgentBasicTextTool(val.basicText),
+    ['spreadsheet']:
+      val.spreadsheet == void 0
+        ? val.spreadsheet
+        : serializeAiAgentSpreadsheetTool(val.spreadsheet),
     ['long_text_multi']:
       val.longTextMulti == void 0
         ? val.longTextMulti
@@ -197,6 +218,10 @@ export function deserializeAiAgentAskInput(
     val.basic_text == void 0
       ? void 0
       : deserializeAiAgentBasicTextTool(val.basic_text);
+  const spreadsheet: undefined | AiAgentSpreadsheetTool =
+    val.spreadsheet == void 0
+      ? void 0
+      : deserializeAiAgentSpreadsheetTool(val.spreadsheet);
   const longTextMulti: undefined | AiAgentLongTextTool =
     val.long_text_multi == void 0
       ? void 0
@@ -217,6 +242,7 @@ export function deserializeAiAgentAskInput(
     type: type,
     longText: longText,
     basicText: basicText,
+    spreadsheet: spreadsheet,
     longTextMulti: longTextMulti,
     basicTextMulti: basicTextMulti,
     basicImage: basicImage,
