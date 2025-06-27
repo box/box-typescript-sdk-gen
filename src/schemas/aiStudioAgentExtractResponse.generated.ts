@@ -15,20 +15,21 @@ import { sdIsMap } from '../serialization/json.js';
 export type AiStudioAgentExtractResponseTypeField = 'ai_agent_extract';
 export class AiStudioAgentExtractResponse {
   /**
-   * The type of AI agent to be used for extraction. */
+   * The type of AI agent to be used for metadata extraction. */
   readonly type: AiStudioAgentExtractResponseTypeField =
     'ai_agent_extract' as AiStudioAgentExtractResponseTypeField;
   /**
    * The state of the AI Agent capability. Possible values are: `enabled` and `disabled`. */
   readonly accessState!: string;
   /**
-   * The description of the AI Agent. */
+   * The description of the AI agent. */
   readonly description!: string;
   /**
-   * Custom instructions for the agent. */
+   * Custom instructions for the AI agent. */
   readonly customInstructions?: string | null;
   readonly longText?: AiStudioAgentLongTextToolResponse;
   readonly basicText?: AiStudioAgentBasicTextToolResponse;
+  readonly basicImage?: AiStudioAgentBasicTextToolResponse;
   readonly rawData?: SerializedData;
   constructor(
     fields: Omit<AiStudioAgentExtractResponse, 'type'> &
@@ -52,6 +53,9 @@ export class AiStudioAgentExtractResponse {
     if (fields.basicText !== undefined) {
       this.basicText = fields.basicText;
     }
+    if (fields.basicImage !== undefined) {
+      this.basicImage = fields.basicImage;
+    }
     if (fields.rawData !== undefined) {
       this.rawData = fields.rawData;
     }
@@ -59,19 +63,20 @@ export class AiStudioAgentExtractResponse {
 }
 export interface AiStudioAgentExtractResponseInput {
   /**
-   * The type of AI agent to be used for extraction. */
+   * The type of AI agent to be used for metadata extraction. */
   readonly type?: AiStudioAgentExtractResponseTypeField;
   /**
    * The state of the AI Agent capability. Possible values are: `enabled` and `disabled`. */
   readonly accessState: string;
   /**
-   * The description of the AI Agent. */
+   * The description of the AI agent. */
   readonly description: string;
   /**
-   * Custom instructions for the agent. */
+   * Custom instructions for the AI agent. */
   readonly customInstructions?: string | null;
   readonly longText?: AiStudioAgentLongTextToolResponse;
   readonly basicText?: AiStudioAgentBasicTextToolResponse;
+  readonly basicImage?: AiStudioAgentBasicTextToolResponse;
   readonly rawData?: SerializedData;
 }
 export function serializeAiStudioAgentExtractResponseTypeField(
@@ -105,6 +110,10 @@ export function serializeAiStudioAgentExtractResponse(
       val.basicText == void 0
         ? val.basicText
         : serializeAiStudioAgentBasicTextToolResponse(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiStudioAgentBasicTextToolResponse(val.basicImage),
   };
 }
 export function deserializeAiStudioAgentExtractResponse(
@@ -168,6 +177,10 @@ export function deserializeAiStudioAgentExtractResponse(
     val.basic_text == void 0
       ? void 0
       : deserializeAiStudioAgentBasicTextToolResponse(val.basic_text);
+  const basicImage: undefined | AiStudioAgentBasicTextToolResponse =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiStudioAgentBasicTextToolResponse(val.basic_image);
   return {
     type: type,
     accessState: accessState,
@@ -175,6 +188,7 @@ export function deserializeAiStudioAgentExtractResponse(
     customInstructions: customInstructions,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiStudioAgentExtractResponse;
 }
 export function serializeAiStudioAgentExtractResponseInput(
@@ -196,6 +210,10 @@ export function serializeAiStudioAgentExtractResponseInput(
       val.basicText == void 0
         ? val.basicText
         : serializeAiStudioAgentBasicTextToolResponse(val.basicText),
+    ['basic_image']:
+      val.basicImage == void 0
+        ? val.basicImage
+        : serializeAiStudioAgentBasicTextToolResponse(val.basicImage),
   };
 }
 export function deserializeAiStudioAgentExtractResponseInput(
@@ -255,6 +273,10 @@ export function deserializeAiStudioAgentExtractResponseInput(
     val.basic_text == void 0
       ? void 0
       : deserializeAiStudioAgentBasicTextToolResponse(val.basic_text);
+  const basicImage: undefined | AiStudioAgentBasicTextToolResponse =
+    val.basic_image == void 0
+      ? void 0
+      : deserializeAiStudioAgentBasicTextToolResponse(val.basic_image);
   return {
     type: type,
     accessState: accessState,
@@ -262,5 +284,6 @@ export function deserializeAiStudioAgentExtractResponseInput(
     customInstructions: customInstructions,
     longText: longText,
     basicText: basicText,
+    basicImage: basicImage,
   } satisfies AiStudioAgentExtractResponseInput;
 }
