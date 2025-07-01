@@ -24,6 +24,8 @@ import {
   getEnvVar,
   setEnvVar,
   utilLib,
+  PrivateKeyDecryptor,
+  DefaultPrivateKeyDecryptor,
 } from './utilsNode';
 import { MultipartItem } from '../networking';
 import { sanitizedValue } from '../serialization/json';
@@ -32,6 +34,7 @@ export type HashName = 'sha1';
 export type DigestHashType = 'base64';
 
 export type { JwtKey, JwtAlgorithm, JwtSignOptions, ByteStream };
+export type { PrivateKeyDecryptor };
 
 export {
   Hash,
@@ -52,6 +55,7 @@ export {
   getEnvVar,
   setEnvVar,
   utilLib,
+  DefaultPrivateKeyDecryptor,
 };
 
 export { Buffer, FormData };
