@@ -227,6 +227,12 @@ export type JwtAlgorithm = any;
 
 export type JwtSignOptions = any;
 
+export interface PrivateKeyDecryptor {}
+
+export class DefaultPrivateKeyDecryptor implements PrivateKeyDecryptor {
+  constructor(fields: any) {}
+}
+
 /**
  * Creates a JWT assertion.
  *

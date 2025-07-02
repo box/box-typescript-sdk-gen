@@ -17,6 +17,8 @@ import { createJwtAssertion } from '../internal/utils.js';
 import { JwtSignOptions } from '../internal/utils.js';
 import { JwtKey } from '../internal/utils.js';
 import { JwtAlgorithm } from '../internal/utils.js';
+import { PrivateKeyDecryptor } from '../internal/utils.js';
+import { DefaultPrivateKeyDecryptor } from '../internal/utils.js';
 import { AuthorizationManager } from '../managers/authorization.generated.js';
 import { BoxSdkError } from './errors.js';
 import { sdIsEmpty } from '../serialization/json.js';
@@ -85,12 +87,20 @@ export class JwtConfig {
   readonly userId?: string;
   readonly algorithm?: JwtAlgorithm = 'RS256' as JwtAlgorithm;
   readonly tokenStorage: TokenStorage = new InMemoryTokenStorage({});
+  readonly privateKeyDecryptor: PrivateKeyDecryptor =
+    new DefaultPrivateKeyDecryptor({});
   constructor(
     fields: Omit<
       JwtConfig,
-      'algorithm' | 'tokenStorage' | 'fromConfigJsonString' | 'fromConfigFile'
+      | 'algorithm'
+      | 'tokenStorage'
+      | 'privateKeyDecryptor'
+      | 'fromConfigJsonString'
+      | 'fromConfigFile'
     > &
-      Partial<Pick<JwtConfig, 'algorithm' | 'tokenStorage'>>,
+      Partial<
+        Pick<JwtConfig, 'algorithm' | 'tokenStorage' | 'privateKeyDecryptor'>
+      >,
   ) {
     if (fields.clientId !== undefined) {
       this.clientId = fields.clientId;
@@ -119,42 +129,44 @@ export class JwtConfig {
     if (fields.tokenStorage !== undefined) {
       this.tokenStorage = fields.tokenStorage;
     }
+    if (fields.privateKeyDecryptor !== undefined) {
+      this.privateKeyDecryptor = fields.privateKeyDecryptor;
+    }
   }
   /**
    * Create an auth instance as defined by a string content of JSON file downloaded from the Box Developer Console.
    * See https://developer.box.com/en/guides/authentication/jwt/ for more information.
    * @param {string} configJsonString String content of JSON file containing the configuration.
-   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided, the token will be stored in memory.g
+   * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided, the token will be stored in memory
+   * @param {PrivateKeyDecryptor} privateKeyDecryptor Object responsible for decrypting private key for jwt auth. If no custom implementation provided, the DefaultPrivateKeyDecryptor will be used.
    * @returns {JwtConfig}
    */
   static fromConfigJsonString(
     configJsonString: string,
     tokenStorage?: TokenStorage,
+    privateKeyDecryptor?: PrivateKeyDecryptor,
   ): JwtConfig {
     const configJson: JwtConfigFile = {
       ...deserializeJwtConfigFile(jsonToSerializedData(configJsonString)),
       rawData: jsonToSerializedData(configJsonString),
     };
-    const newConfig: JwtConfig = !(tokenStorage == void 0)
-      ? new JwtConfig({
-          clientId: configJson.boxAppSettings.clientId,
-          clientSecret: configJson.boxAppSettings.clientSecret,
-          enterpriseId: configJson.enterpriseId,
-          userId: configJson.userId,
-          jwtKeyId: configJson.boxAppSettings.appAuth.publicKeyId,
-          privateKey: configJson.boxAppSettings.appAuth.privateKey,
-          privateKeyPassphrase: configJson.boxAppSettings.appAuth.passphrase,
-          tokenStorage: tokenStorage,
-        })
-      : new JwtConfig({
-          clientId: configJson.boxAppSettings.clientId,
-          clientSecret: configJson.boxAppSettings.clientSecret,
-          enterpriseId: configJson.enterpriseId,
-          userId: configJson.userId,
-          jwtKeyId: configJson.boxAppSettings.appAuth.publicKeyId,
-          privateKey: configJson.boxAppSettings.appAuth.privateKey,
-          privateKeyPassphrase: configJson.boxAppSettings.appAuth.passphrase,
-        });
+    const tokenStorageToUse: undefined | TokenStorage =
+      tokenStorage == void 0 ? new InMemoryTokenStorage({}) : tokenStorage;
+    const privateKeyDecryptorToUse: undefined | PrivateKeyDecryptor =
+      privateKeyDecryptor == void 0
+        ? new DefaultPrivateKeyDecryptor({})
+        : privateKeyDecryptor;
+    const newConfig: JwtConfig = new JwtConfig({
+      clientId: configJson.boxAppSettings.clientId,
+      clientSecret: configJson.boxAppSettings.clientSecret,
+      enterpriseId: configJson.enterpriseId,
+      userId: configJson.userId,
+      jwtKeyId: configJson.boxAppSettings.appAuth.publicKeyId,
+      privateKey: configJson.boxAppSettings.appAuth.privateKey,
+      privateKeyPassphrase: configJson.boxAppSettings.appAuth.passphrase,
+      tokenStorage: tokenStorageToUse,
+      privateKeyDecryptor: privateKeyDecryptorToUse,
+    });
     return newConfig;
   }
   /**
@@ -162,14 +174,20 @@ export class JwtConfig {
    * See https://developer.box.com/en/guides/authentication/jwt/ for more information.
    * @param {string} configFilePath Path to the JSON file containing the configuration.
    * @param {TokenStorage} tokenStorage Object responsible for storing token. If no custom implementation provided, the token will be stored in memory.
+   * @param {PrivateKeyDecryptor} privateKeyDecryptor Object responsible for decrypting private key for jwt auth. If no custom implementation provided, the DefaultPrivateKeyDecryptor will be used.
    * @returns {JwtConfig}
    */
   static fromConfigFile(
     configFilePath: string,
     tokenStorage?: TokenStorage,
+    privateKeyDecryptor?: PrivateKeyDecryptor,
   ): JwtConfig {
     const configJsonString: string = readTextFromFile(configFilePath);
-    return JwtConfig.fromConfigJsonString(configJsonString, tokenStorage);
+    return JwtConfig.fromConfigJsonString(
+      configJsonString,
+      tokenStorage,
+      privateKeyDecryptor,
+    );
   }
 }
 export interface JwtConfigInput {
@@ -196,6 +214,7 @@ export interface JwtConfigInput {
   readonly userId?: string;
   readonly algorithm?: undefined | JwtAlgorithm;
   readonly tokenStorage?: TokenStorage;
+  readonly privateKeyDecryptor?: PrivateKeyDecryptor;
 }
 export class BoxJwtAuth implements Authentication {
   /**
@@ -263,6 +282,7 @@ export class BoxJwtAuth implements Authentication {
       issuer: this.config.clientId,
       jwtid: getUuid(),
       keyid: this.config.jwtKeyId,
+      privateKeyDecryptor: this.config.privateKeyDecryptor,
     } satisfies JwtSignOptions;
     const jwtKey: JwtKey = {
       key: this.config.privateKey,

@@ -111,6 +111,31 @@ export async function* iterateChunks(
   }
 }
 
+/**
+ * Interface used for private key decryption in JWT auth.
+ */
+export interface PrivateKeyDecryptor {
+  /**
+   * Decrypts private key using a passphrase.
+   */
+  decryptPrivateKey(encryptedPrivateKey: string, passphrase: string): string;
+}
+
+export class DefaultPrivateKeyDecryptor implements PrivateKeyDecryptor {
+  constructor(fields: Omit<DefaultPrivateKeyDecryptor, 'decryptPrivateKey'>) {}
+  decryptPrivateKey(encryptedPrivateKey: string, passphrase: string): string {
+    const privateKey = crypto.createPrivateKey({
+      key: encryptedPrivateKey,
+      format: 'pem',
+      type: 'pkcs8',
+      passphrase: passphrase,
+    });
+    const pem = privateKey.export({ type: 'pkcs8', format: 'pem' }).toString();
+
+    return pem;
+  }
+}
+
 export type JwtKey = {
   key: string;
   passphrase: string;
@@ -140,6 +165,7 @@ export type JwtSignOptions = {
   subject?: string | undefined;
   issuer?: string | undefined;
   jwtid?: string | undefined;
+  privateKeyDecryptor: PrivateKeyDecryptor | undefined;
 };
 
 /**
@@ -157,13 +183,13 @@ export async function createJwtAssertion(
   key: JwtKey,
   options: JwtSignOptions,
 ): Promise<string> {
-  const privateKey = crypto.createPrivateKey({
-    key: key.key,
-    format: 'pem',
-    type: 'pkcs8',
-    passphrase: key.passphrase,
-  });
-  const pem = privateKey.export({ type: 'pkcs8', format: 'pem' }).toString();
+  const pem = options.privateKeyDecryptor?.decryptPrivateKey(
+    key.key,
+    key.passphrase,
+  );
+  if (!pem) {
+    throw new Error(`Decrypted jwt private key is empty`);
+  }
   const pkcs8 = await importPKCS8(pem, options.algorithm || 'RS256');
   let signer = new SignJWT(claims);
   signer = options.audience ? signer.setAudience(options.audience) : signer;
