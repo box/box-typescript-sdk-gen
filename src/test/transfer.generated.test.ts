@@ -34,31 +34,31 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testTransferUserContent', async function testTransferUserContent(): Promise<any> {
-  const newUserName: string = getUuid();
-  const newUser: UserFull = await client.users.createUser({
-    name: newUserName,
+  const sourceUserName: string = getUuid();
+  const sourceUser: UserFull = await client.users.createUser({
+    name: sourceUserName,
     isPlatformAccessOnly: true,
   } satisfies CreateUserRequestBody);
-  const currentUser: UserFull = await client.users.getUserMe();
-  const transferedFolder: FolderFull =
+  const targetUser: UserFull = await client.users.getUserMe();
+  const transferredFolder: FolderFull =
     await client.transfer.transferOwnedFolder(
-      newUser.id,
+      sourceUser.id,
       {
         ownedBy: {
-          id: currentUser.id,
+          id: targetUser.id,
         } satisfies TransferOwnedFolderRequestBodyOwnedByField,
       } satisfies TransferOwnedFolderRequestBody,
       {
         queryParams: { notify: false } satisfies TransferOwnedFolderQueryParams,
       } satisfies TransferOwnedFolderOptionalsInput,
     );
-  if (!(transferedFolder.ownedBy!.id == currentUser.id)) {
+  if (!(transferredFolder.ownedBy!.id == targetUser.id)) {
     throw new Error('Assertion failed');
   }
-  await client.folders.deleteFolderById(transferedFolder.id, {
+  await client.folders.deleteFolderById(transferredFolder.id, {
     queryParams: { recursive: true } satisfies DeleteFolderByIdQueryParams,
   } satisfies DeleteFolderByIdOptionalsInput);
-  await client.users.deleteUserById(newUser.id, {
+  await client.users.deleteUserById(sourceUser.id, {
     queryParams: {
       notify: false,
       force: true,
