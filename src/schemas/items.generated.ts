@@ -1,5 +1,14 @@
+import { serializeFileFull } from './fileFull.generated.js';
+import { deserializeFileFull } from './fileFull.generated.js';
+import { serializeFolderMini } from './folderMini.generated.js';
+import { deserializeFolderMini } from './folderMini.generated.js';
+import { serializeWebLink } from './webLink.generated.js';
+import { deserializeWebLink } from './webLink.generated.js';
 import { serializeFileFullOrFolderMiniOrWebLink } from './fileFullOrFolderMiniOrWebLink.generated.js';
 import { deserializeFileFullOrFolderMiniOrWebLink } from './fileFullOrFolderMiniOrWebLink.generated.js';
+import { FileFull } from './fileFull.generated.js';
+import { FolderMini } from './folderMini.generated.js';
+import { WebLink } from './webLink.generated.js';
 import { FileFullOrFolderMiniOrWebLink } from './fileFullOrFolderMiniOrWebLink.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';

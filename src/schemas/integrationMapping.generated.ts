@@ -1,5 +1,7 @@
 import { serializeIntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
 import { deserializeIntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
+import { serializeIntegrationMappingPartnerItemSlack } from './integrationMappingPartnerItemSlack.generated.js';
+import { deserializeIntegrationMappingPartnerItemSlack } from './integrationMappingPartnerItemSlack.generated.js';
 import { serializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { deserializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { serializeIntegrationMappingSlackOptions } from './integrationMappingSlackOptions.generated.js';
@@ -13,6 +15,7 @@ import { deserializeFolderMini } from './folderMini.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { IntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
+import { IntegrationMappingPartnerItemSlack } from './integrationMappingPartnerItemSlack.generated.js';
 import { IntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { IntegrationMappingSlackOptions } from './integrationMappingSlackOptions.generated.js';
 import { UserIntegrationMappings } from './userIntegrationMappings.generated.js';

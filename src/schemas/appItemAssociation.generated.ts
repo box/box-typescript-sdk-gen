@@ -1,7 +1,16 @@
+import { serializeFileBase } from './fileBase.generated.js';
+import { deserializeFileBase } from './fileBase.generated.js';
+import { serializeFolderBase } from './folderBase.generated.js';
+import { deserializeFolderBase } from './folderBase.generated.js';
+import { serializeWebLinkBase } from './webLinkBase.generated.js';
+import { deserializeWebLinkBase } from './webLinkBase.generated.js';
 import { serializeAppItem } from './appItem.generated.js';
 import { deserializeAppItem } from './appItem.generated.js';
 import { serializeFileBaseOrFolderBaseOrWebLinkBase } from './fileBaseOrFolderBaseOrWebLinkBase.generated.js';
 import { deserializeFileBaseOrFolderBaseOrWebLinkBase } from './fileBaseOrFolderBaseOrWebLinkBase.generated.js';
+import { FileBase } from './fileBase.generated.js';
+import { FolderBase } from './folderBase.generated.js';
+import { WebLinkBase } from './webLinkBase.generated.js';
 import { AppItem } from './appItem.generated.js';
 import { FileBaseOrFolderBaseOrWebLinkBase } from './fileBaseOrFolderBaseOrWebLinkBase.generated.js';
 import { BoxSdkError } from '../box/errors.js';

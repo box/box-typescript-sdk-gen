@@ -1,5 +1,11 @@
+import { serializeFileMini } from './fileMini.generated.js';
+import { deserializeFileMini } from './fileMini.generated.js';
+import { serializeFolderMini } from './folderMini.generated.js';
+import { deserializeFolderMini } from './folderMini.generated.js';
 import { serializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
 import { deserializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
+import { FileMini } from './fileMini.generated.js';
+import { FolderMini } from './folderMini.generated.js';
 import { FileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';

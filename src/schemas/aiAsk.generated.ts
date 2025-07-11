@@ -1,9 +1,15 @@
+import { serializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { deserializeAiAgentAsk } from './aiAgentAsk.generated.js';
+import { serializeAiAgentReference } from './aiAgentReference.generated.js';
+import { deserializeAiAgentReference } from './aiAgentReference.generated.js';
 import { serializeAiItemAsk } from './aiItemAsk.generated.js';
 import { deserializeAiItemAsk } from './aiItemAsk.generated.js';
 import { serializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { serializeAiAgentAskOrAiAgentReference } from './aiAgentAskOrAiAgentReference.generated.js';
 import { deserializeAiAgentAskOrAiAgentReference } from './aiAgentAskOrAiAgentReference.generated.js';
+import { AiAgentAsk } from './aiAgentAsk.generated.js';
+import { AiAgentReference } from './aiAgentReference.generated.js';
 import { AiItemAsk } from './aiItemAsk.generated.js';
 import { AiDialogueHistory } from './aiDialogueHistory.generated.js';
 import { AiAgentAskOrAiAgentReference } from './aiAgentAskOrAiAgentReference.generated.js';

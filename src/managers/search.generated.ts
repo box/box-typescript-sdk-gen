@@ -1,3 +1,7 @@
+import { serializeSearchResults } from '../schemas/searchResults.generated.js';
+import { deserializeSearchResults } from '../schemas/searchResults.generated.js';
+import { serializeSearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
+import { deserializeSearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
 import { serializeMetadataQueryResults } from '../schemas/metadataQueryResults.generated.js';
 import { deserializeMetadataQueryResults } from '../schemas/metadataQueryResults.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
@@ -9,6 +13,8 @@ import { deserializeSearchResultsOrSearchResultsWithSharedLinks } from '../schem
 import { serializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { deserializeMetadataFilter } from '../schemas/metadataFilter.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
+import { SearchResults } from '../schemas/searchResults.generated.js';
+import { SearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
 import { MetadataQueryResults } from '../schemas/metadataQueryResults.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { MetadataQuery } from '../schemas/metadataQuery.generated.js';

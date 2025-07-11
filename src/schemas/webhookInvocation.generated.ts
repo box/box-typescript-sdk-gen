@@ -1,3 +1,7 @@
+import { serializeFile } from './file.generated.js';
+import { deserializeFile } from './file.generated.js';
+import { serializeFolder } from './folder.generated.js';
+import { deserializeFolder } from './folder.generated.js';
 import { serializeWebhook } from './webhook.generated.js';
 import { deserializeWebhook } from './webhook.generated.js';
 import { serializeUserMini } from './userMini.generated.js';
@@ -6,6 +10,8 @@ import { serializeFileOrFolder } from './fileOrFolder.generated.js';
 import { deserializeFileOrFolder } from './fileOrFolder.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { File } from './file.generated.js';
+import { Folder } from './folder.generated.js';
 import { Webhook } from './webhook.generated.js';
 import { UserMini } from './userMini.generated.js';
 import { FileOrFolder } from './fileOrFolder.generated.js';
