@@ -48,10 +48,10 @@ See the endpoint docs at
 
 ```ts
 await client.transfer.transferOwnedFolder(
-  newUser.id,
+  sourceUser.id,
   {
     ownedBy: {
-      id: currentUser.id,
+      id: targetUser.id,
     } satisfies TransferOwnedFolderRequestBodyOwnedByField,
   } satisfies TransferOwnedFolderRequestBody,
   {
