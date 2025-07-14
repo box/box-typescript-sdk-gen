@@ -50,16 +50,7 @@ See the endpoint docs at
 
 ```ts
 await client.skills.createBoxSkillCardsOnFile(file.id, {
-  cards: [
-    {
-      type: 'skill_card',
-      skillCardType: 'keyword',
-      skillCardTitle: { code: 'license-plates', message: titleMessage },
-      skill: { id: skillId, type: 'service' },
-      invocation: { id: invocationId, type: 'skill_invocation' },
-      entries: [{ text: 'DN86 BOX' }],
-    } satisfies KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard,
-  ],
+  cards: cardsToCreate,
 } satisfies CreateBoxSkillCardsOnFileRequestBody);
 ```
 
@@ -95,23 +86,7 @@ await client.skills.updateBoxSkillCardsOnFile(file.id, [
   {
     op: 'replace' as UpdateBoxSkillCardsOnFileRequestBodyOpField,
     path: '/cards/0',
-    value: new KeywordSkillCard({
-      type: 'skill_card' as KeywordSkillCardTypeField,
-      skillCardType: 'keyword' as KeywordSkillCardSkillCardTypeField,
-      skillCardTitle: {
-        code: 'license-plates',
-        message: updatedTitleMessage,
-      } satisfies KeywordSkillCardSkillCardTitleField,
-      skill: new KeywordSkillCardSkillField({
-        id: skillId,
-        type: 'service' as KeywordSkillCardSkillTypeField,
-      }),
-      invocation: new KeywordSkillCardInvocationField({
-        id: invocationId,
-        type: 'skill_invocation' as KeywordSkillCardInvocationTypeField,
-      }),
-      entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
-    }),
+    value: cardToUpdate,
   } satisfies UpdateBoxSkillCardsOnFileRequestBody,
 ]);
 ```

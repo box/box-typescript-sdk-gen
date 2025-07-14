@@ -1,7 +1,16 @@
+import { serializeFileFull } from './fileFull.generated.js';
+import { deserializeFileFull } from './fileFull.generated.js';
+import { serializeFolderFull } from './folderFull.generated.js';
+import { deserializeFolderFull } from './folderFull.generated.js';
+import { serializeWebLink } from './webLink.generated.js';
+import { deserializeWebLink } from './webLink.generated.js';
 import { serializeFileFullOrFolderFullOrWebLink } from './fileFullOrFolderFullOrWebLink.generated.js';
 import { deserializeFileFullOrFolderFullOrWebLink } from './fileFullOrFolderFullOrWebLink.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { FileFull } from './fileFull.generated.js';
+import { FolderFull } from './folderFull.generated.js';
+import { WebLink } from './webLink.generated.js';
 import { FileFullOrFolderFullOrWebLink } from './fileFullOrFolderFullOrWebLink.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { DateTime } from '../internal/utils.js';

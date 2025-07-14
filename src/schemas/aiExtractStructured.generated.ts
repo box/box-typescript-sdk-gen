@@ -1,7 +1,13 @@
+import { serializeAiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
+import { deserializeAiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
+import { serializeAiAgentReference } from './aiAgentReference.generated.js';
+import { deserializeAiAgentReference } from './aiAgentReference.generated.js';
 import { serializeAiItemBase } from './aiItemBase.generated.js';
 import { deserializeAiItemBase } from './aiItemBase.generated.js';
 import { serializeAiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
 import { deserializeAiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
+import { AiAgentExtractStructured } from './aiAgentExtractStructured.generated.js';
+import { AiAgentReference } from './aiAgentReference.generated.js';
 import { AiItemBase } from './aiItemBase.generated.js';
 import { AiAgentExtractStructuredOrAiAgentReference } from './aiAgentExtractStructuredOrAiAgentReference.generated.js';
 import { BoxSdkError } from '../box/errors.js';

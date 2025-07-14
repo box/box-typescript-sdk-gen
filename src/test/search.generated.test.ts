@@ -38,6 +38,12 @@ import { serializeMetadataFieldFilterDateRange } from '../schemas/metadataFieldF
 import { deserializeMetadataFieldFilterDateRange } from '../schemas/metadataFieldFilterDateRange.generated.js';
 import { serializeMetadataFieldFilterFloatRange } from '../schemas/metadataFieldFilterFloatRange.generated.js';
 import { deserializeMetadataFieldFilterFloatRange } from '../schemas/metadataFieldFilterFloatRange.generated.js';
+import { serializeSearchResults } from '../schemas/searchResults.generated.js';
+import { deserializeSearchResults } from '../schemas/searchResults.generated.js';
+import { serializeSearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
+import { deserializeSearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
+import { serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from '../schemas/metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
+import { deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from '../schemas/metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { MetadataTemplate } from '../schemas/metadataTemplate.generated.js';
 import { CreateMetadataTemplateRequestBody } from '../managers/metadataTemplates.generated.js';
@@ -66,6 +72,9 @@ import { delayInSeconds } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { MetadataFieldFilterDateRange } from '../schemas/metadataFieldFilterDateRange.generated.js';
 import { MetadataFieldFilterFloatRange } from '../schemas/metadataFieldFilterFloatRange.generated.js';
+import { SearchResults } from '../schemas/searchResults.generated.js';
+import { SearchResultsWithSharedLinks } from '../schemas/searchResultsWithSharedLinks.generated.js';
+import { MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from '../schemas/metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
 import { toString } from '../internal/utils.js';
 import { sdToJson } from '../serialization/json.js';
 import { SerializedData } from '../serialization/json.js';
@@ -262,30 +271,36 @@ test('testMetadataFilters', async function testMetadataFilters(): Promise<any> {
         ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
       },
     );
+  const searchFilters: {
+    readonly [
+      key: string
+    ]: MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString;
+  } = {
+    ['stringField']: 'stringValue',
+    ['dateField']: {
+      lt: dateTimeFromString('2035-01-01T00:00:00Z'),
+      gt: dateTimeFromString('2035-01-03T00:00:00Z'),
+    } satisfies MetadataFieldFilterDateRange,
+    ['floatField']: {
+      lt: 9.5,
+      gt: 10.5,
+    } satisfies MetadataFieldFilterFloatRange,
+    ['enumField']: 'enumValue2',
+    ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
+  };
   const query: SearchResultsOrSearchResultsWithSharedLinks =
     await client.search.searchForContent({
       ancestorFolderIds: ['0'],
       mdfilters: [
         {
-          filters: {
-            ['stringField']: 'stringValue',
-            ['dateField']: {
-              lt: dateTimeFromString('2035-01-01T00:00:00Z'),
-              gt: dateTimeFromString('2035-01-03T00:00:00Z'),
-            } satisfies MetadataFieldFilterDateRange,
-            ['floatField']: {
-              lt: 9.5,
-              gt: 10.5,
-            } satisfies MetadataFieldFilterFloatRange,
-            ['enumField']: 'enumValue2',
-            ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-          },
+          filters: searchFilters,
           scope: 'enterprise' as MetadataFilterScopeField,
           templateKey: templateKey,
         } satisfies MetadataFilter,
       ],
     } satisfies SearchForContentQueryParams);
-  if (!(query.entries!.length >= 0)) {
+  const queryResults: SearchResults = query as SearchResults;
+  if (!(queryResults.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   await client.metadataTemplates.deleteMetadataTemplate(
@@ -303,10 +318,11 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
       trashContent:
         'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
     } satisfies SearchForContentQueryParams);
-  if (!(search.entries!.length >= 0)) {
+  if (!((toString(search.type) as string) == 'search_results_items')) {
     throw new Error('Assertion failed');
   }
-  if (!((toString(search.type) as string) == 'search_results_items')) {
+  const searchResults: SearchResults = search as SearchResults;
+  if (!(searchResults.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
   const searchWithSharedLink: SearchResultsOrSearchResultsWithSharedLinks =
@@ -317,15 +333,17 @@ test('testGetSearch', async function testGetSearch(): Promise<any> {
         'non_trashed_only' as SearchForContentQueryParamsTrashContentField,
       includeRecentSharedLinks: true,
     } satisfies SearchForContentQueryParams);
-  if (!(searchWithSharedLink.entries!.length >= 0)) {
-    throw new Error('Assertion failed');
-  }
   if (
     !(
       (toString(searchWithSharedLink.type) as string) ==
       'search_results_with_shared_links'
     )
   ) {
+    throw new Error('Assertion failed');
+  }
+  const searchResultsWithSharedLink: SearchResultsWithSharedLinks =
+    searchWithSharedLink as SearchResultsWithSharedLinks;
+  if (!(searchResultsWithSharedLink.entries!.length >= 0)) {
     throw new Error('Assertion failed');
   }
 });

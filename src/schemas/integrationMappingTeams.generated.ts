@@ -1,5 +1,7 @@
 import { serializeIntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
 import { deserializeIntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
+import { serializeIntegrationMappingPartnerItemTeams } from './integrationMappingPartnerItemTeams.generated.js';
+import { deserializeIntegrationMappingPartnerItemTeams } from './integrationMappingPartnerItemTeams.generated.js';
 import { serializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { deserializeIntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { serializeIntegrationMappingPartnerItemTeamsUnion } from './integrationMappingPartnerItemTeamsUnion.generated.js';
@@ -9,6 +11,7 @@ import { deserializeFolderReference } from './folderReference.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
 import { IntegrationMappingBaseTypeField } from './integrationMappingBase.generated.js';
+import { IntegrationMappingPartnerItemTeams } from './integrationMappingPartnerItemTeams.generated.js';
 import { IntegrationMappingBase } from './integrationMappingBase.generated.js';
 import { IntegrationMappingPartnerItemTeamsUnion } from './integrationMappingPartnerItemTeamsUnion.generated.js';
 import { FolderReference } from './folderReference.generated.js';

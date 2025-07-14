@@ -1,5 +1,11 @@
+import { serializeFileFull } from './fileFull.generated.js';
+import { deserializeFileFull } from './fileFull.generated.js';
+import { serializeFolderFull } from './folderFull.generated.js';
+import { deserializeFolderFull } from './folderFull.generated.js';
 import { serializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
 import { deserializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
+import { FileFull } from './fileFull.generated.js';
+import { FolderFull } from './folderFull.generated.js';
 import { FileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';

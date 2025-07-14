@@ -4,6 +4,8 @@ import { serializeUserBase } from './userBase.generated.js';
 import { deserializeUserBase } from './userBase.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { serializeGroupBase } from './groupBase.generated.js';
+import { deserializeGroupBase } from './groupBase.generated.js';
 import { serializeAiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.js';
 import { deserializeAiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.js';
 import { serializeAiSingleAgentResponse } from './aiSingleAgentResponse.generated.js';
@@ -17,6 +19,7 @@ import { deserializeAiStudioAgentExtractResponse } from './aiStudioAgentExtractR
 import { AiSingleAgentResponseTypeField } from './aiSingleAgentResponse.generated.js';
 import { UserBase } from './userBase.generated.js';
 import { DateTime } from '../internal/utils.js';
+import { GroupBase } from './groupBase.generated.js';
 import { AiAgentAllowedEntity } from './aiAgentAllowedEntity.generated.js';
 import { AiSingleAgentResponse } from './aiSingleAgentResponse.generated.js';
 import { AiStudioAgentAskResponse } from './aiStudioAgentAskResponse.generated.js';

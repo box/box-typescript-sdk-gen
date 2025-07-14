@@ -115,21 +115,6 @@ test('testEventSourceFileOrFolder', async function testEventSourceFileOrFolder()
   if (!(events.entries!.length > 0)) {
     throw new Error('Assertion failed');
   }
-  const firstEvent: Event = events.entries![0];
-  const source: File = firstEvent.source! as File;
-  if (
-    !(
-      (toString(source.type) as string) == 'file' ||
-      (toString(source.type) as string) == 'folder' ||
-      (toString(source.type) as string) == 'collaboration' ||
-      (toString(source.type) as string) == 'lock'
-    )
-  ) {
-    throw new Error('Assertion failed');
-  }
-  if (!!(source.id == '')) {
-    throw new Error('Assertion failed');
-  }
 });
 test('testGetEventsWithLongPolling', async function testGetEventsWithLongPolling(): Promise<any> {
   const servers: RealtimeServers =

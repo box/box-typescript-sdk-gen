@@ -1,9 +1,15 @@
+import { serializeFile } from './file.generated.js';
+import { deserializeFile } from './file.generated.js';
+import { serializeFolder } from './folder.generated.js';
+import { deserializeFolder } from './folder.generated.js';
 import { serializeFileOrFolder } from './fileOrFolder.generated.js';
 import { deserializeFileOrFolder } from './fileOrFolder.generated.js';
 import { serializeEvent } from './event.generated.js';
 import { deserializeEvent } from './event.generated.js';
 import { serializeDateTime } from '../internal/utils.js';
 import { deserializeDateTime } from '../internal/utils.js';
+import { File } from './file.generated.js';
+import { Folder } from './folder.generated.js';
 import { FileOrFolder } from './fileOrFolder.generated.js';
 import { Event } from './event.generated.js';
 import { BoxSdkError } from '../box/errors.js';

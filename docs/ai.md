@@ -28,6 +28,7 @@ await client.ai.createAiAsk({
       content: 'Sun rises in the East',
     } satisfies AiItemAsk,
   ],
+  aiAgent: aiAskAgentConfig,
 } satisfies AiAsk);
 ```
 
@@ -78,6 +79,7 @@ await client.ai.createAiTextGen({
       createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
     } satisfies AiDialogueHistory,
   ],
+  aiAgent: aiTextGenAgentConfig,
 } satisfies AiTextGen);
 ```
 
@@ -149,6 +151,7 @@ See the endpoint docs at
 await client.ai.createAiExtract({
   prompt: 'firstName, lastName, location, yearOfBirth, company',
   items: [new AiItemBase({ id: file.id })],
+  aiAgent: agentIgnoringOverridingEmbeddingsModel,
 } satisfies AiExtract);
 ```
 
@@ -224,6 +227,7 @@ await client.ai.createAiExtractStructured({
     } satisfies AiExtractStructuredFieldsField,
   ],
   items: [new AiItemBase({ id: file.id })],
+  aiAgent: agentIgnoringOverridingEmbeddingsModel,
 } satisfies AiExtractStructured);
 ```
 

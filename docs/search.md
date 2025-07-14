@@ -65,19 +65,7 @@ await client.search.searchForContent({
   ancestorFolderIds: ['0'],
   mdfilters: [
     {
-      filters: {
-        ['stringField']: 'stringValue',
-        ['dateField']: {
-          lt: dateTimeFromString('2035-01-01T00:00:00Z'),
-          gt: dateTimeFromString('2035-01-03T00:00:00Z'),
-        } satisfies MetadataFieldFilterDateRange,
-        ['floatField']: {
-          lt: 9.5,
-          gt: 10.5,
-        } satisfies MetadataFieldFilterFloatRange,
-        ['enumField']: 'enumValue2',
-        ['multiSelectField']: ['multiSelectValue1', 'multiSelectValue2'],
-      },
+      filters: searchFilters,
       scope: 'enterprise' as MetadataFilterScopeField,
       templateKey: templateKey,
     } satisfies MetadataFilter,

@@ -1,9 +1,15 @@
+import { serializeHubCollaborationUserV2025R0 } from './hubCollaborationUserV2025R0.generated.js';
+import { deserializeHubCollaborationUserV2025R0 } from './hubCollaborationUserV2025R0.generated.js';
+import { serializeGroupMiniV2025R0 } from './groupMiniV2025R0.generated.js';
+import { deserializeGroupMiniV2025R0 } from './groupMiniV2025R0.generated.js';
 import { serializeHubBaseV2025R0 } from './hubBaseV2025R0.generated.js';
 import { deserializeHubBaseV2025R0 } from './hubBaseV2025R0.generated.js';
 import { serializeHubAccessGranteeV2025R0 } from './hubAccessGranteeV2025R0.generated.js';
 import { deserializeHubAccessGranteeV2025R0 } from './hubAccessGranteeV2025R0.generated.js';
 import { serializeTermsOfServiceBaseV2025R0 } from './termsOfServiceBaseV2025R0.generated.js';
 import { deserializeTermsOfServiceBaseV2025R0 } from './termsOfServiceBaseV2025R0.generated.js';
+import { HubCollaborationUserV2025R0 } from './hubCollaborationUserV2025R0.generated.js';
+import { GroupMiniV2025R0 } from './groupMiniV2025R0.generated.js';
 import { HubBaseV2025R0 } from './hubBaseV2025R0.generated.js';
 import { HubAccessGranteeV2025R0 } from './hubAccessGranteeV2025R0.generated.js';
 import { TermsOfServiceBaseV2025R0 } from './termsOfServiceBaseV2025R0.generated.js';

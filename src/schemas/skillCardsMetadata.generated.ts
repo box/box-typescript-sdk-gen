@@ -1,5 +1,17 @@
+import { serializeKeywordSkillCard } from './keywordSkillCard.generated.js';
+import { deserializeKeywordSkillCard } from './keywordSkillCard.generated.js';
+import { serializeStatusSkillCard } from './statusSkillCard.generated.js';
+import { deserializeStatusSkillCard } from './statusSkillCard.generated.js';
+import { serializeTimelineSkillCard } from './timelineSkillCard.generated.js';
+import { deserializeTimelineSkillCard } from './timelineSkillCard.generated.js';
+import { serializeTranscriptSkillCard } from './transcriptSkillCard.generated.js';
+import { deserializeTranscriptSkillCard } from './transcriptSkillCard.generated.js';
 import { serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from './keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
 import { deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from './keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
+import { KeywordSkillCard } from './keywordSkillCard.generated.js';
+import { StatusSkillCard } from './statusSkillCard.generated.js';
+import { TimelineSkillCard } from './timelineSkillCard.generated.js';
+import { TranscriptSkillCard } from './transcriptSkillCard.generated.js';
 import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from './keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { SerializedData } from '../serialization/json.js';

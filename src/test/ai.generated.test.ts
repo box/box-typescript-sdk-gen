@@ -1,3 +1,7 @@
+import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
+import { deserializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { serializeFileFull } from '../schemas/fileFull.generated.js';
 import { deserializeFileFull } from '../schemas/fileFull.generated.js';
 import { serializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
@@ -20,10 +24,6 @@ import { serializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated
 import { deserializeAiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { serializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
 import { deserializeAiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { serializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
-import { deserializeAiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
-import { serializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
-import { deserializeGetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { serializeFiles } from '../schemas/files.generated.js';
 import { deserializeFiles } from '../schemas/files.generated.js';
 import { serializeUploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -67,6 +67,9 @@ import { deserializeAiAgentExtractStructured } from '../schemas/aiAgentExtractSt
 import { serializeAiAgentLongTextTool } from '../schemas/aiAgentLongTextTool.generated.js';
 import { deserializeAiAgentLongTextTool } from '../schemas/aiAgentLongTextTool.generated.js';
 import { BoxClient } from '../client.generated.js';
+import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
+import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
+import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
@@ -78,9 +81,6 @@ import { AiTextGen } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsField } from '../schemas/aiTextGen.generated.js';
 import { AiTextGenItemsTypeField } from '../schemas/aiTextGen.generated.js';
 import { AiDialogueHistory } from '../schemas/aiDialogueHistory.generated.js';
-import { AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen } from '../schemas/aiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen.generated.js';
-import { GetAiAgentDefaultConfigQueryParams } from '../managers/ai.generated.js';
-import { GetAiAgentDefaultConfigQueryParamsModeField } from '../managers/ai.generated.js';
 import { Files } from '../schemas/files.generated.js';
 import { UploadFileRequestBody } from '../managers/uploads.generated.js';
 import { UploadFileRequestBodyAttributesField } from '../managers/uploads.generated.js';
@@ -123,6 +123,12 @@ import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
 export const client: BoxClient = getDefaultClient();
 test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'en-US',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  const aiAskAgentConfig: AiAgentAsk = aiAgentConfig as AiAgentAsk;
   const fileToAsk: FileFull = await uploadNewFile();
   const response: undefined | AiResponseFull = await client.ai.createAiAsk({
     mode: 'single_item_qa' as AiAskModeField,
@@ -134,6 +140,7 @@ test('testAskAISingleItem', async function testAskAISingleItem(): Promise<any> {
         content: 'Sun rises in the East',
       } satisfies AiItemAsk,
     ],
+    aiAgent: aiAskAgentConfig,
   } satisfies AiAsk);
   if (!(response!.answer.includes('East') as boolean)) {
     throw new Error('Assertion failed');
@@ -173,6 +180,12 @@ test('testAskAIMultipleItems', async function testAskAIMultipleItems(): Promise<
 });
 test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogueHistory(): Promise<any> {
   const fileToAsk: FileFull = await uploadNewFile();
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'en-US',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  const aiTextGenAgentConfig: AiAgentTextGen = aiAgentConfig as AiAgentTextGen;
   const response: AiResponse = await client.ai.createAiTextGen({
     prompt: 'Parapharse the document.s',
     items: [
@@ -195,6 +208,7 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
         createdAt: dateTimeFromString('2021-01-01T00:00:00Z'),
       } satisfies AiDialogueHistory,
     ],
+    aiAgent: aiTextGenAgentConfig,
   } satisfies AiTextGen);
   if (!(response.answer.includes('sun') as boolean)) {
     throw new Error('Assertion failed');
@@ -205,107 +219,128 @@ test('testAITextGenWithDialogueHistory', async function testAITextGenWithDialogu
   await client.files.deleteFileById(fileToAsk.id);
 });
 test('testGettingAIAskAgentConfig', async function testGettingAIAskAgentConfig(): Promise<any> {
-  const aiAskConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'ask' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',
     } satisfies GetAiAgentDefaultConfigQueryParams);
-  if (!(aiAskConfig.type == 'ai_agent_ask')) {
+  if (!(aiAgentConfig.type == 'ai_agent_ask')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicText!.model! == '')) {
+  const aiAgentAskConfig: AiAgentAsk = aiAgentConfig as AiAgentAsk;
+  if (!!(aiAgentAskConfig.basicText!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicText!.promptTemplate! == '')) {
+  if (!!(aiAgentAskConfig.basicText!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!(aiAskConfig.basicText!.numTokensForCompletion! > -1)) {
+  if (!(aiAgentAskConfig.basicText!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicText!.llmEndpointParams! == void 0)) {
+  if (!!(aiAgentAskConfig.basicText!.llmEndpointParams! == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicTextMulti!.model! == '')) {
+  if (!!(aiAgentAskConfig.basicTextMulti!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicTextMulti!.promptTemplate! == '')) {
+  if (!!(aiAgentAskConfig.basicTextMulti!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!(aiAskConfig.basicTextMulti!.numTokensForCompletion! > -1)) {
+  if (!(aiAgentAskConfig.basicTextMulti!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.basicTextMulti!.llmEndpointParams! == void 0)) {
+  if (!!(aiAgentAskConfig.basicTextMulti!.llmEndpointParams! == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longText!.model! == '')) {
+  if (!!(aiAgentAskConfig.longText!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longText!.promptTemplate! == '')) {
+  if (!!(aiAgentAskConfig.longText!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!(aiAskConfig.longText!.numTokensForCompletion! > -1)) {
+  if (!(aiAgentAskConfig.longText!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longText!.embeddings!.model! == '')) {
+  if (!!(aiAgentAskConfig.longText!.embeddings!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longText!.embeddings!.strategy!.id! == '')) {
+  if (!!(aiAgentAskConfig.longText!.embeddings!.strategy!.id! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longText!.llmEndpointParams! == void 0)) {
+  if (!!(aiAgentAskConfig.longText!.llmEndpointParams! == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longTextMulti!.model! == '')) {
+  if (!!(aiAgentAskConfig.longTextMulti!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longTextMulti!.promptTemplate! == '')) {
+  if (!!(aiAgentAskConfig.longTextMulti!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!(aiAskConfig.longTextMulti!.numTokensForCompletion! > -1)) {
+  if (!(aiAgentAskConfig.longTextMulti!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longTextMulti!.embeddings!.model! == '')) {
+  if (!!(aiAgentAskConfig.longTextMulti!.embeddings!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longTextMulti!.embeddings!.strategy!.id! == '')) {
+  if (!!(aiAgentAskConfig.longTextMulti!.embeddings!.strategy!.id! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiAskConfig.longTextMulti!.llmEndpointParams! == void 0)) {
+  if (!!(aiAgentAskConfig.longTextMulti!.llmEndpointParams! == void 0)) {
     throw new Error('Assertion failed');
   }
 });
 test('testGettingAITextGenAgentConfig', async function testGettingAITextGenAgentConfig(): Promise<any> {
-  const aiTextGenConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
     await client.ai.getAiAgentDefaultConfig({
       mode: 'text_gen' as GetAiAgentDefaultConfigQueryParamsModeField,
       language: 'en-US',
     } satisfies GetAiAgentDefaultConfigQueryParams);
-  if (!(aiTextGenConfig.type == 'ai_agent_text_gen')) {
+  if (!(aiAgentConfig.type == 'ai_agent_text_gen')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.llmEndpointParams! == void 0)) {
+  const aiAgentTextGenConfig: AiAgentTextGen = aiAgentConfig as AiAgentTextGen;
+  if (!!(aiAgentTextGenConfig.basicGen!.llmEndpointParams! == void 0)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.model! == '')) {
+  if (!!(aiAgentTextGenConfig.basicGen!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.promptTemplate! == '')) {
+  if (!!(aiAgentTextGenConfig.basicGen!.promptTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!(aiTextGenConfig.basicGen!.numTokensForCompletion! > -1)) {
+  if (!(aiAgentTextGenConfig.basicGen!.numTokensForCompletion! > -1)) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.contentTemplate! == '')) {
+  if (!!(aiAgentTextGenConfig.basicGen!.contentTemplate! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.embeddings!.model! == '')) {
+  if (!!(aiAgentTextGenConfig.basicGen!.embeddings!.model! == '')) {
     throw new Error('Assertion failed');
   }
-  if (!!(aiTextGenConfig.basicGen!.embeddings!.strategy!.id! == '')) {
+  if (!!(aiAgentTextGenConfig.basicGen!.embeddings!.strategy!.id! == '')) {
     throw new Error('Assertion failed');
   }
 });
 test('testAIExtract', async function testAIExtract(): Promise<any> {
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'extract' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'en-US',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  const aiExtractAgentConfig: AiAgentExtract = aiAgentConfig as AiAgentExtract;
+  const longTextConfigWithNoEmbeddings: AiAgentLongTextTool = {
+    systemMessage: aiExtractAgentConfig.longText!.systemMessage,
+    promptTemplate: aiExtractAgentConfig.longText!.promptTemplate,
+    model: aiExtractAgentConfig.longText!.model,
+    numTokensForCompletion:
+      aiExtractAgentConfig.longText!.numTokensForCompletion,
+    llmEndpointParams: aiExtractAgentConfig.longText!.llmEndpointParams,
+  } satisfies AiAgentLongTextTool;
+  const agentIgnoringOverridingEmbeddingsModel: AiAgentExtract =
+    new AiAgentExtract({
+      basicText: aiExtractAgentConfig.basicText,
+      longText: longTextConfigWithNoEmbeddings,
+    });
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: ''.concat(getUuid(), '.txt') as string,
@@ -320,6 +355,7 @@ test('testAIExtract', async function testAIExtract(): Promise<any> {
   const response: AiResponse = await client.ai.createAiExtract({
     prompt: 'firstName, lastName, location, yearOfBirth, company',
     items: [new AiItemBase({ id: file.id })],
+    aiAgent: agentIgnoringOverridingEmbeddingsModel,
   } satisfies AiExtract);
   const expectedResponse: string =
     '{"firstName": "John", "lastName": "Doe", "location": "San Francisco", "yearOfBirth": "1990", "company": "Box"}';
@@ -332,6 +368,27 @@ test('testAIExtract', async function testAIExtract(): Promise<any> {
   await client.files.deleteFileById(file.id);
 });
 test('testAIExtractStructuredWithFields', async function testAIExtractStructuredWithFields(): Promise<any> {
+  const aiAgentConfig: AiAgentAskOrAiAgentExtractOrAiAgentExtractStructuredOrAiAgentTextGen =
+    await client.ai.getAiAgentDefaultConfig({
+      mode: 'extract_structured' as GetAiAgentDefaultConfigQueryParamsModeField,
+      language: 'en-US',
+    } satisfies GetAiAgentDefaultConfigQueryParams);
+  const aiExtractStructuredAgentConfig: AiAgentExtractStructured =
+    aiAgentConfig as AiAgentExtractStructured;
+  const longTextConfigWithNoEmbeddings: AiAgentLongTextTool = {
+    systemMessage: aiExtractStructuredAgentConfig.longText!.systemMessage,
+    promptTemplate: aiExtractStructuredAgentConfig.longText!.promptTemplate,
+    model: aiExtractStructuredAgentConfig.longText!.model,
+    numTokensForCompletion:
+      aiExtractStructuredAgentConfig.longText!.numTokensForCompletion,
+    llmEndpointParams:
+      aiExtractStructuredAgentConfig.longText!.llmEndpointParams,
+  } satisfies AiAgentLongTextTool;
+  const agentIgnoringOverridingEmbeddingsModel: AiAgentExtractStructured =
+    new AiAgentExtractStructured({
+      basicText: aiExtractStructuredAgentConfig.basicText,
+      longText: longTextConfigWithNoEmbeddings,
+    });
   const uploadedFiles: Files = await client.uploads.uploadFile({
     attributes: {
       name: ''.concat(getUuid(), '.txt') as string,
@@ -387,6 +444,7 @@ test('testAIExtractStructuredWithFields', async function testAIExtractStructured
         } satisfies AiExtractStructuredFieldsField,
       ],
       items: [new AiItemBase({ id: file.id })],
+      aiAgent: agentIgnoringOverridingEmbeddingsModel,
     } satisfies AiExtractStructured);
   if (
     !(

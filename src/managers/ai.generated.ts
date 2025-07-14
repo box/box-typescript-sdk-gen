@@ -1,3 +1,11 @@
+import { serializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { deserializeAiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { serializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { deserializeAiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { serializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { deserializeAiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { serializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
+import { deserializeAiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { serializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { deserializeAiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { serializeClientError } from '../schemas/clientError.generated.js';
@@ -17,6 +25,10 @@ import { deserializeAiExtractStructuredResponse } from '../schemas/aiExtractStru
 import { serializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { deserializeAiExtractStructured } from '../schemas/aiExtractStructured.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
+import { AiAgentAsk } from '../schemas/aiAgentAsk.generated.js';
+import { AiAgentExtract } from '../schemas/aiAgentExtract.generated.js';
+import { AiAgentExtractStructured } from '../schemas/aiAgentExtractStructured.generated.js';
+import { AiAgentTextGen } from '../schemas/aiAgentTextGen.generated.js';
 import { AiResponseFull } from '../schemas/aiResponseFull.generated.js';
 import { ClientError } from '../schemas/clientError.generated.js';
 import { AiAsk } from '../schemas/aiAsk.generated.js';
