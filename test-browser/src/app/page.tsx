@@ -2,7 +2,7 @@
 
 import styles from './page.module.css';
 import { useEffect, useState } from 'react';
-import { setEnvVar } from 'box-typescript-sdk-gen/lib/internal/utils';
+import { setEnvVar } from 'box-typescript-sdk-gen/internal/utils';
 import { setupExpect } from '@/utils/expect';
 import { TestResult, createTestRegistry } from '@/utils/testRegistry';
 import { testConfig } from '@/../sdkTest.config.mjs';
@@ -16,7 +16,6 @@ declare global {
 
 export default function Home() {
   const [testResults, setTestResults] = useState<TestResult[]>([]);
-  const [testFiles, setTestFiles] = useState<string[]>([]);
   const [error, setError] = useState<string>();
 
   const registerTestMethod = () => {
@@ -43,48 +42,22 @@ export default function Home() {
       });
   };
 
-  const fetchTestFiles = async () => {
-    try {
-      const response = await fetch('/api/tests');
-      const data = await response.json();
-      if (data.error) {
-        setError(data.error);
-        return;
-      }
-      setTestFiles(data.testFiles);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to fetch test files');
-    }
-  };
-
   useEffect(() => {
     registerTestMethod();
     setupExpect();
-    setupEnvironment().then(() => {
-      fetchTestFiles();
+    setupEnvironment().then(async () => {
+      try {
+        await import('../utils/importTests');
+        setTimeout(() => {
+          window.testRegistry.runAll();
+        }, 3000);
+      } catch (e) {
+        setError(
+          e instanceof Error ? e.message : 'Failed to import test files',
+        );
+      }
     });
   }, []);
-
-  useEffect(() => {
-    if (testFiles.length === 0) {
-      setError('No test files available');
-      return;
-    }
-
-    setError('');
-    try {
-      Promise.all(
-        testFiles.map(
-          (file) => import(`box-typescript-sdk-gen/lib/test/${file}.js`),
-        ),
-      ).then(() => {
-        // Run all tests after importing them
-        window.testRegistry.runAll();
-      });
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to import test files');
-    }
-  }, [testFiles]);
 
   // Add new useEffect to update test results label
   useEffect(() => {

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "npm run prebuild && next dev --turbopack",
+    "prebuild": "tsx init.ts",
     "build": "next build",
     "build:dev": "NODE_ENV=development next build",
     "build-run": "npm run build && npm run start",
@@ -29,6 +30,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
     "start-server-and-test": "^2.0.11",
-    "typescript": "^5"
+    "typescript": "^5",
+    "tsx": "^4.20.3"
   }
 }
