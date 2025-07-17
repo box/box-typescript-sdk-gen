@@ -3,34 +3,35 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Highlighting the Key Differences](#highlighting-the-key-differences)
-  - [Native support for async-await and Promises](#native-support-for-async-await-and-promises)
-  - [Embracing Explicitly Defined Schemas](#embracing-explicitly-defined-schemas)
-  - [Immutable design](#immutable-design)
-- [Diving into Authentication](#diving-into-authentication)
-  - [Developer Token](#developer-token)
-  - [JWT Authentication](#jwt-authentication)
-    - [Leveraging the JWT Configuration File](#leveraging-the-jwt-configuration-file)
-    - [Manually Providing JWT Configuration](#manually-providing-jwt-configuration)
-    - [User Authentication Simplified](#user-authentication-simplified)
-  - [Client Credentials Grant](#client-credentials-grant)
-    - [Service Account Token Acquisition](#service-account-token-acquisition)
-    - [User Token Acquisition](#user-token-acquisition)
-  - [Smooth Switching between Service Account and User](#smooth-switching-between-service-account-and-user)
-  - [OAuth 2.0 Authentication](#oauth-20-authentication)
-    - [Fetching the Authorization URL](#fetching-the-authorization-url)
-    - [Seamless Authentication](#seamless-authentication)
-  - [Customizable Token Storage and Retrieval Callbacks](#customizable-token-storage-and-retrieval-callbacks)
-  - [Downscope token](#downscope-token)
-  - [Revoke token](#revoke-token)
-- [Configuration](#configuration)
-  - [As-User header](#as-user-header)
-  - [Custom Base URLs](#custom-base-urls)
-- [Convenience methods](#convenience-methods)
-  - [Webhook validation](#webhook-validation)
-  - [Chunked upload of big files](#chunked-upload-of-big-files)
+- [Migration Guide: From `Box Node SDK` to `Box TypeScript SDK`](#migration-guide-from-box-node-sdk-to-box-typescript-sdk)
+  - [Introduction](#introduction)
+  - [Installation](#installation)
+  - [Highlighting the Key Differences](#highlighting-the-key-differences)
+    - [Native support for async-await and Promises](#native-support-for-async-await-and-promises)
+    - [Embracing Explicitly Defined Schemas](#embracing-explicitly-defined-schemas)
+    - [Immutable design](#immutable-design)
+  - [Diving into Authentication](#diving-into-authentication)
+    - [Developer Token](#developer-token)
+    - [JWT Authentication](#jwt-authentication)
+      - [Leveraging the JWT Configuration File](#leveraging-the-jwt-configuration-file)
+      - [Manually Providing JWT Configuration](#manually-providing-jwt-configuration)
+      - [User Authentication Simplified](#user-authentication-simplified)
+    - [Client Credentials Grant](#client-credentials-grant)
+      - [Service Account Token Acquisition](#service-account-token-acquisition)
+      - [User Token Acquisition](#user-token-acquisition)
+    - [Smooth Switching between Service Account and User](#smooth-switching-between-service-account-and-user)
+    - [OAuth 2.0 Authentication](#oauth-20-authentication)
+      - [Fetching the Authorization URL](#fetching-the-authorization-url)
+      - [Seamless Authentication](#seamless-authentication)
+    - [Customizable Token Storage and Retrieval Callbacks](#customizable-token-storage-and-retrieval-callbacks)
+    - [Downscope token](#downscope-token)
+    - [Revoke token](#revoke-token)
+  - [Configuration](#configuration)
+    - [As-User header](#as-user-header)
+    - [Custom Base URLs](#custom-base-urls)
+  - [Convenience methods](#convenience-methods)
+    - [Webhook validation](#webhook-validation)
+    - [Chunked upload of big files](#chunked-upload-of-big-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -144,7 +145,7 @@ var client = sdk.getBasicClient('YOUR-DEVELOPER-TOKEN');
 The new SDK offers a more streamlined approach:
 
 ```typescript
-const { BoxClient, BoxDeveloperTokenAuth } = require('box-typescript-sdk-gen');
+import { BoxClient, BoxDeveloperTokenAuth } from 'box-typescript-sdk-gen';
 
 const auth = new BoxDeveloperTokenAuth({ token: 'DEVELOPER_TOKEN_GOES_HERE' });
 const client = new BoxClient({ auth });
@@ -171,7 +172,7 @@ var serviceAccountClient = sdk.getAppAuthClient('enterprise');
 The new SDK provides a more organized approach:
 
 ```typescript
-const { BoxClient, BoxJwtAuth, JwtConfig } = require('box-typescript-sdk-gen');
+import { BoxClient, BoxJwtAuth, JwtConfig } from 'box-typescript-sdk-gen';
 
 const jwtConfig = JwtConfig.fromConfigFile('/path/to/config.json');
 const auth = new BoxJwtAuth({ config: jwtConfig });
@@ -207,7 +208,7 @@ var serviceAccountClient = sdk.getAppAuthClient(
 The new SDK introduces a more structured approach:
 
 ```typescript
-const { BoxJwtAuth, JwtConfig } = require('box-typescript-sdk-gen');
+import { BoxJwtAuth, JwtConfig } from 'box-typescript-sdk-gen';
 
 const jwtConfig = new JwtConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -269,7 +270,7 @@ const client = sdk.getAnonymousClient();
 The new SDK offers a more organized structure:
 
 ```typescript
-const { CcgConfig, BoxCcgAuth, BoxClient } = require('box-typescript-sdk-gen');
+import { CcgConfig, BoxCcgAuth, BoxClient } from 'box-typescript-sdk-gen';
 
 const ccgConfig = new CcgConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -303,7 +304,7 @@ const client = sdk.getCCGClientForUser('USER_ID');
 The new SDK streamlines the process:
 
 ```typescript
-const { CcgConfig, BoxCcgAuth, BoxClient } = require('box-typescript-sdk-gen');
+import { CcgConfig, BoxCcgAuth, BoxClient } from 'box-typescript-sdk-gen';
 
 const ccgConfig = new CcgConfig({
   clientId: 'YOUR_CLIENT_ID',
@@ -369,7 +370,7 @@ var authorize_url = sdk.getAuthorizeURL({
 The new SDK provides more flexibility:
 
 ```typescript
-const { BoxOAuth, OAuthConfig } = require('box-typescript-sdk-gen');
+import { BoxOAuth, OAuthConfig } from 'box-typescript-sdk-gen';
 
 const config = new OAuthConfig({
   clientId: 'OAUTH_CLIENT_ID',
@@ -452,13 +453,9 @@ TokenStore.prototype.clear = function (callback) {
 The new SDK allows developers to define custom classes for token storage:
 
 ```typescript
-const { BoxOAuth } = require('box-typescript-sdk-gen');
-const {
-  TokenStorage,
-} = require('box-typescript-sdk-gen/lib/box/tokenStorage.generated.js');
-const {
-  AccessToken,
-} = require('box-typescript-sdk-gen/lib/schemas/accessToken.generated.js');
+import { BoxOAuth } from 'box-typescript-sdk-gen';
+import { TokenStorage } from 'box-typescript-sdk-gen/box/tokenStorage.generated';
+import { AccessToken } from 'box-typescript-sdk-gen/schemas/accessToken.generated';
 
 class CustomTokenStorage extends TokenStorage {
   async store(token: AccessToken): Promise<undefined> {
@@ -647,7 +644,7 @@ as the `file` parameter, and the `fileName` and `fileSize` parameters are now pa
 The `parentFolderId` parameter is also required to specify the folder where the file will be uploaded.
 
 ```typescript
-import { File } from 'box-typescript-sdk-gen/lib/schemas/file.generated.js';
+import { File } from 'box-typescript-sdk-gen/schemas/file.generated';
 
 var fileByteStream = fs.createReadStream('/path/to/file.txt');
 var fileName = 'new_name.txt';

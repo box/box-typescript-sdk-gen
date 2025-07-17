@@ -17,10 +17,27 @@
   "types": "./lib/index.d.ts",
   "browser": {
     "./src/internal/utilsNode.ts": "./src/internal/utilsBrowser.ts",
-    "./lib/internal/utilsNode.js": "./lib/internal/utilsBrowser.js"
+    "./lib/internal/utilsNode.js": "./lib/internal/utilsBrowser.js",
+    "./lib-esm/internal/utilsNode.js": "./lib-esm/internal/utilsBrowser.js"
   },
+  "module": "./lib-esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib-esm/index.js",
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./*": {
+      "import": "./lib-esm/*.js",
+      "require": "./lib/*.js",
+      "types": "./lib/*.d.ts"
+    }
+  },
+  "sideEffects": false,
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --project tsconfig.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
     "postbuild": "rollup -c",
     "start": "echo \"Error: no start specified\" && exit 1",
     "test": "jest"
@@ -57,6 +74,7 @@
   },
   "files": [
     "lib",
+    "lib-esm",
     "src",
     "README.md",
     "LICENSE"
