@@ -1,9 +1,12 @@
 # HubsManager
 
 - [List all hubs](#list-all-hubs)
+- [Create hub](#create-hub)
 - [List all hubs for requesting enterprise](#list-all-hubs-for-requesting-enterprise)
 - [Get hub information by ID](#get-hub-information-by-id)
+- [Update hub information by ID](#update-hub-information-by-id)
 - [Delete hub](#delete-hub)
+- [Copy hub](#copy-hub)
 
 ## List all hubs
 
@@ -38,6 +41,30 @@ await client.hubs.getHubsV2025R0({
 This function returns a value of type `HubsV2025R0`.
 
 Returns all hubs for the given user or enterprise.
+
+## Create hub
+
+Creates a new Hub.
+
+This operation is performed by calling function `createHubV2025R0`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/v2025.0/post-hubs/).
+
+_Currently we don't have an example for calling `createHubV2025R0` in integration tests_
+
+### Arguments
+
+- requestBody `HubCreateRequestV2025R0`
+  - Request body of createHubV2025R0 method
+- optionalsInput `CreateHubV2025R0OptionalsInput`
+  -
+
+### Returns
+
+This function returns a value of type `HubV2025R0`.
+
+Returns a new Hub object.
 
 ## List all hubs for requesting enterprise
 
@@ -103,6 +130,32 @@ This function returns a value of type `HubV2025R0`.
 
 Returns a hub object.
 
+## Update hub information by ID
+
+Updates a Hub. Can be used to change title, description, or Hub settings.
+
+This operation is performed by calling function `updateHubByIdV2025R0`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/v2025.0/put-hubs-id/).
+
+_Currently we don't have an example for calling `updateHubByIdV2025R0` in integration tests_
+
+### Arguments
+
+- hubId `string`
+  - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
+- requestBody `HubUpdateRequestV2025R0`
+  - Request body of updateHubByIdV2025R0 method
+- optionalsInput `UpdateHubByIdV2025R0OptionalsInput`
+  -
+
+### Returns
+
+This function returns a value of type `HubV2025R0`.
+
+Returns a Hub object.
+
 ## Delete hub
 
 Deletes a single hub.
@@ -131,3 +184,31 @@ This function returns a value of type `undefined`.
 
 A blank response is returned if the hub was
 successfully deleted.
+
+## Copy hub
+
+Creates a copy of a Hub.
+
+The original Hub will not be modified.
+
+This operation is performed by calling function `createHubCopyV2025R0`.
+
+See the endpoint docs at
+[API Reference](https://developer.box.com/reference/v2025.0/post-hubs-id-copy/).
+
+_Currently we don't have an example for calling `createHubCopyV2025R0` in integration tests_
+
+### Arguments
+
+- hubId `string`
+  - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
+- requestBody `HubCopyRequestV2025R0`
+  - Request body of createHubCopyV2025R0 method
+- optionalsInput `CreateHubCopyV2025R0OptionalsInput`
+  -
+
+### Returns
+
+This function returns a value of type `HubV2025R0`.
+
+Returns a new Hub object.

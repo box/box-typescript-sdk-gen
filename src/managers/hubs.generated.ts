@@ -6,11 +6,20 @@ import { serializeBoxVersionHeaderV2025R0 } from '../parameters/v2025R0/boxVersi
 import { deserializeBoxVersionHeaderV2025R0 } from '../parameters/v2025R0/boxVersionHeaderV2025R0.generated.js';
 import { serializeHubV2025R0 } from '../schemas/v2025R0/hubV2025R0.generated.js';
 import { deserializeHubV2025R0 } from '../schemas/v2025R0/hubV2025R0.generated.js';
+import { serializeHubCreateRequestV2025R0 } from '../schemas/v2025R0/hubCreateRequestV2025R0.generated.js';
+import { deserializeHubCreateRequestV2025R0 } from '../schemas/v2025R0/hubCreateRequestV2025R0.generated.js';
+import { serializeHubUpdateRequestV2025R0 } from '../schemas/v2025R0/hubUpdateRequestV2025R0.generated.js';
+import { deserializeHubUpdateRequestV2025R0 } from '../schemas/v2025R0/hubUpdateRequestV2025R0.generated.js';
+import { serializeHubCopyRequestV2025R0 } from '../schemas/v2025R0/hubCopyRequestV2025R0.generated.js';
+import { deserializeHubCopyRequestV2025R0 } from '../schemas/v2025R0/hubCopyRequestV2025R0.generated.js';
 import { ResponseFormat } from '../networking/fetchOptions.generated.js';
 import { HubsV2025R0 } from '../schemas/v2025R0/hubsV2025R0.generated.js';
 import { ClientErrorV2025R0 } from '../schemas/v2025R0/clientErrorV2025R0.generated.js';
 import { BoxVersionHeaderV2025R0 } from '../parameters/v2025R0/boxVersionHeaderV2025R0.generated.js';
 import { HubV2025R0 } from '../schemas/v2025R0/hubV2025R0.generated.js';
+import { HubCreateRequestV2025R0 } from '../schemas/v2025R0/hubCreateRequestV2025R0.generated.js';
+import { HubUpdateRequestV2025R0 } from '../schemas/v2025R0/hubUpdateRequestV2025R0.generated.js';
+import { HubCopyRequestV2025R0 } from '../schemas/v2025R0/hubCopyRequestV2025R0.generated.js';
 import { BoxSdkError } from '../box/errors.js';
 import { Authentication } from '../networking/auth.generated.js';
 import { NetworkSession } from '../networking/network.generated.js';
@@ -28,6 +37,25 @@ import { sdIsNumber } from '../serialization/json.js';
 import { sdIsString } from '../serialization/json.js';
 import { sdIsList } from '../serialization/json.js';
 import { sdIsMap } from '../serialization/json.js';
+export class CreateHubV2025R0Optionals {
+  readonly headers: CreateHubV2025R0Headers = new CreateHubV2025R0Headers({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<CreateHubV2025R0Optionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CreateHubV2025R0Optionals, 'headers' | 'cancellationToken'>>,
+  ) {
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateHubV2025R0OptionalsInput {
+  readonly headers?: CreateHubV2025R0Headers;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
 export class GetHubByIdV2025R0Optionals {
   readonly headers: GetHubByIdV2025R0Headers = new GetHubByIdV2025R0Headers({});
   readonly cancellationToken?: CancellationToken = void 0;
@@ -47,6 +75,31 @@ export class GetHubByIdV2025R0Optionals {
 }
 export interface GetHubByIdV2025R0OptionalsInput {
   readonly headers?: GetHubByIdV2025R0Headers;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class UpdateHubByIdV2025R0Optionals {
+  readonly headers: UpdateHubByIdV2025R0Headers =
+    new UpdateHubByIdV2025R0Headers({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      UpdateHubByIdV2025R0Optionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<UpdateHubByIdV2025R0Optionals, 'headers' | 'cancellationToken'>
+      >,
+  ) {
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface UpdateHubByIdV2025R0OptionalsInput {
+  readonly headers?: UpdateHubByIdV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export class DeleteHubByIdV2025R0Optionals {
@@ -72,6 +125,31 @@ export class DeleteHubByIdV2025R0Optionals {
 }
 export interface DeleteHubByIdV2025R0OptionalsInput {
   readonly headers?: DeleteHubByIdV2025R0Headers;
+  readonly cancellationToken?: undefined | CancellationToken;
+}
+export class CreateHubCopyV2025R0Optionals {
+  readonly headers: CreateHubCopyV2025R0Headers =
+    new CreateHubCopyV2025R0Headers({});
+  readonly cancellationToken?: CancellationToken = void 0;
+  constructor(
+    fields: Omit<
+      CreateHubCopyV2025R0Optionals,
+      'headers' | 'cancellationToken'
+    > &
+      Partial<
+        Pick<CreateHubCopyV2025R0Optionals, 'headers' | 'cancellationToken'>
+      >,
+  ) {
+    if (fields.headers !== undefined) {
+      this.headers = fields.headers;
+    }
+    if (fields.cancellationToken !== undefined) {
+      this.cancellationToken = fields.cancellationToken;
+    }
+  }
+}
+export interface CreateHubCopyV2025R0OptionalsInput {
+  readonly headers?: CreateHubCopyV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export type GetHubsV2025R0QueryParamsDirectionField = 'ASC' | 'DESC' | string;
@@ -124,6 +202,40 @@ export class GetHubsV2025R0Headers {
   }
 }
 export interface GetHubsV2025R0HeadersInput {
+  /**
+   * Version header. */
+  readonly boxVersion?: BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
+export class CreateHubV2025R0Headers {
+  /**
+   * Version header. */
+  readonly boxVersion: BoxVersionHeaderV2025R0 =
+    '2025.0' as BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateHubV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
+      Partial<Pick<CreateHubV2025R0Headers, 'boxVersion' | 'extraHeaders'>>,
+  ) {
+    if (fields.boxVersion !== undefined) {
+      this.boxVersion = fields.boxVersion;
+    }
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateHubV2025R0HeadersInput {
   /**
    * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
@@ -234,6 +346,40 @@ export interface GetHubByIdV2025R0HeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class UpdateHubByIdV2025R0Headers {
+  /**
+   * Version header. */
+  readonly boxVersion: BoxVersionHeaderV2025R0 =
+    '2025.0' as BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<UpdateHubByIdV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
+      Partial<Pick<UpdateHubByIdV2025R0Headers, 'boxVersion' | 'extraHeaders'>>,
+  ) {
+    if (fields.boxVersion !== undefined) {
+      this.boxVersion = fields.boxVersion;
+    }
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface UpdateHubByIdV2025R0HeadersInput {
+  /**
+   * Version header. */
+  readonly boxVersion?: BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class DeleteHubByIdV2025R0Headers {
   /**
    * Version header. */
@@ -268,6 +414,40 @@ export interface DeleteHubByIdV2025R0HeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
+export class CreateHubCopyV2025R0Headers {
+  /**
+   * Version header. */
+  readonly boxVersion: BoxVersionHeaderV2025R0 =
+    '2025.0' as BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?: {
+    readonly [key: string]: undefined | string;
+  } = {};
+  constructor(
+    fields: Omit<CreateHubCopyV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
+      Partial<Pick<CreateHubCopyV2025R0Headers, 'boxVersion' | 'extraHeaders'>>,
+  ) {
+    if (fields.boxVersion !== undefined) {
+      this.boxVersion = fields.boxVersion;
+    }
+    if (fields.extraHeaders !== undefined) {
+      this.extraHeaders = fields.extraHeaders;
+    }
+  }
+}
+export interface CreateHubCopyV2025R0HeadersInput {
+  /**
+   * Version header. */
+  readonly boxVersion?: BoxVersionHeaderV2025R0;
+  /**
+   * Extra headers that will be included in the HTTP request. */
+  readonly extraHeaders?:
+    | undefined
+    | {
+        readonly [key: string]: undefined | string;
+      };
+}
 export class HubsManager {
   readonly auth?: Authentication;
   readonly networkSession: NetworkSession = new NetworkSession({});
@@ -276,9 +456,12 @@ export class HubsManager {
       HubsManager,
       | 'networkSession'
       | 'getHubsV2025R0'
+      | 'createHubV2025R0'
       | 'getEnterpriseHubsV2025R0'
       | 'getHubByIdV2025R0'
+      | 'updateHubByIdV2025R0'
       | 'deleteHubByIdV2025R0'
+      | 'createHubCopyV2025R0'
     > &
       Partial<Pick<HubsManager, 'networkSession'>>,
   ) {
@@ -339,6 +522,50 @@ export class HubsManager {
       );
     return {
       ...deserializeHubsV2025R0(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
+   * Creates a new Hub.
+   * @param {HubCreateRequestV2025R0} requestBody Request body of createHubV2025R0 method
+   * @param {CreateHubV2025R0OptionalsInput} optionalsInput
+   * @returns {Promise<HubV2025R0>}
+   */
+  async createHubV2025R0(
+    requestBody: HubCreateRequestV2025R0,
+    optionalsInput: CreateHubV2025R0OptionalsInput = {},
+  ): Promise<HubV2025R0> {
+    const optionals: CreateHubV2025R0Optionals = new CreateHubV2025R0Optionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
+    });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{ ['box-version']: toString(headers.boxVersion) as string },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/hubs',
+          ) as string,
+          method: 'POST',
+          headers: headersMap,
+          data: serializeHubCreateRequestV2025R0(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeHubV2025R0(response.data!),
       rawData: response.data!,
     };
   }
@@ -452,6 +679,61 @@ export class HubsManager {
     };
   }
   /**
+     * Updates a Hub. Can be used to change title, description, or Hub settings.
+     * @param {string} hubId The unique identifier that represent a hub.
+    
+    The ID for any hub can be determined
+    by visiting this hub in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/hubs/123`
+    the `hub_id` is `123`.
+    Example: "12345"
+     * @param {HubUpdateRequestV2025R0} requestBody Request body of updateHubByIdV2025R0 method
+     * @param {UpdateHubByIdV2025R0OptionalsInput} optionalsInput
+     * @returns {Promise<HubV2025R0>}
+     */
+  async updateHubByIdV2025R0(
+    hubId: string,
+    requestBody: HubUpdateRequestV2025R0,
+    optionalsInput: UpdateHubByIdV2025R0OptionalsInput = {},
+  ): Promise<HubV2025R0> {
+    const optionals: UpdateHubByIdV2025R0Optionals =
+      new UpdateHubByIdV2025R0Optionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{ ['box-version']: toString(headers.boxVersion) as string },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/hubs/',
+            toString(hubId) as string,
+          ) as string,
+          method: 'PUT',
+          headers: headersMap,
+          data: serializeHubUpdateRequestV2025R0(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeHubV2025R0(response.data!),
+      rawData: response.data!,
+    };
+  }
+  /**
      * Deletes a single hub.
      * @param {string} hubId The unique identifier that represent a hub.
     
@@ -498,6 +780,64 @@ export class HubsManager {
         }),
       );
     return void 0;
+  }
+  /**
+     * Creates a copy of a Hub.
+     *
+     * The original Hub will not be modified.
+     * @param {string} hubId The unique identifier that represent a hub.
+    
+    The ID for any hub can be determined
+    by visiting this hub in the web application
+    and copying the ID from the URL. For example,
+    for the URL `https://*.app.box.com/hubs/123`
+    the `hub_id` is `123`.
+    Example: "12345"
+     * @param {HubCopyRequestV2025R0} requestBody Request body of createHubCopyV2025R0 method
+     * @param {CreateHubCopyV2025R0OptionalsInput} optionalsInput
+     * @returns {Promise<HubV2025R0>}
+     */
+  async createHubCopyV2025R0(
+    hubId: string,
+    requestBody: HubCopyRequestV2025R0,
+    optionalsInput: CreateHubCopyV2025R0OptionalsInput = {},
+  ): Promise<HubV2025R0> {
+    const optionals: CreateHubCopyV2025R0Optionals =
+      new CreateHubCopyV2025R0Optionals({
+        headers: optionalsInput.headers,
+        cancellationToken: optionalsInput.cancellationToken,
+      });
+    const headers: any = optionals.headers;
+    const cancellationToken: any = optionals.cancellationToken;
+    const headersMap: {
+      readonly [key: string]: string;
+    } = prepareParams({
+      ...{ ['box-version']: toString(headers.boxVersion) as string },
+      ...headers.extraHeaders,
+    });
+    const response: FetchResponse =
+      await this.networkSession.networkClient.fetch(
+        new FetchOptions({
+          url: ''.concat(
+            this.networkSession.baseUrls.baseUrl,
+            '/2.0/hubs/',
+            toString(hubId) as string,
+            '/copy',
+          ) as string,
+          method: 'POST',
+          headers: headersMap,
+          data: serializeHubCopyRequestV2025R0(requestBody),
+          contentType: 'application/json',
+          responseFormat: 'json' as ResponseFormat,
+          auth: this.auth,
+          networkSession: this.networkSession,
+          cancellationToken: cancellationToken,
+        }),
+      );
+    return {
+      ...deserializeHubV2025R0(response.data!),
+      rawData: response.data!,
+    };
   }
 }
 export interface HubsManagerInput {

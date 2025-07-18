@@ -37,6 +37,7 @@ the SDK are available by topic:
 - [Folders](folders.md)
 - [Groups](groups.md)
 - [Hub collaborations](hubCollaborations.md)
+- [Hub items](hubItems.md)
 - [Hubs](hubs.md)
 - [Integration mappings](integrationMappings.md)
 - [Invites](invites.md)
