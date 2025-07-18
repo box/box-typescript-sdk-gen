@@ -12,7 +12,13 @@ This operation is performed by calling function `getHubItemsV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/get-hub-items/).
 
-_Currently we don't have an example for calling `getHubItemsV2025R0` in integration tests_
+<!-- sample get_hub_items_v2025.0 -->
+
+```ts
+await client.hubItems.getHubItemsV2025R0({
+  hubId: createdHub.id,
+} satisfies GetHubItemsV2025R0QueryParams);
+```
 
 ### Arguments
 
@@ -31,20 +37,31 @@ Retrieves the items associated with the specified Hub.
 
 Adds and/or removes Hub items from a Hub.
 
-This operation is performed by calling function `createHubManageItemV2025R0`.
+This operation is performed by calling function `manageHubItemsV2025R0`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/post-hubs-id-manage-items/).
 
-_Currently we don't have an example for calling `createHubManageItemV2025R0` in integration tests_
+<!-- sample post_hubs_id_manage_items_v2025.0 -->
+
+```ts
+await client.hubItems.manageHubItemsV2025R0(createdHub.id, {
+  operations: [
+    {
+      action: 'add' as HubItemOperationV2025R0ActionField,
+      item: new FolderReferenceV2025R0({ id: folder.id }),
+    } satisfies HubItemOperationV2025R0,
+  ],
+} satisfies HubItemsManageRequestV2025R0);
+```
 
 ### Arguments
 
 - hubId `string`
   - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
 - requestBody `HubItemsManageRequestV2025R0`
-  - Request body of createHubManageItemV2025R0 method
-- optionalsInput `CreateHubManageItemV2025R0OptionalsInput`
+  - Request body of manageHubItemsV2025R0 method
+- optionalsInput `ManageHubItemsV2025R0OptionalsInput`
   -
 
 ### Returns

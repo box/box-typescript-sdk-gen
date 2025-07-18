@@ -54,20 +54,17 @@ export interface GetHubItemsV2025R0OptionalsInput {
   readonly headers?: GetHubItemsV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class CreateHubManageItemV2025R0Optionals {
-  readonly headers: CreateHubManageItemV2025R0Headers =
-    new CreateHubManageItemV2025R0Headers({});
+export class ManageHubItemsV2025R0Optionals {
+  readonly headers: ManageHubItemsV2025R0Headers =
+    new ManageHubItemsV2025R0Headers({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
     fields: Omit<
-      CreateHubManageItemV2025R0Optionals,
+      ManageHubItemsV2025R0Optionals,
       'headers' | 'cancellationToken'
     > &
       Partial<
-        Pick<
-          CreateHubManageItemV2025R0Optionals,
-          'headers' | 'cancellationToken'
-        >
+        Pick<ManageHubItemsV2025R0Optionals, 'headers' | 'cancellationToken'>
       >,
   ) {
     if (fields.headers !== undefined) {
@@ -78,8 +75,8 @@ export class CreateHubManageItemV2025R0Optionals {
     }
   }
 }
-export interface CreateHubManageItemV2025R0OptionalsInput {
-  readonly headers?: CreateHubManageItemV2025R0Headers;
+export interface ManageHubItemsV2025R0OptionalsInput {
+  readonly headers?: ManageHubItemsV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export interface GetHubItemsV2025R0QueryParams {
@@ -136,7 +133,7 @@ export interface GetHubItemsV2025R0HeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export class CreateHubManageItemV2025R0Headers {
+export class ManageHubItemsV2025R0Headers {
   /**
    * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
@@ -147,12 +144,9 @@ export class CreateHubManageItemV2025R0Headers {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<
-      CreateHubManageItemV2025R0Headers,
-      'boxVersion' | 'extraHeaders'
-    > &
+    fields: Omit<ManageHubItemsV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
       Partial<
-        Pick<CreateHubManageItemV2025R0Headers, 'boxVersion' | 'extraHeaders'>
+        Pick<ManageHubItemsV2025R0Headers, 'boxVersion' | 'extraHeaders'>
       >,
   ) {
     if (fields.boxVersion !== undefined) {
@@ -163,7 +157,7 @@ export class CreateHubManageItemV2025R0Headers {
     }
   }
 }
-export interface CreateHubManageItemV2025R0HeadersInput {
+export interface ManageHubItemsV2025R0HeadersInput {
   /**
    * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
@@ -181,7 +175,7 @@ export class HubItemsManager {
   constructor(
     fields: Omit<
       HubItemsManager,
-      'networkSession' | 'getHubItemsV2025R0' | 'createHubManageItemV2025R0'
+      'networkSession' | 'getHubItemsV2025R0' | 'manageHubItemsV2025R0'
     > &
       Partial<Pick<HubItemsManager, 'networkSession'>>,
   ) {
@@ -253,17 +247,17 @@ export class HubItemsManager {
     for the URL `https://*.app.box.com/hubs/123`
     the `hub_id` is `123`.
     Example: "12345"
-     * @param {HubItemsManageRequestV2025R0} requestBody Request body of createHubManageItemV2025R0 method
-     * @param {CreateHubManageItemV2025R0OptionalsInput} optionalsInput
+     * @param {HubItemsManageRequestV2025R0} requestBody Request body of manageHubItemsV2025R0 method
+     * @param {ManageHubItemsV2025R0OptionalsInput} optionalsInput
      * @returns {Promise<HubItemsManageResponseV2025R0>}
      */
-  async createHubManageItemV2025R0(
+  async manageHubItemsV2025R0(
     hubId: string,
     requestBody: HubItemsManageRequestV2025R0,
-    optionalsInput: CreateHubManageItemV2025R0OptionalsInput = {},
+    optionalsInput: ManageHubItemsV2025R0OptionalsInput = {},
   ): Promise<HubItemsManageResponseV2025R0> {
-    const optionals: CreateHubManageItemV2025R0Optionals =
-      new CreateHubManageItemV2025R0Optionals({
+    const optionals: ManageHubItemsV2025R0Optionals =
+      new ManageHubItemsV2025R0Optionals({
         headers: optionalsInput.headers,
         cancellationToken: optionalsInput.cancellationToken,
       });
