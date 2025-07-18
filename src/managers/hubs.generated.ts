@@ -127,18 +127,12 @@ export interface DeleteHubByIdV2025R0OptionalsInput {
   readonly headers?: DeleteHubByIdV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
-export class CreateHubCopyV2025R0Optionals {
-  readonly headers: CreateHubCopyV2025R0Headers =
-    new CreateHubCopyV2025R0Headers({});
+export class CopyHubV2025R0Optionals {
+  readonly headers: CopyHubV2025R0Headers = new CopyHubV2025R0Headers({});
   readonly cancellationToken?: CancellationToken = void 0;
   constructor(
-    fields: Omit<
-      CreateHubCopyV2025R0Optionals,
-      'headers' | 'cancellationToken'
-    > &
-      Partial<
-        Pick<CreateHubCopyV2025R0Optionals, 'headers' | 'cancellationToken'>
-      >,
+    fields: Omit<CopyHubV2025R0Optionals, 'headers' | 'cancellationToken'> &
+      Partial<Pick<CopyHubV2025R0Optionals, 'headers' | 'cancellationToken'>>,
   ) {
     if (fields.headers !== undefined) {
       this.headers = fields.headers;
@@ -148,8 +142,8 @@ export class CreateHubCopyV2025R0Optionals {
     }
   }
 }
-export interface CreateHubCopyV2025R0OptionalsInput {
-  readonly headers?: CreateHubCopyV2025R0Headers;
+export interface CopyHubV2025R0OptionalsInput {
+  readonly headers?: CopyHubV2025R0Headers;
   readonly cancellationToken?: undefined | CancellationToken;
 }
 export type GetHubsV2025R0QueryParamsDirectionField = 'ASC' | 'DESC' | string;
@@ -414,7 +408,7 @@ export interface DeleteHubByIdV2025R0HeadersInput {
         readonly [key: string]: undefined | string;
       };
 }
-export class CreateHubCopyV2025R0Headers {
+export class CopyHubV2025R0Headers {
   /**
    * Version header. */
   readonly boxVersion: BoxVersionHeaderV2025R0 =
@@ -425,8 +419,8 @@ export class CreateHubCopyV2025R0Headers {
     readonly [key: string]: undefined | string;
   } = {};
   constructor(
-    fields: Omit<CreateHubCopyV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
-      Partial<Pick<CreateHubCopyV2025R0Headers, 'boxVersion' | 'extraHeaders'>>,
+    fields: Omit<CopyHubV2025R0Headers, 'boxVersion' | 'extraHeaders'> &
+      Partial<Pick<CopyHubV2025R0Headers, 'boxVersion' | 'extraHeaders'>>,
   ) {
     if (fields.boxVersion !== undefined) {
       this.boxVersion = fields.boxVersion;
@@ -436,7 +430,7 @@ export class CreateHubCopyV2025R0Headers {
     }
   }
 }
-export interface CreateHubCopyV2025R0HeadersInput {
+export interface CopyHubV2025R0HeadersInput {
   /**
    * Version header. */
   readonly boxVersion?: BoxVersionHeaderV2025R0;
@@ -461,7 +455,7 @@ export class HubsManager {
       | 'getHubByIdV2025R0'
       | 'updateHubByIdV2025R0'
       | 'deleteHubByIdV2025R0'
-      | 'createHubCopyV2025R0'
+      | 'copyHubV2025R0'
     > &
       Partial<Pick<HubsManager, 'networkSession'>>,
   ) {
@@ -793,20 +787,19 @@ export class HubsManager {
     for the URL `https://*.app.box.com/hubs/123`
     the `hub_id` is `123`.
     Example: "12345"
-     * @param {HubCopyRequestV2025R0} requestBody Request body of createHubCopyV2025R0 method
-     * @param {CreateHubCopyV2025R0OptionalsInput} optionalsInput
+     * @param {HubCopyRequestV2025R0} requestBody Request body of copyHubV2025R0 method
+     * @param {CopyHubV2025R0OptionalsInput} optionalsInput
      * @returns {Promise<HubV2025R0>}
      */
-  async createHubCopyV2025R0(
+  async copyHubV2025R0(
     hubId: string,
     requestBody: HubCopyRequestV2025R0,
-    optionalsInput: CreateHubCopyV2025R0OptionalsInput = {},
+    optionalsInput: CopyHubV2025R0OptionalsInput = {},
   ): Promise<HubV2025R0> {
-    const optionals: CreateHubCopyV2025R0Optionals =
-      new CreateHubCopyV2025R0Optionals({
-        headers: optionalsInput.headers,
-        cancellationToken: optionalsInput.cancellationToken,
-      });
+    const optionals: CopyHubV2025R0Optionals = new CopyHubV2025R0Optionals({
+      headers: optionalsInput.headers,
+      cancellationToken: optionalsInput.cancellationToken,
+    });
     const headers: any = optionals.headers;
     const cancellationToken: any = optionals.cancellationToken;
     const headersMap: {

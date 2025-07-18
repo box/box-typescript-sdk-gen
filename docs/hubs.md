@@ -51,7 +51,14 @@ This operation is performed by calling function `createHubV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/post-hubs/).
 
-_Currently we don't have an example for calling `createHubV2025R0` in integration tests_
+<!-- sample post_hubs_v2025.0 -->
+
+```ts
+await client.hubs.createHubV2025R0({
+  title: hubTitle,
+  description: hubDescription,
+} satisfies HubCreateRequestV2025R0);
+```
 
 ### Arguments
 
@@ -114,7 +121,7 @@ See the endpoint docs at
 <!-- sample get_hubs_id_v2025.0 -->
 
 ```ts
-await client.hubs.getHubByIdV2025R0(userHub.id);
+await client.hubs.getHubByIdV2025R0(hubId);
 ```
 
 ### Arguments
@@ -139,7 +146,14 @@ This operation is performed by calling function `updateHubByIdV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/put-hubs-id/).
 
-_Currently we don't have an example for calling `updateHubByIdV2025R0` in integration tests_
+<!-- sample put_hubs_id_v2025.0 -->
+
+```ts
+await client.hubs.updateHubByIdV2025R0(hubId, {
+  title: newHubTitle,
+  description: newHubDescription,
+} satisfies HubUpdateRequestV2025R0);
+```
 
 ### Arguments
 
@@ -168,7 +182,7 @@ See the endpoint docs at
 <!-- sample delete_hubs_id_v2025.0 -->
 
 ```ts
-await client.hubs.deleteHubByIdV2025R0(hub.id);
+await client.hubs.deleteHubByIdV2025R0(hubId);
 ```
 
 ### Arguments
@@ -191,20 +205,27 @@ Creates a copy of a Hub.
 
 The original Hub will not be modified.
 
-This operation is performed by calling function `createHubCopyV2025R0`.
+This operation is performed by calling function `copyHubV2025R0`.
 
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/post-hubs-id-copy/).
 
-_Currently we don't have an example for calling `createHubCopyV2025R0` in integration tests_
+<!-- sample post_hubs_id_copy_v2025.0 -->
+
+```ts
+await client.hubs.copyHubV2025R0(createdHub.id, {
+  title: copiedHubTitle,
+  description: copiedHubDescription,
+} satisfies HubCopyRequestV2025R0);
+```
 
 ### Arguments
 
 - hubId `string`
   - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
 - requestBody `HubCopyRequestV2025R0`
-  - Request body of createHubCopyV2025R0 method
-- optionalsInput `CreateHubCopyV2025R0OptionalsInput`
+  - Request body of copyHubV2025R0 method
+- optionalsInput `CopyHubV2025R0OptionalsInput`
   -
 
 ### Returns
