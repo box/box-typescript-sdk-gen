@@ -29,7 +29,6 @@ await client.memberships.getUserMemberships(user.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `GetUserMembershipsOptionalsInput`
-  -
 
 ### Returns
 
@@ -60,7 +59,6 @@ await client.memberships.getGroupMemberships(group.id);
 - groupId `string`
   - The ID of the group. Example: "57645"
 - optionalsInput `GetGroupMembershipsOptionalsInput`
-  -
 
 ### Returns
 
@@ -93,7 +91,6 @@ await client.memberships.createGroupMembership({
 - requestBody `CreateGroupMembershipRequestBody`
   - Request body of createGroupMembership method
 - optionalsInput `CreateGroupMembershipOptionalsInput`
-  -
 
 ### Returns
 
@@ -123,7 +120,6 @@ await client.memberships.getGroupMembershipById(groupMembership.id!);
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
 - optionalsInput `GetGroupMembershipByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -157,7 +153,6 @@ await client.memberships.updateGroupMembershipById(groupMembership.id!, {
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
 - optionalsInput `UpdateGroupMembershipByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -187,7 +182,6 @@ await client.memberships.deleteGroupMembershipById(groupMembership.id!);
 - groupMembershipId `string`
   - The ID of the group membership. Example: "434534"
 - optionalsInput `DeleteGroupMembershipByIdOptionalsInput`
-  -
 
 ### Returns
 

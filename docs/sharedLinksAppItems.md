@@ -26,7 +26,6 @@ await client.sharedLinksAppItems.findAppItemForSharedLink({
 - headersInput `FindAppItemForSharedLinkHeadersInput`
   - Headers of findAppItemForSharedLink method
 - optionalsInput `FindAppItemForSharedLinkOptionalsInput`
-  -
 
 ### Returns
 

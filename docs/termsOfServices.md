@@ -62,7 +62,6 @@ await client.termsOfServices.createTermsOfService({
 - requestBody `CreateTermsOfServiceRequestBody`
   - Request body of createTermsOfService method
 - optionalsInput `CreateTermsOfServiceOptionalsInput`
-  -
 
 ### Returns
 
@@ -86,7 +85,6 @@ _Currently we don't have an example for calling `getTermsOfServiceById` in integ
 - termsOfServiceId `string`
   - The ID of the terms of service. Example: "324234"
 - optionalsInput `GetTermsOfServiceByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -119,7 +117,6 @@ await client.termsOfServices.updateTermsOfServiceById(tos.id, {
 - requestBody `UpdateTermsOfServiceByIdRequestBody`
   - Request body of updateTermsOfServiceById method
 - optionalsInput `UpdateTermsOfServiceByIdOptionalsInput`
-  -
 
 ### Returns
 

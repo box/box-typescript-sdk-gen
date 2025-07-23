@@ -30,7 +30,6 @@ await client.storagePolicyAssignments.getStoragePolicyAssignments({
 - queryParams `GetStoragePolicyAssignmentsQueryParams`
   - Query parameters of getStoragePolicyAssignments method
 - optionalsInput `GetStoragePolicyAssignmentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -67,7 +66,6 @@ await client.storagePolicyAssignments.createStoragePolicyAssignment({
 - requestBody `CreateStoragePolicyAssignmentRequestBody`
   - Request body of createStoragePolicyAssignment method
 - optionalsInput `CreateStoragePolicyAssignmentOptionalsInput`
-  -
 
 ### Returns
 
@@ -97,7 +95,6 @@ await client.storagePolicyAssignments.getStoragePolicyAssignmentById(
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
 - optionalsInput `GetStoragePolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -135,7 +132,6 @@ await client.storagePolicyAssignments.updateStoragePolicyAssignmentById(
 - requestBody `UpdateStoragePolicyAssignmentByIdRequestBody`
   - Request body of updateStoragePolicyAssignmentById method
 - optionalsInput `UpdateStoragePolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -172,7 +168,6 @@ await client.storagePolicyAssignments.deleteStoragePolicyAssignmentById(
 - storagePolicyAssignmentId `string`
   - The ID of the storage policy assignment. Example: "932483"
 - optionalsInput `DeleteStoragePolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 

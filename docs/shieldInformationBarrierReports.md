@@ -28,7 +28,6 @@ await client.shieldInformationBarrierReports.getShieldInformationBarrierReports(
 - queryParams `GetShieldInformationBarrierReportsQueryParams`
   - Query parameters of getShieldInformationBarrierReports method
 - optionalsInput `GetShieldInformationBarrierReportsOptionalsInput`
-  -
 
 ### Returns
 
@@ -63,7 +62,6 @@ await client.shieldInformationBarrierReports.createShieldInformationBarrierRepor
 - requestBody `ShieldInformationBarrierReference`
   - Request body of createShieldInformationBarrierReport method
 - optionalsInput `CreateShieldInformationBarrierReportOptionalsInput`
-  -
 
 ### Returns
 
@@ -93,7 +91,6 @@ await client.shieldInformationBarrierReports.getShieldInformationBarrierReportBy
 - shieldInformationBarrierReportId `string`
   - The ID of the shield information barrier Report. Example: "3423"
 - optionalsInput `GetShieldInformationBarrierReportByIdOptionalsInput`
-  -
 
 ### Returns
 

@@ -60,7 +60,6 @@ await client.aiStudio.createAiAgent({
 - requestBodyInput `CreateAiAgentInput`
   - Request body of createAiAgent method
 - optionalsInput `CreateAiAgentOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +93,6 @@ await client.aiStudio.updateAiAgentById(createdAgent.id, {
 - requestBodyInput `CreateAiAgentInput`
   - Request body of updateAiAgentById method
 - optionalsInput `UpdateAiAgentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -124,7 +122,6 @@ await client.aiStudio.getAiAgentById(createdAgent.id, {
 - agentId `string`
   - The agent id to get. Example: "1234"
 - optionalsInput `GetAiAgentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -152,7 +149,6 @@ await client.aiStudio.deleteAiAgentById(createdAgent.id);
 - agentId `string`
   - The ID of the agent to delete. Example: "1234"
 - optionalsInput `DeleteAiAgentByIdOptionalsInput`
-  -
 
 ### Returns
 

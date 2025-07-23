@@ -37,7 +37,6 @@ await client.ai.createAiAsk({
 - requestBody `AiAsk`
   - Request body of createAiAsk method
 - optionalsInput `CreateAiAskOptionalsInput`
-  -
 
 ### Returns
 
@@ -88,7 +87,6 @@ await client.ai.createAiTextGen({
 - requestBody `AiTextGen`
   - Request body of createAiTextGen method
 - optionalsInput `CreateAiTextGenOptionalsInput`
-  -
 
 ### Returns
 
@@ -119,7 +117,6 @@ await client.ai.getAiAgentDefaultConfig({
 - queryParams `GetAiAgentDefaultConfigQueryParams`
   - Query parameters of getAiAgentDefaultConfig method
 - optionalsInput `GetAiAgentDefaultConfigOptionalsInput`
-  -
 
 ### Returns
 
@@ -160,7 +157,6 @@ await client.ai.createAiExtract({
 - requestBody `AiExtract`
   - Request body of createAiExtract method
 - optionalsInput `CreateAiExtractOptionalsInput`
-  -
 
 ### Returns
 
@@ -236,7 +232,6 @@ await client.ai.createAiExtractStructured({
 - requestBody `AiExtractStructured`
   - Request body of createAiExtractStructured method
 - optionalsInput `CreateAiExtractStructuredOptionalsInput`
-  -
 
 ### Returns
 

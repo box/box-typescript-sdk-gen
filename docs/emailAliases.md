@@ -25,7 +25,6 @@ await client.emailAliases.getUserEmailAliases(newUser.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `GetUserEmailAliasesOptionalsInput`
-  -
 
 ### Returns
 
@@ -57,7 +56,6 @@ await client.emailAliases.createUserEmailAlias(newUser.id, {
 - requestBody `CreateUserEmailAliasRequestBody`
   - Request body of createUserEmailAlias method
 - optionalsInput `CreateUserEmailAliasOptionalsInput`
-  -
 
 ### Returns
 
@@ -87,7 +85,6 @@ await client.emailAliases.deleteUserEmailAliasById(newUser.id, newAlias.id!);
 - emailAliasId `string`
   - The ID of the email alias. Example: "23432"
 - optionalsInput `DeleteUserEmailAliasByIdOptionalsInput`
-  -
 
 ### Returns
 

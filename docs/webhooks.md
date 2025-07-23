@@ -69,7 +69,6 @@ await client.webhooks.createWebhook({
 - requestBody `CreateWebhookRequestBody`
   - Request body of createWebhook method
 - optionalsInput `CreateWebhookOptionalsInput`
-  -
 
 ### Returns
 
@@ -97,7 +96,6 @@ await client.webhooks.getWebhookById(webhook.id!);
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
 - optionalsInput `GetWebhookByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -129,7 +127,6 @@ await client.webhooks.updateWebhookById(webhook.id!, {
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
 - optionalsInput `UpdateWebhookByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -157,7 +154,6 @@ await client.webhooks.deleteWebhookById(webhook.id!);
 - webhookId `string`
   - The ID of the webhook. Example: "3321123"
 - optionalsInput `DeleteWebhookByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -192,7 +188,6 @@ await WebhooksManager.validateMessage(
 - primaryKey `string`
   - The primary signature to verify the message with
 - optionalsInput `ValidateMessageOptionalsInput`
-  -
 
 ### Returns
 

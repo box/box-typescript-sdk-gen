@@ -65,7 +65,6 @@ await client.hubs.createHubV2025R0({
 - requestBody `HubCreateRequestV2025R0`
   - Request body of createHubV2025R0 method
 - optionalsInput `CreateHubV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -129,7 +128,6 @@ await client.hubs.getHubByIdV2025R0(hubId);
 - hubId `string`
   - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
 - optionalsInput `GetHubByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -162,7 +160,6 @@ await client.hubs.updateHubByIdV2025R0(hubId, {
 - requestBody `HubUpdateRequestV2025R0`
   - Request body of updateHubByIdV2025R0 method
 - optionalsInput `UpdateHubByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -190,7 +187,6 @@ await client.hubs.deleteHubByIdV2025R0(hubId);
 - hubId `string`
   - The unique identifier that represent a hub. The ID for any hub can be determined by visiting this hub in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/hubs/123` the `hub_id` is `123`. Example: "12345"
 - optionalsInput `DeleteHubByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -226,7 +222,6 @@ await client.hubs.copyHubV2025R0(createdHub.id, {
 - requestBody `HubCopyRequestV2025R0`
   - Request body of copyHubV2025R0 method
 - optionalsInput `CopyHubV2025R0OptionalsInput`
-  -
 
 ### Returns
 

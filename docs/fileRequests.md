@@ -25,7 +25,6 @@ await client.fileRequests.getFileRequestById(fileRequestId);
 - fileRequestId `string`
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - optionalsInput `GetFileRequestByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -59,7 +58,6 @@ await client.fileRequests.updateFileRequestById(copiedFileRequest.id, {
 - requestBody `FileRequestUpdateRequest`
   - Request body of updateFileRequestById method
 - optionalsInput `UpdateFileRequestByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -87,7 +85,6 @@ await client.fileRequests.deleteFileRequestById(updatedFileRequest.id);
 - fileRequestId `string`
   - The unique identifier that represent a file request. The ID for any file request can be determined by visiting a file request builder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/filerequest/123` the `file_request_id` is `123`. Example: "123"
 - optionalsInput `DeleteFileRequestByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -124,7 +121,6 @@ await client.fileRequests.createFileRequestCopy(fileRequestId, {
 - requestBody `FileRequestCopyRequest`
   - Request body of createFileRequestCopy method
 - optionalsInput `CreateFileRequestCopyOptionalsInput`
-  -
 
 ### Returns
 

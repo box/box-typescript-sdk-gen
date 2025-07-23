@@ -28,7 +28,6 @@ await client.hubCollaborations.getHubCollaborationsV2025R0({
 - queryParams `GetHubCollaborationsV2025R0QueryParams`
   - Query parameters of getHubCollaborationsV2025R0 method
 - optionalsInput `GetHubCollaborationsV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -65,7 +64,6 @@ await client.hubCollaborations.createHubCollaborationV2025R0({
 - requestBody `HubCollaborationCreateRequestV2025R0`
   - Request body of createHubCollaborationV2025R0 method
 - optionalsInput `CreateHubCollaborationV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -95,7 +93,6 @@ await client.hubCollaborations.getHubCollaborationByIdV2025R0(
 - hubCollaborationId `string`
   - The ID of the hub collaboration. Example: "1234"
 - optionalsInput `GetHubCollaborationByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -129,7 +126,6 @@ await client.hubCollaborations.updateHubCollaborationByIdV2025R0(
 - requestBody `HubCollaborationUpdateRequestV2025R0`
   - Request body of updateHubCollaborationByIdV2025R0 method
 - optionalsInput `UpdateHubCollaborationByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -159,7 +155,6 @@ await client.hubCollaborations.deleteHubCollaborationByIdV2025R0(
 - hubCollaborationId `string`
   - The ID of the hub collaboration. Example: "1234"
 - optionalsInput `DeleteHubCollaborationByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 

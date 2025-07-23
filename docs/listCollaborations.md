@@ -27,7 +27,6 @@ await client.listCollaborations.getFileCollaborations(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileCollaborationsOptionalsInput`
-  -
 
 ### Returns
 
@@ -62,7 +61,6 @@ await client.listCollaborations.getFolderCollaborations(folder.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. Example: "12345"
 - optionalsInput `GetFolderCollaborationsOptionalsInput`
-  -
 
 ### Returns
 
@@ -97,7 +95,6 @@ await client.listCollaborations.getCollaborations({
 - queryParams `GetCollaborationsQueryParams`
   - Query parameters of getCollaborations method
 - optionalsInput `GetCollaborationsOptionalsInput`
-  -
 
 ### Returns
 
@@ -132,7 +129,6 @@ await client.listCollaborations.getGroupCollaborations(group.id);
 - groupId `string`
   - The ID of the group. Example: "57645"
 - optionalsInput `GetGroupCollaborationsOptionalsInput`
-  -
 
 ### Returns
 

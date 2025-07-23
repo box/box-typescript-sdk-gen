@@ -53,7 +53,6 @@ await client.storagePolicies.getStoragePolicyById(storagePolicy.id);
 - storagePolicyId `string`
   - The ID of the storage policy. Example: "34342"
 - optionalsInput `GetStoragePolicyByIdOptionalsInput`
-  -
 
 ### Returns
 

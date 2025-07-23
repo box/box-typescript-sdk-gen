@@ -61,7 +61,6 @@ await client.collaborationAllowlistEntries.createCollaborationWhitelistEntry({
 - requestBody `CreateCollaborationWhitelistEntryRequestBody`
   - Request body of createCollaborationWhitelistEntry method
 - optionalsInput `CreateCollaborationWhitelistEntryOptionalsInput`
-  -
 
 ### Returns
 
@@ -92,7 +91,6 @@ await client.collaborationAllowlistEntries.getCollaborationWhitelistEntryById(
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
 - optionalsInput `GetCollaborationWhitelistEntryByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -123,7 +121,6 @@ await client.collaborationAllowlistEntries.deleteCollaborationWhitelistEntryById
 - collaborationWhitelistEntryId `string`
   - The ID of the entry in the list. Example: "213123"
 - optionalsInput `DeleteCollaborationWhitelistEntryByIdOptionalsInput`
-  -
 
 ### Returns
 

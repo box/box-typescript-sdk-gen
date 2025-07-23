@@ -26,7 +26,6 @@ await client.fileMetadata.getFileMetadata(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileMetadataOptionalsInput`
-  -
 
 ### Returns
 
@@ -66,7 +65,6 @@ await client.fileMetadata.getFileMetadataById(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `GetFileMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -117,7 +115,6 @@ await client.fileMetadata.createFileMetadataById(
 - requestBody `CreateFileMetadataByIdRequestBody`
   - Request body of createFileMetadataById method
 - optionalsInput `CreateFileMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -190,7 +187,6 @@ await client.fileMetadata.updateFileMetadataById(
 - requestBody `readonly UpdateFileMetadataByIdRequestBody[]`
   - Request body of updateFileMetadataById method
 - optionalsInput `UpdateFileMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -227,7 +223,6 @@ await client.fileMetadata.deleteFileMetadataById(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteFileMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 

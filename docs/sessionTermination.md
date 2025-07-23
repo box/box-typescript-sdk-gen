@@ -29,7 +29,6 @@ await client.sessionTermination.terminateUsersSessions({
 - requestBody `TerminateUsersSessionsRequestBody`
   - Request body of terminateUsersSessions method
 - optionalsInput `TerminateUsersSessionsOptionalsInput`
-  -
 
 ### Returns
 
@@ -62,7 +61,6 @@ await client.sessionTermination.terminateGroupsSessions({
 - requestBody `TerminateGroupsSessionsRequestBody`
   - Request body of terminateGroupsSessions method
 - optionalsInput `TerminateGroupsSessionsOptionalsInput`
-  -
 
 ### Returns
 

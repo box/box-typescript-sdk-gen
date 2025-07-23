@@ -40,7 +40,6 @@ await client.chunkedUploads.createFileUploadSession({
 - requestBody `CreateFileUploadSessionRequestBody`
   - Request body of createFileUploadSession method
 - optionalsInput `CreateFileUploadSessionOptionalsInput`
-  -
 
 ### Returns
 
@@ -66,7 +65,6 @@ _Currently we don't have an example for calling `createFileUploadSessionForExist
 - requestBody `CreateFileUploadSessionForExistingFileRequestBody`
   - Request body of createFileUploadSessionForExistingFile method
 - optionalsInput `CreateFileUploadSessionForExistingFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -96,7 +94,6 @@ await client.chunkedUploads.getFileUploadSessionByUrl(statusUrl);
 - url `string`
   - URL of getFileUploadSessionById method
 - optionalsInput `GetFileUploadSessionByUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -126,7 +123,6 @@ await client.chunkedUploads.getFileUploadSessionById(uploadSessionId);
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
 - optionalsInput `GetFileUploadSessionByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -168,7 +164,6 @@ await client.chunkedUploads.uploadFilePartByUrl(
 - headersInput `UploadFilePartByUrlHeadersInput`
   - Headers of uploadFilePart method
 - optionalsInput `UploadFilePartByUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -210,7 +205,6 @@ await client.chunkedUploads.uploadFilePart(
 - headersInput `UploadFilePartHeadersInput`
   - Headers of uploadFilePart method
 - optionalsInput `UploadFilePartOptionalsInput`
-  -
 
 ### Returns
 
@@ -243,7 +237,6 @@ await client.chunkedUploads.deleteFileUploadSessionByUrl(abortUrl);
 - url `string`
   - URL of deleteFileUploadSessionById method
 - optionalsInput `DeleteFileUploadSessionByUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -277,7 +270,6 @@ await client.chunkedUploads.deleteFileUploadSessionById(uploadSessionId);
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
 - optionalsInput `DeleteFileUploadSessionByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -309,7 +301,6 @@ await client.chunkedUploads.getFileUploadSessionPartsByUrl(listPartsUrl);
 - url `string`
   - URL of getFileUploadSessionParts method
 - optionalsInput `GetFileUploadSessionPartsByUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -340,7 +331,6 @@ await client.chunkedUploads.getFileUploadSessionParts(uploadSessionId);
 - uploadSessionId `string`
   - The ID of the upload session. Example: "D5E3F7A"
 - optionalsInput `GetFileUploadSessionPartsOptionalsInput`
-  -
 
 ### Returns
 
@@ -379,7 +369,6 @@ await client.chunkedUploads.createFileUploadSessionCommitByUrl(
 - headersInput `CreateFileUploadSessionCommitByUrlHeadersInput`
   - Headers of createFileUploadSessionCommit method
 - optionalsInput `CreateFileUploadSessionCommitByUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -422,7 +411,6 @@ await client.chunkedUploads.createFileUploadSessionCommit(
 - headersInput `CreateFileUploadSessionCommitHeadersInput`
   - Headers of createFileUploadSessionCommit method
 - optionalsInput `CreateFileUploadSessionCommitOptionalsInput`
-  -
 
 ### Returns
 

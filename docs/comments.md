@@ -26,7 +26,6 @@ await client.comments.getFileComments(fileId);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileCommentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -56,7 +55,6 @@ await client.comments.getCommentById(newComment.id!);
 - commentId `string`
   - The ID of the comment. Example: "12345"
 - optionalsInput `GetCommentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -86,7 +84,6 @@ await client.comments.updateCommentById(newReplyComment.id!, {
 - commentId `string`
   - The ID of the comment. Example: "12345"
 - optionalsInput `UpdateCommentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -114,7 +111,6 @@ await client.comments.deleteCommentById(newComment.id!);
 - commentId `string`
   - The ID of the comment. Example: "12345"
 - optionalsInput `DeleteCommentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -149,7 +145,6 @@ await client.comments.createComment({
 - requestBody `CreateCommentRequestBody`
   - Request body of createComment method
 - optionalsInput `CreateCommentOptionalsInput`
-  -
 
 ### Returns
 

@@ -26,7 +26,6 @@ await client.signRequests.cancelSignRequest(createdSignRequest.id!);
 - signRequestId `string`
   - The ID of the signature request. Example: "33243242"
 - optionalsInput `CancelSignRequestOptionalsInput`
-  -
 
 ### Returns
 
@@ -50,7 +49,6 @@ _Currently we don't have an example for calling `resendSignRequest` in integrati
 - signRequestId `string`
   - The ID of the signature request. Example: "33243242"
 - optionalsInput `ResendSignRequestOptionalsInput`
-  -
 
 ### Returns
 
@@ -79,7 +77,6 @@ await client.signRequests.getSignRequestById(createdSignRequest.id!);
 - signRequestId `string`
   - The ID of the signature request. Example: "33243242"
 - optionalsInput `GetSignRequestByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -171,7 +168,6 @@ await client.signRequests.createSignRequest({
 - requestBody `SignRequestCreateRequest`
   - Request body of createSignRequest method
 - optionalsInput `CreateSignRequestOptionalsInput`
-  -
 
 ### Returns
 

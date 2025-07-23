@@ -28,7 +28,6 @@ await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegment
 - shieldInformationBarrierSegmentId `string`
   - The ID of the shield information barrier segment. Example: "3423"
 - optionalsInput `GetShieldInformationBarrierSegmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -59,7 +58,6 @@ await client.shieldInformationBarrierSegments.deleteShieldInformationBarrierSegm
 - shieldInformationBarrierSegmentId `string`
   - The ID of the shield information barrier segment. Example: "3423"
 - optionalsInput `DeleteShieldInformationBarrierSegmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +92,6 @@ await client.shieldInformationBarrierSegments.updateShieldInformationBarrierSegm
 - shieldInformationBarrierSegmentId `string`
   - The ID of the shield information barrier segment. Example: "3423"
 - optionalsInput `UpdateShieldInformationBarrierSegmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -127,7 +124,6 @@ await client.shieldInformationBarrierSegments.getShieldInformationBarrierSegment
 - queryParams `GetShieldInformationBarrierSegmentsQueryParams`
   - Query parameters of getShieldInformationBarrierSegments method
 - optionalsInput `GetShieldInformationBarrierSegmentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -164,7 +160,6 @@ await client.shieldInformationBarrierSegments.createShieldInformationBarrierSegm
 - requestBody `CreateShieldInformationBarrierSegmentRequestBody`
   - Request body of createShieldInformationBarrierSegment method
 - optionalsInput `CreateShieldInformationBarrierSegmentOptionalsInput`
-  -
 
 ### Returns
 

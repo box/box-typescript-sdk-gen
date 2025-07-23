@@ -61,7 +61,6 @@ await client.shieldLists.createShieldListV2025R0({
 - requestBody `ShieldListsCreateV2025R0`
   - Request body of createShieldListV2025R0 method
 - optionalsInput `CreateShieldListV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -89,7 +88,6 @@ await client.shieldLists.getShieldListByIdV2025R0(shieldListCountry.id);
 - shieldListId `string`
   - The unique identifier that represents a shield list. The ID for any Shield List can be determined by the response from the endpoint fetching all shield lists for the enterprise. Example: "90fb0e17-c332-40ed-b4f9-fa8908fbbb24 "
 - optionalsInput `GetShieldListByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -117,7 +115,6 @@ await client.shieldLists.deleteShieldListByIdV2025R0(shieldListCountry.id);
 - shieldListId `string`
   - The unique identifier that represents a shield list. The ID for any Shield List can be determined by the response from the endpoint fetching all shield lists for the enterprise. Example: "90fb0e17-c332-40ed-b4f9-fa8908fbbb24 "
 - optionalsInput `DeleteShieldListByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -154,7 +151,6 @@ await client.shieldLists.updateShieldListByIdV2025R0(shieldListCountry.id, {
 - requestBody `ShieldListsUpdateV2025R0`
   - Request body of updateShieldListByIdV2025R0 method
 - optionalsInput `UpdateShieldListByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 

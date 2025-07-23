@@ -68,7 +68,6 @@ await client.users.createUser({
 - requestBody `CreateUserRequestBody`
   - Request body of createUser method
 - optionalsInput `CreateUserOptionalsInput`
-  -
 
 ### Returns
 
@@ -145,7 +144,6 @@ await client.users.getUserById(user.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `GetUserByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -182,7 +180,6 @@ await client.users.updateUserById(user.id, {
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `UpdateUserByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -213,7 +210,6 @@ await client.users.deleteUserById(user.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `DeleteUserByIdOptionalsInput`
-  -
 
 ### Returns
 

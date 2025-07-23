@@ -28,7 +28,6 @@ await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierS
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
 - optionalsInput `GetShieldInformationBarrierSegmentMemberByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -59,7 +58,6 @@ await client.shieldInformationBarrierSegmentMembers.deleteShieldInformationBarri
 - shieldInformationBarrierSegmentMemberId `string`
   - The ID of the shield information barrier segment Member. Example: "7815"
 - optionalsInput `DeleteShieldInformationBarrierSegmentMemberByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -93,7 +91,6 @@ await client.shieldInformationBarrierSegmentMembers.getShieldInformationBarrierS
 - queryParams `GetShieldInformationBarrierSegmentMembersQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentMembers method
 - optionalsInput `GetShieldInformationBarrierSegmentMembersOptionalsInput`
-  -
 
 ### Returns
 
@@ -130,7 +127,6 @@ await client.shieldInformationBarrierSegmentMembers.createShieldInformationBarri
 - requestBody `CreateShieldInformationBarrierSegmentMemberRequestBody`
   - Request body of createShieldInformationBarrierSegmentMember method
 - optionalsInput `CreateShieldInformationBarrierSegmentMemberOptionalsInput`
-  -
 
 ### Returns
 

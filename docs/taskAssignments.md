@@ -26,7 +26,6 @@ await client.taskAssignments.getTaskAssignments(task.id!);
 - taskId `string`
   - The ID of the task. Example: "12345"
 - optionalsInput `GetTaskAssignmentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -66,7 +65,6 @@ await client.taskAssignments.createTaskAssignment({
 - requestBody `CreateTaskAssignmentRequestBody`
   - Request body of createTaskAssignment method
 - optionalsInput `CreateTaskAssignmentOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +92,6 @@ await client.taskAssignments.getTaskAssignmentById(taskAssignment.id!);
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
 - optionalsInput `GetTaskAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -130,7 +127,6 @@ await client.taskAssignments.updateTaskAssignmentById(taskAssignment.id!, {
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
 - optionalsInput `UpdateTaskAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -158,7 +154,6 @@ await client.taskAssignments.deleteTaskAssignmentById(taskAssignment.id!);
 - taskAssignmentId `string`
   - The ID of the task assignment. Example: "12345"
 - optionalsInput `DeleteTaskAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 

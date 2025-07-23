@@ -28,7 +28,6 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignments({
 - queryParams `GetLegalHoldPolicyAssignmentsQueryParams`
   - Query parameters of getLegalHoldPolicyAssignments method
 - optionalsInput `GetLegalHoldPolicyAssignmentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -62,7 +61,6 @@ await client.legalHoldPolicyAssignments.createLegalHoldPolicyAssignment({
 - requestBody `CreateLegalHoldPolicyAssignmentRequestBody`
   - Request body of createLegalHoldPolicyAssignment method
 - optionalsInput `CreateLegalHoldPolicyAssignmentOptionalsInput`
-  -
 
 ### Returns
 
@@ -92,7 +90,6 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentById(
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `GetLegalHoldPolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -125,7 +122,6 @@ await client.legalHoldPolicyAssignments.deleteLegalHoldPolicyAssignmentById(
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `DeleteLegalHoldPolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -174,7 +170,6 @@ await client.legalHoldPolicyAssignments.getLegalHoldPolicyAssignmentFileOnHold(
 - legalHoldPolicyAssignmentId `string`
   - The ID of the legal hold policy assignment. Example: "753465"
 - optionalsInput `GetLegalHoldPolicyAssignmentFileOnHoldOptionalsInput`
-  -
 
 ### Returns
 

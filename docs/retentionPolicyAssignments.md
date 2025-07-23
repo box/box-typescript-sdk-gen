@@ -29,7 +29,6 @@ await client.retentionPolicyAssignments.getRetentionPolicyAssignments(
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
 - optionalsInput `GetRetentionPolicyAssignmentsOptionalsInput`
-  -
 
 ### Returns
 
@@ -64,7 +63,6 @@ await client.retentionPolicyAssignments.createRetentionPolicyAssignment({
 - requestBody `CreateRetentionPolicyAssignmentRequestBody`
   - Request body of createRetentionPolicyAssignment method
 - optionalsInput `CreateRetentionPolicyAssignmentOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +92,6 @@ await client.retentionPolicyAssignments.getRetentionPolicyAssignmentById(
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
 - optionalsInput `GetRetentionPolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -125,7 +122,6 @@ await client.retentionPolicyAssignments.deleteRetentionPolicyAssignmentById(
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
 - optionalsInput `DeleteRetentionPolicyAssignmentByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -156,7 +152,6 @@ await client.retentionPolicyAssignments.getFilesUnderRetentionPolicyAssignment(
 - retentionPolicyAssignmentId `string`
   - The ID of the retention policy assignment. Example: "1233123"
 - optionalsInput `GetFilesUnderRetentionPolicyAssignmentOptionalsInput`
-  -
 
 ### Returns
 

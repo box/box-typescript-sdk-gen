@@ -29,7 +29,6 @@ await client.termsOfServiceUserStatuses.getTermsOfServiceUserStatuses({
 - queryParams `GetTermsOfServiceUserStatusesQueryParams`
   - Query parameters of getTermsOfServiceUserStatuses method
 - optionalsInput `GetTermsOfServiceUserStatusesOptionalsInput`
-  -
 
 ### Returns
 
@@ -63,7 +62,6 @@ await client.termsOfServiceUserStatuses.createTermsOfServiceStatusForUser({
 - requestBody `CreateTermsOfServiceStatusForUserRequestBody`
   - Request body of createTermsOfServiceStatusForUser method
 - optionalsInput `CreateTermsOfServiceStatusForUserOptionalsInput`
-  -
 
 ### Returns
 
@@ -98,7 +96,6 @@ await client.termsOfServiceUserStatuses.updateTermsOfServiceStatusForUserById(
 - requestBody `UpdateTermsOfServiceStatusForUserByIdRequestBody`
   - Request body of updateTermsOfServiceStatusForUserById method
 - optionalsInput `UpdateTermsOfServiceStatusForUserByIdOptionalsInput`
-  -
 
 ### Returns
 

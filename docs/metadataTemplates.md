@@ -32,7 +32,6 @@ await client.metadataTemplates.getMetadataTemplatesByInstanceId({
 - queryParams `GetMetadataTemplatesByInstanceIdQueryParams`
   - Query parameters of getMetadataTemplatesByInstanceId method
 - optionalsInput `GetMetadataTemplatesByInstanceIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -69,7 +68,6 @@ await client.metadataTemplates.getMetadataTemplate(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `GetMetadataTemplateOptionalsInput`
-  -
 
 ### Returns
 
@@ -118,7 +116,6 @@ await client.metadataTemplates.updateMetadataTemplate(
 - requestBody `readonly UpdateMetadataTemplateRequestBody[]`
   - Request body of updateMetadataTemplate method
 - optionalsInput `UpdateMetadataTemplateOptionalsInput`
-  -
 
 ### Returns
 
@@ -153,7 +150,6 @@ await client.metadataTemplates.deleteMetadataTemplate(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteMetadataTemplateOptionalsInput`
-  -
 
 ### Returns
 
@@ -182,7 +178,6 @@ await client.metadataTemplates.getMetadataTemplateById(template.id);
 - templateId `string`
   - The ID of the template. Example: "f7a9891f"
 - optionalsInput `GetMetadataTemplateByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -325,7 +320,6 @@ await client.metadataTemplates.createMetadataTemplate({
 - requestBody `CreateMetadataTemplateRequestBody`
   - Request body of createMetadataTemplate method
 - optionalsInput `CreateMetadataTemplateOptionalsInput`
-  -
 
 ### Returns
 
