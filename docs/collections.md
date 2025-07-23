@@ -58,7 +58,6 @@ await client.collections.getCollectionItems(favouriteCollection.id!);
 - collectionId `string`
   - The ID of the collection. Example: "926489"
 - optionalsInput `GetCollectionItemsOptionalsInput`
-  -
 
 ### Returns
 
@@ -86,7 +85,6 @@ await client.collections.getCollectionById(collections.entries![0].id!);
 - collectionId `string`
   - The ID of the collection. Example: "926489"
 - optionalsInput `GetCollectionByIdOptionalsInput`
-  -
 
 ### Returns
 

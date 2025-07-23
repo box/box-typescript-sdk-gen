@@ -29,7 +29,6 @@ await client.docgenTemplate.createDocgenTemplateV2025R0({
 - requestBody `DocGenTemplateCreateRequestV2025R0`
   - Request body of createDocgenTemplateV2025R0 method
 - optionalsInput `CreateDocgenTemplateV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -89,7 +88,6 @@ await client.docgenTemplate.deleteDocgenTemplateByIdV2025R0(
 - templateId `string`
   - ID of the file which will no longer be marked as a Box Doc Gen template. Example: "123"
 - optionalsInput `DeleteDocgenTemplateByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -119,7 +117,6 @@ await client.docgenTemplate.getDocgenTemplateByIdV2025R0(
 - templateId `string`
   - The ID of a Box Doc Gen template. Example: 123
 - optionalsInput `GetDocgenTemplateByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -149,7 +146,6 @@ await client.docgenTemplate.getDocgenTemplateTagsV2025R0(
 - templateId `string`
   - ID of template. Example: 123
 - optionalsInput `GetDocgenTemplateTagsV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -179,7 +175,6 @@ await client.docgenTemplate.getDocgenTemplateJobByIdV2025R0(
 - templateId `string`
   - Id of template to fetch jobs for. Example: 123
 - optionalsInput `GetDocgenTemplateJobByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 

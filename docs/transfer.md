@@ -67,7 +67,6 @@ await client.transfer.transferOwnedFolder(
 - requestBody `TransferOwnedFolderRequestBody`
   - Request body of transferOwnedFolder method
 - optionalsInput `TransferOwnedFolderOptionalsInput`
-  -
 
 ### Returns
 

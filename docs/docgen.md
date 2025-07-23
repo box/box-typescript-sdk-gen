@@ -25,7 +25,6 @@ await client.docgen.getDocgenJobByIdV2025R0(docgenJobItemFromList.id);
 - jobId `string`
   - Box Doc Gen job ID. Example: 123
 - optionalsInput `GetDocgenJobByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -85,7 +84,6 @@ await client.docgen.getDocgenBatchJobByIdV2025R0(docgenBatch.id);
 - batchId `string`
   - Box Doc Gen batch ID. Example: 123
 - optionalsInput `GetDocgenBatchJobByIdV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -126,7 +124,6 @@ await client.docgen.createDocgenBatchV2025R0({
 - requestBody `DocGenBatchCreateRequestV2025R0`
   - Request body of createDocgenBatchV2025R0 method
 - optionalsInput `CreateDocgenBatchV2025R0OptionalsInput`
-  -
 
 ### Returns
 

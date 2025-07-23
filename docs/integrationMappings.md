@@ -72,7 +72,6 @@ await userClient.integrationMappings.createSlackIntegrationMapping({
 - requestBody `IntegrationMappingSlackCreateRequest`
   - Request body of createSlackIntegrationMapping method
 - optionalsInput `CreateSlackIntegrationMappingOptionalsInput`
-  -
 
 ### Returns
 
@@ -111,7 +110,6 @@ await userClient.integrationMappings.updateSlackIntegrationMappingById(
 - integrationMappingId `string`
   - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `UpdateSlackIntegrationMappingByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -144,7 +142,6 @@ await userClient.integrationMappings.deleteSlackIntegrationMappingById(
 - integrationMappingId `string`
   - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `DeleteSlackIntegrationMappingByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -215,7 +212,6 @@ await userClient.integrationMappings.createTeamsIntegrationMapping({
 - requestBody `IntegrationMappingTeamsCreateRequest`
   - Request body of createTeamsIntegrationMapping method
 - optionalsInput `CreateTeamsIntegrationMappingOptionalsInput`
-  -
 
 ### Returns
 
@@ -253,7 +249,6 @@ await userClient.integrationMappings.updateTeamsIntegrationMappingById(
 - integrationMappingId `string`
   - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `UpdateTeamsIntegrationMappingByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -285,7 +280,6 @@ await userClient.integrationMappings.deleteTeamsIntegrationMappingById(
 - integrationMappingId `string`
   - An ID of an integration mapping. Example: "11235432"
 - optionalsInput `DeleteTeamsIntegrationMappingByIdOptionalsInput`
-  -
 
 ### Returns
 

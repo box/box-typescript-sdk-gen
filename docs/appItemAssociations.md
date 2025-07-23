@@ -27,7 +27,6 @@ await client.appItemAssociations.getFileAppItemAssociations(fileId);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileAppItemAssociationsOptionalsInput`
-  -
 
 ### Returns
 
@@ -61,7 +60,6 @@ await client.appItemAssociations.getFolderAppItemAssociations(folderId);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `GetFolderAppItemAssociationsOptionalsInput`
-  -
 
 ### Returns
 

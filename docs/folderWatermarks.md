@@ -24,7 +24,6 @@ await client.folderWatermarks.getFolderWatermark(folder.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `GetFolderWatermarkOptionalsInput`
-  -
 
 ### Returns
 
@@ -59,7 +58,6 @@ await client.folderWatermarks.updateFolderWatermark(folder.id, {
 - requestBody `UpdateFolderWatermarkRequestBody`
   - Request body of updateFolderWatermark method
 - optionalsInput `UpdateFolderWatermarkOptionalsInput`
-  -
 
 ### Returns
 
@@ -89,7 +87,6 @@ await client.folderWatermarks.deleteFolderWatermark(folder.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `DeleteFolderWatermarkOptionalsInput`
-  -
 
 ### Returns
 

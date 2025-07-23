@@ -29,7 +29,6 @@ await client.folderLocks.getFolderLocks({
 - queryParams `GetFolderLocksQueryParams`
   - Query parameters of getFolderLocks method
 - optionalsInput `GetFolderLocksOptionalsInput`
-  -
 
 ### Returns
 
@@ -71,7 +70,6 @@ await client.folderLocks.createFolderLock({
 - requestBody `CreateFolderLockRequestBody`
   - Request body of createFolderLock method
 - optionalsInput `CreateFolderLockOptionalsInput`
-  -
 
 ### Returns
 
@@ -103,7 +101,6 @@ await client.folderLocks.deleteFolderLockById(folderLock.id!);
 - folderLockId `string`
   - The ID of the folder lock. Example: "12345"
 - optionalsInput `DeleteFolderLockByIdOptionalsInput`
-  -
 
 ### Returns
 

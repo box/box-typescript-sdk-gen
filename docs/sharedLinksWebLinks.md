@@ -43,7 +43,6 @@ await userClient.sharedLinksWebLinks.findWebLinkForSharedLink(
 - headersInput `FindWebLinkForSharedLinkHeadersInput`
   - Headers of findWebLinkForSharedLink method
 - optionalsInput `FindWebLinkForSharedLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -76,7 +75,6 @@ await client.sharedLinksWebLinks.getSharedLinkForWebLink(webLinkId, {
 - queryParams `GetSharedLinkForWebLinkQueryParams`
   - Query parameters of getSharedLinkForWebLink method
 - optionalsInput `GetSharedLinkForWebLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -118,7 +116,6 @@ await client.sharedLinksWebLinks.addShareLinkToWebLink(
 - queryParams `AddShareLinkToWebLinkQueryParams`
   - Query parameters of addShareLinkToWebLink method
 - optionalsInput `AddShareLinkToWebLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -160,7 +157,6 @@ await client.sharedLinksWebLinks.updateSharedLinkOnWebLink(
 - queryParams `UpdateSharedLinkOnWebLinkQueryParams`
   - Query parameters of updateSharedLinkOnWebLink method
 - optionalsInput `UpdateSharedLinkOnWebLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -197,7 +193,6 @@ await client.sharedLinksWebLinks.removeSharedLinkFromWebLink(
 - queryParams `RemoveSharedLinkFromWebLinkQueryParams`
   - Query parameters of removeSharedLinkFromWebLink method
 - optionalsInput `RemoveSharedLinkFromWebLinkOptionalsInput`
-  -
 
 ### Returns
 

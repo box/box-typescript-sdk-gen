@@ -28,7 +28,6 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
 - optionalsInput `GetShieldInformationBarrierSegmentRestrictionByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -60,7 +59,6 @@ await client.shieldInformationBarrierSegmentRestrictions.deleteShieldInformation
 - shieldInformationBarrierSegmentRestrictionId `string`
   - The ID of the shield information barrier segment Restriction. Example: "4563"
 - optionalsInput `DeleteShieldInformationBarrierSegmentRestrictionByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -93,7 +91,6 @@ await client.shieldInformationBarrierSegmentRestrictions.getShieldInformationBar
 - queryParams `GetShieldInformationBarrierSegmentRestrictionsQueryParams`
   - Query parameters of getShieldInformationBarrierSegmentRestrictions method
 - optionalsInput `GetShieldInformationBarrierSegmentRestrictionsOptionalsInput`
-  -
 
 ### Returns
 
@@ -135,7 +132,6 @@ await client.shieldInformationBarrierSegmentRestrictions.createShieldInformation
 - requestBodyInput `CreateShieldInformationBarrierSegmentRestrictionRequestBodyInput`
   - Request body of createShieldInformationBarrierSegmentRestriction method
 - optionalsInput `CreateShieldInformationBarrierSegmentRestrictionOptionalsInput`
-  -
 
 ### Returns
 

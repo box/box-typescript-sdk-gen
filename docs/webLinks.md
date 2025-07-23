@@ -30,7 +30,6 @@ await client.webLinks.createWebLink({
 - requestBody `CreateWebLinkRequestBody`
   - Request body of createWebLink method
 - optionalsInput `CreateWebLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -58,7 +57,6 @@ await client.webLinks.getWebLinkById(weblink.id);
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `GetWebLinkByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +92,6 @@ await client.webLinks.updateWebLinkById(weblink.id, {
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `UpdateWebLinkByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -122,7 +119,6 @@ await client.webLinks.deleteWebLinkById(webLinkId);
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `DeleteWebLinkByIdOptionalsInput`
-  -
 
 ### Returns
 

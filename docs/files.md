@@ -31,7 +31,6 @@ await client.files.getFileById(uploadedFile.id, {
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -69,7 +68,6 @@ await client.files.updateFileById(fileToUpdate.id, {
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `UpdateFileByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -105,7 +103,6 @@ await client.files.deleteFileById(thumbnailFile.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `DeleteFileByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -139,7 +136,6 @@ await client.files.copyFile(fileOrigin.id, {
 - requestBody `CopyFileRequestBody`
   - Request body of copyFile method
 - optionalsInput `CopyFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -176,7 +172,6 @@ await client.files.getFileThumbnailUrl(
 - extension `GetFileThumbnailUrlExtension`
   - The file format for the thumbnail. Example: "png"
 - optionalsInput `GetFileThumbnailUrlOptionalsInput`
-  -
 
 ### Returns
 
@@ -226,7 +221,6 @@ await client.files.getFileThumbnailById(
 - extension `GetFileThumbnailByIdExtension`
   - The file format for the thumbnail. Example: "png"
 - optionalsInput `GetFileThumbnailByIdOptionalsInput`
-  -
 
 ### Returns
 

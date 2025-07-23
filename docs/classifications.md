@@ -77,7 +77,6 @@ await client.classifications.addClassification([
 - requestBody `readonly AddClassificationRequestBody[]`
   - Request body of addClassification method
 - optionalsInput `AddClassificationOptionalsInput`
-  -
 
 ### Returns
 
@@ -125,7 +124,6 @@ await client.classifications.updateClassification([
 - requestBody `readonly UpdateClassificationRequestBody[]`
   - Request body of updateClassification method
 - optionalsInput `UpdateClassificationOptionalsInput`
-  -
 
 ### Returns
 
@@ -157,7 +155,6 @@ _Currently we don't have an example for calling `createClassificationTemplate` i
 - requestBodyInput `CreateClassificationTemplateRequestBodyInput`
   - Request body of createClassificationTemplate method
 - optionalsInput `CreateClassificationTemplateOptionalsInput`
-  -
 
 ### Returns
 

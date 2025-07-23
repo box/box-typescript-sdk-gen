@@ -30,7 +30,6 @@ await client.fileClassifications.getClassificationOnFile(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetClassificationOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -70,7 +69,6 @@ await client.fileClassifications.addClassificationToFile(file.id, {
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `AddClassificationToFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -109,7 +107,6 @@ await client.fileClassifications.updateClassificationOnFile(file.id, [
 - requestBody `readonly UpdateClassificationOnFileRequestBody[]`
   - Request body of updateClassificationOnFile method
 - optionalsInput `UpdateClassificationOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -141,7 +138,6 @@ await client.fileClassifications.deleteClassificationFromFile(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `DeleteClassificationFromFileOptionalsInput`
-  -
 
 ### Returns
 

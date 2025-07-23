@@ -40,7 +40,6 @@ await client.search.searchByMetadataQuery({
 - requestBody `MetadataQuery`
   - Request body of searchByMetadataQuery method
 - optionalsInput `SearchByMetadataQueryOptionalsInput`
-  -
 
 ### Returns
 

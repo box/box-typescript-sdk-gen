@@ -63,7 +63,6 @@ await client.legalHoldPolicies.createLegalHoldPolicy({
 - requestBody `CreateLegalHoldPolicyRequestBody`
   - Request body of createLegalHoldPolicy method
 - optionalsInput `CreateLegalHoldPolicyOptionalsInput`
-  -
 
 ### Returns
 
@@ -91,7 +90,6 @@ await client.legalHoldPolicies.getLegalHoldPolicyById(legalHoldPolicyId);
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `GetLegalHoldPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -123,7 +121,6 @@ await client.legalHoldPolicies.updateLegalHoldPolicyById(legalHoldPolicyId, {
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `UpdateLegalHoldPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -154,7 +151,6 @@ await client.legalHoldPolicies.deleteLegalHoldPolicyById(legalHoldPolicy.id);
 - legalHoldPolicyId `string`
   - The ID of the legal hold policy. Example: "324432"
 - optionalsInput `DeleteLegalHoldPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 

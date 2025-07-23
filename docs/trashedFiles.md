@@ -27,7 +27,6 @@ await client.trashedFiles.restoreFileFromTrash(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `RestoreFileFromTrashOptionalsInput`
-  -
 
 ### Returns
 
@@ -65,7 +64,6 @@ await client.trashedFiles.getTrashedFileById(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetTrashedFileByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -96,7 +94,6 @@ await client.trashedFiles.deleteTrashedFileById(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `DeleteTrashedFileByIdOptionalsInput`
-  -
 
 ### Returns
 

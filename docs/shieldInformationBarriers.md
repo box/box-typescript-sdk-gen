@@ -27,7 +27,6 @@ await client.shieldInformationBarriers.getShieldInformationBarrierById(
 - shieldInformationBarrierId `string`
   - The ID of the shield information barrier. Example: "1910967"
 - optionalsInput `GetShieldInformationBarrierByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -59,7 +58,6 @@ await client.shieldInformationBarriers.updateShieldInformationBarrierStatus({
 - requestBody `UpdateShieldInformationBarrierStatusRequestBody`
   - Request body of updateShieldInformationBarrierStatus method
 - optionalsInput `UpdateShieldInformationBarrierStatusOptionalsInput`
-  -
 
 ### Returns
 
@@ -124,7 +122,6 @@ await client.shieldInformationBarriers.createShieldInformationBarrier({
 - requestBody `CreateShieldInformationBarrierRequestBody`
   - Request body of createShieldInformationBarrier method
 - optionalsInput `CreateShieldInformationBarrierOptionalsInput`
-  -
 
 ### Returns
 

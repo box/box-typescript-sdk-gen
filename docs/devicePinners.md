@@ -24,7 +24,6 @@ await client.devicePinners.getDevicePinnerById(devicePinnerId);
 - devicePinnerId `string`
   - The ID of the device pin. Example: "2324234"
 - optionalsInput `GetDevicePinnerByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -52,7 +51,6 @@ await client.devicePinners.deleteDevicePinnerById(devicePinnerId);
 - devicePinnerId `string`
   - The ID of the device pin. Example: "2324234"
 - optionalsInput `DeleteDevicePinnerByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -83,7 +81,6 @@ await client.devicePinners.getEnterpriseDevicePinners(enterpriseId);
 - enterpriseId `string`
   - The ID of the enterprise. Example: "3442311"
 - optionalsInput `GetEnterpriseDevicePinnersOptionalsInput`
-  -
 
 ### Returns
 

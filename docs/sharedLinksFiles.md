@@ -46,7 +46,6 @@ await userClient.sharedLinksFiles.findFileForSharedLink(
 - headersInput `FindFileForSharedLinkHeadersInput`
   - Headers of findFileForSharedLink method
 - optionalsInput `FindFileForSharedLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -79,7 +78,6 @@ await client.sharedLinksFiles.getSharedLinkForFile(fileId, {
 - queryParams `GetSharedLinkForFileQueryParams`
   - Query parameters of getSharedLinkForFile method
 - optionalsInput `GetSharedLinkForFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -121,7 +119,6 @@ await client.sharedLinksFiles.addShareLinkToFile(
 - queryParams `AddShareLinkToFileQueryParams`
   - Query parameters of addShareLinkToFile method
 - optionalsInput `AddShareLinkToFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -163,7 +160,6 @@ await client.sharedLinksFiles.updateSharedLinkOnFile(
 - queryParams `UpdateSharedLinkOnFileQueryParams`
   - Query parameters of updateSharedLinkOnFile method
 - optionalsInput `UpdateSharedLinkOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -200,7 +196,6 @@ await client.sharedLinksFiles.removeSharedLinkFromFile(
 - queryParams `RemoveSharedLinkFromFileQueryParams`
   - Query parameters of removeSharedLinkFromFile method
 - optionalsInput `RemoveSharedLinkFromFileOptionalsInput`
-  -
 
 ### Returns
 

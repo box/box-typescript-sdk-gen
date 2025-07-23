@@ -26,7 +26,6 @@ await client.skills.getBoxSkillCardsOnFile(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetBoxSkillCardsOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -61,7 +60,6 @@ await client.skills.createBoxSkillCardsOnFile(file.id, {
 - requestBody `CreateBoxSkillCardsOnFileRequestBody`
   - Request body of createBoxSkillCardsOnFile method
 - optionalsInput `CreateBoxSkillCardsOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -98,7 +96,6 @@ await client.skills.updateBoxSkillCardsOnFile(file.id, [
 - requestBody `readonly UpdateBoxSkillCardsOnFileRequestBody[]`
   - Request body of updateBoxSkillCardsOnFile method
 - optionalsInput `UpdateBoxSkillCardsOnFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -127,7 +124,6 @@ await client.skills.deleteBoxSkillCardsFromFile(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `DeleteBoxSkillCardsFromFileOptionalsInput`
-  -
 
 ### Returns
 
@@ -155,7 +151,6 @@ _Currently we don't have an example for calling `updateAllSkillCardsOnFile` in i
 - requestBody `UpdateAllSkillCardsOnFileRequestBody`
   - Request body of updateAllSkillCardsOnFile method
 - optionalsInput `UpdateAllSkillCardsOnFileOptionalsInput`
-  -
 
 ### Returns
 

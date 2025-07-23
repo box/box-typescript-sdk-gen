@@ -27,7 +27,6 @@ await client.trashedWebLinks.restoreWeblinkFromTrash(weblink.id);
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `RestoreWeblinkFromTrashOptionalsInput`
-  -
 
 ### Returns
 
@@ -55,7 +54,6 @@ await client.trashedWebLinks.getTrashedWebLinkById(weblink.id);
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `GetTrashedWebLinkByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -86,7 +84,6 @@ await client.trashedWebLinks.deleteTrashedWebLinkById(weblink.id);
 - webLinkId `string`
   - The ID of the web link. Example: "12345"
 - optionalsInput `DeleteTrashedWebLinkByIdOptionalsInput`
-  -
 
 ### Returns
 

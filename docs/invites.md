@@ -38,7 +38,6 @@ await client.invites.createInvite({
 - requestBody `CreateInviteRequestBody`
   - Request body of createInvite method
 - optionalsInput `CreateInviteOptionalsInput`
-  -
 
 ### Returns
 
@@ -66,7 +65,6 @@ await client.invites.getInviteById(invitation.id);
 - inviteId `string`
   - The ID of an invite. Example: "213723"
 - optionalsInput `GetInviteByIdOptionalsInput`
-  -
 
 ### Returns
 

@@ -36,7 +36,6 @@ await client.folders.getFolderById('0');
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `GetFolderByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -80,7 +79,6 @@ await client.folders.updateFolderById(folderToUpdate.id, {
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `UpdateFolderByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -118,7 +116,6 @@ await client.folders.deleteFolderById(newFolder.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `DeleteFolderByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -151,7 +148,6 @@ await client.folders.getFolderItems(folderOrigin.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `GetFolderItemsOptionalsInput`
-  -
 
 ### Returns
 
@@ -182,7 +178,6 @@ await client.folders.createFolder({
 - requestBody `CreateFolderRequestBody`
   - Request body of createFolder method
 - optionalsInput `CreateFolderOptionalsInput`
-  -
 
 ### Returns
 
@@ -221,7 +216,6 @@ await client.folders.copyFolder(folderOrigin.id, {
 - requestBody `CopyFolderRequestBody`
   - Request body of copyFolder method
 - optionalsInput `CopyFolderOptionalsInput`
-  -
 
 ### Returns
 

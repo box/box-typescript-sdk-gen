@@ -25,7 +25,6 @@ await client.hubItems.getHubItemsV2025R0({
 - queryParams `GetHubItemsV2025R0QueryParams`
   - Query parameters of getHubItemsV2025R0 method
 - optionalsInput `GetHubItemsV2025R0OptionalsInput`
-  -
 
 ### Returns
 
@@ -62,7 +61,6 @@ await client.hubItems.manageHubItemsV2025R0(createdHub.id, {
 - requestBody `HubItemsManageRequestV2025R0`
   - Request body of manageHubItemsV2025R0 method
 - optionalsInput `ManageHubItemsV2025R0OptionalsInput`
-  -
 
 ### Returns
 

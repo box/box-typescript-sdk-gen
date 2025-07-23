@@ -27,7 +27,6 @@ await client.tasks.getFileTasks(file.id);
 - fileId `string`
   - The unique identifier that represents a file. The ID for any file can be determined by visiting a file in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/files/123` the `file_id` is `123`. Example: "12345"
 - optionalsInput `GetFileTasksOptionalsInput`
-  -
 
 ### Returns
 
@@ -68,7 +67,6 @@ await client.tasks.createTask({
 - requestBody `CreateTaskRequestBody`
   - Request body of createTask method
 - optionalsInput `CreateTaskOptionalsInput`
-  -
 
 ### Returns
 
@@ -96,7 +94,6 @@ await client.tasks.getTaskById(task.id!);
 - taskId `string`
   - The ID of the task. Example: "12345"
 - optionalsInput `GetTaskByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -129,7 +126,6 @@ await client.tasks.updateTaskById(task.id!, {
 - taskId `string`
   - The ID of the task. Example: "12345"
 - optionalsInput `UpdateTaskByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -157,7 +153,6 @@ await client.tasks.deleteTaskById(task.id!);
 - taskId `string`
   - The ID of the task. Example: "12345"
 - optionalsInput `DeleteTaskByIdOptionalsInput`
-  -
 
 ### Returns
 

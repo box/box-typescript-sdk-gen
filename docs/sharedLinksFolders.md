@@ -43,7 +43,6 @@ await userClient.sharedLinksFolders.findFolderForSharedLink(
 - headersInput `FindFolderForSharedLinkHeadersInput`
   - Headers of findFolderForSharedLink method
 - optionalsInput `FindFolderForSharedLinkOptionalsInput`
-  -
 
 ### Returns
 
@@ -76,7 +75,6 @@ await client.sharedLinksFolders.getSharedLinkForFolder(folder.id, {
 - queryParams `GetSharedLinkForFolderQueryParams`
   - Query parameters of getSharedLinkForFolder method
 - optionalsInput `GetSharedLinkForFolderOptionalsInput`
-  -
 
 ### Returns
 
@@ -118,7 +116,6 @@ await client.sharedLinksFolders.addShareLinkToFolder(
 - queryParams `AddShareLinkToFolderQueryParams`
   - Query parameters of addShareLinkToFolder method
 - optionalsInput `AddShareLinkToFolderOptionalsInput`
-  -
 
 ### Returns
 
@@ -160,7 +157,6 @@ await client.sharedLinksFolders.updateSharedLinkOnFolder(
 - queryParams `UpdateSharedLinkOnFolderQueryParams`
   - Query parameters of updateSharedLinkOnFolder method
 - optionalsInput `UpdateSharedLinkOnFolderOptionalsInput`
-  -
 
 ### Returns
 
@@ -197,7 +193,6 @@ await client.sharedLinksFolders.removeSharedLinkFromFolder(
 - queryParams `RemoveSharedLinkFromFolderQueryParams`
   - Query parameters of removeSharedLinkFromFolder method
 - optionalsInput `RemoveSharedLinkFromFolderOptionalsInput`
-  -
 
 ### Returns
 

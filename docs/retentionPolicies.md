@@ -67,7 +67,6 @@ await client.retentionPolicies.createRetentionPolicy({
 - requestBody `CreateRetentionPolicyRequestBody`
   - Request body of createRetentionPolicy method
 - optionalsInput `CreateRetentionPolicyOptionalsInput`
-  -
 
 ### Returns
 
@@ -95,7 +94,6 @@ await client.retentionPolicies.getRetentionPolicyById(retentionPolicy.id);
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
 - optionalsInput `GetRetentionPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -127,7 +125,6 @@ await client.retentionPolicies.updateRetentionPolicyById(retentionPolicy.id, {
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
 - optionalsInput `UpdateRetentionPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -155,7 +152,6 @@ await client.retentionPolicies.deleteRetentionPolicyById(retentionPolicy.id);
 - retentionPolicyId `string`
   - The ID of the retention policy. Example: "982312"
 - optionalsInput `DeleteRetentionPolicyByIdOptionalsInput`
-  -
 
 ### Returns
 

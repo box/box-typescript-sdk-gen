@@ -27,7 +27,6 @@ await client.folderMetadata.getFolderMetadata(folder.id);
 - folderId `string`
   - The unique identifier that represent a folder. The ID for any folder can be determined by visiting this folder in the web application and copying the ID from the URL. For example, for the URL `https://*.app.box.com/folder/123` the `folder_id` is `123`. The root folder of a Box account is always represented by the ID `0`. Example: "12345"
 - optionalsInput `GetFolderMetadataOptionalsInput`
-  -
 
 ### Returns
 
@@ -67,7 +66,6 @@ await client.folderMetadata.getFolderMetadataById(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `GetFolderMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -122,7 +120,6 @@ await client.folderMetadata.createFolderMetadataById(
 - requestBody `CreateFolderMetadataByIdRequestBody`
   - Request body of createFolderMetadataById method
 - optionalsInput `CreateFolderMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -195,7 +192,6 @@ await client.folderMetadata.updateFolderMetadataById(
 - requestBody `readonly UpdateFolderMetadataByIdRequestBody[]`
   - Request body of updateFolderMetadataById method
 - optionalsInput `UpdateFolderMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -232,7 +228,6 @@ await client.folderMetadata.deleteFolderMetadataById(
 - templateKey `string`
   - The name of the metadata template. Example: "properties"
 - optionalsInput `DeleteFolderMetadataByIdOptionalsInput`
-  -
 
 ### Returns
 

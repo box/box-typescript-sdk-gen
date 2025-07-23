@@ -62,7 +62,6 @@ await client.groups.createGroup({
 - requestBody `CreateGroupRequestBody`
   - Request body of createGroup method
 - optionalsInput `CreateGroupOptionalsInput`
-  -
 
 ### Returns
 
@@ -96,7 +95,6 @@ await client.groups.getGroupById(group.id, {
 - groupId `string`
   - The ID of the group. Example: "57645"
 - optionalsInput `GetGroupByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -128,7 +126,6 @@ await client.groups.updateGroupById(group.id, {
 - groupId `string`
   - The ID of the group. Example: "57645"
 - optionalsInput `UpdateGroupByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -157,7 +154,6 @@ await client.groups.deleteGroupById(group.id);
 - groupId `string`
   - The ID of the group. Example: "57645"
 - optionalsInput `DeleteGroupByIdOptionalsInput`
-  -
 
 ### Returns
 

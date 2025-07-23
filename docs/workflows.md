@@ -29,7 +29,6 @@ await adminClient.workflows.getWorkflows({
 - queryParams `GetWorkflowsQueryParams`
   - Query parameters of getWorkflows method
 - optionalsInput `GetWorkflowsOptionalsInput`
-  -
 
 ### Returns
 
@@ -78,7 +77,6 @@ await adminClient.workflows.startWorkflow(workflowToRun.id!, {
 - requestBody `StartWorkflowRequestBody`
   - Request body of startWorkflow method
 - optionalsInput `StartWorkflowOptionalsInput`
-  -
 
 ### Returns
 

@@ -63,7 +63,6 @@ await client.collaborationAllowlistExemptTargets.createCollaborationWhitelistExe
 - requestBody `CreateCollaborationWhitelistExemptTargetRequestBody`
   - Request body of createCollaborationWhitelistExemptTarget method
 - optionalsInput `CreateCollaborationWhitelistExemptTargetOptionalsInput`
-  -
 
 ### Returns
 
@@ -94,7 +93,6 @@ await client.collaborationAllowlistExemptTargets.getCollaborationWhitelistExempt
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
 - optionalsInput `GetCollaborationWhitelistExemptTargetByIdOptionalsInput`
-  -
 
 ### Returns
 
@@ -125,7 +123,6 @@ await client.collaborationAllowlistExemptTargets.deleteCollaborationWhitelistExe
 - collaborationWhitelistExemptTargetId `string`
   - The ID of the exemption to the list. Example: "984923"
 - optionalsInput `DeleteCollaborationWhitelistExemptTargetByIdOptionalsInput`
-  -
 
 ### Returns
 

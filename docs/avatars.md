@@ -24,7 +24,6 @@ await client.avatars.getUserAvatar(user.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `GetUserAvatarOptionalsInput`
-  -
 
 ### Returns
 
@@ -62,7 +61,6 @@ await client.avatars.createUserAvatar(user.id, {
 - requestBody `CreateUserAvatarRequestBody`
   - Request body of createUserAvatar method
 - optionalsInput `CreateUserAvatarOptionalsInput`
-  -
 
 ### Returns
 
@@ -93,7 +91,6 @@ await client.avatars.deleteUserAvatar(user.id);
 - userId `string`
   - The ID of the user. Example: "12345"
 - optionalsInput `DeleteUserAvatarOptionalsInput`
-  -
 
 ### Returns
 
