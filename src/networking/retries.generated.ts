@@ -29,19 +29,24 @@ export class BoxRetryStrategy implements RetryStrategy {
   readonly maxAttempts: number = 5;
   readonly retryRandomizationFactor: number = 0.5;
   readonly retryBaseInterval: number = 1;
+  readonly maxRetriesOnException: number = 2;
   constructor(
     fields: Omit<
       BoxRetryStrategy,
       | 'maxAttempts'
       | 'retryRandomizationFactor'
       | 'retryBaseInterval'
+      | 'maxRetriesOnException'
       | 'shouldRetry'
       | 'retryAfter'
     > &
       Partial<
         Pick<
           BoxRetryStrategy,
-          'maxAttempts' | 'retryRandomizationFactor' | 'retryBaseInterval'
+          | 'maxAttempts'
+          | 'retryRandomizationFactor'
+          | 'retryBaseInterval'
+          | 'maxRetriesOnException'
         >
       >,
   ) {
@@ -53,6 +58,9 @@ export class BoxRetryStrategy implements RetryStrategy {
     }
     if (fields.retryBaseInterval !== undefined) {
       this.retryBaseInterval = fields.retryBaseInterval;
+    }
+    if (fields.maxRetriesOnException !== undefined) {
+      this.maxRetriesOnException = fields.maxRetriesOnException;
     }
   }
   /**
@@ -66,6 +74,9 @@ export class BoxRetryStrategy implements RetryStrategy {
     fetchResponse: FetchResponse,
     attemptNumber: number,
   ): Promise<boolean> {
+    if (fetchResponse.status == 0) {
+      return attemptNumber <= this.maxRetriesOnException;
+    }
     const isSuccessful: boolean =
       fetchResponse.status >= 200 && fetchResponse.status < 400;
     const retryAfterHeader: string = fetchResponse.headers['Retry-After'];
