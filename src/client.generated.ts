@@ -80,6 +80,7 @@ import { HubsManager } from './managers/hubs.generated.js';
 import { HubCollaborationsManager } from './managers/hubCollaborations.generated.js';
 import { HubItemsManager } from './managers/hubItems.generated.js';
 import { ShieldListsManager } from './managers/shieldLists.generated.js';
+import { ArchivesManager } from './managers/archives.generated.js';
 import { Authentication } from './networking/auth.generated.js';
 import { NetworkSession } from './networking/network.generated.js';
 import { BoxSdkError } from './box/errors.js';
@@ -179,6 +180,7 @@ export class BoxClient {
   readonly hubCollaborations: HubCollaborationsManager;
   readonly hubItems: HubItemsManager;
   readonly shieldLists: ShieldListsManager;
+  readonly archives: ArchivesManager;
   constructor(
     fields: Omit<
       BoxClient,
@@ -260,6 +262,7 @@ export class BoxClient {
       | 'hubCollaborations'
       | 'hubItems'
       | 'shieldLists'
+      | 'archives'
       | 'networkSession'
       | 'makeRequest'
       | 'withAsUserHeader'
@@ -593,6 +596,10 @@ export class BoxClient {
       networkSession: this.networkSession,
     });
     this.shieldLists = new ShieldListsManager({
+      auth: this.auth,
+      networkSession: this.networkSession,
+    });
+    this.archives = new ArchivesManager({
       auth: this.auth,
       networkSession: this.networkSession,
     });
