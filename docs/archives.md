@@ -13,7 +13,13 @@ This operation is performed by calling function `getArchivesV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/get-archives/).
 
-_Currently we don't have an example for calling `getArchivesV2025R0` in integration tests_
+<!-- sample get_archives_v2025.0 -->
+
+```ts
+await client.archives.getArchivesV2025R0({
+  limit: 100,
+} satisfies GetArchivesV2025R0QueryParams);
+```
 
 ### Arguments
 
@@ -39,7 +45,13 @@ This operation is performed by calling function `createArchiveV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/post-archives/).
 
-_Currently we don't have an example for calling `createArchiveV2025R0` in integration tests_
+<!-- sample post_archives_v2025.0 -->
+
+```ts
+await client.archives.createArchiveV2025R0({
+  name: archiveName,
+} satisfies CreateArchiveV2025R0RequestBody);
+```
 
 ### Arguments
 
@@ -62,7 +74,11 @@ This operation is performed by calling function `deleteArchiveByIdV2025R0`.
 See the endpoint docs at
 [API Reference](https://developer.box.com/reference/v2025.0/delete-archives-id/).
 
-_Currently we don't have an example for calling `deleteArchiveByIdV2025R0` in integration tests_
+<!-- sample delete_archives_id_v2025.0 -->
+
+```ts
+await client.archives.deleteArchiveByIdV2025R0(archive.id);
+```
 
 ### Arguments
 
