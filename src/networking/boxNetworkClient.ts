@@ -185,7 +185,7 @@ export class BoxNetworkClient implements NetworkClient {
 
     let isExceptionCase: boolean = false;
     let fetchResponse: FetchResponse;
-    let responseBytesBuffer: ArrayBuffer | undefined;
+    let responseBytesBuffer: ArrayBuffer | Uint8Array<ArrayBuffer> | undefined;
     const { params = {} } = fetchOptions;
 
     const requestInit = await createRequestInit({
