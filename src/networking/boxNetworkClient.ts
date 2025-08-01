@@ -214,7 +214,7 @@ export class BoxNetworkClient implements NetworkClient {
       const ignoreResponseBody = fetchOptions.followRedirects === false;
 
       let data: SerializedData | undefined;
-      let content: ByteStream = generateByteStreamFromBuffer(new Uint8Array());
+      let content: ByteStream = generateByteStreamFromBuffer(new Uint8Array().buffer);
 
       if (!ignoreResponseBody) {
         if (options.responseFormat === 'binary') {
