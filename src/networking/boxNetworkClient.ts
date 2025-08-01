@@ -73,7 +73,7 @@ async function createRequestInit(options: FetchOptions): Promise<RequestInit> {
       for (const item of options.multipartData) {
         if (item.fileStream) {
           const buffer = await readByteStream(item.fileStream);
-          const blob = isBrowser() ? new Blob([buffer]) : buffer;
+          const blob = isBrowser() ? new Blob([new Uint8Array(buffer)]) : buffer;
           contentHeaders['content-md5'] = await calculateMD5Hash(buffer);
           formData.append(item.partName, blob, {
             filename: item.fileName ?? 'file',
