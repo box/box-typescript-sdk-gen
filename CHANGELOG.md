@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.16.0...v1.17.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* Bump `cypress` to resolve `CVE-2025-7783` in `form-data` (box/box-codegen[#769](https://github.com/box/box-typescript-sdk-gen/issues/769)) ([#677](https://github.com/box/box-typescript-sdk-gen/issues/677)) ([077413e](https://github.com/box/box-typescript-sdk-gen/commit/077413ec525fad4d8ebc4c7209fce20046731295))
+
+
+### New Features and Enhancements
+
+* Add AI spreadsheet processor (box/box-openapi[#533](https://github.com/box/box-typescript-sdk-gen/issues/533)) ([#649](https://github.com/box/box-typescript-sdk-gen/issues/649)) ([254fb54](https://github.com/box/box-typescript-sdk-gen/commit/254fb54d928ec3a76304674f341be1c67d78a143))
+* Add Archive Public API (box/box-openapi[#540](https://github.com/box/box-typescript-sdk-gen/issues/540)) ([#674](https://github.com/box/box-typescript-sdk-gen/issues/674)) ([1cbb124](https://github.com/box/box-typescript-sdk-gen/commit/1cbb12485a417b813df8b6918cf3721ae781a286))
+* Add new Hubs APIs and Hubs items API (box/box-openapi[#538](https://github.com/box/box-typescript-sdk-gen/issues/538)) ([#666](https://github.com/box/box-typescript-sdk-gen/issues/666)) ([25c9596](https://github.com/box/box-typescript-sdk-gen/commit/25c9596bc71fe88e0a2b6d5e01c65fa682c2fd38))
+* Add new schema for `Metadata Error` (box/box-openapi[#539](https://github.com/box/box-typescript-sdk-gen/issues/539)) ([#667](https://github.com/box/box-typescript-sdk-gen/issues/667)) ([9af46ab](https://github.com/box/box-typescript-sdk-gen/commit/9af46abe837ee0d812bcc15f1edf0d5a6530bfe0))
+* Allow injecting private key decryptor for JWT (box/box-codegen[#754](https://github.com/box/box-typescript-sdk-gen/issues/754)) ([#656](https://github.com/box/box-typescript-sdk-gen/issues/656)) ([cb0c35d](https://github.com/box/box-typescript-sdk-gen/commit/cb0c35df4a5b3f9b8c611006dd33d480949a0d36))
+* Improve webhook validation checks (box/box-codegen[#745](https://github.com/box/box-typescript-sdk-gen/issues/745)) ([#647](https://github.com/box/box-typescript-sdk-gen/issues/647)) ([98b3b92](https://github.com/box/box-typescript-sdk-gen/commit/98b3b9293ff3f0e5922d0772d87504770bb9303c))
+* Retry request on network exception (box/box-codegen[#776](https://github.com/box/box-typescript-sdk-gen/issues/776)) ([#684](https://github.com/box/box-typescript-sdk-gen/issues/684)) ([c0c4dba](https://github.com/box/box-typescript-sdk-gen/commit/c0c4dbac40970d34da4c9e52fc43f029ae2f91a6))
+* Support ESM build and tree-shaking (box/box-codegen[#762](https://github.com/box/box-typescript-sdk-gen/issues/762)) ([#663](https://github.com/box/box-typescript-sdk-gen/issues/663)) ([8ca3302](https://github.com/box/box-typescript-sdk-gen/commit/8ca33023d904edd596819c7c6df42022006274ed))
+* Support Hubs beta endpoints (box/box-openapi[#531](https://github.com/box/box-typescript-sdk-gen/issues/531)) ([#641](https://github.com/box/box-typescript-sdk-gen/issues/641)) ([d8c7bb6](https://github.com/box/box-typescript-sdk-gen/commit/d8c7bb66736a3c4679b116916c61e2ead824a305))
+* Support new tools in AI Studio (box/box-openapi[#534](https://github.com/box/box-typescript-sdk-gen/issues/534))  ([#652](https://github.com/box/box-typescript-sdk-gen/issues/652)) ([db2501b](https://github.com/box/box-typescript-sdk-gen/commit/db2501bb13fc6ecebbb4c535b4a19c9be2cf64c2))
+
 ## [1.16.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.15.1...v1.16.0) (2025-06-12)
 
 
