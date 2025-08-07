@@ -1,0 +1,1 @@
+{"version":3,"file":"networkClient.generated.d.ts","sourceRoot":"","sources":["../../src/networking/networkClient.generated.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,6BAA6B,CAAC;AAEhE,OAAO,EAAE,aAAa,EAAE,MAAM,8BAA8B,CAAC;AAC7D,MAAM,WAAW,aAAa;IAC5B;;;OAGG;IACH,KAAK,CAAC,YAAY,EAAE,iBAAiB,GAAG,OAAO,CAAC,aAAa,CAAC,CAAC;CAChE"}
