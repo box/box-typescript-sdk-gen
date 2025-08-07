@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.17.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.17.0...v1.17.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* Fix exports syntax when importing from `lib` ([#700](https://github.com/box/box-typescript-sdk-gen/issues/700)) ([782a287](https://github.com/box/box-typescript-sdk-gen/commit/782a287efd3481fc056effcf83886f05bc9adbf9))
+
 ## [1.17.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.16.0...v1.17.0) (2025-08-05)
 
 
