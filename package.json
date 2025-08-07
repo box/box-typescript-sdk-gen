@@ -27,9 +27,13 @@
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     },
-    "./lib/*": {
+    "./lib/*.js": {
       "import": "./lib-esm/*",
-      "require": "./lib/*",
+      "require": "./lib/*"
+    },
+    "./lib/*": {
+      "import": "./lib-esm/*.js",
+      "require": "./lib/*.js",
       "types": "./lib/*.d.ts"
     },
     "./*": {
