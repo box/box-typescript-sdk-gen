@@ -16,6 +16,12 @@ import { serializeKeywordSkillCardInvocationTypeField } from '../schemas/keyword
 import { deserializeKeywordSkillCardInvocationTypeField } from '../schemas/keywordSkillCard.generated.js';
 import { serializeKeywordSkillCardEntriesField } from '../schemas/keywordSkillCard.generated.js';
 import { deserializeKeywordSkillCardEntriesField } from '../schemas/keywordSkillCard.generated.js';
+import { serializeStatusSkillCard } from '../schemas/statusSkillCard.generated.js';
+import { deserializeStatusSkillCard } from '../schemas/statusSkillCard.generated.js';
+import { serializeTimelineSkillCard } from '../schemas/timelineSkillCard.generated.js';
+import { deserializeTimelineSkillCard } from '../schemas/timelineSkillCard.generated.js';
+import { serializeTranscriptSkillCard } from '../schemas/transcriptSkillCard.generated.js';
+import { deserializeTranscriptSkillCard } from '../schemas/transcriptSkillCard.generated.js';
 import { serializeSkillCardsMetadata } from '../schemas/skillCardsMetadata.generated.js';
 import { deserializeSkillCardsMetadata } from '../schemas/skillCardsMetadata.generated.js';
 import { serializeCreateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
@@ -26,6 +32,8 @@ import { serializeUpdateBoxSkillCardsOnFileRequestBodyOpField } from '../manager
 import { deserializeUpdateBoxSkillCardsOnFileRequestBodyOpField } from '../managers/skills.generated.js';
 import { serializeKeywordSkillCard } from '../schemas/keywordSkillCard.generated.js';
 import { deserializeKeywordSkillCard } from '../schemas/keywordSkillCard.generated.js';
+import { serializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas/keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
+import { deserializeKeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas/keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
 import { BoxClient } from '../client.generated.js';
 import { FileFull } from '../schemas/fileFull.generated.js';
 import { KeywordSkillCardTypeField } from '../schemas/keywordSkillCard.generated.js';
@@ -36,6 +44,9 @@ import { KeywordSkillCardSkillTypeField } from '../schemas/keywordSkillCard.gene
 import { KeywordSkillCardInvocationField } from '../schemas/keywordSkillCard.generated.js';
 import { KeywordSkillCardInvocationTypeField } from '../schemas/keywordSkillCard.generated.js';
 import { KeywordSkillCardEntriesField } from '../schemas/keywordSkillCard.generated.js';
+import { StatusSkillCard } from '../schemas/statusSkillCard.generated.js';
+import { TimelineSkillCard } from '../schemas/timelineSkillCard.generated.js';
+import { TranscriptSkillCard } from '../schemas/transcriptSkillCard.generated.js';
 import { SkillCardsMetadata } from '../schemas/skillCardsMetadata.generated.js';
 import { CreateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
 import { UpdateBoxSkillCardsOnFileRequestBody } from '../managers/skills.generated.js';
@@ -44,6 +55,7 @@ import { getUuid } from '../internal/utils.js';
 import { getDefaultClient } from './commons.generated.js';
 import { uploadNewFile } from './commons.generated.js';
 import { KeywordSkillCard } from '../schemas/keywordSkillCard.generated.js';
+import { KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard } from '../schemas/keywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard.generated.js';
 import { SerializedData } from '../serialization/json.js';
 import { sdIsEmpty } from '../serialization/json.js';
 import { sdIsBoolean } from '../serialization/json.js';
@@ -74,7 +86,8 @@ test('test_skills_cards_CRUD', async function test_skills_cards_CRUD(): Promise<
     }),
     entries: [{ text: 'DN86 BOX' } satisfies KeywordSkillCardEntriesField],
   });
-  const cardsToCreate: readonly KeywordSkillCard[] = [cardToCreate];
+  const cardsToCreate: readonly KeywordSkillCardOrStatusSkillCardOrTimelineSkillCardOrTranscriptSkillCard[] =
+    [cardToCreate];
   const skillCardsMetadata: SkillCardsMetadata =
     await client.skills.createBoxSkillCardsOnFile(file.id, {
       cards: cardsToCreate,
