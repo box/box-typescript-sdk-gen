@@ -38,6 +38,18 @@ export function serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatR
   } finally {
   }
   try {
+    if (!(val.lt == void 0) && !sdIsNumber(val.lt)) {
+      throw new BoxSdkError({
+        message:
+          'Expecting number for "lt" of type "MetadataFieldFilterFloatRange"',
+      });
+    }
+    if (!(val.gt == void 0) && !sdIsNumber(val.gt)) {
+      throw new BoxSdkError({
+        message:
+          'Expecting number for "gt" of type "MetadataFieldFilterFloatRange"',
+      });
+    }
     return serializeMetadataFieldFilterFloatRange(val);
   } catch (error) {
     void 0;
