@@ -1,11 +1,6 @@
-export * from './boxNetworkClient';
-export * from './interceptors.generated';
-export * from './index';
-export * from './proxyConfig.generated';
-export * from './network.generated';
-export * from './auth.generated';
-export * from './fetchOptions.generated';
-export * from './fetchResponse.generated';
-export * from './networkClient.generated';
-export * from './retries.generated';
-export * from './baseUrls.generated';
+export type {
+  FetchOptions,
+  MultipartItem,
+  ResponseFormat,
+} from './fetchOptions.generated';
+export type { FetchResponse } from './fetchResponse.generated';
