@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.17.1...v1.18.0) (2025-08-26)
+
+
+### Bug Fixes
+
+* bump form-data to 4.0.4 and types/node-fetch to 2.6.13 (box/box-codegen[#808](https://github.com/box/box-typescript-sdk-gen/issues/808)) ([#735](https://github.com/box/box-typescript-sdk-gen/issues/735)) ([7330b95](https://github.com/box/box-typescript-sdk-gen/commit/7330b95dc18baa56a24a06657f2cb3cc3f4c7c46))
+* Fix serialization for `MetadataFilterValue` (box/box-codegen[#800](https://github.com/box/box-typescript-sdk-gen/issues/800)) ([#727](https://github.com/box/box-typescript-sdk-gen/issues/727)) ([d046405](https://github.com/box/box-typescript-sdk-gen/commit/d046405e644d5533e07ac42411c176527efdd1fb))
+
+
+### New Features and Enhancements
+
+* Support event with long polling in Python and TS (box/box-codegen[#757](https://github.com/box/box-typescript-sdk-gen/issues/757)) ([#712](https://github.com/box/box-typescript-sdk-gen/issues/712)) ([6f25fda](https://github.com/box/box-typescript-sdk-gen/commit/6f25fdaf48b3538b3a7ba370d677454f6f0d2631))
+
 ### [1.17.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.17.0...v1.17.1) (2025-08-07)
 
 
