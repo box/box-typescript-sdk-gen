@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.18.1...v1.19.0) (2025-09-05)
+
+
+### Bug Fixes
+
+* Remove private access modifiers (box/box-codegen[#815](https://github.com/box/box-typescript-sdk-gen/issues/815)) ([#747](https://github.com/box/box-typescript-sdk-gen/issues/747)) ([1693ddc](https://github.com/box/box-typescript-sdk-gen/commit/1693ddc114b1c0452b2eddd6b4837a308155678a))
+
+
+### New Features and Enhancements
+
+* Add missing webhook events (box/box-openapi[#554](https://github.com/box/box-typescript-sdk-gen/issues/554)) ([#753](https://github.com/box/box-typescript-sdk-gen/issues/753)) ([2b77c98](https://github.com/box/box-typescript-sdk-gen/commit/2b77c982d549ef8ad84d8c6b69f9afb37e53197e))
+
 ### [1.18.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.18.0...v1.18.1) (2025-08-26)
 
 
