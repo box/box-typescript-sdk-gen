@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.1](https://github.com/box/box-typescript-sdk-gen/compare/v1.19.0...v1.19.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* Fix ESM build and add test set (box/box-codegen[#828](https://github.com/box/box-typescript-sdk-gen/issues/828)) ([#768](https://github.com/box/box-typescript-sdk-gen/issues/768)) ([c198527](https://github.com/box/box-typescript-sdk-gen/commit/c19852701d4e14eb6f6a9c7f24b4621d57a08b60))
+
 ## [1.19.0](https://github.com/box/box-typescript-sdk-gen/compare/v1.18.1...v1.19.0) (2025-09-05)
 
 
