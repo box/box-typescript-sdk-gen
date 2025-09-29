@@ -1,23 +1,23 @@
-import { serializeAiAgentExtract } from './aiAgentExtract.generated.js';
-import { deserializeAiAgentExtract } from './aiAgentExtract.generated.js';
-import { serializeAiAgentReference } from './aiAgentReference.generated.js';
-import { deserializeAiAgentReference } from './aiAgentReference.generated.js';
-import { serializeAiItemBase } from './aiItemBase.generated.js';
-import { deserializeAiItemBase } from './aiItemBase.generated.js';
-import { serializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
-import { deserializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
-import { AiAgentExtract } from './aiAgentExtract.generated.js';
-import { AiAgentReference } from './aiAgentReference.generated.js';
-import { AiItemBase } from './aiItemBase.generated.js';
-import { AiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiAgentExtract } from './aiAgentExtract.generated';
+import { deserializeAiAgentExtract } from './aiAgentExtract.generated';
+import { serializeAiAgentReference } from './aiAgentReference.generated';
+import { deserializeAiAgentReference } from './aiAgentReference.generated';
+import { serializeAiItemBase } from './aiItemBase.generated';
+import { deserializeAiItemBase } from './aiItemBase.generated';
+import { serializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated';
+import { deserializeAiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated';
+import { AiAgentExtract } from './aiAgentExtract.generated';
+import { AiAgentReference } from './aiAgentReference.generated';
+import { AiItemBase } from './aiItemBase.generated';
+import { AiAgentExtractOrAiAgentReference } from './aiAgentExtractOrAiAgentReference.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface AiExtract {
   /**
    * The prompt provided to a Large Language Model (LLM) in the request. The prompt can be up to 10000 characters long and it can be an XML or a JSON schema. */

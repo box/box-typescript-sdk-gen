@@ -1,20 +1,20 @@
-import { serializeAiExtractResponse } from './aiExtractResponse.generated.js';
-import { deserializeAiExtractResponse } from './aiExtractResponse.generated.js';
-import { serializeAiAgentInfo } from './aiAgentInfo.generated.js';
-import { deserializeAiAgentInfo } from './aiAgentInfo.generated.js';
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
-import { AiExtractResponse } from './aiExtractResponse.generated.js';
-import { AiAgentInfo } from './aiAgentInfo.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { DateTime } from '../internal/utils.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiExtractResponse } from './aiExtractResponse.generated';
+import { deserializeAiExtractResponse } from './aiExtractResponse.generated';
+import { serializeAiAgentInfo } from './aiAgentInfo.generated';
+import { deserializeAiAgentInfo } from './aiAgentInfo.generated';
+import { serializeDateTime } from '../internal/utils';
+import { deserializeDateTime } from '../internal/utils';
+import { AiExtractResponse } from './aiExtractResponse.generated';
+import { AiAgentInfo } from './aiAgentInfo.generated';
+import { BoxSdkError } from '../box/errors';
+import { DateTime } from '../internal/utils';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface AiExtractStructuredResponse {
   readonly answer: AiExtractResponse;
   /**

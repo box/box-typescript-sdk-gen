@@ -1,14 +1,14 @@
-import { serializeSignTemplate } from './signTemplate.generated.js';
-import { deserializeSignTemplate } from './signTemplate.generated.js';
-import { SignTemplate } from './signTemplate.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeSignTemplate } from './signTemplate.generated';
+import { deserializeSignTemplate } from './signTemplate.generated';
+import { SignTemplate } from './signTemplate.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface SignTemplates {
   /**
    * The limit that was used for these entries. This will be the same as the

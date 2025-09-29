@@ -1,20 +1,20 @@
-import { serializeFileFull } from './fileFull.generated.js';
-import { deserializeFileFull } from './fileFull.generated.js';
-import { serializeFolderMini } from './folderMini.generated.js';
-import { deserializeFolderMini } from './folderMini.generated.js';
-import { serializeWebLink } from './webLink.generated.js';
-import { deserializeWebLink } from './webLink.generated.js';
-import { FileFull } from './fileFull.generated.js';
-import { FolderMini } from './folderMini.generated.js';
-import { WebLink } from './webLink.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFileFull } from './fileFull.generated';
+import { deserializeFileFull } from './fileFull.generated';
+import { serializeFolderMini } from './folderMini.generated';
+import { deserializeFolderMini } from './folderMini.generated';
+import { serializeWebLink } from './webLink.generated';
+import { deserializeWebLink } from './webLink.generated';
+import { FileFull } from './fileFull.generated';
+import { FolderMini } from './folderMini.generated';
+import { WebLink } from './webLink.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type FileFullOrFolderMiniOrWebLink = FileFull | FolderMini | WebLink;
 export function serializeFileFullOrFolderMiniOrWebLink(
   val: any,

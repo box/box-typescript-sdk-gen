@@ -1,23 +1,23 @@
-import { serializeCommentBaseTypeField } from './commentBase.generated.js';
-import { deserializeCommentBaseTypeField } from './commentBase.generated.js';
-import { serializeCommentBase } from './commentBase.generated.js';
-import { deserializeCommentBase } from './commentBase.generated.js';
-import { serializeUserMini } from './userMini.generated.js';
-import { deserializeUserMini } from './userMini.generated.js';
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
-import { CommentBaseTypeField } from './commentBase.generated.js';
-import { CommentBase } from './commentBase.generated.js';
-import { UserMini } from './userMini.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { DateTime } from '../internal/utils.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeCommentBaseTypeField } from './commentBase.generated';
+import { deserializeCommentBaseTypeField } from './commentBase.generated';
+import { serializeCommentBase } from './commentBase.generated';
+import { deserializeCommentBase } from './commentBase.generated';
+import { serializeUserMini } from './userMini.generated';
+import { deserializeUserMini } from './userMini.generated';
+import { serializeDateTime } from '../internal/utils';
+import { deserializeDateTime } from '../internal/utils';
+import { CommentBaseTypeField } from './commentBase.generated';
+import { CommentBase } from './commentBase.generated';
+import { UserMini } from './userMini.generated';
+import { BoxSdkError } from '../box/errors';
+import { DateTime } from '../internal/utils';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface CommentItemField {
   /**
    * The unique identifier for this object. */

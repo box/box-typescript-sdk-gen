@@ -1,14 +1,14 @@
-import { serializeMetadataTemplate } from './metadataTemplate.generated.js';
-import { deserializeMetadataTemplate } from './metadataTemplate.generated.js';
-import { MetadataTemplate } from './metadataTemplate.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeMetadataTemplate } from './metadataTemplate.generated';
+import { deserializeMetadataTemplate } from './metadataTemplate.generated';
+import { MetadataTemplate } from './metadataTemplate.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface MetadataTemplates {
   /**
    * The limit that was used for these entries. This will be the same as the

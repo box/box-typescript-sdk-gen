@@ -1,23 +1,23 @@
-import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { serializeFolderReferenceV2025R0 } from './folderReferenceV2025R0.generated.js';
-import { deserializeFolderReferenceV2025R0 } from './folderReferenceV2025R0.generated.js';
-import { serializeWeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated.js';
-import { deserializeWeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated.js';
-import { serializeHubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated.js';
-import { deserializeHubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated.js';
-import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { FolderReferenceV2025R0 } from './folderReferenceV2025R0.generated.js';
-import { WeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated.js';
-import { HubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated.js';
-import { BoxSdkError } from '../../box/errors.js';
-import { SerializedData } from '../../serialization/json.js';
-import { sdIsEmpty } from '../../serialization/json.js';
-import { sdIsBoolean } from '../../serialization/json.js';
-import { sdIsNumber } from '../../serialization/json.js';
-import { sdIsString } from '../../serialization/json.js';
-import { sdIsList } from '../../serialization/json.js';
-import { sdIsMap } from '../../serialization/json.js';
+import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { serializeFolderReferenceV2025R0 } from './folderReferenceV2025R0.generated';
+import { deserializeFolderReferenceV2025R0 } from './folderReferenceV2025R0.generated';
+import { serializeWeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated';
+import { deserializeWeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated';
+import { serializeHubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated';
+import { deserializeHubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated';
+import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { FolderReferenceV2025R0 } from './folderReferenceV2025R0.generated';
+import { WeblinkReferenceV2025R0 } from './weblinkReferenceV2025R0.generated';
+import { HubItemReferenceV2025R0 } from './hubItemReferenceV2025R0.generated';
+import { BoxSdkError } from '../../box/errors';
+import { SerializedData } from '../../serialization/json';
+import { sdIsEmpty } from '../../serialization/json';
+import { sdIsBoolean } from '../../serialization/json';
+import { sdIsNumber } from '../../serialization/json';
+import { sdIsString } from '../../serialization/json';
+import { sdIsList } from '../../serialization/json';
+import { sdIsMap } from '../../serialization/json';
 export interface HubItemOperationResultV2025R0 {
   /**
    * The action performed on the item. */

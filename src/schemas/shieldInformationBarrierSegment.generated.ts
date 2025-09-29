@@ -1,20 +1,20 @@
-import { serializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { deserializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { serializeUserBase } from './userBase.generated.js';
-import { deserializeUserBase } from './userBase.generated.js';
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
-import { ShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { UserBase } from './userBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { DateTime } from '../internal/utils.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { deserializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { serializeUserBase } from './userBase.generated';
+import { deserializeUserBase } from './userBase.generated';
+import { serializeDateTime } from '../internal/utils';
+import { deserializeDateTime } from '../internal/utils';
+import { ShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { UserBase } from './userBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { DateTime } from '../internal/utils';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type ShieldInformationBarrierSegmentTypeField =
   'shield_information_barrier_segment';
 export interface ShieldInformationBarrierSegment {

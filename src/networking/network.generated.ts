@@ -1,15 +1,15 @@
-import { DataSanitizerInput } from '../internal/logging.generated.js';
-import { BaseUrls } from './baseUrls.generated.js';
-import { Interceptor } from './interceptors.generated.js';
-import { Agent } from '../internal/utils.js';
-import { AgentOptions } from '../internal/utils.js';
-import { createAgent } from '../internal/utils.js';
-import { ProxyConfig } from './proxyConfig.generated.js';
-import { BoxNetworkClient } from './boxNetworkClient.js';
-import { NetworkClient } from './networkClient.generated.js';
-import { RetryStrategy } from './retries.generated.js';
-import { BoxRetryStrategy } from './retries.generated.js';
-import { DataSanitizer } from '../internal/logging.generated.js';
+import { DataSanitizerInput } from '../internal/logging.generated';
+import { BaseUrls } from './baseUrls.generated';
+import { Interceptor } from './interceptors.generated';
+import { Agent } from '../internal/utils';
+import { AgentOptions } from '../internal/utils';
+import { createAgent } from '../internal/utils';
+import { ProxyConfig } from './proxyConfig.generated';
+import { BoxNetworkClient } from './boxNetworkClient';
+import { NetworkClient } from './networkClient.generated';
+import { RetryStrategy } from './retries.generated';
+import { BoxRetryStrategy } from './retries.generated';
+import { DataSanitizer } from '../internal/logging.generated';
 export class NetworkSession {
   readonly additionalHeaders: {
     readonly [key: string]: string;

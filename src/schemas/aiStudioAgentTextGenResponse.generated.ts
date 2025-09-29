@@ -1,14 +1,14 @@
-import { serializeAiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated.js';
-import { deserializeAiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated.js';
-import { AiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated';
+import { deserializeAiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated';
+import { AiStudioAgentBasicGenToolResponse } from './aiStudioAgentBasicGenToolResponse.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type AiStudioAgentTextGenResponseTypeField = 'ai_agent_text_gen';
 export class AiStudioAgentTextGenResponse {
   /**

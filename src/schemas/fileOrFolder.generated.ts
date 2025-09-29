@@ -1,17 +1,17 @@
-import { serializeFile } from './file.generated.js';
-import { deserializeFile } from './file.generated.js';
-import { serializeFolder } from './folder.generated.js';
-import { deserializeFolder } from './folder.generated.js';
-import { File } from './file.generated.js';
-import { Folder } from './folder.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFile } from './file.generated';
+import { deserializeFile } from './file.generated';
+import { serializeFolder } from './folder.generated';
+import { deserializeFolder } from './folder.generated';
+import { File } from './file.generated';
+import { Folder } from './folder.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type FileOrFolder = File | Folder;
 export function serializeFileOrFolder(val: any): SerializedData {
   if (val.type == 'file') {

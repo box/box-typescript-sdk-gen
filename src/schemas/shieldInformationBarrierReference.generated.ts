@@ -1,14 +1,14 @@
-import { serializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { deserializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { ShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { deserializeShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { ShieldInformationBarrierBase } from './shieldInformationBarrierBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface ShieldInformationBarrierReference {
   readonly shieldInformationBarrier?: ShieldInformationBarrierBase;
   readonly rawData?: SerializedData;

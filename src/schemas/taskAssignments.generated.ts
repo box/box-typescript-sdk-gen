@@ -1,14 +1,14 @@
-import { serializeTaskAssignment } from './taskAssignment.generated.js';
-import { deserializeTaskAssignment } from './taskAssignment.generated.js';
-import { TaskAssignment } from './taskAssignment.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeTaskAssignment } from './taskAssignment.generated';
+import { deserializeTaskAssignment } from './taskAssignment.generated';
+import { TaskAssignment } from './taskAssignment.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface TaskAssignments {
   /**
    * The total number of items in this collection. */

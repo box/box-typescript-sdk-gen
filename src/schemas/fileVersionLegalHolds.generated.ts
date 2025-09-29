@@ -1,14 +1,14 @@
-import { serializeFileVersionLegalHold } from './fileVersionLegalHold.generated.js';
-import { deserializeFileVersionLegalHold } from './fileVersionLegalHold.generated.js';
-import { FileVersionLegalHold } from './fileVersionLegalHold.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFileVersionLegalHold } from './fileVersionLegalHold.generated';
+import { deserializeFileVersionLegalHold } from './fileVersionLegalHold.generated';
+import { FileVersionLegalHold } from './fileVersionLegalHold.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface FileVersionLegalHolds {
   /**
    * The limit that was used for these entries. This will be the same as the

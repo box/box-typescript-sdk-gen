@@ -1,20 +1,20 @@
-import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { serializeFileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated.js';
-import { deserializeFileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated.js';
-import { serializeDocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated.js';
-import { deserializeDocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated.js';
-import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { FileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated.js';
-import { DocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated.js';
-import { BoxSdkError } from '../../box/errors.js';
-import { SerializedData } from '../../serialization/json.js';
-import { sdIsEmpty } from '../../serialization/json.js';
-import { sdIsBoolean } from '../../serialization/json.js';
-import { sdIsNumber } from '../../serialization/json.js';
-import { sdIsString } from '../../serialization/json.js';
-import { sdIsList } from '../../serialization/json.js';
-import { sdIsMap } from '../../serialization/json.js';
+import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { serializeFileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated';
+import { deserializeFileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated';
+import { serializeDocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated';
+import { deserializeDocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated';
+import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { FileVersionBaseV2025R0 } from './fileVersionBaseV2025R0.generated';
+import { DocGenDocumentGenerationDataV2025R0 } from './docGenDocumentGenerationDataV2025R0.generated';
+import { BoxSdkError } from '../../box/errors';
+import { SerializedData } from '../../serialization/json';
+import { sdIsEmpty } from '../../serialization/json';
+import { sdIsBoolean } from '../../serialization/json';
+import { sdIsNumber } from '../../serialization/json';
+import { sdIsString } from '../../serialization/json';
+import { sdIsList } from '../../serialization/json';
+import { sdIsMap } from '../../serialization/json';
 export type DocGenBatchCreateRequestV2025R0DestinationFolderTypeField =
   'folder';
 export class DocGenBatchCreateRequestV2025R0DestinationFolderField {

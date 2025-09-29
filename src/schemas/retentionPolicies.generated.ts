@@ -1,14 +1,14 @@
-import { serializeRetentionPolicy } from './retentionPolicy.generated.js';
-import { deserializeRetentionPolicy } from './retentionPolicy.generated.js';
-import { RetentionPolicy } from './retentionPolicy.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeRetentionPolicy } from './retentionPolicy.generated';
+import { deserializeRetentionPolicy } from './retentionPolicy.generated';
+import { RetentionPolicy } from './retentionPolicy.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface RetentionPolicies {
   /**
    * A list in which each entry represents a retention policy object. */

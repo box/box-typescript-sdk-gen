@@ -1,20 +1,20 @@
-import { serializeCollaboratorVariable } from './collaboratorVariable.generated.js';
-import { deserializeCollaboratorVariable } from './collaboratorVariable.generated.js';
-import { serializeCompletionRuleVariable } from './completionRuleVariable.generated.js';
-import { deserializeCompletionRuleVariable } from './completionRuleVariable.generated.js';
-import { serializeRoleVariable } from './roleVariable.generated.js';
-import { deserializeRoleVariable } from './roleVariable.generated.js';
-import { CollaboratorVariable } from './collaboratorVariable.generated.js';
-import { CompletionRuleVariable } from './completionRuleVariable.generated.js';
-import { RoleVariable } from './roleVariable.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeCollaboratorVariable } from './collaboratorVariable.generated';
+import { deserializeCollaboratorVariable } from './collaboratorVariable.generated';
+import { serializeCompletionRuleVariable } from './completionRuleVariable.generated';
+import { deserializeCompletionRuleVariable } from './completionRuleVariable.generated';
+import { serializeRoleVariable } from './roleVariable.generated';
+import { deserializeRoleVariable } from './roleVariable.generated';
+import { CollaboratorVariable } from './collaboratorVariable.generated';
+import { CompletionRuleVariable } from './completionRuleVariable.generated';
+import { RoleVariable } from './roleVariable.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface Outcome {
   /**
    * ID of a specific outcome. */

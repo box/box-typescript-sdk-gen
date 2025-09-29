@@ -1,17 +1,17 @@
-import { serializeFileVersionBaseTypeField } from './fileVersionBase.generated.js';
-import { deserializeFileVersionBaseTypeField } from './fileVersionBase.generated.js';
-import { serializeFileVersionBase } from './fileVersionBase.generated.js';
-import { deserializeFileVersionBase } from './fileVersionBase.generated.js';
-import { FileVersionBaseTypeField } from './fileVersionBase.generated.js';
-import { FileVersionBase } from './fileVersionBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFileVersionBaseTypeField } from './fileVersionBase.generated';
+import { deserializeFileVersionBaseTypeField } from './fileVersionBase.generated';
+import { serializeFileVersionBase } from './fileVersionBase.generated';
+import { deserializeFileVersionBase } from './fileVersionBase.generated';
+import { FileVersionBaseTypeField } from './fileVersionBase.generated';
+import { FileVersionBase } from './fileVersionBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export class FileVersionMini extends FileVersionBase {
   readonly sha1?: string;
   constructor(fields: FileVersionMini) {

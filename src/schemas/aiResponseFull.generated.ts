@@ -1,23 +1,23 @@
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
-import { serializeAiAgentInfo } from './aiAgentInfo.generated.js';
-import { deserializeAiAgentInfo } from './aiAgentInfo.generated.js';
-import { serializeAiResponse } from './aiResponse.generated.js';
-import { deserializeAiResponse } from './aiResponse.generated.js';
-import { serializeAiCitation } from './aiCitation.generated.js';
-import { deserializeAiCitation } from './aiCitation.generated.js';
-import { DateTime } from '../internal/utils.js';
-import { AiAgentInfo } from './aiAgentInfo.generated.js';
-import { AiResponse } from './aiResponse.generated.js';
-import { AiCitation } from './aiCitation.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeDateTime } from '../internal/utils';
+import { deserializeDateTime } from '../internal/utils';
+import { serializeAiAgentInfo } from './aiAgentInfo.generated';
+import { deserializeAiAgentInfo } from './aiAgentInfo.generated';
+import { serializeAiResponse } from './aiResponse.generated';
+import { deserializeAiResponse } from './aiResponse.generated';
+import { serializeAiCitation } from './aiCitation.generated';
+import { deserializeAiCitation } from './aiCitation.generated';
+import { DateTime } from '../internal/utils';
+import { AiAgentInfo } from './aiAgentInfo.generated';
+import { AiResponse } from './aiResponse.generated';
+import { AiCitation } from './aiCitation.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type AiResponseFull = AiResponse & {
   /**
    * The citations of the LLM's answer reference. */

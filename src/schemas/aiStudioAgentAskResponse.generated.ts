@@ -1,20 +1,20 @@
-import { serializeAiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated.js';
-import { deserializeAiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated.js';
-import { serializeAiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated.js';
-import { deserializeAiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated.js';
-import { serializeAiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated.js';
-import { deserializeAiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated.js';
-import { AiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated.js';
-import { AiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated.js';
-import { AiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated';
+import { deserializeAiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated';
+import { serializeAiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated';
+import { deserializeAiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated';
+import { serializeAiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated';
+import { deserializeAiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated';
+import { AiStudioAgentLongTextToolResponse } from './aiStudioAgentLongTextToolResponse.generated';
+import { AiStudioAgentBasicTextToolResponse } from './aiStudioAgentBasicTextToolResponse.generated';
+import { AiStudioAgentSpreadsheetToolResponse } from './aiStudioAgentSpreadsheetToolResponse.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type AiStudioAgentAskResponseTypeField = 'ai_agent_ask';
 export class AiStudioAgentAskResponse {
   /**

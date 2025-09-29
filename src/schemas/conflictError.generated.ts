@@ -1,23 +1,23 @@
-import { serializeClientErrorTypeField } from './clientError.generated.js';
-import { deserializeClientErrorTypeField } from './clientError.generated.js';
-import { serializeClientErrorCodeField } from './clientError.generated.js';
-import { deserializeClientErrorCodeField } from './clientError.generated.js';
-import { serializeClientError } from './clientError.generated.js';
-import { deserializeClientError } from './clientError.generated.js';
-import { serializeFileConflict } from './fileConflict.generated.js';
-import { deserializeFileConflict } from './fileConflict.generated.js';
-import { ClientErrorTypeField } from './clientError.generated.js';
-import { ClientErrorCodeField } from './clientError.generated.js';
-import { ClientError } from './clientError.generated.js';
-import { FileConflict } from './fileConflict.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeClientErrorTypeField } from './clientError.generated';
+import { deserializeClientErrorTypeField } from './clientError.generated';
+import { serializeClientErrorCodeField } from './clientError.generated';
+import { deserializeClientErrorCodeField } from './clientError.generated';
+import { serializeClientError } from './clientError.generated';
+import { deserializeClientError } from './clientError.generated';
+import { serializeFileConflict } from './fileConflict.generated';
+import { deserializeFileConflict } from './fileConflict.generated';
+import { ClientErrorTypeField } from './clientError.generated';
+import { ClientErrorCodeField } from './clientError.generated';
+import { ClientError } from './clientError.generated';
+import { FileConflict } from './fileConflict.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface ConflictErrorContextInfoField {
   /**
    * A list of the file conflicts that caused this error. */

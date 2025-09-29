@@ -1,17 +1,17 @@
-import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { serializeDocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated.js';
-import { deserializeDocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated.js';
-import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated.js';
-import { DocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated.js';
-import { BoxSdkError } from '../../box/errors.js';
-import { SerializedData } from '../../serialization/json.js';
-import { sdIsEmpty } from '../../serialization/json.js';
-import { sdIsBoolean } from '../../serialization/json.js';
-import { sdIsNumber } from '../../serialization/json.js';
-import { sdIsString } from '../../serialization/json.js';
-import { sdIsList } from '../../serialization/json.js';
-import { sdIsMap } from '../../serialization/json.js';
+import { serializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { deserializeFileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { serializeDocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated';
+import { deserializeDocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated';
+import { FileReferenceV2025R0 } from './fileReferenceV2025R0.generated';
+import { DocGenTemplateBaseV2025R0 } from './docGenTemplateBaseV2025R0.generated';
+import { BoxSdkError } from '../../box/errors';
+import { SerializedData } from '../../serialization/json';
+import { sdIsEmpty } from '../../serialization/json';
+import { sdIsBoolean } from '../../serialization/json';
+import { sdIsNumber } from '../../serialization/json';
+import { sdIsString } from '../../serialization/json';
+import { sdIsList } from '../../serialization/json';
+import { sdIsMap } from '../../serialization/json';
 export type DocGenTemplateV2025R0 = DocGenTemplateBaseV2025R0 & {
   /**
    * The name of the template. */
