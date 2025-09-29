@@ -1,17 +1,17 @@
-import { serializeAiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated.js';
-import { deserializeAiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated.js';
-import { serializeAiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated.js';
-import { deserializeAiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated.js';
-import { AiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated.js';
-import { AiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated';
+import { deserializeAiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated';
+import { serializeAiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated';
+import { deserializeAiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated';
+import { AiStudioAgentLongTextTool } from './aiStudioAgentLongTextTool.generated';
+import { AiStudioAgentBasicTextTool } from './aiStudioAgentBasicTextTool.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type AiStudioAgentExtractTypeField = 'ai_agent_extract';
 export class AiStudioAgentExtract {
   /**

@@ -1,20 +1,20 @@
-import { serializeMetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated.js';
-import { deserializeMetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated.js';
-import { serializeMetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated.js';
-import { deserializeMetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated.js';
-import { serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
-import { deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
-import { MetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated.js';
-import { MetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated.js';
-import { MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeMetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated';
+import { deserializeMetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated';
+import { serializeMetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated';
+import { deserializeMetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated';
+import { serializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated';
+import { deserializeMetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated';
+import { MetadataFieldFilterDateRange } from './metadataFieldFilterDateRange.generated';
+import { MetadataFieldFilterFloatRange } from './metadataFieldFilterFloatRange.generated';
+import { MetadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString } from './metadataFieldFilterDateRangeOrMetadataFieldFilterFloatRangeOrArrayOfStringOrNumberOrString.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type MetadataFilterScopeField =
   | 'global'
   | 'enterprise'

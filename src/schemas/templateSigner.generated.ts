@@ -1,14 +1,14 @@
-import { serializeTemplateSignerInput } from './templateSignerInput.generated.js';
-import { deserializeTemplateSignerInput } from './templateSignerInput.generated.js';
-import { TemplateSignerInput } from './templateSignerInput.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeTemplateSignerInput } from './templateSignerInput.generated';
+import { deserializeTemplateSignerInput } from './templateSignerInput.generated';
+import { TemplateSignerInput } from './templateSignerInput.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type TemplateSignerRoleField =
   | 'signer'
   | 'approver'

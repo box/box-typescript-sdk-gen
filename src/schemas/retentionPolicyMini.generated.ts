@@ -1,17 +1,17 @@
-import { serializeRetentionPolicyBaseTypeField } from './retentionPolicyBase.generated.js';
-import { deserializeRetentionPolicyBaseTypeField } from './retentionPolicyBase.generated.js';
-import { serializeRetentionPolicyBase } from './retentionPolicyBase.generated.js';
-import { deserializeRetentionPolicyBase } from './retentionPolicyBase.generated.js';
-import { RetentionPolicyBaseTypeField } from './retentionPolicyBase.generated.js';
-import { RetentionPolicyBase } from './retentionPolicyBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeRetentionPolicyBaseTypeField } from './retentionPolicyBase.generated';
+import { deserializeRetentionPolicyBaseTypeField } from './retentionPolicyBase.generated';
+import { serializeRetentionPolicyBase } from './retentionPolicyBase.generated';
+import { deserializeRetentionPolicyBase } from './retentionPolicyBase.generated';
+import { RetentionPolicyBaseTypeField } from './retentionPolicyBase.generated';
+import { RetentionPolicyBase } from './retentionPolicyBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type RetentionPolicyMiniDispositionActionField =
   | 'permanently_delete'
   | 'remove_retention'

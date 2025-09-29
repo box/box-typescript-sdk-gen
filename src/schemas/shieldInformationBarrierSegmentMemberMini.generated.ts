@@ -1,20 +1,20 @@
-import { serializeShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { deserializeShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { serializeShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { deserializeShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { serializeUserBase } from './userBase.generated.js';
-import { deserializeUserBase } from './userBase.generated.js';
-import { ShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { ShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated.js';
-import { UserBase } from './userBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { deserializeShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { serializeShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { deserializeShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { serializeUserBase } from './userBase.generated';
+import { deserializeUserBase } from './userBase.generated';
+import { ShieldInformationBarrierSegmentMemberBaseTypeField } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { ShieldInformationBarrierSegmentMemberBase } from './shieldInformationBarrierSegmentMemberBase.generated';
+import { UserBase } from './userBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type ShieldInformationBarrierSegmentMemberMini =
   ShieldInformationBarrierSegmentMemberBase & {
     readonly user?: UserBase;

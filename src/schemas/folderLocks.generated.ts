@@ -1,14 +1,14 @@
-import { serializeFolderLock } from './folderLock.generated.js';
-import { deserializeFolderLock } from './folderLock.generated.js';
-import { FolderLock } from './folderLock.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFolderLock } from './folderLock.generated';
+import { deserializeFolderLock } from './folderLock.generated';
+import { FolderLock } from './folderLock.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface FolderLocks {
   /**
    * A list of folder locks. */

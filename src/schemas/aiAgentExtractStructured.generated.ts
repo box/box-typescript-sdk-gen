@@ -1,17 +1,17 @@
-import { serializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { deserializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { serializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
-import { deserializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
-import { AiAgentLongTextTool } from './aiAgentLongTextTool.generated.js';
-import { AiAgentBasicTextTool } from './aiAgentBasicTextTool.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated';
+import { deserializeAiAgentLongTextTool } from './aiAgentLongTextTool.generated';
+import { serializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated';
+import { deserializeAiAgentBasicTextTool } from './aiAgentBasicTextTool.generated';
+import { AiAgentLongTextTool } from './aiAgentLongTextTool.generated';
+import { AiAgentBasicTextTool } from './aiAgentBasicTextTool.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type AiAgentExtractStructuredTypeField = 'ai_agent_extract_structured';
 export class AiAgentExtractStructured {
   /**

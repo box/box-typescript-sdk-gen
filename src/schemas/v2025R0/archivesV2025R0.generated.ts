@@ -1,14 +1,14 @@
-import { serializeArchiveV2025R0 } from './archiveV2025R0.generated.js';
-import { deserializeArchiveV2025R0 } from './archiveV2025R0.generated.js';
-import { ArchiveV2025R0 } from './archiveV2025R0.generated.js';
-import { BoxSdkError } from '../../box/errors.js';
-import { SerializedData } from '../../serialization/json.js';
-import { sdIsEmpty } from '../../serialization/json.js';
-import { sdIsBoolean } from '../../serialization/json.js';
-import { sdIsNumber } from '../../serialization/json.js';
-import { sdIsString } from '../../serialization/json.js';
-import { sdIsList } from '../../serialization/json.js';
-import { sdIsMap } from '../../serialization/json.js';
+import { serializeArchiveV2025R0 } from './archiveV2025R0.generated';
+import { deserializeArchiveV2025R0 } from './archiveV2025R0.generated';
+import { ArchiveV2025R0 } from './archiveV2025R0.generated';
+import { BoxSdkError } from '../../box/errors';
+import { SerializedData } from '../../serialization/json';
+import { sdIsEmpty } from '../../serialization/json';
+import { sdIsBoolean } from '../../serialization/json';
+import { sdIsNumber } from '../../serialization/json';
+import { sdIsString } from '../../serialization/json';
+import { sdIsList } from '../../serialization/json';
+import { sdIsMap } from '../../serialization/json';
 export interface ArchivesV2025R0 {
   /**
    * A list in which each entry represents an archive object. */

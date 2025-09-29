@@ -1,20 +1,20 @@
-import { serializeFileMini } from './fileMini.generated.js';
-import { deserializeFileMini } from './fileMini.generated.js';
-import { serializeFolderMini } from './folderMini.generated.js';
-import { deserializeFolderMini } from './folderMini.generated.js';
-import { serializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
-import { deserializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
-import { FileMini } from './fileMini.generated.js';
-import { FolderMini } from './folderMini.generated.js';
-import { FileMiniOrFolderMini } from './fileMiniOrFolderMini.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFileMini } from './fileMini.generated';
+import { deserializeFileMini } from './fileMini.generated';
+import { serializeFolderMini } from './folderMini.generated';
+import { deserializeFolderMini } from './folderMini.generated';
+import { serializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated';
+import { deserializeFileMiniOrFolderMini } from './fileMiniOrFolderMini.generated';
+import { FileMini } from './fileMini.generated';
+import { FolderMini } from './folderMini.generated';
+import { FileMiniOrFolderMini } from './fileMiniOrFolderMini.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type FileOrFolderScopeScopeField =
   | 'annotation_edit'
   | 'annotation_view_all'

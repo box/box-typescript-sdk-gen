@@ -1,20 +1,20 @@
-import { serializeFolderMini } from './folderMini.generated.js';
-import { deserializeFolderMini } from './folderMini.generated.js';
-import { serializeFileMini } from './fileMini.generated.js';
-import { deserializeFileMini } from './fileMini.generated.js';
-import { serializeTemplateSigner } from './templateSigner.generated.js';
-import { deserializeTemplateSigner } from './templateSigner.generated.js';
-import { FolderMini } from './folderMini.generated.js';
-import { FileMini } from './fileMini.generated.js';
-import { TemplateSigner } from './templateSigner.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFolderMini } from './folderMini.generated';
+import { deserializeFolderMini } from './folderMini.generated';
+import { serializeFileMini } from './fileMini.generated';
+import { deserializeFileMini } from './fileMini.generated';
+import { serializeTemplateSigner } from './templateSigner.generated';
+import { deserializeTemplateSigner } from './templateSigner.generated';
+import { FolderMini } from './folderMini.generated';
+import { FileMini } from './fileMini.generated';
+import { TemplateSigner } from './templateSigner.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type SignTemplateTypeField = 'sign-template';
 export type SignTemplateAdditionalInfoNonEditableField =
   | 'email_subject'

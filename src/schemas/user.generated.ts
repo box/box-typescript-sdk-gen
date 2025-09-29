@@ -1,23 +1,23 @@
-import { serializeUserBaseTypeField } from './userBase.generated.js';
-import { deserializeUserBaseTypeField } from './userBase.generated.js';
-import { serializeUserBase } from './userBase.generated.js';
-import { deserializeUserBase } from './userBase.generated.js';
-import { serializeUserMini } from './userMini.generated.js';
-import { deserializeUserMini } from './userMini.generated.js';
-import { serializeDateTime } from '../internal/utils.js';
-import { deserializeDateTime } from '../internal/utils.js';
-import { UserBaseTypeField } from './userBase.generated.js';
-import { UserBase } from './userBase.generated.js';
-import { UserMini } from './userMini.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { DateTime } from '../internal/utils.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeUserBaseTypeField } from './userBase.generated';
+import { deserializeUserBaseTypeField } from './userBase.generated';
+import { serializeUserBase } from './userBase.generated';
+import { deserializeUserBase } from './userBase.generated';
+import { serializeUserMini } from './userMini.generated';
+import { deserializeUserMini } from './userMini.generated';
+import { serializeDateTime } from '../internal/utils';
+import { deserializeDateTime } from '../internal/utils';
+import { UserBaseTypeField } from './userBase.generated';
+import { UserBase } from './userBase.generated';
+import { UserMini } from './userMini.generated';
+import { BoxSdkError } from '../box/errors';
+import { DateTime } from '../internal/utils';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type UserStatusField =
   | 'active'
   | 'inactive'

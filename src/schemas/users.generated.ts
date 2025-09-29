@@ -1,14 +1,14 @@
-import { serializeUserFull } from './userFull.generated.js';
-import { deserializeUserFull } from './userFull.generated.js';
-import { UserFull } from './userFull.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeUserFull } from './userFull.generated';
+import { deserializeUserFull } from './userFull.generated';
+import { UserFull } from './userFull.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type UsersOrderDirectionField = 'ASC' | 'DESC' | string;
 export interface UsersOrderField {
   /**

@@ -1,20 +1,20 @@
-import { serializeFileFull } from './fileFull.generated.js';
-import { deserializeFileFull } from './fileFull.generated.js';
-import { serializeFolderFull } from './folderFull.generated.js';
-import { deserializeFolderFull } from './folderFull.generated.js';
-import { serializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
-import { deserializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
-import { FileFull } from './fileFull.generated.js';
-import { FolderFull } from './folderFull.generated.js';
-import { FileFullOrFolderFull } from './fileFullOrFolderFull.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeFileFull } from './fileFull.generated';
+import { deserializeFileFull } from './fileFull.generated';
+import { serializeFolderFull } from './folderFull.generated';
+import { deserializeFolderFull } from './folderFull.generated';
+import { serializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated';
+import { deserializeFileFullOrFolderFull } from './fileFullOrFolderFull.generated';
+import { FileFull } from './fileFull.generated';
+import { FolderFull } from './folderFull.generated';
+import { FileFullOrFolderFull } from './fileFullOrFolderFull.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export interface MetadataQueryResults {
   /**
    * The mini representation of the files and folders that match the search

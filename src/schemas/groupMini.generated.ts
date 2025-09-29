@@ -1,17 +1,17 @@
-import { serializeGroupBaseTypeField } from './groupBase.generated.js';
-import { deserializeGroupBaseTypeField } from './groupBase.generated.js';
-import { serializeGroupBase } from './groupBase.generated.js';
-import { deserializeGroupBase } from './groupBase.generated.js';
-import { GroupBaseTypeField } from './groupBase.generated.js';
-import { GroupBase } from './groupBase.generated.js';
-import { BoxSdkError } from '../box/errors.js';
-import { SerializedData } from '../serialization/json.js';
-import { sdIsEmpty } from '../serialization/json.js';
-import { sdIsBoolean } from '../serialization/json.js';
-import { sdIsNumber } from '../serialization/json.js';
-import { sdIsString } from '../serialization/json.js';
-import { sdIsList } from '../serialization/json.js';
-import { sdIsMap } from '../serialization/json.js';
+import { serializeGroupBaseTypeField } from './groupBase.generated';
+import { deserializeGroupBaseTypeField } from './groupBase.generated';
+import { serializeGroupBase } from './groupBase.generated';
+import { deserializeGroupBase } from './groupBase.generated';
+import { GroupBaseTypeField } from './groupBase.generated';
+import { GroupBase } from './groupBase.generated';
+import { BoxSdkError } from '../box/errors';
+import { SerializedData } from '../serialization/json';
+import { sdIsEmpty } from '../serialization/json';
+import { sdIsBoolean } from '../serialization/json';
+import { sdIsNumber } from '../serialization/json';
+import { sdIsString } from '../serialization/json';
+import { sdIsList } from '../serialization/json';
+import { sdIsMap } from '../serialization/json';
 export type GroupMiniGroupTypeField =
   | 'managed_group'
   | 'all_users_group'
