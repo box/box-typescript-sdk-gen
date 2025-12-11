@@ -25,7 +25,12 @@ import { sdIsString } from '../serialization/json';
 import { sdIsList } from '../serialization/json';
 import { sdIsMap } from '../serialization/json';
 export type AppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser =
-  AppItemEventSource | EventSource | File | Folder | GenericSource | User;
+  | AppItemEventSource
+  | EventSource
+  | File
+  | Folder
+  | GenericSource
+  | User;
 export function serializeAppItemEventSourceOrEventSourceOrFileOrFolderOrGenericSourceOrUser(
   val: any,
 ): SerializedData {
