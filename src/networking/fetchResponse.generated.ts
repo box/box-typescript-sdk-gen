@@ -1,5 +1,5 @@
-import { SerializedData } from '../serialization/json';
-import { ByteStream } from '../internal/utils';
+import { SerializedData } from '../serialization/json.js';
+import { ByteStream } from '../internal/utils.js';
 export interface FetchResponse {
   /**
    * URL of the response */

@@ -1,5 +1,5 @@
-import { AccessToken } from '../schemas/accessToken.generated';
-import { NetworkSession } from './network.generated';
+import { AccessToken } from '../schemas/accessToken.generated.js';
+import { NetworkSession } from './network.generated.js';
 export interface Authentication {
   /**
    * @param {NetworkSession} networkSession

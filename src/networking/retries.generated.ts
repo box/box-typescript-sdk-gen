@@ -1,6 +1,6 @@
-import { FetchOptions } from './fetchOptions.generated';
-import { FetchResponse } from './fetchResponse.generated';
-import { random } from '../internal/utils';
+import { FetchOptions } from './fetchOptions.generated.js';
+import { FetchResponse } from './fetchResponse.generated.js';
+import { random } from '../internal/utils.js';
 export interface RetryStrategy {
   /**
    * @param {FetchOptions} fetchOptions

@@ -1,6 +1,6 @@
-import { SerializedData } from '../serialization/json';
-import { sanitizeMap } from './utils';
-import { sanitizeSerializedData } from '../serialization/json';
+import { SerializedData } from '../serialization/json.js';
+import { sanitizeMap } from './utils.js';
+import { sanitizeSerializedData } from '../serialization/json.js';
 export class DataSanitizer {
   readonly keysToSanitize: {
     readonly [key: string]: string;

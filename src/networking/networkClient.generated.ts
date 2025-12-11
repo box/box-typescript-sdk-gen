@@ -1,6 +1,6 @@
-import { FetchOptionsInput } from './fetchOptions.generated';
-import { FetchOptions } from './fetchOptions.generated';
-import { FetchResponse } from './fetchResponse.generated';
+import { FetchOptionsInput } from './fetchOptions.generated.js';
+import { FetchOptions } from './fetchOptions.generated.js';
+import { FetchResponse } from './fetchResponse.generated.js';
 export interface NetworkClient {
   /**
    * @param {FetchOptionsInput} optionsInput
