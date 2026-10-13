@@ -4,6 +4,12 @@
 
 # Deprecation notice
 
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained. Do not use it for new projects.**
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 As of September 17, 2025, Box Next Generation SDKs are no longer supported as separate artifacts. Your existing code will continue to work without changes, but you won't receive new features, updates, bug fixes, or security patches.
 
 In keeping with industry best practices, we are consolidating the Box Next Generation SDKs and Box core SDKs into a single package. This makes migration easier and allows you to seamlessly add new capabilities to existing applications. Two consolidated versions are available in [box-node-sdk](https://github.com/box/box-node-sdk):
@@ -57,6 +63,9 @@ Embrace the new generation of Box SDKs and unlock the full potential of the Box 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Installing
+
+> [!CAUTION]
+> This package is deprecated. For new projects, install [`box-node-sdk`](https://github.com/box/box-node-sdk) instead: `npm install box-node-sdk`.
 
 ```console
 npm install box-typescript-sdk-gen

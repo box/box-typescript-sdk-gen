@@ -1,5 +1,12 @@
 # DocgenManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/docgen.md](https://github.com/box/box-node-sdk/blob/main/docs/docgen.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [Get Box Doc Gen job by ID](#get-box-doc-gen-job-by-id)
 - [List all Box Doc Gen jobs](#list-all-box-doc-gen-jobs)
 - [Get Box Doc Gen jobs by batch ID](#get-box-doc-gen-jobs-by-batch-id)
