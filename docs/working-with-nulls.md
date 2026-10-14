@@ -1,5 +1,12 @@
 # Handling null values in Box Typescript SDK Gen
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/working-with-nulls.md](https://github.com/box/box-node-sdk/blob/main/docs/working-with-nulls.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 While using Box Typescript SDK it's important to understand how null values behave. This document provides a general overview of null value behaviour in Box Typescript SDK to help developers manage data consistently and predictably.
 
 ## Understanding null behaviour

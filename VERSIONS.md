@@ -1,5 +1,12 @@
 # Version Lifecycle
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/VERSIONS.md](https://github.com/box/box-node-sdk/blob/main/VERSIONS.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 We use a modified version of [Semantic Versioning](https://semver.org/) for all changes. It is strongly encouraged that you pin at least the major version and potentially the minor version to avoid pulling in breaking changes. Increasing the major version of an SDK indicates that this SDK underwent significant and substantial changes to support new idioms and patterns in the language. Major versions are introduced when public interfaces (e.g. classes, methods, types, etc.), behaviours, or semantics have changed.
 
 Semantic Versions take the form of `MAJOR.MINOR.PATCH`.
