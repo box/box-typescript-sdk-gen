@@ -1,5 +1,12 @@
 # EmailAliasesManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/emailAliases.md](https://github.com/box/box-node-sdk/blob/main/docs/emailAliases.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [List user's email aliases](#list-users-email-aliases)
 - [Create email alias](#create-email-alias)
 - [Remove email alias](#remove-email-alias)
