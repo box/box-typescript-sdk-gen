@@ -1,5 +1,12 @@
 # ChunkedUploadsManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/chunkedUploads.md](https://github.com/box/box-node-sdk/blob/main/docs/chunkedUploads.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 This is a manager for chunked uploads (allowed for files at least 20MB).
 
 - [Create upload session](#create-upload-session)
