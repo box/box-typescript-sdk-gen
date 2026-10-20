@@ -1,5 +1,12 @@
 # ShieldInformationBarrierSegmentsManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/shieldInformationBarrierSegments.md](https://github.com/box/box-node-sdk/blob/main/docs/shieldInformationBarrierSegments.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [Get shield information barrier segment with specified ID](#get-shield-information-barrier-segment-with-specified-id)
 - [Delete shield information barrier segment](#delete-shield-information-barrier-segment)
 - [Update shield information barrier segment with specified ID](#update-shield-information-barrier-segment-with-specified-id)
