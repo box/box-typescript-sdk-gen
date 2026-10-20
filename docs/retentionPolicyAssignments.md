@@ -1,5 +1,12 @@
 # RetentionPolicyAssignmentsManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/retentionPolicyAssignments.md](https://github.com/box/box-node-sdk/blob/main/docs/retentionPolicyAssignments.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [List retention policy assignments](#list-retention-policy-assignments)
 - [Assign retention policy](#assign-retention-policy)
 - [Get retention policy assignment](#get-retention-policy-assignment)

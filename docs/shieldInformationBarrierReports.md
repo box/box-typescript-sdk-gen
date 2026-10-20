@@ -1,5 +1,12 @@
 # ShieldInformationBarrierReportsManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/shieldInformationBarrierReports.md](https://github.com/box/box-node-sdk/blob/main/docs/shieldInformationBarrierReports.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [List shield information barrier reports](#list-shield-information-barrier-reports)
 - [Create shield information barrier report](#create-shield-information-barrier-report)
 - [Get shield information barrier report by ID](#get-shield-information-barrier-report-by-id)

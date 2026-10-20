@@ -1,5 +1,12 @@
 # CollaborationAllowlistExemptTargetsManager
 
+<!-- box-typescript-sdk-gen deprecation banner -->
+> [!CAUTION]
+> **`box-typescript-sdk-gen` is deprecated and no longer maintained.** As of September 17, 2025, it receives no new features, bug fixes, or security patches. Do not use it for new projects.
+>
+> Use [`box-node-sdk`](https://github.com/box/box-node-sdk) v10+ instead: `npm install box-node-sdk`.
+> The equivalent of this page is [box-node-sdk/docs/collaborationAllowlistExemptTargets.md](https://github.com/box/box-node-sdk/blob/main/docs/collaborationAllowlistExemptTargets.md). To migrate existing code, see the [migration guide](https://github.com/box/box-node-sdk/blob/main/migration-guides/from-box-typescript-sdk-gen-v1-to-box-node-sdk.md).
+
 - [List users exempt from collaboration domain restrictions](#list-users-exempt-from-collaboration-domain-restrictions)
 - [Create user exemption from collaboration domain restrictions](#create-user-exemption-from-collaboration-domain-restrictions)
 - [Get user exempt from collaboration domain restrictions](#get-user-exempt-from-collaboration-domain-restrictions)
